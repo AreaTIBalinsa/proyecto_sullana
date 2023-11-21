@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body{
+    font-family: 'Poppins';
+}
+/* Estilo para la barra de desplazamiento */
+/* Tamaño de la barra de desplazamiento */
+body::-webkit-scrollbar {
+    width: 10px;
+}
+/* Color de fondo de la barra de desplazamiento */
+body::-webkit-scrollbar-track {
+    background: #777;
+}
+
+/* Estilo del pulgar (la parte que se arrastra) de la barra de desplazamiento */
+body::-webkit-scrollbar-thumb {
+    background: #323232;
+    border-radius: 5px;
+}
+
+/* Cambio de estilo al pasar el mouse por encima de la barra de desplazamiento */
+body::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.aside_scrollED::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+  background: transparent;
+}
+
+.aside_scrollED::-webkit-scrollbar-track {
+  border-radius: 5px;
+}
+
+.aside_scrollED::-webkit-scrollbar-thumb {
+  background: #555555;
+  border-radius: 5px;
+}
+
+.lds-ellipsis {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-ellipsis div {
+  position: absolute;
+  top: 33px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+.lds-ellipsis div:nth-child(1) {
+  left: 8px;
+  animation: lds-ellipsis1 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(2) {
+  left: 8px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(3) {
+  left: 32px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(4) {
+  left: 56px;
+  animation: lds-ellipsis3 0.6s infinite;
+}
+@keyframes lds-ellipsis1 {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes lds-ellipsis3 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+@keyframes lds-ellipsis2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(24px, 0);
+  }
+}
+
+.circulo_swith.prendido{
+  left: 18px;
+}
+
+.dark input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
