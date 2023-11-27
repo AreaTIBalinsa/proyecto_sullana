@@ -25,9 +25,7 @@ return new class extends Migration
             $table->time('horaRegistroCli');
             $table->integer('usuarioRegistroCli');
             $table->integer('codigoCli')->unique();
-            $table->integer('idGrupo');
             $table->string('comentarioCli', 300)->nullable();
-            $table->integer('idZona');
             $table->integer('estadoEliminadoCli')->default(1);
             $table->timestamps();
         });

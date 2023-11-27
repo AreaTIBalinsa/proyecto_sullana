@@ -22,8 +22,6 @@ class DatabaseSeeder extends Seeder
             MenusTableSeeder::class,
             SubmenusTableSeeder::class,
             RolesDeUsuarioTableSeeder::class,
-            GruposSeeder::class,
-            ZonasSeeder::class,
             EstadosSeeder::class,
             TipoDocumentoSeeder::class,
             PreciosMinimosTableSeeder::class,

@@ -18,5 +18,16 @@ class ActualizarPreciosXPresentacion extends Model
         'segundaEspecie',
         'terceraEspecie',
         'cuartaEspecie',
+        'quintaEspecie',
+        'sextaEspecie',
+        'septimaEspecie',
+        'octavaEspecie',
+        'novenaEspecie',
+        'decimaEspecie',
+        'decimaPrimeraEspecie',
+        'decimaSegundaEspecie',
+        'decimaTerceraEspecie',
+        'decimaCuartaEspecie',
+        'decimaQuintaOtrasEspecie',
     ];
 }

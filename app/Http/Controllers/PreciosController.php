@@ -28,13 +28,21 @@ class PreciosController extends Controller
             tb_precio_x_presentacion.segundaEspecie,
             tb_precio_x_presentacion.terceraEspecie,
             tb_precio_x_presentacion.cuartaEspecie,
-            tb_clientes.idGrupo,
-            tb_zonas.idZona,
+            tb_precio_x_presentacion.quintaEspecie,
+            tb_precio_x_presentacion.sextaEspecie,
+            tb_precio_x_presentacion.septimaEspecie,
+            tb_precio_x_presentacion.octavaEspecie,
+            tb_precio_x_presentacion.novenaEspecie,
+            tb_precio_x_presentacion.decimaEspecie,
+            tb_precio_x_presentacion.decimaPrimeraEspecie,
+            tb_precio_x_presentacion.decimaSegundaEspecie,
+            tb_precio_x_presentacion.decimaTerceraEspecie,
+            tb_precio_x_presentacion.decimaCuartaEspecie,
+            tb_precio_x_presentacion.decimaQuintaOtrasEspecies,
             IFNULL(CONCAT_WS(" ", nombresCli, apellidoPaternoCli, apellidoMaternoCli), "") AS nombreCompleto
             FROM tb_precio_x_presentacion
             INNER JOIN tb_clientes ON tb_clientes.codigoCli = tb_precio_x_presentacion.codigoCli 
-            INNER JOIN tb_zonas on tb_zonas.idZona = tb_clientes.idZona 
-            WHERE tb_clientes.idEstadoCli = 1 and tb_clientes.estadoEliminadoCli != 0 ORDER BY FIELD(tb_zonas.idZona,4,2,3,1),nombreCompleto ASC');
+            WHERE tb_clientes.idEstadoCli = 1 and tb_clientes.estadoEliminadoCli != 0 ORDER BY nombreCompleto ASC');
 
             // Devuelve los datos en formato JSON
             return response()->json($datos);
@@ -69,6 +77,46 @@ class PreciosController extends Controller
                     ActualizarPreciosXPresentacion::where('idPrecio', $idClienteActualizarPrecioXPresentacion)
                         ->update(['cuartaEspecie' => $valorActualizarPrecioXPresentacion]);
                     break;
+                case 5:
+                    ActualizarPreciosXPresentacion::where('idPrecio', $idClienteActualizarPrecioXPresentacion)
+                        ->update(['quintaEspecie' => $valorActualizarPrecioXPresentacion]);
+                    break;
+                case 6:
+                    ActualizarPreciosXPresentacion::where('idPrecio', $idClienteActualizarPrecioXPresentacion)
+                        ->update(['sextaEspecie' => $valorActualizarPrecioXPresentacion]);
+                    break;
+                case 7:
+                    ActualizarPreciosXPresentacion::where('idPrecio', $idClienteActualizarPrecioXPresentacion)
+                        ->update(['septimaEspecie' => $valorActualizarPrecioXPresentacion]);
+                    break;
+                case 8:
+                    ActualizarPreciosXPresentacion::where('idPrecio', $idClienteActualizarPrecioXPresentacion)
+                        ->update(['octavaEspecie' => $valorActualizarPrecioXPresentacion]);
+                    break;
+                case 9:
+                    ActualizarPreciosXPresentacion::where('idPrecio', $idClienteActualizarPrecioXPresentacion)
+                        ->update(['novenaEspecie' => $valorActualizarPrecioXPresentacion]);
+                    break;
+                case 10:
+                    ActualizarPreciosXPresentacion::where('idPrecio', $idClienteActualizarPrecioXPresentacion)
+                        ->update(['decimaPrimeraEspecie' => $valorActualizarPrecioXPresentacion]);
+                    break;
+                case 11:
+                    ActualizarPreciosXPresentacion::where('idPrecio', $idClienteActualizarPrecioXPresentacion)
+                        ->update(['decimaSegundaEspecie' => $valorActualizarPrecioXPresentacion]);
+                    break;
+                case 12:
+                    ActualizarPreciosXPresentacion::where('idPrecio', $idClienteActualizarPrecioXPresentacion)
+                        ->update(['decimaTerceraEspecie' => $valorActualizarPrecioXPresentacion]);
+                    break;
+                case 13:
+                    ActualizarPreciosXPresentacion::where('idPrecio', $idClienteActualizarPrecioXPresentacion)
+                        ->update(['decimaCuartaEspecie' => $valorActualizarPrecioXPresentacion]);
+                    break;
+                case 14:
+                    ActualizarPreciosXPresentacion::where('idPrecio', $idClienteActualizarPrecioXPresentacion)
+                        ->update(['decimaQuintaOtrasEspecies' => $valorActualizarPrecioXPresentacion]);
+                    break;     
                 default:
                     return response()->json(['error' => 'Número de especie inválido'], 400);
             }
@@ -134,6 +182,17 @@ class PreciosController extends Controller
         $resultadoEspecieDos = $request->input('resultadoEspecieDos');
         $resultadoEspecieTres = $request->input('resultadoEspecieTres');
         $resultadoEspecieCuatro = $request->input('resultadoEspecieCuatro');
+        $resultadoEspecieCinco = $request->input('resultadoEspecieCinco');
+        $resultadoEspecieSeis = $request->input('resultadoEspecieSeis');
+        $resultadoEspecieSiete = $request->input('resultadoEspecieSiete');
+        $resultadoEspecieOcho = $request->input('resultadoEspecieOcho');
+        $resultadoEspecieNueve = $request->input('resultadoEspecieNueve');
+        $resultadoEspecieDiez = $request->input('resultadoEspecieDiez');
+        $resultadoEspecieOnce = $request->input('resultadoEspecieOnce');
+        $resultadoEspecieDoce = $request->input('resultadoEspecieDoce');
+        $resultadoEspecieTrece = $request->input('resultadoEspecieTrece');
+        $resultadoEspecieCatorce = $request->input('resultadoEspecieCatorce');
+        $resultadoEspecieCatorce = $request->input('resultadoEspecieCatorce');
 
         if (Auth::check()) {
             // Realiza la consulta a la base de datos
@@ -141,7 +200,17 @@ class PreciosController extends Controller
                 ->update(['primerEspecie' => $resultadoEspecieUno,
                 'segundaEspecie' => $resultadoEspecieDos,
                 'terceraEspecie' => $resultadoEspecieTres,
-                'cuartaEspecie' => $resultadoEspecieCuatro]);
+                'cuartaEspecie' => $resultadoEspecieCuatro,
+                'quintaEspecie' => $resultadoEspecieCinco,
+                'sextaEspecie' => $resultadoEspecieSeis,
+                'septimaEspecie' => $resultadoEspecieSiete,
+                'octavaEspecie' => $resultadoEspecieOcho,
+                'novenaEspecie' => $resultadoEspecieNueve,
+                'decimaPrimeraEspecie' => $resultadoEspecieDiez,
+                'decimaSegundaEspecie' => $resultadoEspecieOnce,
+                'decimaTerceraEspecie' => $resultadoEspecieDoce,
+                'decimaCuartaEspecie' => $resultadoEspecieTrece,
+                'decimaQuintaOtrasEspecies' => $resultadoEspecieCatorce]);
                 
             return response()->json(['success' => true], 200);
         }

@@ -12,7 +12,6 @@ use App\Http\Controllers\ReportePorClienteController;
 use App\Http\Controllers\ReporteDePagosController;
 use App\Http\Controllers\ConsultarClientesController;
 use App\Http\Controllers\PesadasController;
-use App\Http\Controllers\ZonasController;
 use App\Http\Controllers\ConsultarUsuariosController;
 use App\Http\Controllers\ReportePorProveedorController;
 use App\Http\Controllers\ReporteAcumuladoController;
@@ -53,7 +52,6 @@ Route::get('/reporte_por_cliente',[ReportePorClienteController::class,'show']);
 Route::get('/reporte_de_pagos',[ReporteDePagosController::class,'show']);
 Route::get('/consultar_clientes',[ConsultarClientesController::class,'show']);
 Route::get('/pesadas',[PesadasController::class,'show']);
-Route::get('/zonas',[ZonasController::class,'show']);
 Route::get('/consultar_usuarios',[ConsultarUsuariosController::class,'show']);
 Route::get('/reporte_por_proveedor',[ReportePorProveedorController::class,'show']);
 Route::get('/reporte_acumulado',[ReporteAcumuladoController::class,'show']);
@@ -117,11 +115,6 @@ Route::get('/fn_consulta_ConsultarPesadasDesdeHasta', [PesadasController::class,
 Route::get('/fn_consulta_TraerClientesCambiarPesadaCliente', [PesadasController::class,'consulta_TraerClientesCambiarPesadaCliente']);
 Route::get('/fn_consulta_DatosParaCambioPesada', [PesadasController::class,'consulta_DatosParaCambioPesada']);
 Route::get('/fn_consulta_CambiarPesadaCliente', [PesadasController::class,'consulta_CambiarPesadaCliente']);
-
-Route::get('/fn_consulta_ConsultarZonas', [ZonasController::class,'consulta_ConsultarZonas']);
-Route::get('/fn_consulta_AgregarZona', [ZonasController::class,'consulta_AgregarZona']);
-Route::get('/fn_consulta_EditarZona', [ZonasController::class,'consulta_EditarZona']);
-Route::get('/fn_consulta_EliminarZona', [ZonasController::class,'consulta_EliminarZona']);
 
 Route::get('/fn_consulta_ConsultarUsuarios', [ConsultarUsuariosController::class,'consulta_ConsultarUsuarios']);
 Route::get('/fn_consulta_ConsultarUsuariosEditar', [ConsultarUsuariosController::class,'consulta_ConsultarUsuariosEditar']);

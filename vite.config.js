@@ -18,7 +18,6 @@ export default defineConfig({
                     'resources/js/reporte_por_cliente.js',
                     'resources/js/reporte_por_proveedor.js',
                     'resources/js/valor_conversion.js',
-                    'resources/js/zonas.js',
                     'resources/js/agregar_saldo.js',
                     'resources/js/reporte_acumulado.js',
                     'resources/js/configuraciones.js'],

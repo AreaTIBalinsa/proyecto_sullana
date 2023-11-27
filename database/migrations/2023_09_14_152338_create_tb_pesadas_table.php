@@ -21,13 +21,14 @@ return new class extends Migration
             $table->date('fechaRegistroPes')->default(now());
             $table->integer('cantidadPes');
             $table->decimal('precioPes', 8, 2);
-            $table->integer('numBalanzaPes');
+            $table->integer('pesoNetoJabas');
             $table->integer('numeroJabasPes')->default(0);
-            $table->decimal('valorConversion', 8, 3);
+            $table->integer('numeroCubetasPes')->default(0);
             $table->integer('estadoPes')->default(1);
             $table->integer('estadoWebPes')->default(0);
+            $table->string('tipoCubetas', 500)->nullable();
+            $table->string('coloresJabas', 500)->nullable();
             $table->string('observacionPes', 500)->nullable();
-            $table->integer('idGrupo');
             $table->timestamps();
         });
     }

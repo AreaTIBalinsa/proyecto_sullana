@@ -18,10 +18,17 @@ return new class extends Migration
             $table->decimal('segundaEspecie', 8, 2)->default(10.00);
             $table->decimal('terceraEspecie', 8, 2)->default(10.00);
             $table->decimal('cuartaEspecie', 8, 2)->default(10.00);
-            $table->decimal('valorConversionPrimerEspecie', 8, 3)->default(1.000);
-            $table->decimal('valorConversionSegundaEspecie', 8, 3)->default(1.000);
-            $table->decimal('valorConversionTerceraEspecie', 8, 3)->default(1.000);
-            $table->decimal('valorConversionCuartaEspecie', 8, 3)->default(1.000);
+            $table->decimal('quintaEspecie', 8, 2)->default(10.00);
+            $table->decimal('sextaEspecie', 8, 2)->default(10.00);
+            $table->decimal('septimaEspecie', 8, 2)->default(10.00);
+            $table->decimal('octavaEspecie', 8, 2)->default(10.00);
+            $table->decimal('novenaEspecie', 8, 2)->default(10.00);
+            $table->decimal('decimaEspecie', 8, 2)->default(10.00);
+            $table->decimal('decimaPrimeraEspecie', 8, 2)->default(10.00);
+            $table->decimal('decimaSegundaEspecie', 8, 2)->default(10.00);
+            $table->decimal('decimaTerceraEspecie', 8, 2)->default(10.00);
+            $table->decimal('decimaCuartaEspecie', 8, 2)->default(10.00);
+            $table->decimal('decimaQuintaOtrasEspecies', 8, 2)->default(10.00);
             $table->timestamps();
         });
     }

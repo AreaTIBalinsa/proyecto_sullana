@@ -21,10 +21,16 @@ class PrecioXPresentacionTableSeeder extends Seeder
             'segundaEspecie' => 10.00,
             'terceraEspecie' => 10.00,
             'cuartaEspecie' => 10.00,
-            'valorConversionPrimerEspecie' => 1.000,
-            'valorConversionSegundaEspecie' => 1.000,
-            'valorConversionTerceraEspecie' => 1.000,
-            'valorConversionCuartaEspecie' => 1.000,
+            'quintaEspecie' => 10.00,
+            'sextaEspecie' => 10.00,
+            'septimaEspecie' => 10.00,
+            'octavaEspecie' => 10.00,
+            'novenaEspecie' => 10.00,
+            'decimaPrimeraEspecie' => 10.00,
+            'decimaSegundaEspecie' => 10.00,
+            'decimaTerceraEspecie' => 10.00,
+            'decimaCuartaEspecie' => 10.00,
+            'decimaQuintaOtrasEspecies' => 10.00,
         ]);
     }
 }
