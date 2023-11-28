@@ -4,8 +4,6 @@ window.$ = jQuery;
 
 jQuery(function($) {
 
-    fn_TraerGrupos()
-    fn_TraerZonas()
     fn_TraerCodigoCli()
     fn_TraerDocumentos()
 
@@ -25,9 +23,7 @@ jQuery(function($) {
     $('#registrar_usuario_submit').on('click', function () {
         let todosCamposCompletos = true;
 
-        let tipoPollo = $('#tipoPollo').val();
         let codigoCli = $('#codigoCli').val();
-        let zonaPollo = $('#zonaPollo').val();
         let nombresCli = $('#nombresCli').val().toUpperCase();
         let apellidoPaternoCli = $('#apellidoPaternoCli').val().toUpperCase();
         let apellidoMaternoCli = $('#apellidoMaternoCli').val().toUpperCase();
@@ -51,7 +47,7 @@ jQuery(function($) {
         });
     
         if (todosCamposCompletos) {
-            fn_RegistrarCliente(apellidoPaternoCli,apellidoMaternoCli,nombresCli,tipoDocumentoCli,documentoCli,contactoCli,direccionCli,estadoCli,usuarioRegistroCli,codigoCli,tipoPollo,comentarioCli,zonaPollo);
+            fn_RegistrarCliente(apellidoPaternoCli,apellidoMaternoCli,nombresCli,tipoDocumentoCli,documentoCli,contactoCli,direccionCli,estadoCli,usuarioRegistroCli,codigoCli,comentarioCli);
         } else {
             // Mostrar una alerta de que debe completar los campos obligatorios
             alertify.notify('Debe rellenar todos los campos obligatorios', 'error', 3);
@@ -146,89 +142,7 @@ jQuery(function($) {
                 console.error("ERROR", error);
             }
         });
-    });  
-
-    function fn_TraerGrupos(){
-        $.ajax({
-            url: '/fn_consulta_TraerGrupos',
-            method: 'GET',
-            success: function(response) {
-
-                // Verificar si la respuesta es un arreglo de objetos
-                if (Array.isArray(response)) {
-                    // Obtener el select
-                    let selectTipoPollo = $('#tipoPollo');
-                    
-                    // Vaciar el select actual, si es necesario
-                    selectTipoPollo.empty();
-
-                    // Agregar la opción inicial "Seleccione tipo"
-                    selectTipoPollo.append($('<option>', {
-                        value: '0',
-                        text: 'Seleccione tipo',
-                        disabled: true,
-                        selected: true
-                    }));
-
-                    // Iterar sobre los objetos y mostrar sus propiedades
-                    response.forEach(function(obj) {
-                        let option = $('<option>', {
-                            value: obj.idGrupo,
-                            text: obj.nombreGrupo
-                        });
-                        selectTipoPollo.append(option);
-                    });
-                } else {
-                    console.log("La respuesta no es un arreglo de objetos.");
-                }
-                
-            },
-            error: function(error) {
-                console.error("ERROR",error);
-            }
-        });
-    }
-
-    function fn_TraerZonas(){
-        $.ajax({
-            url: '/fn_consulta_TraerZonas',
-            method: 'GET',
-            success: function(response) {
-
-                // Verificar si la respuesta es un arreglo de objetos
-                if (Array.isArray(response)) {
-                    // Obtener el select
-                    let selectZona = $('#zonaPollo');
-                    
-                    // Vaciar el select actual, si es necesario
-                    selectZona.empty();
-
-                    // Agregar la opción inicial "Seleccione tipo"
-                    selectZona.append($('<option>', {
-                        value: '0',
-                        text: 'Seleccione zona',
-                        disabled: true,
-                        selected: true
-                    }));
-
-                    // Iterar sobre los objetos y mostrar sus propiedades
-                    response.forEach(function(obj) {
-                        let option = $('<option>', {
-                            value: obj.idZona,
-                            text: obj.nombreZon
-                        });
-                        selectZona.append(option);
-                    });
-                } else {
-                    console.log("La respuesta no es un arreglo de objetos.");
-                }
-                
-            },
-            error: function(error) {
-                console.error("ERROR",error);
-            }
-        });
-    }
+    });
 
     function fn_TraerDocumentos(){
         $.ajax({
@@ -294,7 +208,7 @@ jQuery(function($) {
         });
     }    
 
-    function fn_RegistrarCliente(apellidoPaternoCli,apellidoMaternoCli,nombresCli,tipoDocumentoCli,documentoCli,contactoCli,direccionCli,estadoCli,usuarioRegistroCli,codigoCli,tipoPollo,comentarioCli,zonaPollo){
+    function fn_RegistrarCliente(apellidoPaternoCli,apellidoMaternoCli,nombresCli,tipoDocumentoCli,documentoCli,contactoCli,direccionCli,estadoCli,usuarioRegistroCli,codigoCli,comentarioCli){
         $.ajax({
             url: '/fn_consulta_RegistrarCliente',
             method: 'GET',
@@ -309,9 +223,7 @@ jQuery(function($) {
                 estadoCli:estadoCli,
                 usuarioRegistroCli:usuarioRegistroCli,
                 codigoCli:codigoCli,
-                idGrupo:tipoPollo,
-                comentarioCli:comentarioCli,
-                zonaPollo:zonaPollo
+                comentarioCli:comentarioCli
             },
             success: function(response) {
                 if (response.success) {
@@ -330,8 +242,6 @@ jQuery(function($) {
                     $("#documentoCli").addClass("rounded-r-lg");
                     $("#especialBuscarPorDNI").removeClass("flex");
                     $("#especialBuscarPorDNI").addClass("hidden");
-                    fn_TraerGrupos();
-                    fn_TraerZonas();
                     fn_TraerCodigoCli();
                     fn_TraerDocumentos();
                 }

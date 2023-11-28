@@ -7,25 +7,11 @@
         {{-- Inicia contenedor Registrar Clientes --}}
         <h4 class="text-gray-900 font-semibold text-ml dark:text-gray-300 py-5">Agregar Cliente</h4>
         <div class="pb-5 md:p-5 pt-0 grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4" id="registroClientes">
-                    <div class="flex flex-col md:flex-row md:items-center md:h-12">
-                        <div class="text-sm h-12 flex items-center justify-center text-center border border-gray-300 dark:border-gray-600 bg-gray-300 dark:bg-gray-900 rounded-t-lg md:rounded-none md:rounded-l-lg">
-                            <h4 class="font-medium text-gray-900 dark:text-gray-300 min-w-max px-2">Seleccione Tipo :</h4>
-                        </div>
-                        <select class="validarCampo w-full h-12 uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-b-lg md:rounded-none md:rounded-r-lg" name="tipoPollo" id="tipoPollo">
-                        </select>
-                    </div>
                     <div class="flex md:flex-row md:items-center md:h-12">
                         <div class="text-sm h-12 flex items-center justify-center text-center border border-gray-300 dark:border-gray-600 bg-gray-300 dark:bg-gray-900 rounded-l-lg">
                             <h4 class="font-medium text-gray-900 dark:text-gray-300 min-w-max px-2">Codigo :</h4>
                         </div>
                         <input disabled class="validarCampo w-full h-12 uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-r-lg" type="text" name="codigoCli" autocomplete="off" id="codigoCli" value="">
-                    </div>
-                    <div class="flex flex-col md:flex-row md:items-center md:h-12">
-                        <div class="text-sm h-12 flex items-center justify-center text-center border border-gray-300 dark:border-gray-600 bg-gray-300 dark:bg-gray-900 rounded-t-lg md:rounded-none md:rounded-l-lg">
-                            <h4 class="font-medium text-gray-900 dark:text-gray-300 min-w-max px-2">Seleccione Zona :</h4>
-                        </div>
-                        <select class="validarCampo w-full uppercase h-12 outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-b-lg md:rounded-none md:rounded-r-lg" name="zonaPollo" id="zonaPollo">
-                        </select>
                     </div>
                     <div class="flex flex-col md:flex-row gap-x-4 md:items-center">
                         <select class="validarCampo w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-lg" name="tipoDocumentoCli" id="tipoDocumentoCli">

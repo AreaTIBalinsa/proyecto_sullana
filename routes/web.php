@@ -70,8 +70,6 @@ Route::get('/fn_consulta_RolesUsuario', [RegisterController::class,'consulta_Rol
 Route::get('/fn_consulta_RegistrarUsuario',[RegisterController::class,'consulta_RegistrarUsuario']);
 Route::get('/fn_consulta_RegistrarUsuarioRoles',[RegisterController::class,'consulta_RegistrarUsuarioRoles']);
 
-Route::get('/fn_consulta_TraerGrupos', [RegistrarClientesController::class,'consulta_TraerGrupos']);
-Route::get('/fn_consulta_TraerZonas', [RegistrarClientesController::class,'consulta_TraerZonas']);
 Route::get('/fn_consulta_TraerDocumentos', [RegistrarClientesController::class,'consulta_TraerDocumentos']);
 Route::get('/fn_consulta_TraerCodigoCli', [RegistrarClientesController::class,'consulta_TraerCodigoCli']);
 Route::get('/fn_consulta_RegistrarCliente', [RegistrarClientesController::class,'consulta_RegistrarCliente']);
@@ -93,7 +91,6 @@ Route::get('/fn_consulta_ActualizarPesoReportePorCliente', [ReportePorClienteCon
 Route::get('/fn_consulta_EliminarPesada', [ReportePorClienteController::class,'consulta_EliminarPesada']);
 
 Route::get('/fn_consulta_ConsultarClientes', [ConsultarClientesController::class,'consulta_ConsultarClientes']);
-Route::get('/fn_consulta_TraerGruposConsultarClientes', [ConsultarClientesController::class,'consulta_TraerGruposConsultarClientes']);
 Route::get('/fn_consulta_TraerConsultarClienteEditar', [ConsultarClientesController::class,'consulta_TraerConsultarClienteEditar']);
 Route::get('/fn_consulta_ActualizarCliente', [ConsultarClientesController::class,'consulta_ActualizarCliente']);
 Route::get('/fn_consulta_EliminarCliente', [ConsultarClientesController::class,'consulta_EliminarCliente']);

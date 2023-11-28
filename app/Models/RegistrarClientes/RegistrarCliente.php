@@ -24,9 +24,7 @@ class RegistrarCliente extends Model
         'horaRegistroCli',
         'usuarioRegistroCli',
         'codigoCli',
-        'idGrupo',
         'comentarioCli',
-        'idZona',
         'estadoEliminadoCli',
     ];
 }

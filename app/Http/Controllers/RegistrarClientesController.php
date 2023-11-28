@@ -6,8 +6,6 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
-use App\Models\RegistrarClientes\TraerGrupos;
-use App\Models\RegistrarClientes\TraerZonas;
 use App\Models\RegistrarClientes\TraerCodigoCli;
 use App\Models\RegistrarClientes\TraerDocumentos;
 use App\Models\RegistrarClientes\RegistrarCliente;
@@ -20,36 +18,6 @@ class RegistrarClientesController extends Controller
             return view('registrar_clientes');
         }
         return redirect('/login');
-    }
-
-    public function consulta_TraerGrupos(Request $request)
-    {
-        if (Auth::check()) {
-            // Realiza la consulta a la base de datos
-            $datos = TraerGrupos::select('idGrupo', 'nombreGrupo')
-                ->get();
-
-            // Devuelve los datos en formato JSON
-            return response()->json($datos);
-        }
-
-        // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
-        return response()->json(['error' => 'Usuario no autenticado'], 401);
-    }
-
-    public function consulta_TraerZonas(Request $request)
-    {
-        if (Auth::check()) {
-            // Realiza la consulta a la base de datos
-            $datos = TraerZonas::select('idZona', 'nombreZon')
-                ->get();
-
-            // Devuelve los datos en formato JSON
-            return response()->json($datos);
-        }
-
-        // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
-        return response()->json(['error' => 'Usuario no autenticado'], 401);
     }
 
     public function consulta_TraerDocumentos(Request $request)
@@ -102,9 +70,7 @@ class RegistrarClientesController extends Controller
         $estadoCli = $request->input('estadoCli');
         $usuarioRegistroCli = $request->input('usuarioRegistroCli');
         $codigoCli = $request->input('codigoCli');
-        $idGrupo = $request->input('idGrupo');
         $comentarioCli = $request->input('comentarioCli');
-        $zonaPollo = $request->input('zonaPollo');
 
         if (Auth::check()) {
             $registrarCliente = new RegistrarCliente;
@@ -120,9 +86,7 @@ class RegistrarClientesController extends Controller
             $registrarCliente->horaRegistroCli = now()->setTimezone('America/New_York')->toTimeString();
             $registrarCliente->usuarioRegistroCli = $usuarioRegistroCli;
             $registrarCliente->codigoCli = $codigoCli;
-            $registrarCliente->idGrupo = $idGrupo;
             $registrarCliente->comentarioCli = $comentarioCli;
-            $registrarCliente->idZona = $zonaPollo;
             $registrarCliente->estadoEliminadoCli = 1;
             $registrarCliente->save();
             
@@ -132,10 +96,17 @@ class RegistrarClientesController extends Controller
             $registrarPreciosXPresentacion->segundaEspecie = 10.00;
             $registrarPreciosXPresentacion->terceraEspecie = 10.00;
             $registrarPreciosXPresentacion->cuartaEspecie = 10.00;
-            $registrarPreciosXPresentacion->valorConversionPrimerEspecie = 1.000;
-            $registrarPreciosXPresentacion->valorConversionSegundaEspecie = 1.000;
-            $registrarPreciosXPresentacion->valorConversionTerceraEspecie = 1.000;
-            $registrarPreciosXPresentacion->valorConversionCuartaEspecie = 1.000;
+            $registrarPreciosXPresentacion->quintaEspecie = 10.00;
+            $registrarPreciosXPresentacion->sextaEspecie = 10.00;
+            $registrarPreciosXPresentacion->septimaEspecie = 10.00;
+            $registrarPreciosXPresentacion->octavaEspecie = 10.00;
+            $registrarPreciosXPresentacion->novenaEspecie = 10.00;
+            $registrarPreciosXPresentacion->decimaEspecie = 10.00;
+            $registrarPreciosXPresentacion->decimaPrimeraEspecie = 10.00;
+            $registrarPreciosXPresentacion->decimaSegundaEspecie = 10.00;
+            $registrarPreciosXPresentacion->decimaTerceraEspecie = 10.00;
+            $registrarPreciosXPresentacion->decimaCuartaEspecie = 10.00;
+            $registrarPreciosXPresentacion->decimaQuintaOtrasEspecies = 10.00;
             $registrarPreciosXPresentacion->save();
             return response()->json(['success' => true], 200);
         }

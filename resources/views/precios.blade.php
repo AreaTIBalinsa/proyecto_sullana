@@ -153,7 +153,7 @@
                     <div class="flex flex-col p-2 justify-center items-center gap-2 divPreciosMinimos">
                         <span class="text-sm font-bold">OTROS:</span>
                         <label class="hidden" value="" id="idPolloBeneficiadoOtros"></label>
-                        <input class="preciosMinimosEspecies validarSoloNumerosDosDecimales w-32 uppercase outline-none text-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="valorPrecioPolloBeneficiadoOtros" disabled="" autocomplete="off" id="valorPrecioPolloBeneficiadoPolloxx">
+                        <input class="preciosMinimosEspecies validarSoloNumerosDosDecimales w-32 uppercase outline-none text-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="valorPrecioPolloBeneficiadoOtros" disabled="" autocomplete="off" id="valorPrecioPolloBeneficiadoOtros">
                     </div>
                 </div>
             </div>

@@ -21,8 +21,6 @@ class ActualizarCliente extends Model
         'direccionCli',
         'idEstadoCli',
         'codigoCli',
-        'idGrupo',
         'comentarioCli',
-        'idZona',
     ];
 }

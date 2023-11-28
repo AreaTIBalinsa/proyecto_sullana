@@ -249,7 +249,7 @@ jQuery(function($) {
                     $('#valorPrecioPolloBeneficiadoAlas').val(parseFloat(response[24].precioMinimo).toFixed(2));
                     $('#valorPrecioPolloBeneficiadoMenudencia').val(parseFloat(response[25].precioMinimo).toFixed(2));
                     $('#valorPrecioPolloBeneficiadoDorso').val(parseFloat(response[26].precioMinimo).toFixed(2));
-                    $('#valorPrecioPolloBeneficiadoPolloxx').val(parseFloat(response[27].precioMinimo).toFixed(2));
+                    $('#valorPrecioPolloBeneficiadoOtros').val(parseFloat(response[27].precioMinimo).toFixed(2));
 
                     $('#idPolloVivo').attr('value', response[0].idPrecioMinimo);
                     $('#idPolloVivoPelado').attr('value', response[1].idPrecioMinimo);
@@ -322,11 +322,11 @@ jQuery(function($) {
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer precioColumna" data-columna="7">').text(obj.septimaEspecie));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer precioColumna" data-columna="8">').text(obj.octavaEspecie));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer precioColumna" data-columna="9">').text(obj.novenaEspecie));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer precioColumna" data-columna="11">').text(obj.decimaPrimeraEspecie));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer precioColumna" data-columna="12">').text(obj.decimaSegundaEspecie));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer precioColumna" data-columna="13">').text(obj.decimaTerceraEspecie));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer precioColumna" data-columna="14">').text(obj.decimaCuartaEspecie));
-                        nuevaFila.append($('<td class="px-4 py-2 text-center cursor-pointer precioColumna" data-columna="15">').text(obj.decimaQuintaOtrasEspecies));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer precioColumna" data-columna="10">').text(obj.decimaPrimeraEspecie));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer precioColumna" data-columna="11">').text(obj.decimaSegundaEspecie));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer precioColumna" data-columna="12">').text(obj.decimaTerceraEspecie));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer precioColumna" data-columna="13">').text(obj.decimaCuartaEspecie));
+                        nuevaFila.append($('<td class="px-4 py-2 text-center cursor-pointer precioColumna" data-columna="14">').text(obj.decimaQuintaOtrasEspecies));
                         nuevaFila.append($('<td class="hidden">').text(obj.idGrupo));
 
                         // Agregar la nueva fila al tbody
