@@ -74,16 +74,6 @@ jQuery(function ($) {
                 }
             });
         }
-    
-        // Filtrar por tipo de pollo si se selecciona un valor en el select
-        // if (tipoPolloFiltrar !== "0") {
-        //     $('#tablaConsultarClientes tbody tr').each(function() {
-        //         let columna = $(this).find('td:eq(9)').text().trim(); // Considerando que la columna es la 10 (índice 9)
-        //         if (columna !== tipoPolloFiltrar) {
-        //             $(this).hide();
-        //         }
-        //     });
-        // }
     });     
 
     function fn_TraerDocumentosEditar(){
@@ -317,12 +307,12 @@ jQuery(function ($) {
                             $(this).find('td:eq(3)').text(tipoDocumentoCliTexto);
                             $(this).find('td:eq(4)').text(documentoCli);
                             $(this).find('td:eq(5)').text(contactoCli);
-                            $(this).find('td:eq(7)').text(comentarioCli);
-                            $(this).find('td:eq(8)').empty();
+                            $(this).find('td:eq(6)').text(comentarioCli);
+                            $(this).find('td:eq(7)').empty();
                             if (estadoCli == "1") {
-                                $(this).find('td:eq(8)').append($('<p class="bg-[#0FDA62] text-xs text-gray-50 rounded-xl inline-block py-1 px-4 capitalize">ACTIVO</p>'));
+                                $(this).find('td:eq(7)').append($('<p class="bg-[#0FDA62] text-xs text-gray-50 rounded-xl inline-block py-1 px-4 capitalize">ACTIVO</p>'));
                             } else if (estadoCli == "2") {
-                                $(this).find('td:eq(8)').append($('<p class="bg-[#B9B9C0] text-xs text-gray-900 rounded-xl inline-block py-1 px-4 capitalize">INHABILITADO</p>'));
+                                $(this).find('td:eq(7)').append($('<p class="bg-[#B9B9C0] text-xs text-gray-900 rounded-xl inline-block py-1 px-4 capitalize">INHABILITADO</p>'));
                             }
                             return false;
                         }

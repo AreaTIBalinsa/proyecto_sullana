@@ -19,6 +19,7 @@ return new class extends Migration
             $table->integer('codigoCli');
             $table->decimal('precioDesc', 8, 3)->nullable();
             $table->integer('cantidadDesc')->default(0);
+            $table->string('observacion', 200)->nullable();
             $table->time('horaRegistroDesc');
             $table->date('fechaRegistroDescuento');
             $table->integer('estadoDescuento')->default(1);

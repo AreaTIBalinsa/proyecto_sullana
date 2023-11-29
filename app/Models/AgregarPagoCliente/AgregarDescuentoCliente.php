@@ -20,6 +20,7 @@ class AgregarDescuentoCliente extends Model
         'codigoCli',
         'precioDesc',
         'cantidadDesc',
+        'observacion',
         'horaRegistroDesc',
         'fechaRegistroDescuento',
         'estadoDescuento',

@@ -59,6 +59,7 @@ jQuery(function ($) {
         $('#selectedCodigoCliAgregarDescuentoCliente').attr('value','');
         $('#idAgregarDescuentoCliente').val('');
         $('#valorAgregarDescuentoCliente').val('');
+        $('#valorAgregarDescuentoCliente').val('');
     });
 
     $('.cerrarModalAgregarDescuentoCliente, .modal-content').on('click', function (e) {
@@ -138,6 +139,7 @@ jQuery(function ($) {
         let precioSegundaEspecieDescuento = $('#precioSegundaEspecieDescuento').val();
         let precioTerceraEspecieDescuento = $('#precioTerceraEspecieDescuento').val();
         let precioCuartaEspecieDescuento = $('#precioCuartaEspecieDescuento').val();
+        let comentarioAgregarDescuentoCliente = $('#comentarioAgregarDescuentoCliente').val();
 
         let precioAgregarDescuentoCliente = 0
 
@@ -167,7 +169,7 @@ jQuery(function ($) {
             if (todosCamposCompletos) {
                 let valorCampo = parseFloat($('#valorAgregarDescuentoCliente').val());
                 if (valorCampo > 0) {
-                    fn_AgregarDescuentoCliente(codigoCliente, pesoAgregarDescuentoCliente, fechaAgregarDescuentoCliente, especieAgregarDescuentoCliente, precioAgregarDescuentoCliente);
+                    fn_AgregarDescuentoCliente(codigoCliente, pesoAgregarDescuentoCliente, fechaAgregarDescuentoCliente, especieAgregarDescuentoCliente, precioAgregarDescuentoCliente, comentarioAgregarDescuentoCliente);
                 } else {
                     alertify.notify('El peso en Kg no puede ser 0', 'error', 3);
                     $('#valorAgregarDescuentoCliente').removeClass('border-green-500 dark:border-gray-600 border-gray-300').addClass('border-red-500');
@@ -551,6 +553,8 @@ jQuery(function ($) {
                     });
 
                     fn_TraerDeudaTotal(codigoCliente);
+                    $('#ModalAgregarPagoCliente').addClass('hidden');
+                    $('#ModalAgregarPagoCliente').removeClass('flex');
                     $('#filtrar_pagos_submit').trigger('click');
                 }
             },
@@ -565,7 +569,7 @@ jQuery(function ($) {
         });
     }
 
-    function fn_AgregarDescuentoCliente(codigoCliente,pesoAgregarDescuentoCliente,fechaAgregarDescuentoCliente,especieAgregarDescuentoCliente,precioAgregarDescuentoCliente) {
+    function fn_AgregarDescuentoCliente(codigoCliente,pesoAgregarDescuentoCliente,fechaAgregarDescuentoCliente,especieAgregarDescuentoCliente,precioAgregarDescuentoCliente, comentarioAgregarDescuentoCliente) {
         $.ajax({
             url: '/fn_consulta_AgregarDescuentoCliente',
             method: 'GET',
@@ -575,6 +579,7 @@ jQuery(function ($) {
                 fechaAgregarDescuentoCliente: fechaAgregarDescuentoCliente,
                 especieAgregarDescuentoCliente:especieAgregarDescuentoCliente,
                 precioAgregarDescuentoCliente:precioAgregarDescuentoCliente,
+                comentarioAgregarDescuentoCliente: comentarioAgregarDescuentoCliente,
             },
             success: function(response) {
                 if (response.success) {

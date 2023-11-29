@@ -533,47 +533,6 @@ jQuery(function($) {
         }
     });
 
-    fn_TraerGruposPrecios();
-
-    function fn_TraerGruposPrecios(){
-        $.ajax({
-            url: '/fn_consulta_TraerGruposPrecios',
-            method: 'GET',
-            success: function(response) {
-
-                // Verificar si la respuesta es un arreglo de objetos
-                if (Array.isArray(response)) {
-                    // Obtener el select
-                    let selectTipoPollo = $('#tipoPolloPrecios');
-                    
-                    // Vaciar el select actual, si es necesario
-                    selectTipoPollo.empty();
-
-                    // Agregar la opción inicial "Seleccione tipo"
-                    selectTipoPollo.append($('<option>', {
-                        value: '0',
-                        text: 'Todos'
-                    }));
-
-                    // Iterar sobre los objetos y mostrar sus propiedades
-                    response.forEach(function(obj) {
-                        let option = $('<option>', {
-                            value: obj.idGrupo,
-                            text: obj.nombreGrupo
-                        });
-                        selectTipoPollo.append(option);
-                    });
-                } else {
-                    console.log("La respuesta no es un arreglo de objetos.");
-                }
-                
-            },
-            error: function(error) {
-                console.error("ERROR",error);
-            }
-        });
-    }
-
     function fn_ActualizarPrecioMinimo(idEspecie, precio){
         $.ajax({
             url: '/fn_consulta_ActualizarPrecioMinimo',
@@ -611,12 +570,12 @@ jQuery(function($) {
     
     function fn_pintarPreciosMinimos() {
 
-        let valorPrecioPolloVivoYugo = $('#valorPrecioPolloVivoYugo').val();
+        let valorPrecioPolloVivo = $('#valorPrecioPolloVivo').val();
         let valorPrecioPolloVivoPerla = $('#valorPrecioPolloVivoPerla').val();
         let valorPrecioPolloVivoChimu = $('#valorPrecioPolloVivoChimu').val();
         let valorPrecioPolloVivoxx = $('#valorPrecioPolloVivoxx').val();
 
-        let valorPrecioPolloBeneficiadoPolloYugo = $('#valorPrecioPolloBeneficiadoPolloYugo').val();
+        let valorPrecioPolloBeneficiadoVivo = $('#valorPrecioPolloBeneficiadoVivo').val();
         let valorPrecioPolloBeneficiadoPolloPerla = $('#valorPrecioPolloBeneficiadoPolloPerla').val();
         let valorPrecioPolloBeneficiadoPolloChimu = $('#valorPrecioPolloBeneficiadoPolloChimu').val();
         let valorPrecioPolloBeneficiadoPolloxx = $('#valorPrecioPolloBeneficiadoPolloxx').val();
@@ -629,13 +588,13 @@ jQuery(function($) {
                 // Obtener el valor dentro de la celda
                 let valor = parseFloat($(this).text());
                 // Obtener el valor de la columna 6
-                let idGrupo = $(this).closest('tr').find('td:eq(6)').text();
+                let idGrupo = $(this).closest('tr').find('td:eq(15)').text();
 
                 if (columna == 1){
-                    if (idGrupo == 1 && valor < parseFloat(valorPrecioPolloVivoYugo) ){
+                    if (idGrupo == 1 && valor < parseFloat(valorPrecioPolloVivo) ){
                         $(this).removeClass("text-gray-900 dark:text-white");
                         $(this).addClass("text-white bg-red-600");
-                    }else if (idGrupo == 2 && valor < parseFloat(valorPrecioPolloBeneficiadoPolloYugo) ){
+                    }else if (idGrupo == 2 && valor < parseFloat(valorPrecioPolloBeneficiadoVivo) ){
                         $(this).removeClass("text-gray-900 dark:text-white");
                         $(this).addClass("text-white bg-red-600");
                     }else{

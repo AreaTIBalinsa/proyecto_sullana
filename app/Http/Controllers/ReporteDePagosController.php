@@ -319,6 +319,7 @@ class ReporteDePagosController extends Controller
         $especieAgregarDescuentoCliente = $request->input('especieAgregarDescuentoCliente');
         $fechaAgregarDescuentoCliente = $request->input('fechaAgregarDescuentoCliente');
         $precioAgregarDescuentoCliente = $request->input('precioAgregarDescuentoCliente');
+        $comentarioAgregarDescuentoCliente = $request->input('comentarioAgregarDescuentoCliente');
 
         if (Auth::check()) {
             $agregarDescuentoCliente = new AgregarDescuentoCliente;
@@ -328,6 +329,7 @@ class ReporteDePagosController extends Controller
             $agregarDescuentoCliente->pesoDesc = $pesoAgregarDescuentoCliente;
             $agregarDescuentoCliente->precioDesc = $precioAgregarDescuentoCliente;
             $agregarDescuentoCliente->cantidadDesc = 0;
+            $agregarDescuentoCliente->observacion = $comentarioAgregarDescuentoCliente;
             $agregarDescuentoCliente->fechaRegistroDescuento = now()->setTimezone('America/New_York')->toDateString();
             $agregarDescuentoCliente->horaRegistroDesc = now()->setTimezone('America/New_York')->toTimeString();
             $agregarDescuentoCliente->estadoDescuento = 1;
@@ -352,7 +354,18 @@ class ReporteDePagosController extends Controller
                 primerEspecie,
                 segundaEspecie,
                 terceraEspecie,
-                cuartaEspecie
+                cuartaEspecie,
+                quintaEspecio,
+                sextaEspecie,
+                septimaEspecie,
+                octavaEspecie,
+                novenaESprecie,
+                decimaEspecie,
+                decimaPrimeraEspecie,
+                decimaSegundaEspecie,
+                decimaTerceraEspecie,
+                decimaCuartaEspecie,
+                decimaQuintaOtrasEspecies
             FROM tb_precio_x_presentacion
             WHERE codigoCli = ? ',[$codigoCliente]);
 
