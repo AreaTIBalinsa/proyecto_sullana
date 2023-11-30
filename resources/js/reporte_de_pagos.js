@@ -14,6 +14,8 @@ jQuery(function ($) {
     $('#fechaHastaReporteDePagos').val(fechaHoy);
     $('#fechaDesdeCuentaDelCliente').val(fechaHoy);
     $('#fechaHastaCuentaDelCliente').val(fechaHoy);
+    $('#fechaDesdeCuentaDelClienteDescuentos').val(fechaHoy);
+    $('#fechaHastaCuentaDelClienteDescuentos').val(fechaHoy);
     $('#fechaAgregarPago').val(fechaHoy);
     $('#fechaAgregarDescuento').val(fechaHoy);
 
@@ -83,10 +85,28 @@ jQuery(function ($) {
 
     });
 
+    $('#descuento_FiltrarPorCliente_submit').on('click', function () {
+        $('#selectedCodigoCliCuentaDelClienteDescuentos').attr('value','');
+        $('#idCuentaDelClienteDescuentos').val('');
+        $('#bodyCuentaDelClienteDescuentos').empty();
+        $('#bodyCuentaDelClienteDescuentos').append('<tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="7" class="text-center">No hay datos</td></tr>');
+        
+        $('#primerContenedorReporteDePagos').toggle('flex hidden');
+        $('#tercerContenedorReporteDeDescuentos').toggle('flex hidden');
+        $('#btnRetrocesoCuentaDelClienteDescuento').toggle('hidden');
+
+    });
+
     $('#btnRetrocesoCuentaDelCliente').on('click', function () {
         $('#primerContenedorReporteDePagos').toggle('flex hidden');
         $('#segundoContenedorReporteDePagos').toggle('flex hidden');
         $('#btnRetrocesoCuentaDelCliente').toggle('hidden');
+    });
+
+    $('#btnRetrocesoCuentaDelClienteDescuento').on('click', function () {
+        $('#primerContenedorReporteDePagos').toggle('flex hidden');
+        $('#tercerContenedorReporteDeDescuentos').toggle('flex hidden');
+        $('#btnRetrocesoCuentaDelClienteDescuento').toggle('hidden');
     });
 
     // Evento para registrar Pagos de Clientes
