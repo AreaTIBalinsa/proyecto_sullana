@@ -76,6 +76,7 @@ jQuery(function ($) {
     $('#registrar_FiltrarPorCliente_submit').on('click', function () {
         $('#selectedCodigoCliCuentaDelCliente').attr('value','');
         $('#idCuentaDelCliente').val('');
+        //para limpiar la tabla no te equivoques de nuevo 
         $('#bodyCuentaDelCliente').empty();
         $('#bodyCuentaDelCliente').append('<tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="7" class="text-center">No hay datos</td></tr>');
         
@@ -88,13 +89,13 @@ jQuery(function ($) {
     $('#descuento_FiltrarPorCliente_submit').on('click', function () {
         $('#selectedCodigoCliCuentaDelClienteDescuentos').attr('value','');
         $('#idCuentaDelClienteDescuentos').val('');
-        $('#bodyCuentaDelClienteDescuentos').empty();
-        $('#bodyCuentaDelClienteDescuentos').append('<tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="7" class="text-center">No hay datos</td></tr>');
         
         $('#primerContenedorReporteDePagos').toggle('flex hidden');
         $('#tercerContenedorReporteDeDescuentos').toggle('flex hidden');
         $('#btnRetrocesoCuentaDelClienteDescuento').toggle('hidden');
-
+        fn_RegistroDescuentos(fechaHoy,fechaHoy);
+        $('#fechaDesdeCuentaDelClienteDescuentos').val(fechaHoy);
+        $('#fechaHastaCuentaDelClienteDescuentos').val(fechaHoy);
     });
 
     $('#btnRetrocesoCuentaDelCliente').on('click', function () {
@@ -209,6 +210,12 @@ jQuery(function ($) {
         let fechaDesdeTraerPagos = $('#fechaDesdeReporteDePagos').val();
         let fechaHastaTraerPagos = $('#fechaHastaReporteDePagos').val();
         fn_TraerPagosFechas(fechaDesdeTraerPagos, fechaHastaTraerPagos);
+    });
+
+    $('#btnBuscarCuentaDelClienteDescuentos').on('click', function () {
+        let fechaDesdeTraerDescuentos = $('#fechaDesdeCuentaDelClienteDescuentos').val();
+        let fechaHastaTraerDescuentos = $('#fechaHastaCuentaDelClienteDescuentos').val();
+        fn_RegistroDescuentos(fechaDesdeTraerDescuentos, fechaHastaTraerDescuentos);
     });
 
     // Hace aparecer o desaparecer el div para registrar codigo de tranferencia segun sea transferencia o efectivo
@@ -700,7 +707,70 @@ jQuery(function ($) {
         });
     }
 
+    fn_RegistroDescuentos(fechaHoy,fechaHoy);
+    function fn_RegistroDescuentos(fechaDesdeTraerDescuentos,fechaHastaTraerDescuentos) {
+        $.ajax({
+            url: '/fn_consulta_RegistroDescuentos',
+            method: 'GET',
+            data:{
+                fechaDesdeTraerDescuentos:fechaDesdeTraerDescuentos,
+                fechaHastaTraerDescuentos:fechaHastaTraerDescuentos,
+            },
+            success: function (response) {
+                // Verificar si la respuesta es un arreglo de objetos
+                if (Array.isArray(response)) {
+                    // Obtener el select
+                    let tbodyCuentaDelClienteDescuentos = $('#bodyCuentaDelClienteDescuentos');
+                    tbodyCuentaDelClienteDescuentos.empty();
+                    let nuevaFila = ""
+
+                    // Iterar sobre los objetos y mostrar sus propiedades
+                    response.forEach(function (obj) {
+                        // Crear una nueva fila
+                        nuevaFila = $('<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
+
+                        // Agregar las celdas con la información
+                        nuevaFila.append($('<td class="hidden">').text(obj.idDescuento));
+
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center font-medium text-gray-900 whitespace-nowrap dark:text-white">').text(obj.nombreCompleto));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(obj.fechaRegistroDesc));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(obj.nombreEspecie));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(obj.pesoDesc));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(obj.observacion));  
+                        
+                        // Agregar la nueva fila al tbody
+                        tbodyCuentaDelClienteDescuentos.append(nuevaFila);
+                    });
+
+                } else {
+                    console.log("La respuesta no es un arreglo de objetos.");
+                }
+
+            },
+            error: function(error) {
+                console.error("ERROR",error);
+            }
+        });
+    }
+
     /* ============ Termina Funciones ============ */
+
+    $('#idCuentaDelClienteDescuentos').on('input', function() {
+        let nombreFiltrar = $('#idCuentaDelClienteDescuentos').val().toUpperCase(); // Obtiene el valor del campo de filtro de nombre
+
+        // Mostrar todas las filas
+        $('#tablaCuentaDelClienteDescuentos tbody tr').show();
+
+        // Filtrar por nombre si se proporciona un valor
+        if (nombreFiltrar) {
+            $('#tablaCuentaDelClienteDescuentos tbody tr').each(function() {
+                let nombre = $(this).find('td:eq(1)').text().toUpperCase().trim();
+                if (nombre.indexOf(nombreFiltrar) === -1) {
+                    $(this).hide();
+                }
+            });
+        }
+    });
 
     $('#formaDePagoEditar').on('change',function() {
         var selectedOption = $(this).val();
@@ -717,6 +787,13 @@ jQuery(function ($) {
         if (e.target === this) {
             $('#ModalAgregarPagoClienteEditar').addClass('hidden');
             $('#ModalAgregarPagoClienteEditar').removeClass('flex');
+        }
+    });
+
+    $('.cerrarModalEditarDescuento, .modal-content').on('click', function (e) {
+        if (e.target === this) {
+            $('#ModalEditarDescuentoClienteEditar').addClass('hidden');
+            $('#ModalEditarDescuentoClienteEditar').removeClass('flex');
         }
     });
 

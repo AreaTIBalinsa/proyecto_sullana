@@ -480,4 +480,35 @@ class ReporteDePagosController extends Controller
         return response()->json(['error' => 'Usuario no autenticado'], 401);
     }
 
+    public function consulta_RegistroDescuentos(Request $request) {
+        $fechaDesde = $request->input('fechaDesdeTraerDescuentos');
+        $fechaHasta = $request->input('fechaHastaTraerDescuentos');
+
+        if (Auth::check()) {
+            // Realiza la consulta a la base de datos
+            $datos = DB::select('
+            SELECT tb_descuentos.idDescuento,
+                tb_descuentos.fechaRegistroDesc,
+                tb_especies_venta.nombreEspecie,
+                tb_descuentos.pesoDesc,
+                tb_descuentos.precioDesc,
+                tb_descuentos.cantidadDesc,
+                tb_descuentos.observacion,
+                tb_descuentos.horaRegistroDesc,
+                tb_descuentos.fechaRegistroDescuento,
+                tb_descuentos.estadoDescuento,
+                IFNULL(CONCAT_WS(" ", nombresCli, apellidoPaternoCli, apellidoMaternoCli), "") AS nombreCompleto
+                FROM tb_descuentos
+                INNER JOIN tb_clientes ON tb_clientes.codigoCli = tb_descuentos.codigoCli
+                INNER JOIN tb_especies_venta ON tb_especies_venta.idEspecie = tb_descuentos.especieDesc
+                WHERE tb_descuentos.estadoDescuento = 1 and fechaRegistroDesc BETWEEN ? AND ?', [$fechaDesde, $fechaHasta]);
+            
+            // Devuelve los datos en formato JSON
+            return response()->json($datos);
+        }
+
+        // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
+        return response()->json(['error' => 'Usuario no autenticado'], 401);
+    }
+
 }

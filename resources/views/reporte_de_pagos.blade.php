@@ -124,14 +124,6 @@
                             </span>
                             <input class="max-w-xs w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg focus:ring-primary-600 focus:border-primary-600 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="idCuentaDelClienteDescuentos" autocomplete="off" id="idCuentaDelClienteDescuentos" placeholder="Ingrese Nombre de Cliente">
                         </div>
-    
-                        <!-- Etiquetas ocultas para almacenar los datos seleccionados -->
-                        <label id="selectedCodigoCliCuentaDelClienteDescuentos" class="hidden" val=""></label>
-    
-                        <!-- Contenedor para las sugerencias -->
-                        <div id="contenedorClientesCuentaDelClienteDescuentos" class="max-w-xs w-full overflow-hidden overflow-y-auto absolute max-h-40 z-10 text-gray-900 dark:text-gray-50 top-full left-0 bg-white dark:bg-gray-800 border rounded hidden outline-none">
-                            <!-- Aquí se mostrarán las sugerencias -->
-                        </div>
                     </div>
                     <div class="flex gap-x-24 gap-4 w-full flex-col md:flex-row">
                         <div class="flex flex-col justify-center">
@@ -153,6 +145,8 @@
                 <table class="border-collapse w-full text-gray-500 dark:text-gray-400 select-none relative text-sm" id="tablaCuentaDelClienteDescuentos">
                     <thead id="headerCuentaDelClienteDescuentos" class="bg-blue-600 text-gray-50 sticky top-0">
                         <tr class="h-10">
+                            <th class="hidden">ID</th>
+                            <th class="px-4 font-medium whitespace-nowrap">CLIENTE</th>
                             <th class="px-4 font-medium whitespace-nowrap">DIA</th>
                             <th class="px-4 font-medium whitespace-nowrap">ESPECIE</th>
                             <th class="px-4 font-medium whitespace-nowrap">MONTO</th>
@@ -160,7 +154,7 @@
                         </tr>
                     </thead>
                     <tbody id="bodyCuentaDelClienteDescuentos">
-                        <tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="7" class="text-center">No hay datos</td></tr>
+                        <tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="6" class="text-center">No hay datos</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -384,4 +378,62 @@
 </div>
 
 {{-- Termina Modal Agregar Descuento --}}
+
+{{-- Modal Editar Descuento --}}
+
+<div class="fixed flex top-0 left-0 z-[100] justify-center items-center w-screen h-screen bg-gray-900 bg-opacity-75 transition-opacity cerrarModalEditarDescuento" id="ModalEditarDescuentoClienteEditar">
+    <div class="modal-content max-w-lg w-full mx-4">
+        <div class="transform overflow-hidden rounded-lg bg-white dark:bg-slate-700 shadow-xl transition-all">
+            <div class="p-4">
+                <div class="flex flex-col">
+                    <div class="border-b rounded-t dark:border-gray-500 p-2 flex justify-center">
+                        <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Editar Descuento</h3>
+                    </div>
+                    <div class="mt-4 flex justify-center items-center flex-col gap-4" id="divEditarDescuentoCliente">
+                        <div class="flex justify-center items-start flex-col relative w-full h-full">
+                            <label for="idEditarDescuentoCliente" class="mb-2 text-base font-medium text-gray-900 dark:text-white">Cliente :</label>
+                            <label id="idReporteDePago" class="hidden mb-2 text-base font-medium text-gray-900 dark:text-white"></label>
+                            <div class="flex max-w-xs w-full">
+                                <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
+                                    <i class='bx bxs-user-circle text-xl'></i>
+                                </span>
+                                <input disabled="" class="max-w-xs w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg focus:ring-primary-600 focus:border-primary-600 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="idEditarPagoClienteDescuento" autocomplete="off" id="idEditarPagoClienteDescuento" placeholder="Ingrese Nombre de Cliente">
+                            </div>
+                        </div>
+                        <div class="flex w-full justify-start items-center gap-2">
+                            <h5 for="fechaPagoEditarDescuento" class="text-base text-gray-900 dark:text-gray-50 min-w-max">Fecha :</h5>
+                            <input type="date" class="outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 px-2.5 py-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-full" id="fechaPagoEditarDescuento">
+                        </div>
+                        <div class="flex w-full h-10">
+                            <div class="text-sm px-3 flex items-center justify-center text-center border border-gray-300 dark:border-gray-600 bg-gray-300 dark:bg-gray-600 rounded-l-lg">
+                                <h4 class="font-medium text-gray-900 dark:text-gray-300 min-w-max">Presentación</h4>
+                            </div>
+                            <select class="w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="editarPresentacionDescuentoCliente" id="editarPresentacionDescuentoCliente">
+
+                            </select>                          
+                        </div>
+                        <div class="flex w-full h-10">
+                            <div class="text-sm px-3 flex items-center justify-center text-center border border-gray-300 dark:border-gray-600 bg-gray-300 dark:bg-gray-600 rounded-l-lg">
+                                <h4 class="font-medium text-gray-900 dark:text-gray-300 min-w-max">Descuento Kg.</h4>
+                            </div>
+                            <input class="validarCampo validarSoloNumerosDosDecimales w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-r-lg" type="text" name="valorClienteEditarDescuento" autocomplete="off" id="valorClienteEditarDescuento" value="" placeholder="0.0">
+                        </div>
+                        <div class="flex flex-col w-full">
+                            <label for="comentarioAgregarPagoClienteEditar" class="mb-2 text-sm font-medium text-gray-900 dark:text-white md:w-24">Comentario :</label>
+                            <textarea class="w-full outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="comentarioEditarDescuentoCliente" autocomplete="off" id="comentarioEditarDescuentoCliente"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="px-4 pb-4">
+                <div class="border-t dark:border-gray-500 w-full sm:flex sm:flex-row-reverse pt-4">
+                    <button type="button" class="inline-flex w-full justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-700 sm:ml-3 sm:w-auto" id="btnAgregarPagoClienteEditar">Actualizar</button>
+                    <button type="button" class="mt-3 inline-flex w-full justify-center rounded-md bg-red-500 hover:bg-red-600 px-3 py-2 text-sm font-semibold text-gray-100 sm:mt-0 sm:w-auto cerrarModalEditarDescuento" id="cerrarModalEditarDescuentobtn">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{-- Termina Modal Editar Descuento --}}
 @endsection
