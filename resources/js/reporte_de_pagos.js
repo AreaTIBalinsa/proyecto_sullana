@@ -812,6 +812,71 @@ jQuery(function ($) {
         }
     });
 
+
+    ///jalamos los datos de las especies
+
+    declarar_especies_descuentos();
+    function declarar_especies_descuentos(){
+        $.ajax({
+            url: '/fn_consulta_DatosEspecie',
+            method: 'GET',
+            success: function(response) {
+                // Verificar si la respuesta es un arreglo de objetos
+                if (Array.isArray(response)) {
+                    
+                    // Obtener el select
+                    let selectPresentacion = $('#editarPresentacionDescuentoCliente');
+                    
+                    // Vaciar el select actual, si es necesario
+                    selectPresentacion.empty();
+
+                    // Agregar la opción inicial "Seleccione tipo"
+                    selectPresentacion.append($('<option>', {
+                        value: '0',
+                        text: 'Seleccione presentación',
+                        disabled: true,
+                        selected: true
+                    }));
+
+                    // Iterar sobre los objetos y mostrar sus propiedades
+                    response.forEach(function(obj) {
+                        let option = $('<option>', {
+                            value: obj.idEspecie,
+                            text: obj.nombreEspecie
+                        });
+                        selectPresentacion.append(option);
+                    });
+
+                } else {
+                    console.log("La respuesta no es un arreglo de objetos.");
+                }
+            },
+            error: function(error) {
+                console.error("ERROR",error);
+            }
+        });
+    }
+
+    $(document).on("dblclick", "#bodyCuentaDelClienteDescuentos tr", function() {
+
+            let idDescuento = $(this).find('td:eq(0)').text();
+            let nombreCompleto = $(this).find('td:eq(1)').text();
+            let fechaRegistroDesc = $(this).find('td:eq(2)').text();
+            let nombreEspecie = $(this).find('td:eq(3)').text();
+            let pesoDesc = $(this).find('td:eq(4)').text();
+            let observacion = $(this).find('td:eq(5)').text();
+
+            $('#ModalEditarDescuentoClienteEditar').addClass('flex');
+            $('#ModalEditarDescuentoClienteEditar').removeClass('hidden');
+
+            $('#valorEditarDescuentoCliente').val(idDescuento);
+            $('#idEditarPagoClienteDescuento').val(nombreCompleto);
+            $('#editarPresentacionDescuentoCliente').find("option:selected").val(nombreEspecie);
+            $('#fechaPagoEditarDescuento').val(fechaRegistroDesc);
+            $("#valorClienteEditarDescuento").val(pesoDesc);
+            $("#comentarioEditarDescuentoCliente").val(observacion);
+    });
+
     function fn_TraerDeudaTotalEditar(codigoCliente){
         $.ajax({
             url: '/fn_consulta_TraerDeudaTotal',

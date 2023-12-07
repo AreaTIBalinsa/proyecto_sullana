@@ -21,7 +21,7 @@ return new class extends Migration
             $table->date('fechaRegistroPes')->default(now());
             $table->integer('cantidadPes');
             $table->decimal('precioPes', 8, 2);
-            $table->integer('pesoNetoJabas');
+            $table->decimal('pesoNetoJabas', 8,2)->nullable();
             $table->integer('numeroJabasPes')->default(0);
             $table->integer('numeroCubetasPes')->default(0);
             $table->integer('estadoPes')->default(1);

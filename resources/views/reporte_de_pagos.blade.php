@@ -381,7 +381,7 @@
 
 {{-- Modal Editar Descuento --}}
 
-<div class="fixed flex top-0 left-0 z-[100] justify-center items-center w-screen h-screen bg-gray-900 bg-opacity-75 transition-opacity cerrarModalEditarDescuento" id="ModalEditarDescuentoClienteEditar">
+<div class="fixed hidden top-0 left-0 z-[100] justify-center items-center w-screen h-screen bg-gray-900 bg-opacity-75 transition-opacity cerrarModalEditarDescuento" id="ModalEditarDescuentoClienteEditar">
     <div class="modal-content max-w-lg w-full mx-4">
         <div class="transform overflow-hidden rounded-lg bg-white dark:bg-slate-700 shadow-xl transition-all">
             <div class="p-4">
@@ -389,10 +389,11 @@
                     <div class="border-b rounded-t dark:border-gray-500 p-2 flex justify-center">
                         <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Editar Descuento</h3>
                     </div>
+                    <input class="hidden" type="text" id="valorEditarDescuentoCliente">
                     <div class="mt-4 flex justify-center items-center flex-col gap-4" id="divEditarDescuentoCliente">
                         <div class="flex justify-center items-start flex-col relative w-full h-full">
                             <label for="idEditarDescuentoCliente" class="mb-2 text-base font-medium text-gray-900 dark:text-white">Cliente :</label>
-                            <label id="idReporteDePago" class="hidden mb-2 text-base font-medium text-gray-900 dark:text-white"></label>
+                            <label id="idReportedeDescuento" class="hidden mb-2 text-base font-medium text-gray-900 dark:text-white"></label>
                             <div class="flex max-w-xs w-full">
                                 <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
                                     <i class='bx bxs-user-circle text-xl'></i>

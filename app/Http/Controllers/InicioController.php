@@ -24,6 +24,7 @@ class InicioController extends Controller
             // Realiza la consulta a la base de datos
             $datos = DatosEspecie::select('idEspecie', 'nombreEspecie')
                 ->orderBy('idEspecie', 'asc')
+                ->where('idEspecie', '!=' , '9')
                 ->get();
 
             // Devuelve los datos en formato JSON
