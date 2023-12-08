@@ -610,6 +610,9 @@ jQuery(function ($) {
             },
             success: function(response) {
                 if (response.success) {
+
+                    $('#comentarioAgregarDescuentoCliente').val('')
+                    
                     Swal.fire({
                         position: 'center',
                         icon: 'success',
@@ -733,9 +736,9 @@ jQuery(function ($) {
                         nuevaFila.append($('<td class="hidden">').text(obj.idDescuento));
 
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center font-medium text-gray-900 whitespace-nowrap dark:text-white">').text(obj.nombreCompleto));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(obj.fechaRegistroDesc));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(parseFloat(obj.pesoDesc).toFixed(2)));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(obj.nombreEspecie));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(obj.pesoDesc));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(obj.fechaRegistroDesc));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(obj.observacion));  
                         
                         // Agregar la nueva fila al tbody
@@ -801,7 +804,7 @@ jQuery(function ($) {
         if (tipoUsuario =='Administrador'){
             let fila = $(this).closest('tr');
             let idReporteDePago= fila.find('td:eq(0)').text();
-            console.log('Report', idReporteDePago);
+            //console.log('Report', idReporteDePago);
 
             $('#idReporteDePago').attr("value",idReporteDePago);
             fn_EditarPago(idReporteDePago);
@@ -830,14 +833,6 @@ jQuery(function ($) {
                     // Vaciar el select actual, si es necesario
                     selectPresentacion.empty();
 
-                    // Agregar la opción inicial "Seleccione tipo"
-                    selectPresentacion.append($('<option>', {
-                        value: '0',
-                        text: 'Seleccione presentación',
-                        disabled: true,
-                        selected: true
-                    }));
-
                     // Iterar sobre los objetos y mostrar sus propiedades
                     response.forEach(function(obj) {
                         let option = $('<option>', {
@@ -859,23 +854,143 @@ jQuery(function ($) {
 
     $(document).on("dblclick", "#bodyCuentaDelClienteDescuentos tr", function() {
 
-            let idDescuento = $(this).find('td:eq(0)').text();
-            let nombreCompleto = $(this).find('td:eq(1)').text();
-            let fechaRegistroDesc = $(this).find('td:eq(2)').text();
-            let nombreEspecie = $(this).find('td:eq(3)').text();
-            let pesoDesc = $(this).find('td:eq(4)').text();
-            let observacion = $(this).find('td:eq(5)').text();
-
-            $('#ModalEditarDescuentoClienteEditar').addClass('flex');
-            $('#ModalEditarDescuentoClienteEditar').removeClass('hidden');
-
-            $('#valorEditarDescuentoCliente').val(idDescuento);
-            $('#idEditarPagoClienteDescuento').val(nombreCompleto);
-            $('#editarPresentacionDescuentoCliente').find("option:selected").val(nombreEspecie);
-            $('#fechaPagoEditarDescuento').val(fechaRegistroDesc);
-            $("#valorClienteEditarDescuento").val(pesoDesc);
-            $("#comentarioEditarDescuentoCliente").val(observacion);
+            let codigoDescuento = $(this).find('td:eq(0)').text();
+            fn_ConsultarEditarDescuento(codigoDescuento)
     });
+
+    function fn_ConsultarEditarDescuento(codigoDescuento){
+        $.ajax({
+            url: '/fn_consulta_EditarDescuentos',
+            method: 'GET',
+            data: {
+                codigoDescuento:codigoDescuento,
+            },
+            success: function(response) {
+                response.forEach(function(obj){
+                    //console.log(obj)
+                    let pesoDesc = parseFloat(obj.pesoDesc)*-1
+                    $('#idEditarNombreDeClienteDescuento').attr("value",obj.codigoCli)
+                    $('#valorEditarDescuentoCliente').attr("value",obj.idDescuento);
+                    $('#idEditarNombreDescuentoCliente').val(obj.nombreCompleto);
+                    $('#editarPresentacionDescuentoCliente').val(obj.especieDesc);
+                    $('#fechaPagoEditarDescuento').val(obj.fechaRegistroDesc);
+                    $("#valorClienteEditarDescuento").val(pesoDesc.toFixed(2));
+                    $("#comentarioEditarDescuentoCliente").val(obj.observacion);
+                    
+                    $('#ModalEditarDescuentoClienteEditar').addClass('flex');
+                    $('#ModalEditarDescuentoClienteEditar').removeClass('hidden');
+
+                });
+            },
+            error: function(error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Error: Ocurrio un error inesperado durante la operacion',
+                })
+                console.error("ERROR",error);
+            }
+        });
+    }
+
+    $('#btnEditarDescuentoClienteEditar').on('click', function () {
+        let idDescuento = $('#valorEditarDescuentoCliente').attr("value");
+        let nombreClienteEditar = $('#idEditarNombreDeClienteDescuento').attr('value');
+        let fechaRegistroDesc = $('#fechaPagoEditarDescuento').val();
+        let nombreEspecie = $('#editarPresentacionDescuentoCliente').val();
+        let pesoDesc = $('#valorClienteEditarDescuento').val();
+        pesoDesc = parseFloat(pesoDesc)*-1;
+        let observacion = $('#comentarioEditarDescuentoCliente').val();
+        //console.log("id:", idDescuento, nombreClienteEditar, fechaRegistroDesc, nombreEspecie, pesoDesc, observacion);
+        fn_ConsultarEditarDescuentoCliente(idDescuento, nombreClienteEditar, fechaRegistroDesc, nombreEspecie, pesoDesc, observacion);
+    });
+
+    function fn_ConsultarEditarDescuentoCliente(idDescuento, nombreClienteEditar, fechaRegistroDesc, nombreEspecie, pesoDesc, observacion){
+        $.ajax({
+            url: '/fn_consulta_EditarDescuentoCliente',
+            method: 'GET',
+            data: {
+                idDescuento:idDescuento,
+                nombreClienteEditar: nombreClienteEditar,
+                fechaRegistroDesc: fechaRegistroDesc,
+                nombreEspecie: nombreEspecie,
+                pesoDesc: pesoDesc,
+                observacion: observacion,
+            },
+            success: function(response) {
+                if (response.success) {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Se actualizo el descuento correctamente',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+
+                    $('#btnBuscarCuentaDelClienteDescuentos').trigger('click');
+                    $('#ModalEditarDescuentoClienteEditar').addClass('hidden');
+                    $('#ModalEditarDescuentoClienteEditar').removeClass('flex');
+                }
+            },
+            error: function(error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Error: Ocurrio un error inesperado durante la operacion',
+                })
+                console.error("ERROR",error);
+            }
+        });
+    }
+
+    $(document).on('contextmenu', '#bodyCuentaDelClienteDescuentos tr', function (e) {
+        e.preventDefault();
+        let codigoDescuento = $(this).closest("tr").find("td:first").text();
+        Swal.fire({
+            title: '¿Desea eliminar el Registro?',
+            text: "¡Estas seguro de eliminar el pago!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: '¡No, cancelar!',
+            confirmButtonText: '¡Si,eliminar!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fn_EliminarDescuento(codigoDescuento);
+            }
+        })
+    });
+
+    function fn_EliminarDescuento(codigoDescuento){
+        $.ajax({
+            url: '/fn_consulta_EliminarDescuento',
+            method: 'GET',
+            data: {
+                codigoDescuento: codigoDescuento,
+            },
+            success: function(response) {
+                if (response.success) {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Se elimino el pago correctamente',
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+                    $('#btnBuscarCuentaDelClienteDescuentos').trigger('click');
+                }
+            },
+            error: function(error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Error: Ocurrio un error inesperado durante la operacion',
+                  })
+                console.error("ERROR",error);
+            }
+        });
+    }
 
     function fn_TraerDeudaTotalEditar(codigoCliente){
         $.ajax({

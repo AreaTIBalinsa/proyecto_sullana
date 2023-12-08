@@ -23,11 +23,10 @@ class SubmenusTableSeeder extends Seeder
             ['idSubMenu' => 7, 'idMenu' => 2, 'nombreSubMenu' => 'Reporte por Proveedor', 'idNombreSubMenu' => '#', 'hrefSubMenu' => '/reporte_por_proveedor', 'iconHtml' => 'fa-solid fa-drumstick-bite', 'estadoSubMenu' => 1],
             ['idSubMenu' => 8, 'idMenu' => 3, 'nombreSubMenu' => 'Precios', 'idNombreSubMenu' => '#', 'hrefSubMenu' => '/precios', 'iconHtml' => 'bx bxs-dollar-circle', 'estadoSubMenu' => 1],
             ['idSubMenu' => 9, 'idMenu' => 3, 'nombreSubMenu' => 'Pesadas', 'idNombreSubMenu' => '#', 'hrefSubMenu' => '/pesadas', 'iconHtml' => 'bx bxs-analyse', 'estadoSubMenu' => 1],
-            ['idSubMenu' => 10, 'idMenu' => 3, 'nombreSubMenu' => 'Configurar conversion', 'idNombreSubMenu' => '#', 'hrefSubMenu' => '/valor_conversion', 'iconHtml' => 'bx bx-message-square-edit', 'estadoSubMenu' => 1],
-            ['idSubMenu' => 11, 'idMenu' => 3, 'nombreSubMenu' => 'Agregar Saldo', 'idNombreSubMenu' => '#', 'hrefSubMenu' => '/agregar_saldo', 'iconHtml' => 'bx bx-money-withdraw', 'estadoSubMenu' => 1],
-            ['idSubMenu' => 12, 'idMenu' => 4, 'nombreSubMenu' => 'Agregar Usuario', 'idNombreSubMenu' => '#', 'hrefSubMenu' => '/registrar_usuarios', 'iconHtml' => 'bx bxs-user-badge', 'estadoSubMenu' => 1],
-            ['idSubMenu' => 13, 'idMenu' => 4, 'nombreSubMenu' => 'Consultar Usuario', 'idNombreSubMenu' => '#', 'hrefSubMenu' => '/consultar_usuarios', 'iconHtml' => 'bx bxs-user-account', 'estadoSubMenu' => 1],
-            ['idSubMenu' => 14, 'idMenu' => 4, 'nombreSubMenu' => 'Configuraciones', 'idNombreSubMenu' => '#', 'hrefSubMenu' => '/configuraciones', 'iconHtml' => 'bx bx-cog', 'estadoSubMenu' => 1],
+            ['idSubMenu' => 10, 'idMenu' => 3, 'nombreSubMenu' => 'Agregar Saldo', 'idNombreSubMenu' => '#', 'hrefSubMenu' => '/agregar_saldo', 'iconHtml' => 'bx bx-money-withdraw', 'estadoSubMenu' => 1],
+            ['idSubMenu' => 11, 'idMenu' => 4, 'nombreSubMenu' => 'Agregar Usuario', 'idNombreSubMenu' => '#', 'hrefSubMenu' => '/registrar_usuarios', 'iconHtml' => 'bx bxs-user-badge', 'estadoSubMenu' => 1],
+            ['idSubMenu' => 12, 'idMenu' => 4, 'nombreSubMenu' => 'Consultar Usuario', 'idNombreSubMenu' => '#', 'hrefSubMenu' => '/consultar_usuarios', 'iconHtml' => 'bx bxs-user-account', 'estadoSubMenu' => 1],
+            ['idSubMenu' => 13, 'idMenu' => 4, 'nombreSubMenu' => 'Configuraciones', 'idNombreSubMenu' => '#', 'hrefSubMenu' => '/configuraciones', 'iconHtml' => 'bx bx-cog', 'estadoSubMenu' => 1],
         ]);
     }
 }
