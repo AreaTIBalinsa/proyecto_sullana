@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
             TipoDocumentoSeeder::class,
             PreciosMinimosTableSeeder::class,
             EspeciesCompraTableSeeder::class,
+            PesosDeTara::class,
         ]);
     }
 }
