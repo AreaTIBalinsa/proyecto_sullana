@@ -21,6 +21,8 @@ jQuery(function ($) {
 
     declarar_especies();
     fn_TraerPagosFechas(fechaHoy,fechaHoy);
+    fn_RegistroDescuentos(fechaHoy,fechaHoy);
+    declarar_especies_descuentos();
 
     /* ============ Eventos ============ */
 
@@ -156,11 +158,22 @@ jQuery(function ($) {
         let pesoAgregarDescuentoCliente = parseFloat($('#valorAgregarDescuentoCliente').val())*-1;
         let fechaAgregarDescuentoCliente = $('#fechaAgregarDescuento').val();
         let especieAgregarDescuentoCliente = $('#presentacionAgregarDescuentoCliente').find("option:selected").val();
+        let comentarioAgregarDescuentoCliente = $('#comentarioAgregarDescuentoCliente').val();
+
         let precioPrimerEspecieDescuento = $('#precioPrimerEspecieDescuento').val();
         let precioSegundaEspecieDescuento = $('#precioSegundaEspecieDescuento').val();
         let precioTerceraEspecieDescuento = $('#precioTerceraEspecieDescuento').val();
         let precioCuartaEspecieDescuento = $('#precioCuartaEspecieDescuento').val();
-        let comentarioAgregarDescuentoCliente = $('#comentarioAgregarDescuentoCliente').val();
+        let precioQuintaEspecieDescuento = $('#precioQuintaEspecieDescuento').val();
+        let precioSextaEspecieDescuento = $('#precioSextaEspecieDescuento').val();
+        let precioSeptimaEspecieDescuento = $('#precioSeptimaEspecieDescuento').val();
+        let precioOctavaEspecieDescuento = $('#precioOctavaEspecieDescuento').val();
+        let precioDecimaEspecieDescuento = $('#precioDecimaEspecieDescuento').val();
+        let precioDecimaPrimeraEspecieDescuento = $('#precioDecimaPrimeraEspecieDescuento').val();
+        let precioDecimaSegundaEspecieDescuento = $('#precioDecimaSegundaEspecieDescuento').val();
+        let precioDecimaTerceraEspecieDescuento = $('#precioDecimaTerceraEspecieDescuento').val();
+        let precioDecimaCuartaEspecieDescuento = $('#precioDecimaCuartaEspecieDescuento').val();
+        let precioDecimaQuintaEspecieDescuento = $('#precioDecimaQuintaEspecieDescuento').val();
 
         let precioAgregarDescuentoCliente = 0
 
@@ -172,6 +185,26 @@ jQuery(function ($) {
             precioAgregarDescuentoCliente = precioTerceraEspecieDescuento
         }else if (especieAgregarDescuentoCliente == cuartaEspecieGlobal){
             precioAgregarDescuentoCliente = precioCuartaEspecieDescuento
+        }else if (especieAgregarDescuentoCliente == quintaEspecieGlobal){
+            precioAgregarDescuentoCliente = precioQuintaEspecieDescuento
+        }else if (especieAgregarDescuentoCliente == sextaEspecieGlobal){
+            precioAgregarDescuentoCliente = precioSextaEspecieDescuento
+        }else if (especieAgregarDescuentoCliente == septimaEspecieGlobal){
+            precioAgregarDescuentoCliente = precioSeptimaEspecieDescuento
+        }else if (especieAgregarDescuentoCliente == octavaEspecieGlobal){
+            precioAgregarDescuentoCliente = precioOctavaEspecieDescuento
+        }else if (especieAgregarDescuentoCliente == decimaEspecieGlobal){
+            precioAgregarDescuentoCliente = precioDecimaEspecieDescuento
+        }else if (especieAgregarDescuentoCliente == decimaPrimeraEspecieGlobal){
+            precioAgregarDescuentoCliente = precioDecimaPrimeraEspecieDescuento
+        }else if (especieAgregarDescuentoCliente == decimaSegundaEspecieGlobal ){
+            precioAgregarDescuentoCliente = precioDecimaSegundaEspecieDescuento
+        }else if (especieAgregarDescuentoCliente == decimaTerceraEspecieGlobal ){
+            precioAgregarDescuentoCliente = precioDecimaTerceraEspecieDescuento
+        }else if (especieAgregarDescuentoCliente == decimaCuartaEspecieGlobal ){
+            precioAgregarDescuentoCliente = precioDecimaCuartaEspecieDescuento
+        }else if (especieAgregarDescuentoCliente == decimaQuintaEspecieGlobal ){
+            precioAgregarDescuentoCliente = precioDecimaQuintaEspecieDescuento
         }
 
         $('#divAgregarDescuentoCliente .validarCampo').each(function() {
@@ -285,11 +318,31 @@ jQuery(function ($) {
     var segundaEspecieGlobal = 0
     var terceraEspecieGlobal = 0
     var cuartaEspecieGlobal = 0
+    var quintaEspecieGlobal = 0
+    var sextaEspecieGlobal = 0
+    var septimaEspecieGlobal = 0
+    var octavaEspecieGlobal = 0
+    var decimaEspecieGlobal = 0
+    var decimaPrimeraEspecieGlobal = 0
+    var decimaSegundaEspecieGlobal = 0
+    var decimaTerceraEspecieGlobal = 0
+    var decimaCuartaEspecieGlobal = 0
+    var decimaQuintaEspecieGlobal = 0
 
     var nombrePrimerEspecieGlobal = ""
     var nombreSegundaEspecieGlobal = ""
     var nombreTerceraEspecieGlobal = ""
     var nombreCuartaEspecieGlobal = ""
+    var nombreQuintaEspecieGlobal = ""
+    var nombreSextaEspecieGlobal = ""
+    var nombreSeptimaEspecieGlobal = ""
+    var nombreOctavaEspecieGlobal = ""
+    var nombreDecimaEspecieGlobal = ""
+    var nombreDecimaPrimeraEspecieGlobal = ""
+    var nombreDecimaSegundaEspecieGlobal = ""
+    var nombreDecimaTerceraEspecieGlobal = ""
+    var nombreDecimaCuartaEspecieGlobal = ""
+    var nombreDecimaQuintaEspecieGlobal = ""
 
     function declarar_especies(){
         $.ajax({
@@ -303,11 +356,31 @@ jQuery(function ($) {
                     segundaEspecieGlobal  = parseInt(response[1].idEspecie);
                     terceraEspecieGlobal = parseInt(response[2].idEspecie);
                     cuartaEspecieGlobal = parseInt(response[3].idEspecie);
+                    quintaEspecieGlobal = parseInt(response[4].idEspecie);
+                    sextaEspecieGlobal = parseInt(response[5].idEspecie);
+                    septimaEspecieGlobal = parseInt(response[6].idEspecie);
+                    octavaEspecieGlobal = parseInt(response[7].idEspecie);
+                    decimaEspecieGlobal = parseInt(response[8].idEspecie);
+                    decimaPrimeraEspecieGlobal = parseInt(response[9].idEspecie);
+                    decimaSegundaEspecieGlobal = parseInt(response[10].idEspecie);
+                    decimaTerceraEspecieGlobal = parseInt(response[11].idEspecie);
+                    decimaCuartaEspecieGlobal = parseInt(response[12].idEspecie);
+                    decimaQuintaEspecieGlobal = parseInt(response[13].idEspecie);
 
                     nombrePrimerEspecieGlobal = response[0].nombreEspecie;
                     nombreSegundaEspecieGlobal = response[1].nombreEspecie;
                     nombreTerceraEspecieGlobal = response[2].nombreEspecie;
                     nombreCuartaEspecieGlobal = response[3].nombreEspecie;
+                    nombreQuintaEspecieGlobal = response[4].nombreEspecie;
+                    nombreSextaEspecieGlobal = response[5].nombreEspecie;
+                    nombreSeptimaEspecieGlobal = response[6].nombreEspecie;
+                    nombreOctavaEspecieGlobal = response[7].nombreEspecie;
+                    nombreDecimaEspecieGlobal = response[8].nombreEspecie;
+                    nombreDecimaPrimeraEspecieGlobal = response[9].nombreEspecie;
+                    nombreDecimaSegundaEspecieGlobal = response[10].nombreEspecie;
+                    nombreDecimaTerceraEspecieGlobal = response[11].nombreEspecie;
+                    nombreDecimaCuartaEspecieGlobal = response[12].nombreEspecie;
+                    nombreDecimaQuintaEspecieGlobal = response[13].nombreEspecie;
 
                     // Obtener el select
                     let selectPresentacion = $('#presentacionAgregarDescuentoCliente');
@@ -401,6 +474,8 @@ jQuery(function ($) {
     
                 // Verificar si la respuesta es un arreglo de objetos
                 if (Array.isArray(response)) {
+
+                    console.log(response);
     
                     // Obtener el select
                     let inputDeudaTotal = $('#deudaTotal');
@@ -491,10 +566,20 @@ jQuery(function ($) {
                 // Verificar si la respuesta es un arreglo de objetos
                 if (Array.isArray(response)) {
     
-                    $('#precioPrimerEspecieDescuento').val(response[0].primerEspecie)
-                    $('#precioSegundaEspecieDescuento').val(response[0].segundaEspecie)
-                    $('#precioTerceraEspecieDescuento').val(response[0].terceraEspecie)
-                    $('#precioCuartaEspecieDescuento').val(response[0].cuartaEspecie)
+                    $('#precioPrimerEspecieDescuento').attr("value",response[0].primerEspecie)
+                    $('#precioSegundaEspecieDescuento').attr("value",response[0].segundaEspecie)
+                    $('#precioTerceraEspecieDescuento').attr("value",response[0].terceraEspecie)
+                    $('#precioCuartaEspecieDescuento').attr("value",response[0].cuartaEspecie)
+                    $('#precioQuintaEspecieDescuento').attr("value",response[0].quintaEspecie)
+                    $('#precioSextaEspecieDescuento').attr("value",response[0].sextaEspecie)
+                    $('#precioSeptimaEspecieDescuento').attr("value",response[0].septimaEspecie)
+                    $('#precioOctavaEspecieDescuento').attr("value",response[0].octavaEspecie)
+                    $('#precioDecimaEspecieDescuento').attr("value",response[0].decimaEspecie)
+                    $('#precioDecimaPrimeraEspecieDescuento').attr("value",response[0].decimaPrimeraEspecie)
+                    $('#precioDecimaSegundaEspecieDescuento').attr("value",response[0].decimaSegundaEspecie)
+                    $('#precioDecimaTerceraEspecieDescuento').attr("value",response[0].decimaTerceraEspecie)
+                    $('#precioDecimaCuartaEspecieDescuento').attr("value",response[0].decimaCuartaEspecie)
+                    $('#precioDecimaQuintaEspecieDescuento').attr("value",response[0].decimaQuintaOtrasEspecies)
     
                 } else {
                     console.log("La respuesta no es un arreglo de objetos.");
@@ -710,7 +795,6 @@ jQuery(function ($) {
         });
     }
 
-    fn_RegistroDescuentos(fechaHoy,fechaHoy);
     function fn_RegistroDescuentos(fechaDesdeTraerDescuentos,fechaHastaTraerDescuentos) {
         $.ajax({
             url: '/fn_consulta_RegistroDescuentos',
@@ -738,6 +822,7 @@ jQuery(function ($) {
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center font-medium text-gray-900 whitespace-nowrap dark:text-white">').text(obj.nombreCompleto));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(parseFloat(obj.pesoDesc).toFixed(2)));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(obj.nombreEspecie));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(parseFloat(obj.precioDesc).toFixed(2)));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(obj.fechaRegistroDesc));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(obj.observacion));  
                         
@@ -815,10 +900,6 @@ jQuery(function ($) {
         }
     });
 
-
-    ///jalamos los datos de las especies
-
-    declarar_especies_descuentos();
     function declarar_especies_descuentos(){
         $.ajax({
             url: '/fn_consulta_DatosEspecie',
@@ -853,7 +934,6 @@ jQuery(function ($) {
     }
 
     $(document).on("dblclick", "#bodyCuentaDelClienteDescuentos tr", function() {
-
             let codigoDescuento = $(this).find('td:eq(0)').text();
             fn_ConsultarEditarDescuento(codigoDescuento)
     });
@@ -876,6 +956,7 @@ jQuery(function ($) {
                     $('#fechaPagoEditarDescuento').val(obj.fechaRegistroDesc);
                     $("#valorClienteEditarDescuento").val(pesoDesc.toFixed(2));
                     $("#comentarioEditarDescuentoCliente").val(obj.observacion);
+                    $('#valorPrecioEditarDescuento').val(parseFloat(obj.precioDesc).toFixed(2));
                     
                     $('#ModalEditarDescuentoClienteEditar').addClass('flex');
                     $('#ModalEditarDescuentoClienteEditar').removeClass('hidden');
@@ -901,11 +982,12 @@ jQuery(function ($) {
         let pesoDesc = $('#valorClienteEditarDescuento').val();
         pesoDesc = parseFloat(pesoDesc)*-1;
         let observacion = $('#comentarioEditarDescuentoCliente').val();
+        let precioDescuento = $('#valorPrecioEditarDescuento').val();
         //console.log("id:", idDescuento, nombreClienteEditar, fechaRegistroDesc, nombreEspecie, pesoDesc, observacion);
-        fn_ConsultarEditarDescuentoCliente(idDescuento, nombreClienteEditar, fechaRegistroDesc, nombreEspecie, pesoDesc, observacion);
+        fn_ConsultarEditarDescuentoCliente(idDescuento, nombreClienteEditar, fechaRegistroDesc, nombreEspecie, pesoDesc, observacion,precioDescuento);
     });
 
-    function fn_ConsultarEditarDescuentoCliente(idDescuento, nombreClienteEditar, fechaRegistroDesc, nombreEspecie, pesoDesc, observacion){
+    function fn_ConsultarEditarDescuentoCliente(idDescuento, nombreClienteEditar, fechaRegistroDesc, nombreEspecie, pesoDesc, observacion,precioDescuento){
         $.ajax({
             url: '/fn_consulta_EditarDescuentoCliente',
             method: 'GET',
@@ -916,6 +998,7 @@ jQuery(function ($) {
                 nombreEspecie: nombreEspecie,
                 pesoDesc: pesoDesc,
                 observacion: observacion,
+                precioDescuento:precioDescuento,
             },
             success: function(response) {
                 if (response.success) {

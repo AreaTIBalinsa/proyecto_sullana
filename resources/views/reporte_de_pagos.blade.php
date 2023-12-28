@@ -149,6 +149,7 @@
                             <th class="px-4 font-medium whitespace-nowrap">CLIENTE</th>
                             <th class="px-4 font-medium whitespace-nowrap">Kg.</th>
                             <th class="px-4 font-medium whitespace-nowrap">ESPECIE</th>
+                            <th class="px-4 font-medium whitespace-nowrap">PRECIO</th>
                             <th class="px-4 font-medium whitespace-nowrap">DIA</th>
                             <th class="px-4 font-medium whitespace-nowrap">OBSERVACION</th>
                         </tr>
@@ -365,6 +366,16 @@
                     <input type="text" id="precioSegundaEspecieDescuento" class="hidden" value="0.00">
                     <input type="text" id="precioTerceraEspecieDescuento" class="hidden" value="0.00">
                     <input type="text" id="precioCuartaEspecieDescuento" class="hidden" value="0.00">
+                    <input type="text" id="precioQuintaEspecieDescuento" class="hidden" value="0.00">
+                    <input type="text" id="precioSextaEspecieDescuento" class="hidden" value="0.00">
+                    <input type="text" id="precioSeptimaEspecieDescuento" class="hidden" value="0.00">
+                    <input type="text" id="precioOctavaEspecieDescuento" class="hidden" value="0.00">
+                    <input type="text" id="precioDecimaEspecieDescuento" class="hidden" value="0.00">
+                    <input type="text" id="precioDecimaPrimeraEspecieDescuento" class="hidden" value="0.00">
+                    <input type="text" id="precioDecimaSegundaEspecieDescuento" class="hidden" value="0.00">
+                    <input type="text" id="precioDecimaTerceraEspecieDescuento" class="hidden" value="0.00">
+                    <input type="text" id="precioDecimaCuartaEspecieDescuento" class="hidden" value="0.00">
+                    <input type="text" id="precioDecimaQuintaEspecieDescuento" class="hidden" value="0.00">
                 </div>
             </div>
             <div class="px-4 pb-4">
@@ -392,7 +403,7 @@
                     <label class="hidden" type="text" value="" id="valorEditarDescuentoCliente"></label>
                     <div class="mt-4 flex justify-center items-center flex-col gap-4" id="divEditarDescuentoCliente">
                         <div class="flex justify-center items-start flex-col relative w-full h-full">
-                            <label for="idEditarDescuentoCliente" class="mb-2 text-base font-medium text-gray-900 dark:text-white">Cliente :</label>
+                            <label class="mb-2 text-base font-medium text-gray-900 dark:text-white">Cliente :</label>
                             <div class="flex max-w-xs w-full">
                                 <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
                                     <i class='bx bxs-user-circle text-xl'></i>
@@ -418,6 +429,12 @@
                                 <h4 class="font-medium text-gray-900 dark:text-gray-300 min-w-max">Descuento Kg.</h4>
                             </div>
                             <input class="validarCampo validarSoloNumerosDosDecimales w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-r-lg" type="text" name="valorClienteEditarDescuento" autocomplete="off" id="valorClienteEditarDescuento" value="" placeholder="0.0">
+                        </div>
+                        <div class="flex w-full h-10">
+                            <div class="text-sm px-3 flex items-center justify-center text-center border border-gray-300 dark:border-gray-600 bg-gray-300 dark:bg-gray-600 rounded-l-lg">
+                                <h4 class="font-medium text-gray-900 dark:text-gray-300 min-w-max">Precio S/.</h4>
+                            </div>
+                            <input class="validarCampo validarSoloNumerosDosDecimales w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-r-lg" type="text" name="valorPrecioEditarDescuento" autocomplete="off" id="valorPrecioEditarDescuento" value="" placeholder="0.0">
                         </div>
                         <div class="flex flex-col w-full">
                             <label for="comentarioAgregarPagoClienteEditar" class="mb-2 text-sm font-medium text-gray-900 dark:text-white md:w-24">Comentario :</label>

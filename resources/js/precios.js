@@ -235,21 +235,6 @@ jQuery(function($) {
                     $('#valorPrecioPolloVivoMenudencia').val(parseFloat(response[11].precioMinimo).toFixed(2));
                     $('#valorPrecioPolloVivoDorso').val(parseFloat(response[12].precioMinimo).toFixed(2));
                     $('#valorPrecioPolloVivoOtros').val(parseFloat(response[13].precioMinimo).toFixed(2));
-                    // Obtener el select de los preciosminimos de pollos beneficiados
-                    $('#valorPrecioPolloBeneficiadoVivo').val(parseFloat(response[14].precioMinimo).toFixed(2));
-                    $('#valorPrecioPolloBeneficiadoPolloPelado').val(parseFloat(response[15].precioMinimo).toFixed(2));
-                    $('#valorPrecioPolloBeneficiadoPolloTecnicoVivo').val(parseFloat(response[16].precioMinimo).toFixed(2));
-                    $('#valorPrecioPolloBeneficiadoPolloTecnicoPelado').val(parseFloat(response[17].precioMinimo).toFixed(2));
-                    $('#valorPrecioGallinaDobleBeneficiado').val(parseFloat(response[18].precioMinimo).toFixed(2));
-                    $('#valorPrecioGallinaChicaBeneficiado').val(parseFloat(response[19].precioMinimo).toFixed(2));
-                    $('#valorPrecioGalloBeneficiado').val(parseFloat(response[20].precioMinimo).toFixed(2));
-                    $('#valorPrecioPolloBeneficiadoMaltratado').val(parseFloat(response[21].precioMinimo).toFixed(2));
-                    $('#valorPrecioPolloBeneficiadoPechuga').val(parseFloat(response[22].precioMinimo).toFixed(2));
-                    $('#valorPrecioPolloBeneficiadoPierna').val(parseFloat(response[23].precioMinimo).toFixed(2));
-                    $('#valorPrecioPolloBeneficiadoAlas').val(parseFloat(response[24].precioMinimo).toFixed(2));
-                    $('#valorPrecioPolloBeneficiadoMenudencia').val(parseFloat(response[25].precioMinimo).toFixed(2));
-                    $('#valorPrecioPolloBeneficiadoDorso').val(parseFloat(response[26].precioMinimo).toFixed(2));
-                    $('#valorPrecioPolloBeneficiadoOtros').val(parseFloat(response[27].precioMinimo).toFixed(2));
 
                     $('#idPolloVivo').attr('value', response[0].idPrecioMinimo);
                     $('#idPolloVivoPelado').attr('value', response[1].idPrecioMinimo);
@@ -265,21 +250,6 @@ jQuery(function($) {
                     $('#idPolloVivoMenudencia').attr('value', response[11].idPrecioMinimo);
                     $('#idPolloVivoDorso').attr('value', response[12].idPrecioMinimo);
                     $('#idPolloVivoOtros').attr('value', response[13].idPrecioMinimo);
-                    
-                    $('#idPolloBeneficiadoVivo').attr('value', response[14].idPrecioMinimo);
-                    $('#idPolloBeneficiadoPelado').attr('value', response[15].idPrecioMinimo);
-                    $('#idPolloBeneficiadoTecnicoVivo').attr('value', response[16].idPrecioMinimo);
-                    $('#idPolloBeneficiadoTecnicoPelado').attr('value', response[17].idPrecioMinimo);
-                    $('#idGallinaDobleBeneficiado').attr('value', response[18].idPrecioMinimo);
-                    $('#idGallinaChicaBeneficiado').attr('value', response[19].idPrecioMinimo);
-                    $('#idGalloBeneficiado').attr('value', response[20].idPrecioMinimo);
-                    $('#idPolloBeneficiadoMaltratado').attr('value', response[21].idPrecioMinimo);
-                    $('#idPolloBeneficiadoPechuga').attr('value', response[22].idPrecioMinimo);
-                    $('#idPolloBeneficiadoPierna').attr('value', response[23].idPrecioMinimo);
-                    $('#idPolloBeneficiadoAlas').attr('value', response[24].idPrecioMinimo);
-                    $('#idPolloBeneficiadoMenudencia').attr('value', response[25].idPrecioMinimo);
-                    $('#idPolloBeneficiadoDorso').attr('value', response[26].idPrecioMinimo);
-                    $('#idPolloBeneficiadoOtros').attr('value', response[27].idPrecioMinimo);
 
                     fn_pintarPreciosMinimos();
 
@@ -308,7 +278,7 @@ jQuery(function($) {
                     // Iterar sobre los objetos y mostrar sus propiedades
                     response.forEach(function(obj) {
                         // Crear una nueva fila
-                        let nuevaFila = $('<tr class="editPrecioXPresentacion bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
+                        let nuevaFila = $('<tr class="editPrecioXPresentacion bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 text-black dark:text-white dark:hover:bg-gray-600 cursor-pointer">');
 
                         // Agregar las celdas con la información
                         nuevaFila.append($('<td class="hidden">').text(obj.idPrecio));
@@ -505,9 +475,8 @@ jQuery(function($) {
         });
     }
 
-    $('#filtrarClientePrecios, #tipoPolloPrecios').on('input change', function() {
+    $('#filtrarClientePrecios').on('input', function() {
         let nombreFiltrar = $('#filtrarClientePrecios').val().toUpperCase(); ; // Obtiene el valor del campo de filtro
-        let tipoPolloFiltrar = $('#tipoPolloPrecios').val(); // Obtiene el valor seleccionado del select
 
         // Mostrar todas las filas
         $('#tablaPreciosXPresentacion tbody tr').show();
@@ -517,16 +486,6 @@ jQuery(function($) {
             $('#tablaPreciosXPresentacion tbody tr').each(function() {
                 let nombre = $(this).find('td:eq(1)').text().toUpperCase().trim();
                 if (nombre.indexOf(nombreFiltrar) === -1) {
-                    $(this).hide();
-                }
-            });
-        }
-
-        // Filtrar por tipo de pollo si se selecciona un valor en el select
-        if (tipoPolloFiltrar !== "0") {
-            $('#tablaPreciosXPresentacion tbody tr').each(function() {
-                let columna = $(this).find('td:eq(6)').text().trim(); // Considerando que la columna es la 10 (índice 9)
-                if (columna !== tipoPolloFiltrar) {
                     $(this).hide();
                 }
             });

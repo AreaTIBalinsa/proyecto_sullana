@@ -30,14 +30,24 @@
                     <thead id="headerReporteAcumulado" class="bg-blue-600 text-gray-50 sticky top-0 text-xs uppercase">
                         <tr class="h-10">
                             <th class="px-4 whitespace-nowrap">FECHA</th>
-                            <th class="px-4 whitespace-nowrap">POLLO YUGO</th>
-                            <th class="px-4 whitespace-nowrap">POLLO PERLA</th>
-                            <th class="px-4 whitespace-nowrap">POLLO CHIMU</th>
-                            <th class="px-4 whitespace-nowrap">POLLO XX</th>
+                            <th class="px-4 whitespace-nowrap">YUGO VIVO</th>
+                            <th class="px-4 whitespace-nowrap">YUGO PELADO</th>
+                            <th class="px-4 whitespace-nowrap">TECNICO VIVO</th>
+                            <th class="px-4 whitespace-nowrap">TECNICO PELADO</th>
+                            <th class="px-4 whitespace-nowrap">GALLINA DOBLE</th>
+                            <th class="px-4 whitespace-nowrap">GALLINA CHICA</th>
+                            <th class="px-4 whitespace-nowrap">GALLO</th>
+                            <th class="px-4 whitespace-nowrap">POLLO MALTRATADO</th>
+                            <th class="px-4 whitespace-nowrap">PECHUGA</th>
+                            <th class="px-4 whitespace-nowrap">PIERNA</th>
+                            <th class="px-4 whitespace-nowrap">ALAS</th>
+                            <th class="px-4 whitespace-nowrap">MENUDENCIA</th>
+                            <th class="px-4 whitespace-nowrap">DORSO</th>
+                            <th class="px-4 whitespace-nowrap">OTROS</th>
                         </tr>
                     </thead>
                     <tbody id="bodyReporteAcumulado">
-                        <tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="5" class="text-center">No hay datos</td></tr>
+                        <tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="15" class="text-center">No hay datos</td></tr>
                     </tbody>
                 </table>
             </div>

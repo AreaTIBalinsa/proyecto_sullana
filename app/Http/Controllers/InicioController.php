@@ -39,7 +39,12 @@ class InicioController extends Controller
     {
         if (Auth::check()) {
             // Realiza la consulta a la base de datos
-            $datos = TraerDatosEnTiempoReal::select('idEspecie', 'pesoNetoPes', 'cantidadPes', 'valorConversion', 'idGrupo')
+            $datos = TraerDatosEnTiempoReal::select('idEspecie',
+                DB::raw('CASE WHEN pesoNetoPes > pesoNetoJabas 
+                                THEN (pesoNetoPes - pesoNetoJabas) 
+                                ELSE (pesoNetoPes + pesoNetoJabas) 
+                            END AS pesoNetoPes'),
+                'cantidadPes')
                 ->whereRaw('fechaRegistroPes = CURDATE()')
                 ->where('estadoPes', '=', 1)
                 ->get();

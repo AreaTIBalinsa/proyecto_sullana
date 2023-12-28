@@ -23,6 +23,16 @@ jQuery(function ($) {
     var nombreSegundaEspecieGlobal = ""
     var nombreTerceraEspecieGlobal = ""
     var nombreCuartaEspecieGlobal = ""
+    var nombreQuintaEspecieGlobal = ""
+    var nombreSextaEspecieGlobal = ""
+    var nombreSeptimaEspecieGlobal = ""
+    var nombreOctavaEspecieGlobal = ""
+    var nombreDecimaEspecieGlobal = ""
+    var nombreDecimaPrimeraEspecieGlobal = ""
+    var nombreDecimaSegundaEspecieGlobal = ""
+    var nombreDecimaTerceraEspecieGlobal = ""
+    var nombreDecimaCuartaEspecieGlobal = ""
+    var nombreDecimaQuintaEspecieGlobal = ""
 
     $('#btnExportarExcelReportePorCliente').on('click', function () {
         // Obtener los valores de los inputs
@@ -101,6 +111,16 @@ jQuery(function ($) {
                     nombreSegundaEspecieGlobal = response[1].nombreEspecie;
                     nombreTerceraEspecieGlobal = response[2].nombreEspecie;
                     nombreCuartaEspecieGlobal = response[3].nombreEspecie;
+                    nombreQuintaEspecieGlobal = response[4].nombreEspecie;
+                    nombreSextaEspecieGlobal = response[5].nombreEspecie;
+                    nombreSeptimaEspecieGlobal = response[6].nombreEspecie;
+                    nombreOctavaEspecieGlobal = response[7].nombreEspecie;
+                    nombreDecimaEspecieGlobal = response[8].nombreEspecie;
+                    nombreDecimaPrimeraEspecieGlobal = response[9].nombreEspecie;
+                    nombreDecimaSegundaEspecieGlobal = response[10].nombreEspecie;
+                    nombreDecimaTerceraEspecieGlobal = response[11].nombreEspecie;
+                    nombreDecimaCuartaEspecieGlobal = response[12].nombreEspecie;
+                    nombreDecimaQuintaEspecieGlobal = response[13].nombreEspecie;
                 } else {
                     console.log("La respuesta no es un arreglo de objetos.");
                 }
@@ -219,19 +239,33 @@ jQuery(function ($) {
                         let totalPesoSegundaEspecie = 0;
                         let totalPesoTerceraEspecie = 0;
                         let totalPesoCuartaEspecie = 0;
+                        let totalPesoQuintaEspecie = 0;
+                        let totalPesoSextaEspecie = 0;
+                        let totalPesoSeptimaEspecie = 0;
+                        let totalPesoOctavaEspecie = 0;
+                        let totalPesoDecimaEspecie = 0;
+                        let totalPesoDecimaPrimeraEspecie = 0;
+                        let totalPesoDecimaSegundaEspecie = 0;
+                        let totalPesoDecimaTerceraEspecie = 0;
+                        let totalPesoDecimaCuartaEspecie = 0;
+                        let totalPesoDecimaQuintaEspecie = 0;
 
                         let totalCantidadPrimerEspecie = 0;
                         let totalCantidadSegundaEspecie = 0;
                         let totalCantidadTerceraEspecie = 0;
                         let totalCantidadCuartaEspecie = 0;
-
-                        let ventaTotalPesoVivoPrimerEspecie = 0;
-                        let ventaTotalPesoVivoSegundaEspecie = 0;
-                        let ventaTotalPesoVivoTerceraEspecie = 0;
-                        let ventaTotalPesoVivoCuartaEspecie = 0;
+                        let totalCantidadQuintaEspecie = 0;
+                        let totalCantidadSextaEspecie = 0;
+                        let totalCantidadSeptimaEspecie = 0;
+                        let totalCantidadOctavaEspecie = 0;
+                        let totalCantidadDecimaEspecie = 0;
+                        let totalCantidadDecimaPrimeraEspecie = 0;
+                        let totalCantidadDecimaSegundaEspecie = 0;
+                        let totalCantidadDecimaTerceraEspecie = 0;
+                        let totalCantidadDecimaCuartaEspecie = 0;
+                        let totalCantidadDecimaQuintaEspecie = 0;
 
                         let ventaPesoTotalNeto = 0
-                        let ventaPesoTotalVivo = 0
                         let ventaCantidadTotal = 0
 
                         bodyReportePorCliente += construirFilaFecha(item);
@@ -243,34 +277,119 @@ jQuery(function ($) {
                                 let nombreEspecie = subItem.nombreEspecie;
                                 let cantidadPes = parseInt(subItem.cantidadPes);
                                 let pesoNetoPes = parseFloat(subItem.pesoNetoPes).toFixed(2);
-                                let valorConversion = parseFloat(subItem.valorConversion).toFixed(3);
+                                let pesoNetoJabas = parseFloat(subItem.pesoNetoJabas).toFixed(2);
 
                                 if (nombreEspecie == nombrePrimerEspecieGlobal) {
                                     totalCantidadPrimerEspecie += cantidadPes;
-                                    totalPesoPrimerEspecie += parseFloat(pesoNetoPes);
-                                    ventaTotalPesoVivoPrimerEspecie += parseFloat(pesoNetoPes) / parseFloat(valorConversion);
+                                    if (pesoNetoPes > 0){
+                                        totalPesoPrimerEspecie += parseFloat(pesoNetoPes) - parseFloat(pesoNetoJabas);
+                                    }else{
+                                        totalPesoPrimerEspecie += parseFloat(pesoNetoPes) + parseFloat(pesoNetoJabas);
+                                    }
                                 } else if (nombreEspecie == nombreSegundaEspecieGlobal) {
                                     totalCantidadSegundaEspecie += cantidadPes;
-                                    totalPesoSegundaEspecie += parseFloat(pesoNetoPes);
-                                    ventaTotalPesoVivoSegundaEspecie += parseFloat(pesoNetoPes) / parseFloat(valorConversion);
+                                    if (pesoNetoPes > 0){
+                                        totalPesoSegundaEspecie += parseFloat(pesoNetoPes) - parseFloat(pesoNetoJabas);
+                                    }else{
+                                        totalPesoSegundaEspecie += parseFloat(pesoNetoPes) + parseFloat(pesoNetoJabas);
+                                    }
                                 } else if (nombreEspecie == nombreTerceraEspecieGlobal) {
                                     totalCantidadTerceraEspecie += cantidadPes;
-                                    totalPesoTerceraEspecie += parseFloat(pesoNetoPes);
-                                    ventaTotalPesoVivoTerceraEspecie += parseFloat(pesoNetoPes) / parseFloat(valorConversion);
+                                    if (pesoNetoPes > 0){
+                                        totalPesoTerceraEspecie += parseFloat(pesoNetoPes) - parseFloat(pesoNetoJabas);
+                                    }else{
+                                        totalPesoTerceraEspecie += parseFloat(pesoNetoPes) + parseFloat(pesoNetoJabas);
+                                    }
                                 } else if (nombreEspecie == nombreCuartaEspecieGlobal) {
                                     totalCantidadCuartaEspecie += cantidadPes;
-                                    totalPesoCuartaEspecie += parseFloat(pesoNetoPes);
-                                    ventaTotalPesoVivoCuartaEspecie += parseFloat(pesoNetoPes) / parseFloat(valorConversion);
+                                    if (pesoNetoPes > 0){
+                                        totalPesoCuartaEspecie += parseFloat(pesoNetoPes) - parseFloat(pesoNetoJabas);
+                                    }else{
+                                        totalPesoCuartaEspecie += parseFloat(pesoNetoPes) + parseFloat(pesoNetoJabas);
+                                    }
+                                } else if (nombreEspecie == nombreQuintaEspecieGlobal) {
+                                    totalCantidadQuintaEspecie += cantidadPes;
+                                    if (pesoNetoPes > 0){
+                                        totalPesoQuintaEspecie += parseFloat(pesoNetoPes) - parseFloat(pesoNetoJabas);
+                                    }else{
+                                        totalPesoQuintaEspecie += parseFloat(pesoNetoPes) + parseFloat(pesoNetoJabas);
+                                    }
+                                } else if (nombreEspecie == nombreSextaEspecieGlobal) {
+                                    totalCantidadSextaEspecie += cantidadPes;
+                                    if (pesoNetoPes > 0){
+                                        totalPesoSextaEspecie += parseFloat(pesoNetoPes) - parseFloat(pesoNetoJabas);
+                                    }else{
+                                        totalPesoSextaEspecie += parseFloat(pesoNetoPes) + parseFloat(pesoNetoJabas);
+                                    }
+                                } else if (nombreEspecie == nombreSeptimaEspecieGlobal) {
+                                    totalCantidadSeptimaEspecie += cantidadPes;
+                                    if (pesoNetoPes > 0){
+                                        totalPesoSeptimaEspecie += parseFloat(pesoNetoPes) - parseFloat(pesoNetoJabas);
+                                    }else{
+                                        totalPesoSeptimaEspecie += parseFloat(pesoNetoPes) + parseFloat(pesoNetoJabas);
+                                    }
+                                } else if (nombreEspecie == nombreOctavaEspecieGlobal) {
+                                    totalCantidadOctavaEspecie += cantidadPes;
+                                    if (pesoNetoPes > 0){
+                                        totalPesoOctavaEspecie += parseFloat(pesoNetoPes) - parseFloat(pesoNetoJabas);
+                                    }else{
+                                        totalPesoOctavaEspecie += parseFloat(pesoNetoPes) + parseFloat(pesoNetoJabas);
+                                    }
+                                } else if (nombreEspecie == nombreDecimaEspecieGlobal) {
+                                    totalCantidadDecimaEspecie += cantidadPes;
+                                    if (pesoNetoPes > 0){
+                                        totalPesoDecimaEspecie += parseFloat(pesoNetoPes) - parseFloat(pesoNetoJabas);
+                                    }else{
+                                        totalPesoDecimaEspecie += parseFloat(pesoNetoPes) + parseFloat(pesoNetoJabas);
+                                    }
+                                } else if (nombreEspecie == nombreDecimaPrimeraEspecieGlobal) {
+                                    totalCantidadDecimaPrimeraEspecie += cantidadPes;
+                                    if (pesoNetoPes > 0){
+                                        totalPesoDecimaPrimeraEspecie += parseFloat(pesoNetoPes) - parseFloat(pesoNetoJabas);
+                                    }else{
+                                        totalPesoDecimaPrimeraEspecie += parseFloat(pesoNetoPes) + parseFloat(pesoNetoJabas);
+                                    }
+                                } else if (nombreEspecie == nombreDecimaSegundaEspecieGlobal) {
+                                    totalCantidadDecimaSegundaEspecie += cantidadPes;
+                                    if (pesoNetoPes > 0){
+                                        totalPesoDecimaSegundaEspecie += parseFloat(pesoNetoPes) - parseFloat(pesoNetoJabas);
+                                    }else{
+                                        totalPesoDecimaSegundaEspecie += parseFloat(pesoNetoPes) + parseFloat(pesoNetoJabas);
+                                    }
+                                } else if (nombreEspecie == nombreDecimaTerceraEspecieGlobal) {
+                                    totalCantidadDecimaTerceraEspecie += cantidadPes;
+                                    if (pesoNetoPes > 0){
+                                        totalPesoDecimaTerceraEspecie += parseFloat(pesoNetoPes) - parseFloat(pesoNetoJabas);
+                                    }else{
+                                        totalPesoDecimaTerceraEspecie += parseFloat(pesoNetoPes) + parseFloat(pesoNetoJabas);
+                                    }
+                                } else if (nombreEspecie == nombreDecimaCuartaEspecieGlobal) {
+                                    totalCantidadDecimaCuartaEspecie += cantidadPes;
+                                    if (pesoNetoPes > 0){
+                                        totalPesoDecimaCuartaEspecie += parseFloat(pesoNetoPes) - parseFloat(pesoNetoJabas);
+                                    }else{
+                                        totalPesoDecimaCuartaEspecie += parseFloat(pesoNetoPes) + parseFloat(pesoNetoJabas);
+                                    }
+                                } else if (nombreEspecie == nombreDecimaQuintaEspecieGlobal) {
+                                    totalCantidadDecimaQuintaEspecie += cantidadPes;
+                                    if (pesoNetoPes > 0){
+                                        totalPesoDecimaQuintaEspecie += parseFloat(pesoNetoPes) - parseFloat(pesoNetoJabas);
+                                    }else{
+                                        totalPesoDecimaQuintaEspecie += parseFloat(pesoNetoPes) + parseFloat(pesoNetoJabas);
+                                    }
                                 }
-                                ventaPesoTotalNeto += parseFloat(pesoNetoPes);
-                                ventaPesoTotalVivo += parseFloat(pesoNetoPes) / parseFloat(valorConversion);
+                                if (parseFloat(pesoNetoPes) > 0){
+                                    ventaPesoTotalNeto += parseFloat(pesoNetoPes) - parseFloat(pesoNetoJabas);
+                                }else{
+                                    ventaPesoTotalNeto += parseFloat(pesoNetoPes) + parseFloat(pesoNetoJabas);
+                                }
                                 ventaCantidadTotal += cantidadPes;
                             }
                         });
                         bodyReportePorCliente += `
                             <tr class="bg-white dark:bg-gray-800 h-0.5">
                                 <td class="text-center" colspan="2"></td>
-                                <td class="text-center h-0.5 bg-gray-800 dark:bg-gray-300" colspan="4"></td>
+                                <td class="text-center h-0.5 bg-gray-800 dark:bg-gray-300" colspan="6"></td>
                             </tr>
                         `
                         bodyReportePorCliente += construirFilaTotales(
@@ -278,16 +397,33 @@ jQuery(function ($) {
                             totalPesoSegundaEspecie,
                             totalPesoTerceraEspecie,
                             totalPesoCuartaEspecie,
+                            totalPesoQuintaEspecie,
+                            totalPesoSextaEspecie,
+                            totalPesoSeptimaEspecie,
+                            totalPesoOctavaEspecie,
+                            totalPesoDecimaEspecie,
+                            totalPesoDecimaPrimeraEspecie,
+                            totalPesoDecimaSegundaEspecie,
+                            totalPesoDecimaTerceraEspecie,
+                            totalPesoDecimaCuartaEspecie,
+                            totalPesoDecimaQuintaEspecie,
+
                             totalCantidadPrimerEspecie,
                             totalCantidadSegundaEspecie,
                             totalCantidadTerceraEspecie,
                             totalCantidadCuartaEspecie,
-                            ventaTotalPesoVivoPrimerEspecie,
-                            ventaTotalPesoVivoSegundaEspecie,
-                            ventaTotalPesoVivoTerceraEspecie,
-                            ventaTotalPesoVivoCuartaEspecie,
+                            totalCantidadQuintaEspecie,
+                            totalCantidadSextaEspecie,
+                            totalCantidadSeptimaEspecie,
+                            totalCantidadOctavaEspecie,
+                            totalCantidadDecimaEspecie,
+                            totalCantidadDecimaPrimeraEspecie,
+                            totalCantidadDecimaSegundaEspecie,
+                            totalCantidadDecimaTerceraEspecie,
+                            totalCantidadDecimaCuartaEspecie,
+                            totalCantidadDecimaQuintaEspecie,
+
                             ventaPesoTotalNeto,
-                            ventaPesoTotalVivo,
                             ventaCantidadTotal
                         );
                     });
@@ -295,7 +431,7 @@ jQuery(function ($) {
                     if (response.length > 0) {
                         tbodyReportePorCliente.html(bodyReportePorCliente);
                     }else {
-                        tbodyReportePorCliente.html(`<tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="7" class="text-center">No hay datos</td></tr>`);
+                        tbodyReportePorCliente.html(`<tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="9" class="text-center">No hay datos</td></tr>`);
                         alertify.notify('No se encontraron registros.', 'error', 2);
                     }
 
@@ -321,6 +457,8 @@ jQuery(function ($) {
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
             </tr>
         `;
     }
@@ -330,6 +468,7 @@ jQuery(function ($) {
         let nombreEspecie = item.nombreEspecie
         let cantidadPes = parseInt(item.cantidadPes)
         let pesoNetoPes = parseFloat(item.pesoNetoPes).toFixed(2)
+        let pesoNetoJabas = parseFloat(item.pesoNetoJabas).toFixed(2)
 
         let promedio = 0;
         if (pesoNetoPes !== 0) {
@@ -350,6 +489,14 @@ jQuery(function ($) {
             observacionPes = "";
         }
 
+        let pesoNeto = 0;
+
+        if (parseFloat(item.pesoNetoPes).toFixed(2) > 0){
+            pesoNeto = parseFloat(item.pesoNetoPes) - parseFloat(item.pesoNetoJabas)
+        }else{
+            pesoNeto = parseFloat(item.pesoNetoPes) + parseFloat(item.pesoNetoJabas)
+        }
+
         return `
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <td class="hidden">${item.idPesada}</td>
@@ -357,8 +504,10 @@ jQuery(function ($) {
                 <td class="text-center py-1 px-2 whitespace-nowrap">${horaPes}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${nombreEspecie}</td>
                 <td class="text-center py-1 px-2 cantidadReportePorCliente whitespace-nowrap">${cantidadPes}</td>
-                <td class="text-center py-1 px-2 pesoReportePorCliente whitespace-nowrap">${pesoNetoPes}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${pesoNeto.toFixed(2)}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${promedio}</td>
+                <td class="text-center py-1 px-2 pesoReportePorCliente whitespace-nowrap">${pesoNetoPes}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${pesoNetoJabas}</td>
             </tr>
         `;
     }
@@ -368,16 +517,33 @@ jQuery(function ($) {
         totalPesoSegundaEspecie,
         totalPesoTerceraEspecie,
         totalPesoCuartaEspecie,
+        totalPesoQuintaEspecie,
+        totalPesoSextaEspecie,
+        totalPesoSeptimaEspecie,
+        totalPesoOctavaEspecie,
+        totalPesoDecimaEspecie,
+        totalPesoDecimaPrimeraEspecie,
+        totalPesoDecimaSegundaEspecie,
+        totalPesoDecimaTerceraEspecie,
+        totalPesoDecimaCuartaEspecie,
+        totalPesoDecimaQuintaEspecie,
+
         totalCantidadPrimerEspecie,
         totalCantidadSegundaEspecie,
         totalCantidadTerceraEspecie,
         totalCantidadCuartaEspecie,
-        ventaTotalPesoVivoPrimerEspecie,
-        ventaTotalPesoVivoSegundaEspecie,
-        ventaTotalPesoVivoTerceraEspecie,
-        ventaTotalPesoVivoCuartaEspecie,
+        totalCantidadQuintaEspecie,
+        totalCantidadSextaEspecie,
+        totalCantidadSeptimaEspecie,
+        totalCantidadOctavaEspecie,
+        totalCantidadDecimaEspecie,
+        totalCantidadDecimaPrimeraEspecie,
+        totalCantidadDecimaSegundaEspecie,
+        totalCantidadDecimaTerceraEspecie,
+        totalCantidadDecimaCuartaEspecie,
+        totalCantidadDecimaQuintaEspecie,
+
         ventaPesoTotalNeto,
-        ventaPesoTotalVivo,
         ventaCantidadTotal)
     {
         let filas = [];
@@ -393,6 +559,8 @@ jQuery(function ($) {
                         <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidad === 1 ? `${totalCantidad} Ud.` : `${totalCantidad} Uds.`}</td>
                         <td class="text-center py-1 px-2 whitespace-nowrap">${totalPeso.toFixed(2)} Kg.</td>
                         <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                        <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                        <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                     </tr>
                 `;
             } else {
@@ -404,41 +572,21 @@ jQuery(function ($) {
         filas.push(construirFila(nombreSegundaEspecieGlobal, totalCantidadSegundaEspecie, totalPesoSegundaEspecie));
         filas.push(construirFila(nombreTerceraEspecieGlobal, totalCantidadTerceraEspecie, totalPesoTerceraEspecie));
         filas.push(construirFila(nombreCuartaEspecieGlobal, totalCantidadCuartaEspecie, totalPesoCuartaEspecie));
-        
-        filas.push(`
-            <tr class="bg-white dark:bg-gray-800 h-0.5">
-                <td class="text-center" colspan="2"></td>
-                <td class="text-center h-0.5 bg-gray-800 dark:bg-gray-300" colspan="4"></td>
-            </tr>
-        `);
-
-        function construirFilaVivo(nombreEspecie, totalCantidad, totalPeso) {
-            if (totalCantidad !== 0 || totalPeso !== 0) {       
-                return `
-                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                        <td class="text-center py-1 px-2 hidden"></td>
-                        <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-                        <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-                        <td class="text-center py-1 px-2 whitespace-nowrap">TOTAL VIVO ${nombreEspecie.replace("POLLO", "").trim()}:</td>
-                        <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidad === 1 ? `${totalCantidad} Ud.` : `${totalCantidad} Uds.`}</td>
-                        <td class="text-center py-1 px-2 whitespace-nowrap">${totalPeso.toFixed(2)} Kg.</td>
-                        <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-                    </tr>
-                `;
-            } else {
-                return '';
-            }
-        }
-        
-        filas.push(construirFilaVivo(nombrePrimerEspecieGlobal, totalCantidadPrimerEspecie, ventaTotalPesoVivoPrimerEspecie));
-        filas.push(construirFilaVivo(nombreSegundaEspecieGlobal, totalCantidadSegundaEspecie, ventaTotalPesoVivoSegundaEspecie));
-        filas.push(construirFilaVivo(nombreTerceraEspecieGlobal, totalCantidadTerceraEspecie, ventaTotalPesoVivoTerceraEspecie));
-        filas.push(construirFilaVivo(nombreCuartaEspecieGlobal, totalCantidadCuartaEspecie, ventaTotalPesoVivoCuartaEspecie));
+        filas.push(construirFila(nombreQuintaEspecieGlobal, totalCantidadQuintaEspecie, totalPesoQuintaEspecie));
+        filas.push(construirFila(nombreSextaEspecieGlobal, totalCantidadSextaEspecie, totalPesoSextaEspecie));
+        filas.push(construirFila(nombreSeptimaEspecieGlobal, totalCantidadSeptimaEspecie, totalPesoSeptimaEspecie));
+        filas.push(construirFila(nombreOctavaEspecieGlobal, totalCantidadOctavaEspecie, totalPesoOctavaEspecie));
+        filas.push(construirFila(nombreDecimaEspecieGlobal, totalCantidadDecimaEspecie, totalPesoDecimaEspecie));
+        filas.push(construirFila(nombreDecimaPrimeraEspecieGlobal, totalCantidadDecimaPrimeraEspecie, totalPesoDecimaPrimeraEspecie));
+        filas.push(construirFila(nombreDecimaSegundaEspecieGlobal, totalCantidadDecimaSegundaEspecie, totalPesoDecimaSegundaEspecie));
+        filas.push(construirFila(nombreDecimaTerceraEspecieGlobal, totalCantidadDecimaTerceraEspecie, totalPesoDecimaTerceraEspecie));
+        filas.push(construirFila(nombreDecimaCuartaEspecieGlobal, totalCantidadDecimaCuartaEspecie, totalPesoDecimaCuartaEspecie));
+        filas.push(construirFila(nombreDecimaQuintaEspecieGlobal, totalCantidadDecimaQuintaEspecie, totalPesoDecimaQuintaEspecie));
 
         filas.push(`
             <tr class="bg-white dark:bg-gray-800 h-0.5">
                 <td class="text-center" colspan="2"></td>
-                <td class="text-center h-0.5 bg-gray-800 dark:bg-gray-300" colspan="4"></td>
+                <td class="text-center h-0.5 bg-gray-800 dark:bg-gray-300" colspan="6"></td>
             </tr>
         `);
 
@@ -451,19 +599,9 @@ jQuery(function ($) {
                 <td class="text-center py-1 px-2 whitespace-nowrap">${ventaCantidadTotal === 1 ? `${ventaCantidadTotal} Ud.` : `${ventaCantidadTotal} Uds.`}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${ventaPesoTotalNeto.toFixed(2)} Kg.</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
             </tr>
-        `);
-
-        filas.push(`
-        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-            <td class="text-center py-1 px-2 hidden"></td>
-            <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-            <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-            <td class="text-center py-1 px-2 whitespace-nowrap">TOTAL VIVO:</td>
-            <td class="text-center py-1 px-2 whitespace-nowrap">${ventaCantidadTotal === 1 ? `${ventaCantidadTotal} Ud.` : `${ventaCantidadTotal} Uds.`}</td>
-            <td class="text-center py-1 px-2 whitespace-nowrap">${ventaPesoTotalVivo.toFixed(2)} Kg.</td>
-            <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-        </tr>
         `);
 
         return filas.join('');
@@ -533,7 +671,7 @@ jQuery(function ($) {
         if (tipoUsuario =='Administrador'){
             let fila = $(this).closest('tr');
             let idPesoReportePorCliente = fila.find('td:eq(0)').text();
-            let pesoReportePorCliente = fila.find('td:eq(5)').text();
+            let pesoReportePorCliente = fila.find('td:eq(7)').text();
             
             $('#ModalPesoReportePorCliente').addClass('flex');
             $('#ModalPesoReportePorCliente').removeClass('hidden');

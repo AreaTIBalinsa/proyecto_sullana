@@ -146,6 +146,12 @@ jQuery(function($) {
                     response.forEach(function (obj) {
                         // Crear una nueva fila
                         let nuevaFila = ""
+                        let pesoNetoPes = 0
+                        if (parseFloat(obj.pesoNetoPes) > 0){
+                            pesoNetoPes = parseFloat(obj.pesoNetoPes)-parseFloat(obj.pesoNetoJabas)
+                        }else{
+                            pesoNetoPes = parseFloat(obj.pesoNetoPes)+parseFloat(obj.pesoNetoJabas)
+                        }
                         if (obj.estadoPes == 1){
                             if (parseInt(obj.cantidadPes) <= 0 && parseInt(obj.numeroJabasPes) > 0){
                                 nuevaFila = $('<tr class="Pesadas bg-[#2A80BF] border-b dark:border-gray-700 hover:bg-[#2877B0] cursor-pointer text-gray-50">');
@@ -156,18 +162,21 @@ jQuery(function($) {
                             nuevaFila.append($('<td class="hidden">').text(obj.idPesada));
                             nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 font-medium whitespace-nowrap">').text(obj.nombreCompleto));
                             nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(obj.nombreEspecie));
-                            if (parseInt(obj.cantidadPes) <= 0 && parseInt(obj.numeroJabasPes) > 0){
-                                nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(obj.numeroJabasPes+" T"));
+                            nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(obj.cantidadPes));
+                            nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(pesoNetoPes.toFixed(2)));
+
+                            if (parseFloat(obj.numeroJabasPes) == 0){
+                                nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(obj.numeroCubetasPes));
                             }else{
-                                nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(obj.cantidadPes));
+                                nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(obj.numeroJabasPes));
                             }
-                            nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(obj.pesoNetoPes));
+
+                            nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(obj.pesoNetoJabas));
                             nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(obj.horaPes));
                             nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(obj.fechaRegistroPes));
                             nuevaFila.append($('<td class="hidden">').text(obj.idEspecie));
                             if (tipoUsuario == 'Administrador'){
                                 nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(obj.precioPes));
-                                nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(obj.valorConversion));
                             }
                             nuevaFila.append($('<td class="hidden">').text(obj.estadoPes));
                         }else{
@@ -178,17 +187,20 @@ jQuery(function($) {
                                 nuevaFila.append($('<td class="hidden">').text(obj.idPesada));
                                 nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 font-medium whitespace-nowrap">').text(obj.nombreCompleto));
                                 nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(obj.nombreEspecie));
-                                if (parseInt(obj.cantidadPes) <= 0 && parseInt(obj.numeroJabasPes) > 0){
-                                    nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(obj.numeroJabasPes+" T"));
+                                nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(obj.cantidadPes));
+                                nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(pesoNetoPes.toFixed(2)));
+
+                                if (parseFloat(obj.numeroJabasPes) == 0){
+                                    nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(obj.numeroCubetasPes));
                                 }else{
-                                    nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(obj.cantidadPes));
+                                    nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(obj.numeroJabasPes));
                                 }
-                                nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(obj.pesoNetoPes));
+
+                                nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(obj.pesoNetoJabas));
                                 nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(obj.horaPes));
                                 nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(obj.fechaRegistroPes));
                                 if (tipoUsuario == 'Administrador'){
                                     nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(obj.precioPes));
-                                    nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(obj.valorConversion));
                                 }
                                 nuevaFila.append($('<td class="hidden">').text(obj.estadoPes));
                             }

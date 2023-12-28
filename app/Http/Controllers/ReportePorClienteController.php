@@ -32,7 +32,7 @@ class ReportePorClienteController extends Controller
                     $query->where('nombresCli', 'LIKE', "%$nombreReportePorCliente%")
                         ->orWhere('apellidoPaternoCli', 'LIKE', "%$nombreReportePorCliente%")
                         ->orWhere('apellidoMaternoCli', 'LIKE', "%$nombreReportePorCliente%");
-                })
+                }) 
                 ->get();
 
             // Devuelve los datos en formato JSON
@@ -53,8 +53,8 @@ class ReportePorClienteController extends Controller
             // Realiza la consulta a la base de datos
             $datos = DB::select('select tb_procesos.idProceso, 
                     fechaRegistroPes, 
-                    nombreEspecie, pesoNetoPes, cantidadPes, observacionPes, 
-                    horaPes,valorConversion, tb_pesadas.idPesada
+                    nombreEspecie,pesoNetoPes, pesoNetoJabas, cantidadPes, observacionPes, 
+                    horaPes,tb_pesadas.idPesada
                     from tb_procesos 
                     inner join tb_pesadas on tb_procesos.idProceso = tb_pesadas.idProceso
                     inner join tb_especies_venta on tb_especies_venta.idEspecie = tb_pesadas.idEspecie

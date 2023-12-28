@@ -19,6 +19,7 @@ class ActualizarDescuentoCliente extends Model
         'especieDesc',
         'pesoDesc',
         'observacion',
+        'precioDesc',
     ];
 
 }

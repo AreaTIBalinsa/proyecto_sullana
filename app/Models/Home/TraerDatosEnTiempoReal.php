@@ -16,7 +16,6 @@ class TraerDatosEnTiempoReal extends Model
         'idEspecie',
         'pesoNetoPes',
         'cantidadPes',
-        'valorConversion',
-        'idGrupo',
+        'pesoNetoJabas',
     ];
 }

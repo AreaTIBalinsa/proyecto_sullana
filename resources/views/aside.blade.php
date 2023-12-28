@@ -21,7 +21,7 @@
             <div class="bg-gray-900 dark:bg-white"></div>
         </div>
     </div>
-    <section class="min-h-screen bg-gray-100 dark:bg-gray-800" x-data="{ sideBar: false }">
+    <section class="min-h-screen bg-gray-100 dark:bg-gray-800" x-data="{ sideBar: false }"> 
         <div class="hidden" id="usuarioRegistroCli" data-id="{{ auth()->user()->id }}"></div>
         <div class="hidden" id="tipoUsuario" data-id="{{ auth()->user()->tipoUsu }}"></div>
         <div class="border-r border-gray-300 dark:border-gray-700 fixed top-0 left-0 z-50 h-full overflow-hidden transition origin-left transform bg-white dark:bg-gray-900 w-60 md:translate-x-0 flex flex-col max-h-screen" :class="{ '-translate-x-full' : !sideBar, 'translate-x-0' : sideBar }" @click.away="sideBar = false"> 
