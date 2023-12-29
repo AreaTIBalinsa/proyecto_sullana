@@ -449,7 +449,6 @@ class ReporteDePagosController extends Controller
                 'totalesSegundaEspecie' => $this->consulta_SegundaEspecie($codigoCli, $fechaInicio, $fechaFin),
                 'totalesTerceraEspecie' => $this->consulta_TerceraEspecie($codigoCli, $fechaInicio, $fechaFin),
                 'totalesCuartaEspecie' => $this->consulta_CuartaEspecie($codigoCli, $fechaInicio, $fechaFin),
-
                 'totalesQuintaEspecie' => $this->consulta_QuintaEspecie($codigoCli, $fechaInicio, $fechaFin),
                 'totalesSextaEspecie' => $this->consulta_SextaEspecie($codigoCli, $fechaInicio, $fechaFin),
                 'totalesSeptimaEspecie' => $this->consulta_SeptimaEspecie($codigoCli, $fechaInicio, $fechaFin),
@@ -460,12 +459,12 @@ class ReporteDePagosController extends Controller
                 'totalesDecimaTerceraEspecie' => $this->consulta_DecimaTerceraEspecie($codigoCli, $fechaInicio, $fechaFin),
                 'totalesDecimaCuartaEspecie' => $this->consulta_DecimaCuartaEspecie($codigoCli, $fechaInicio, $fechaFin),
                 'totalesDecimaQuintaEspecie' => $this->consulta_DecimaQuintaEspecie($codigoCli, $fechaInicio, $fechaFin),
-
                 'totalDescuentos' => $this->consulta_Descuentos($codigoCli, $fechaInicio, $fechaFin),
                 'totalPagos' => $this->consulta_Pagos($codigoCli, $fechaInicio, $fechaFin),
                 'ventaAnterior' => $this->consulta_VentaAnterior($codigoCli, $fechaInicio),
                 'pagoAnterior' => $this->consulta_PagoAnterior($codigoCli, $fechaInicio),
                 'totalVentaDescuentoAnterior' => $this->consulta_DescuentosAnteriores($codigoCli, $fechaInicio),
+                'pagosDetallados' => $this->consulta_pagosDetallados($codigoCli, $fechaInicio, $fechaFin)
             ];
     
             // Devuelve los datos en formato JSON
@@ -789,6 +788,23 @@ class ReporteDePagosController extends Controller
                 ]);
             
             return response()->json(['success' => true], 200);
+        }
+
+        // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
+        return response()->json(['error' => 'Usuario no autenticado'], 401);
+    }
+
+    public function consulta_pagosDetallados($codigoCli, $fechaInicio, $fechaFin) {
+
+        if (Auth::check()) {
+            // Realiza la consulta a la base de datos
+            $datos = DB::select('
+            SELECT fechaOperacionPag,cantidadAbonoPag
+            FROM tb_pagos
+            WHERE codigoCli = ? AND estadoPago = 1 AND fechaOperacionPag BETWEEN ? AND ?', [$codigoCli, $fechaInicio, $fechaFin]);
+            
+            // Devuelve los datos en formato JSON
+            return response()->json($datos);
         }
 
         // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
