@@ -463,48 +463,56 @@ jQuery(function ($) {
         });
     };
 
-    function fn_TraerDeudaTotal(codigoCliente){
+    function fn_TraerDeudaTotal(codigoCliente) {
         $.ajax({
             url: '/fn_consulta_TraerDeudaTotal',
             method: 'GET',
-            data:{
+            data: {
                 codigoCliente: codigoCliente,
             },
-            success: function(response) {
+            success: function (response) {
     
                 // Verificar si la respuesta es un arreglo de objetos
                 if (Array.isArray(response)) {
-
-                    console.log(response);
     
                     // Obtener el select
                     let inputDeudaTotal = $('#deudaTotal');
                     inputDeudaTotal.empty();
     
-                    let deudaTotal = parseFloat(response[0].deudaTotal);
-                    let cantidadPagos = parseFloat(response[0].cantidadPagos);
-                    let ventaDescuentos = parseFloat(response[0].ventaDescuentos);
+                    // Inicializar variables para sumar los valores
+                    let totalDeuda = 0;
+                    let totalPagos = 0;
+                    let totalDescuentos = 0;
     
-                    let total = deudaTotal - cantidadPagos + ventaDescuentos;
+                    // Iterar sobre los objetos y sumar los valores
+                    response.forEach(function (obj) {
+                        totalDeuda += parseFloat(obj.deudaTotal);
+                        totalPagos += parseFloat(obj.cantidadPagos);
+                        totalDescuentos += parseFloat(obj.ventaDescuentos);
+                    });
+    
+                    // Calcular el total consolidado
+                    let totalConsolidado = totalDeuda - totalPagos + totalDescuentos;
     
                     // Formatear el número con punto y dos decimales
-                    let formateoTotal = total.toLocaleString(undefined, {
+                    let formateoTotal = totalConsolidado.toLocaleString(undefined, {
                         minimumFractionDigits: 2,
                         maximumFractionDigits: 2,
                     });
     
-                    // Actualizar los elementos en la página con los valores
+                    // Actualizar los elementos en la página con el valor consolidado
                     $('#deudaTotal').html(formateoTotal);
     
                 } else {
                     console.log("La respuesta no es un arreglo de objetos.");
                 }
             },
-            error: function(error) {
+            error: function (error) {
                 console.error("ERROR", error);
             }
         });
-    }    
+    }
+    
 
     function fn_TraerClientesAgregarDescuento(inputAgregarDescuentoCliente) {
 

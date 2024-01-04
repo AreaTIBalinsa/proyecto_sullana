@@ -7,42 +7,66 @@ jQuery(function($) {
 
     DataTableED('#tablaAgregarSaldo');
 
-    function fn_TraerClientesAgregarSaldo(){
+    function fn_TraerClientesAgregarSaldo() {
         $.ajax({
             url: '/fn_consulta_TraerClientesAgregarSaldo',
             method: 'GET',
-            success: function(response) {
-
+            success: function (response) {
                 // Verificar si la respuesta es un arreglo de objetos
                 if (Array.isArray(response)) {
+    
+                    // Objeto para almacenar los resultados agrupados por codigoCli
+                    let resultadosAgrupados = {};
+    
+                    // Iterar sobre los objetos y agrupar por codigoCli
+                    response.forEach(function (obj) {
+                        let codigoCli = obj.codigoCli;
+    
+                        if (!resultadosAgrupados[codigoCli]) {
+                            resultadosAgrupados[codigoCli] = {
+                                nombreCompleto: obj.nombreCompleto,
+                                codigoCli: codigoCli,
+                                deudaTotal: 0,
+                                cantidadPagos: 0,
+                                ventaDescuentos: 0
+                            };
+                        }
+    
+                        // Sumar las propiedades correspondientes
+                        resultadosAgrupados[codigoCli].deudaTotal += parseFloat(obj.deudaTotal);
+                        resultadosAgrupados[codigoCli].cantidadPagos += parseFloat(obj.cantidadPagos);
+                        resultadosAgrupados[codigoCli].ventaDescuentos += parseFloat(obj.ventaDescuentos);
+                    });
+    
                     // Obtener el select
                     let tbodyAgregarSaldo = $('#bodyAgregarSaldo');
                     tbodyAgregarSaldo.empty();
-
-                    // Iterar sobre los objetos y mostrar sus propiedades
-                    response.forEach(function(obj) {
-                        let total = parseFloat(obj.deudaTotal) - parseFloat(obj.cantidadPagos) + parseFloat(obj.ventaDescuentos);
+    
+                    // Iterar sobre los resultados agrupados y mostrar en la tabla
+                    Object.values(resultadosAgrupados).forEach(function (obj) {
+                        let total = obj.deudaTotal - obj.cantidadPagos + obj.ventaDescuentos;
+    
                         // Crear una nueva fila
                         let nuevaFila = $('<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
-
+    
                         // Agregar las celdas con la información
                         nuevaFila.append($('<td class="hidden">').text(obj.codigoCli));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">').text(obj.nombreCompleto));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text((total).toFixed(2)));
-
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(total.toFixed(2)));
+    
                         // Agregar la nueva fila al tbody
                         tbodyAgregarSaldo.append(nuevaFila);
                     });
                 } else {
                     console.log("La respuesta no es un arreglo de objetos.");
                 }
-                
+    
             },
-            error: function(error) {
-                console.error("ERROR",error);
+            error: function (error) {
+                console.error("ERROR", error);
             }
         });
-    }
+    }    
 
     $('.cerrarModalAgregarSaldo').on('click', function (e) {
         if (e.target === this) {

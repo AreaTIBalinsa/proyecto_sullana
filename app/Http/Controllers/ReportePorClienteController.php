@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\ReportePorCliente\TraerClientesReportePorCliente;
 use App\Models\ReportePorCliente\CantidadReportePorCliente;
+use App\Models\ReportePorCliente\CantidadReportePorCliente2;
 use App\Models\ReportePorCliente\PesoReportePorCliente;
+use App\Models\ReportePorCliente\PesoReportePorCliente2;
 use App\Models\ReportePorCliente\EliminarReportePorCliente;
 use Illuminate\Support\Facades\DB;
 
@@ -45,44 +47,66 @@ class ReportePorClienteController extends Controller
 
     public function consulta_TraerReportePorCliente(Request $request){
 
-        $fechaDesde = $request->input('fechaDesde');
-        $fechaHasta = $request->input('fechaHasta');
-        $codigoCliente = $request->input('codigoCliente');
+    $fechaDesde = $request->input('fechaDesde');
+    $fechaHasta = $request->input('fechaHasta');
+    $codigoCliente = $request->input('codigoCliente');
 
-        if (Auth::check()) {
-            // Realiza la consulta a la base de datos
-            $datos = DB::select('select tb_procesos.idProceso, 
-                    fechaRegistroPes, 
-                    nombreEspecie,pesoNetoPes, pesoNetoJabas, cantidadPes, observacionPes, 
-                    horaPes,tb_pesadas.idPesada
-                    from tb_procesos 
-                    inner join tb_pesadas on tb_procesos.idProceso = tb_pesadas.idProceso
-                    inner join tb_especies_venta on tb_especies_venta.idEspecie = tb_pesadas.idEspecie
-                    WHERE estadoPes = 1 and 
-                    fechaRegistroPes BETWEEN ? and ? and tb_pesadas.codigoCli = ?
-                    ORDER BY fechaRegistroPes, idPesada ASC', [$fechaDesde, $fechaHasta, $codigoCliente]);
+    if (Auth::check()) {
+        // Realiza la consulta a la base de datos
+        $datos = DB::select('
+            SELECT 
+                "tb_pesadas" AS tabla_iden,
+                fechaRegistroPes, 
+                nombreEspecie,
+                pesoNetoPes, 
+                pesoNetoJabas, 
+                cantidadPes, 
+                observacionPes, 
+                horaPes,
+                tb_pesadas.idPesada
+            FROM tb_pesadas 
+            INNER JOIN tb_especies_venta ON tb_especies_venta.idEspecie = tb_pesadas.idEspecie
+            WHERE estadoPes = 1 AND fechaRegistroPes BETWEEN ? AND ? AND tb_pesadas.codigoCli = ?
+            UNION
+            SELECT 
+                "tb_pesadas2" AS tabla_iden,
+                fechaRegistroPes, 
+                nombreEspecie,
+                pesoNetoPes, 
+                pesoNetoJabas, 
+                cantidadPes, 
+                observacionPes, 
+                horaPes,
+                tb_pesadas2.idPesada
+            FROM tb_pesadas2 
+            INNER JOIN tb_especies_venta ON tb_especies_venta.idEspecie = tb_pesadas2.idEspecie
+            WHERE estadoPes = 1 AND fechaRegistroPes BETWEEN ? AND ? AND tb_pesadas2.codigoCli = ?
+            ORDER BY fechaRegistroPes, idPesada ASC', [$fechaDesde, $fechaHasta, $codigoCliente, $fechaDesde, $fechaHasta, $codigoCliente]);
 
-            // Devuelve los datos en formato JSON
-            return response()->json($datos);
-        }
+        // Devuelve los datos en formato JSON
+        return response()->json($datos);
+    }
 
-        // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
-        return response()->json(['error' => 'Usuario no autenticado'], 401);
+    // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
+    return response()->json(['error' => 'Usuario no autenticado'], 401);
     }
 
     public function consulta_ActualizarCantidadReportePorCliente(Request $request)
     {
         $idCodigoPesada = $request->input('idCodigoPesada');
         $nuevoCantidadReportePorCliente = $request->input('nuevoCantidadReportePorCliente');
+        $tablaIdentificadoraCan = $request->input('tablaIdentificadoraCan');
 
         if (Auth::check()) {
-            $CantidadReportePorCliente = new CantidadReportePorCliente;
-            $CantidadReportePorCliente->where('idPesada', $idCodigoPesada)
+            // Seleccionar el modelo en función de la tablaIdentificadoraCan
+            $modeloCantidadReportePorCliente = ($tablaIdentificadoraCan === 'tb_pesadas') ? new CantidadReportePorCliente : new CantidadReportePorCliente2;
+
+            $modeloCantidadReportePorCliente->where('idPesada', $idCodigoPesada)
                 ->update([
                     'cantidadPes' => $nuevoCantidadReportePorCliente,
                     'estadoWebPes' => 0,
                 ]);
-            
+
             return response()->json(['success' => true], 200);
         }
 
@@ -94,9 +118,10 @@ class ReportePorClienteController extends Controller
     {
         $idCodigoPesada = $request->input('idCodigoPesada');
         $nuevoPesoReportePorCliente = $request->input('nuevoPesoReportePorCliente');
+        $tablaIdentificadoraPeso = $request->input('tablaIdentificadoraPeso');
 
         if (Auth::check()) {
-            $PesoReportePorCliente = new PesoReportePorCliente;
+            $PesoReportePorCliente = ($tablaIdentificadoraPeso === 'tb_pesadas') ? new PesoReportePorCliente : new PesoReportePorCliente2;
             $PesoReportePorCliente->where('idPesada', $idCodigoPesada)
                 ->update([
                     'pesoNetoPes' => $nuevoPesoReportePorCliente,

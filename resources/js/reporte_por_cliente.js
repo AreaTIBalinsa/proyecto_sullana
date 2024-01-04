@@ -68,11 +68,13 @@ jQuery(function ($) {
             var celdas = filas[i].cells;
             var row = [];
             for (var j = 1; j < celdas.length; j++) {
-                var cellText = celdas[j].textContent;
-                row.push(cellText);
+                if (j !== 9) {
+                    var cellText = celdas[j].textContent;
+                    row.push(cellText);
+                }
             }
             dataMatrix.push(['', ...row]);
-        }              
+        }            
     
         // Crear la hoja de cálculo
         var sheet = XLSX.utils.aoa_to_sheet(dataMatrix);
@@ -472,8 +474,9 @@ jQuery(function ($) {
 
         let promedio = 0;
         if (pesoNetoPes !== 0) {
-            promedio = (pesoNetoPes / cantidadPes).toFixed(2);
+            promedio = ((pesoNetoPes > 0 ? pesoNetoPes - pesoNetoJabas : pesoNetoPes + pesoNetoJabas) / cantidadPes).toFixed(2);
         }
+
         let observacionPes = item.observacionPes
         if (observacionPes != ""){
             observacionPes = `
@@ -508,6 +511,7 @@ jQuery(function ($) {
                 <td class="text-center py-1 px-2 whitespace-nowrap">${promedio}</td>
                 <td class="text-center py-1 px-2 pesoReportePorCliente whitespace-nowrap">${pesoNetoPes}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${pesoNetoJabas}</td>
+                <td class="hidden">${item.tabla_iden}</td>
             </tr>
         `;
     }
@@ -657,12 +661,14 @@ jQuery(function ($) {
             let fila = $(this).closest('tr');
             let idCantidadReportePorCliente = fila.find('td:eq(0)').text();
             let cantidadReportePorCliente = fila.find('td:eq(4)').text();
+            let tabla_identificadora = fila.find('td:eq(9)').text();
             
             $('#ModalCantidadReportePorCliente').addClass('flex');
             $('#ModalCantidadReportePorCliente').removeClass('hidden');
     
             $('#idCantidadReportePorCliente').attr("value",idCantidadReportePorCliente);
             $('#nuevoCantidadReportePorCliente').val(cantidadReportePorCliente);
+            $('#tablaIdentificadoraCan').attr("value",tabla_identificadora);
             $('#nuevoCantidadReportePorCliente').focus();
         }
     });
@@ -672,45 +678,51 @@ jQuery(function ($) {
             let fila = $(this).closest('tr');
             let idPesoReportePorCliente = fila.find('td:eq(0)').text();
             let pesoReportePorCliente = fila.find('td:eq(7)').text();
+            let tabla_identificadora = fila.find('td:eq(9)').text();
             
             $('#ModalPesoReportePorCliente').addClass('flex');
             $('#ModalPesoReportePorCliente').removeClass('hidden');
 
             $('#idPesoReportePorCliente').attr("value",idPesoReportePorCliente);
             $('#nuevoPesoReportePorCliente').val(pesoReportePorCliente);
+            $('#tablaIdentificadoraPeso').attr("value",tabla_identificadora);
             $('#nuevoPesoReportePorCliente').focus();
         }
     });
 
     $('#btnActualizarCantidadReportePorCliente').on('click', function () {
         let idCodigoPesada = $('#idCantidadReportePorCliente').attr("value");
+        let tablaIdentificadoraCan = $('#tablaIdentificadoraCan').attr("value");
         let nuevoCantidadReportePorCliente = $('#nuevoCantidadReportePorCliente').val();
     
         if (nuevoCantidadReportePorCliente === null || nuevoCantidadReportePorCliente.trim() === '') {
             alertify.notify('La cantidad no puede ser vacia', 'error', 3);
         } else {
-            fn_ActualizarCantidadReportePorCliente(idCodigoPesada, nuevoCantidadReportePorCliente);
+            //console.log("idCodigoPesada, nuevoCantidadReportePorCliente, tablaIdentificadoraCan",idCodigoPesada, nuevoCantidadReportePorCliente, tablaIdentificadoraCan)
+            fn_ActualizarCantidadReportePorCliente(idCodigoPesada, nuevoCantidadReportePorCliente, tablaIdentificadoraCan);
         }
     });
 
     $('#btnActualizarPesoReportePorCliente').on('click', function () {
         let idCodigoPesada = $('#idPesoReportePorCliente').attr("value");
+        let tablaIdentificadoraPeso = $('#tablaIdentificadoraPeso').attr("value");
         let nuevoPesoReportePorCliente = $('#nuevoPesoReportePorCliente').val();
 
         if (nuevoPesoReportePorCliente === null || nuevoPesoReportePorCliente.trim() === '') {
             alertify.notify('El peso no debe ser vacio', 'error', 3);
         } else {
-            fn_ActualizarPesoReportePorCliente(idCodigoPesada, nuevoPesoReportePorCliente);
+            fn_ActualizarPesoReportePorCliente(idCodigoPesada, nuevoPesoReportePorCliente, tablaIdentificadoraPeso);
         }
     });
 
-    function fn_ActualizarCantidadReportePorCliente(idCodigoPesada, nuevoCantidadReportePorCliente){
+    function fn_ActualizarCantidadReportePorCliente(idCodigoPesada, nuevoCantidadReportePorCliente, tablaIdentificadoraCan){
         $.ajax({
             url: '/fn_consulta_ActualizarCantidadReportePorCliente',
             method: 'GET',
             data: {
                 idCodigoPesada: idCodigoPesada,
                 nuevoCantidadReportePorCliente: nuevoCantidadReportePorCliente,
+                tablaIdentificadoraCan: tablaIdentificadoraCan,
             },
             success: function(response) {
                 if (response.success) {
@@ -739,13 +751,14 @@ jQuery(function ($) {
         });
     }
 
-    function fn_ActualizarPesoReportePorCliente(idCodigoPesada, nuevoPesoReportePorCliente){
+    function fn_ActualizarPesoReportePorCliente(idCodigoPesada, nuevoPesoReportePorCliente, tablaIdentificadoraPeso){
         $.ajax({
             url: '/fn_consulta_ActualizarPesoReportePorCliente',
             method: 'GET',
             data: {
                 idCodigoPesada: idCodigoPesada,
                 nuevoPesoReportePorCliente: nuevoPesoReportePorCliente,
+                tablaIdentificadoraPeso: tablaIdentificadoraPeso,
             },
             success: function(response) {
                 if (response.success) {

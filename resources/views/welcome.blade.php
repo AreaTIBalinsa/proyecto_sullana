@@ -11,7 +11,7 @@
         </div>
         {{-- Inicia contenedor de Produccion Actual --}}
         <div class="" id="contenedorGraficaActual">
-            <div class="flex flex-col lg:grid lg:grid-cols-2 gap-6 md:mx-5">
+            <div class="flex flex-col lg:grid lg:grid-cols-2 xl:grid-cols-3 gap-6 md:mx-5">
                 <div class="bg-indigo-600 w-full rounded-lg py-5 flex flex-col items-center">
                     <h5 class="text-white font-bold text-3xl md:text-4xl">POLLO YUGO</h5>
                     <div class="flex row">
@@ -76,7 +76,171 @@
                         <span class="animacion_produccion_actual bg-gray-100"></span>
                     </div>
                 </div>
-                <div class="bg-red-600 w-full md:col-span-2 rounded-lg py-5 flex flex-col items-center">
+
+                {{--  --}}
+                <div class="bg-indigo-600 w-full rounded-lg py-5 flex flex-col items-center">
+                    <h5 class="text-white font-bold text-3xl md:text-4xl">POLLO YUGO</h5>
+                    <div class="flex row">
+                        <div class="flex flex-col items-start">
+                            <div class="text-white font-semibold text-xl md:text-2xl flex justify-between w-full whitespace-nowrap px-2 gap-2">CANTIDAD<span>:</span></div>
+                            <div class="text-white font-semibold text-xl md:text-2xl flex justify-between w-full whitespace-nowrap px-2 gap-2">PESO TOTAL<span>:</span></div>
+                        </div>
+                        <div class="flex flex-col items-start">
+                            <div class="text-white font-semibold text-xl md:text-2xl px-2" id="totalUnidadesPrimerEspecie">0 Uds.</div>
+                            <div class="text-white font-semibold text-xl md:text-2xl px-2" id="totalKgPrimerEspecie">0.00 Kg</div>
+                        </div>
+                    </div>
+                    <div class="text-white w-full flex justify-center p-1">En linea
+                        <span class="animacion_produccion_actual bg-gray-100"></span>
+                    </div>
+                </div>
+                <div class="bg-blue-600 w-full rounded-lg py-5 flex flex-col items-center">
+                    <h5 class="text-white font-bold text-3xl md:text-4xl">POLLO PERLA</h5>
+                    <div class="flex row">
+                        <div class="flex flex-col items-start">
+                            <div class="text-white font-semibold text-xl md:text-2xl flex justify-between w-full whitespace-nowrap px-2 gap-2">CANTIDAD<span>:</span></div>
+                            <div class="text-white font-semibold text-xl md:text-2xl flex justify-between w-full whitespace-nowrap px-2 gap-2">PESO TOTAL<span>:</span></div>
+                        </div>
+                        <div class="flex flex-col items-start">
+                            <div class="text-white font-semibold text-xl md:text-2xl px-2" id="totalUnidadesSegundaEspecie">0 Uds.</div>
+                            <div class="text-white font-semibold text-xl md:text-2xl px-2" id="totalKgSegundaEspecie">0.00 Kg</div>
+                        </div>
+                    </div>
+                    <div class="text-white w-full flex justify-center p-1">En linea
+                        <span class="animacion_produccion_actual bg-gray-100"></span>
+                    </div>
+                </div>
+                <div class="bg-emerald-600 w-full rounded-lg py-5 flex flex-col items-center">
+                    <h5 class="text-white font-bold text-3xl md:text-4xl">POLLO CHIMU</h5>
+                    <div class="flex row">
+                        <div class="flex flex-col items-start">
+                            <div class="text-white font-semibold text-xl md:text-2xl flex justify-between w-full whitespace-nowrap px-2 gap-2">CANTIDAD<span>:</span></div>
+                            <div class="text-white font-semibold text-xl md:text-2xl flex justify-between w-full whitespace-nowrap px-2 gap-2">PESO TOTAL<span>:</span></div>
+                        </div>
+                        <div class="flex flex-col items-start">
+                            <div class="text-white font-semibold text-xl md:text-2xl px-2" id="totalUnidadesTerceraEspecie">0 Uds.</div>
+                            <div class="text-white font-semibold text-xl md:text-2xl px-2" id="totalKgTerceraEspecie">0.00 Kg</div>
+                        </div>
+                    </div>
+                    <div class="text-white w-full flex justify-center p-1">En linea
+                        <span class="animacion_produccion_actual bg-gray-100"></span>
+                    </div>
+                </div>
+                <div class="bg-yellow-400 w-full rounded-lg py-5 flex flex-col items-center">
+                    <h5 class="text-white font-bold text-3xl md:text-4xl">POLLO XX</h5>
+                    <div class="flex row">
+                        <div class="flex flex-col items-start">
+                            <div class="text-white font-semibold text-xl md:text-2xl flex justify-between w-full whitespace-nowrap px-2 gap-2">CANTIDAD<span>:</span></div>
+                            <div class="text-white font-semibold text-xl md:text-2xl flex justify-between w-full whitespace-nowrap px-2 gap-2">PESO TOTAL<span>:</span></div>
+                        </div>
+                        <div class="flex flex-col items-start">
+                            <div class="text-white font-semibold text-xl md:text-2xl px-2" id="totalUnidadesCuartaEspecie">0 Uds.</div>
+                            <div class="text-white font-semibold text-xl md:text-2xl px-2" id="totalKgCuartaEspecie">0.00 Kg</div>
+                        </div>
+                    </div>
+                    <div class="text-white w-full flex justify-center p-1">En linea
+                        <span class="animacion_produccion_actual bg-gray-100"></span>
+                    </div>
+                </div>
+                <div class="bg-indigo-600 w-full rounded-lg py-5 flex flex-col items-center">
+                    <h5 class="text-white font-bold text-3xl md:text-4xl">POLLO YUGO</h5>
+                    <div class="flex row">
+                        <div class="flex flex-col items-start">
+                            <div class="text-white font-semibold text-xl md:text-2xl flex justify-between w-full whitespace-nowrap px-2 gap-2">CANTIDAD<span>:</span></div>
+                            <div class="text-white font-semibold text-xl md:text-2xl flex justify-between w-full whitespace-nowrap px-2 gap-2">PESO TOTAL<span>:</span></div>
+                        </div>
+                        <div class="flex flex-col items-start">
+                            <div class="text-white font-semibold text-xl md:text-2xl px-2" id="totalUnidadesPrimerEspecie">0 Uds.</div>
+                            <div class="text-white font-semibold text-xl md:text-2xl px-2" id="totalKgPrimerEspecie">0.00 Kg</div>
+                        </div>
+                    </div>
+                    <div class="text-white w-full flex justify-center p-1">En linea
+                        <span class="animacion_produccion_actual bg-gray-100"></span>
+                    </div>
+                </div>
+                <div class="bg-blue-600 w-full rounded-lg py-5 flex flex-col items-center">
+                    <h5 class="text-white font-bold text-3xl md:text-4xl">POLLO PERLA</h5>
+                    <div class="flex row">
+                        <div class="flex flex-col items-start">
+                            <div class="text-white font-semibold text-xl md:text-2xl flex justify-between w-full whitespace-nowrap px-2 gap-2">CANTIDAD<span>:</span></div>
+                            <div class="text-white font-semibold text-xl md:text-2xl flex justify-between w-full whitespace-nowrap px-2 gap-2">PESO TOTAL<span>:</span></div>
+                        </div>
+                        <div class="flex flex-col items-start">
+                            <div class="text-white font-semibold text-xl md:text-2xl px-2" id="totalUnidadesSegundaEspecie">0 Uds.</div>
+                            <div class="text-white font-semibold text-xl md:text-2xl px-2" id="totalKgSegundaEspecie">0.00 Kg</div>
+                        </div>
+                    </div>
+                    <div class="text-white w-full flex justify-center p-1">En linea
+                        <span class="animacion_produccion_actual bg-gray-100"></span>
+                    </div>
+                </div>
+                <div class="bg-emerald-600 w-full rounded-lg py-5 flex flex-col items-center">
+                    <h5 class="text-white font-bold text-3xl md:text-4xl">POLLO CHIMU</h5>
+                    <div class="flex row">
+                        <div class="flex flex-col items-start">
+                            <div class="text-white font-semibold text-xl md:text-2xl flex justify-between w-full whitespace-nowrap px-2 gap-2">CANTIDAD<span>:</span></div>
+                            <div class="text-white font-semibold text-xl md:text-2xl flex justify-between w-full whitespace-nowrap px-2 gap-2">PESO TOTAL<span>:</span></div>
+                        </div>
+                        <div class="flex flex-col items-start">
+                            <div class="text-white font-semibold text-xl md:text-2xl px-2" id="totalUnidadesTerceraEspecie">0 Uds.</div>
+                            <div class="text-white font-semibold text-xl md:text-2xl px-2" id="totalKgTerceraEspecie">0.00 Kg</div>
+                        </div>
+                    </div>
+                    <div class="text-white w-full flex justify-center p-1">En linea
+                        <span class="animacion_produccion_actual bg-gray-100"></span>
+                    </div>
+                </div>
+                <div class="bg-yellow-400 w-full rounded-lg py-5 flex flex-col items-center">
+                    <h5 class="text-white font-bold text-3xl md:text-4xl">POLLO XX</h5>
+                    <div class="flex row">
+                        <div class="flex flex-col items-start">
+                            <div class="text-white font-semibold text-xl md:text-2xl flex justify-between w-full whitespace-nowrap px-2 gap-2">CANTIDAD<span>:</span></div>
+                            <div class="text-white font-semibold text-xl md:text-2xl flex justify-between w-full whitespace-nowrap px-2 gap-2">PESO TOTAL<span>:</span></div>
+                        </div>
+                        <div class="flex flex-col items-start">
+                            <div class="text-white font-semibold text-xl md:text-2xl px-2" id="totalUnidadesCuartaEspecie">0 Uds.</div>
+                            <div class="text-white font-semibold text-xl md:text-2xl px-2" id="totalKgCuartaEspecie">0.00 Kg</div>
+                        </div>
+                    </div>
+                    <div class="text-white w-full flex justify-center p-1">En linea
+                        <span class="animacion_produccion_actual bg-gray-100"></span>
+                    </div>
+                </div>
+                <div class="bg-indigo-600 w-full rounded-lg py-5 flex flex-col items-center">
+                    <h5 class="text-white font-bold text-3xl md:text-4xl">POLLO YUGO</h5>
+                    <div class="flex row">
+                        <div class="flex flex-col items-start">
+                            <div class="text-white font-semibold text-xl md:text-2xl flex justify-between w-full whitespace-nowrap px-2 gap-2">CANTIDAD<span>:</span></div>
+                            <div class="text-white font-semibold text-xl md:text-2xl flex justify-between w-full whitespace-nowrap px-2 gap-2">PESO TOTAL<span>:</span></div>
+                        </div>
+                        <div class="flex flex-col items-start">
+                            <div class="text-white font-semibold text-xl md:text-2xl px-2" id="totalUnidadesPrimerEspecie">0 Uds.</div>
+                            <div class="text-white font-semibold text-xl md:text-2xl px-2" id="totalKgPrimerEspecie">0.00 Kg</div>
+                        </div>
+                    </div>
+                    <div class="text-white w-full flex justify-center p-1">En linea
+                        <span class="animacion_produccion_actual bg-gray-100"></span>
+                    </div>
+                </div>
+                <div class="bg-blue-600 w-full rounded-lg py-5 flex flex-col items-center">
+                    <h5 class="text-white font-bold text-3xl md:text-4xl">POLLO PERLA</h5>
+                    <div class="flex row">
+                        <div class="flex flex-col items-start">
+                            <div class="text-white font-semibold text-xl md:text-2xl flex justify-between w-full whitespace-nowrap px-2 gap-2">CANTIDAD<span>:</span></div>
+                            <div class="text-white font-semibold text-xl md:text-2xl flex justify-between w-full whitespace-nowrap px-2 gap-2">PESO TOTAL<span>:</span></div>
+                        </div>
+                        <div class="flex flex-col items-start">
+                            <div class="text-white font-semibold text-xl md:text-2xl px-2" id="totalUnidadesSegundaEspecie">0 Uds.</div>
+                            <div class="text-white font-semibold text-xl md:text-2xl px-2" id="totalKgSegundaEspecie">0.00 Kg</div>
+                        </div>
+                    </div>
+                    <div class="text-white w-full flex justify-center p-1">En linea
+                        <span class="animacion_produccion_actual bg-gray-100"></span>
+                    </div>
+                </div>
+                {{--  --}}
+
+                <div class="bg-red-600 w-full md:col-span-2 xl:col-span-3 rounded-lg py-5 flex flex-col items-center">
                     <h5 class="text-white font-bold text-3xl md:text-4xl">VENTA TOTAL</h5>
                     <div class="flex row">
                         <div class="flex flex-col items-start">
@@ -126,7 +290,7 @@
                                 <td class="border-r-[1px] border-b-[1px] border-gray-300 dark:border-gray-400 p-2 text-md font-medium text-gray-900 dark:text-white whitespace-nowrap" id="tblPromedioMerma">0</td>
                             </tr>
                             <tr>
-                                <td class="text-white border-r-[1px] border-gray-300 dark:border-gray-400 p-2 text-lg font-medium bg-yellow-400 whitespace-nowrap">Merma %</td>
+                                <td class="text-white border-r-[1px] border-gray-300 dark:border-gray-400 p-2 text-lg font-medium bg-blue-600 whitespace-nowrap">Merma %</td>
                                 <td class="border-r-[1px] border-b-[1px] border-gray-300 dark:border-gray-400 p-2 text-md font-medium text-gray-900 dark:text-white whitespace-nowrap" id="tblCantidadMermaPor">0 %</td>
                                 <td class="border-r-[1px] border-b-[1px] border-gray-300 dark:border-gray-400 p-2 text-md font-medium text-gray-900 dark:text-white whitespace-nowrap" id="tblPesoMermaPor">0 %</td>
                                 <td class="border-r-[1px] border-b-[1px] border-gray-300 dark:border-gray-400 p-2 text-md font-medium text-gray-900 dark:text-white whitespace-nowrap" id="tblPromedioMermaPor">0 %</td>
@@ -136,199 +300,6 @@
                 </div>
             </div>
             {{-- Termina contenedor de Tabla Grafica Actual --}}
-        </div>
-        {{-- Inicia contenedor de Produccion Anterior --}}
-        <div class="hidden" id="contenedorGraficaAnterior">
-            <div class="flex flex-col lg:grid lg:grid-cols-2 gap-6 md:mx-5">
-                <div class="bg-indigo-600 w-full rounded-lg py-5 flex flex-col items-center">
-                    <h5 class="text-white font-bold text-3xl md:text-4xl">POLLO YUGO</h5>
-                    <div class="flex row">
-                        <div class="flex flex-col items-start">
-                            <div class="text-white font-semibold text-xl md:text-2xl flex justify-between w-full whitespace-nowrap px-2 gap-2">CANTIDAD<span>:</span></div>
-                            <div class="text-white font-semibold text-xl md:text-2xl flex justify-between w-full whitespace-nowrap px-2 gap-2">BENEFICIADO<span>:</span></div>
-                            <div class="text-white font-semibold text-xl md:text-2xl flex justify-between w-full whitespace-nowrap px-2 gap-2">POLLO VIVO<span>:</span></div>
-                            <div class="text-white font-semibold text-xl md:text-2xl flex justify-between w-full px-2">
-                                <div class="grid grid-rows-2 grid-cols-2">
-                                    <div class="col-span-2">PESO TOTAL</div>
-                                    <div class="text-center col-span-2">VIVO</div>
-                                </div>
-                                <div class="h-full flex justify-center items-center"><span>:</span></div>
-                            </div>
-                        </div>
-                        <div class="flex flex-col items-start">
-                            <div class="text-white font-semibold text-xl md:text-2xl px-2" id="totalUnidadesPrimerEspecieAnterior">0 Uds.</div>
-                            <div class="text-white font-semibold text-xl md:text-2xl px-2" id="totalKgBeneficiadoPrimerEspecieAnterior">0.00 Kg</div>
-                            <div class="text-white font-semibold text-xl md:text-2xl px-2" id="totalKgPolloVivoPrimerEspecieAnterior">0.00 Kg</div>
-                            <div class="text-white font-semibold text-xl md:text-2xl flex justify-between gap-0 w-full pr-2">
-                                <div class="grid grid-rows-2 grid-cols-2">
-                                    <div></div>
-                                    <div>&nbsp;</div>
-                                </div>
-                                <div class="h-full flex justify-center items-center -translate-x-1" id="totalKgPrimerEspecieAnterior">0.00 Kg</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-blue-600 w-full rounded-lg py-5 flex flex-col items-center">
-                    <h5 class="text-white font-bold text-3xl md:text-4xl">POLLO PERLA</h5>
-                    <div class="flex row">
-                        <div class="flex flex-col items-start">
-                            <div class="text-white font-semibold text-xl md:text-2xl flex justify-between w-full whitespace-nowrap px-2 gap-2">CANTIDAD<span>:</span></div>
-                            <div class="text-white font-semibold text-xl md:text-2xl flex justify-between w-full whitespace-nowrap px-2 gap-2">BENEFICIADO<span>:</span></div>
-                            <div class="text-white font-semibold text-xl md:text-2xl flex justify-between w-full whitespace-nowrap px-2 gap-2">POLLO VIVO<span>:</span></div>
-                            <div class="text-white font-semibold text-xl md:text-2xl flex justify-between w-full px-2">
-                                <div class="grid grid-rows-2 grid-cols-2">
-                                    <div class="col-span-2">PESO TOTAL</div>
-                                    <div class="text-center col-span-2">VIVO</div>
-                                </div>
-                                <div class="h-full flex justify-center items-center"><span>:</span></div>
-                            </div>
-                        </div>
-                        <div class="flex flex-col items-start">
-                            <div class="text-white font-semibold text-xl md:text-2xl px-2" id="totalUnidadesSegundaEspecieAnterior">0 Uds.</div>
-                            <div class="text-white font-semibold text-xl md:text-2xl px-2" id="totalKgBeneficiadoSegundaEspecieAnterior">0.00 Kg</div>
-                            <div class="text-white font-semibold text-xl md:text-2xl px-2" id="totalKgPolloVivoSegundaEspecieAnterior">0.00 Kg</div>
-                            <div class="text-white font-semibold text-xl md:text-2xl flex justify-between gap-0 w-full pr-2">
-                                <div class="grid grid-rows-2 grid-cols-2">
-                                    <div></div>
-                                    <div>&nbsp;</div>
-                                </div>
-                                <div class="h-full flex justify-center items-center -translate-x-1" id="totalKgSegundaEspecieAnterior">0.00 Kg</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-emerald-600 w-full rounded-lg py-5 flex flex-col items-center">
-                    <h5 class="text-white font-bold text-3xl md:text-4xl">POLLO CHIMU</h5>
-                    <div class="flex row">
-                        <div class="flex flex-col items-start">
-                            <div class="text-white font-semibold text-xl md:text-2xl flex justify-between w-full whitespace-nowrap px-2 gap-2">CANTIDAD<span>:</span></div>
-                            <div class="text-white font-semibold text-xl md:text-2xl flex justify-between w-full whitespace-nowrap px-2 gap-2">BENEFICIADO<span>:</span></div>
-                            <div class="text-white font-semibold text-xl md:text-2xl flex justify-between w-full whitespace-nowrap px-2 gap-2">POLLO VIVO<span>:</span></div>
-                            <div class="text-white font-semibold text-xl md:text-2xl flex justify-between w-full px-2">
-                                <div class="grid grid-rows-2 grid-cols-2">
-                                    <div class="col-span-2">PESO TOTAL</div>
-                                    <div class="text-center col-span-2">VIVO</div>
-                                </div>
-                                <div class="h-full flex justify-center items-center"><span>:</span></div>
-                            </div>
-                        </div>
-                        <div class="flex flex-col items-start">
-                            <div class="text-white font-semibold text-xl md:text-2xl px-2" id="totalUnidadesTerceraEspecieAnterior">0 Uds.</div>
-                            <div class="text-white font-semibold text-xl md:text-2xl px-2" id="totalKgBeneficiadoTerceraEspecieAnterior">0.00 Kg</div>
-                            <div class="text-white font-semibold text-xl md:text-2xl px-2" id="totalKgPolloVivoTerceraEspecieAnterior">0.00 Kg</div>
-                            <div class="text-white font-semibold text-xl md:text-2xl flex justify-between w-full pr-2">
-                                <div class="grid grid-rows-2 grid-cols-2">
-                                    <div></div>
-                                    <div>&nbsp;</div>
-                                </div>
-                                <div class="h-full flex justify-center items-center -translate-x-1" id="totalKgTerceraEspecieAnterior">0.00 Kg</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-yellow-400 w-full rounded-lg py-5 flex flex-col items-center">
-                    <h5 class="text-white font-bold text-3xl md:text-4xl">POLLO XX</h5>
-                    <div class="flex row">
-                        <div class="flex flex-col items-start">
-                            <div class="text-white font-semibold text-xl md:text-2xl flex justify-between w-full whitespace-nowrap px-2 gap-2">CANTIDAD<span>:</span></div>
-                            <div class="text-white font-semibold text-xl md:text-2xl flex justify-between w-full whitespace-nowrap px-2 gap-2">BENEFICIADO<span>:</span></div>
-                            <div class="text-white font-semibold text-xl md:text-2xl flex justify-between w-full whitespace-nowrap px-2 gap-2">POLLO VIVO<span>:</span></div>
-                            <div class="text-white font-semibold text-xl md:text-2xl flex justify-between w-full px-2">
-                                <div class="grid grid-rows-2 grid-cols-2">
-                                    <div class="col-span-2">PESO TOTAL</div>
-                                    <div class="text-center col-span-2">VIVO</div>
-                                </div>
-                                <div class="h-full flex justify-center items-center"><span>:</span></div>
-                            </div>
-                        </div>
-                        <div class="flex flex-col items-start">
-                            <div class="text-white font-semibold text-xl md:text-2xl px-2" id="totalUnidadesCuartaEspecieAnterior">0 Uds.</div>
-                            <div class="text-white font-semibold text-xl md:text-2xl px-2" id="totalKgBeneficiadoCuartaEspecieAnterior">0.00 Kg</div>
-                            <div class="text-white font-semibold text-xl md:text-2xl px-2" id="totalKgPolloVivoCuartaEspecieAnterior">0.00 Kg</div>
-                            <div class="text-white font-semibold text-xl md:text-2xl flex justify-between w-full pr-2">
-                                <div class="grid grid-rows-2 grid-cols-2">
-                                    <div></div>
-                                    <div>&nbsp;</div>
-                                </div>
-                                <div class="h-full flex justify-center items-center -translate-x-1" id="totalKgCuartaEspecieAnterior">0.00 Kg</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="bg-red-600 w-full md:col-span-2 rounded-lg py-5 flex flex-col items-center">
-                    <h5 class="text-white font-bold text-3xl md:text-4xl">VENTA TOTAL</h5>
-                    <div class="flex row">
-                        <div class="flex flex-col items-start">
-                            <div class="text-white font-semibold text-xl md:text-2xl flex justify-between w-full whitespace-nowrap px-2 gap-2">CANTIDAD<span>:</span></div>
-                            <div class="text-white font-semibold text-xl md:text-2xl flex justify-between w-full whitespace-nowrap px-2 gap-2">BENEFICIADO<span>:</span></div>
-                            <div class="text-white font-semibold text-xl md:text-2xl flex justify-between w-full whitespace-nowrap px-2 gap-2">POLLO VIVO<span>:</span></div>
-                            <div class="text-white font-semibold text-xl md:text-2xl flex justify-between w-full px-2">
-                                <div class="grid grid-rows-2 grid-cols-2">
-                                    <div class="col-span-2">PESO TOTAL</div>
-                                    <div class="text-center col-span-2">VIVO</div>
-                                </div>
-                                <div class="h-full flex justify-center items-center"><span>:</span></div>
-                            </div>
-                        </div>
-                        <div class="flex flex-col items-start">
-                            <div class="text-white font-semibold text-xl md:text-2xl px-2" id="totalUnidadesEspeciesAnterior">0 Uds.</div>
-                            <div class="text-white font-semibold text-xl md:text-2xl px-2" id="totalKgBeneficiadoEspeciesAnterior">0.00 Kg</div>
-                            <div class="text-white font-semibold text-xl md:text-2xl px-2" id="totalKgPolloVivoEspeciesAnterior">0.00 Kg</div>
-                            <div class="text-white font-semibold text-xl md:text-2xl flex justify-between w-full pr-2">
-                                <div class="grid grid-rows-2 grid-cols-2">
-                                    <div></div>
-                                    <div>&nbsp;</div>
-                                </div>
-                                <div class="h-full flex justify-center items-center -translate-x-1" id="totalKgEspeciesAnterior">0.00 Kg</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {{-- Termina contenedor de Produccion Anterior --}}
-            {{-- Inicia contenedor de Tabla Grafica Anterior --}}
-            <div class="md:m-5 mt-10">
-                <div class="overflow-x-auto aside_scrollED rounded-lg">
-                    <table class="tabla_reporte_inicio table-auto text-gray-500 dark:text-gray-300 w-full border-collapse">
-                        <thead class="bg-blue-600">
-                            <tr>
-                                <th class="text-white border-r-[1px] border-b-1 border-gray-300 dark:border-gray-400 py-2 md:text-md text-left px-2">#</th>
-                                <th class="text-white border-r-[1px] border-b-1 border-gray-300 dark:border-gray-400 py-2 md:text-md text-left px-2">Cantidad</th>
-                                <th class="text-white border-r-[1px] border-b-1 border-gray-300 dark:border-gray-400 py-2 md:text-md text-left px-2">Peso</th>
-                                <th class="text-white py-2 md:text-md text-left px-2">Promedio</th>
-                            </tr>
-                        </thead>
-                        <tbody class="">
-                            <tr>
-                                <td class="text-white border-r-[1px] border-b-[1px] border-gray-300 dark:border-gray-400 p-2 text-lg font-medium bg-red-600 whitespace-nowrap">Compra</td>
-                                <td class="border-r-[1px] border-b-[1px] border-gray-300 dark:border-gray-400 p-2 text-md font-medium text-gray-900 dark:text-white whitespace-nowrap" id="tblCantidadCompraAnterior">0</td>
-                                <td class="border-r-[1px] border-b-[1px] border-gray-300 dark:border-gray-400 p-2 text-md font-medium text-gray-900 dark:text-white whitespace-nowrap" id="tblPesoCompraAnterior">0</td>
-                                <td class="border-r-[1px] border-b-[1px] border-gray-300 dark:border-gray-400 p-2 text-md font-medium text-gray-900 dark:text-white whitespace-nowrap" id="tblPromedioCompraAnterior">0</td>
-                            </tr>
-                            <tr>
-                                <td class="text-white border-r-[1px] border-b-[1px] border-gray-300 dark:border-gray-400 p-2 text-lg font-medium bg-emerald-600 whitespace-nowrap">Venta</td>
-                                <td class="border-r-[1px] border-b-[1px] border-gray-300 dark:border-gray-400 p-2 text-md font-medium text-gray-900 dark:text-white whitespace-nowrap" id="tblCantidadVentaAnterior">0</td>
-                                <td class="border-r-[1px] border-b-[1px] border-gray-300 dark:border-gray-400 p-2 text-md font-medium text-gray-900 dark:text-white whitespace-nowrap" id="tblPesoVentaAnterior">0</td>
-                                <td class="border-r-[1px] border-b-[1px] border-gray-300 dark:border-gray-400 p-2 text-md font-medium text-gray-900 dark:text-white whitespace-nowrap" id="tblPromedioVentaAnterior">0</td>
-                            </tr>
-                            <tr>
-                                <td class="text-white border-r-[1px] border-b-[1px] border-gray-300 dark:border-gray-400 p-2 text-lg font-medium bg-orange-600 whitespace-nowrap">Merma</td>
-                                <td class="border-r-[1px] border-b-[1px] border-gray-300 dark:border-gray-400 p-2 text-md font-medium text-gray-900 dark:text-white whitespace-nowrap" id="tblCantidadMermaAnterior">0</td>
-                                <td class="border-r-[1px] border-b-[1px] border-gray-300 dark:border-gray-400 p-2 text-md font-medium text-gray-900 dark:text-white whitespace-nowrap" id="tblPesoMermaAnterior">0</td>
-                                <td class="border-r-[1px] border-b-[1px] border-gray-300 dark:border-gray-400 p-2 text-md font-medium text-gray-900 dark:text-white whitespace-nowrap" id="tblPromedioMermaAnterior">0</td>
-                            </tr>
-                            <tr>
-                                <td class="text-white border-r-[1px] border-gray-300 dark:border-gray-400 p-2 text-lg font-medium bg-yellow-400 whitespace-nowrap">Merma %</td>
-                                <td class="border-r-[1px] border-b-[1px] border-gray-300 dark:border-gray-400 p-2 text-md font-medium text-gray-900 dark:text-white whitespace-nowrap" id="tblCantidadMermaPorAnterior">0 %</td>
-                                <td class="border-r-[1px] border-b-[1px] border-gray-300 dark:border-gray-400 p-2 text-md font-medium text-gray-900 dark:text-white whitespace-nowrap" id="tblPesoMermaPorAnterior">0 %</td>
-                                <td class="border-r-[1px] border-b-[1px] border-gray-300 dark:border-gray-400 p-2 text-md font-medium text-gray-900 dark:text-white whitespace-nowrap" id="tblPromedioMermaPorAnterior">0 %</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            {{-- Termina contenedor de Tabla Grafica Anterior --}}
         </div>
     </div>
 </main>

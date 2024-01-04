@@ -77,6 +77,7 @@
                     </div>
                     <div class="mt-4 flex justify-center items-center flex-col gap-4">
                         <label id="idCantidadReportePorCliente" class="hidden"></label>
+                        <label id="tablaIdentificadoraCan" class="hidden"></label>
                         <p class="text-sm text-gray-300">Ingrese nueva cantidad.</p>
                         <input class="p-2 rounded-lg text-base outline-none border-none text-center" type="text" id="nuevoCantidadReportePorCliente" autocomplete="off" placeholder="0">
                     </div>
@@ -102,6 +103,7 @@
                     </div>
                     <div class="mt-4 flex justify-center items-center flex-col gap-4">
                         <label id="idPesoReportePorCliente" class="hidden"></label>
+                        <label id="tablaIdentificadoraPeso" class="hidden"></label>
                         <p class="text-sm text-gray-300">Ingrese nuevo peso.</p>
                         <input class="p-2 rounded-lg text-base outline-none border-none text-center" type="text" id="nuevoPesoReportePorCliente" autocomplete="off" placeholder="0">
                     </div>
