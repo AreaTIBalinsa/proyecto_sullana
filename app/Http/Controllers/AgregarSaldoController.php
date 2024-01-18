@@ -26,7 +26,8 @@ class AgregarSaldoController extends Controller
                 tc.codigoCli as codigoCli, 
                 COALESCE(SUM(CASE WHEN tp.pesoNetoPes > tp.pesoNetoJabas THEN (tp.pesoNetoPes - tp.pesoNetoJabas) ELSE (tp.pesoNetoPes + tp.pesoNetoJabas) END * tp.precioPes), 0) as deudaTotal, 
                 COALESCE(tpg.sumaPagos, 0) as cantidadPagos, 
-                COALESCE(td.ventaDescuentos, 0) as ventaDescuentos 
+                COALESCE(td.ventaDescuentos, 0) as ventaDescuentos,
+                limitEndeudamiento 
             FROM tb_clientes tc
             LEFT JOIN tb_pesadas tp ON tc.codigoCli = tp.codigoCli AND tp.estadoPes = 1
             LEFT JOIN (
@@ -42,7 +43,7 @@ class AgregarSaldoController extends Controller
                 GROUP BY codigoCli
             ) td ON tc.codigoCli = td.codigoCli
             WHERE tc.idEstadoCli = 1 AND tc.estadoEliminadoCli != 0
-            GROUP BY tc.codigoCli, tpg.sumaPagos, td.ventaDescuentos
+            GROUP BY tc.codigoCli, tpg.sumaPagos, td.ventaDescuentos, limitEndeudamiento
 
             UNION
 
@@ -51,7 +52,8 @@ class AgregarSaldoController extends Controller
                 tc.codigoCli as codigoCli, 
                 COALESCE(SUM(CASE WHEN tp2.pesoNetoPes > tp2.pesoNetoJabas THEN (tp2.pesoNetoPes - tp2.pesoNetoJabas) ELSE (tp2.pesoNetoPes + tp2.pesoNetoJabas) END * tp2.precioPes), 0) as deudaTotal, 
                 0 as cantidadPagos, 
-                0 as ventaDescuentos 
+                0 as ventaDescuentos,
+                0 as limitEndeudamiento 
             FROM tb_clientes tc
             LEFT JOIN tb_pesadas2 tp2 ON tc.codigoCli = tp2.codigoCli AND tp2.estadoPes = 1
             LEFT JOIN (
@@ -67,7 +69,7 @@ class AgregarSaldoController extends Controller
                 GROUP BY codigoCli
             ) td2 ON tc.codigoCli = td2.codigoCli
             WHERE tc.idEstadoCli = 1 AND tc.estadoEliminadoCli != 0
-            GROUP BY tc.codigoCli, tpg2.sumaPagos, td2.ventaDescuentos
+            GROUP BY tc.codigoCli, tpg2.sumaPagos, td2.ventaDescuentos, limitEndeudamiento
             ORDER BY nombreCompleto ASC;
             ');
     

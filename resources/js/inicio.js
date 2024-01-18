@@ -289,5 +289,68 @@ jQuery(function($) {
         $('#btnRetrocesoProduccionAnterior').toggle('hidden');
         $('#btnProduccionAnterior').toggle('hidden');
     });
+
+    fn_TraerClientesAgregarSaldo();
+    function fn_TraerClientesAgregarSaldo() {
+        $.ajax({
+            url: '/fn_consulta_TraerClientesAgregarSaldo',
+            method: 'GET',
+            success: function (response) {
+                // Verificar si la respuesta es un arreglo de objetos
+                if (Array.isArray(response)) {
+    
+                    // Objeto para almacenar los resultados agrupados por codigoCli
+                    let resultadosAgrupados = {};
+                    let contador = 0;
+    
+                    // Iterar sobre los objetos y agrupar por codigoCli
+                    response.forEach(function (obj) {
+                        let codigoCli = obj.codigoCli;
+    
+                        if (!resultadosAgrupados[codigoCli]) {
+                            resultadosAgrupados[codigoCli] = {
+                                nombreCompleto: obj.nombreCompleto,
+                                codigoCli: codigoCli,
+                                deudaTotal: 0,
+                                cantidadPagos: 0,
+                                ventaDescuentos: 0,
+                                limitEndeudamiento: 0
+                            };
+                        }
+    
+                        // Sumar las propiedades correspondientes
+                        resultadosAgrupados[codigoCli].deudaTotal += parseFloat(obj.deudaTotal);
+                        resultadosAgrupados[codigoCli].cantidadPagos += parseFloat(obj.cantidadPagos);
+                        resultadosAgrupados[codigoCli].ventaDescuentos += parseFloat(obj.ventaDescuentos);
+                        resultadosAgrupados[codigoCli].limitEndeudamiento += parseFloat(obj.limitEndeudamiento);
+                    });
+    
+                    // Iterar sobre los resultados agrupados y mostrar en la tabla
+                    Object.values(resultadosAgrupados).forEach(function (obj) {
+                        let total = obj.deudaTotal - obj.cantidadPagos + obj.ventaDescuentos;
+    
+                        // Crear una nueva fila
+                        if (total > parseFloat(obj.limitEndeudamiento)) {
+                            contador++;
+                        }
+                    });
+                    if (contador > 0){
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'Deudas Excesivas',
+                            text: (contador === 1 ? 'Se encontró 1 deuda excesiva.' : 'Se encontrarón '+contador + ' deudas excesivas.'),
+                            footer: '<a href="/agregar_saldo">Ir a revisar</a>'
+                        });                        
+                    }
+                } else {
+                    console.log("La respuesta no es un arreglo de objetos.");
+                }
+    
+            },
+            error: function (error) {
+                console.error("ERROR", error);
+            }
+        });
+    }
     
 });

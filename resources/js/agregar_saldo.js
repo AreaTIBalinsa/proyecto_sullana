@@ -2,10 +2,10 @@ import jQuery from 'jquery';
 window.$ = jQuery;
 
 jQuery(function($) {
-
-    fn_TraerClientesAgregarSaldo();
+    var limitEndeudamiento = 0;
 
     DataTableED('#tablaAgregarSaldo');
+    fn_TraerClientesAgregarSaldo();
 
     function fn_TraerClientesAgregarSaldo() {
         $.ajax({
@@ -28,7 +28,8 @@ jQuery(function($) {
                                 codigoCli: codigoCli,
                                 deudaTotal: 0,
                                 cantidadPagos: 0,
-                                ventaDescuentos: 0
+                                ventaDescuentos: 0,
+                                limitEndeudamiento: 0
                             };
                         }
     
@@ -36,23 +37,45 @@ jQuery(function($) {
                         resultadosAgrupados[codigoCli].deudaTotal += parseFloat(obj.deudaTotal);
                         resultadosAgrupados[codigoCli].cantidadPagos += parseFloat(obj.cantidadPagos);
                         resultadosAgrupados[codigoCli].ventaDescuentos += parseFloat(obj.ventaDescuentos);
+                        resultadosAgrupados[codigoCli].limitEndeudamiento += parseFloat(obj.limitEndeudamiento);
                     });
     
                     // Obtener el select
                     let tbodyAgregarSaldo = $('#bodyAgregarSaldo');
                     tbodyAgregarSaldo.empty();
+                    let nuevaFila = "";
     
                     // Iterar sobre los resultados agrupados y mostrar en la tabla
                     Object.values(resultadosAgrupados).forEach(function (obj) {
                         let total = obj.deudaTotal - obj.cantidadPagos + obj.ventaDescuentos;
     
                         // Crear una nueva fila
-                        let nuevaFila = $('<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
-    
-                        // Agregar las celdas con la información
-                        nuevaFila.append($('<td class="hidden">').text(obj.codigoCli));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">').text(obj.nombreCompleto));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(total.toFixed(2)));
+                        if (total > parseFloat(obj.limitEndeudamiento)) {
+                            nuevaFila = $('<tr class="bg-red-600 border-b dark:border-gray-700 cursor-pointer text-white font-bold">');
+                            // Agregar las celdas con la información
+                            nuevaFila.append($('<td class="hidden">').text(obj.codigoCli));
+                            nuevaFila.append($(`
+                                <td class="border dark:border-gray-700 p-2 font-medium whitespace-nowrap">
+                                    <div class="flex gap-4 justify-between">
+                                        <div>
+                                            ${obj.nombreCompleto}
+                                        </div>
+                                        <div class="pulsoAdvertencia">
+                                            <img src="${rutaAdvertencia}" title="El cliente sobrepaso la deuda \n maxima : ${parseFloat(obj.limitEndeudamiento)}" alt="Advertencia" class="h-6 drop-shadow-[0_0_5px_rgba(255,255,255,0.80)]" />
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="border dark:border-gray-700 p-2 text-center whitespace-nowrap">${total.toFixed(2)}</td>
+                                <td class="hidden">1</td>
+                            `));
+                        }
+                        else{
+                            nuevaFila = $('<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
+                            // Agregar las celdas con la información
+                            nuevaFila.append($('<td class="hidden">').text(obj.codigoCli));
+                            nuevaFila.append($('<td class="border dark:border-gray-700 p-2 font-medium whitespace-nowrap">').text(obj.nombreCompleto));
+                            nuevaFila.append($('<td class="border dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(total.toFixed(2)));
+                        }
     
                         // Agregar la nueva fila al tbody
                         tbodyAgregarSaldo.append(nuevaFila);
@@ -125,5 +148,4 @@ jQuery(function($) {
             }
         });
     }
-
 });

@@ -88,6 +88,7 @@ class RegistrarClientesController extends Controller
             $registrarCliente->codigoCli = $codigoCli;
             $registrarCliente->comentarioCli = $comentarioCli;
             $registrarCliente->estadoEliminadoCli = 1;
+            $registrarCliente->limitEndeudamiento = 1000;
             $registrarCliente->save();
             
             $registrarPreciosXPresentacion = new PrecioXPresentacion;

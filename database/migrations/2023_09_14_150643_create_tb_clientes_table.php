@@ -28,6 +28,7 @@ return new class extends Migration
             $table->string('comentarioCli', 300)->nullable();
             $table->integer('estadoEliminadoCli')->default(1);
             $table->timestamps();
+            $table->decimal('limitEndeudamiento',8,2);
         });
     }
 

@@ -104,3 +104,19 @@ body::-webkit-scrollbar-thumb:hover {
 .dark input[type="date"]::-webkit-calendar-picker-indicator {
   filter: invert(1);
 }
+
+.pulsoAdvertencia{
+  animation: pulsoAdvertenciaED 1.2s infinite;
+}
+
+@keyframes pulsoAdvertenciaED {
+  0% {
+    transform: scale(0.8);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(0.8);
+  }
+}

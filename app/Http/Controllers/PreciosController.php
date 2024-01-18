@@ -95,29 +95,25 @@ class PreciosController extends Controller
                     break;
                 case 9:
                     ActualizarPreciosXPresentacion::where('idPrecio', $idClienteActualizarPrecioXPresentacion)
-                        ->update(['novenaEspecie' => $valorActualizarPrecioXPresentacion]);
+                        ->update(['decimaEspecie' => $valorActualizarPrecioXPresentacion]);
                     break;
                 case 10:
                     ActualizarPreciosXPresentacion::where('idPrecio', $idClienteActualizarPrecioXPresentacion)
-                        ->update(['decimaEspecie' => $valorActualizarPrecioXPresentacion]);
+                        ->update(['decimaPrimeraEspecie' => $valorActualizarPrecioXPresentacion]);
                     break;
                 case 11:
                     ActualizarPreciosXPresentacion::where('idPrecio', $idClienteActualizarPrecioXPresentacion)
-                        ->update(['decimaPrimeraEspecie' => $valorActualizarPrecioXPresentacion]);
+                        ->update(['decimaSegundaEspecie' => $valorActualizarPrecioXPresentacion]);
                     break;
                 case 12:
                     ActualizarPreciosXPresentacion::where('idPrecio', $idClienteActualizarPrecioXPresentacion)
-                        ->update(['decimaSegundaEspecie' => $valorActualizarPrecioXPresentacion]);
+                        ->update(['decimaTerceraEspecie' => $valorActualizarPrecioXPresentacion]);
                     break;
                 case 13:
                     ActualizarPreciosXPresentacion::where('idPrecio', $idClienteActualizarPrecioXPresentacion)
-                        ->update(['decimaTerceraEspecie' => $valorActualizarPrecioXPresentacion]);
-                    break;
-                case 14:
-                    ActualizarPreciosXPresentacion::where('idPrecio', $idClienteActualizarPrecioXPresentacion)
                         ->update(['decimaCuartaEspecie' => $valorActualizarPrecioXPresentacion]);
                     break;
-                case 15:
+                case 14:
                     ActualizarPreciosXPresentacion::where('idPrecio', $idClienteActualizarPrecioXPresentacion)
                         ->update(['decimaQuintaOtrasEspecies' => $valorActualizarPrecioXPresentacion]);
                     break;     

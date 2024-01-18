@@ -20,13 +20,13 @@ class PesosDeTara extends Seeder
             'pesoColorCubetaTres' => '3.000',
             'pesoColorCubetaCuatro' => '4.000',
             'pesoColorCubetaCinco' => '5.000',
-            'pesoColorJavaUno' => '6.000',
-            'pesoColorJavaDos' => '7.000',
-            'pesoColorJavaTres' => '8.000',
-            'pesoColorJavaCuatro' => '9.000',
-            'pesoColorJavaCinco' => '10.000',
-            'pesoColorJavaSeis' => '11.000',
-            'pesoColorJavaSiete' => '12.000',
+            'pesoColorJavaUno' => '5.000',
+            'pesoColorJavaDos' => '6.100',
+            'pesoColorJavaTres' => '5.200',
+            'pesoColorJavaCuatro' => '4.200',
+            'pesoColorJavaCinco' => '4.400',
+            'pesoColorJavaSeis' => '5.800',
+            'pesoColorJavaSiete' => '4.000',
         ]);
     }
 }

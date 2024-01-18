@@ -73,6 +73,7 @@ jQuery(function($) {
         let numeroEspeciePrecioXPresentacion = $('#idEspeciePrecioXActualizar').attr("value");
         
         fn_ActualizarPrecioXPresentacion(idClienteActualizarPrecioXPresentacion, valorActualizarPrecioXPresentacion,numeroEspeciePrecioXPresentacion);
+        console.log("numeroEspeciePrecioXPresentacion",numeroEspeciePrecioXPresentacion)
         $('#ModalPreciosXPresentacion').addClass('hidden');
         $('#ModalPreciosXPresentacion').removeClass('flex');
     });
@@ -291,7 +292,7 @@ jQuery(function($) {
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer precioColumna" data-columna="6">').text(obj.sextaEspecie));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer precioColumna" data-columna="7">').text(obj.septimaEspecie));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer precioColumna" data-columna="8">').text(obj.octavaEspecie));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer precioColumna" data-columna="9">').text(obj.novenaEspecie));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer precioColumna" data-columna="9">').text(obj.decimaEspecie));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer precioColumna" data-columna="10">').text(obj.decimaPrimeraEspecie));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer precioColumna" data-columna="11">').text(obj.decimaSegundaEspecie));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer precioColumna" data-columna="12">').text(obj.decimaTerceraEspecie));
@@ -597,5 +598,16 @@ jQuery(function($) {
             });
         });
     }
+
+    $("#ModalPreciosXPresentacion").on("keydown", function(event) {
+        // Verificar si la tecla presionada es "Enter"
+        if (event.key === "Enter") {
+            $("#btnActualizarPreciosXPresentacion").trigger("click");
+        }
+        // Verificar si la tecla presionada es "Minus"
+        else if (event.key === 189 || event.key === "-") {
+            $("#cerrarModalPreciosXPresentacion").trigger("click");
+        }
+    });
 
 });

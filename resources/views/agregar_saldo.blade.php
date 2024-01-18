@@ -54,4 +54,7 @@
         </div>
     </div>
 </div>
+<script>
+    var rutaAdvertencia = "{{ asset('img/advertencia.png') }}";
+</script>
 @endsection
