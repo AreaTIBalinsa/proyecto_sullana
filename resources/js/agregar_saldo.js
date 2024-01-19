@@ -2,7 +2,6 @@ import jQuery from 'jquery';
 window.$ = jQuery;
 
 jQuery(function($) {
-    var limitEndeudamiento = 0;
 
     DataTableED('#tablaAgregarSaldo');
     fn_TraerClientesAgregarSaldo();
@@ -50,7 +49,7 @@ jQuery(function($) {
                         let total = obj.deudaTotal - obj.cantidadPagos + obj.ventaDescuentos;
     
                         // Crear una nueva fila
-                        if (total > parseFloat(obj.limitEndeudamiento)) {
+                        if (total >= parseFloat(obj.limitEndeudamiento)) {
                             nuevaFila = $('<tr class="bg-red-600 border-b dark:border-gray-700 cursor-pointer text-white font-bold">');
                             // Agregar las celdas con la información
                             nuevaFila.append($('<td class="hidden">').text(obj.codigoCli));

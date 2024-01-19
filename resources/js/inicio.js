@@ -330,7 +330,7 @@ jQuery(function($) {
                         let total = obj.deudaTotal - obj.cantidadPagos + obj.ventaDescuentos;
     
                         // Crear una nueva fila
-                        if (total > parseFloat(obj.limitEndeudamiento)) {
+                        if (total >= parseFloat(obj.limitEndeudamiento)) {
                             contador++;
                         }
                     });
