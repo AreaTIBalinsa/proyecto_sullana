@@ -30,7 +30,7 @@ class ClientesTableSeeder extends Seeder
             'codigoCli' => 99999,
             'comentarioCli' => 'Nada',
             'estadoEliminadoCli' => '1',
-            'limitEndeudamiento' => '100.20',
+            'limitEndeudamiento' => '1000',
         ]);
     }
 }
