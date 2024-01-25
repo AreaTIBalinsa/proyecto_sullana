@@ -10,10 +10,18 @@ jQuery(function ($) {
 
     $('#fechaProgramacionPedidos').val(fechaHoy);
     $('#fechaProgramacionPedidosModal').val(fechaHoy);
+    fn_TraerListaPedidos(fechaHoy);
 
     // Eventos para abrir y cerrar modal de Agregar Pago
 
     $('#registrarPedidoCliente').on('click', function () {
+        $('#contenedorDeEspeciesPedidos').find('div').removeClass('hidden flex');
+        $('#contenedorDeEspeciesPedidos').find('div').addClass('hidden');
+        $('#contenedorDeEspeciesPedidos').find('input').val('');
+        $("#selectEspecieAgregarPedido").val('0');
+        $("#idRegistrarPedidoCliente").val('');
+        $('#selectedCodigoRegistrarPedido').attr('value','');
+
         $('#ModalRegistrarPedido').addClass('flex');
         $('#ModalRegistrarPedido').removeClass('hidden');
         $('#idRegistrarPedidoCliente').focus();
@@ -193,11 +201,13 @@ jQuery(function ($) {
         let idRegistrarPedidoCliente = $('#selectedCodigoRegistrarPedido').attr('value');
         let fechaProgramacionPedidosModal = $("#fechaProgramacionPedidosModal").val();
         let selectEspecieAgregarPedido = $("#selectEspecieAgregarPedido").val();
-        let comentarioCliPedido = $('#comentarioCliPedido').val();
+
+        let errores = 0;
 
         if (idRegistrarPedidoCliente == "" || idRegistrarPedidoCliente == 0 || idRegistrarPedidoCliente == NaN || idRegistrarPedidoCliente === null){
             alertify.notify('Debe seleccionar Cliente', 'error', 3);
             $("#idRegistrarPedidoCliente").removeClass('dark:border-gray-600 border-gray-300').addClass('border-red-500');
+            errores++;
         }else{
             $("#idRegistrarPedidoCliente").removeClass('border-red-500').addClass('dark:border-gray-600 border-gray-300');
         }
@@ -205,6 +215,7 @@ jQuery(function ($) {
         if (selectEspecieAgregarPedido == NaN || selectEspecieAgregarPedido == 0 || selectEspecieAgregarPedido == "" || selectEspecieAgregarPedido === null){
             alertify.notify('Se debe seleccionar especie', 'error', 3);
             $("#selectEspecieAgregarPedido").removeClass('dark:border-gray-600 border-gray-300').addClass('border-red-500');
+            errores++;
         }else{
             $("#selectEspecieAgregarPedido").removeClass('border-red-500').addClass('dark:border-gray-600 border-gray-300');
         }
@@ -215,12 +226,135 @@ jQuery(function ($) {
         let cuartaEspecie = $('#inputCantidadTecnicoPelado').val();
         let quintaEspecie = $('#inputCantidadGallinaDoble').val();
         let sextaEspecie = $('#inputCantidadGallinaChica').val();
-        let sepimaEspecie = $('#inputCantidadGallo').val();
+        let septimaEspecie = $('#inputCantidadGallo').val();
         let octavaEspecie = $('#inputCantidadPolloXX').val();
         let novenaEspecie = $('#inputCantidadBrasaYugo').val();
         let decimaEspecie = $('#inputCantidadBrasaTecnico').val();
+        if (errores == 0){
+            fn_RegistrarPedidosClientes(idRegistrarPedidoCliente, fechaProgramacionPedidosModal, selectEspecieAgregarPedido,primerEspecie,segundaEspecie,terceraEspecie,cuartaEspecie,quintaEspecie,sextaEspecie,septimaEspecie,octavaEspecie,novenaEspecie,decimaEspecie);
+        }
+    });
 
-        console.log('Pedido registrado', idRegistrarPedidoCliente, fechaProgramacionPedidosModal, selectEspecieAgregarPedido,comentarioCliPedido,primerEspecie,segundaEspecie,terceraEspecie,cuartaEspecie,quintaEspecie,sextaEspecie,sepimaEspecie,octavaEspecie,novenaEspecie,decimaEspecie);
+    function fn_TraerListaPedidos(fechaTraerPedidos){
+        $.ajax({
+            url: '/fn_consulta_TraerListaPedidos',
+            method: 'GET',
+            data: {
+                fechaTraerPedidos: fechaTraerPedidos,
+            },
+            success: function(response) {
+                if (Array.isArray(response)){
+
+                    let tbodyProgramacionPedidos = $('#bodyProgramacionPedidos');
+                    tbodyProgramacionPedidos.empty();
+
+                    // Iterar sobre los objetos y mostrar sus propiedades
+                    response.forEach(function(obj) {
+                        // Crear una nueva fila
+                        let nuevaFila = $('<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 text-black dark:text-white dark:hover:bg-gray-600 cursor-pointer">');
+
+                        // Agregar las celdas con la información
+                        nuevaFila.append($('<td class="hidden">').text(obj.idPedido));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">').text(obj.nombreCompleto));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer pedidoColumna" data-columna="1">').text(obj.pedidoPrimerEspecie));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer pedidoColumna" data-columna="2">').text(obj.pedidoSegundaEspecie));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer pedidoColumna" data-columna="3">').text(obj.pedidoTercerEspecie));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer pedidoColumna" data-columna="4">').text(obj.pedidoCuartaEspecie));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer pedidoColumna" data-columna="5">').text(obj.pedidoQuintaEspecie));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer pedidoColumna" data-columna="6">').text(obj.pedidoSextaEspecie));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer pedidoColumna" data-columna="7">').text(obj.pedidoSeptimaEspecie));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer pedidoColumna" data-columna="8">').text(obj.pedidoOctavaEspecie));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer pedidoColumna" data-columna="9">').text(obj.pedidoNovenaEspecie));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer pedidoColumna" data-columna="10">').text(obj.pedidoDecimaEspecie));
+
+                        // Agregar la nueva fila al tbody
+                        tbodyProgramacionPedidos.append(nuevaFila);
+                    });
+                }else {
+                    console.log("La respuesta no es un arreglo de objetos.");
+                }
+            },
+            error: function(error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Error: Ocurrio un error inesperado durante la operacion',
+                  })
+                console.error("ERROR",error);
+            }
+        });
+    }
+
+    function fn_RegistrarPedidosClientes(idRegistrarPedidoCliente, fechaProgramacionPedidosModal, selectEspecieAgregarPedido,primerEspecie,segundaEspecie,terceraEspecie,cuartaEspecie,quintaEspecie,sextaEspecie,septimaEspecie,octavaEspecie,novenaEspecie,decimaEspecie){
+        $.ajax({
+            url: '/fn_consulta_RegistrarPedidosClientes',
+            method: 'GET',
+            data: {
+                idRegistrarPedidoCliente: idRegistrarPedidoCliente,
+                fechaProgramacionPedidosModal: fechaProgramacionPedidosModal,
+                selectEspecieAgregarPedido: selectEspecieAgregarPedido,
+                primerEspecie: primerEspecie,
+                segundaEspecie: segundaEspecie,
+                terceraEspecie: terceraEspecie,
+                cuartaEspecie: cuartaEspecie,
+                quintaEspecie: quintaEspecie,
+                sextaEspecie: sextaEspecie,
+                septimaEspecie: septimaEspecie,
+                octavaEspecie: octavaEspecie,
+                novenaEspecie: novenaEspecie,
+                decimaEspecie: decimaEspecie,
+            },
+            success: function(response) {
+                if (response.success) {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Se registro el pedido correctamente',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    $('#ModalRegistrarPedido').addClass('hidden');
+                    $('#ModalRegistrarPedido').removeClass('flex');
+                    $('#btnBuscarPedidos').trigger('click');
+                    $('#contenedorDeEspeciesPedidos').find('div').removeClass('hidden flex');
+                    $('#contenedorDeEspeciesPedidos').find('div').addClass('hidden');
+                    $('#contenedorDeEspeciesPedidos').find('input').val('');
+                    $("#selectEspecieAgregarPedido").val('0');
+                    $("#idRegistrarPedidoCliente").val('');
+                    $('#selectedCodigoRegistrarPedido').attr('value','');
+                }
+            },
+            error: function(error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Error: Ocurrio un error inesperado durante la operacion',
+                  })
+                console.error("ERROR",error);
+            }
+        });
+    }
+
+    $('#btnBuscarPedidos').on('click', function () {
+        let fechaProgramacionPedidos = $('#fechaProgramacionPedidos').attr('value');
+        fn_TraerListaPedidos(fechaProgramacionPedidos);
+    });
+
+    $('#filtrarClientePedido').on('input', function() {
+        let nombreFiltrar = $('#filtrarClientePedido').val().toUpperCase(); ; // Obtiene el valor del campo de filtro
+
+        // Mostrar todas las filas
+        $('#bodyProgramacionPedidos tr').show();
+    
+        // Filtrar por nombre si se proporciona un valor
+        if (nombreFiltrar) {
+            $('#bodyProgramacionPedidos tr').each(function() {
+                let nombre = $(this).find('td:eq(1)').text().toUpperCase().trim();
+                if (nombre.indexOf(nombreFiltrar) === -1) {
+                    $(this).hide();
+                }
+            });
+        }
     });
 
 })

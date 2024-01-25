@@ -149,3 +149,5 @@ Route::get('/fn_consulta_ActualizarDeudaMaxima',[DeudaMaximaController::class,'c
 
 Route::get('/fn_consulta_TraerClientesPedidos',[ConfiguracionesController::class,'consulta_TraerClientesPedidos']);
 Route::get('/fn_consulta_EspeciesPedido',[ConfiguracionesController::class,'consulta_EspeciesPedido']);
+Route::get('/fn_consulta_TraerListaPedidos',[ConfiguracionesController::class,'consulta_TraerListaPedidos']);
+Route::get('/fn_consulta_RegistrarPedidosClientes',[ConfiguracionesController::class,'consulta_RegistrarPedidosClientes']);

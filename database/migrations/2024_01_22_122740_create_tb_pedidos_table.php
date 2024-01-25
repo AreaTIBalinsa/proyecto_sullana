@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('tb_pedidos', function (Blueprint $table) {
             $table->id('idPedido');
             $table->integer('codigoCliPedidos')->default(0);
+            $table->date('fechaRegistroPedido')->default(now());
             $table->integer('pedidoPrimerEspecie')->default(0);
             $table->integer('pedidoSegundaEspecie')->default(0);
             $table->integer('pedidoTercerEspecie')->default(0);
@@ -24,7 +25,7 @@ return new class extends Migration
             $table->integer('pedidoOctavaEspecie')->default(0);
             $table->integer('pedidoNovenaEspecie')->default(0);
             $table->integer('pedidoDecimaEspecie')->default(0);
-            $table->string('descripcionPedido', 500)->nullable();
+            $table->integer('estadoPedido')->default(1);
             $table->timestamps();
         });
     }

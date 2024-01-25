@@ -17,6 +17,14 @@
                 </div>
             </div>
         </div>
+        <div class="flex justify-between items-center relative flex-col gap-4 md:mx-5 lg:flex-row mb-5">
+            <div class="flex w-full lg:max-w-xs">
+                <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
+                    <i class='bx bxs-user-circle text-xl'></i>
+                </span>
+                <input class="lg:max-w-xs w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg focus:ring-primary-600 focus:border-primary-600 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" autocomplete="off" id="filtrarClientePedido" placeholder="Ingrese Nombre de Cliente">
+            </div>
+        </div>
         <div class="md:m-5 mt-0">
             <div class="relative overflow-auto max-h-[500px] aside_scrollED rounded-lg">
                 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -34,7 +42,6 @@
                             <th class="p-4 text-center whitespace-nowrap">Pollo XX</th>
                             <th class="p-4 text-center whitespace-nowrap">Brasa Yugo</th>
                             <th class="p-4 text-center whitespace-nowrap">Brasa Tecnico</th>
-                            <th class="p-4 text-center whitespace-nowrap">Comentario</th>
                         </tr>
                     </thead>
                     <tbody id="bodyProgramacionPedidos">
@@ -85,7 +92,7 @@
                             
                         </select>
                     </div>
-                    <div class="contenedorDeEspeciesPedidos flex flex-col items-center w-full max-h-60 overflow-y-scroll aside_scrollED overflow-x-hidden mt-4">
+                    <div id="contenedorDeEspeciesPedidos" class="contenedorDeEspeciesPedidos flex flex-col items-center w-full max-h-60 overflow-y-scroll aside_scrollED overflow-x-hidden mt-4">
                         <div class="hidden flex-col justify-center px-4 w-full" id="divPedidoYugoVivo">
                             <span class="text-base text-gray-900 dark:text-gray-50">Yugo Vivo :</span>
                             <input class="w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" autocomplete="off" id="inputCantidadYugoVivo" placeholder="Ingrese Cantidad">
@@ -126,9 +133,6 @@
                             <span class="text-base text-gray-900 dark:text-gray-50">Brasa Tecnico :</span>
                             <input class="w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" autocomplete="off" id="inputCantidadBrasaTecnico" placeholder="Ingrese Cantidad">
                         </div>
-                    </div>
-                    <div class="w-full mt-4 px-4">
-                        <textarea class="w-full outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="comentarioCliPedido" autocomplete="off" id="comentarioCliPedido" placeholder="INGRESE COMENTARIO"></textarea>
                     </div>
                 </div>
             </div>

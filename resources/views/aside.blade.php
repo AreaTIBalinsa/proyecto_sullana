@@ -113,18 +113,25 @@
 
     foreach ($menusAgrupados as $menu) {
         foreach ($menu['submenus'] as $submenu) {
-            $hrefSubMenus[] = $submenu['hrefSubMenu'];
+            // Normaliza las rutas antes de almacenarlas
+            $hrefSubMenus[] = rtrim(strtolower($submenu['hrefSubMenu']), '/');
         }
     }
     ?>
+
     <script>
         let hrefSubMenus = <?php echo json_encode($hrefSubMenus); ?>;
-        let rutaActual = window.location.pathname;
+        let rutaActual = window.location.pathname.toLowerCase();
 
-        if (hrefSubMenus.indexOf(rutaActual) === -1) {
-            window.location.href = '/home';
+        // Normaliza la ruta actual antes de comparar
+        rutaActual = rutaActual.endsWith('/') ? rutaActual.slice(0, -1) : rutaActual;
+
+        // Redirige a la primera ruta en el array, si hay alguna
+        if (hrefSubMenus.length > 0 && hrefSubMenus.indexOf(rutaActual) === -1) {
+            window.location.href = hrefSubMenus[0];
         }
     </script>
+
 </body>
 
 </html>
