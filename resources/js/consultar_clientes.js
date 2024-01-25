@@ -109,11 +109,9 @@ jQuery(function ($) {
         });
     }
 
-    $('.cerrarModalEditarDatosdeCliente, .modal-content').on('click', function (e) {
-        if (e.target === this) {
-            $('#ModalEditarDatosdeCliente').addClass('hidden');
-            $('#ModalEditarDatosdeCliente').removeClass('flex');
-        }
+    $('.cerrarModalEditarDatosdeCliente, #ModalEditarDatosdeCliente .opacity-75').on('click', function (e) {
+        $('#ModalEditarDatosdeCliente').addClass('hidden');
+        $('#ModalEditarDatosdeCliente').removeClass('flex');
     });
 
     function fn_formatearCelular(number) {

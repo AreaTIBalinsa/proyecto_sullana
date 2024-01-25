@@ -31,6 +31,9 @@ class PrecioXPresentacionTableSeeder extends Seeder
             'decimaTerceraEspecie' => 10.00,
             'decimaCuartaEspecie' => 10.00,
             'decimaQuintaOtrasEspecies' => 10.00,
+            'decimaSextaEspecie' => 10.00,
+            'decimaSeptimaEspecie' => 10.00,
+            'decimaOctavaEspecie' => 10.00,
         ]);
     }
 }

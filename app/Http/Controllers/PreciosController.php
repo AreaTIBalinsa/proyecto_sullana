@@ -39,6 +39,9 @@ class PreciosController extends Controller
             tb_precio_x_presentacion.decimaTerceraEspecie,
             tb_precio_x_presentacion.decimaCuartaEspecie,
             tb_precio_x_presentacion.decimaQuintaOtrasEspecies,
+            tb_precio_x_presentacion.decimaSextaEspecie,
+            tb_precio_x_presentacion.decimaSeptimaEspecie,
+            tb_precio_x_presentacion.decimaOctavaEspecie,
             IFNULL(CONCAT_WS(" ", nombresCli, apellidoPaternoCli, apellidoMaternoCli), "") AS nombreCompleto
             FROM tb_precio_x_presentacion
             INNER JOIN tb_clientes ON tb_clientes.codigoCli = tb_precio_x_presentacion.codigoCli 
@@ -117,6 +120,18 @@ class PreciosController extends Controller
                     ActualizarPreciosXPresentacion::where('idPrecio', $idClienteActualizarPrecioXPresentacion)
                         ->update(['decimaQuintaOtrasEspecies' => $valorActualizarPrecioXPresentacion]);
                     break;     
+                case 15:
+                    ActualizarPreciosXPresentacion::where('idPrecio', $idClienteActualizarPrecioXPresentacion)
+                        ->update(['decimaSextaEspecie' => $valorActualizarPrecioXPresentacion]);
+                    break;     
+                case 16:
+                    ActualizarPreciosXPresentacion::where('idPrecio', $idClienteActualizarPrecioXPresentacion)
+                        ->update(['decimaSeptimaEspecie' => $valorActualizarPrecioXPresentacion]);
+                    break;     
+                case 17:
+                    ActualizarPreciosXPresentacion::where('idPrecio', $idClienteActualizarPrecioXPresentacion)
+                        ->update(['decimaOctavaEspecie' => $valorActualizarPrecioXPresentacion]);
+                    break;     
                 default:
                     return response()->json(['error' => 'Número de especie inválido'], 400);
             }
@@ -192,6 +207,9 @@ class PreciosController extends Controller
         $resultadoEspecieDoce = $request->input('resultadoEspecieDoce');
         $resultadoEspecieTrece = $request->input('resultadoEspecieTrece');
         $resultadoEspecieCatorce = $request->input('resultadoEspecieCatorce');
+        $resultadoEspecieQuince = $request->input('resultadoEspecieQuince');
+        $resultadoEspecieDieciseis = $request->input('resultadoEspecieDieciseis');
+        $resultadoEspecieDiecisiete = $request->input('resultadoEspecieDiecisiete');
 
         if (Auth::check()) {
             // Realiza la consulta a la base de datos
@@ -209,7 +227,10 @@ class PreciosController extends Controller
                 'decimaSegundaEspecie' => $resultadoEspecieOnce,
                 'decimaTerceraEspecie' => $resultadoEspecieDoce,
                 'decimaCuartaEspecie' => $resultadoEspecieTrece,
-                'decimaQuintaOtrasEspecies' => $resultadoEspecieCatorce]);
+                'decimaQuintaOtrasEspecies' => $resultadoEspecieCatorce,
+                'decimaSextaEspecie' => $resultadoEspecieQuince,
+                'decimaSeptimaEspecie' => $resultadoEspecieDieciseis,
+                'decimaOctavaEspecie' => $resultadoEspecieDiecisiete]);
                 
             return response()->json(['success' => true], 200);
         }

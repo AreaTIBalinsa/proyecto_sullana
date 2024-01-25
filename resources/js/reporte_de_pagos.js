@@ -44,11 +44,9 @@ jQuery(function ($) {
         $('#divCodTrans').removeClass('flex').addClass('hidden');
     });
 
-    $('.cerrarModalAgregarPagoCliente, .modal-content').on('click', function (e) {
-        if (e.target === this) {
-            $('#ModalAgregarPagoCliente').addClass('hidden');
-            $('#ModalAgregarPagoCliente').removeClass('flex');
-        }
+    $('.cerrarModalAgregarPagoCliente, #ModalAgregarPagoCliente .opacity-75').on('click', function (e) {
+        $('#ModalAgregarPagoCliente').addClass('hidden');
+        $('#ModalAgregarPagoCliente').removeClass('flex');
     });
 
     // Eventos para abrir y cerrar modal de Agregar Descuento por Kilo
@@ -66,11 +64,9 @@ jQuery(function ($) {
         $('#valorAgregarDescuentoCliente').val('');
     });
 
-    $('.cerrarModalAgregarDescuentoCliente, .modal-content').on('click', function (e) {
-        if (e.target === this) {
-            $('#ModalAgregarDescuentoCliente').addClass('hidden');
-            $('#ModalAgregarDescuentoCliente').removeClass('flex');
-        }
+    $('.cerrarModalAgregarDescuentoCliente, #ModalAgregarDescuentoCliente .opacity-75').on('click', function (e) {
+        $('#ModalAgregarDescuentoCliente').addClass('hidden');
+        $('#ModalAgregarDescuentoCliente').removeClass('flex');
     });
 
     // Eventos para mostrar y ocultar interfaz de Cuenta del Cliente
@@ -429,7 +425,7 @@ jQuery(function ($) {
                 contenedorClientes.empty();
 
                 // Verificar si la respuesta es un arreglo de objetos
-                if (Array.isArray(response)) {
+                if (Array.isArray(response) && response.length > 0) {
                     // Iterar sobre los objetos y mostrar sus propiedades como sugerencias
                     response.forEach(function (obj) {
                         var suggestion = $('<div class="cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700 p-2 border-b border-gray-300/40">' + obj.nombreCompleto + '</div>');
@@ -528,7 +524,7 @@ jQuery(function ($) {
                 contenedorClientes.empty();
 
                 // Verificar si la respuesta es un arreglo de objetos
-                if (Array.isArray(response)) {
+                if (Array.isArray(response) && response.length > 0) {
                     // Iterar sobre los objetos y mostrar sus propiedades como sugerencias
                     response.forEach(function (obj) {
                         var suggestion = $('<div class="cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700 p-2 border-b border-gray-300/40">' + obj.nombreCompleto + '</div>');
@@ -613,7 +609,7 @@ jQuery(function ($) {
                 contenedorClientes.empty();
 
                 // Verificar si la respuesta es un arreglo de objetos
-                if (Array.isArray(response)) {
+                if (Array.isArray(response) && response.length > 0) {
                     // Iterar sobre los objetos y mostrar sus propiedades como sugerencias
                     response.forEach(function (obj) {
                         var suggestion = $('<div class="cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700 p-2 border-b border-gray-300/40">' + obj.nombreCompleto + '</div>');
@@ -759,7 +755,7 @@ jQuery(function ($) {
                     // Iterar sobre los objetos y mostrar sus propiedades
                     response.forEach(function(obj) {
                         // Crear una nueva fila
-                        nuevaFila = $('<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
+                        nuevaFila = $('<tr class="bg-white editarPagos border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
                         totalPago += parseFloat(obj.cantidadAbonoPag);
                         // Agregar las celdas con la información
                         nuevaFila.append($('<td class="hidden">').text(obj.idPagos));
@@ -879,21 +875,17 @@ jQuery(function ($) {
         }
     });
 
-    $('.cerrarModalAgregarPagoClienteEditar, .modal-content').on('click', function (e) {
-        if (e.target === this) {
-            $('#ModalAgregarPagoClienteEditar').addClass('hidden');
-            $('#ModalAgregarPagoClienteEditar').removeClass('flex');
-        }
+    $('.cerrarModalAgregarPagoClienteEditar, #ModalAgregarPagoClienteEditar .opacity-75').on('click', function (e) {
+        $('#ModalAgregarPagoClienteEditar').addClass('hidden');
+        $('#ModalAgregarPagoClienteEditar').removeClass('flex');
     });
 
-    $('.cerrarModalEditarDescuento, .modal-content').on('click', function (e) {
-        if (e.target === this) {
-            $('#ModalEditarDescuentoClienteEditar').addClass('hidden');
-            $('#ModalEditarDescuentoClienteEditar').removeClass('flex');
-        }
+    $('.cerrarModalEditarDescuento, #ModalEditarDescuentoClienteEditar .opacity-75').on('click', function (e) {
+        $('#ModalEditarDescuentoClienteEditar').addClass('hidden');
+        $('#ModalEditarDescuentoClienteEditar').removeClass('flex');
     });
 
-    $(document).on("dblclick", "#bodyReporteDePagos tr", function() {
+    $(document).on("dblclick", "#bodyReporteDePagos tr.editarPagos", function() {
         if (tipoUsuario =='Administrador'){
             let fila = $(this).closest('tr');
             let idReporteDePago= fila.find('td:eq(0)').text();

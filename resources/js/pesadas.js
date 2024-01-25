@@ -226,11 +226,9 @@ jQuery(function($) {
 
     };
 
-    $('.cerrarModalCambiarPesada, .modal-content').on('click', function (e) {
-        if (e.target === this) {
-            $('#ModalCambiarPesada').addClass('hidden');
-            $('#ModalCambiarPesada').removeClass('flex');
-        }
+    $('.cerrarModalCambiarPesada, #ModalCambiarPesada .opacity-75').on('click', function (e) {
+        $('#ModalCambiarPesada').addClass('hidden');
+        $('#ModalCambiarPesada').removeClass('flex');
     });
 
     $('#idCambiarPesadaCliente').on('input', function () {

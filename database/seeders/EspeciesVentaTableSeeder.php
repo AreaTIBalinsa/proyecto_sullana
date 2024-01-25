@@ -29,6 +29,9 @@ class EspeciesVentaTableSeeder extends Seeder
             ['idEspecie' => 13, 'nombreEspecie' => 'MENUDENCIA'],
             ['idEspecie' => 14, 'nombreEspecie' => 'DORSO'],
             ['idEspecie' => 15, 'nombreEspecie' => 'OTROS'],
+            ['idEspecie' => 16, 'nombreEspecie' => 'POLLO XX'],
+            ['idEspecie' => 17, 'nombreEspecie' => 'BRASA YUGO'],
+            ['idEspecie' => 18, 'nombreEspecie' => 'BRASA TECNICO'],
         ]);
     }
 }

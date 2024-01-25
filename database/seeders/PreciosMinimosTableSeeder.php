@@ -28,6 +28,9 @@ class PreciosMinimosTableSeeder extends Seeder
             ['idPrecioMinimo' => 12, 'precioMinimo' => 5, 'nombreEspeciePrecioMinimo' => "MENUDENCIA"],
             ['idPrecioMinimo' => 13, 'precioMinimo' => 5, 'nombreEspeciePrecioMinimo' => "DORSO"],
             ['idPrecioMinimo' => 14, 'precioMinimo' => 5, 'nombreEspeciePrecioMinimo' => "OTROS"],
+            ['idPrecioMinimo' => 15, 'precioMinimo' => 5, 'nombreEspeciePrecioMinimo' => "POLLO XX"],
+            ['idPrecioMinimo' => 16, 'precioMinimo' => 5, 'nombreEspeciePrecioMinimo' => "BRASA YUGO"],
+            ['idPrecioMinimo' => 17, 'precioMinimo' => 5, 'nombreEspeciePrecioMinimo' => "BRASA TECNICO"],
         ]);
     }
 }

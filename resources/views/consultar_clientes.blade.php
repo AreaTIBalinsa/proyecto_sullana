@@ -18,16 +18,6 @@
                     type="text" name="filtrarConsultarClientes" autocomplete="off" id="filtrarConsultarClientes"
                     placeholder="Ingrese Nombre de Cliente">
             </div>
-            {{-- <div class="flex flex-col md:flex-row md:items-center w-full lg:max-w-xs lg:h-10">
-                <div
-                    class="h-10 text-sm flex items-center justify-center text-center border border-gray-300 dark:border-gray-600 bg-gray-300 dark:bg-[#111B22] rounded-t-lg md:rounded-none md:rounded-l-lg">
-                    <h4 class="font-medium text-gray-900 dark:text-gray-300 min-w-max px-2">Seleccione Tipo :</h4>
-                </div>
-                <select
-                    class="w-full h-10 uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-b-lg md:rounded-none md:rounded-r-lg"
-                    name="tipoPolloConsultarClientes" id="tipoPolloConsultarClientes">
-                </select>
-            </div> --}}
         </div>
         <div id ="tblConsultarClientes" class="relative overflow-auto md:m-5 rounded-lg max-h-[600px] aside_scrollED">
             <table class="border-collapse w-full text-gray-500 dark:text-gray-400 select-none relative text-sm"
@@ -110,11 +100,16 @@
 
 {{-- Modal Opciones de Clientes --}}
 
-<div class="fixed hidden top-0 left-0 z-[100] justify-center items-center w-screen h-screen bg-gray-900 bg-opacity-75 transition-opacity cerrarModalEditarDatosdeCliente p-4" 
-    id="ModalEditarDatosdeCliente">
-    <div class="modal-content max-w-[700px] w-full h-full md:h-auto overflow-auto aside_scrollED">
-        <div class="transform overflow-hidden rounded-lg bg-white dark:bg-slate-700 shadow-xl transition-all">
-            <div class="px-4 pt-4">
+<div class="fixed inset-0 overflow-y-auto z-[100] hidden" id="ModalEditarDatosdeCliente">
+    <div class="flex justify-center items-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+        <!-- Fondo oscuro overlay -->
+        <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+            <div class="absolute inset-0 bg-gray-900 opacity-75"></div>
+        </div>
+
+        <!-- Contenido del modal -->
+        <div class="absolute rounded-lg max-h-max inset-0 m-auto align-bottom bg-white dark:bg-slate-700 text-left overflow-hidden shadow-xl transform transition-all max-w-[700px] w-full sm:w-full">
+            <div class="p-4">
                 <div class="flex flex-col">
                     <div class="border-b rounded-t dark:border-gray-500 p-2 flex justify-center">
                         <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Editar Cliente</h3>
@@ -188,24 +183,15 @@
                                 <label for="opcionDeshabilitado" class="w-full text-sm font-medium text-gray-900 dark:text-gray-300">INHABILITADO</label>
                             </div>
                         </div>
-                        {{-- <div class="flex w-full justify-start items-center gap-2 lg:col-start-1 lg:col-end-4">
-                            <p class="text-xs text-gray-400" id="usuarioRegistroConsultar"></p>
-                        </div> --}}
                     </div>
                 </div>
             </div>
             <div class="px-4 pb-4">
                 <div class="border-t dark:border-gray-500 w-full justify-between flex flex-col gap-2 sm:flex-row pt-4">
-                    <button type="button"
-                        class="inline-flex w-full justify-center rounded-md bg-red-500 hover:bg-red-600 px-3 py-2 text-sm font-semibold text-white sm:mt-0 sm:w-auto"
-                        id="btnEliminarCliente">Eliminar Cliente</button>
+                    <button type="button" class="inline-flex w-full justify-center rounded-md bg-red-500 hover:bg-red-600 px-3 py-2 text-sm font-semibold text-white sm:mt-0 sm:w-auto"id="btnEliminarCliente">Eliminar Cliente</button>
                     <div class="flex flex-col gap-2 sm:flex-row">
-                        <button type="button"
-                            class="inline-flex w-full justify-center rounded-md bg-red-500 hover:bg-red-600 px-3 py-2 text-sm font-semibold text-white sm:mt-0 sm:w-auto cerrarModalEditarDatosdeCliente"
-                            id="btnCerrarModalEditarDatosdeCliente">Cancelar</button>
-                        <button type="button"
-                            class="inline-flex w-full justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-700 sm:ml-3 sm:w-auto"
-                            id="btnEditarDatosdeCliente">Actualizar</button>
+                        <button type="button" class="inline-flex w-full justify-center rounded-md bg-red-500 hover:bg-red-600 px-3 py-2 text-sm font-semibold text-white sm:mt-0 sm:w-auto cerrarModalEditarDatosdeCliente">Cancelar</button>
+                        <button type="button" class="inline-flex w-full justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-700 sm:ml-3 sm:w-auto"id="btnEditarDatosdeCliente">Actualizar</button>
                     </div>
                 </div>
             </div>

@@ -39,4 +39,24 @@ class ConfiguracionesController extends Controller
         // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
         return response()->json(['error' => 'Usuario no autenticado'], 401);
     }
+
+    public function consulta_EspeciesPedido (){
+
+        if (Auth::check()) {
+            // Realiza la consulta a la base de datos
+            $datos = DB::select('
+            SELECT idEspecie, nombreEspecie
+                FROM tb_especies_venta where 
+                idEspecie != 9 and idEspecie != 10
+                and idEspecie != 11 and idEspecie != 13
+                and idEspecie != 12 and idEspecie != 14
+                and idEspecie != 15 and idEspecie != 8');
+            
+            // Devuelve los datos en formato JSON
+            return response()->json($datos);
+        }
+
+        // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
+        return response()->json(['error' => 'Usuario no autenticado'], 401);
+    }
 }

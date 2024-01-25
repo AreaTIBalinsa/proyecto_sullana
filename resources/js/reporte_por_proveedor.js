@@ -316,11 +316,9 @@ jQuery(function($) {
         }
     });
 
-    $('.cerrarModalRegistrarGuias, .modal-content').on('click', function (e) {
-        if (e.target === this) {
-            $('#ModalRegistrarGuias').addClass('hidden');
-            $('#ModalRegistrarGuias').removeClass('flex');
-        }
+    $('.cerrarModalRegistrarGuias, #ModalRegistrarGuias .opacity-75').on('click', function (e) {
+        $('#ModalRegistrarGuias').addClass('hidden');
+        $('#ModalRegistrarGuias').removeClass('flex');
     });
 
     $('#btnAgregarGuiasReportePorProveedor').on('click', function () {
@@ -494,11 +492,9 @@ jQuery(function($) {
         fn_EditarGuia(codigoGuia);
     });
 
-    $('.cerrarModalRegistrarGuiasEditar, .modal-content').on('click', function (e) {
-        if (e.target === this) {
-            $('#ModalRegistrarGuiasEditar').addClass('hidden');
-            $('#ModalRegistrarGuiasEditar').removeClass('flex');
-        }
+    $('.cerrarModalRegistrarGuiasEditar, #ModalRegistrarGuiasEditar .opacity-75').on('click', function (e) {
+        $('#ModalRegistrarGuiasEditar').addClass('hidden');
+        $('#ModalRegistrarGuiasEditar').removeClass('flex');
     });
 
     function fn_EditarGuia(codigoGuia){

@@ -90,11 +90,9 @@ jQuery(function($) {
         });
     }    
 
-    $('.cerrarModalAgregarSaldo').on('click', function (e) {
-        if (e.target === this) {
-            $('#ModalAgregarSaldo').addClass('hidden');
-            $('#ModalAgregarSaldo').removeClass('flex');
-        }
+    $('.cerrarModalAgregarSaldo, #ModalAgregarSaldo .opacity-75').on('click', function (e) {
+        $('#ModalAgregarSaldo').addClass('hidden');
+        $('#ModalAgregarSaldo').removeClass('flex');
     });
 
     $(document).on("dblclick", "#tablaAgregarSaldo tbody tr", function() {

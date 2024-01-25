@@ -12,7 +12,7 @@ jQuery(function($) {
             method: 'GET',
             success: function (response) {
                 // Verificar si la respuesta es un arreglo de objetos
-                if (Array.isArray(response)) {
+                if (Array.isArray(response) && response.length > 0) {
                     // Obtener el select
                     let tbodyConsultarUsuarios = $('#bodyConsultarUsuarios');
                     tbodyConsultarUsuarios.empty();
@@ -38,7 +38,7 @@ jQuery(function($) {
                     });
 
                 } else {
-                    console.log("La respuesta no es un arreglo de objetos.");
+                    console.log("La respuesta no es un arreglo de objetos.");                    
                 }
 
             },
@@ -48,11 +48,9 @@ jQuery(function($) {
         });
     }
 
-    $('.cerrarModalEditarDatosdeUsuario, .modal-content').on('click', function (e) {
-        if (e.target === this) {
-            $('#ModalEditarDatosdeUsuario').addClass('hidden');
-            $('#ModalEditarDatosdeUsuario').removeClass('flex');
-        }
+    $('.cerrarModalEditarDatosdeUsuario, #ModalEditarDatosdeUsuario .opacity-75').on('click', function (e) {
+        $('#ModalEditarDatosdeUsuario').addClass('hidden');
+        $('#ModalEditarDatosdeUsuario').removeClass('flex');
     });
 
     $(document).on("dblclick", "#tablaConsultarUsuarios tbody tr", function() {

@@ -33,12 +33,10 @@ jQuery(function($) {
             }
         });
     }
-    
-    $('.cerrarModalDeudaMaxima').on('click', function (e) {
-        if (e.target === this) {
-            $('#ModalDeudaMaxima').addClass('hidden');
-            $('#ModalDeudaMaxima').removeClass('flex');
-        }
+
+    $('.cerrarModalDeudaMaxima, #ModalDeudaMaxima .opacity-75').on('click', function (e) {
+        $('#ModalDeudaMaxima').addClass('hidden');
+        $('#ModalDeudaMaxima').removeClass('flex');
     });
 
     $(document).on("dblclick", "#tablaDeudaMaxima tbody tr", function() {

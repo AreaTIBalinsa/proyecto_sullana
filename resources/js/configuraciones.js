@@ -9,6 +9,7 @@ jQuery(function ($) {
     var tipoUsuario = $('#tipoUsuario').data('id');
 
     $('#fechaProgramacionPedidos').val(fechaHoy);
+    $('#fechaProgramacionPedidosModal').val(fechaHoy);
 
     // Eventos para abrir y cerrar modal de Agregar Pago
 
@@ -16,15 +17,13 @@ jQuery(function ($) {
         $('#ModalRegistrarPedido').addClass('flex');
         $('#ModalRegistrarPedido').removeClass('hidden');
         $('#idRegistrarPedidoCliente').focus();
-        $('#fechaProgramacionPedidosModal').val(fechaHoy);
     });
 
-    $('.cerrarModalRegistrarPedido, .modal-content').on('click', function (e) {
-        if ($(e.target).hasClass('cerrarModalRegistrarPedido')) {
-            $('#ModalRegistrarPedido').addClass('hidden');
-            $('#ModalRegistrarPedido').removeClass('flex');
-        }
-    });    
+    $('.cerrarModalRegistrarPedido, #ModalRegistrarPedido .opacity-75').on('click', function (e) {
+        $('#ModalRegistrarPedido').addClass('hidden');
+        $('#ModalRegistrarPedido').removeClass('flex');
+    });
+       
 
     $('#idRegistrarPedidoCliente').on('input', function () {
         let inputRegistrarPedido = $(this).val();
@@ -86,6 +85,7 @@ jQuery(function ($) {
         });
     };
 
+    fn_EspeciesPedido();
     function fn_EspeciesPedido(){
         $.ajax({
             url: '/fn_consulta_EspeciesPedido',
@@ -110,7 +110,6 @@ jQuery(function ($) {
 
                     // Iterar sobre los objetos y mostrar sus propiedades
                     response.forEach(function(obj) {
-                        console.log(obj);
                         let option = $('<option>', {
                             value: obj.idEspecie,
                             text: obj.nombreEspecie
@@ -127,5 +126,101 @@ jQuery(function ($) {
             }
         });
     }
+    
+    // Selecciona el elemento por su ID
+    $('#selectEspecieAgregarPedido').on('change',function() {
+        // Acciones a realizar cuando cambia la selección
+        let valorSeleccionado = $(this).val();
+    
+        switch (valorSeleccionado){
+            case '1':
+                $('#divPedidoYugoVivo').addClass('flex');
+                $('#divPedidoYugoVivo').removeClass('hidden');
+                $('#inputCantidadYugoVivo').focus();
+                break;
+            case '2':
+                $('#divPedidoYugoPelado').addClass('flex');
+                $('#divPedidoYugoPelado').removeClass('hidden');
+                $('#inputCantidadYugoPelado').focus();
+                break;
+            case '3':
+                $('#divPedidoTecnicoVivo').addClass('flex');
+                $('#divPedidoTecnicoVivo').removeClass('hidden');
+                $('#inputCantidadTecnicoVivo').focus();
+                break;
+            case '4':
+                $('#divPedidoTecnicoPelado').addClass('flex');
+                $('#divPedidoTecnicoPelado').removeClass('hidden');
+                $('#inputCantidadTecnicoVivo').focus();
+                break;
+            case '5':
+                $('#divPedidoGallinaDoble').addClass('flex');
+                $('#divPedidoGallinaDoble').removeClass('hidden');
+                $('#inputCantidadGallinaDoble').focus();
+                break;
+            case '6':
+                $('#divPedidoGallinaChica').addClass('flex');
+                $('#divPedidoGallinaChica').removeClass('hidden');
+                $('#inputCantidadGallinaChica').focus();
+                break;
+            case '7':
+                $('#divPedidoGallo').addClass('flex');
+                $('#divPedidoGallo').removeClass('hidden');
+                $('#inputCantidadGallo').focus();
+                break;
+            case '16':
+                $('#divPedidoPolloXX').addClass('flex');
+                $('#divPedidoPolloXX').removeClass('hidden');
+                $('#inputCantidadPolloXX').focus();
+                break;
+            case '17':
+                $('#divPedidoBrasaYugo').addClass('flex');
+                $('#divPedidoBrasaYugo').removeClass('hidden');
+                $('#inputCantidadBrasaYugo').focus();
+                break;
+            case '18':
+                $('#divPedidoBrasaTecnico').addClass('flex');
+                $('#divPedidoBrasaTecnico').removeClass('hidden');
+                $('#inputCantidadBrasaTecnico').focus();
+                break;
+            default:
+                console.log('Gaaaaaaaaaa');
+                break;
+        }
+    });
+
+    $('#btnRegistrarPedido').on('click', function () {
+        let idRegistrarPedidoCliente = $('#selectedCodigoRegistrarPedido').attr('value');
+        let fechaProgramacionPedidosModal = $("#fechaProgramacionPedidosModal").val();
+        let selectEspecieAgregarPedido = $("#selectEspecieAgregarPedido").val();
+        let comentarioCliPedido = $('#comentarioCliPedido').val();
+
+        if (idRegistrarPedidoCliente == "" || idRegistrarPedidoCliente == 0 || idRegistrarPedidoCliente == NaN || idRegistrarPedidoCliente === null){
+            alertify.notify('Debe seleccionar Cliente', 'error', 3);
+            $("#idRegistrarPedidoCliente").removeClass('dark:border-gray-600 border-gray-300').addClass('border-red-500');
+        }else{
+            $("#idRegistrarPedidoCliente").removeClass('border-red-500').addClass('dark:border-gray-600 border-gray-300');
+        }
+
+        if (selectEspecieAgregarPedido == NaN || selectEspecieAgregarPedido == 0 || selectEspecieAgregarPedido == "" || selectEspecieAgregarPedido === null){
+            alertify.notify('Se debe seleccionar especie', 'error', 3);
+            $("#selectEspecieAgregarPedido").removeClass('dark:border-gray-600 border-gray-300').addClass('border-red-500');
+        }else{
+            $("#selectEspecieAgregarPedido").removeClass('border-red-500').addClass('dark:border-gray-600 border-gray-300');
+        }
+
+        let primerEspecie = $('#inputCantidadYugoVivo').val();
+        let segundaEspecie = $('#inputCantidadYugoPelado').val();
+        let terceraEspecie = $('#inputCantidadTecnicoVivo').val();
+        let cuartaEspecie = $('#inputCantidadTecnicoPelado').val();
+        let quintaEspecie = $('#inputCantidadGallinaDoble').val();
+        let sextaEspecie = $('#inputCantidadGallinaChica').val();
+        let sepimaEspecie = $('#inputCantidadGallo').val();
+        let octavaEspecie = $('#inputCantidadPolloXX').val();
+        let novenaEspecie = $('#inputCantidadBrasaYugo').val();
+        let decimaEspecie = $('#inputCantidadBrasaTecnico').val();
+
+        console.log('Pedido registrado', idRegistrarPedidoCliente, fechaProgramacionPedidosModal, selectEspecieAgregarPedido,comentarioCliPedido,primerEspecie,segundaEspecie,terceraEspecie,cuartaEspecie,quintaEspecie,sextaEspecie,sepimaEspecie,octavaEspecie,novenaEspecie,decimaEspecie);
+    });
 
 })

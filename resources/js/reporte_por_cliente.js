@@ -611,18 +611,14 @@ jQuery(function ($) {
         return filas.join('');
     }
 
-    $('.cerrarModalCantidadReportePorCliente, .modal-content').on('click', function (e) {
-        if (e.target === this) {
-            $('#ModalCantidadReportePorCliente').addClass('hidden');
-            $('#ModalCantidadReportePorCliente').removeClass('flex');
-        }
+    $('.cerrarModalCantidadReportePorCliente, #ModalCantidadReportePorCliente .opacity-75').on('click', function (e) {
+        $('#ModalCantidadReportePorCliente').addClass('hidden');
+        $('#ModalCantidadReportePorCliente').removeClass('flex');
     });
 
-    $('.cerrarModalPesoReportePorCliente, .modal-content').on('click', function (e) {
-        if (e.target === this) {
-            $('#ModalPesoReportePorCliente').addClass('hidden');
-            $('#ModalPesoReportePorCliente').removeClass('flex');
-        }
+    $('.cerrarModalPesoReportePorCliente, #ModalPesoReportePorCliente .opacity-75').on('click', function (e) {
+        $('#ModalPesoReportePorCliente').addClass('hidden');
+        $('#ModalPesoReportePorCliente').removeClass('flex');
     });
 
     $(document).on('input', '#nuevoCantidadReportePorCliente', function () {

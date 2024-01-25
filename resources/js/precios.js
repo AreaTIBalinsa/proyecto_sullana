@@ -52,18 +52,14 @@ jQuery(function($) {
         fn_ActualizarPrecioMinimo(idEspecie, precio);
     });    
 
-    $('.cerrarModalPreciosXPresentacion, .modal-content').on('click', function (e) {
-        if (e.target === this) {
-            $('#ModalPreciosXPresentacion').addClass('hidden');
-            $('#ModalPreciosXPresentacion').removeClass('flex');
-        }
+    $('.cerrarModalPreciosXPresentacion, #ModalPreciosXPresentacion .opacity-75').on('click', function (e) {
+        $('#ModalPreciosXPresentacion').addClass('hidden');
+        $('#ModalPreciosXPresentacion').removeClass('flex');
     });
 
-    $('.cerrarModalPreciosMinimos').on('click', function (e) {
-        if (e.target === this) {
-            $('#ModalPreciosMinimos').addClass('hidden');
-            $('#ModalPreciosMinimos').removeClass('flex');
-        }
+    $('.cerrarModalPreciosMinimos, #ModalPreciosMinimos .opacity-75').on('click', function (e) {
+        $('#ModalPreciosMinimos').addClass('hidden');
+        $('#ModalPreciosMinimos').removeClass('flex');
     });
 
     $('#btnActualizarPreciosXPresentacion').on('click', function () {
@@ -73,7 +69,6 @@ jQuery(function($) {
         let numeroEspeciePrecioXPresentacion = $('#idEspeciePrecioXActualizar').attr("value");
         
         fn_ActualizarPrecioXPresentacion(idClienteActualizarPrecioXPresentacion, valorActualizarPrecioXPresentacion,numeroEspeciePrecioXPresentacion);
-        console.log("numeroEspeciePrecioXPresentacion",numeroEspeciePrecioXPresentacion)
         $('#ModalPreciosXPresentacion').addClass('hidden');
         $('#ModalPreciosXPresentacion').removeClass('flex');
     });
@@ -93,7 +88,9 @@ jQuery(function($) {
         let valorNuevoPrecioPolloMenudencia = parseFloat($('#precioPolloMenudencia').val());
         let valorNuevoPrecioPolloDorso = parseFloat($('#precioPolloDorso').val());
         let valorNuevoPrecioPolloOtros = parseFloat($('#precioPolloOtros').val());
-        
+        let valorNuevoPrecioPolloXx = parseFloat($('#precioPolloxx').val());
+        let valorNuevoPrecioBrasaYugo = parseFloat($('#precioBrasaYugo').val());
+        let valorNuevoPrecioBrasaTecnico = parseFloat($('#precioBrasaTecnico').val());
     
         let totalConsultas = $('#tablaPreciosXPresentacion tbody tr').length;
         let consultasCompletadas = 0;
@@ -129,6 +126,9 @@ jQuery(function($) {
             let decimaSegundaEspeciePolloMenudencia = parseFloat($(this).find('td:eq(13)').text());
             let decimaTerceraEspeciePolloDorso = parseFloat($(this).find('td:eq(14)').text());
             let decimacuartaEspeciePolloMOtros = parseFloat($(this).find('td:eq(15)').text());
+            let decimaquintaEspeciePolloXX = parseFloat($(this).find('td:eq(16)').text());
+            let decimasextaEspecieBrasaYugo = parseFloat($(this).find('td:eq(17)').text());
+            let decimaseptimaEspecieBrasaTecnico = parseFloat($(this).find('td:eq(18)').text());
     
             let resultadoEspecieUno = primerEspeciePolloVivo + valorNuevoPrecioPolloVivo;
             let resultadoEspecieDos = segundaEspeciePolloPelado + valorNuevoPrecioPolloPelado;
@@ -144,11 +144,14 @@ jQuery(function($) {
             let resultadoEspecieDoce = decimaSegundaEspeciePolloMenudencia + valorNuevoPrecioPolloMenudencia;
             let resultadoEspecieTrece = decimaTerceraEspeciePolloDorso + valorNuevoPrecioPolloDorso;
             let resultadoEspecieCatorce = decimacuartaEspeciePolloMOtros + valorNuevoPrecioPolloOtros;
+            let resultadoEspecieQuince = decimaquintaEspeciePolloXX + valorNuevoPrecioPolloXx;
+            let resultadoEspecieDieciseis = decimasextaEspecieBrasaYugo + valorNuevoPrecioBrasaYugo;
+            let resultadoEspecieDiecisiete = decimaseptimaEspecieBrasaTecnico + valorNuevoPrecioBrasaTecnico;
     
-            fn_AgregarNuevoPrecioPollo(idCodigoCliente, resultadoEspecieUno, resultadoEspecieDos, resultadoEspecieTres, resultadoEspecieCuatro, resultadoEspecieCinco, resultadoEspecieSeis, resultadoEspecieSiete, resultadoEspecieOcho, resultadoEspecieNueve, resultadoEspecieDiez, resultadoEspecieOnce, resultadoEspecieDoce, resultadoEspecieTrece, resultadoEspecieCatorce, totalConsultas);
+            fn_AgregarNuevoPrecioPollo(idCodigoCliente, resultadoEspecieUno, resultadoEspecieDos, resultadoEspecieTres, resultadoEspecieCuatro, resultadoEspecieCinco, resultadoEspecieSeis, resultadoEspecieSiete, resultadoEspecieOcho, resultadoEspecieNueve, resultadoEspecieDiez, resultadoEspecieOnce, resultadoEspecieDoce, resultadoEspecieTrece, resultadoEspecieCatorce, resultadoEspecieQuince, resultadoEspecieDieciseis, resultadoEspecieDiecisiete, totalConsultas);
         });
     
-        function fn_AgregarNuevoPrecioPollo(idCodigoCliente, resultadoEspecieUno, resultadoEspecieDos, resultadoEspecieTres, resultadoEspecieCuatro, resultadoEspecieCinco, resultadoEspecieSeis, resultadoEspecieSiete, resultadoEspecieOcho, resultadoEspecieNueve, resultadoEspecieDiez, resultadoEspecieOnce, resultadoEspecieDoce, resultadoEspecieTrece, resultadoEspecieCatorce, totalConsultas) {
+        function fn_AgregarNuevoPrecioPollo(idCodigoCliente, resultadoEspecieUno, resultadoEspecieDos, resultadoEspecieTres, resultadoEspecieCuatro, resultadoEspecieCinco, resultadoEspecieSeis, resultadoEspecieSiete, resultadoEspecieOcho, resultadoEspecieNueve, resultadoEspecieDiez, resultadoEspecieOnce, resultadoEspecieDoce, resultadoEspecieTrece, resultadoEspecieCatorce, resultadoEspecieQuince, resultadoEspecieDieciseis, resultadoEspecieDiecisiete, totalConsultas) {
             $.ajax({
                 url: '/fn_consulta_AgregarNuevoPrecioPollo',
                 method: 'GET',
@@ -168,6 +171,9 @@ jQuery(function($) {
                     resultadoEspecieDoce: resultadoEspecieDoce,
                     resultadoEspecieTrece: resultadoEspecieTrece,
                     resultadoEspecieCatorce: resultadoEspecieCatorce,
+                    resultadoEspecieQuince: resultadoEspecieQuince,
+                    resultadoEspecieDieciseis: resultadoEspecieDieciseis,
+                    resultadoEspecieDiecisiete: resultadoEspecieDiecisiete,
                 },
                 success: function (response) {
                     if (response.success) {
@@ -196,6 +202,10 @@ jQuery(function($) {
                             $('#precioPolloMenudencia').val("0.0");
                             $('#precioPolloDorso').val("0.0");
                             $('#precioPolloOtros').val("0.0");
+                            $('#precioPolloxx').val("0.0");
+                            $('#precioBrasaYugo').val("0.0");
+                            $('#precioBrasaTecnico').val("0.0");
+
                         }
                     }
                 },
@@ -236,6 +246,9 @@ jQuery(function($) {
                     $('#valorPrecioPolloVivoMenudencia').val(parseFloat(response[11].precioMinimo).toFixed(2));
                     $('#valorPrecioPolloVivoDorso').val(parseFloat(response[12].precioMinimo).toFixed(2));
                     $('#valorPrecioPolloVivoOtros').val(parseFloat(response[13].precioMinimo).toFixed(2));
+                    $('#valorPrecioPolloxx').val(parseFloat(response[14].precioMinimo).toFixed(2));
+                    $('#valorPrecioBrasaYugo').val(parseFloat(response[15].precioMinimo).toFixed(2));
+                    $('#valorPrecioBrasaTecnico').val(parseFloat(response[16].precioMinimo).toFixed(2));
 
                     $('#idPolloVivo').attr('value', response[0].idPrecioMinimo);
                     $('#idPolloVivoPelado').attr('value', response[1].idPrecioMinimo);
@@ -251,6 +264,9 @@ jQuery(function($) {
                     $('#idPolloVivoMenudencia').attr('value', response[11].idPrecioMinimo);
                     $('#idPolloVivoDorso').attr('value', response[12].idPrecioMinimo);
                     $('#idPolloVivoOtros').attr('value', response[13].idPrecioMinimo);
+                    $('#idPolloxx').attr('value', response[14].idPrecioMinimo);
+                    $('#idBrasaYugo').attr('value', response[15].idPrecioMinimo);
+                    $('#idBrasaTecnico').attr('value', response[16].idPrecioMinimo);
 
                     fn_pintarPreciosMinimos();
 
@@ -297,7 +313,10 @@ jQuery(function($) {
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer precioColumna" data-columna="11">').text(obj.decimaSegundaEspecie));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer precioColumna" data-columna="12">').text(obj.decimaTerceraEspecie));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer precioColumna" data-columna="13">').text(obj.decimaCuartaEspecie));
-                        nuevaFila.append($('<td class="px-4 py-2 text-center cursor-pointer precioColumna" data-columna="14">').text(obj.decimaQuintaOtrasEspecies));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer precioColumna" data-columna="14">').text(obj.decimaQuintaOtrasEspecies));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer precioColumna" data-columna="15">').text(obj.decimaSextaEspecie));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer precioColumna" data-columna="16">').text(obj.decimaSeptimaEspecie));
+                        nuevaFila.append($('<td class="px-4 py-2 text-center cursor-pointer precioColumna" data-columna="17">').text(obj.decimaOctavaEspecie));
                         nuevaFila.append($('<td class="hidden">').text(obj.idGrupo));
 
                         // Agregar la nueva fila al tbody
@@ -385,6 +404,15 @@ jQuery(function($) {
     $('#restar_precioPolloOtros').on('click', function() {
         actualizarPrecio('#precioPolloOtros', 'restar');
     });
+    $('#restar_precioPolloxx').on('click', function() {
+        actualizarPrecio('#precioPolloxx', 'restar');
+    });
+    $('#restar_precioBrasaYugo').on('click', function() {
+        actualizarPrecio('#precioBrasaYugo', 'restar');
+    });
+    $('#restar_precioBrasaTecnico').on('click', function() {
+        actualizarPrecio('#precioBrasaTecnico', 'restar');
+    });
     
     $('#sumar_precioPolloVivo').on('click', function() {
         actualizarPrecio('#precioPolloVivo', 'sumar');
@@ -440,6 +468,15 @@ jQuery(function($) {
 
     $('#sumar_precioPolloOtros').on('click', function() {
         actualizarPrecio('#precioPolloOtros', 'sumar');
+    });
+    $('#sumar_precioPolloxx').on('click', function() {
+        actualizarPrecio('#precioPolloxx', 'sumar');
+    });
+    $('#sumar_precioBrasaYugo').on('click', function() {
+        actualizarPrecio('#precioBrasaYugo', 'sumar');
+    });
+    $('#sumar_precioBrasaTecnico').on('click', function() {
+        actualizarPrecio('#precioBrasaTecnico', 'sumar');
     });
 
     function fn_ActualizarPrecioXPresentacion(idClienteActualizarPrecioXPresentacion, valorActualizarPrecioXPresentacion,numeroEspeciePrecioXPresentacion){

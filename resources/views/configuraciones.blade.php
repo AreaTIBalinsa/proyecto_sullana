@@ -9,11 +9,11 @@
         {{-- Termina contenedor Configuraciones --}}
         <div class="flex justify-between items-center gap-4 flex-col md:flex-row flex-wrap md:mx-5 mt-0 mb-5">
             <button class="w-full md:w-56 flex gap-2 justify-center items-center cursor-pointer uppercase bg-blue-600 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 hover:bg-blue-700" type="submit" autocomplete="off" id="registrarPedidoCliente"><i class='bx bxs-user-detail text-lg'></i><h5 class="min-w-max">Agregar Pedido</h5></button>
-            <div class="flex flex-col justify-center">
+            <div class="flex flex-col justify-center w-full md:w-auto">
                 <label for="fechaProgramacionPedidos" class="text-base text-gray-900 dark:text-gray-50">Fecha :</label>
                 <div class="flex gap-2 items-center">
-                    <input type="date" class="outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 px-2.5 py-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" id="fechaProgramacionPedidos">
-                    <i class='bx bx-search-alt dark:text-white text-gray-900 bg-blue-600 p-2.5 rounded-lg cursor-pointer' id="btnBuscarPedidos"></i>
+                    <input type="date" class="w-full md:w-auto outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 px-2.5 py-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" id="fechaProgramacionPedidos">
+                    <i class='bx bx-search-alt dark:text-white text-gray-900 bg-blue-600 p-2.5 rounded-lg cursor-pointer hover:bg-blue-700' id="btnBuscarPedidos"></i>
                 </div>
             </div>
         </div>
@@ -34,7 +34,7 @@
                             <th class="p-4 text-center whitespace-nowrap">Pollo XX</th>
                             <th class="p-4 text-center whitespace-nowrap">Brasa Yugo</th>
                             <th class="p-4 text-center whitespace-nowrap">Brasa Tecnico</th>
-                            <th class="p-4 text-center whitespace-nowrap">Descripción</th>
+                            <th class="p-4 text-center whitespace-nowrap">Comentario</th>
                         </tr>
                     </thead>
                     <tbody id="bodyProgramacionPedidos">
@@ -46,9 +46,15 @@
     </div>
 </main>
 
-<div class="fixed hidden top-0 left-0 z-[100] justify-center items-center w-screen h-screen bg-gray-900 bg-opacity-75 transition-opacity cerrarModalRegistrarPedido" id="ModalRegistrarPedido">
-    <div class="modal-content max-w-lg w-full mx-4">
-        <div class="transform overflow-hidden rounded-lg bg-white dark:bg-slate-700 shadow-xl transition-all">
+<div class="fixed inset-0 overflow-y-auto z-[100] hidden" id="ModalRegistrarPedido">
+    <div class="flex justify-center items-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+        <!-- Fondo oscuro overlay -->
+        <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+            <div class="absolute inset-0 bg-gray-900 opacity-75"></div>
+        </div>
+
+        <!-- Contenido del modal -->
+        <div class="absolute rounded-lg max-h-max inset-0 m-auto align-bottom bg-white dark:bg-slate-700 text-left overflow-hidden shadow-xl transform transition-all sm:max-w-lg sm:w-full">
             <div class="p-4">
                 <div class="flex flex-col">
                     <div class="border-b rounded-t dark:border-gray-500 p-2 flex justify-center">
@@ -63,7 +69,7 @@
                                 <input class="max-w-xs w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg focus:ring-primary-600 focus:border-primary-600 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" autocomplete="off" id="idRegistrarPedidoCliente" placeholder="Ingrese Nombre de Cliente">
                             </div>
                             <!-- Etiquetas ocultas para almacenar los datos seleccionados -->
-                            <label id="selectedCodigoRegistrarPedido" class="hidden" val=""></label>
+                            <label id="selectedCodigoRegistrarPedido" class="hidden" value="0"></label>
         
                             <!-- Contenedor para las sugerencias -->
                             <div id="contenedorClientesRegistrarPedido" class="max-w-xs w-full overflow-hidden overflow-y-auto absolute max-h-40 z-10 text-gray-900 dark:text-gray-50 top-full m-auto bg-white dark:bg-gray-800 border rounded hidden outline-none">
@@ -80,46 +86,49 @@
                         </select>
                     </div>
                     <div class="contenedorDeEspeciesPedidos flex flex-col items-center w-full max-h-60 overflow-y-scroll aside_scrollED overflow-x-hidden mt-4">
-                        <div class="flex flex-col justify-center px-4 w-full" id="divPedidoYugoVivo">
-                            <span class="text-base text-gray-900 dark:text-gray-50">Pollo Yugo :</span>
-                            <input class="w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" autocomplete="off" id="" placeholder="Ingrese Cantidad">
+                        <div class="hidden flex-col justify-center px-4 w-full" id="divPedidoYugoVivo">
+                            <span class="text-base text-gray-900 dark:text-gray-50">Yugo Vivo :</span>
+                            <input class="w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" autocomplete="off" id="inputCantidadYugoVivo" placeholder="Ingrese Cantidad">
                         </div>
-                        <div class="flex flex-col justify-center px-4 w-full mt-2" id="divPedidoYugoPelado">
-                            <span class="text-base text-gray-900 dark:text-gray-50">Pollo Pelado :</span>
-                            <input class="w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" autocomplete="off" id="" placeholder="Ingrese Cantidad">
+                        <div class="hidden flex-col justify-center px-4 w-full mt-2" id="divPedidoYugoPelado">
+                            <span class="text-base text-gray-900 dark:text-gray-50">Yugo Pelado :</span>
+                            <input class="w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" autocomplete="off" id="inputCantidadYugoPelado" placeholder="Ingrese Cantidad">
                         </div>
-                        <div class="flex flex-col justify-center px-4 w-full mt-2" id="divPedidoTecnicoVivo">
+                        <div class="hidden flex-col justify-center px-4 w-full mt-2" id="divPedidoTecnicoVivo">
                             <span class="text-base text-gray-900 dark:text-gray-50">Tecnico Vivo :</span>
-                            <input class="w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" autocomplete="off" id="" placeholder="Ingrese Cantidad">
+                            <input class="w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" autocomplete="off" id="inputCantidadTecnicoVivo" placeholder="Ingrese Cantidad">
                         </div>
-                        <div class="flex flex-col justify-center px-4 w-full mt-2" id="divPedidoTecnicoPelado">
+                        <div class="hidden flex-col justify-center px-4 w-full mt-2" id="divPedidoTecnicoPelado">
                             <span class="text-base text-gray-900 dark:text-gray-50">Tecnico Pelado :</span>
-                            <input class="w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" autocomplete="off" id="" placeholder="Ingrese Cantidad">
+                            <input class="w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" autocomplete="off" id="inputCantidadTecnicoPelado" placeholder="Ingrese Cantidad">
                         </div>
-                        <div class="flex flex-col justify-center px-4 w-full mt-2" id="divPedidoGallinaDoble">
+                        <div class="hidden flex-col justify-center px-4 w-full mt-2" id="divPedidoGallinaDoble">
                             <span class="text-base text-gray-900 dark:text-gray-50">Gallina Doble :</span>
-                            <input class="w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" autocomplete="off" id="" placeholder="Ingrese Cantidad">
+                            <input class="w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" autocomplete="off" id="inputCantidadGallinaDoble" placeholder="Ingrese Cantidad">
                         </div>
-                        <div class="flex flex-col justify-center px-4 w-full mt-2" id="divPedidoGallinaChica">
+                        <div class="hidden flex-col justify-center px-4 w-full mt-2" id="divPedidoGallinaChica">
                             <span class="text-base text-gray-900 dark:text-gray-50">Gallina Chica :</span>
-                            <input class="w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" autocomplete="off" id="" placeholder="Ingrese Cantidad">
+                            <input class="w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" autocomplete="off" id="inputCantidadGallinaChica" placeholder="Ingrese Cantidad">
                         </div>
-                        <div class="flex flex-col justify-center px-4 w-full mt-2" id="divPedidoGallo">
+                        <div class="hidden flex-col justify-center px-4 w-full mt-2" id="divPedidoGallo">
                             <span class="text-base text-gray-900 dark:text-gray-50">Gallo :</span>
-                            <input class="w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" autocomplete="off" id="" placeholder="Ingrese Cantidad">
+                            <input class="w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" autocomplete="off" id="inputCantidadGallo" placeholder="Ingrese Cantidad">
                         </div>
-                        <div class="flex flex-col justify-center px-4 w-full mt-2" id="divPedidoPolloXX">
+                        <div class="hidden flex-col justify-center px-4 w-full mt-2" id="divPedidoPolloXX">
                             <span class="text-base text-gray-900 dark:text-gray-50">Pollo XX :</span>
-                            <input class="w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" autocomplete="off" id="" placeholder="Ingrese Cantidad">
+                            <input class="w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" autocomplete="off" id="inputCantidadPolloXX" placeholder="Ingrese Cantidad">
                         </div>
-                        <div class="flex flex-col justify-center px-4 w-full mt-2" id="divPedidoBrasaYugo">
+                        <div class="hidden flex-col justify-center px-4 w-full mt-2" id="divPedidoBrasaYugo">
                             <span class="text-base text-gray-900 dark:text-gray-50">Brasa Yugo :</span>
-                            <input class="w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" autocomplete="off" id="" placeholder="Ingrese Cantidad">
+                            <input class="w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" autocomplete="off" id="inputCantidadBrasaYugo" placeholder="Ingrese Cantidad">
                         </div>
-                        <div class="flex flex-col justify-center px-4 w-full mt-2" id="divPedidoBrasaTecnico">
+                        <div class="hidden flex-col justify-center px-4 w-full mt-2" id="divPedidoBrasaTecnico">
                             <span class="text-base text-gray-900 dark:text-gray-50">Brasa Tecnico :</span>
-                            <input class="w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" autocomplete="off" id="" placeholder="Ingrese Cantidad">
+                            <input class="w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" autocomplete="off" id="inputCantidadBrasaTecnico" placeholder="Ingrese Cantidad">
                         </div>
+                    </div>
+                    <div class="w-full mt-4 px-4">
+                        <textarea class="w-full outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="comentarioCliPedido" autocomplete="off" id="comentarioCliPedido" placeholder="INGRESE COMENTARIO"></textarea>
                     </div>
                 </div>
             </div>
@@ -132,4 +141,5 @@
         </div>
     </div>
 </div>
+
 @endsection
