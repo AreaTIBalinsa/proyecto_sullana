@@ -104,6 +104,9 @@ jQuery(function($) {
                     let totalPesoDecimaSegundaEspecie = 0.00;
                     let totalPesoDecimaTerceraEspecie = 0.00;
                     let totalPesoDecimaCuartaEspecie = 0.00;
+                    let totalPesoDecimaSextaEspecie = 0.00;
+                    let totalPesoDecimaSeptimaEspecie = 0.00;
+                    let totalPesoDecimaOctavaEspecie = 0.00;
 
                     // Iterar sobre los objetos y mostrar sus propiedades
                     sinRepetidos.forEach(function(item) {
@@ -122,6 +125,9 @@ jQuery(function($) {
                         let diaPesoDecimaSegundaEspecie = 0.00;
                         let diaPesoDecimaTerceraEspecie = 0.00;
                         let diaPesoDecimaCuartaEspecie = 0.00;
+                        let diaPesoDecimaSextaEspecie = 0.00;
+                        let diaPesoDecimaSeptimaEspecie = 0.00;
+                        let diaPesoDecimaOctavaEspecie = 0.00;
 
                         response.forEach(function (obj) {
 
@@ -242,6 +248,30 @@ jQuery(function($) {
                                         diaPesoDecimaCuartaEspecie += pesoNetoPes+pesoNetoJabas
                                         totalPesoDecimaCuartaEspecie += pesoNetoPes+pesoNetoJabas
                                     }
+                                }else if (idEspecie == 16) {
+                                    if (pesoNetoPes > 0){
+                                        diaPesoDecimaSextaEspecie += pesoNetoPes-pesoNetoJabas
+                                        totalPesoDecimaSextaEspecie += pesoNetoPes-pesoNetoJabas
+                                    }else{
+                                        diaPesoDecimaSextaEspecie += pesoNetoPes+pesoNetoJabas
+                                        totalPesoDecimaSextaEspecie += pesoNetoPes+pesoNetoJabas
+                                    }
+                                }else if (idEspecie == 17) {
+                                    if (pesoNetoPes > 0){
+                                        diaPesoDecimaSeptimaEspecie += pesoNetoPes-pesoNetoJabas
+                                        totalPesoDecimaSeptimaEspecie += pesoNetoPes-pesoNetoJabas
+                                    }else{
+                                        diaPesoDecimaSeptimaEspecie += pesoNetoPes+pesoNetoJabas
+                                        totalPesoDecimaSeptimaEspecie += pesoNetoPes+pesoNetoJabas
+                                    }
+                                }else if (idEspecie == 18) {
+                                    if (pesoNetoPes > 0){
+                                        diaPesoDecimaOctavaEspecie += pesoNetoPes-pesoNetoJabas
+                                        totalPesoDecimaOctavaEspecie += pesoNetoPes-pesoNetoJabas
+                                    }else{
+                                        diaPesoDecimaOctavaEspecie += pesoNetoPes+pesoNetoJabas
+                                        totalPesoDecimaOctavaEspecie += pesoNetoPes+pesoNetoJabas
+                                    }
                                 }
                             }
                         });
@@ -264,13 +294,16 @@ jQuery(function($) {
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text((diaPesoDecimaSegundaEspecie).toFixed(2)));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text((diaPesoDecimaTerceraEspecie).toFixed(2)));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text((diaPesoDecimaCuartaEspecie).toFixed(2)));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text((diaPesoDecimaSextaEspecie).toFixed(2)));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text((diaPesoDecimaSeptimaEspecie).toFixed(2)));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text((diaPesoDecimaOctavaEspecie).toFixed(2)));
                         // Agregar la nueva fila al tbody
                         tbodyReporteAcumulado.append(nuevaFila);
                     });
 
                     nuevaFila = $('<tr class="bg-white dark:bg-gray-800 h-0.5">');
                     nuevaFila.append($('<td class="dark:border-gray-700 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(""));
-                    nuevaFila.append($('<td class="text-center h-0.5 bg-gray-800 dark:bg-gray-300" colspan="14">').text(""));
+                    nuevaFila.append($('<td class="text-center h-0.5 bg-gray-800 dark:bg-gray-300" colspan="17">').text(""));
                     tbodyReporteAcumulado.append(nuevaFila);
                     nuevaFila = $('<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
                     nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-bold text-gray-900 whitespace-nowrap dark:text-white text-center">').text("Totales :"));
@@ -288,10 +321,13 @@ jQuery(function($) {
                     nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-bold text-gray-900 whitespace-nowrap dark:text-white text-center">').text((totalPesoDecimaSegundaEspecie).toFixed(2)));
                     nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-bold text-gray-900 whitespace-nowrap dark:text-white text-center">').text((totalPesoDecimaTerceraEspecie).toFixed(2)));
                     nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-bold text-gray-900 whitespace-nowrap dark:text-white text-center">').text((totalPesoDecimaCuartaEspecie).toFixed(2)));
+                    nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-bold text-gray-900 whitespace-nowrap dark:text-white text-center">').text((totalPesoDecimaSextaEspecie).toFixed(2)));
+                    nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-bold text-gray-900 whitespace-nowrap dark:text-white text-center">').text((totalPesoDecimaSeptimaEspecie).toFixed(2)));
+                    nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-bold text-gray-900 whitespace-nowrap dark:text-white text-center">').text((totalPesoDecimaOctavaEspecie).toFixed(2)));
                     tbodyReporteAcumulado.append(nuevaFila);
                         
                     if (response.length == 0) {
-                        tbodyReporteAcumulado.html(`<tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="15" class="text-center">No hay datos</td></tr>`);
+                        tbodyReporteAcumulado.html(`<tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="18" class="text-center">No hay datos</td></tr>`);
                     }
                 } else {
                     console.log("La respuesta no es un arreglo de objetos.");
@@ -343,8 +379,6 @@ jQuery(function($) {
                 fecha: fecha,
             },
             success: function (response) {
-
-                console.log("Respuesta :C", response);
                 // Realiza la transformación de datos aquí
                 var transformedData = [];
                 $.each(response, function (index, item) {
@@ -422,6 +456,21 @@ jQuery(function($) {
                         totalPesoDescuentoDecimaQuintaEspecie: parseFloat(item.totalesDecimaQuintaEspecie[0]?.totalPesoDescuentoDecimaQuintaEspecie || 0),
                         totalVentaDecimaQuintaEspecie: parseFloat(item.totalesDecimaQuintaEspecie[0]?.totalVentaDecimaQuintaEspecie || 0),
                         totalCantidadDecimaQuintaEspecie: parseInt(item.totalesDecimaQuintaEspecie[0]?.totalCantidadDecimaQuintaEspecie || 0),
+
+                        totalPesoDecimaSextaEspecie: parseFloat(item.totalesDecimaSextaEspecie[0]?.totalPesoDecimaSextaEspecie || 0),
+                        totalPesoDescuentoDecimaSextaEspecie: parseFloat(item.totalesDecimaSextaEspecie[0]?.totalPesoDescuentoDecimaSextaEspecie || 0),
+                        totalVentaDecimaSextaEspecie: parseFloat(item.totalesDecimaSextaEspecie[0]?.totalVentaDecimaSextaEspecie || 0),
+                        totalCantidadDecimaSextaEspecie: parseInt(item.totalesDecimaSextaEspecie[0]?.totalCantidadDecimaSextaEspecie || 0),
+
+                        totalPesoDecimaSeptimaEspecie: parseFloat(item.totalesDecimaSeptimaEspecie[0]?.totalPesoDecimaSeptimaEspecie || 0),
+                        totalPesoDescuentoDecimaSeptimaEspecie: parseFloat(item.totalesDecimaSeptimaEspecie[0]?.totalPesoDescuentoDecimaSeptimaEspecie || 0),
+                        totalVentaDecimaSeptimaEspecie: parseFloat(item.totalesDecimaSeptimaEspecie[0]?.totalVentaDecimaSeptimaEspecie || 0),
+                        totalCantidadDecimaSeptimaEspecie: parseInt(item.totalesDecimaSeptimaEspecie[0]?.totalCantidadDecimaSeptimaEspecie || 0),
+
+                        totalPesoDecimaOctavaEspecie: parseFloat(item.totalesDecimaOctavaEspecie[0]?.totalPesoDecimaOctavaEspecie || 0),
+                        totalPesoDescuentoDecimaOctavaEspecie: parseFloat(item.totalesDecimaOctavaEspecie[0]?.totalPesoDescuentoDecimaOctavaEspecie || 0),
+                        totalVentaDecimaOctavaEspecie: parseFloat(item.totalesDecimaOctavaEspecie[0]?.totalVentaDecimaOctavaEspecie || 0),
+                        totalCantidadDecimaOctavaEspecie: parseInt(item.totalesDecimaOctavaEspecie[0]?.totalCantidadDecimaOctavaEspecie || 0),
                         
                         totalCantidadDescuentoPrimerEspecie: parseInt(item.totalesPrimerEspecie[0]?.totalCantidadDescuentoPrimerEspecie.replace(/[^0-9.-]+/g,"") || 0),
                         totalVentaDescuentoPrimerEspecie: parseFloat(item.totalesPrimerEspecie[0]?.totalVentaDescuentoPrimerEspecie.replace(/[^0-9.-]+/g,"") || 0),
@@ -464,6 +513,15 @@ jQuery(function($) {
 
                         totalCantidadDescuentoDecimaQuintaEspecie: parseInt(item.totalesDecimaQuintaEspecie[0]?.totalCantidadDescuentoDecimaQuintaEspecie.replace(/[^0-9.-]+/g,"") || 0),
                         totalVentaDescuentoDecimaQuintaEspecie: parseFloat(item.totalesDecimaQuintaEspecie[0]?.totalVentaDescuentoDecimaQuintaEspecie.replace(/[^0-9.-]+/g,"") || 0),
+                        
+                        totalCantidadDescuentoDecimaSextaEspecie: parseInt(item.totalesDecimaSextaEspecie[0]?.totalCantidadDescuentoDecimaSextaEspecie.replace(/[^0-9.-]+/g,"") || 0),
+                        totalVentaDescuentoDecimaSextaEspecie: parseFloat(item.totalesDecimaSextaEspecie[0]?.totalVentaDescuentoDecimaSextaEspecie.replace(/[^0-9.-]+/g,"") || 0),
+                        
+                        totalCantidadDescuentoDecimaSeptimaEspecie: parseInt(item.totalesDecimaSeptimaEspecie[0]?.totalCantidadDescuentoDecimaSeptimaEspecie.replace(/[^0-9.-]+/g,"") || 0),
+                        totalVentaDescuentoDecimaSeptimaEspecie: parseFloat(item.totalesDecimaSeptimaEspecie[0]?.totalVentaDescuentoDecimaSeptimaEspecie.replace(/[^0-9.-]+/g,"") || 0),
+                        
+                        totalCantidadDescuentoDecimaOctavaEspecie: parseInt(item.totalesDecimaOctavaEspecie[0]?.totalCantidadDescuentoDecimaOctavaEspecie.replace(/[^0-9.-]+/g,"") || 0),
+                        totalVentaDescuentoDecimaOctavaEspecie: parseFloat(item.totalesDecimaOctavaEspecie[0]?.totalVentaDescuentoDecimaOctavaEspecie.replace(/[^0-9.-]+/g,"") || 0),
 
                         /* ================================================================== */
                         /* =============================Consulta============================= */
@@ -538,6 +596,21 @@ jQuery(function($) {
                         totalPesoDescuentoDecimaQuintaEspecie2: parseFloat(item.totalesDecimaQuintaEspecie2[0]?.totalPesoDescuentoDecimaQuintaEspecie2 || 0),
                         totalVentaDecimaQuintaEspecie2: parseFloat(item.totalesDecimaQuintaEspecie2[0]?.totalVentaDecimaQuintaEspecie2 || 0),
                         totalCantidadDecimaQuintaEspecie2: parseInt(item.totalesDecimaQuintaEspecie2[0]?.totalCantidadDecimaQuintaEspecie2 || 0),
+
+                        totalPesoDecimaSextaEspecie2: parseFloat(item.totalesDecimaSextaEspecie2[0]?.totalPesoDecimaSextaEspecie2 || 0),
+                        totalPesoDescuentoDecimaSextaEspecie2: parseFloat(item.totalesDecimaSextaEspecie2[0]?.totalPesoDescuentoDecimaSextaEspecie2 || 0),
+                        totalVentaDecimaSextaEspecie2: parseFloat(item.totalesDecimaSextaEspecie2[0]?.totalVentaDecimaSextaEspecie2 || 0),
+                        totalCantidadDecimaSextaEspecie2: parseInt(item.totalesDecimaSextaEspecie2[0]?.totalCantidadDecimaSextaEspecie2 || 0),
+
+                        totalPesoDecimaSeptimaEspecie2: parseFloat(item.totalesDecimaSeptimaEspecie2[0]?.totalPesoDecimaSeptimaEspecie2 || 0),
+                        totalPesoDescuentoDecimaSeptimaEspecie2: parseFloat(item.totalesDecimaSeptimaEspecie2[0]?.totalPesoDescuentoDecimaSeptimaEspecie2 || 0),
+                        totalVentaDecimaSeptimaEspecie2: parseFloat(item.totalesDecimaSeptimaEspecie2[0]?.totalVentaDecimaSeptimaEspecie2 || 0),
+                        totalCantidadDecimaSeptimaEspecie2: parseInt(item.totalesDecimaSeptimaEspecie2[0]?.totalCantidadDecimaSeptimaEspecie2 || 0),
+
+                        totalPesoDecimaOctavaEspecie2: parseFloat(item.totalesDecimaOctavaEspecie2[0]?.totalPesoDecimaOctavaEspecie2 || 0),
+                        totalPesoDescuentoDecimaOctavaEspecie2: parseFloat(item.totalesDecimaOctavaEspecie2[0]?.totalPesoDescuentoDecimaOctavaEspecie2 || 0),
+                        totalVentaDecimaOctavaEspecie2: parseFloat(item.totalesDecimaOctavaEspecie2[0]?.totalVentaDecimaOctavaEspecie2 || 0),
+                        totalCantidadDecimaOctavaEspecie2: parseInt(item.totalesDecimaOctavaEspecie2[0]?.totalCantidadDecimaOctavaEspecie2 || 0),
                         
                         totalCantidadDescuentoPrimerEspecie2: parseInt(item.totalesPrimerEspecie2[0]?.totalCantidadDescuentoPrimerEspecie2.replace(/[^0-9.-]+/g,"") || 0),
                         totalVentaDescuentoPrimerEspecie2: parseFloat(item.totalesPrimerEspecie2[0]?.totalVentaDescuentoPrimerEspecie2.replace(/[^0-9.-]+/g,"") || 0),
@@ -581,6 +654,16 @@ jQuery(function($) {
                         totalCantidadDescuentoDecimaQuintaEspecie2: parseInt(item.totalesDecimaQuintaEspecie2[0]?.totalCantidadDescuentoDecimaQuintaEspecie2.replace(/[^0-9.-]+/g,"") || 0),
                         totalVentaDescuentoDecimaQuintaEspecie2: parseFloat(item.totalesDecimaQuintaEspecie2[0]?.totalVentaDescuentoDecimaQuintaEspecie2.replace(/[^0-9.-]+/g,"") || 0),
 
+                        totalCantidadDescuentoDecimaSextaEspecie2: parseInt(item.totalesDecimaSextaEspecie2[0]?.totalCantidadDescuentoDecimaSextaEspecie2.replace(/[^0-9.-]+/g,"") || 0),
+                        totalVentaDescuentoDecimaSextaEspecie2: parseFloat(item.totalesDecimaSextaEspecie2[0]?.totalVentaDescuentoDecimaSextaEspecie2.replace(/[^0-9.-]+/g,"") || 0),
+                        
+                        totalCantidadDescuentoDecimaSeptimaEspecie2: parseInt(item.totalesDecimaSeptimaEspecie2[0]?.totalCantidadDescuentoDecimaSeptimaEspecie2.replace(/[^0-9.-]+/g,"") || 0),
+                        totalVentaDescuentoDecimaSeptimaEspecie2: parseFloat(item.totalesDecimaSeptimaEspecie2[0]?.totalVentaDescuentoDecimaSeptimaEspecie2.replace(/[^0-9.-]+/g,"") || 0),
+                        
+                        totalCantidadDescuentoDecimaOctavaEspecie2: parseInt(item.totalesDecimaOctavaEspecie2[0]?.totalCantidadDescuentoDecimaOctavaEspecie2.replace(/[^0-9.-]+/g,"") || 0),
+                        totalVentaDescuentoDecimaOctavaEspecie2: parseFloat(item.totalesDecimaOctavaEspecie2[0]?.totalVentaDescuentoDecimaOctavaEspecie2.replace(/[^0-9.-]+/g,"") || 0),
+
+                        
                         /* ================================================================== */
                         /* ================================================================== */
                         /* ================================================================== */
@@ -597,7 +680,6 @@ jQuery(function($) {
                 });
     
                 //fn_construirFilasReporteAcumuladoDetalle(transformedData);
-                console.log("Respuesta :D", transformedData);
 
                 const especies = [
                     "PrimerEspecie",
@@ -613,7 +695,10 @@ jQuery(function($) {
                     "DecimaSegundaEspecie",
                     "DecimaTerceraEspecie",
                     "DecimaCuartaEspecie",
-                    "DecimaQuintaEspecie"
+                    "DecimaQuintaEspecie",
+                    "DecimaSextaEspecie",
+                    "DecimaSeptimaEspecie",
+                    "DecimaOctavaEspecie"
                   ];
                   
                   const mainProperties = [
@@ -669,9 +754,6 @@ jQuery(function($) {
                   
                     processedData.push(processedItem);
                   });
-                  
-                  console.log(processedData);
-                  console.log(transformedData);
                           
                   fn_construirFilasReporteAcumuladoDetalle(processedData);                                          
 
@@ -701,6 +783,9 @@ jQuery(function($) {
             bodyReporteAcumuladoDetalle += construirDecimaTerceraFila(item);
             bodyReporteAcumuladoDetalle += construirDecimaCuartaFila(item);
             bodyReporteAcumuladoDetalle += construirDecimaQuintaFila(item);
+            bodyReporteAcumuladoDetalle += construirDecimaSextaFila(item);
+            bodyReporteAcumuladoDetalle += construirDecimaSeptimaFila(item);
+            bodyReporteAcumuladoDetalle += construirDecimaOctavaFila(item);
             bodyReporteAcumuladoDetalle += construirDescuentoFila(item);
             bodyReporteAcumuladoDetalle += construirFilasTotales(item);
         });
@@ -1267,6 +1352,126 @@ jQuery(function($) {
         `;
     }
 
+    function construirDecimaSextaFila(item) {
+        let totalPeso = parseFloat(item.totalPesoDecimaSextaEspecie);
+        let totalCantidad = parseInt(item.totalCantidadDecimaSextaEspecie);
+        let totalVenta = parseFloat(item.totalVentaDecimaSextaEspecie);
+        let totalPesoDescuentoDecimaSextaEspecie = parseFloat(item.totalPesoDescuentoDecimaSextaEspecie);
+        let totalCantidadDescuentoDecimaSextaEspecie = parseInt(item.totalCantidadDescuentoDecimaSextaEspecie);
+        let totalVentaDescuentoDecimaSextaEspecie = parseFloat(item.totalVentaDescuentoDecimaSextaEspecie);
+
+        totalPeso = totalPeso + totalPesoDescuentoDecimaSextaEspecie;
+        totalCantidad = totalCantidad + totalCantidadDescuentoDecimaSextaEspecie;
+        totalVenta = totalVenta + totalVentaDescuentoDecimaSextaEspecie;
+
+        let promedio = 0;
+        if (totalPeso != 0){
+            promedio = totalPeso/totalCantidad;
+        }else{
+            promedio = 0;
+        }
+
+        let totalPrecioVenta = 0;
+        if (totalVenta != 0){
+            totalPrecioVenta = totalVenta/totalPeso;
+        }else{
+            totalPrecioVenta = 0;
+        }
+
+        return `
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">POLLO XX</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidad}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${(totalPeso).toFixed(2)} Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta).toFixed(2)}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${totalVenta.toFixed(2)}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${(promedio).toFixed(2)}</td>
+            </tr>
+        `;
+    }
+
+    function construirDecimaSeptimaFila(item) {
+        let totalPeso = parseFloat(item.totalPesoDecimaSeptimaEspecie);
+        let totalCantidad = parseInt(item.totalCantidadDecimaSeptimaEspecie);
+        let totalVenta = parseFloat(item.totalVentaDecimaSeptimaEspecie);
+        let totalPesoDescuentoDecimaSeptimaEspecie = parseFloat(item.totalPesoDescuentoDecimaSeptimaEspecie);
+        let totalCantidadDescuentoDecimaSeptimaEspecie = parseInt(item.totalCantidadDescuentoDecimaSeptimaEspecie);
+        let totalVentaDescuentoDecimaSeptimaEspecie = parseFloat(item.totalVentaDescuentoDecimaSeptimaEspecie);
+
+        totalPeso = totalPeso + totalPesoDescuentoDecimaSeptimaEspecie;
+        totalCantidad = totalCantidad + totalCantidadDescuentoDecimaSeptimaEspecie;
+        totalVenta = totalVenta + totalVentaDescuentoDecimaSeptimaEspecie;
+
+        let promedio = 0;
+        if (totalPeso != 0){
+            promedio = totalPeso/totalCantidad;
+        }else{
+            promedio = 0;
+        }
+
+        let totalPrecioVenta = 0;
+        if (totalVenta != 0){
+            totalPrecioVenta = totalVenta/totalPeso;
+        }else{
+            totalPrecioVenta = 0;
+        }
+
+        return `
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">BRASA YUGO</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidad}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${(totalPeso).toFixed(2)} Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta).toFixed(2)}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${totalVenta.toFixed(2)}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${(promedio).toFixed(2)}</td>
+            </tr>
+        `;
+    }
+
+    function construirDecimaOctavaFila(item) {
+        let totalPeso = parseFloat(item.totalPesoDecimaOctavaEspecie);
+        let totalCantidad = parseInt(item.totalCantidadDecimaOctavaEspecie);
+        let totalVenta = parseFloat(item.totalVentaDecimaOctavaEspecie);
+        let totalPesoDescuentoDecimaOctavaEspecie = parseFloat(item.totalPesoDescuentoDecimaOctavaEspecie);
+        let totalCantidadDescuentoDecimaOctavaEspecie = parseInt(item.totalCantidadDescuentoDecimaOctavaEspecie);
+        let totalVentaDescuentoDecimaOctavaEspecie = parseFloat(item.totalVentaDescuentoDecimaOctavaEspecie);
+
+        totalPeso = totalPeso + totalPesoDescuentoDecimaOctavaEspecie;
+        totalCantidad = totalCantidad + totalCantidadDescuentoDecimaOctavaEspecie;
+        totalVenta = totalVenta + totalVentaDescuentoDecimaOctavaEspecie;
+
+        let promedio = 0;
+        if (totalPeso != 0){
+            promedio = totalPeso/totalCantidad;
+        }else{
+            promedio = 0;
+        }
+
+        let totalPrecioVenta = 0;
+        if (totalVenta != 0){
+            totalPrecioVenta = totalVenta/totalPeso;
+        }else{
+            totalPrecioVenta = 0;
+        }
+
+        return `
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">BRASA TECNICO</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidad}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${(totalPeso).toFixed(2)} Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta).toFixed(2)}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${totalVenta.toFixed(2)}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${(promedio).toFixed(2)}</td>
+            </tr>
+        `;
+    }
+
     function construirDescuentoFila(item) {
 
         let totalPeso = parseFloat(item.totalPesoDescuento);
@@ -1319,6 +1524,9 @@ jQuery(function($) {
         let totalVentaDecimaTerceraEspecie = parseFloat(item.totalVentaDecimaTerceraEspecie);
         let totalVentaDecimaCuartaEspecie = parseFloat(item.totalVentaDecimaCuartaEspecie);
         let totalVentaDecimaQuintaEspecie = parseFloat(item.totalVentaDecimaQuintaEspecie);
+        let totalVentaDecimaSextaEspecie = parseFloat(item.totalVentaDecimaSextaEspecie);
+        let totalVentaDecimaSeptimaEspecie = parseFloat(item.totalVentaDecimaSeptimaEspecie);
+        let totalVentaDecimaOctavaEspecie = parseFloat(item.totalVentaDecimaOctavaEspecie);
 
         let totalVentaDescuentoPrimerEspecie = parseFloat(item.totalVentaDescuentoPrimerEspecie);
         let totalVentaDescuentoSegundaEspecie = parseFloat(item.totalVentaDescuentoSegundaEspecie);
@@ -1334,6 +1542,9 @@ jQuery(function($) {
         let totalVentaDescuentoDecimaTerceraEspecie = parseFloat(item.totalVentaDescuentoDecimaTerceraEspecie);
         let totalVentaDescuentoDecimaCuartaEspecie = parseFloat(item.totalVentaDescuentoDecimaCuartaEspecie);
         let totalVentaDescuentoDecimaQuintaEspecie = parseFloat(item.totalVentaDescuentoDecimaQuintaEspecie);
+        let totalVentaDescuentoDecimaSextaEspecie = parseFloat(item.totalVentaDescuentoDecimaSextaEspecie);
+        let totalVentaDescuentoDecimaSeptimaEspecie = parseFloat(item.totalVentaDescuentoDecimaSeptimaEspecie);
+        let totalVentaDescuentoDecimaOctavaEspecie = parseFloat(item.totalVentaDescuentoDecimaOctavaEspecie);
 
         let ventaTotalPrimerEspecie = totalVentaPrimerEspecie + totalVentaDescuentoPrimerEspecie;
         let ventaTotalSegundaEspecie = totalVentaSegundaEspecie + totalVentaDescuentoSegundaEspecie;
@@ -1349,14 +1560,15 @@ jQuery(function($) {
         let ventaTotalDecimaTerceraEspecie = totalVentaDecimaTerceraEspecie + totalVentaDescuentoDecimaTerceraEspecie;
         let ventaTotalDecimaCuartaEspecie = totalVentaDecimaCuartaEspecie + totalVentaDescuentoDecimaCuartaEspecie;
         let ventaTotalDecimaQuintaEspecie = totalVentaDecimaQuintaEspecie + totalVentaDescuentoDecimaQuintaEspecie;
+        let ventaTotalDecimaSextaEspecie = totalVentaDecimaSextaEspecie + totalVentaDescuentoDecimaSextaEspecie;
+        let ventaTotalDecimaSeptimaEspecie = totalVentaDecimaSeptimaEspecie + totalVentaDescuentoDecimaSeptimaEspecie;
+        let ventaTotalDecimaOctavaEspecie = totalVentaDecimaOctavaEspecie + totalVentaDescuentoDecimaOctavaEspecie;
 
-        let ventaTotal = ventaTotalPrimerEspecie + ventaTotalSegundaEspecie + ventaTotalTerceraEspecie + ventaTotalCuartaEspecie + ventaTotalQuintaEspecie + ventaTotalSextaEspecie + ventaTotalSeptimaEspecie + ventaTotalOctavaEspecie + ventaTotalDecimaEspecie + ventaTotalDecimaPrimeraEspecie + ventaTotalDecimaSegundaEspecie + ventaTotalDecimaTerceraEspecie + ventaTotalDecimaCuartaEspecie + ventaTotalDecimaQuintaEspecie + item.totalVentaDescuento;
+        let ventaTotal = ventaTotalPrimerEspecie + ventaTotalSegundaEspecie + ventaTotalTerceraEspecie + ventaTotalCuartaEspecie + ventaTotalQuintaEspecie + ventaTotalSextaEspecie + ventaTotalSeptimaEspecie + ventaTotalOctavaEspecie + ventaTotalDecimaEspecie + ventaTotalDecimaPrimeraEspecie + ventaTotalDecimaSegundaEspecie + ventaTotalDecimaTerceraEspecie + ventaTotalDecimaCuartaEspecie + ventaTotalDecimaQuintaEspecie + ventaTotalDecimaSextaEspecie + ventaTotalDecimaSeptimaEspecie + ventaTotalDecimaOctavaEspecie + item.totalVentaDescuento;
 
         let ventaAnterior = parseFloat(item.ventaAnterior);
         let pagoAnterior = parseFloat(item.pagoAnterior);
         let descuentoAnterior = parseFloat(item.totalVentaDescuentoAnterior);
-
-        console.log(ventaAnterior,pagoAnterior,descuentoAnterior)
 
         let totalVentaAnterior = ventaAnterior - pagoAnterior + descuentoAnterior;
 

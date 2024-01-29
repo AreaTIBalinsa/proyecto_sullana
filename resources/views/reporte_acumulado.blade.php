@@ -44,6 +44,9 @@
                             <th class="px-4 whitespace-nowrap">MENUDENCIA</th>
                             <th class="px-4 whitespace-nowrap">DORSO</th>
                             <th class="px-4 whitespace-nowrap">OTROS</th>
+                            <th class="px-4 whitespace-nowrap">POLLO XX</th>
+                            <th class="px-4 whitespace-nowrap">BRASA YUGO</th>
+                            <th class="px-4 whitespace-nowrap">BRASA TECNICO</th>
                         </tr>
                     </thead>
                     <tbody id="bodyReporteAcumulado">

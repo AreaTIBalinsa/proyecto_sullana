@@ -170,6 +170,9 @@ jQuery(function ($) {
         let precioDecimaTerceraEspecieDescuento = $('#precioDecimaTerceraEspecieDescuento').val();
         let precioDecimaCuartaEspecieDescuento = $('#precioDecimaCuartaEspecieDescuento').val();
         let precioDecimaQuintaEspecieDescuento = $('#precioDecimaQuintaEspecieDescuento').val();
+        let precioDecimaSextaEspecieDescuento = $('#precioDecimaSextaEspecieDescuento').val()
+        let precioDecimaSeptimaEspecieDescuento = $('#precioDecimaSeptimaEspecieDescuento').val()
+        let precioDecimaOctavaEspecieDescuento = $('#precioDecimaOctavaEspecieDescuento').val()
 
         let precioAgregarDescuentoCliente = 0
 
@@ -201,6 +204,12 @@ jQuery(function ($) {
             precioAgregarDescuentoCliente = precioDecimaCuartaEspecieDescuento
         }else if (especieAgregarDescuentoCliente == decimaQuintaEspecieGlobal ){
             precioAgregarDescuentoCliente = precioDecimaQuintaEspecieDescuento
+        }else if (especieAgregarDescuentoCliente == 16 ){
+            precioAgregarDescuentoCliente = precioDecimaSextaEspecieDescuento
+        }else if (especieAgregarDescuentoCliente == 17 ){
+            precioAgregarDescuentoCliente = precioDecimaSeptimaEspecieDescuento
+        }else if (especieAgregarDescuentoCliente == 18 ){
+            precioAgregarDescuentoCliente = precioDecimaOctavaEspecieDescuento
         }
 
         $('#divAgregarDescuentoCliente .validarCampo').each(function() {
@@ -584,6 +593,9 @@ jQuery(function ($) {
                     $('#precioDecimaTerceraEspecieDescuento').attr("value",response[0].decimaTerceraEspecie)
                     $('#precioDecimaCuartaEspecieDescuento').attr("value",response[0].decimaCuartaEspecie)
                     $('#precioDecimaQuintaEspecieDescuento').attr("value",response[0].decimaQuintaOtrasEspecies)
+                    $('#precioDecimaSextaEspecieDescuento').attr("value",response[0].decimaSextaEspecies)
+                    $('#precioDecimaSeptimaEspecieDescuento').attr("value",response[0].decimaSeptimaEspecies)
+                    $('#precioDecimaOctavaEspecieDescuento').attr("value",response[0].decimaOctavaEspecies)
     
                 } else {
                     console.log("La respuesta no es un arreglo de objetos.");

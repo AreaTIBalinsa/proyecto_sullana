@@ -394,6 +394,9 @@
                     <input type="text" id="precioDecimaTerceraEspecieDescuento" class="hidden" value="0.00">
                     <input type="text" id="precioDecimaCuartaEspecieDescuento" class="hidden" value="0.00">
                     <input type="text" id="precioDecimaQuintaEspecieDescuento" class="hidden" value="0.00">
+                    <input type="text" id="precioDecimaSextaEspecieDescuento" class="hidden" value="0.00">
+                    <input type="text" id="precioDecimaSeptimaEspecieDescuento" class="hidden" value="0.00">
+                    <input type="text" id="precioDecimaOctavaEspecieDescuento" class="hidden" value="0.00">
                 </div>
             </div>
             <div class="px-4 pb-4">

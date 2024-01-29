@@ -100,15 +100,15 @@
 
 {{-- Modal Opciones de Clientes --}}
 
-<div class="fixed inset-0 overflow-y-auto z-[100] hidden" id="ModalEditarDatosdeCliente">
-    <div class="flex justify-center items-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+<div class="fixed inset-0 overflow-hidden z-[100] hidden" id="ModalEditarDatosdeCliente">
+    <div class="flex justify-center items-center w-full min-h-screen py-4 px-4 text-center">
         <!-- Fondo oscuro overlay -->
         <div class="fixed inset-0 transition-opacity" aria-hidden="true">
             <div class="absolute inset-0 bg-gray-900 opacity-75"></div>
         </div>
 
         <!-- Contenido del modal -->
-        <div class="absolute rounded-lg max-h-max inset-0 m-auto align-bottom bg-white dark:bg-slate-700 text-left overflow-hidden shadow-xl transform transition-all max-w-[700px] w-full sm:w-full">
+        <div class="rounded-lg max-h-[100%] aside_scrollED overflow-hidden overflow-y-auto bg-white dark:bg-slate-700 text-left shadow-xl transform transition-all max-w-[700px] w-full">
             <div class="p-4">
                 <div class="flex flex-col">
                     <div class="border-b rounded-t dark:border-gray-500 p-2 flex justify-center">

@@ -61,7 +61,9 @@ class ConfiguracionesController extends Controller
         return response()->json(['error' => 'Usuario no autenticado'], 401);
     }
 
-    public function consulta_TraerListaPedidos (){
+    public function consulta_TraerListaPedidos (Request $request){
+
+        $fechaTraerPedidos = $request->input('fechaTraerPedidos');
 
         if (Auth::check()) {
             // Realiza la consulta a la base de datos
@@ -71,7 +73,7 @@ class ConfiguracionesController extends Controller
             pedidoSeptimaEspecie,pedidoOctavaEspecie,pedidoNovenaEspecie,pedidoDecimaEspecie,
             IFNULL(CONCAT_WS(" ", nombresCli, apellidoPaternoCli, apellidoMaternoCli), "") AS nombreCompleto
             FROM tb_pedidos
-            INNER JOIN tb_clientes ON tb_clientes.codigoCli = tb_pedidos.codigoCliPedidos WHERE estadoPedido = 1');
+            INNER JOIN tb_clientes ON tb_clientes.codigoCli = tb_pedidos.codigoCliPedidos WHERE estadoPedido = 1 and fechaRegistroPedido = ?',[$fechaTraerPedidos]);
             
             // Devuelve los datos en formato JSON
             return response()->json($datos);

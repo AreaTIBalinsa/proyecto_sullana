@@ -632,7 +632,7 @@ jQuery(function ($) {
         // Obtiene el valor actual del input
         let inputValue = $(this).val();
         
-        // Elimina todos los caracteres excepto los dígitos y un punto decimal
+        // Elimina todos los caracteres excepto los dígitos, un punto decimal y el -
         inputValue = inputValue.replace(/[^0-9-.]/g, '');
     
         // Verifica si ya hay un punto decimal presente

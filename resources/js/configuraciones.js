@@ -243,6 +243,7 @@ jQuery(function ($) {
                 fechaTraerPedidos: fechaTraerPedidos,
             },
             success: function(response) {
+                console.log(fechaTraerPedidos)
                 if (Array.isArray(response)){
 
                     let tbodyProgramacionPedidos = $('#bodyProgramacionPedidos');
@@ -336,7 +337,7 @@ jQuery(function ($) {
     }
 
     $('#btnBuscarPedidos').on('click', function () {
-        let fechaProgramacionPedidos = $('#fechaProgramacionPedidos').attr('value');
+        let fechaProgramacionPedidos = $('#fechaProgramacionPedidos').val();
         fn_TraerListaPedidos(fechaProgramacionPedidos);
     });
 

@@ -32,7 +32,9 @@ jQuery(function($) {
 
     /* ============ Evento para abrir modal y editar precios de pollos ============ */
 
-    $(document).on("dblclick", ".divPreciosMinimos .preciosMinimosEspecies", function() {
+    $(document).on("dblclick contextmenu", ".divPreciosMinimos .preciosMinimosEspecies", function(e) {
+        e.preventDefault();
+        console.log("Weyyy");
         // Obtén el precio del input actual
         let inputPrecioMinimo = $(this).val();
         
