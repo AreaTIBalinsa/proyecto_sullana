@@ -22,6 +22,8 @@ class AgregarPagoCliente extends Model
         'observacion',
         'fechaRegistroPag',
         'estadoPago',
+        'horaOperacionPag',
+        'bancaPago',
     ];
 
 }

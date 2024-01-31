@@ -108,6 +108,17 @@ jQuery(function ($) {
         $('#btnRetrocesoCuentaDelClienteDescuento').toggle('hidden');
     });
 
+    $('#bancoAgregarPagoCliente').on('input', function() {
+        // Obtiene el valor actual del campo
+        let valorCampo = $(this).val();
+    
+        // Convierte el valor a mayúsculas
+        valorCampo = valorCampo.toUpperCase();
+    
+        // Establece el valor modificado en el campo
+        $(this).val(valorCampo);
+    });  
+
     // Evento para registrar Pagos de Clientes
 
     $('#btnAgregarPagoCliente').on('click', function () {
@@ -117,6 +128,8 @@ jQuery(function ($) {
         let formaDePago = $('#formaDePago').val();
         let codAgregarPagoCliente = $('#codAgregarPagoCliente').val();
         let comentarioAgregarPagoCliente = $('#comentarioAgregarPagoCliente').val();
+        let bancoAgregarPagoCliente = $('#bancoAgregarPagoCliente').val();
+        let horaAgregarPago = $('#horaAgregarPago').val();
 
         let todosCamposCompletos = true
 
@@ -134,7 +147,7 @@ jQuery(function ($) {
         if (todosCamposCompletos) {
             let valorCampo = parseFloat($('#valorAgregarPagoCliente').val());
             if (valorCampo > 0){
-                fn_AgregarPagoCliente(codigoCliente,montoAgregarPagoCliente,fechaAgregarPagoCliente,formaDePago,codAgregarPagoCliente,comentarioAgregarPagoCliente);
+                fn_AgregarPagoCliente(codigoCliente,montoAgregarPagoCliente,fechaAgregarPagoCliente,formaDePago,codAgregarPagoCliente,comentarioAgregarPagoCliente,bancoAgregarPagoCliente,horaAgregarPago);
             }else{
                 alertify.notify('El monto no puede ser 0', 'error', 3);
                 $('#valorAgregarPagoCliente').removeClass('border-green-500 dark:border-gray-600 border-gray-300').addClass('border-red-500');
@@ -263,9 +276,11 @@ jQuery(function ($) {
         if (selectedOption === 'Transferencia') {
             // Si se selecciona "Transferencia", muestra el div con id "codTrans"
             $('#divCodTrans').removeClass('hidden').addClass('flex');
+            $('#divBanco').removeClass('hidden').addClass('flex');
         } else {
             // Si se selecciona cualquier otra opción, oculta el div "codTrans"
             $('#divCodTrans').removeClass('flex').addClass('hidden');
+            $('#divBanco').removeClass('flex').addClass('hidden');
         }
     });
 
@@ -654,7 +669,7 @@ jQuery(function ($) {
         });
     };
 
-    function fn_AgregarPagoCliente(codigoCliente,montoAgregarPagoCliente,fechaAgregarPagoCliente,formaDePago,codAgregarPagoCliente,comentarioAgregarPagoCliente){
+    function fn_AgregarPagoCliente(codigoCliente,montoAgregarPagoCliente,fechaAgregarPagoCliente,formaDePago,codAgregarPagoCliente,comentarioAgregarPagoCliente,bancoAgregarPagoCliente,horaAgregarPago){
         $.ajax({
             url: '/fn_consulta_AgregarPagoCliente',
             method: 'GET',
@@ -665,6 +680,8 @@ jQuery(function ($) {
                 formaDePago:formaDePago,
                 codAgregarPagoCliente:codAgregarPagoCliente,
                 comentarioAgregarPagoCliente:comentarioAgregarPagoCliente,
+                bancoAgregarPagoCliente:bancoAgregarPagoCliente,
+                horaAgregarPago:horaAgregarPago,
             },
             success: function(response) {
                 if (response.success) {
@@ -774,8 +791,10 @@ jQuery(function ($) {
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">').append($('<h5 class="min-w-max px-2">').text(obj.nombreCompleto)));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(parseFloat(obj.cantidadAbonoPag).toFixed(2)));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(obj.tipoAbonoPag));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(obj.bancaPago));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(obj.codigoTransferenciaPag));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(obj.fechaRegistroPag));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(obj.horaOperacionPag));
                         nuevaFila.append($('<td class="px-4 py-2 text-center cursor-pointer">').text(obj.observacion));
                         // Agregar la nueva fila al tbody
                         tbodyReporteDePagos.append(nuevaFila);
@@ -785,13 +804,15 @@ jQuery(function ($) {
                         tbodyReporteDePagos.html(`<tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="8" class="text-center">No hay datos</td></tr>`);
                     }else{
                         nuevaFila = $('<tr class="class="bg-white dark:bg-gray-800 h-0.5" cursor-pointer">');
-                        nuevaFila.append($('<td class="text-center h-0.5 bg-gray-800 dark:bg-gray-300" colspan="6">').text(""));
+                        nuevaFila.append($('<td class="text-center h-0.5 bg-gray-800 dark:bg-gray-300" colspan="8">').text(""));
                         tbodyReporteDePagos.append(nuevaFila);
 
                         nuevaFila = $('<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
 
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">').append($('<h5 class="min-w-max px-2">').text("SALDO TOTAL:")));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text("S/. "+totalPago.toFixed(2)));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
@@ -881,9 +902,11 @@ jQuery(function ($) {
         if (selectedOption === 'Transferencia') {
             // Si se selecciona "Transferencia", muestra el div con id "codTrans"
             $('#divCodTransEditar').removeClass('hidden').addClass('flex');
+            $('#divBancoEditar').removeClass('hidden').addClass('flex');
         } else {
             // Si se selecciona cualquier otra opción, oculta el div "codTrans"
             $('#divCodTransEditar').removeClass('flex').addClass('hidden');
+            $('#divBancoEditar').removeClass('flex').addClass('hidden');
         }
     });
 

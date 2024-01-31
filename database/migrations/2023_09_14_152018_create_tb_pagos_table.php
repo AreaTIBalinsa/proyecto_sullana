@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('observacion', 200)->nullable();
             $table->date('fechaRegistroPag');
             $table->integer('estadoPago')->default(1);
+            $table->string('bancaPago')->nullable();
+            $table->time('horaOperacionPag')->nullable();
             $table->timestamps();
         });
     }

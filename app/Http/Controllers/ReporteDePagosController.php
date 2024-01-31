@@ -929,6 +929,8 @@ class ReporteDePagosController extends Controller
         $formaDePago = $request->input('formaDePago');
         $codAgregarPagoCliente = $request->input('codAgregarPagoCliente');
         $comentarioAgregarPagoCliente = $request->input('comentarioAgregarPagoCliente');
+        $bancoAgregarPagoCliente = $request->input('bancoAgregarPagoCliente');
+        $horaAgregarPago = $request->input('horaAgregarPago');
 
         if (Auth::check()) {
             $agregarPagoCliente = new AgregarPagoCliente;
@@ -938,6 +940,8 @@ class ReporteDePagosController extends Controller
             $agregarPagoCliente->fechaOperacionPag = $fechaAgregarPagoCliente;
             $agregarPagoCliente->codigoTransferenciaPag = $codAgregarPagoCliente;
             $agregarPagoCliente->observacion = $comentarioAgregarPagoCliente;
+            $agregarPagoCliente->bancaPago = $bancoAgregarPagoCliente;
+            $agregarPagoCliente->horaOperacionPag = $horaAgregarPago;
             $agregarPagoCliente->fechaRegistroPag = now()->setTimezone('America/New_York')->toDateString();
             $agregarPagoCliente->estadoPago = 1;
             $agregarPagoCliente->save();
@@ -1029,6 +1033,8 @@ class ReporteDePagosController extends Controller
                     tb_pagos.codigoTransferenciaPag,
                     tb_pagos.observacion,
                     tb_pagos.fechaRegistroPag,
+                    tb_pagos.horaOperacionPag,
+                    tb_pagos.bancaPago,
                    IFNULL(CONCAT_WS(" ", nombresCli, apellidoPaternoCli, apellidoMaternoCli), "") AS nombreCompleto
             FROM tb_pagos
             INNER JOIN tb_clientes ON tb_clientes.codigoCli = tb_pagos.codigoCli  
