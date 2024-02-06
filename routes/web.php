@@ -151,3 +151,7 @@ Route::get('/fn_consulta_TraerClientesPedidos',[ConfiguracionesController::class
 Route::get('/fn_consulta_EspeciesPedido',[ConfiguracionesController::class,'consulta_EspeciesPedido']);
 Route::get('/fn_consulta_TraerListaPedidos',[ConfiguracionesController::class,'consulta_TraerListaPedidos']);
 Route::get('/fn_consulta_RegistrarPedidosClientes',[ConfiguracionesController::class,'consulta_RegistrarPedidosClientes']);
+
+Route::get('/fn_consulta_AgregarEgreso',[CajaChicaController::class,'consulta_AgregarEgreso']);
+Route::get('/fn_consulta_TraerEgresosFechas',[CajaChicaController::class,'consulta_TraerEgresosFechas']);
+Route::get('/fn_consulta_EliminarEgreso',[CajaChicaController::class,'consulta_EliminarEgreso']);

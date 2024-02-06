@@ -20,6 +20,8 @@ class ActualizarPagoCliente extends Model
         'fechaOperacionPag',
         'codigoTransferenciaPag',
         'observacion',
+        'horaOperacionPag',
+        'bancaPago',
     ];
 
 }

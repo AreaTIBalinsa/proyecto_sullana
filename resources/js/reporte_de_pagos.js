@@ -19,6 +19,15 @@ jQuery(function ($) {
     $('#fechaAgregarPago').val(fechaHoy);
     $('#fechaAgregarDescuento').val(fechaHoy);
 
+    var now = new Date();
+    var hours = now.getHours().toString().padStart(2, '0');
+    var minutes = now.getMinutes().toString().padStart(2, '0');
+    var seconds = now.getSeconds().toString().padStart(2, '0');
+    
+    var currentTime = hours + ":" + minutes + ":" + seconds;
+    
+    $('#horaAgregarPago').val(currentTime);
+
     declarar_especies();
     fn_TraerPagosFechas(fechaHoy,fechaHoy);
     fn_RegistroDescuentos(fechaHoy,fechaHoy);
@@ -42,6 +51,7 @@ jQuery(function ($) {
         $('#fechaAgregarPago').val(fechaHoy);
         $('#formaDePago').val($('#formaDePago option:first').val());
         $('#divCodTrans').removeClass('flex').addClass('hidden');
+        $('#divBanco').removeClass('flex').addClass('hidden');
     });
 
     $('.cerrarModalAgregarPagoCliente, #ModalAgregarPagoCliente .opacity-75').on('click', function (e) {
@@ -109,6 +119,17 @@ jQuery(function ($) {
     });
 
     $('#bancoAgregarPagoCliente').on('input', function() {
+        // Obtiene el valor actual del campo
+        let valorCampo = $(this).val();
+    
+        // Convierte el valor a mayúsculas
+        valorCampo = valorCampo.toUpperCase();
+    
+        // Establece el valor modificado en el campo
+        $(this).val(valorCampo);
+    });
+    
+    $('.mayusculasGaaa').on('input', function() {
         // Obtiene el valor actual del campo
         let valorCampo = $(this).val();
     
@@ -1155,7 +1176,9 @@ jQuery(function ($) {
         let codigoCliente = $('#selectedCodigoCliAgregarPagoClienteEditar').attr('value');
         let montoAgregarPagoCliente = $('#valorAgregarPagoClienteEditar').val();
         let fechaAgregarPagoCliente = $('#fechaAgregarPagoEditar').val();
+        let horaAgregarPagoEditar = $('#horaAgregarPagoEditar').val();
         let formaDePago = $('#formaDePagoEditar').val();
+        let bancoAgregarPagoClienteEditar = $('#bancoAgregarPagoClienteEditar').val();
         let codAgregarPagoCliente = $('#codAgregarPagoClienteEditar').val();
         let comentarioAgregarPagoCliente = $('#comentarioAgregarPagoClienteEditar').val();
 
@@ -1177,7 +1200,7 @@ jQuery(function ($) {
         if (todosCamposCompletos) {
             let valorCampo = parseFloat($('#valorAgregarPagoClienteEditar').val());
             if (valorCampo > 0){
-                fn_ActualizarPagoCliente(idReporteDePago,codigoCliente,montoAgregarPagoCliente,fechaAgregarPagoCliente,formaDePago,codAgregarPagoCliente,comentarioAgregarPagoCliente);
+                fn_ActualizarPagoCliente(idReporteDePago,codigoCliente,montoAgregarPagoCliente,fechaAgregarPagoCliente,formaDePago,codAgregarPagoCliente,comentarioAgregarPagoCliente, bancoAgregarPagoClienteEditar, horaAgregarPagoEditar);
             }else{
                 alertify.notify('El monto no puede ser 0', 'error', 3);
                 $('#valorAgregarPagoClienteEditar').removeClass('border-green-500 dark:border-gray-600 border-gray-300').addClass('border-red-500');
@@ -1188,7 +1211,7 @@ jQuery(function ($) {
         }
     });
 
-    function fn_ActualizarPagoCliente(idReporteDePago,codigoCliente,montoAgregarPagoCliente,fechaAgregarPagoCliente,formaDePago,codAgregarPagoCliente,comentarioAgregarPagoCliente){
+    function fn_ActualizarPagoCliente(idReporteDePago,codigoCliente,montoAgregarPagoCliente,fechaAgregarPagoCliente,formaDePago,codAgregarPagoCliente,comentarioAgregarPagoCliente, bancoAgregarPagoClienteEditar, horaAgregarPagoEditar){
         $.ajax({
             url: '/fn_consulta_ActualizarPagoCliente',
             method: 'GET',
@@ -1200,6 +1223,8 @@ jQuery(function ($) {
                 formaDePago:formaDePago,
                 codAgregarPagoCliente:codAgregarPagoCliente,
                 comentarioAgregarPagoCliente:comentarioAgregarPagoCliente,
+                horaAgregarPagoEditar:horaAgregarPagoEditar,
+                bancoAgregarPagoClienteEditar:bancoAgregarPagoClienteEditar,
             },
             success: function(response) {
                 if (response.success) {
@@ -1247,11 +1272,15 @@ jQuery(function ($) {
                         $('#valorAgregarPagoClienteEditar').val(obj.cantidadAbonoPag);
                         $('#fechaAgregarPagoEditar').val(obj.fechaOperacionPag);
                         $('#formaDePagoEditar').val(obj.tipoAbonoPag);
+                        $('#horaAgregarPagoEditar').val(obj.horaOperacionPag);
                         if (obj.tipoAbonoPag == 'Transferencia'){
                             $('#divCodTransEditar').removeClass('hidden').addClass('flex');
+                            $('#divBancoEditar').removeClass('hidden').addClass('flex');
                         }else{
                             $('#divCodTransEditar').removeClass('flex').addClass('hidden');
+                            $('#divBancoEditar').removeClass('flex').addClass('hidden');
                         }
+                        $('#bancoAgregarPagoClienteEditar').val(obj.bancaPago);
                         $('#codAgregarPagoClienteEditar').val(obj.codigoTransferenciaPag);
                         $('#comentarioAgregarPagoClienteEditar').val(obj.observacion);
                     });

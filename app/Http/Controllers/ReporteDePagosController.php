@@ -1062,6 +1062,8 @@ class ReporteDePagosController extends Controller
                     tb_pagos.codigoTransferenciaPag,
                     tb_pagos.observacion,
                     tb_pagos.fechaRegistroPag,
+                    tb_pagos.horaOperacionPag,
+                    tb_pagos.bancaPago,
                     tb_clientes.codigoCli,
                    IFNULL(CONCAT_WS(" ", nombresCli, apellidoPaternoCli, apellidoMaternoCli), "") AS nombreCompleto
             FROM tb_pagos
@@ -1085,6 +1087,8 @@ class ReporteDePagosController extends Controller
         $formaDePago = $request->input('formaDePago');
         $codAgregarPagoCliente = $request->input('codAgregarPagoCliente');
         $comentarioAgregarPagoCliente = $request->input('comentarioAgregarPagoCliente');
+        $horaAgregarPagoEditar = $request->input('horaAgregarPagoEditar');
+        $bancoAgregarPagoClienteEditar = $request->input('bancoAgregarPagoClienteEditar');
 
         if (Auth::check()) {
             $actualizarPagoCliente = new ActualizarPagoCliente;
@@ -1096,6 +1100,8 @@ class ReporteDePagosController extends Controller
                     'fechaOperacionPag' => $fechaAgregarPagoCliente,
                     'codigoTransferenciaPag' => $codAgregarPagoCliente,
                     'observacion' => $comentarioAgregarPagoCliente,
+                    'bancaPago'=> $bancoAgregarPagoClienteEditar,
+                    'horaOperacionPag'=> $horaAgregarPagoEditar,
                 ]);
     
             return response()->json(['success' => true], 200);
