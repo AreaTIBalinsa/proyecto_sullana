@@ -11,6 +11,7 @@ jQuery(function($) {
     $('#fechaDesdeCajaChica').val(fechaHoy);
     $('#fechaHastaCajaChica').val(fechaHoy);
     $('#fechaAgregarEgreso').val(fechaHoy);
+    $('#fechaAgregarEgresoEditar').val(fechaHoy);
     fn_TraerPagosFechas(fechaHoy, fechaHoy);
 
     var currentTime = '00:00:00'
@@ -67,7 +68,7 @@ jQuery(function($) {
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(obj.tipoAbonoPag));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(obj.bancaPago));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(obj.codigoTransferenciaPag));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(obj.fechaRegistroPag));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(obj.fechaOperacionPag));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(obj.horaOperacionPag));
                         nuevaFila.append($('<td class="px-4 py-2 text-center cursor-pointer">').text(obj.observacion));
                         // Agregar la nueva fila al tbody
@@ -844,4 +845,107 @@ jQuery(function($) {
             }
         });
     }
+
+    $(document).on("dblclick", "#bodyReporteDeEgresos tr.editarPagos", function() {
+        if (tipoUsuario =='Administrador'){
+            let fila = $(this).closest('tr');
+            let idReporteDeEgreso= fila.find('td:eq(0)').text();
+            let usoEgreso= fila.find('td:eq(1)').text();
+            let importeEgreso= fila.find('td:eq(2)').text();
+            let formaDePagoEgreso= fila.find('td:eq(3)').text();
+            let bancoEgreso= fila.find('td:eq(4)').text();
+            let codigoTransEgreso= fila.find('td:eq(5)').text();
+            let fechaEgreso= fila.find('td:eq(6)').text();
+
+            $('#idReporteDeEgreso').val(idReporteDeEgreso);
+
+            $('#idAgregarEgresoEditar').val(usoEgreso);
+            $('#valorAgregarEgresoClienteEditar').val(importeEgreso);
+            $('#formaDePagoEgresoEditar').val(formaDePagoEgreso);
+            $('#bancoAgregarEgresoClienteEditar').val(bancoEgreso);
+            $('#fechaAgregarEgresoEditar').val(fechaEgreso);
+            $('#codAgregarEgresoClienteEditar').val(codigoTransEgreso);
+            if (formaDePagoEgreso == 'Transferencia'){
+                $('#divBancoEgresoEditar').removeClass('hidden').addClass('flex');
+                $('#divCodTransEgresoEditar').removeClass('hidden').addClass('flex');
+            }else{
+                $('#divBancoEgresoEditar').removeClass('flex').addClass('hidden');
+                $('#divCodTransEgresoEditar').removeClass('flex').addClass('hidden');
+            }
+            
+            $('#ModalAgregarEgresoEditar').addClass('flex');
+            $('#ModalAgregarEgresoEditar').removeClass('hidden');
+
+        }
+    });
+
+    $('.cerrarModalAgregarEgresoEditar, #ModalAgregarEgresoEditar .opacity-75').on('click', function (e) {
+        $('#ModalAgregarEgresoEditar').addClass('hidden');
+        $('#ModalAgregarEgresoEditar').removeClass('flex');
+    });
+
+    $('#formaDePagoEgresoEditar').on('change',function() {
+        var selectedOption = $(this).val();
+        if (selectedOption === 'Transferencia') {
+            // Si se selecciona "Transferencia", muestra el div con id "codTrans"
+            $('#divCodTransEgresoEditar').removeClass('hidden').addClass('flex');
+            $('#divBancoEgresoEditar').removeClass('hidden').addClass('flex');
+        } else {
+            // Si se selecciona cualquier otra opción, oculta el div "codTrans"
+            $('#divCodTransEgresoEditar').removeClass('flex').addClass('hidden');
+            $('#divBancoEgresoEditar').removeClass('flex').addClass('hidden');
+        }
+    });
+
+    $('#btnAgregarEgresoEditar').on('click', function(){
+        let idReporteDeEgreso = $('#idReporteDeEgreso').val();
+        let idAgregarEgresoEditar = $('#idAgregarEgresoEditar').val();
+        let valorAgregarEgresoClienteEditar = $('#valorAgregarEgresoClienteEditar').val();
+        let formaDePagoEgresoEditar = $('#formaDePagoEgresoEditar').val();
+        let bancoAgregarEgresoClienteEditar = $('#bancoAgregarEgresoClienteEditar').val();
+        let fechaAgregarEgresoEditar = $('#fechaAgregarEgresoEditar').val();
+        let codAgregarEgresoClienteEditar = $('#codAgregarEgresoClienteEditar').val();
+
+        //console.log(idReporteDeEgreso,idAgregarEgresoEditar,valorAgregarEgresoClienteEditar,formaDePagoEgresoEditar,bancoAgregarEgresoClienteEditar,fechaAgregarEgresoEditar,codAgregarEgresoClienteEditar)
+        fn_AgregarEgresoEditar(idReporteDeEgreso,idAgregarEgresoEditar,valorAgregarEgresoClienteEditar,formaDePagoEgresoEditar,bancoAgregarEgresoClienteEditar,fechaAgregarEgresoEditar,codAgregarEgresoClienteEditar)
+    })
+
+    function fn_AgregarEgresoEditar(idReporteDeEgreso,idAgregarEgresoEditar,valorAgregarEgresoClienteEditar,formaDePagoEgresoEditar,bancoAgregarEgresoClienteEditar,fechaAgregarEgresoEditar,codAgregarEgresoClienteEditar){
+        $.ajax({
+            url: '/fn_consulta_AgregarEgresoEditar',
+            method: 'GET',
+            data:{
+                idReporteDeEgreso: idReporteDeEgreso,
+                idAgregarEgresoEditar: idAgregarEgresoEditar,
+                valorAgregarEgresoClienteEditar: valorAgregarEgresoClienteEditar,
+                formaDePagoEgresoEditar: formaDePagoEgresoEditar,
+                bancoAgregarEgresoClienteEditar: bancoAgregarEgresoClienteEditar,
+                fechaAgregarEgresoEditar: fechaAgregarEgresoEditar,
+                codAgregarEgresoClienteEditar: codAgregarEgresoClienteEditar,
+            },
+            success: function(response) {
+                if (response.success) {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Se actualizo el egreso correctamente',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+
+                    $('#divAgregarEgresoEditar .validarCampo').each(function() {
+                        $(this).removeClass('border-green-500 border-red-500').addClass('dark:border-gray-600 border-gray-300');
+                    });
+
+                    $('#ModalAgregarEgresoEditar').addClass('hidden');
+                    $('#ModalAgregarEgresoEditar').removeClass('flex');
+                    $('#filtrarIngresosYEgresos').trigger('click');
+                }
+            },
+            error: function(error) {
+                console.error("ERROR", error);
+            }
+        });
+    }   
+
 });

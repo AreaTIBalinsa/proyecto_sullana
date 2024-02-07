@@ -155,3 +155,4 @@ Route::get('/fn_consulta_RegistrarPedidosClientes',[ConfiguracionesController::c
 Route::get('/fn_consulta_AgregarEgreso',[CajaChicaController::class,'consulta_AgregarEgreso']);
 Route::get('/fn_consulta_TraerEgresosFechas',[CajaChicaController::class,'consulta_TraerEgresosFechas']);
 Route::get('/fn_consulta_EliminarEgreso',[CajaChicaController::class,'consulta_EliminarEgreso']);
+Route::get('/fn_consulta_AgregarEgresoEditar',[CajaChicaController::class,'consulta_AgregarEgresoEditar']);

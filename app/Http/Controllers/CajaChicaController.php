@@ -56,7 +56,7 @@ class CajaChicaController extends Controller
             nombreEgresoCamal, 
             idEgresos,tipoAbonoEgreso,cantidadAbonoEgreso,fechaOperacionEgreso,bancoEgreso,codigoTransferenciaEgreso,fechaRegistroEgreso,estadoEgreso 
             FROM tb_egresos 
-            WHERE estadoEgreso = 1 and fechaRegistroEgreso BETWEEN ? AND ?', [$fechaDesdeTraerPagos, $fechaHastaTraerPagos]);
+            WHERE estadoEgreso = 1 and fechaOperacionEgreso BETWEEN ? AND ?', [$fechaDesdeTraerPagos, $fechaHastaTraerPagos]);
     
             // Devuelve los datos en formato JSON
             return response()->json($datos);
@@ -83,4 +83,34 @@ class CajaChicaController extends Controller
         // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
         return response()->json(['error' => 'Usuario no autenticado'], 401);
     } 
+
+    public function consulta_AgregarEgresoEditar(Request $request){
+        
+        $idReporteDeEgreso = $request->input('idReporteDeEgreso');
+        $idAgregarEgresoEditar = $request->input('idAgregarEgresoEditar');
+        $valorAgregarEgresoClienteEditar = $request->input('valorAgregarEgresoClienteEditar');
+        $formaDePagoEgresoEditar = $request->input('formaDePagoEgresoEditar');
+        $bancoAgregarEgresoClienteEditar = $request->input('bancoAgregarEgresoClienteEditar');
+        $fechaAgregarEgresoEditar = $request->input('fechaAgregarEgresoEditar');
+        $codAgregarEgresoClienteEditar = $request->input('codAgregarEgresoClienteEditar');
+
+        if (Auth::check()) {
+            // Realiza la consulta a la base de datos
+            DB::select('
+            UPDATE tb_egresos SET 
+            codigoTransferenciaEgreso = ?,
+            fechaOperacionEgreso = ?,
+            bancoEgreso = ?,
+            tipoAbonoEgreso = ?,
+            cantidadAbonoEgreso = ?,
+            nombreEgresoCamal = ?
+            WHERE idEgresos = ? ',[$codAgregarEgresoClienteEditar,$fechaAgregarEgresoEditar,$bancoAgregarEgresoClienteEditar,$formaDePagoEgresoEditar,$valorAgregarEgresoClienteEditar,$idAgregarEgresoEditar,$idReporteDeEgreso]);
+    
+            // Devuelve los datos en formato JSON
+            return response()->json(['success' => true], 200);
+        }
+    
+        // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
+        return response()->json(['error' => 'Usuario no autenticado'], 401);
+    }
 }

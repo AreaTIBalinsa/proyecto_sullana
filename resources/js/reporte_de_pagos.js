@@ -814,7 +814,7 @@ jQuery(function ($) {
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(obj.tipoAbonoPag));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(obj.bancaPago));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(obj.codigoTransferenciaPag));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(obj.fechaRegistroPag));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(obj.fechaOperacionPag));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(obj.horaOperacionPag));
                         nuevaFila.append($('<td class="px-4 py-2 text-center cursor-pointer">').text(obj.observacion));
                         // Agregar la nueva fila al tbody
@@ -1082,7 +1082,7 @@ jQuery(function ($) {
         });
     }
 
-    $(document).on('contextmenu', '#bodyCuentaDelClienteDescuentos tr', function (e) {
+    $(document).on('contextmenu', '#bodyCuentaDelClienteDescuentos tr.editarPagos', function (e) {
         e.preventDefault();
         let codigoDescuento = $(this).closest("tr").find("td:first").text();
         Swal.fire({
@@ -1360,7 +1360,7 @@ jQuery(function ($) {
         });
     };
 
-    $(document).on('contextmenu', '#bodyReporteDePagos tr', function (e) {
+    $(document).on('contextmenu', '#bodyReporteDePagos tr.editarPagos', function (e) {
         e.preventDefault();
         if (tipoUsuario =='Administrador'){
             let codigoPago = $(this).closest("tr").find("td:first").text();
