@@ -10,8 +10,10 @@ jQuery(function($) {
     // Asignar la fecha actual a los inputs
     $('#fechaDesdeReporteAcumulado').val(fechaHoy);
     $('#fechaHastaReporteAcumulado').val(fechaHoy);
+    $('#fechaReporteExcel').val(fechaHoy);
 
     fn_TraerReporteAcumulado(fechaHoy,fechaHoy);
+    fn_TraerReporteAcumuladoDetalle(fechaHoy,fechaHoy);
 
     fn_declarar_especies();
 
@@ -754,7 +756,8 @@ jQuery(function($) {
                   
                     processedData.push(processedItem);
                   });
-                          
+                  
+                  fn_construirFilasReporteAcumuladoDetalleExcel(processedData);
                   fn_construirFilasReporteAcumuladoDetalle(processedData);                                          
 
             },
@@ -1641,6 +1644,810 @@ jQuery(function($) {
                 <td class="text-center py-1 px-2 whitespace-nowrap">SALDO ACTUAL</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${(saldoActual).toFixed(2)}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+            </tr>
+        `;
+    }
+
+    // Función para formatear la fecha
+    function formatearFecha(fecha) {
+        // Array con los nombres de los días de la semana en español
+        let diasSemana = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
+        // Array con los nombres de los meses en español
+        let meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+        
+        // Obtener los componentes de la fecha
+        let diaSemana = diasSemana[fecha.getDay()];
+        let dia = fecha.getDate();
+        let mes = meses[fecha.getMonth()];
+        let año = fecha.getFullYear();
+        
+        // Formatear la fecha
+        return diaSemana + " " + (dia < 10 ? '0' : '') + dia + " de " + mes + " del " + año;
+    }
+
+    // Obtener la fecha actual
+    let fechaActual = new Date();
+    
+    // Formatear la fecha
+    let fechaFormateada = formatearFecha(fechaActual);
+
+    console.log(fechaFormateada);
+    
+    // Insertar la fecha formateada en el elemento con id fechaReporteExcel
+    $("#fechaReporteExcelTitle").text(fechaFormateada);
+
+    $('#filtrarReporteAcumuladoDesdeHastaExcel').on('click', function () {
+        let fechaEnviar = $('#fechaReporteExcel').val();
+        fn_TraerReporteAcumuladoDetalle(fechaEnviar,fechaEnviar);
+    });
+
+    function fn_construirFilasReporteAcumuladoDetalleExcel(combinedDataArray){
+        let bodyReporteAcumuladoExcel="";
+        let tbodyReporteAcumuladoExcel = $('#bodyReporteAcumuladoExcel');
+        tbodyReporteAcumuladoExcel.empty();
+
+        let cantidad1 = 0;
+        let cantidad2 = 0;
+        let cantidad3 = 0;
+        let cantidad4 = 0;
+        let cantidad5 = 0;
+        let cantidad6 = 0;
+        let cantidad7 = 0;
+        let cantidad8 = 0;
+        let cantidad10 = 0;
+        let cantidad11 = 0;
+        let cantidad12 = 0;
+        let cantidad13 = 0;
+        let cantidad14 = 0;
+        let cantidad15 = 0;
+        let cantidad16 = 0;
+        let cantidad17 = 0;
+        let cantidad18 = 0;
+
+        let peso1 = 0.00;
+        let peso2 = 0.00;
+        let peso3 = 0.00;
+        let peso4 = 0.00;
+        let peso5 = 0.00;
+        let peso6 = 0.00;
+        let peso7 = 0.00;
+        let peso8 = 0.00;
+        let peso10 = 0.00;
+        let peso11 = 0.00;
+        let peso12 = 0.00;
+        let peso13 = 0.00;
+        let peso14 = 0.00;
+        let peso15 = 0.00;
+        let peso16 = 0.00;
+        let peso17 = 0.00;
+        let peso18 = 0.00;
+
+        let venta1 = 0.00;
+        let venta2 = 0.00;
+        let venta3 = 0.00;
+        let venta4 = 0.00;
+        let venta5 = 0.00;
+        let venta6 = 0.00;
+        let venta7 = 0.00;
+        let venta8 = 0.00;
+        let venta10 = 0.00;
+        let venta11 = 0.00;
+        let venta12 = 0.00;
+        let venta13 = 0.00;
+        let venta14 = 0.00;
+        let venta15 = 0.00;
+        let venta16 = 0.00;
+        let venta17 = 0.00;
+        let venta18 = 0.00;
+
+        combinedDataArray.forEach(function (item) {
+            bodyReporteAcumuladoExcel += construirFilaExcel(item);
+
+            peso1 += parseFloat(item.totalPesoPrimerEspecie);
+            peso2 += parseFloat(item.totalPesoSegundaEspecie);
+            peso3 += parseFloat(item.totalPesoTerceraEspecie);
+            peso4 += parseFloat(item.totalPesoCuartaEspecie);
+            peso5 += parseFloat(item.totalPesoQuintaEspecie);
+            peso6 += parseFloat(item.totalPesoSextaEspecie);
+            peso7 += parseFloat(item.totalPesoSeptimaEspecie);
+            peso8 += parseFloat(item.totalPesoOctavaEspecie);
+            peso10 += parseFloat(item.totalPesoDecimaEspecie);
+            peso11 += parseFloat(item.totalPesoDecimaPrimeraEspecie);
+            peso12 += parseFloat(item.totalPesoDecimaSegundaEspecie);
+            peso13 += parseFloat(item.totalPesoDecimaTerceraEspecie);
+            peso14 += parseFloat(item.totalPesoDecimaCuartaEspecie);
+            peso15 += parseFloat(item.totalPesoDecimaQuintaEspecie);
+            peso16 += parseFloat(item.totalPesoDecimaSextaEspecie);
+            peso17 += parseFloat(item.totalPesoDecimaSeptimaEspecie);
+            peso18 += parseFloat(item.totalPesoDecimaOctavaEspecie);
+
+            cantidad1 += parseInt(item.totalCantidadPrimerEspecie);
+            cantidad2 += parseInt(item.totalCantidadSegundaEspecie);
+            cantidad3 += parseInt(item.totalCantidadTerceraEspecie);
+            cantidad4 += parseInt(item.totalCantidadCuartaEspecie);
+            cantidad5 += parseInt(item.totalCantidadQuintaEspecie);
+            cantidad6 += parseInt(item.totalCantidadSextaEspecie);
+            cantidad7 += parseInt(item.totalCantidadSeptimaEspecie);
+            cantidad8 += parseInt(item.totalCantidadOctavaEspecie);
+            cantidad10 += parseInt(item.totalCantidadDecimaEspecie);
+            cantidad11 += parseInt(item.totalCantidadDecimaPrimeraEspecie);
+            cantidad12 += parseInt(item.totalCantidadDecimaSegundaEspecie);
+            cantidad13 += parseInt(item.totalCantidadDecimaTerceraEspecie);
+            cantidad14 += parseInt(item.totalCantidadDecimaCuartaEspecie);
+            cantidad15 += parseInt(item.totalCantidadDecimaQuintaEspecie);
+            cantidad16 += parseInt(item.totalCantidadDecimaSextaEspecie);
+            cantidad17 += parseInt(item.totalCantidadDecimaSeptimaEspecie);
+            cantidad18 += parseInt(item.totalCantidadDecimaOctavaEspecie);
+
+            venta1 += parseFloat(item.totalVentaPrimerEspecie);
+            venta2 += parseFloat(item.totalVentaSegundaEspecie);
+            venta3 += parseFloat(item.totalVentaTerceraEspecie);
+            venta4 += parseFloat(item.totalVentaCuartaEspecie);
+            venta5 += parseFloat(item.totalVentaQuintaEspecie);
+            venta6 += parseFloat(item.totalVentaSextaEspecie);
+            venta7 += parseFloat(item.totalVentaSeptimaEspecie);
+            venta8 += parseFloat(item.totalVentaOctavaEspecie);
+            venta10 += parseFloat(item.totalVentaDecimaEspecie);
+            venta11 += parseFloat(item.totalVentaDecimaPrimeraEspecie);
+            venta12 += parseFloat(item.totalVentaDecimaSegundaEspecie);
+            venta13 += parseFloat(item.totalVentaDecimaTerceraEspecie);
+            venta14 += parseFloat(item.totalVentaDecimaCuartaEspecie);
+            venta15 += parseFloat(item.totalVentaDecimaQuintaEspecie);
+            venta16 += parseFloat(item.totalVentaDecimaSextaEspecie);
+            venta17 += parseFloat(item.totalVentaDecimaSeptimaEspecie);
+            venta18 += parseFloat(item.totalVentaDecimaOctavaEspecie);
+        });
+        //console.log("bodyReporteAcumuladoExcel",bodyReporteAcumuladoExcel);
+        bodyReporteAcumuladoExcel += construirFilaTotalExcel(cantidad1, cantidad2, cantidad3, cantidad4, cantidad5, cantidad6
+            , cantidad7, cantidad8, cantidad10, cantidad11, cantidad12, cantidad13
+            , cantidad14, cantidad15, cantidad16, cantidad17, cantidad18,
+            peso1, peso2, peso3 , peso4, peso5, peso6, peso7, peso8, peso10
+            , peso11, peso12, peso13, peso14, peso15, peso16, peso17, peso18
+            , venta1, venta2, venta3, venta4, venta5, venta6, venta7, venta8
+            , venta10, venta11, venta12, venta13, venta14, venta15, venta16
+            , venta17, venta18);
+        tbodyReporteAcumuladoExcel.html(bodyReporteAcumuladoExcel);
+    }
+
+    function construirFilaTotalExcel(
+        cantidad1, cantidad2, cantidad3, cantidad4, cantidad5, cantidad6
+        , cantidad7, cantidad8, cantidad10, cantidad11, cantidad12, cantidad13
+        , cantidad14, cantidad15, cantidad16, cantidad17, cantidad18,
+        peso1, peso2, peso3 , peso4, peso5, peso6, peso7, peso8, peso10
+        , peso11, peso12, peso13, peso14, peso15, peso16, peso17, peso18
+        , venta1, venta2, venta3, venta4, venta5, venta6, venta7, venta8
+        , venta10, venta11, venta12, venta13, venta14, venta15, venta16
+        , venta17, venta18) {
+
+        let precio1 = 0;
+        if (venta1 != 0 && peso1 != 0){
+            precio1 = venta1 / peso1;
+        }
+        let promedio1 = 0;
+        if (peso1 != 0 && cantidad1 != 0){
+            promedio1 = peso1 / cantidad1;
+        }
+
+        let precio2 = 0;
+        if (venta2 != 0 && peso2 != 0){
+            precio2 = venta2 / peso2;
+        }
+        let promedio2 = 0;
+        if (peso2 != 0 && cantidad2 != 0){
+            promedio2 = peso2 / cantidad2;
+        }
+
+        let precio3 = 0;
+        if (venta3 != 0 && peso3 != 0){
+            precio3 = venta3 / peso3;
+        }
+        let promedio3 = 0;
+        if (peso3 != 0 && cantidad3 != 0){
+            promedio3 = peso3 / cantidad3;
+        }
+
+            return `
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900">
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">TOTAL</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${cantidad1}</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(peso1).toFixed(2)} Kg.</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">S/. ${(precio1).toFixed(2)}</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">S/. ${venta1.toFixed(2)}</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(promedio1).toFixed(2)}</td>
+
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${cantidad2}</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(peso2).toFixed(2)} Kg.</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">S/. ${(precio2).toFixed(2)}</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">S/. ${venta2.toFixed(2)}</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(promedio2).toFixed(2)}</td>
+
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${cantidad3}</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(peso3).toFixed(2)} Kg.</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">S/. ${(precio3).toFixed(2)}</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">S/. ${venta3.toFixed(2)}</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(promedio3).toFixed(2)}</td>
+            </tr>
+        `;
+    }
+
+    function construirFilaExcel(item) {
+        let totalPeso1 = parseFloat(item.totalPesoPrimerEspecie);
+        let totalCantidad1 = parseInt(item.totalCantidadPrimerEspecie);
+        let totalVenta1 = parseFloat(item.totalVentaPrimerEspecie);
+        let totalPesoDescuentoPrimerEspecie1 = parseFloat(item.totalPesoDescuentoPrimerEspecie);
+        let totalCantidadDescuentoPrimerEspecie1 = parseInt(item.totalCantidadDescuentoPrimerEspecie);
+        let totalVentaDescuentoPrimerEspecie1 = parseFloat(item.totalVentaDescuentoPrimerEspecie);
+
+        totalPeso1 = totalPeso1 + totalPesoDescuentoPrimerEspecie1;
+        totalCantidad1 = totalCantidad1 + totalCantidadDescuentoPrimerEspecie1;
+        totalVenta1 = totalVenta1 + totalVentaDescuentoPrimerEspecie1;
+
+        let promedio1 = 0;
+        if (totalPeso1 != 0){
+            promedio1 = totalPeso1/totalCantidad1;
+        }else{
+            promedio1 = 0;
+        }
+
+        let totalPrecioVenta1 = 0;
+        if (totalVenta1 != 0){
+            totalPrecioVenta1 = totalVenta1/totalPeso1;
+        }else{
+            totalPrecioVenta1 = 0;
+        }
+
+        // ==============================================
+
+        let totalPeso2 = parseFloat(item.totalPesoSegundaEspecie);
+        let totalCantidad2 = parseInt(item.totalCantidadSegundaEspecie);
+        let totalVenta2 = parseFloat(item.totalVentaSegundaEspecie);
+        let totalPesoDescuentoSegundaEspecie2 = parseFloat(item.totalPesoDescuentoSegundaEspecie);
+        let totalCantidadDescuentoSegundaEspecie2 = parseInt(item.totalCantidadDescuentoSegundaEspecie);
+        let totalVentaDescuentoSegundaEspecie2 = parseFloat(item.totalVentaDescuentoSegundaEspecie);
+
+        totalPeso2 = totalPeso2 + totalPesoDescuentoSegundaEspecie2;
+        totalCantidad2 = totalCantidad2 + totalCantidadDescuentoSegundaEspecie2;
+        totalVenta2 = totalVenta2 + totalVentaDescuentoSegundaEspecie2;
+
+        let promedio2 = 0;
+        if (totalPeso2 != 0){
+            promedio2 = totalPeso2/totalCantidad2;
+        }else{
+            promedio2 = 0;
+        }
+
+        let totalPrecioVenta2 = 0;
+        if (totalVenta2 != 0){
+            totalPrecioVenta2 = totalVenta2/totalPeso2;
+        }else{
+            totalPrecioVenta2 = 0;
+        }
+
+        // ==============================================
+
+        let totalPeso3 = parseFloat(item.totalPesoTerceraEspecie);
+        let totalCantidad3 = parseInt(item.totalCantidadTerceraEspecie);
+        let totalVenta3 = parseFloat(item.totalVentaTerceraEspecie);
+        let totalPesoDescuentoTerceraEspecie3 = parseFloat(item.totalPesoDescuentoTerceraEspecie);
+        let totalCantidadDescuentoTerceraEspecie3 = parseInt(item.totalCantidadDescuentoTerceraEspecie);
+        let totalVentaDescuentoTerceraEspecie3 = parseFloat(item.totalVentaDescuentoTerceraEspecie);
+
+        totalPeso3 = totalPeso3 + totalPesoDescuentoTerceraEspecie3;
+        totalCantidad3 = totalCantidad3 + totalCantidadDescuentoTerceraEspecie3;
+        totalVenta3 = totalVenta3 + totalVentaDescuentoTerceraEspecie3;
+
+        let promedio3 = 0;
+        if (totalPeso3 != 0){
+            promedio3 = totalPeso3/totalCantidad3;
+        }else{
+            promedio3 = 0;
+        }
+
+        let totalPrecioVenta3 = 0;
+        if (totalVenta3 != 0){
+            totalPrecioVenta3 = totalVenta3/totalPeso3;
+        }else{
+            totalPrecioVenta3 = 0;
+        }
+
+        // ==============================================
+
+        let totalPeso4 = parseFloat(item.totalPesoCuartaEspecie);
+        let totalCantidad4 = parseInt(item.totalCantidadCuartaEspecie);
+        let totalVenta4 = parseFloat(item.totalVentaCuartaEspecie);
+        let totalPesoDescuentoCuartaEspecie4 = parseFloat(item.totalPesoDescuentoCuartaEspecie);
+        let totalCantidadDescuentoCuartaEspecie4 = parseInt(item.totalCantidadDescuentoCuartaEspecie);
+        let totalVentaDescuentoCuartaEspecie4 = parseFloat(item.totalVentaDescuentoCuartaEspecie);
+
+        totalPeso4 = totalPeso4 + totalPesoDescuentoCuartaEspecie4;
+        totalCantidad4 = totalCantidad4 + totalCantidadDescuentoCuartaEspecie4;
+        totalVenta4 = totalVenta4 + totalVentaDescuentoCuartaEspecie4;
+
+        let promedio4 = 0;
+        if (totalPeso4 != 0){
+            promedio4 = totalPeso4/totalCantidad4;
+        }else{
+            promedio4 = 0;
+        }
+
+        let totalPrecioVenta4 = 0;
+        if (totalVenta4 != 0){
+            totalPrecioVenta4 = totalVenta4/totalPeso4;
+        }else{
+            totalPrecioVenta4 = 0;
+        }
+
+        // ==============================================
+
+        let totalPeso5 = parseFloat(item.totalPesoQuintaEspecie);
+        let totalCantidad5 = parseInt(item.totalCantidadQuintaEspecie);
+        let totalVenta5 = parseFloat(item.totalVentaQuintaEspecie);
+        let totalPesoDescuentoQuintaEspecie5 = parseFloat(item.totalPesoDescuentoQuintaEspecie);
+        let totalCantidadDescuentoQuintaEspecie5 = parseInt(item.totalCantidadDescuentoQuintaEspecie);
+        let totalVentaDescuentoQuintaEspecie5 = parseFloat(item.totalVentaDescuentoQuintaEspecie);
+
+        totalPeso5 = totalPeso5 + totalPesoDescuentoQuintaEspecie5;
+        totalCantidad5 = totalCantidad5 + totalCantidadDescuentoQuintaEspecie5;
+        totalVenta5 = totalVenta5 + totalVentaDescuentoQuintaEspecie5;
+
+        let promedio5 = 0;
+        if (totalPeso5 != 0){
+            promedio5 = totalPeso5/totalCantidad5;
+        }else{
+            promedio5 = 0;
+        }
+
+        let totalPrecioVenta5 = 0;
+        if (totalVenta5 != 0){
+            totalPrecioVenta5 = totalVenta5/totalPeso5;
+        }else{
+            totalPrecioVenta5 = 0;
+        }
+
+        // ==============================================
+
+        let totalPeso6 = parseFloat(item.totalPesoSextaEspecie);
+        let totalCantidad6 = parseInt(item.totalCantidadSextaEspecie);
+        let totalVenta6 = parseFloat(item.totalVentaSextaEspecie);
+        let totalPesoDescuentoSextaEspecie6 = parseFloat(item.totalPesoDescuentoSextaEspecie);
+        let totalCantidadDescuentoSextaEspecie6 = parseInt(item.totalCantidadDescuentoSextaEspecie);
+        let totalVentaDescuentoSextaEspecie6 = parseFloat(item.totalVentaDescuentoSextaEspecie);
+
+        totalPeso6 = totalPeso6 + totalPesoDescuentoSextaEspecie6;
+        totalCantidad6 = totalCantidad6 + totalCantidadDescuentoSextaEspecie6;
+        totalVenta6 = totalVenta6 + totalVentaDescuentoSextaEspecie6;
+
+        let promedio6 = 0;
+        if (totalPeso6 != 0){
+            promedio6 = totalPeso6/totalCantidad6;
+        }else{
+            promedio6 = 0;
+        }
+
+        let totalPrecioVenta6 = 0;
+        if (totalVenta6 != 0){
+            totalPrecioVenta6 = totalVenta6/totalPeso6;
+        }else{
+            totalPrecioVenta6 = 0;
+        }
+
+        // ==============================================
+
+        let totalPeso7 = parseFloat(item.totalPesoSeptimaEspecie);
+        let totalCantidad7 = parseInt(item.totalCantidadSeptimaEspecie);
+        let totalVenta7 = parseFloat(item.totalVentaSeptimaEspecie);
+        let totalPesoDescuentoSeptimaEspecie7 = parseFloat(item.totalPesoDescuentoSeptimaEspecie);
+        let totalCantidadDescuentoSeptimaEspecie7 = parseInt(item.totalCantidadDescuentoSeptimaEspecie);
+        let totalVentaDescuentoSeptimaEspecie7 = parseFloat(item.totalVentaDescuentoSeptimaEspecie);
+
+        totalPeso7 = totalPeso7 + totalPesoDescuentoSeptimaEspecie7;
+        totalCantidad7 = totalCantidad7 + totalCantidadDescuentoSeptimaEspecie7;
+        totalVenta7 = totalVenta7 + totalVentaDescuentoSeptimaEspecie7;
+
+        let promedio7 = 0;
+        if (totalPeso7 != 0){
+            promedio7 = totalPeso7/totalCantidad7;
+        }else{
+            promedio7 = 0;
+        }
+
+        let totalPrecioVenta7 = 0;
+        if (totalVenta7 != 0){
+            totalPrecioVenta7 = totalVenta7/totalPeso7;
+        }else{
+            totalPrecioVenta7 = 0;
+        }
+
+        // ==============================================
+
+        let totalPeso8 = parseFloat(item.totalPesoOctavaEspecie);
+        let totalCantidad8 = parseInt(item.totalCantidadOctavaEspecie);
+        let totalVenta8 = parseFloat(item.totalVentaOctavaEspecie);
+        let totalPesoDescuentoOctavaEspecie8 = parseFloat(item.totalPesoDescuentoOctavaEspecie);
+        let totalCantidadDescuentoOctavaEspecie8 = parseInt(item.totalCantidadDescuentoOctavaEspecie);
+        let totalVentaDescuentoOctavaEspecie8 = parseFloat(item.totalVentaDescuentoOctavaEspecie);
+
+        totalPeso8 = totalPeso8 + totalPesoDescuentoOctavaEspecie8;
+        totalCantidad8 = totalCantidad8 + totalCantidadDescuentoOctavaEspecie8;
+        totalVenta8 = totalVenta8 + totalVentaDescuentoOctavaEspecie8;
+
+        let promedio8 = 0;
+        if (totalPeso8 != 0){
+            promedio8 = totalPeso8/totalCantidad8;
+        }else{
+            promedio8 = 0;
+        }
+
+        let totalPrecioVenta8 = 0;
+        if (totalVenta8 != 0){
+            totalPrecioVenta8 = totalVenta8/totalPeso8;
+        }else{
+            totalPrecioVenta8 = 0;
+        }
+
+        // ==============================================
+
+        let totalPeso10 = parseFloat(item.totalPesoDecimaEspecie);
+        let totalCantidad10 = parseInt(item.totalCantidadDecimaEspecie);
+        let totalVenta10 = parseFloat(item.totalVentaDecimaEspecie);
+        let totalPesoDescuentoDecimaEspecie10 = parseFloat(item.totalPesoDescuentoDecimaEspecie);
+        let totalCantidadDescuentoDecimaEspecie10 = parseInt(item.totalCantidadDescuentoDecimaEspecie);
+        let totalVentaDescuentoDecimaEspecie10 = parseFloat(item.totalVentaDescuentoDecimaEspecie);
+
+        totalPeso10 = totalPeso10 + totalPesoDescuentoDecimaEspecie10;
+        totalCantidad10 = totalCantidad10 + totalCantidadDescuentoDecimaEspecie10;
+        totalVenta10 = totalVenta10 + totalVentaDescuentoDecimaEspecie10;
+
+        let promedio10 = 0;
+        if (totalPeso10 != 0){
+            promedio10 = totalPeso10/totalCantidad10;
+        }else{
+            promedio10 = 0;
+        }
+
+        let totalPrecioVenta10 = 0;
+        if (totalVenta10 != 0){
+            totalPrecioVenta10 = totalVenta10/totalPeso10;
+        }else{
+            totalPrecioVenta10 = 0;
+        }
+
+        // ==============================================
+
+        let totalPeso11 = parseFloat(item.totalPesoDecimaPrimeraEspecie);
+        let totalCantidad11 = parseInt(item.totalCantidadDecimaPrimeraEspecie);
+        let totalVenta11 = parseFloat(item.totalVentaDecimaPrimeraEspecie);
+        let totalPesoDescuentoDecimaPrimeraEspecie11 = parseFloat(item.totalPesoDescuentoDecimaPrimeraEspecie);
+        let totalCantidadDescuentoDecimaPrimeraEspecie11 = parseInt(item.totalCantidadDescuentoDecimaPrimeraEspecie);
+        let totalVentaDescuentoDecimaPrimeraEspecie11 = parseFloat(item.totalVentaDescuentoDecimaPrimeraEspecie);
+
+        totalPeso11 = totalPeso11 + totalPesoDescuentoDecimaPrimeraEspecie11;
+        totalCantidad11 = totalCantidad11 + totalCantidadDescuentoDecimaPrimeraEspecie11;
+        totalVenta11 = totalVenta11 + totalVentaDescuentoDecimaPrimeraEspecie11;
+
+        let promedio11 = 0;
+        if (totalPeso11 != 0){
+            promedio11 = totalPeso11/totalCantidad11;
+        }else{
+            promedio11 = 0;
+        }
+
+        let totalPrecioVenta11 = 0;
+        if (totalVenta11 != 0){
+            totalPrecioVenta11 = totalVenta11/totalPeso11;
+        }else{
+            totalPrecioVenta11 = 0;
+        }
+
+        // ==============================================
+
+        let totalPeso12 = parseFloat(item.totalPesoDecimaSegundaEspecie);
+        let totalCantidad12 = parseInt(item.totalCantidadDecimaSegundaEspecie);
+        let totalVenta12 = parseFloat(item.totalVentaDecimaSegundaEspecie);
+        let totalPesoDescuentoDecimaSegundaEspecie12 = parseFloat(item.totalPesoDescuentoDecimaSegundaEspecie);
+        let totalCantidadDescuentoDecimaSegundaEspecie12 = parseInt(item.totalCantidadDescuentoDecimaSegundaEspecie);
+        let totalVentaDescuentoDecimaSegundaEspecie12 = parseFloat(item.totalVentaDescuentoDecimaSegundaEspecie);
+
+        totalPeso12 = totalPeso12 + totalPesoDescuentoDecimaSegundaEspecie12;
+        totalCantidad12 = totalCantidad12 + totalCantidadDescuentoDecimaSegundaEspecie12;
+        totalVenta12 = totalVenta12 + totalVentaDescuentoDecimaSegundaEspecie12;
+
+        let promedio12 = 0;
+        if (totalPeso12 != 0){
+            promedio12 = totalPeso12/totalCantidad12;
+        }else{
+            promedio12 = 0;
+        }
+
+        let totalPrecioVenta12 = 0;
+        if (totalVenta12 != 0){
+            totalPrecioVenta12 = totalVenta12/totalPeso12;
+        }else{
+            totalPrecioVenta12 = 0;
+        }
+
+        // ==============================================
+
+        let totalPeso13 = parseFloat(item.totalPesoDecimaTerceraEspecie);
+        let totalCantidad13 = parseInt(item.totalCantidadDecimaTerceraEspecie);
+        let totalVenta13 = parseFloat(item.totalVentaDecimaTerceraEspecie);
+        let totalPesoDescuentoDecimaTerceraEspecie13 = parseFloat(item.totalPesoDescuentoDecimaTerceraEspecie);
+        let totalCantidadDescuentoDecimaTerceraEspecie13 = parseInt(item.totalCantidadDescuentoDecimaTerceraEspecie);
+        let totalVentaDescuentoDecimaTerceraEspecie13 = parseFloat(item.totalVentaDescuentoDecimaTerceraEspecie);
+
+        totalPeso13 = totalPeso13 + totalPesoDescuentoDecimaTerceraEspecie13;
+        totalCantidad13 = totalCantidad13 + totalCantidadDescuentoDecimaTerceraEspecie13;
+        totalVenta13 = totalVenta13 + totalVentaDescuentoDecimaTerceraEspecie13;
+
+        let promedio13 = 0;
+        if (totalPeso13 != 0){
+            promedio13 = totalPeso13/totalCantidad13;
+        }else{
+            promedio13 = 0;
+        }
+
+        let totalPrecioVenta13 = 0;
+        if (totalVenta13 != 0){
+            totalPrecioVenta13 = totalVenta13/totalPeso13;
+        }else{
+            totalPrecioVenta13 = 0;
+        }
+
+        // ==============================================
+
+        let totalPeso14 = parseFloat(item.totalPesoDecimaCuartaEspecie);
+        let totalCantidad14 = parseInt(item.totalCantidadDecimaCuartaEspecie);
+        let totalVenta14 = parseFloat(item.totalVentaDecimaCuartaEspecie);
+        let totalPesoDescuentoDecimaCuartaEspecie14 = parseFloat(item.totalPesoDescuentoDecimaCuartaEspecie);
+        let totalCantidadDescuentoDecimaCuartaEspecie14 = parseInt(item.totalCantidadDescuentoDecimaCuartaEspecie);
+        let totalVentaDescuentoDecimaCuartaEspecie14 = parseFloat(item.totalVentaDescuentoDecimaCuartaEspecie);
+
+        totalPeso14 = totalPeso14 + totalPesoDescuentoDecimaCuartaEspecie14;
+        totalCantidad14 = totalCantidad14 + totalCantidadDescuentoDecimaCuartaEspecie14;
+        totalVenta14 = totalVenta14 + totalVentaDescuentoDecimaCuartaEspecie14;
+
+        let promedio14 = 0;
+        if (totalPeso14 != 0){
+            promedio14 = totalPeso14/totalCantidad14;
+        }else{
+            promedio14 = 0;
+        }
+
+        let totalPrecioVenta14 = 0;
+        if (totalVenta14 != 0){
+            totalPrecioVenta14 = totalVenta14/totalPeso14;
+        }else{
+            totalPrecioVenta14 = 0;
+        }
+
+        // ==============================================
+
+        let totalPeso15 = parseFloat(item.totalPesoDecimaQuintaEspecie);
+        let totalCantidad15 = parseInt(item.totalCantidadDecimaQuintaEspecie);
+        let totalVenta15 = parseFloat(item.totalVentaDecimaQuintaEspecie);
+        let totalPesoDescuentoDecimaQuintaEspecie15 = parseFloat(item.totalPesoDescuentoDecimaQuintaEspecie);
+        let totalCantidadDescuentoDecimaQuintaEspecie15 = parseInt(item.totalCantidadDescuentoDecimaQuintaEspecie);
+        let totalVentaDescuentoDecimaQuintaEspecie15 = parseFloat(item.totalVentaDescuentoDecimaQuintaEspecie);
+
+        totalPeso15 = totalPeso15 + totalPesoDescuentoDecimaQuintaEspecie15;
+        totalCantidad15 = totalCantidad15 + totalCantidadDescuentoDecimaQuintaEspecie15;
+        totalVenta15 = totalVenta15 + totalVentaDescuentoDecimaQuintaEspecie15;
+
+        let promedio15 = 0;
+        if (totalPeso15 != 0){
+            promedio15 = totalPeso15/totalCantidad15;
+        }else{
+            promedio15 = 0;
+        }
+
+        let totalPrecioVenta15 = 0;
+        if (totalVenta15 != 0){
+            totalPrecioVenta15 = totalVenta15/totalPeso15;
+        }else{
+            totalPrecioVenta15 = 0;
+        }
+
+        // ==============================================
+
+        let totalPeso16 = parseFloat(item.totalPesoDecimaSextaEspecie);
+        let totalCantidad16 = parseInt(item.totalCantidadDecimaSextaEspecie);
+        let totalVenta16 = parseFloat(item.totalVentaDecimaSextaEspecie);
+        let totalPesoDescuentoDecimaSextaEspecie16 = parseFloat(item.totalPesoDescuentoDecimaSextaEspecie);
+        let totalCantidadDescuentoDecimaSextaEspecie16 = parseInt(item.totalCantidadDescuentoDecimaSextaEspecie);
+        let totalVentaDescuentoDecimaSextaEspecie16 = parseFloat(item.totalVentaDescuentoDecimaSextaEspecie);
+
+        totalPeso16 = totalPeso16 + totalPesoDescuentoDecimaSextaEspecie16;
+        totalCantidad16 = totalCantidad16 + totalCantidadDescuentoDecimaSextaEspecie16;
+        totalVenta16 = totalVenta16 + totalVentaDescuentoDecimaSextaEspecie16;
+
+        let promedio16 = 0;
+        if (totalPeso16 != 0){
+            promedio16 = totalPeso16/totalCantidad16;
+        }else{
+            promedio16 = 0;
+        }
+
+        let totalPrecioVenta16 = 0;
+        if (totalVenta16!= 0){
+            totalPrecioVenta16 = totalVenta16/totalPeso16;
+        }else{
+            totalPrecioVenta16 = 0;
+        }
+
+        // ==============================================
+
+        let totalPeso17 = parseFloat(item.totalPesoDecimaSeptimaEspecie);
+        let totalCantidad17 = parseInt(item.totalCantidadDecimaSeptimaEspecie);
+        let totalVenta17 = parseFloat(item.totalVentaDecimaSeptimaEspecie);
+        let totalPesoDescuentoDecimaSeptimaEspecie17 = parseFloat(item.totalPesoDescuentoDecimaSeptimaEspecie);
+        let totalCantidadDescuentoDecimaSeptimaEspecie17 = parseInt(item.totalCantidadDescuentoDecimaSeptimaEspecie);
+        let totalVentaDescuentoDecimaSeptimaEspecie17 = parseFloat(item.totalVentaDescuentoDecimaSeptimaEspecie);
+
+        totalPeso17 = totalPeso17 + totalPesoDescuentoDecimaSeptimaEspecie17;
+        totalCantidad17 = totalCantidad17 + totalCantidadDescuentoDecimaSeptimaEspecie17;
+        totalVenta17 = totalVenta17 + totalVentaDescuentoDecimaSeptimaEspecie17;
+
+        let promedio17 = 0;
+        if (totalPeso17 != 0){
+            promedio17 = totalPeso17/totalCantidad17;
+        }else{
+            promedio17 = 0;
+        }
+
+        let totalPrecioVenta17 = 0;
+        if (totalVenta17 != 0){
+            totalPrecioVenta17 = totalVenta17/totalPeso17;
+        }else{
+            totalPrecioVenta17 = 0;
+        }
+
+        // ==============================================
+
+        let totalPeso18 = parseFloat(item.totalPesoDecimaOctavaEspecie);
+        let totalCantidad18 = parseInt(item.totalCantidadDecimaOctavaEspecie);
+        let totalVenta18 = parseFloat(item.totalVentaDecimaOctavaEspecie);
+        let totalPesoDescuentoDecimaOctavaEspecie18 = parseFloat(item.totalPesoDescuentoDecimaOctavaEspecie);
+        let totalCantidadDescuentoDecimaOctavaEspecie18 = parseInt(item.totalCantidadDescuentoDecimaOctavaEspecie);
+        let totalVentaDescuentoDecimaOctavaEspecie18 = parseFloat(item.totalVentaDescuentoDecimaOctavaEspecie);
+
+        totalPeso18 = totalPeso18 + totalPesoDescuentoDecimaOctavaEspecie18;
+        totalCantidad18 = totalCantidad18 + totalCantidadDescuentoDecimaOctavaEspecie18;
+        totalVenta18 = totalVenta18 + totalVentaDescuentoDecimaOctavaEspecie18;
+
+        let promedio18 = 0;
+        if (totalPeso18 != 0){
+            promedio18 = totalPeso18/totalCantidad18;
+        }else{
+            promedio18 = 0;
+        }
+
+        let totalPrecioVenta18 = 0;
+        if (totalVenta18 != 0){
+            totalPrecioVenta18 = totalVenta18/totalPeso18;
+        }else{
+            totalPrecioVenta18 = 0;
+        }
+
+        // ==============================================
+
+        let totalDelTotalCantidad = 0;
+        let totalDelTotalPeso = 0.00;
+        let totalDelTotalVenta = 0.00;
+
+        totalDelTotalCantidad = totalCantidad1 +totalCantidad2 + totalCantidad3 + totalCantidad4 + totalCantidad5 + totalCantidad6 + totalCantidad7 + totalCantidad8 + totalCantidad10 + totalCantidad11 + totalCantidad12 + totalCantidad13 + totalCantidad14 + totalCantidad15 + totalCantidad16 + totalCantidad17 + totalCantidad18;
+
+        totalDelTotalPeso = totalPeso1 + totalPeso2 + totalPeso3 + totalPeso4 + totalPeso5 + totalPeso6 + totalPeso7 + totalPeso8 + totalPeso10 + totalPeso11 + totalPeso12 + totalPeso13 + totalPeso14 + totalPeso15 + totalPeso16 + totalPeso17 + totalPeso18;
+
+        totalDelTotalVenta = totalVenta1 + totalVenta2 + totalVenta3 + totalVenta4 + totalVenta5 + totalVenta6 + totalVenta7 + totalVenta8 + totalVenta10 + totalVenta11 + totalVenta12 + totalVenta13 + totalVenta14 + totalVenta15 + totalVenta16 + totalVenta17 + totalVenta18;
+
+        return `
+            <tr class="bg-white dark:text-gray-200 text-gray-900 border-b dark:bg-gray-800 dark:border-gray-700">
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${item.nombreCompleto}</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${totalCantidad1}</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(totalPeso1).toFixed(2)} Kg.</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta1).toFixed(2)}</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#FFE699]">S/. ${totalVenta1.toFixed(2)}</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(promedio1).toFixed(2)}</td>
+
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${totalCantidad2}</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(totalPeso2).toFixed(2)} Kg.</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta2).toFixed(2)}</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#FFE699]">S/. ${totalVenta2.toFixed(2)}</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(promedio2).toFixed(2)}</td>
+
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${totalCantidad3}</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(totalPeso3).toFixed(2)} Kg.</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta3).toFixed(2)}</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#FFE699]">S/. ${totalVenta3.toFixed(2)}</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(promedio3).toFixed(2)}</td>
+
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${totalCantidad4}</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(totalPeso4).toFixed(2)} Kg.</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta4).toFixed(2)}</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#FFE699]">S/. ${totalVenta4.toFixed(2)}</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(promedio4).toFixed(2)}</td>
+
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${totalCantidad5}</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(totalPeso5).toFixed(2)} Kg.</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta5).toFixed(2)}</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#FFE699]">S/. ${totalVenta5.toFixed(2)}</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(promedio5).toFixed(2)}</td>
+
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${totalCantidad6}</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(totalPeso6).toFixed(2)} Kg.</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta6).toFixed(2)}</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#FFE699]">S/. ${totalVenta6.toFixed(2)}</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(promedio6).toFixed(2)}</td>
+
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${totalCantidad7}</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(totalPeso7).toFixed(2)} Kg.</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta7).toFixed(2)}</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#FFE699]">S/. ${totalVenta7.toFixed(2)}</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(promedio7).toFixed(2)}</td>
+
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${totalCantidad8}</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(totalPeso8).toFixed(2)} Kg.</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta8).toFixed(2)}</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#FFE699]">S/. ${totalVenta8.toFixed(2)}</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(promedio8).toFixed(2)}</td>
+
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${totalCantidad10}</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(totalPeso10).toFixed(2)} Kg.</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta10).toFixed(2)}</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#FFE699]">S/. ${totalVenta10.toFixed(2)}</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(promedio10).toFixed(2)}</td>
+
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${totalCantidad11}</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(totalPeso11).toFixed(2)} Kg.</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta11).toFixed(2)}</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#FFE699]">S/. ${totalVenta11.toFixed(2)}</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(promedio11).toFixed(2)}</td>
+
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${totalCantidad12}</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(totalPeso12).toFixed(2)} Kg.</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta12).toFixed(2)}</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#FFE699]">S/. ${totalVenta12.toFixed(2)}</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(promedio12).toFixed(2)}</td>
+
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${totalCantidad13}</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(totalPeso13).toFixed(2)} Kg.</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta13).toFixed(2)}</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#FFE699]">S/. ${totalVenta13.toFixed(2)}</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(promedio13).toFixed(2)}</td>
+
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${totalCantidad14}</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(totalPeso14).toFixed(2)} Kg.</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta14).toFixed(2)}</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#FFE699]">S/. ${totalVenta14.toFixed(2)}</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(promedio14).toFixed(2)}</td>
+
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${totalCantidad15}</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(totalPeso15).toFixed(2)} Kg.</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta15).toFixed(2)}</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#FFE699]">S/. ${totalVenta15.toFixed(2)}</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(promedio15).toFixed(2)}</td>
+
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${totalCantidad16}</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(totalPeso16).toFixed(2)} Kg.</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta16).toFixed(2)}</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#FFE699]">S/. ${totalVenta16.toFixed(2)}</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(promedio16).toFixed(2)}</td>
+
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${totalCantidad17}</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(totalPeso17).toFixed(2)} Kg.</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta17).toFixed(2)}</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#FFE699]">S/. ${totalVenta17.toFixed(2)}</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(promedio17).toFixed(2)}</td>
+
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${totalCantidad18}</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(totalPeso18).toFixed(2)} Kg.</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta18).toFixed(2)}</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#FFE699]">S/. ${totalVenta18.toFixed(2)}</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(promedio18).toFixed(2)}</td>
+
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${totalDelTotalCantidad}</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(totalDelTotalPeso).toFixed(2)} Kg.</td>
+                <td class="text-center border-2 py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#FFE699]">S/. ${totalDelTotalVenta.toFixed(2)}</td>
             </tr>
         `;
     }

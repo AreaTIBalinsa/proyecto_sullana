@@ -84,7 +84,158 @@
                 </table>
             </div>
         </div>
+
         {{-- Termina contenedor Reporte Acumulado --}}
+        <div class="flex gap-2 flex-wrap justify-start items-end">
+            <div class="flex flex-col items-start md:mx-5">
+                <label for="fechaReporteExcel" class="text-base text-gray-900 dark:text-gray-50">Reporte Excel :</label>
+                <input type="date" class="max-w-xs outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 px-2.5 py-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" id="fechaReporteExcel">
+            </div>
+            <button class="cursor-pointer uppercase  bg-blue-600 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 flex justify-center items-center gap-2" type="submit" autocomplete="off" id="filtrarReporteAcumuladoDesdeHastaExcel"><i class='bx bx-search-alt text-lg' ></i>Buscar</button>
+        </div>
+        
+        <div class="md:mx-5 my-5">
+            <div class="relative rounded-lg overflow-auto max-h-[500px] aside_scrollED">
+                <table class="border-collapse w-full text-gray-500 dark:text-gray-400 select-none relative text-sm" id="tablaReporteAcumuladoExcel">
+                    <caption class="bg-blue-600 text-gray-50 p-2 font-bold text-lg rounded-t-lg border-x-2 border-t-2" id="fechaReporteExcelTitle"></caption>
+                    <thead id="headerReporteAcumuladoExcel" class="bg-blue-600 text-gray-50 sticky top-0 text-xs uppercase">
+                        <tr class="h-10">
+                            <th class="px-4 border-2 whitespace-nowrap"></th>
+                            <th class="px-4 border-2 whitespace-nowrap" colspan="4">YUGO VIVO</th>
+                            <th class="px-4 border-2 whitespace-nowrap"></th>
+                            <th class="px-4 border-2 whitespace-nowrap" colspan="4">YUGO PELADO</th>
+                            <th class="px-4 border-2 whitespace-nowrap"></th>
+                            <th class="px-4 border-2 whitespace-nowrap" colspan="4">TECNICO VIVO</th>
+                            <th class="px-4 border-2 whitespace-nowrap"></th>
+                            <th class="px-4 border-2 whitespace-nowrap" colspan="4">TECNICO PELADO</th>
+                            <th class="px-4 border-2 whitespace-nowrap"></th>
+                            <th class="px-4 border-2 whitespace-nowrap" colspan="4">GALLINA DOBLE</th>
+                            <th class="px-4 border-2 whitespace-nowrap"></th>
+                            <th class="px-4 border-2 whitespace-nowrap" colspan="4">GALLINA CHICA</th>
+                            <th class="px-4 border-2 whitespace-nowrap"></th>
+                            <th class="px-4 border-2 whitespace-nowrap" colspan="4">GALLO</th>
+                            <th class="px-4 border-2 whitespace-nowrap"></th>
+                            <th class="px-4 border-2 whitespace-nowrap" colspan="4">POLLO MALTRATADO</th>
+                            <th class="px-4 border-2 whitespace-nowrap"></th>
+                            <th class="px-4 border-2 whitespace-nowrap" colspan="4">PECHUGA</th>
+                            <th class="px-4 border-2 whitespace-nowrap"></th>
+                            <th class="px-4 border-2 whitespace-nowrap" colspan="4">PIERNA</th>
+                            <th class="px-4 border-2 whitespace-nowrap"></th>
+                            <th class="px-4 border-2 whitespace-nowrap" colspan="4">ALAS</th>
+                            <th class="px-4 border-2 whitespace-nowrap"></th>
+                            <th class="px-4 border-2 whitespace-nowrap" colspan="4">MENUDENCIA</th>
+                            <th class="px-4 border-2 whitespace-nowrap"></th>
+                            <th class="px-4 border-2 whitespace-nowrap" colspan="4">DORSO</th>
+                            <th class="px-4 border-2 whitespace-nowrap"></th>
+                            <th class="px-4 border-2 whitespace-nowrap" colspan="4">OTROS</th>
+                            <th class="px-4 border-2 whitespace-nowrap"></th>
+                            <th class="px-4 border-2 whitespace-nowrap" colspan="4">POLLO XX</th>
+                            <th class="px-4 border-2 whitespace-nowrap"></th>
+                            <th class="px-4 border-2 whitespace-nowrap" colspan="4">BRASA YUGO</th>
+                            <th class="px-4 border-2 whitespace-nowrap"></th>
+                            <th class="px-4 border-2 whitespace-nowrap" colspan="4">BRASA TECNICO</th>
+                            <th class="px-4 border-2 whitespace-nowrap"></th>
+                            <th class="px-4 border-2 whitespace-nowrap bg-green-400" colspan="3">TOTAL</th>
+                        </tr>
+                        <tr class="h-10 bg-white dark:bg-gray-800 dark:text-gray-200 text-gray-900">
+                            <th class="text-left px-2 text-sm border-2 whitespace-nowrap bg-blue-600 text-white">CLIENTE</th>
+                            <th class="px-4 border-2 whitespace-nowrap">UNI.</th>
+                            <th class="px-4 border-2 whitespace-nowrap">PESO</th>
+                            <th class="px-4 border-2 whitespace-nowrap">PRECIO</th>
+                            <th class="px-4 border-2 whitespace-nowrap">SUB TOTAL</th>
+                            <th class="px-4 border-2 whitespace-nowrap bg-blue-600 text-white">PROM.</th>
+                            <th class="px-4 border-2 whitespace-nowrap">UNI.</th>
+                            <th class="px-4 border-2 whitespace-nowrap">PESO</th>
+                            <th class="px-4 border-2 whitespace-nowrap">PRECIO</th>
+                            <th class="px-4 border-2 whitespace-nowrap">SUB TOTAL</th>
+                            <th class="px-4 border-2 whitespace-nowrap bg-blue-600 text-white">PROM.</th>
+                            <th class="px-4 border-2 whitespace-nowrap">UNI.</th>
+                            <th class="px-4 border-2 whitespace-nowrap">PESO</th>
+                            <th class="px-4 border-2 whitespace-nowrap">PRECIO</th>
+                            <th class="px-4 border-2 whitespace-nowrap">SUB TOTAL</th>
+                            <th class="px-4 border-2 whitespace-nowrap bg-blue-600 text-white">PROM.</th>
+                            <th class="px-4 border-2 whitespace-nowrap">UNI.</th>
+                            <th class="px-4 border-2 whitespace-nowrap">PESO</th>
+                            <th class="px-4 border-2 whitespace-nowrap">PRECIO</th>
+                            <th class="px-4 border-2 whitespace-nowrap">SUB TOTAL</th>
+                            <th class="px-4 border-2 whitespace-nowrap bg-blue-600 text-white">PROM.</th>
+                            <th class="px-4 border-2 whitespace-nowrap">UNI.</th>
+                            <th class="px-4 border-2 whitespace-nowrap">PESO</th>
+                            <th class="px-4 border-2 whitespace-nowrap">PRECIO</th>
+                            <th class="px-4 border-2 whitespace-nowrap">SUB TOTAL</th>
+                            <th class="px-4 border-2 whitespace-nowrap bg-blue-600 text-white">PROM.</th>
+                            <th class="px-4 border-2 whitespace-nowrap">UNI.</th>
+                            <th class="px-4 border-2 whitespace-nowrap">PESO</th>
+                            <th class="px-4 border-2 whitespace-nowrap">PRECIO</th>
+                            <th class="px-4 border-2 whitespace-nowrap">SUB TOTAL</th>
+                            <th class="px-4 border-2 whitespace-nowrap bg-blue-600 text-white">PROM.</th>
+                            <th class="px-4 border-2 whitespace-nowrap">UNI.</th>
+                            <th class="px-4 border-2 whitespace-nowrap">PESO</th>
+                            <th class="px-4 border-2 whitespace-nowrap">PRECIO</th>
+                            <th class="px-4 border-2 whitespace-nowrap">SUB TOTAL</th>
+                            <th class="px-4 border-2 whitespace-nowrap bg-blue-600 text-white">PROM.</th>
+                            <th class="px-4 border-2 whitespace-nowrap">UNI.</th>
+                            <th class="px-4 border-2 whitespace-nowrap">PESO</th>
+                            <th class="px-4 border-2 whitespace-nowrap">PRECIO</th>
+                            <th class="px-4 border-2 whitespace-nowrap">SUB TOTAL</th>
+                            <th class="px-4 border-2 whitespace-nowrap bg-blue-600 text-white">PROM.</th>
+                            <th class="px-4 border-2 whitespace-nowrap">UNI.</th>
+                            <th class="px-4 border-2 whitespace-nowrap">PESO</th>
+                            <th class="px-4 border-2 whitespace-nowrap">PRECIO</th>
+                            <th class="px-4 border-2 whitespace-nowrap">SUB TOTAL</th>
+                            <th class="px-4 border-2 whitespace-nowrap bg-blue-600 text-white">PROM.</th>
+                            <th class="px-4 border-2 whitespace-nowrap">UNI.</th>
+                            <th class="px-4 border-2 whitespace-nowrap">PESO</th>
+                            <th class="px-4 border-2 whitespace-nowrap">PRECIO</th>
+                            <th class="px-4 border-2 whitespace-nowrap">SUB TOTAL</th>
+                            <th class="px-4 border-2 whitespace-nowrap bg-blue-600 text-white">PROM.</th>
+                            <th class="px-4 border-2 whitespace-nowrap">UNI.</th>
+                            <th class="px-4 border-2 whitespace-nowrap">PESO</th>
+                            <th class="px-4 border-2 whitespace-nowrap">PRECIO</th>
+                            <th class="px-4 border-2 whitespace-nowrap">SUB TOTAL</th>
+                            <th class="px-4 border-2 whitespace-nowrap bg-blue-600 text-white">PROM.</th>
+                            <th class="px-4 border-2 whitespace-nowrap">UNI.</th>
+                            <th class="px-4 border-2 whitespace-nowrap">PESO</th>
+                            <th class="px-4 border-2 whitespace-nowrap">PRECIO</th>
+                            <th class="px-4 border-2 whitespace-nowrap">SUB TOTAL</th>
+                            <th class="px-4 border-2 whitespace-nowrap bg-blue-600 text-white">PROM.</th>
+                            <th class="px-4 border-2 whitespace-nowrap">UNI.</th>
+                            <th class="px-4 border-2 whitespace-nowrap">PESO</th>
+                            <th class="px-4 border-2 whitespace-nowrap">PRECIO</th>
+                            <th class="px-4 border-2 whitespace-nowrap">SUB TOTAL</th>
+                            <th class="px-4 border-2 whitespace-nowrap bg-blue-600 text-white">PROM.</th>
+                            <th class="px-4 border-2 whitespace-nowrap">UNI.</th>
+                            <th class="px-4 border-2 whitespace-nowrap">PESO</th>
+                            <th class="px-4 border-2 whitespace-nowrap">PRECIO</th>
+                            <th class="px-4 border-2 whitespace-nowrap">SUB TOTAL</th>
+                            <th class="px-4 border-2 whitespace-nowrap bg-blue-600 text-white">PROM.</th>
+                            <th class="px-4 border-2 whitespace-nowrap">UNI.</th>
+                            <th class="px-4 border-2 whitespace-nowrap">PESO</th>
+                            <th class="px-4 border-2 whitespace-nowrap">PRECIO</th>
+                            <th class="px-4 border-2 whitespace-nowrap">SUB TOTAL</th>
+                            <th class="px-4 border-2 whitespace-nowrap bg-blue-600 text-white">PROM.</th>
+                            <th class="px-4 border-2 whitespace-nowrap">UNI.</th>
+                            <th class="px-4 border-2 whitespace-nowrap">PESO</th>
+                            <th class="px-4 border-2 whitespace-nowrap">PRECIO</th>
+                            <th class="px-4 border-2 whitespace-nowrap">SUB TOTAL</th>
+                            <th class="px-4 border-2 whitespace-nowrap bg-blue-600 text-white">PROM.</th>
+                            <th class="px-4 border-2 whitespace-nowrap">UNI.</th>
+                            <th class="px-4 border-2 whitespace-nowrap">PESO</th>
+                            <th class="px-4 border-2 whitespace-nowrap">PRECIO</th>
+                            <th class="px-4 border-2 whitespace-nowrap">SUB TOTAL</th>
+                            <th class="px-4 border-2 whitespace-nowrap bg-blue-600 text-white">PROM.</th>
+                            <th class="px-4 border-2 whitespace-nowrap">UNI.</th>
+                            <th class="px-4 border-2 whitespace-nowrap">PESO</th>
+                            <th class="px-4 border-2 whitespace-nowrap">TOTAL</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bodyReporteAcumuladoExcel">
+                        <tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="90" class="text-center">No hay datos</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
     </div>
 </main>
 @endsection
