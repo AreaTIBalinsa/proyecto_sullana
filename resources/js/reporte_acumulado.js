@@ -758,7 +758,7 @@ jQuery(function($) {
                   });
                   
                   fn_construirFilasReporteAcumuladoDetalleExcel(processedData);
-                  fn_construirFilasReporteAcumuladoDetalle(processedData);                                          
+                  //fn_construirFilasReporteAcumuladoDetalle(processedData);                                          
 
             },
             error: function (error) {
@@ -1670,16 +1670,28 @@ jQuery(function($) {
     
     // Formatear la fecha
     let fechaFormateada = formatearFecha(fechaActual);
-
-    console.log(fechaFormateada);
     
     // Insertar la fecha formateada en el elemento con id fechaReporteExcel
     $("#fechaReporteExcelTitle").text(fechaFormateada);
 
     $('#filtrarReporteAcumuladoDesdeHastaExcel').on('click', function () {
-        let fechaEnviar = $('#fechaReporteExcel').val();
-        fn_TraerReporteAcumuladoDetalle(fechaEnviar,fechaEnviar);
-    });
+        let fechaEnviarTexto = $('#fechaReporteExcel').val();
+        // Dividir la cadena de texto para extraer el año, mes y día
+        let [año, mes, dia] = fechaEnviarTexto.split("-");
+        // Crear un nuevo objeto Date con el formato esperado
+        let fechaEnviar = new Date(año, mes - 1, dia); // El mes se resta en 1 porque en JavaScript los meses van de 0 a 11
+    
+        // Verificar si la fecha es válida antes de continuar
+        if (isNaN(fechaEnviar.getTime())) {
+            console.error("Fecha inválida");
+            return;
+        }
+    
+        fn_TraerReporteAcumuladoDetalle(fechaEnviarTexto,fechaEnviarTexto);
+        
+        let fechaFormateadaClick = formatearFecha(fechaEnviar);
+        $("#fechaReporteExcelTitle").text(fechaFormateadaClick);
+    });    
 
     function fn_construirFilasReporteAcumuladoDetalleExcel(combinedDataArray){
         let bodyReporteAcumuladoExcel="";
@@ -1740,6 +1752,16 @@ jQuery(function($) {
         let venta17 = 0.00;
         let venta18 = 0.00;
 
+        let totalSaldoAnteriorSubTotales = 0;
+        let totalSaldoActualSubTotales = 0;
+        let totalCobranzaSubTotales = 0;
+        let totalNuevoSaldoSubTotales = 0;
+
+        let totalPesoDescTotalFor = 0;
+        let totalVentaDescTotalFor = 0;
+        let totalPrecioVentaDescTotalFor = 0;
+        let contadorTotalPrecioVentaDescTotal = 0;
+
         combinedDataArray.forEach(function (item) {
             bodyReporteAcumuladoExcel += construirFilaExcel(item);
 
@@ -1796,6 +1818,97 @@ jQuery(function($) {
             venta16 += parseFloat(item.totalVentaDecimaSextaEspecie);
             venta17 += parseFloat(item.totalVentaDecimaSeptimaEspecie);
             venta18 += parseFloat(item.totalVentaDecimaOctavaEspecie);
+
+            // ======================================================
+
+            let totalVentaPrimerEspecie = parseFloat(item.totalVentaPrimerEspecie);
+            let totalVentaSegundaEspecie = parseFloat(item.totalVentaSegundaEspecie);
+            let totalVentaTerceraEspecie = parseFloat(item.totalVentaTerceraEspecie);
+            let totalVentaCuartaEspecie = parseFloat(item.totalVentaCuartaEspecie);
+            let totalVentaQuintaEspecie = parseFloat(item.totalVentaQuintaEspecie);
+            let totalVentaSextaEspecie = parseFloat(item.totalVentaSextaEspecie);
+            let totalVentaSeptimaEspecie = parseFloat(item.totalVentaSeptimaEspecie);
+            let totalVentaOctavaEspecie = parseFloat(item.totalVentaOctavaEspecie);
+            let totalVentaDecimaEspecie = parseFloat(item.totalVentaDecimaEspecie);
+            let totalVentaDecimaPrimeraEspecie = parseFloat(item.totalVentaDecimaPrimeraEspecie);
+            let totalVentaDecimaSegundaEspecie = parseFloat(item.totalVentaDecimaSegundaEspecie);
+            let totalVentaDecimaTerceraEspecie = parseFloat(item.totalVentaDecimaTerceraEspecie);
+            let totalVentaDecimaCuartaEspecie = parseFloat(item.totalVentaDecimaCuartaEspecie);
+            let totalVentaDecimaQuintaEspecie = parseFloat(item.totalVentaDecimaQuintaEspecie);
+            let totalVentaDecimaSextaEspecie = parseFloat(item.totalVentaDecimaSextaEspecie);
+            let totalVentaDecimaSeptimaEspecie = parseFloat(item.totalVentaDecimaSeptimaEspecie);
+            let totalVentaDecimaOctavaEspecie = parseFloat(item.totalVentaDecimaOctavaEspecie);
+
+            let totalVentaDescuentoPrimerEspecie = parseFloat(item.totalVentaDescuentoPrimerEspecie);
+            let totalVentaDescuentoSegundaEspecie = parseFloat(item.totalVentaDescuentoSegundaEspecie);
+            let totalVentaDescuentoTerceraEspecie = parseFloat(item.totalVentaDescuentoTerceraEspecie);
+            let totalVentaDescuentoCuartaEspecie = parseFloat(item.totalVentaDescuentoCuartaEspecie);
+            let totalVentaDescuentoQuintaEspecie = parseFloat(item.totalVentaDescuentoQuintaEspecie);
+            let totalVentaDescuentoSextaEspecie = parseFloat(item.totalVentaDescuentoSextaEspecie);
+            let totalVentaDescuentoSeptimaEspecie = parseFloat(item.totalVentaDescuentoSeptimaEspecie);
+            let totalVentaDescuentoOctavaEspecie = parseFloat(item.totalVentaDescuentoOctavaEspecie);
+            let totalVentaDescuentoDecimaEspecie = parseFloat(item.totalVentaDescuentoDecimaEspecie);
+            let totalVentaDescuentoDecimaPrimeraEspecie = parseFloat(item.totalVentaDescuentoDecimaPrimeraEspecie);
+            let totalVentaDescuentoDecimaSegundaEspecie = parseFloat(item.totalVentaDescuentoDecimaSegundaEspecie);
+            let totalVentaDescuentoDecimaTerceraEspecie = parseFloat(item.totalVentaDescuentoDecimaTerceraEspecie);
+            let totalVentaDescuentoDecimaCuartaEspecie = parseFloat(item.totalVentaDescuentoDecimaCuartaEspecie);
+            let totalVentaDescuentoDecimaQuintaEspecie = parseFloat(item.totalVentaDescuentoDecimaQuintaEspecie);
+            let totalVentaDescuentoDecimaSextaEspecie = parseFloat(item.totalVentaDescuentoDecimaSextaEspecie);
+            let totalVentaDescuentoDecimaSeptimaEspecie = parseFloat(item.totalVentaDescuentoDecimaSeptimaEspecie);
+            let totalVentaDescuentoDecimaOctavaEspecie = parseFloat(item.totalVentaDescuentoDecimaOctavaEspecie);
+
+            let ventaTotalPrimerEspecie = totalVentaPrimerEspecie + totalVentaDescuentoPrimerEspecie;
+            let ventaTotalSegundaEspecie = totalVentaSegundaEspecie + totalVentaDescuentoSegundaEspecie;
+            let ventaTotalTerceraEspecie = totalVentaTerceraEspecie + totalVentaDescuentoTerceraEspecie;
+            let ventaTotalCuartaEspecie = totalVentaCuartaEspecie + totalVentaDescuentoCuartaEspecie;
+            let ventaTotalQuintaEspecie = totalVentaQuintaEspecie + totalVentaDescuentoQuintaEspecie;
+            let ventaTotalSextaEspecie = totalVentaSextaEspecie + totalVentaDescuentoSextaEspecie;
+            let ventaTotalSeptimaEspecie = totalVentaSeptimaEspecie + totalVentaDescuentoSeptimaEspecie;
+            let ventaTotalOctavaEspecie = totalVentaOctavaEspecie + totalVentaDescuentoOctavaEspecie;
+            let ventaTotalDecimaEspecie = totalVentaDecimaEspecie + totalVentaDescuentoDecimaEspecie;
+            let ventaTotalDecimaPrimeraEspecie = totalVentaDecimaPrimeraEspecie + totalVentaDescuentoDecimaPrimeraEspecie;
+            let ventaTotalDecimaSegundaEspecie = totalVentaDecimaSegundaEspecie + totalVentaDescuentoDecimaSegundaEspecie;
+            let ventaTotalDecimaTerceraEspecie = totalVentaDecimaTerceraEspecie + totalVentaDescuentoDecimaTerceraEspecie;
+            let ventaTotalDecimaCuartaEspecie = totalVentaDecimaCuartaEspecie + totalVentaDescuentoDecimaCuartaEspecie;
+            let ventaTotalDecimaQuintaEspecie = totalVentaDecimaQuintaEspecie + totalVentaDescuentoDecimaQuintaEspecie;
+            let ventaTotalDecimaSextaEspecie = totalVentaDecimaSextaEspecie + totalVentaDescuentoDecimaSextaEspecie;
+            let ventaTotalDecimaSeptimaEspecie = totalVentaDecimaSeptimaEspecie + totalVentaDescuentoDecimaSeptimaEspecie;
+            let ventaTotalDecimaOctavaEspecie = totalVentaDecimaOctavaEspecie + totalVentaDescuentoDecimaOctavaEspecie;
+
+            let ventaTotal = ventaTotalPrimerEspecie + ventaTotalSegundaEspecie + ventaTotalTerceraEspecie + ventaTotalCuartaEspecie + ventaTotalQuintaEspecie + ventaTotalSextaEspecie + ventaTotalSeptimaEspecie + ventaTotalOctavaEspecie + ventaTotalDecimaEspecie + ventaTotalDecimaPrimeraEspecie + ventaTotalDecimaSegundaEspecie + ventaTotalDecimaTerceraEspecie + ventaTotalDecimaCuartaEspecie + ventaTotalDecimaQuintaEspecie + ventaTotalDecimaSextaEspecie + ventaTotalDecimaSeptimaEspecie + ventaTotalDecimaOctavaEspecie + item.totalVentaDescuento;
+
+            let ventaAnterior = parseFloat(item.ventaAnterior);
+            let pagoAnterior = parseFloat(item.pagoAnterior);
+            let descuentoAnterior = parseFloat(item.totalVentaDescuentoAnterior);
+
+            let totalVentaAnterior = ventaAnterior - pagoAnterior + descuentoAnterior;
+
+            let saldoDelDia = totalVentaAnterior + ventaTotal;
+
+            let saldoActual = saldoDelDia - parseFloat(item.pagos);
+
+            totalSaldoAnteriorSubTotales += totalVentaAnterior;
+            totalSaldoActualSubTotales += saldoDelDia;
+            totalCobranzaSubTotales += parseFloat(item.pagos);
+            totalNuevoSaldoSubTotales += saldoActual;
+
+            let totalPesoDescTotal = parseFloat(item.totalPesoDescuento);
+            let totalVentaDescTotal = parseFloat(item.totalVentaDescuento);
+            let totalPrecioVentaDescTotal = 0;
+
+            if (totalVentaDescTotal != 0){
+                totalPrecioVentaDescTotal = totalVentaDescTotal/totalPesoDescTotal;
+            }else{
+                totalPrecioVentaDescTotal = 0;
+            }
+
+            totalPesoDescTotalFor += totalPesoDescTotal;
+            totalVentaDescTotalFor += totalVentaDescTotal;
+            totalPrecioVentaDescTotalFor += totalPrecioVentaDescTotal;
+            if (totalPrecioVentaDescTotal > 0){
+                contadorTotalPrecioVentaDescTotal++;
+            }
+
         });
         //console.log("bodyReporteAcumuladoExcel",bodyReporteAcumuladoExcel);
         bodyReporteAcumuladoExcel += construirFilaTotalExcel(cantidad1, cantidad2, cantidad3, cantidad4, cantidad5, cantidad6
@@ -1805,7 +1918,8 @@ jQuery(function($) {
             , peso11, peso12, peso13, peso14, peso15, peso16, peso17, peso18
             , venta1, venta2, venta3, venta4, venta5, venta6, venta7, venta8
             , venta10, venta11, venta12, venta13, venta14, venta15, venta16
-            , venta17, venta18);
+            , venta17, venta18, totalSaldoAnteriorSubTotales, totalSaldoActualSubTotales, totalCobranzaSubTotales, totalNuevoSaldoSubTotales,
+            totalPesoDescTotalFor,totalVentaDescTotalFor,totalPrecioVentaDescTotalFor, contadorTotalPrecioVentaDescTotal);
         tbodyReporteAcumuladoExcel.html(bodyReporteAcumuladoExcel);
     }
 
@@ -1817,8 +1931,21 @@ jQuery(function($) {
         , peso11, peso12, peso13, peso14, peso15, peso16, peso17, peso18
         , venta1, venta2, venta3, venta4, venta5, venta6, venta7, venta8
         , venta10, venta11, venta12, venta13, venta14, venta15, venta16
-        , venta17, venta18) {
+        , venta17, venta18, totalSaldoAnteriorSubTotales, totalSaldoActualSubTotales, totalCobranzaSubTotales, totalNuevoSaldoSubTotales,
+        totalPesoDescTotalFor,totalVentaDescTotalFor,totalPrecioVentaDescTotalFor, contadorTotalPrecioVentaDescTotal) {
 
+        let totalPrecioVentaDescTotalFinal = 0;
+
+        //console.log("contadorTotalPrecioVentaDescTotal",contadorTotalPrecioVentaDescTotal);
+
+        if (totalPrecioVentaDescTotalFor != 0 && contadorTotalPrecioVentaDescTotal > 0){
+            totalPrecioVentaDescTotalFinal = totalPrecioVentaDescTotalFor / contadorTotalPrecioVentaDescTotal;
+        }
+
+        let totalDeSubtotales = venta1 + venta2 + venta3 + venta4 + venta5 + venta6 + venta7 + venta8 + venta10 + venta11 + venta12 + venta13 + venta14 + venta15 + venta16 + venta17 + venta18;
+        let totalCantidadSubTotales = cantidad1 + cantidad2 + cantidad3 + cantidad4 + cantidad5 + cantidad6 + cantidad7 + cantidad8 + cantidad10 + cantidad11 + cantidad12 + cantidad13 + cantidad14 + cantidad15 + cantidad16 + cantidad17 + cantidad18;
+        let totalPesoSubTotales = peso1 + peso2 + peso3 + peso4 + peso5 + peso6 + peso7 + peso8 + peso10 + peso11 + peso12 + peso13 + peso14 + peso15 + peso16 + peso17 + peso18;
+        
         let precio1 = 0;
         if (venta1 != 0 && peso1 != 0){
             precio1 = venta1 / peso1;
@@ -1846,26 +1973,250 @@ jQuery(function($) {
             promedio3 = peso3 / cantidad3;
         }
 
+        let precio4 = 0;
+        if (venta4 != 0 && peso4 != 0){
+            precio4 = venta4 / peso4;
+        }
+        let promedio4 = 0;
+        if (peso4 != 0 && cantidad4 != 0){
+            promedio4 = peso4 / cantidad4;
+        }
+
+        let precio5 = 0;
+        if (venta5 != 0 && peso5 != 0){
+            precio5 = venta5 / peso5;
+        }
+        let promedio5 = 0;
+        if (peso5 != 0 && cantidad5 != 0){
+            promedio5 = peso5 / cantidad5;
+        }
+
+        let precio6 = 0;
+        if (venta6 != 0 && peso6 != 0){
+            precio6 = venta6 / peso6;
+        }
+        let promedio6 = 0;
+        if (peso6 != 0 && cantidad6 != 0){
+            promedio6 = peso6 / cantidad6;
+        }
+
+        let precio7 = 0;
+        if (venta7 != 0 && peso7 != 0){
+            precio7 = venta7 / peso7;
+        }
+        let promedio7 = 0;
+        if (peso7 != 0 && cantidad7 != 0){
+            promedio7 = peso7 / cantidad7;
+        }
+
+        let precio8 = 0;
+        if (venta8 != 0 && peso8 != 0){
+            precio8 = venta8 / peso8;
+        }
+        let promedio8 = 0;
+        if (peso8 != 0 && cantidad8 != 0){
+            promedio8 = peso8 / cantidad8;
+        }
+
+        let precio10 = 0;
+        if (venta10 != 0 && peso10 != 0){
+            precio10 = venta10 / peso10;
+        }
+        let promedio10 = 0;
+        if (peso10 != 0 && cantidad10 != 0){
+            promedio10 = peso10 / cantidad10;
+        }
+
+        let precio11 = 0;
+        if (venta11 != 0 && peso11 != 0){
+            precio11 = venta11 / peso11;
+        }
+        let promedio11 = 0;
+        if (peso11 != 0 && cantidad11 != 0){
+            promedio11 = peso11 / cantidad11;
+        }
+
+        let precio12 = 0;
+        if (venta12 != 0 && peso12 != 0){
+            precio12 = venta12 / peso12;
+        }
+        let promedio12 = 0;
+        if (peso12 != 0 && cantidad12 != 0){
+            promedio12 = peso12 / cantidad12;
+        }
+
+        let precio13 = 0;
+        if (venta13 != 0 && peso13 != 0){
+            precio13 = venta13 / peso13;
+        }
+        let promedio13 = 0;
+        if (peso13 != 0 && cantidad13 != 0){
+            promedio13 = peso13 / cantidad13;
+        }
+
+        let precio14 = 0;
+        if (venta14 != 0 && peso14 != 0){
+            precio14 = venta14 / peso14;
+        }
+        let promedio14 = 0;
+        if (peso14 != 0 && cantidad14 != 0){
+            promedio14 = peso14 / cantidad14;
+        }
+
+        let precio15 = 0;
+        if (venta15 != 0 && peso15 != 0){
+            precio15 = venta15 / peso15;
+        }
+        let promedio15 = 0;
+        if (peso15 != 0 && cantidad15 != 0){
+            promedio15 = peso15 / cantidad15;
+        }
+
+        let precio16 = 0;
+        if (venta16 != 0 && peso16 != 0){
+            precio16 = venta16 / peso16;
+        }
+        let promedio16 = 0;
+        if (peso16 != 0 && cantidad16 != 0){
+            promedio16 = peso16 / cantidad16;
+        }
+
+        let precio17 = 0;
+        if (venta17 != 0 && peso17 != 0){
+            precio17 = venta17 / peso17;
+        }
+        let promedio17 = 0;
+        if (peso17 != 0 && cantidad17 != 0){
+            promedio17 = peso17 / cantidad17;
+        }
+
+        let precio18 = 0;
+        if (venta18 != 0 && peso18 != 0){
+            precio18 = venta18 / peso18;
+        }
+        let promedio18 = 0;
+        if (peso18 != 0 && cantidad18 != 0){
+            promedio18 = peso18 / cantidad18;
+        }
+
             return `
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900">
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">TOTAL</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${cantidad1}</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(peso1).toFixed(2)} Kg.</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">S/. ${(precio1).toFixed(2)}</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">S/. ${venta1.toFixed(2)}</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(promedio1).toFixed(2)}</td>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900 sticky bottom-0">
+                <td class="text-left font-bold text-sm border-t-2 border-r-[1px] border-l-2 border-b-2 py-1 px-2 text-white bg-blue-600 whitespace-nowrap">TOTAL</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${cantidad1}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(peso1).toFixed(2)} Kg.</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${(precio1).toFixed(2)}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${venta1.toFixed(2)}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(promedio1).toFixed(2)}</td> 
 
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${cantidad2}</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(peso2).toFixed(2)} Kg.</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">S/. ${(precio2).toFixed(2)}</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">S/. ${venta2.toFixed(2)}</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(promedio2).toFixed(2)}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${cantidad2}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(peso2).toFixed(2)} Kg.</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${(precio2).toFixed(2)}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${venta2.toFixed(2)}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(promedio2).toFixed(2)}</td>
 
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${cantidad3}</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(peso3).toFixed(2)} Kg.</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">S/. ${(precio3).toFixed(2)}</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">S/. ${venta3.toFixed(2)}</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(promedio3).toFixed(2)}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${cantidad3}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(peso3).toFixed(2)} Kg.</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${(precio3).toFixed(2)}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${venta3.toFixed(2)}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(promedio3).toFixed(2)}</td>
+
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${cantidad4}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(peso4).toFixed(2)} Kg.</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${(precio4).toFixed(2)}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${venta4.toFixed(2)}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(promedio4).toFixed(2)}</td>
+
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${cantidad5}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(peso5).toFixed(2)} Kg.</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${(precio5).toFixed(2)}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${venta5.toFixed(2)}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(promedio5).toFixed(2)}</td>
+
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${cantidad6}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(peso6).toFixed(2)} Kg.</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${(precio6).toFixed(2)}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${venta6.toFixed(2)}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(promedio6).toFixed(2)}</td>
+
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${cantidad7}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(peso7).toFixed(2)} Kg.</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${(precio7).toFixed(2)}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${venta7.toFixed(2)}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(promedio7).toFixed(2)}</td>
+
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${cantidad8}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(peso8).toFixed(2)} Kg.</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${(precio8).toFixed(2)}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${venta8.toFixed(2)}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(promedio8).toFixed(2)}</td>
+
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${cantidad10}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(peso10).toFixed(2)} Kg.</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${(precio10).toFixed(2)}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${venta10.toFixed(2)}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(promedio10).toFixed(2)}</td>
+
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${cantidad11}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(peso11).toFixed(2)} Kg.</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${(precio11).toFixed(2)}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${venta11.toFixed(2)}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(promedio11).toFixed(2)}</td>
+
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${cantidad12}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(peso12).toFixed(2)} Kg.</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${(precio12).toFixed(2)}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${venta12.toFixed(2)}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(promedio12).toFixed(2)}</td>
+
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${cantidad13}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(peso13).toFixed(2)} Kg.</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${(precio13).toFixed(2)}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${venta13.toFixed(2)}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(promedio13).toFixed(2)}</td>
+
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${cantidad14}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(peso14).toFixed(2)} Kg.</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${(precio14).toFixed(2)}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${venta14.toFixed(2)}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(promedio14).toFixed(2)}</td>
+
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${cantidad15}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(peso15).toFixed(2)} Kg.</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${(precio15).toFixed(2)}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${venta15.toFixed(2)}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(promedio15).toFixed(2)}</td>
+
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${cantidad16}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(peso16).toFixed(2)} Kg.</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${(precio16).toFixed(2)}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${venta16.toFixed(2)}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(promedio16).toFixed(2)}</td>
+
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${cantidad17}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(peso17).toFixed(2)} Kg.</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${(precio17).toFixed(2)}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${venta17.toFixed(2)}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(promedio17).toFixed(2)}</td>
+
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${cantidad18}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(peso18).toFixed(2)} Kg.</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${(precio18).toFixed(2)}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${venta18.toFixed(2)}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(promedio18).toFixed(2)}</td>
+
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(totalPesoDescTotalFor).toFixed(2)} Kg.</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVentaDescTotalFinal).toFixed(2)}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap font-semibold">S/. ${(totalVentaDescTotalFor).toFixed(2)}</td>
+
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${totalCantidadSubTotales}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(totalPesoSubTotales).toFixed(2)} Kg.</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap font-semibold">S/. ${totalDeSubtotales.toFixed(2)}</td>
+
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${totalSaldoAnteriorSubTotales.toFixed(2)}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${totalSaldoActualSubTotales.toFixed(2)}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${totalCobranzaSubTotales.toFixed(2)}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap font-bold">S/. ${totalNuevoSaldoSubTotales.toFixed(2)}</td>
+                <td class="text-center border-t-2 border-l-[1px] border-r-2 border-b-2 py-1 px-2 whitespace-nowrap font-bold bg-blue-600">&nbsp;</td>
             </tr>
         `;
     }
@@ -2340,116 +2691,239 @@ jQuery(function($) {
 
         totalDelTotalVenta = totalVenta1 + totalVenta2 + totalVenta3 + totalVenta4 + totalVenta5 + totalVenta6 + totalVenta7 + totalVenta8 + totalVenta10 + totalVenta11 + totalVenta12 + totalVenta13 + totalVenta14 + totalVenta15 + totalVenta16 + totalVenta17 + totalVenta18;
 
+        // ==============================================
+
+        let totalVentaPrimerEspecie = parseFloat(item.totalVentaPrimerEspecie);
+        let totalVentaSegundaEspecie = parseFloat(item.totalVentaSegundaEspecie);
+        let totalVentaTerceraEspecie = parseFloat(item.totalVentaTerceraEspecie);
+        let totalVentaCuartaEspecie = parseFloat(item.totalVentaCuartaEspecie);
+        let totalVentaQuintaEspecie = parseFloat(item.totalVentaQuintaEspecie);
+        let totalVentaSextaEspecie = parseFloat(item.totalVentaSextaEspecie);
+        let totalVentaSeptimaEspecie = parseFloat(item.totalVentaSeptimaEspecie);
+        let totalVentaOctavaEspecie = parseFloat(item.totalVentaOctavaEspecie);
+        let totalVentaDecimaEspecie = parseFloat(item.totalVentaDecimaEspecie);
+        let totalVentaDecimaPrimeraEspecie = parseFloat(item.totalVentaDecimaPrimeraEspecie);
+        let totalVentaDecimaSegundaEspecie = parseFloat(item.totalVentaDecimaSegundaEspecie);
+        let totalVentaDecimaTerceraEspecie = parseFloat(item.totalVentaDecimaTerceraEspecie);
+        let totalVentaDecimaCuartaEspecie = parseFloat(item.totalVentaDecimaCuartaEspecie);
+        let totalVentaDecimaQuintaEspecie = parseFloat(item.totalVentaDecimaQuintaEspecie);
+        let totalVentaDecimaSextaEspecie = parseFloat(item.totalVentaDecimaSextaEspecie);
+        let totalVentaDecimaSeptimaEspecie = parseFloat(item.totalVentaDecimaSeptimaEspecie);
+        let totalVentaDecimaOctavaEspecie = parseFloat(item.totalVentaDecimaOctavaEspecie);
+
+        let totalVentaDescuentoPrimerEspecie = parseFloat(item.totalVentaDescuentoPrimerEspecie);
+        let totalVentaDescuentoSegundaEspecie = parseFloat(item.totalVentaDescuentoSegundaEspecie);
+        let totalVentaDescuentoTerceraEspecie = parseFloat(item.totalVentaDescuentoTerceraEspecie);
+        let totalVentaDescuentoCuartaEspecie = parseFloat(item.totalVentaDescuentoCuartaEspecie);
+        let totalVentaDescuentoQuintaEspecie = parseFloat(item.totalVentaDescuentoQuintaEspecie);
+        let totalVentaDescuentoSextaEspecie = parseFloat(item.totalVentaDescuentoSextaEspecie);
+        let totalVentaDescuentoSeptimaEspecie = parseFloat(item.totalVentaDescuentoSeptimaEspecie);
+        let totalVentaDescuentoOctavaEspecie = parseFloat(item.totalVentaDescuentoOctavaEspecie);
+        let totalVentaDescuentoDecimaEspecie = parseFloat(item.totalVentaDescuentoDecimaEspecie);
+        let totalVentaDescuentoDecimaPrimeraEspecie = parseFloat(item.totalVentaDescuentoDecimaPrimeraEspecie);
+        let totalVentaDescuentoDecimaSegundaEspecie = parseFloat(item.totalVentaDescuentoDecimaSegundaEspecie);
+        let totalVentaDescuentoDecimaTerceraEspecie = parseFloat(item.totalVentaDescuentoDecimaTerceraEspecie);
+        let totalVentaDescuentoDecimaCuartaEspecie = parseFloat(item.totalVentaDescuentoDecimaCuartaEspecie);
+        let totalVentaDescuentoDecimaQuintaEspecie = parseFloat(item.totalVentaDescuentoDecimaQuintaEspecie);
+        let totalVentaDescuentoDecimaSextaEspecie = parseFloat(item.totalVentaDescuentoDecimaSextaEspecie);
+        let totalVentaDescuentoDecimaSeptimaEspecie = parseFloat(item.totalVentaDescuentoDecimaSeptimaEspecie);
+        let totalVentaDescuentoDecimaOctavaEspecie = parseFloat(item.totalVentaDescuentoDecimaOctavaEspecie);
+
+        let ventaTotalPrimerEspecie = totalVentaPrimerEspecie + totalVentaDescuentoPrimerEspecie;
+        let ventaTotalSegundaEspecie = totalVentaSegundaEspecie + totalVentaDescuentoSegundaEspecie;
+        let ventaTotalTerceraEspecie = totalVentaTerceraEspecie + totalVentaDescuentoTerceraEspecie;
+        let ventaTotalCuartaEspecie = totalVentaCuartaEspecie + totalVentaDescuentoCuartaEspecie;
+        let ventaTotalQuintaEspecie = totalVentaQuintaEspecie + totalVentaDescuentoQuintaEspecie;
+        let ventaTotalSextaEspecie = totalVentaSextaEspecie + totalVentaDescuentoSextaEspecie;
+        let ventaTotalSeptimaEspecie = totalVentaSeptimaEspecie + totalVentaDescuentoSeptimaEspecie;
+        let ventaTotalOctavaEspecie = totalVentaOctavaEspecie + totalVentaDescuentoOctavaEspecie;
+        let ventaTotalDecimaEspecie = totalVentaDecimaEspecie + totalVentaDescuentoDecimaEspecie;
+        let ventaTotalDecimaPrimeraEspecie = totalVentaDecimaPrimeraEspecie + totalVentaDescuentoDecimaPrimeraEspecie;
+        let ventaTotalDecimaSegundaEspecie = totalVentaDecimaSegundaEspecie + totalVentaDescuentoDecimaSegundaEspecie;
+        let ventaTotalDecimaTerceraEspecie = totalVentaDecimaTerceraEspecie + totalVentaDescuentoDecimaTerceraEspecie;
+        let ventaTotalDecimaCuartaEspecie = totalVentaDecimaCuartaEspecie + totalVentaDescuentoDecimaCuartaEspecie;
+        let ventaTotalDecimaQuintaEspecie = totalVentaDecimaQuintaEspecie + totalVentaDescuentoDecimaQuintaEspecie;
+        let ventaTotalDecimaSextaEspecie = totalVentaDecimaSextaEspecie + totalVentaDescuentoDecimaSextaEspecie;
+        let ventaTotalDecimaSeptimaEspecie = totalVentaDecimaSeptimaEspecie + totalVentaDescuentoDecimaSeptimaEspecie;
+        let ventaTotalDecimaOctavaEspecie = totalVentaDecimaOctavaEspecie + totalVentaDescuentoDecimaOctavaEspecie;
+
+        let ventaTotal = ventaTotalPrimerEspecie + ventaTotalSegundaEspecie + ventaTotalTerceraEspecie + ventaTotalCuartaEspecie + ventaTotalQuintaEspecie + ventaTotalSextaEspecie + ventaTotalSeptimaEspecie + ventaTotalOctavaEspecie + ventaTotalDecimaEspecie + ventaTotalDecimaPrimeraEspecie + ventaTotalDecimaSegundaEspecie + ventaTotalDecimaTerceraEspecie + ventaTotalDecimaCuartaEspecie + ventaTotalDecimaQuintaEspecie + ventaTotalDecimaSextaEspecie + ventaTotalDecimaSeptimaEspecie + ventaTotalDecimaOctavaEspecie + item.totalVentaDescuento;
+
+        let ventaAnterior = parseFloat(item.ventaAnterior);
+        let pagoAnterior = parseFloat(item.pagoAnterior);
+        let descuentoAnterior = parseFloat(item.totalVentaDescuentoAnterior);
+
+        let totalVentaAnterior = ventaAnterior - pagoAnterior + descuentoAnterior;
+
+        let saldoDelDia = totalVentaAnterior + ventaTotal;
+
+        let saldoActual = saldoDelDia - parseFloat(item.pagos);
+
+        // ==============================================
+
+        let totalPesoDesc = parseFloat(item.totalPesoDescuento);
+
+        let totalVentaDesc = parseFloat(item.totalVentaDescuento);
+
+        let totalPrecioVentaDesc = 0;
+        if (totalVentaDesc != 0){
+            totalPrecioVentaDesc = totalVentaDesc/totalPesoDesc;
+        }else{
+            totalPrecioVentaDesc = 0;
+        }
+
+        totalDelTotalPeso = totalDelTotalPeso + totalPesoDesc;
+        totalDelTotalVenta = totalDelTotalVenta + totalVentaDesc;
+
         return `
             <tr class="bg-white dark:text-gray-200 text-gray-900 border-b dark:bg-gray-800 dark:border-gray-700">
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${item.nombreCompleto}</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${totalCantidad1}</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(totalPeso1).toFixed(2)} Kg.</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta1).toFixed(2)}</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#FFE699]">S/. ${totalVenta1.toFixed(2)}</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(promedio1).toFixed(2)}</td>
+                <td class="text-center border-y-[1px] border-r-[1px] border-l-2 py-1 px-2 whitespace-nowrap">${item.nombreCompleto}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${totalCantidad1}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(totalPeso1).toFixed(2)} Kg.</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta1).toFixed(2)}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#CAA122]">S/. ${totalVenta1.toFixed(2)}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(promedio1).toFixed(2)}</td>
 
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${totalCantidad2}</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(totalPeso2).toFixed(2)} Kg.</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta2).toFixed(2)}</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#FFE699]">S/. ${totalVenta2.toFixed(2)}</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(promedio2).toFixed(2)}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${totalCantidad2}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(totalPeso2).toFixed(2)} Kg.</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta2).toFixed(2)}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#CAA122]">S/. ${totalVenta2.toFixed(2)}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(promedio2).toFixed(2)}</td>
 
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${totalCantidad3}</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(totalPeso3).toFixed(2)} Kg.</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta3).toFixed(2)}</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#FFE699]">S/. ${totalVenta3.toFixed(2)}</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(promedio3).toFixed(2)}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${totalCantidad3}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(totalPeso3).toFixed(2)} Kg.</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta3).toFixed(2)}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#CAA122]">S/. ${totalVenta3.toFixed(2)}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(promedio3).toFixed(2)}</td>
 
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${totalCantidad4}</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(totalPeso4).toFixed(2)} Kg.</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta4).toFixed(2)}</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#FFE699]">S/. ${totalVenta4.toFixed(2)}</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(promedio4).toFixed(2)}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${totalCantidad4}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(totalPeso4).toFixed(2)} Kg.</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta4).toFixed(2)}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#CAA122]">S/. ${totalVenta4.toFixed(2)}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(promedio4).toFixed(2)}</td>
 
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${totalCantidad5}</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(totalPeso5).toFixed(2)} Kg.</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta5).toFixed(2)}</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#FFE699]">S/. ${totalVenta5.toFixed(2)}</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(promedio5).toFixed(2)}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${totalCantidad5}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(totalPeso5).toFixed(2)} Kg.</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta5).toFixed(2)}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#CAA122]">S/. ${totalVenta5.toFixed(2)}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(promedio5).toFixed(2)}</td>
 
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${totalCantidad6}</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(totalPeso6).toFixed(2)} Kg.</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta6).toFixed(2)}</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#FFE699]">S/. ${totalVenta6.toFixed(2)}</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(promedio6).toFixed(2)}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${totalCantidad6}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(totalPeso6).toFixed(2)} Kg.</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta6).toFixed(2)}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#CAA122]">S/. ${totalVenta6.toFixed(2)}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(promedio6).toFixed(2)}</td>
 
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${totalCantidad7}</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(totalPeso7).toFixed(2)} Kg.</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta7).toFixed(2)}</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#FFE699]">S/. ${totalVenta7.toFixed(2)}</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(promedio7).toFixed(2)}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${totalCantidad7}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(totalPeso7).toFixed(2)} Kg.</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta7).toFixed(2)}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#CAA122]">S/. ${totalVenta7.toFixed(2)}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(promedio7).toFixed(2)}</td>
 
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${totalCantidad8}</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(totalPeso8).toFixed(2)} Kg.</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta8).toFixed(2)}</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#FFE699]">S/. ${totalVenta8.toFixed(2)}</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(promedio8).toFixed(2)}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${totalCantidad8}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(totalPeso8).toFixed(2)} Kg.</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta8).toFixed(2)}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#CAA122]">S/. ${totalVenta8.toFixed(2)}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(promedio8).toFixed(2)}</td>
 
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${totalCantidad10}</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(totalPeso10).toFixed(2)} Kg.</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta10).toFixed(2)}</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#FFE699]">S/. ${totalVenta10.toFixed(2)}</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(promedio10).toFixed(2)}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${totalCantidad10}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(totalPeso10).toFixed(2)} Kg.</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta10).toFixed(2)}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#CAA122]">S/. ${totalVenta10.toFixed(2)}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(promedio10).toFixed(2)}</td>
 
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${totalCantidad11}</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(totalPeso11).toFixed(2)} Kg.</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta11).toFixed(2)}</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#FFE699]">S/. ${totalVenta11.toFixed(2)}</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(promedio11).toFixed(2)}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${totalCantidad11}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(totalPeso11).toFixed(2)} Kg.</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta11).toFixed(2)}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#CAA122]">S/. ${totalVenta11.toFixed(2)}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(promedio11).toFixed(2)}</td>
 
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${totalCantidad12}</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(totalPeso12).toFixed(2)} Kg.</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta12).toFixed(2)}</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#FFE699]">S/. ${totalVenta12.toFixed(2)}</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(promedio12).toFixed(2)}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${totalCantidad12}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(totalPeso12).toFixed(2)} Kg.</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta12).toFixed(2)}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#CAA122]">S/. ${totalVenta12.toFixed(2)}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(promedio12).toFixed(2)}</td>
 
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${totalCantidad13}</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(totalPeso13).toFixed(2)} Kg.</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta13).toFixed(2)}</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#FFE699]">S/. ${totalVenta13.toFixed(2)}</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(promedio13).toFixed(2)}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${totalCantidad13}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(totalPeso13).toFixed(2)} Kg.</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta13).toFixed(2)}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#CAA122]">S/. ${totalVenta13.toFixed(2)}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(promedio13).toFixed(2)}</td>
 
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${totalCantidad14}</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(totalPeso14).toFixed(2)} Kg.</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta14).toFixed(2)}</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#FFE699]">S/. ${totalVenta14.toFixed(2)}</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(promedio14).toFixed(2)}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${totalCantidad14}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(totalPeso14).toFixed(2)} Kg.</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta14).toFixed(2)}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#CAA122]">S/. ${totalVenta14.toFixed(2)}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(promedio14).toFixed(2)}</td>
 
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${totalCantidad15}</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(totalPeso15).toFixed(2)} Kg.</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta15).toFixed(2)}</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#FFE699]">S/. ${totalVenta15.toFixed(2)}</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(promedio15).toFixed(2)}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${totalCantidad15}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(totalPeso15).toFixed(2)} Kg.</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta15).toFixed(2)}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#CAA122]">S/. ${totalVenta15.toFixed(2)}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(promedio15).toFixed(2)}</td>
 
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${totalCantidad16}</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(totalPeso16).toFixed(2)} Kg.</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta16).toFixed(2)}</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#FFE699]">S/. ${totalVenta16.toFixed(2)}</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(promedio16).toFixed(2)}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${totalCantidad16}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(totalPeso16).toFixed(2)} Kg.</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta16).toFixed(2)}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#CAA122]">S/. ${totalVenta16.toFixed(2)}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(promedio16).toFixed(2)}</td>
 
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${totalCantidad17}</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(totalPeso17).toFixed(2)} Kg.</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta17).toFixed(2)}</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#FFE699]">S/. ${totalVenta17.toFixed(2)}</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(promedio17).toFixed(2)}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${totalCantidad17}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(totalPeso17).toFixed(2)} Kg.</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta17).toFixed(2)}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#CAA122]">S/. ${totalVenta17.toFixed(2)}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(promedio17).toFixed(2)}</td>
 
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${totalCantidad18}</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(totalPeso18).toFixed(2)} Kg.</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta18).toFixed(2)}</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#FFE699]">S/. ${totalVenta18.toFixed(2)}</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(promedio18).toFixed(2)}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${totalCantidad18}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(totalPeso18).toFixed(2)} Kg.</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta18).toFixed(2)}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#CAA122]">S/. ${totalVenta18.toFixed(2)}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(promedio18).toFixed(2)}</td>
 
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${totalDelTotalCantidad}</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap">${(totalDelTotalPeso).toFixed(2)} Kg.</td>
-                <td class="text-center border-2 py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#FFE699]">S/. ${totalDelTotalVenta.toFixed(2)}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(totalPesoDesc).toFixed(2)} Kg.</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVentaDesc).toFixed(2)}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#CAA122]">S/. ${(totalVentaDesc).toFixed(2)}</td>
+
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${totalDelTotalCantidad}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(totalDelTotalPeso).toFixed(2)} Kg.</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#CAA122]">S/. ${totalDelTotalVenta.toFixed(2)}</td>
+                
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">S/. ${(totalVentaAnterior).toFixed(2)}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">S/. ${(saldoDelDia).toFixed(2)}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">S/. ${(item.pagos).toFixed(2)}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap font-bold">S/. ${saldoActual.toFixed(2)}</td>
+                <td class="text-center border-y-[1px] border-r-[1px] border-l-2 py-1 px-2 whitespace-nowrap">${item.nombreCompleto}</td>
             </tr>
         `;
     }
+
+    $('#filtrarClienteReporteAcumuladoExcel').on('input', function() {
+        let nombreFiltrar = $('#filtrarClienteReporteAcumuladoExcel').val().toUpperCase(); ; // Obtiene el valor del campo de filtro
+
+        // Mostrar todas las filas
+        $('#tablaReporteAcumuladoExcel tbody tr').show();
+    
+        // Filtrar por nombre si se proporciona un valor
+        if (nombreFiltrar) {
+            $('#tablaReporteAcumuladoExcel tbody tr').each(function() {
+                let nombre = $(this).find('td:eq(0)').text().toUpperCase().trim();
+                if (nombre.indexOf(nombreFiltrar) === -1) {
+                    $(this).hide();
+                }
+            });
+        }
+    });
+
+    $(document).on("click", "#tablaReporteAcumuladoExcel tbody tr", function() {
+
+        $('#tablaReporteAcumuladoExcel tbody tr').each(function() {
+            $(this).addClass('bg-white dark:bg-gray-800');
+            $(this).removeClass('bg-gray-300 dark:bg-gray-600');
+        });
+
+        let fila = $(this).closest("tr")
+        fila.removeClass('bg-white dark:bg-gray-800');
+        fila.addClass('bg-gray-300 dark:bg-gray-600');
+    });
 
 });

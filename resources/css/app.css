@@ -42,6 +42,21 @@ body::-webkit-scrollbar-thumb:hover {
   border-radius: 5px;
 }
 
+.aside_scrollEDINSON::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  background: transparent;
+}
+
+.aside_scrollEDINSON::-webkit-scrollbar-track {
+  border-radius: 5px;
+}
+
+.aside_scrollEDINSON::-webkit-scrollbar-thumb {
+  background: #999999;
+  border-radius: 5px;
+}
+
 .lds-ellipsis {
   display: inline-block;
   position: relative;
