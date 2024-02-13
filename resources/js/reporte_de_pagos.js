@@ -1147,14 +1147,23 @@ jQuery(function ($) {
                     let inputDeudaTotal = $('#deudaTotalEditar');
                     inputDeudaTotal.empty();
     
-                    let deudaTotal = parseFloat(response[0].deudaTotal);
-                    let cantidadPagos = parseFloat(response[0].cantidadPagos);
-                    let ventaDescuentos = parseFloat(response[0].ventaDescuentos);
+                    // Inicializar variables para sumar los valores
+                    let totalDeuda = 0;
+                    let totalPagos = 0;
+                    let totalDescuentos = 0;
     
-                    let total = deudaTotal - cantidadPagos + ventaDescuentos;
+                    // Iterar sobre los objetos y sumar los valores
+                    response.forEach(function (obj) {
+                        totalDeuda += parseFloat(obj.deudaTotal);
+                        totalPagos += parseFloat(obj.cantidadPagos);
+                        totalDescuentos += parseFloat(obj.ventaDescuentos);
+                    });
+    
+                    // Calcular el total consolidado
+                    let totalConsolidado = totalDeuda - totalPagos + totalDescuentos;
     
                     // Formatear el número con punto y dos decimales
-                    let formateoTotal = total.toLocaleString(undefined, {
+                    let formateoTotal = totalConsolidado.toLocaleString(undefined, {
                         minimumFractionDigits: 2,
                         maximumFractionDigits: 2,
                     });

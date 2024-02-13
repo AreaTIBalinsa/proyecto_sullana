@@ -5,7 +5,7 @@ jQuery(function($) {
     
     fn_declarar_especies();
     fn_traerDatosEnTiempoReal();
-    setInterval(fn_traerDatosEnTiempoReal, 4000);
+    setInterval(fn_traerDatosEnTiempoReal, 10000);
 
     // Obtener la fecha actual en formato ISO (YYYY-MM-DD)
     const ahoraEnNY = new Date();
@@ -15,25 +15,25 @@ jQuery(function($) {
     // Asignar la fecha actual a los inputs
     $('#fechaProduccionAnterior').val(fechaHoy);
 
-    var primerEspecieGlobal = 0
-    var segundaEspecieGlobal = 0
-    var terceraEspecieGlobal = 0
-    var cuartaEspecieGlobal = 0
+    var primerEspecieGlobal = 0;
+    var segundaEspecieGlobal = 0;
+    var terceraEspecieGlobal = 0;
+    var cuartaEspecieGlobal = 0;
 
-    var nombrePrimerEspecieGlobal = ""
-    var nombreSegundaEspecieGlobal = ""
-    var nombreTerceraEspecieGlobal = ""
-    var nombreCuartaEspecieGlobal = ""
-    var nombreQuintaEspecieGlobal = ""
-    var nombreSextaEspecieGlobal = ""
-    var nombreSeptimaEspecieGlobal = ""
-    var nombreOctavaEspecieGlobal = ""
-    var nombreDecimaEspecieGlobal = ""
-    var nombreDecimaPrimeraEspecieGlobal = ""
-    var nombreDecimaSegundaEspecieGlobal = ""
-    var nombreDecimaTerceraEspecieGlobal = ""
-    var nombreDecimaCuartaEspecieGlobal = ""
-    var nombreDecimaQuintaEspecieGlobal = ""
+    var nombrePrimerEspecieGlobal = "";
+    var nombreSegundaEspecieGlobal = "";
+    var nombreTerceraEspecieGlobal = "";
+    var nombreCuartaEspecieGlobal = "";
+    var nombreQuintaEspecieGlobal = "";
+    var nombreSextaEspecieGlobal = "";
+    var nombreSeptimaEspecieGlobal = "";
+    var nombreOctavaEspecieGlobal = "";
+    var nombreDecimaEspecieGlobal = "";
+    var nombreDecimaPrimeraEspecieGlobal = "";
+    var nombreDecimaSegundaEspecieGlobal = "";
+    var nombreDecimaTerceraEspecieGlobal = "";
+    var nombreDecimaCuartaEspecieGlobal = "";
+    var nombreDecimaQuintaEspecieGlobal = "";
 
     /* ============ Eventos ============ */
 
@@ -80,22 +80,6 @@ jQuery(function($) {
 
     function fn_traerDatosEnTiempoReal(){
 
-        var cantidadVentaTotal = 0;
-        var pesoVentaTotal = 0;
-        var promedioVentaTotal = 0;
-
-        var cantidadCompraTotal = 0;
-        var pesoCompraTotal = 0;
-        var promedioCompraTotal = 0;
-
-        var cantidadMermaTotal = 0;
-        var pesoMermaTotal = 0;
-        var promedioMermaTotal = 0;
-
-        var cantidadMermaTotalPorcentual = 0;
-        var pesoMermaTotalPorcentual = 0;
-        var promedioMermaTotalPorcentual = 0;
-
         $.ajax({
             url: '/fn_consulta_TraerDatosEnTiempoReal',
             method: 'GET',
@@ -115,6 +99,9 @@ jQuery(function($) {
                 let cantidadDecimaTerceraEspecie = 0
                 let cantidadDecimaCuartaEspecie = 0
                 let cantidadDecimaQuintaEspecie = 0
+                let cantidadDecimaSextaEspecie = 0
+                let cantidadDecimaSeptimaEspecie = 0
+                let cantidadDecimaOctavaEspecie = 0
 
                 let pesoTotalPrimerEspecie = 0.0
                 let pesoTotalSegundaEspecie = 0.0
@@ -130,106 +117,161 @@ jQuery(function($) {
                 let pesoTotalDecimaTerceraEspecie = 0.0
                 let pesoTotalDecimaCuartaEspecie = 0.0
                 let pesoTotalDecimaQuintaEspecie = 0.0
+                let pesoTotalDecimaSextaEspecie = 0.0
+                let pesoTotalDecimaSeptimaEspecie = 0.0
+                let pesoTotalDecimaOctavaEspecie = 0.0
 
                 let cantidadTotalesEspecie = 0
                 let pesoTotalesEspecie = 0.0
 
                 // Verificar si la respuesta es un arreglo de objetos
                 if (Array.isArray(response)) {
+
+                    console.log(response)
                     // Iterar sobre los objetos y mostrar sus propiedades
                     response.forEach(function(obj) {
 
                         let idEspecie = parseInt(obj.idEspecie)
                         let cantidadPes = parseInt(obj.cantidadPes)
                         let pesoNetoPes = parseFloat(obj.pesoNetoPes)
+                        let pesoNetoJabas = parseFloat(obj.pesoNetoJabas)
 
-                        if (idEspecie == primerEspecieGlobal) {
+                        if (idEspecie == 1) {
                             cantidadPrimerEspecie += cantidadPes
-                            pesoTotalPrimerEspecie += pesoNetoPes
-                        }else if (idEspecie == segundaEspecieGlobal) {
+                            if(pesoNetoPes>pesoNetoJabas){
+                                pesoTotalPrimerEspecie += pesoNetoPes - pesoNetoJabas
+                            }else{
+                                pesoTotalPrimerEspecie += pesoNetoPes + pesoNetoJabas
+                            }
+                        }else if (idEspecie == 2) {
                             cantidadSegundaEspecie += cantidadPes
-                            pesoTotalSegundaEspecie += pesoNetoPes
-                        }else if (idEspecie == terceraEspecieGlobal) {
+                            if(pesoNetoPes>pesoNetoJabas){
+                                pesoTotalSegundaEspecie += pesoNetoPes - pesoNetoJabas
+                            }else{
+                                pesoTotalSegundaEspecie += pesoNetoPes + pesoNetoJabas
+                            }
+                        }else if (idEspecie == 3) {
                             cantidadTerceraEspecie += cantidadPes
-                            pesoTotalTerceraEspecie += pesoNetoPes
-                        }else if (idEspecie == cuartaEspecieGlobal) {
+                            if(pesoNetoPes>pesoNetoJabas){
+                                pesoTotalTerceraEspecie += pesoNetoPes - pesoNetoJabas
+                            }else{
+                                pesoTotalTerceraEspecie += pesoNetoPes + pesoNetoJabas
+                            }
+                        }else if (idEspecie == 4) {
                             cantidadCuartaEspecie += cantidadPes
-                            pesoTotalCuartaEspecie += pesoNetoPes
+                            if(pesoNetoPes>pesoNetoJabas){
+                                pesoTotalCuartaEspecie += pesoNetoPes - pesoNetoJabas
+                            }else{
+                                pesoTotalCuartaEspecie += pesoNetoPes + pesoNetoJabas
+                            }
+                        }else if (idEspecie == 5) {
+                            cantidadQuintaEspecie += cantidadPes
+                            if(pesoNetoPes>pesoNetoJabas){
+                                pesoTotalQuintaEspecie += pesoNetoPes - pesoNetoJabas
+                            }else{
+                                pesoTotalQuintaEspecie += pesoNetoPes + pesoNetoJabas
+                            }
+                        }else if (idEspecie == 6) {
+                            cantidadSextaEspecie += cantidadPes
+                            if(pesoNetoPes>pesoNetoJabas){
+                                pesoTotalSextaEspecie += pesoNetoPes - pesoNetoJabas
+                            }else{
+                                pesoTotalSextaEspecie += pesoNetoPes + pesoNetoJabas
+                            }
+                        }else if (idEspecie == 7) {
+                            cantidadSeptimaEspecie += cantidadPes
+                            if(pesoNetoPes>pesoNetoJabas){
+                                pesoTotalSeptimaEspecie += pesoNetoPes - pesoNetoJabas
+                            }else{
+                                pesoTotalSeptimaEspecie += pesoNetoPes + pesoNetoJabas
+                            }
+                        }else if (idEspecie == 8) {
+                            cantidadOctavaEspecie += cantidadPes
+                            if(pesoNetoPes>pesoNetoJabas){
+                                pesoTotalOctavaEspecie += pesoNetoPes - pesoNetoJabas
+                            }else{
+                                pesoTotalOctavaEspecie += pesoNetoPes + pesoNetoJabas
+                            }
+                        }else if (idEspecie == 10) {
+                            cantidadDecimaEspecie += cantidadPes
+                            if(pesoNetoPes>pesoNetoJabas){
+                                pesoTotalDecimaEspecie += pesoNetoPes - pesoNetoJabas
+                            }else{
+                                pesoTotalDecimaEspecie += pesoNetoPes + pesoNetoJabas
+                            }
+                        }else if (idEspecie == 11){
+                            cantidadDecimaPrimeraEspecie += cantidadPes
+                            if(pesoNetoPes>pesoNetoJabas){
+                                pesoTotalDecimaPrimeraEspecie += pesoNetoPes - pesoNetoJabas
+                            }else{
+                                pesoTotalDecimaPrimeraEspecie += pesoNetoPes + pesoNetoJabas
+                            }
+                        }else if (idEspecie == 12){
+                            cantidadDecimaSegundaEspecie += cantidadPes
+                            if(pesoNetoPes>pesoNetoJabas){
+                                pesoTotalDecimaSegundaEspecie += pesoNetoPes - pesoNetoJabas
+                            }else{
+                                pesoTotalDecimaSegundaEspecie += pesoNetoPes + pesoNetoJabas
+                            }
+                        }else if (idEspecie == 13){
+                            cantidadDecimaTerceraEspecie += cantidadPes
+                            if(pesoNetoPes>pesoNetoJabas){
+                                pesoTotalDecimaTerceraEspecie += pesoNetoPes - pesoNetoJabas
+                            }else{
+                                pesoTotalDecimaTerceraEspecie += pesoNetoPes + pesoNetoJabas
+                            }
+                        }else if (idEspecie == 14){
+                            cantidadDecimaCuartaEspecie += cantidadPes
+                            if(pesoNetoPes>pesoNetoJabas){
+                                pesoTotalDecimaCuartaEspecie += pesoNetoPes - pesoNetoJabas
+                            }else{
+                                pesoTotalDecimaCuartaEspecie += pesoNetoPes + pesoNetoJabas
+                            }
+                        }else if (idEspecie == 15){
+                            cantidadDecimaQuintaEspecie += cantidadPes
+                            if(pesoNetoPes>pesoNetoJabas){
+                                pesoTotalDecimaQuintaEspecie += pesoNetoPes - pesoNetoJabas
+                            }else{
+                                pesoTotalDecimaQuintaEspecie += pesoNetoPes + pesoNetoJabas
+                            }
+                        }else if (idEspecie == 16){
+                            cantidadDecimaSextaEspecie += cantidadPes
+                            if(pesoNetoPes>pesoNetoJabas){
+                                pesoTotalDecimaSextaEspecie += pesoNetoPes - pesoNetoJabas
+                            }else{
+                                pesoTotalDecimaSextaEspecie += pesoNetoPes + pesoNetoJabas
+                            }
+                        }else if (idEspecie == 17){
+                            cantidadDecimaSeptimaEspecie += cantidadPes
+                            if(pesoNetoPes>pesoNetoJabas){
+                                pesoTotalDecimaSeptimaEspecie += pesoNetoPes - pesoNetoJabas
+                            }else{
+                                pesoTotalDecimaSeptimaEspecie += pesoNetoPes + pesoNetoJabas
+                            }
+                        }else if (idEspecie == 18){
+                            cantidadDecimaOctavaEspecie += cantidadPes
+                            if(pesoNetoPes>pesoNetoJabas){
+                                pesoTotalDecimaOctavaEspecie += pesoNetoPes - pesoNetoJabas
+                            }else{
+                                pesoTotalDecimaOctavaEspecie += pesoNetoPes + pesoNetoJabas
+                            }
                         }
 
                     });
 
-                    cantidadTotalesEspecie = cantidadPrimerEspecie+cantidadSegundaEspecie+cantidadTerceraEspecie+cantidadCuartaEspecie
-                    pesoTotalesEspecie = pesoTotalPrimerEspecie+pesoTotalSegundaEspecie+pesoTotalTerceraEspecie+pesoTotalCuartaEspecie
+                    cantidadTotalesEspecie = cantidadPrimerEspecie + cantidadSegundaEspecie + cantidadTerceraEspecie +
+                    cantidadCuartaEspecie + cantidadQuintaEspecie + cantidadSextaEspecie + cantidadSeptimaEspecie + cantidadOctavaEspecie +
+                    cantidadDecimaEspecie + cantidadDecimaPrimeraEspecie + cantidadDecimaSegundaEspecie + cantidadDecimaTerceraEspecie +
+                    cantidadDecimaCuartaEspecie + cantidadDecimaQuintaEspecie + cantidadDecimaSextaEspecie + cantidadDecimaSeptimaEspecie +
+                    cantidadDecimaOctavaEspecie;
+                    pesoTotalesEspecie = pesoTotalPrimerEspecie + pesoTotalSegundaEspecie + pesoTotalTerceraEspecie + pesoTotalCuartaEspecie +
+                    pesoTotalQuintaEspecie + pesoTotalSextaEspecie + pesoTotalSeptimaEspecie + pesoTotalOctavaEspecie + pesoTotalDecimaEspecie +
+                    pesoTotalDecimaPrimeraEspecie + pesoTotalDecimaSegundaEspecie + pesoTotalDecimaTerceraEspecie + pesoTotalDecimaCuartaEspecie +
+                    pesoTotalDecimaQuintaEspecie + pesoTotalDecimaSextaEspecie + pesoTotalDecimaSeptimaEspecie + pesoTotalDecimaOctavaEspecie;
 
-                    cantidadVentaTotal = cantidadTotalesEspecie;
-                    pesoVentaTotal = pesoTotalesEspecie;
-                    if (pesoTotalesEspecie != 0 && cantidadTotalesEspecie != 0) {
-                        promedioVentaTotal = pesoTotalesEspecie/cantidadTotalesEspecie;
-                    }else{
-                        promedioVentaTotal = 0; 
-                    }
                 } else {
                     console.log("La respuesta no es un arreglo de objetos.");
-                }   
-
-                // $.ajax({
-                //     url: '/fn_consulta_TraerDatosEnTiempoRealCompra',
-                //     method: 'GET',
-                //     success: function(response) {
-        
-                //         // Verificar si la respuesta es un arreglo de objetos
-                //         if (Array.isArray(response)) {
-                //             // Iterar sobre los objetos y mostrar sus propiedades
-                //             let totalCantidadGuia = parseInt(response[0].totalCantidadGuia);
-                //             let totalPesoGuia = parseFloat(response[0].totalPesoGuia);
-                //             cantidadCompraTotal = totalCantidadGuia.toFixed(2);
-                //             pesoCompraTotal = totalPesoGuia.toFixed(2);
-        
-                //         } else {
-                //             console.log("La respuesta no es un arreglo de objetos.");
-                //         }
-
-                //         if (pesoCompraTotal != 0 && cantidadCompraTotal != 0){
-                //             promedioCompraTotal = pesoCompraTotal/cantidadCompraTotal;
-                //         }else{
-                //             promedioCompraTotal = 0
-                //         }
-        
-        
-                //         $('#tblCantidadCompra').text(parseInt(cantidadCompraTotal));
-                //         $('#tblPesoCompra').text(pesoCompraTotal);
-                //         $('#tblPromedioCompra').text((promedioCompraTotal).toFixed(2));
-        
-                //         cantidadMermaTotal = cantidadCompraTotal-cantidadVentaTotal;
-                //         pesoMermaTotal = pesoCompraTotal-pesoVentaTotal;
-                //         promedioMermaTotal = promedioCompraTotal-promedioVentaTotal;
-        
-                //         $('#tblCantidadMerma').text(cantidadMermaTotal);
-                //         $('#tblPesoMerma').text(pesoMermaTotal.toFixed(2));
-                //         $('#tblPromedioMerma').text(promedioMermaTotal.toFixed(2));
-        
-                //         if (cantidadVentaTotal != 0 && cantidadCompraTotal != 0) {
-                //             cantidadMermaTotalPorcentual = ((cantidadVentaTotal-cantidadCompraTotal)/cantidadCompraTotal)*100;
-                //         }
-                        
-                //         if (pesoVentaTotal != 0 && pesoCompraTotal != 0) {
-                //             pesoMermaTotalPorcentual = ((pesoVentaTotal-pesoCompraTotal)/pesoCompraTotal)*100;
-                //         }
-        
-                //         if (promedioVentaTotal != 0 && promedioCompraTotal != 0) {
-                //             promedioMermaTotalPorcentual = ((promedioVentaTotal-promedioCompraTotal)/promedioCompraTotal)*100;
-                //         }
-        
-                //         $('#tblCantidadMermaPor').text(cantidadMermaTotalPorcentual.toFixed(2) + " %");
-                //         $('#tblPesoMermaPor').text(pesoMermaTotalPorcentual.toFixed(2) + " %");
-                //         $('#tblPromedioMermaPor').text(promedioMermaTotalPorcentual.toFixed(2) + " %");
-                        
-                //     },
-                //     error: function(error) {
-                //         console.error("ERROR",error);
-                //     }
-                // });
+                }
 
                 $('#totalUnidadesPrimerEspecie').text(cantidadPrimerEspecie + " " + (cantidadPrimerEspecie === 1 ? "Ud." : "Uds."));
                 $('#totalKgPrimerEspecie').text(pesoTotalPrimerEspecie.toFixed(2) + " Kg");
@@ -243,12 +285,47 @@ jQuery(function($) {
                 $('#totalUnidadesCuartaEspecie').text(cantidadCuartaEspecie + " " + (cantidadCuartaEspecie === 1 ? "Ud." : "Uds."));
                 $('#totalKgCuartaEspecie').text(pesoTotalCuartaEspecie.toFixed(2) + " Kg");
 
+                $('#totalUnidadesQuintaEspecie').text(cantidadQuintaEspecie + " " + (cantidadQuintaEspecie === 1 ? "Ud." : "Uds."));
+                $('#totalKgQuintaEspecie').text(pesoTotalQuintaEspecie.toFixed(2) + " Kg");
+
+                $('#totalUnidadesSextaEspecie').text(cantidadSextaEspecie + " " + (cantidadSextaEspecie === 1 ? "Ud." : "Uds."));
+                $('#totalKgSextaEspecie').text(pesoTotalSextaEspecie.toFixed(2) + " Kg");
+
+                $('#totalUnidadesSeptimaEspecie').text(cantidadSeptimaEspecie + " " + (cantidadSeptimaEspecie === 1 ? "Ud." : "Uds."));
+                $('#totalKgSeptimaEspecie').text(pesoTotalSeptimaEspecie.toFixed(2) + " Kg");
+
+                $('#totalUnidadesOctavaEspecie').text(cantidadOctavaEspecie + " " + (cantidadOctavaEspecie === 1 ? "Ud." : "Uds."));
+                $('#totalKgOctavaEspecie').text(pesoTotalOctavaEspecie.toFixed(2) + " Kg");
+
+                $('#totalUnidadesDecimaEspecie').text(cantidadDecimaEspecie + " " + (cantidadDecimaEspecie === 1 ? "Ud." : "Uds."));
+                $('#totalKgDecimaEspecie').text(pesoTotalDecimaEspecie.toFixed(2) + " Kg");
+
+                $('#totalUnidadesDecimaPrimeraEspecie').text(cantidadDecimaPrimeraEspecie + " " + (cantidadDecimaPrimeraEspecie === 1 ? "Ud." : "Uds."));
+                $('#totalKgDecimaPrimeraEspecie').text(pesoTotalDecimaPrimeraEspecie.toFixed(2) + " Kg");
+
+                $('#totalUnidadesDecimaSegundaEspecie').text(cantidadDecimaSegundaEspecie + " " + (cantidadDecimaSegundaEspecie === 1 ? "Ud." : "Uds."));
+                $('#totalKgDecimaSegundaEspecie').text(pesoTotalDecimaSegundaEspecie.toFixed(2) + " Kg");
+
+                $('#totalUnidadesDecimaTerceraEspecie').text(cantidadDecimaTerceraEspecie + " " + (cantidadDecimaTerceraEspecie === 1 ? "Ud." : "Uds."));
+                $('#totalKgDecimaTerceraEspecie').text(pesoTotalDecimaTerceraEspecie.toFixed(2) + " Kg");
+
+                $('#totalUnidadesDecimaCuartaEspecie').text(cantidadDecimaCuartaEspecie + " " + (cantidadDecimaCuartaEspecie === 1 ? "Ud." : "Uds."));
+                $('#totalKgDecimaCuartaEspecie').text(pesoTotalDecimaCuartaEspecie.toFixed(2) + " Kg");
+
+                $('#totalUnidadesDecimaQuintaEspecie').text(cantidadDecimaQuintaEspecie + " " + (cantidadDecimaQuintaEspecie === 1 ? "Ud." : "Uds."));
+                $('#totalKgDecimaQuintaEspecie').text(pesoTotalDecimaQuintaEspecie.toFixed(2) + " Kg");
+
+                $('#totalUnidadesDecimaSextaEspecie').text(cantidadDecimaSextaEspecie + " " + (cantidadDecimaSextaEspecie === 1 ? "Ud." : "Uds."));
+                $('#totalKgDecimaSextaEspecie').text(pesoTotalDecimaSextaEspecie.toFixed(2) + " Kg");
+
+                $('#totalUnidadesDecimaSeptimaEspecie').text(cantidadDecimaSeptimaEspecie + " " + (cantidadDecimaSeptimaEspecie === 1 ? "Ud." : "Uds."));
+                $('#totalKgDecimaSeptimaEspecie').text(pesoTotalDecimaSeptimaEspecie.toFixed(2) + " Kg");
+
+                $('#totalUnidadesDecimaOctavaEspecie').text(cantidadDecimaOctavaEspecie + " " + (cantidadDecimaOctavaEspecie === 1 ? "Ud." : "Uds."));
+                $('#totalKgDecimaOctavaEspecie').text(pesoTotalDecimaOctavaEspecie.toFixed(2) + " Kg");
+
                 $('#totalUnidadesEspecies').text(cantidadTotalesEspecie + " " + (cantidadTotalesEspecie === 1 ? "Ud." : "Uds."));
                 $('#totalKgEspecies').text(pesoTotalesEspecie.toFixed(2) + " Kg");
-
-                $('#tblCantidadVenta').text(cantidadVentaTotal);
-                $('#tblPesoVenta').text(pesoVentaTotal.toFixed(2));
-                $('#tblPromedioVenta').text(promedioVentaTotal.toFixed(2));
                 
             },
             error: function(error) {
@@ -257,38 +334,6 @@ jQuery(function($) {
         });
 
     }
-
-    $('.cerrarModalProduccionAnterior, .modal-content').on('click', function (e) {
-        if (e.target === this) {
-            $('#ModalProduccionAnterior').addClass('hidden');
-            $('#ModalProduccionAnterior').removeClass('flex');
-        }
-    });
-
-    $('#btnProduccionAnterior').on('click', function () {
-        $('#ModalProduccionAnterior').addClass('flex');
-        $('#ModalProduccionAnterior').removeClass('hidden');
-    });
-
-    $('#btnBuscarProduccionAnterior').on('click', function () {
-        $('#ModalProduccionAnterior').addClass('hidden');
-        $('#ModalProduccionAnterior').removeClass('flex');
-        let fechaProduccionAnterior = $('#fechaProduccionAnterior').val();
-        $('#fechaDeProduccion').text(fechaProduccionAnterior);
-        fn_traerDatosDiasAnteriores(fechaProduccionAnterior);
-        $('#contenedorGraficaActual').toggle('flex hidden');
-        $('#contenedorGraficaAnterior').toggle('flex hidden');
-        $('#btnRetrocesoProduccionAnterior').toggle('hidden');
-        $('#btnProduccionAnterior').toggle('hidden');
-    });
-
-    $('#btnRetrocesoProduccionAnterior').on('click', function () {
-        $('#fechaDeProduccion').text("Actual");
-        $('#contenedorGraficaActual').toggle('flex hidden');
-        $('#contenedorGraficaAnterior').toggle('flex hidden');
-        $('#btnRetrocesoProduccionAnterior').toggle('hidden');
-        $('#btnProduccionAnterior').toggle('hidden');
-    });
 
     fn_TraerClientesAgregarSaldo();
     function fn_TraerClientesAgregarSaldo() {

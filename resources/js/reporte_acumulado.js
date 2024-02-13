@@ -2777,7 +2777,7 @@ jQuery(function($) {
 
         return `
             <tr class="bg-white dark:text-gray-200 text-gray-900 border-b dark:bg-gray-800 dark:border-gray-700">
-                <td class="text-center border-y-[1px] border-r-[1px] border-l-2 py-1 px-2 whitespace-nowrap">${item.nombreCompleto}</td>
+                <td class="text-left border-y-[1px] border-r-[1px] border-l-2 py-1 px-2 whitespace-nowrap">${item.nombreCompleto}</td>
                 <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${totalCantidad1}</td>
                 <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(totalPeso1).toFixed(2)} Kg.</td>
                 <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta1).toFixed(2)}</td>
@@ -2892,13 +2892,13 @@ jQuery(function($) {
                 <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">S/. ${(saldoDelDia).toFixed(2)}</td>
                 <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">S/. ${(item.pagos).toFixed(2)}</td>
                 <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap font-bold">S/. ${saldoActual.toFixed(2)}</td>
-                <td class="text-center border-y-[1px] border-r-[1px] border-l-2 py-1 px-2 whitespace-nowrap">${item.nombreCompleto}</td>
+                <td class="text-center border-y-[1px] border-l-[1px] border-r-2 py-1 px-2 whitespace-nowrap">${item.nombreCompleto}</td>
             </tr>
         `;
     }
 
     $('#filtrarClienteReporteAcumuladoExcel').on('input', function() {
-        let nombreFiltrar = $('#filtrarClienteReporteAcumuladoExcel').val().toUpperCase(); ; // Obtiene el valor del campo de filtro
+        let nombreFiltrar = $('#filtrarClienteReporteAcumuladoExcel').val().toUpperCase(); // Obtiene el valor del campo de filtro
 
         // Mostrar todas las filas
         $('#tablaReporteAcumuladoExcel tbody tr').show();

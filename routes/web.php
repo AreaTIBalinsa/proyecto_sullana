@@ -19,6 +19,7 @@ use App\Http\Controllers\AgregarSaldoController;
 use App\Http\Controllers\ConfiguracionesController;
 use App\Http\Controllers\CajaChicaController;
 use App\Http\Controllers\DeudaMaximaController;
+use App\Http\Controllers\PedidosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,7 +59,7 @@ Route::get('/consultar_usuarios',[ConsultarUsuariosController::class,'show']);
 Route::get('/reporte_por_proveedor',[ReportePorProveedorController::class,'show']);
 Route::get('/reporte_acumulado',[ReporteAcumuladoController::class,'show']);
 Route::get('/agregar_saldo',[AgregarSaldoController::class,'show']);
-Route::get('/pedidos',[ConfiguracionesController::class,'show']);
+Route::get('/pedidos',[PedidosController::class,'show']);
 Route::get('/caja_chica',[CajaChicaController::class,'show']);
 Route::get('/deuda_maxima',[DeudaMaximaController::class,'show']);
 
@@ -156,3 +157,10 @@ Route::get('/fn_consulta_AgregarEgreso',[CajaChicaController::class,'consulta_Ag
 Route::get('/fn_consulta_TraerEgresosFechas',[CajaChicaController::class,'consulta_TraerEgresosFechas']);
 Route::get('/fn_consulta_EliminarEgreso',[CajaChicaController::class,'consulta_EliminarEgreso']);
 Route::get('/fn_consulta_AgregarEgresoEditar',[CajaChicaController::class,'consulta_AgregarEgresoEditar']);
+
+Route::get('/fn_consulta_TraerPedidosClientes',[PedidosController::class,'consulta_TraerPedidosClientes']);
+Route::get('/fn_consulta_AgregarPedidoCliente',[PedidosController::class,'consulta_AgregarPedidoCliente']);
+Route::get('/fn_consulta_ActualizarPedidoCliente',[PedidosController::class,'consulta_ActualizarPedidoCliente']);
+Route::get('/fn_consulta_EliminarPedido',[PedidosController::class,'consulta_EliminarPedido']);
+Route::get('/fn_consulta_TraerPedidosAnteriores',[PedidosController::class,'consulta_TraerPedidosAnteriores']);
+Route::get('/fn_consulta_VerificarPedido',[PedidosController::class,'consulta_VerificarPedido']);
