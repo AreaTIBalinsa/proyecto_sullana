@@ -9,7 +9,7 @@
         </div>
         {{-- Inicia contenedor de Produccion Actual --}}
         <div class="" id="contenedorGraficaActual">
-            <div class="flex flex-col lg:grid lg:grid-cols-2 xl:grid-cols-3 gap-6 md:mx-5">
+            <div class="flex flex-col lg:grid lg:grid-cols-2 xl:grid-cols-3 gap-6 md:mx-5 mb-5">
                 <div class="bg-indigo-600 w-full rounded-lg py-5 flex flex-col items-center">
                     <h5 class="text-white font-bold text-3xl md:text-4xl">YUGO VIVO</h5>
                     <div class="flex row">
