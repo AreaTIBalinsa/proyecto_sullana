@@ -905,7 +905,7 @@ jQuery(function($) {
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">TECNICO VIVO</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">TECNICA VIVO</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidad}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${(totalPeso).toFixed(2)} Kg.</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta).toFixed(2)}</td>
@@ -945,7 +945,7 @@ jQuery(function($) {
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">TECNICO PELADO</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">TECNICA PELADO</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidad}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${(totalPeso).toFixed(2)} Kg.</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta).toFixed(2)}</td>
@@ -1465,7 +1465,7 @@ jQuery(function($) {
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">BRASA TECNICO</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">BRASA TECNICA</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidad}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${(totalPeso).toFixed(2)} Kg.</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta).toFixed(2)}</td>

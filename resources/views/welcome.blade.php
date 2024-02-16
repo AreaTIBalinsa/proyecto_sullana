@@ -43,7 +43,7 @@
                     </div>
                 </div>
                 <div class="bg-emerald-600 w-full rounded-lg py-5 flex flex-col items-center">
-                    <h5 class="text-white font-bold text-3xl md:text-4xl">TECNICO VIVO</h5>
+                    <h5 class="text-white font-bold text-3xl md:text-4xl">TECNICA VIVO</h5>
                     <div class="flex row">
                         <div class="flex flex-col items-start">
                             <div class="text-white font-semibold text-xl md:text-2xl flex justify-between w-full whitespace-nowrap px-2 gap-2">CANTIDAD<span>:</span></div>
@@ -59,7 +59,7 @@
                     </div>
                 </div>
                 <div class="bg-yellow-400 w-full rounded-lg py-5 flex flex-col items-center">
-                    <h5 class="text-white font-bold text-3xl md:text-4xl">TECNICO PELADO</h5>
+                    <h5 class="text-white font-bold text-3xl md:text-4xl">TECNICA PELADO</h5>
                     <div class="flex row">
                         <div class="flex flex-col items-start">
                             <div class="text-white font-semibold text-xl md:text-2xl flex justify-between w-full whitespace-nowrap px-2 gap-2">CANTIDAD<span>:</span></div>
@@ -269,7 +269,7 @@
                     </div>
                 </div>
                 <div class="bg-indigo-600 w-full rounded-lg py-5 flex flex-col items-center">
-                    <h5 class="text-white font-bold text-3xl md:text-4xl">BRASA TECNICO</h5>
+                    <h5 class="text-white font-bold text-3xl md:text-4xl">BRASA TECNICA</h5>
                     <div class="flex row">
                         <div class="flex flex-col items-start">
                             <div class="text-white font-semibold text-xl md:text-2xl flex justify-between w-full whitespace-nowrap px-2 gap-2">CANTIDAD<span>:</span></div>

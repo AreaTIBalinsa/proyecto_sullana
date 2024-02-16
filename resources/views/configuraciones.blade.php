@@ -34,14 +34,14 @@
                             <th class="p-4 whitespace-nowrap">Nombre de Cliente</th>
                             <th class="p-4 text-center whitespace-nowrap">Yugo Vivo</th>
                             <th class="p-4 text-center whitespace-nowrap">Yugo Pelado</th>
-                            <th class="p-4 text-center whitespace-nowrap">Tecnico Vivo</th>
-                            <th class="p-4 text-center whitespace-nowrap">Tecnico Pelado</th>
+                            <th class="p-4 text-center whitespace-nowrap">TECNICA Vivo</th>
+                            <th class="p-4 text-center whitespace-nowrap">TECNICA Pelado</th>
                             <th class="p-4 text-center whitespace-nowrap">Gallina Doble</th>
                             <th class="p-4 text-center whitespace-nowrap">Gallina Chica</th>
                             <th class="p-4 text-center whitespace-nowrap">Gallo</th>
                             <th class="p-4 text-center whitespace-nowrap">Pollo XX</th>
                             <th class="p-4 text-center whitespace-nowrap">Brasa Yugo</th>
-                            <th class="p-4 text-center whitespace-nowrap">Brasa Tecnico</th>
+                            <th class="p-4 text-center whitespace-nowrap">Brasa TECNICA</th>
                         </tr>
                     </thead>
                     <tbody id="bodyProgramacionPedidos">
@@ -102,11 +102,11 @@
                             <input class="w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" autocomplete="off" id="inputCantidadYugoPelado" placeholder="Ingrese Cantidad">
                         </div>
                         <div class="hidden flex-col justify-center px-4 w-full mt-2" id="divPedidoTecnicoVivo">
-                            <span class="text-base text-gray-900 dark:text-gray-50">Tecnico Vivo :</span>
+                            <span class="text-base text-gray-900 dark:text-gray-50">TECNICA Vivo :</span>
                             <input class="w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" autocomplete="off" id="inputCantidadTecnicoVivo" placeholder="Ingrese Cantidad">
                         </div>
                         <div class="hidden flex-col justify-center px-4 w-full mt-2" id="divPedidoTecnicoPelado">
-                            <span class="text-base text-gray-900 dark:text-gray-50">Tecnico Pelado :</span>
+                            <span class="text-base text-gray-900 dark:text-gray-50">TECNICA Pelado :</span>
                             <input class="w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" autocomplete="off" id="inputCantidadTecnicoPelado" placeholder="Ingrese Cantidad">
                         </div>
                         <div class="hidden flex-col justify-center px-4 w-full mt-2" id="divPedidoGallinaDoble">
@@ -130,7 +130,7 @@
                             <input class="w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" autocomplete="off" id="inputCantidadBrasaYugo" placeholder="Ingrese Cantidad">
                         </div>
                         <div class="hidden flex-col justify-center px-4 w-full mt-2" id="divPedidoBrasaTecnico">
-                            <span class="text-base text-gray-900 dark:text-gray-50">Brasa Tecnico :</span>
+                            <span class="text-base text-gray-900 dark:text-gray-50">Brasa TECNICA :</span>
                             <input class="w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" autocomplete="off" id="inputCantidadBrasaTecnico" placeholder="Ingrese Cantidad">
                         </div>
                     </div>

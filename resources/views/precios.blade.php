@@ -21,12 +21,12 @@
                         <input class="preciosMinimosEspecies validarSoloNumerosDosDecimales w-32 uppercase outline-none text-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="valorPrecioPolloVivoPelado" disabled="" autocomplete="off" id="valorPrecioPolloVivoPelado">
                     </div>
                     <div class="flex flex-col p-2 justify-center items-center gap-2 divPreciosMinimos">
-                        <span class="text-sm font-bold">TECNICO VIVO:</span>
+                        <span class="text-sm font-bold">TECNICA VIVO:</span>
                         <label class="hidden" value="" id="idPolloVivoTecnicoVivo"></label>
                         <input class="preciosMinimosEspecies validarSoloNumerosDosDecimales w-32 uppercase outline-none text-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="valorPrecioPolloVivoTecnicoVivo" disabled="" autocomplete="off" id="valorPrecioPolloVivoTecnicoVivo">
                     </div>
                     <div class="flex flex-col p-2 justify-center items-center gap-2 divPreciosMinimos">
-                        <span class="text-sm font-bold">TECNICO PELADO:</span>
+                        <span class="text-sm font-bold">TECNICA PELADO:</span>
                         <label class="hidden" value="" id="idPolloTecnicoPelado"></label>
                         <input class="preciosMinimosEspecies validarSoloNumerosDosDecimales w-32 uppercase outline-none text-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="valorPrecioPolloTecnicoPelado" disabled="" autocomplete="off" id="valorPrecioPolloTecnicoPelado">
                     </div>
@@ -91,7 +91,7 @@
                         <input class="preciosMinimosEspecies validarSoloNumerosDosDecimales w-32 uppercase outline-none text-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="valorPrecioBrasaYugo" disabled="" autocomplete="off" id="valorPrecioBrasaYugo">
                     </div>
                     <div class="flex flex-col p-2 justify-center items-center gap-2 divPreciosMinimos">
-                        <span class="text-sm font-bold">BRASA TECNICO:</span>
+                        <span class="text-sm font-bold">BRASA TECNICA:</span>
                         <label class="hidden" value="" id="idBrasaTecnico"></label>
                         <input class="preciosMinimosEspecies validarSoloNumerosDosDecimales w-32 uppercase outline-none text-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="valorPrecioBrasaTecnico" disabled="" autocomplete="off" id="valorPrecioBrasaTecnico">
                     </div>
@@ -119,7 +119,7 @@
                             </div>
                         </div>
                         <div class="flex flex-col p-2 justify-center items-center gap-2">
-                            <label class="text-sm font-bold">TECNICO VIVO:</label>
+                            <label class="text-sm font-bold">TECNICA VIVO:</label>
                             <div class="text-gray-900 dark:text-gray-200 flex gap-2 items-center">
                                 <button class="h-7 md:w-2 text-base p-4 bg-amber-300 hover:bg-amber-400 text-gray-50 rounded-lg flex justify-center items-center gap-2" id="restar_precioPolloTecnicoVivo">-</button>
                                 <input class="rounded-lg lg:max-w-xs h-8 w-20 text-center uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary-600 focus:border-primary-600 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="precioPolloTecnicoVivo" disabled="" autocomplete="off" id="precioPolloTecnicoVivo" value="0.0">
@@ -127,7 +127,7 @@
                             </div>
                         </div>
                         <div class="flex flex-col p-2 justify-center items-center gap-2">
-                            <label class="text-sm font-bold">TECNICO PELADO:</label>
+                            <label class="text-sm font-bold">TECNICA PELADO:</label>
                             <div class="text-gray-900 dark:text-gray-200 flex gap-2 items-center">
                                 <button class="h-7 md:w-2 text-base p-4 bg-amber-300 hover:bg-amber-400 text-gray-50 rounded-lg flex justify-center items-center gap-2" id="restar_precioPolloTecnicoPelado">-</button>
                                 <input class="rounded-lg lg:max-w-xs h-8 w-20 text-center uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary-600 focus:border-primary-600 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="precioPolloTecnicoPelado" disabled="" autocomplete="off" id="precioPolloTecnicoPelado" value="0.0">
@@ -231,7 +231,7 @@
                             </div>
                         </div>
                         <div class="flex flex-col p-2 justify-center items-center gap-2">
-                            <label class="text-sm font-bold">BRASA TECNICO:</label>
+                            <label class="text-sm font-bold">BRASA TECNICA:</label>
                             <div class="text-gray-900 dark:text-gray-200 flex gap-2 items-center">
                                 <button class="h-7 md:w-2 text-base p-4 bg-amber-300 hover:bg-amber-400 text-gray-50 rounded-lg flex justify-center items-center gap-2" id="restar_precioBrasaTecnico">-</button>
                                 <input class="rounded-lg lg:max-w-xs h-8 w-20 text-center uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary-600 focus:border-primary-600 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="precioBrasaTecnico" disabled="" autocomplete="off" id="precioBrasaTecnico" value="0.0">
@@ -264,8 +264,8 @@
                             </th>
                             <th class="p-4 text-center whitespace-nowrap">YUGO VIVO</th>
                             <th class="p-4 text-center whitespace-nowrap">YUGO PELADO</th>
-                            <th class="p-4 text-center whitespace-nowrap">TECNICO VIVO</th>
-                            <th class="p-4 text-center whitespace-nowrap">TECNICO PELADO</th>
+                            <th class="p-4 text-center whitespace-nowrap">TECNICA VIVO</th>
+                            <th class="p-4 text-center whitespace-nowrap">TECNICA PELADO</th>
                             <th class="p-4 text-center whitespace-nowrap">GALLINA DOBLE</th>
                             <th class="p-4 text-center whitespace-nowrap">GALLINA CHICA</th>
                             <th class="p-4 text-center whitespace-nowrap">GALLO</th>
@@ -278,7 +278,7 @@
                             <th class="p-4 text-center whitespace-nowrap">OTROS</th>
                             <th class="p-4 text-center whitespace-nowrap">POLLO XX</th>
                             <th class="p-4 text-center whitespace-nowrap">BRASA YUGO</th>
-                            <th class="p-4 text-center whitespace-nowrap">BRASA TECNICO</th>
+                            <th class="p-4 text-center whitespace-nowrap">BRASA TECNICA</th>
                         </tr>
                     </thead>
                     <tbody id="bodyPreciosXPresentacion">

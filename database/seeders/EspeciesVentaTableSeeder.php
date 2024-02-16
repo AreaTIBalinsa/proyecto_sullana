@@ -16,8 +16,8 @@ class EspeciesVentaTableSeeder extends Seeder
         DB::table('tb_especies_venta')->insert([
             ['idEspecie' => 1, 'nombreEspecie' => 'YUGO VIVO'],
             ['idEspecie' => 2, 'nombreEspecie' => 'YUGO PELADO'],
-            ['idEspecie' => 3, 'nombreEspecie' => 'TECNICO VIVO'],
-            ['idEspecie' => 4, 'nombreEspecie' => 'TECNICO PELADO'],
+            ['idEspecie' => 3, 'nombreEspecie' => 'TECNICA VIVO'],
+            ['idEspecie' => 4, 'nombreEspecie' => 'TECNICA PELADO'],
             ['idEspecie' => 5, 'nombreEspecie' => 'GALLINA DOBLE'],
             ['idEspecie' => 6, 'nombreEspecie' => 'GALLINA CHICA'],
             ['idEspecie' => 7, 'nombreEspecie' => 'GALLO'],
@@ -31,7 +31,7 @@ class EspeciesVentaTableSeeder extends Seeder
             ['idEspecie' => 15, 'nombreEspecie' => 'OTROS'],
             ['idEspecie' => 16, 'nombreEspecie' => 'POLLO XX'],
             ['idEspecie' => 17, 'nombreEspecie' => 'BRASA YUGO'],
-            ['idEspecie' => 18, 'nombreEspecie' => 'BRASA TECNICO'],
+            ['idEspecie' => 18, 'nombreEspecie' => 'BRASA TECNICA'],
         ]);
     }
 }

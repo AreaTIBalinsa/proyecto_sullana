@@ -32,8 +32,8 @@
                             <th class="px-4 whitespace-nowrap">FECHA</th>
                             <th class="px-4 whitespace-nowrap">YUGO VIVO</th>
                             <th class="px-4 whitespace-nowrap">YUGO PELADO</th>
-                            <th class="px-4 whitespace-nowrap">TECNICO VIVO</th>
-                            <th class="px-4 whitespace-nowrap">TECNICO PELADO</th>
+                            <th class="px-4 whitespace-nowrap">TECNICA VIVO</th>
+                            <th class="px-4 whitespace-nowrap">TECNICA PELADO</th>
                             <th class="px-4 whitespace-nowrap">GALLINA DOBLE</th>
                             <th class="px-4 whitespace-nowrap">GALLINA CHICA</th>
                             <th class="px-4 whitespace-nowrap">GALLO</th>
@@ -46,7 +46,7 @@
                             <th class="px-4 whitespace-nowrap">OTROS</th>
                             <th class="px-4 whitespace-nowrap">POLLO XX</th>
                             <th class="px-4 whitespace-nowrap">BRASA YUGO</th>
-                            <th class="px-4 whitespace-nowrap">BRASA TECNICO</th>
+                            <th class="px-4 whitespace-nowrap">BRASA TECNICA</th>
                         </tr>
                     </thead>
                     <tbody id="bodyReporteAcumulado">
@@ -112,9 +112,9 @@
                             <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap"></th>
                             <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap" colspan="4">YUGO PELADO</th>
                             <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap"></th>
-                            <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap" colspan="4">TECNICO VIVO</th>
+                            <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap" colspan="4">TECNICA VIVO</th>
                             <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap"></th>
-                            <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap" colspan="4">TECNICO PELADO</th>
+                            <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap" colspan="4">TECNICA PELADO</th>
                             <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap"></th>
                             <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap" colspan="4">GALLINA DOBLE</th>
                             <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap"></th>
@@ -140,7 +140,7 @@
                             <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap"></th>
                             <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap" colspan="4">BRASA YUGO</th>
                             <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap"></th>
-                            <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap" colspan="4">BRASA TECNICO</th>
+                            <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap" colspan="4">BRASA TECNICA</th>
                             <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap"></th>
                             <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap bg-red-600" colspan="3">DESCUENTO</th>
                             <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap bg-green-400" colspan="3">TOTAL</th>

@@ -16,8 +16,8 @@ class PreciosMinimosTableSeeder extends Seeder
         DB::table('tb_precios_minimos')->insert([
             ['idPrecioMinimo' => 1, 'precioMinimo' => 5, 'nombreEspeciePrecioMinimo' => "YUGO VIVO"],
             ['idPrecioMinimo' => 2, 'precioMinimo' => 5, 'nombreEspeciePrecioMinimo' => "YUGO PELADO"],
-            ['idPrecioMinimo' => 3, 'precioMinimo' => 5, 'nombreEspeciePrecioMinimo' => "TECNICO VIVO"],
-            ['idPrecioMinimo' => 4, 'precioMinimo' => 5, 'nombreEspeciePrecioMinimo' => "TECNICO PELADO"],
+            ['idPrecioMinimo' => 3, 'precioMinimo' => 5, 'nombreEspeciePrecioMinimo' => "TECNICA VIVO"],
+            ['idPrecioMinimo' => 4, 'precioMinimo' => 5, 'nombreEspeciePrecioMinimo' => "TECNICA PELADO"],
             ['idPrecioMinimo' => 5, 'precioMinimo' => 5, 'nombreEspeciePrecioMinimo' => "GALLINA DOBLE"],
             ['idPrecioMinimo' => 6, 'precioMinimo' => 5, 'nombreEspeciePrecioMinimo' => "GALLINA CHICA"],
             ['idPrecioMinimo' => 7, 'precioMinimo' => 5, 'nombreEspeciePrecioMinimo' => "GALLO"],
@@ -30,7 +30,7 @@ class PreciosMinimosTableSeeder extends Seeder
             ['idPrecioMinimo' => 14, 'precioMinimo' => 5, 'nombreEspeciePrecioMinimo' => "OTROS"],
             ['idPrecioMinimo' => 15, 'precioMinimo' => 5, 'nombreEspeciePrecioMinimo' => "POLLO XX"],
             ['idPrecioMinimo' => 16, 'precioMinimo' => 5, 'nombreEspeciePrecioMinimo' => "BRASA YUGO"],
-            ['idPrecioMinimo' => 17, 'precioMinimo' => 5, 'nombreEspeciePrecioMinimo' => "BRASA TECNICO"],
+            ['idPrecioMinimo' => 17, 'precioMinimo' => 5, 'nombreEspeciePrecioMinimo' => "BRASA TECNICA"],
         ]);
     }
 }
