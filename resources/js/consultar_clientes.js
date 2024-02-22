@@ -30,8 +30,8 @@ jQuery(function ($) {
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center">').text(obj.codigoCli));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center font-medium text-gray-900 whitespace-nowrap dark:text-white">').append($('<h5 class="min-w-max px-2">').text(obj.nombreCompleto)));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center">').append($(`<h5 class="min-w-max px-2">`).text(obj.nombreTipoDocumento)));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center">').append($('<h5 class="min-w-max px-2">').text(obj.numDocumentoCli)));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center">').append($('<h5 class="min-w-max px-2">').text(fn_formatearCelular(obj.contactoCli))));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center">').append($('<h5 class="min-w-max px-2">').text(obj.numDocumentoCli === null ? "S/N" : obj.numDocumentoCli)));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center">').append($('<h5 class="min-w-max px-2">').text(fn_formatearCelular(obj.contactoCli === null ? "S/N" : obj.contactoCli))));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center">').append($(`<h5 class="m-auto px-2 overflow-hidden whitespace-nowrap">`).text(obj.comentarioCli)));
                         if (obj.estadoCliente == "ACTIVO"){
                             nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center">').append($('<p class="bg-[#0FDA62] text-xs text-gray-50 rounded-xl inline-block py-1 px-4 capitalize">').text(obj.estadoCliente)));

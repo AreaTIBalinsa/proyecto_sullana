@@ -65,7 +65,6 @@ jQuery(function($) {
                                     </div>
                                 </td>
                                 <td class="border dark:border-gray-700 p-2 text-center whitespace-nowrap">${total.toFixed(2)}</td>
-                                <td class="hidden">1</td>
                             `));
                         }
                         else{
@@ -73,7 +72,7 @@ jQuery(function($) {
                             // Agregar las celdas con la información
                             nuevaFila.append($('<td class="hidden">').text(obj.codigoCli));
                             nuevaFila.append($('<td class="border dark:border-gray-700 p-2 font-medium whitespace-nowrap">').text(obj.nombreCompleto));
-                            nuevaFila.append($('<td class="border dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(total.toFixed(2)));
+                            nuevaFila.append($('<td class="border dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(parseFloat(total).toFixed(2)));
                         }
     
                         // Agregar la nueva fila al tbody
@@ -145,4 +144,21 @@ jQuery(function($) {
             }
         });
     }
+
+    $('#filtrarClienteAgregarSaldo').on('input', function() {
+        let nombreFiltrar = $('#filtrarClienteAgregarSaldo').val().toUpperCase(); ; // Obtiene el valor del campo de filtro
+
+        // Mostrar todas las filas
+        $('#tablaAgregarSaldo tbody tr').show();
+    
+        // Filtrar por nombre si se proporciona un valor
+        if (nombreFiltrar) {
+            $('#tablaAgregarSaldo tbody tr').each(function() {
+                let nombre = $(this).find('td:eq(1)').text().toUpperCase().trim();
+                if (nombre.indexOf(nombreFiltrar) === -1) {
+                    $(this).hide();
+                }
+            });
+        }
+    });
 });

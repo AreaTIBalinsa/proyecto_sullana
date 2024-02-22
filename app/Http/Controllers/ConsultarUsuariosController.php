@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\ConsultarUsuarios\ActualizarUsuario;
 use App\Models\ConsultarUsuarios\ActualizarUsuarioExtra;
 use App\Models\ConsultarUsuarios\ActualizarRolesUsuario;
+use App\Models\ConsultarUsuarios\CrearRolesUsuario;
 use App\Models\ConsultarUsuarios\EliminarUsuario;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -29,7 +30,7 @@ class ConsultarUsuariosController extends Controller
                 rutaPerfilUsu,email,username,
                 email_verified_at,password,remember_token,
                 IFNULL(CONCAT_WS(" ", nombresUsu, apellidoPaternoUsu, apellidoMaternoUsu), "") AS nombreCompleto
-            FROM users WHERE id != 1 and id != 2 and estadoUser = 1');
+            FROM users WHERE id != 1 and estadoUser = 1');
             
             // Devuelve los datos en formato JSON
             return response()->json($datos);
@@ -62,21 +63,55 @@ class ConsultarUsuariosController extends Controller
     public function consulta_ConsultarRolesUsuariosEditar(Request $request){
 
         $codigoUsu = $request->input('codigoUsu');
-
+    
         if (Auth::check()) {
-            // Realiza la consulta a la base de datos
-            $datos = DB::select('
-            SELECT idRol, idUsuario, tb_roles_de_usuario.idMenu, tb_roles_de_usuario.idSubMenu, estadoRol, nombreSubMenu
-            FROM tb_roles_de_usuario
-            INNER JOIN tb_submenus ON tb_submenus.idSubMenu = tb_roles_de_usuario.idSubMenu
-            WHERE idUsuario = ? AND tb_submenus.estadoSubMenu = 1',[$codigoUsu]);
+            // Consulta para obtener todos los submenús
+            $submenus = DB::table('tb_submenus')
+                ->where('estadoSubMenu', 1)
+                ->get();
+    
+            // Consulta para obtener las asignaciones específicas para un usuario
+            $asignaciones = DB::table('tb_roles_de_usuario')
+                ->join('tb_submenus', 'tb_roles_de_usuario.idSubMenu', '=', 'tb_submenus.idSubMenu')
+                ->select('idRol', 'idUsuario', 'tb_roles_de_usuario.idMenu', 'tb_roles_de_usuario.idSubMenu', 'estadoRol', 'nombreSubMenu')
+                ->where('idUsuario', $codigoUsu)
+                ->get();
+    
+            // Combinar los resultados en un solo array
+            $datos = [];
+    
+            foreach ($submenus as $submenu) {
+                $asignacion = $asignaciones->where('idSubMenu', $submenu->idSubMenu)->first();
             
+                if ($asignacion) {
+                    $datos[] = [
+                        'idRol' => $asignacion->idRol,
+                        'idUsuario' => $asignacion->idUsuario,
+                        'idMenu' => $asignacion->idMenu,
+                        'idSubMenu' => $asignacion->idSubMenu,
+                        'estadoRol' => $asignacion->estadoRol,
+                        'nombreSubMenu' => $asignacion->nombreSubMenu,
+                    ];
+                } else {
+                    // Si no hay asignación, se agrega un registro con valores predeterminados o nulos
+                    $datos[] = [
+                        'idRol' => 0,
+                        'idUsuario' => 0,
+                        'idMenu' => $submenu->idMenu,
+                        'idSubMenu' => $submenu->idSubMenu,
+                        'estadoRol' => 'no',
+                        'nombreSubMenu' => $submenu->nombreSubMenu,
+                    ];
+                }
+            }            
+    
             // Devuelve los datos en formato JSON
             return response()->json($datos);
         }
+    
         // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
         return response()->json(['error' => 'Usuario no autenticado'], 401);
-    }
+    }    
 
     public function consulta_ActualizarUsuario(Request $request)
     {
@@ -160,22 +195,37 @@ class ConsultarUsuariosController extends Controller
         $idMenu = $request->input('idMenu');
         $idSubMenu = $request->input('idSubMenu');
         $estadoRol = $request->input('estadoRol');
-
+        $usuarioRegistroCli = $request->input('usuarioRegistroCli');
+    
         if (Auth::check()) {
-            $ActualizarRolesUsuario = new ActualizarRolesUsuario;
-            $ActualizarRolesUsuario->where('idRol', $idRol)
-                ->update([
+            $existingRecord = ActualizarRolesUsuario::where('idRol', $idRol)
+                ->where('idSubMenu', $idSubMenu)
+                ->where('idUsuario', $usuarioRegistroCli)
+                ->first();
+    
+            if ($existingRecord) {
+                // Si existe un registro, actualízalo
+                $existingRecord->update([
                     'idMenu' => $idMenu,
                     'idSubMenu' => $idSubMenu,
                     'estadoRol' => $estadoRol,
                 ]);
-            
+            } else {
+                // Si no existe un registro, crea uno nuevo
+                CrearRolesUsuario::create([
+                    'idMenu' => $idMenu,
+                    'idSubMenu' => $idSubMenu,
+                    'estadoRol' => $estadoRol,
+                    'idUsuario' => $usuarioRegistroCli,
+                ]);
+            }
+    
             return response()->json(['success' => true], 200);
         }
-
+    
         // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
         return response()->json(['error' => 'Usuario no autenticado'], 401);
-    }
+    }    
 
     public function consulta_EliminarUsuario(Request $request)
     {

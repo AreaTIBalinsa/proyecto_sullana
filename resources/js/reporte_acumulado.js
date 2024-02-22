@@ -2912,6 +2912,12 @@ jQuery(function($) {
                 }
             });
         }
+
+        // Mostrar la última fila independientemente del filtro
+        $('#bodyReporteDePagos tr:last').show();
+        // Mostrar la penúltima fila independientemente del filtro
+        $('#bodyReporteDePagos tr:eq(-2)').show();
+        $('#bodyReporteDePagos tr:eq(-3)').show();
     });
 
     $(document).on("click", "#tablaReporteAcumuladoExcel tbody tr", function() {

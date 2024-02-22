@@ -5,6 +5,7 @@ jQuery(function($) {
 
     fn_ConsultarUsuarios();
     var tipoUsuario = $('#tipoUsuario').data('id');
+    var usuarioRegistroCli = $('#usuarioRegistroCli').data('id');
 
     function fn_ConsultarUsuarios() {
         $.ajax({
@@ -12,7 +13,7 @@ jQuery(function($) {
             method: 'GET',
             success: function (response) {
                 // Verificar si la respuesta es un arreglo de objetos
-                if (Array.isArray(response) && response.length > 0) {
+                if (Array.isArray(response)) {
                     // Obtener el select
                     let tbodyConsultarUsuarios = $('#bodyConsultarUsuarios');
                     tbodyConsultarUsuarios.empty();
@@ -38,7 +39,7 @@ jQuery(function($) {
                     });
 
                 } else {
-                    console.log("La respuesta no es un arreglo de objetos.");                    
+                    console.log("La respuesta no es un arreglo de objetos.");
                 }
 
             },
@@ -120,14 +121,7 @@ jQuery(function($) {
                     // Iterar sobre los objetos y mostrar sus propiedades
                     response.forEach(function(obj) {
 
-                        if (parseInt(obj.idSubMenu) == 1){
-
-                            nuevaFila = $(`<div class="flex items-center gap-2 px-5 py-1 rounded-xl">
-                            <input disabled checked id="${obj.idSubMenu}" data-idRol="${obj.idRol}" data="${obj.idMenu}" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                            <label for="${obj.idSubMenu}" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">${obj.nombreSubMenu}</label>
-                            </div>`);
-
-                        }else if (obj.estadoRol == "si"){
+                        if (obj.estadoRol == "si"){
                             nuevaFila = $(`<div class="flex items-center gap-2 px-5 py-1 rounded-xl">
                             <input checked id="${obj.idSubMenu}" data-idRol="${obj.idRol}" data="${obj.idMenu}" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                             <label for="${obj.idSubMenu}" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">${obj.nombreSubMenu}</label>
@@ -249,8 +243,8 @@ jQuery(function($) {
                         let idMenu = $(this).attr('data');
                         let idSubMenu = $(this).attr('id');
                         let estadoRol = $(this).is(':checked') ? 'si' : 'no';
-    
-                        fn_RegistrarUsuarioRolesEditar(idRol, idMenu, idSubMenu, estadoRol);
+                        let codigoUsu = $("#valorEditarCodigoUsuario").val();
+                        fn_RegistrarUsuarioRolesEditar(idRol, idMenu, idSubMenu, estadoRol, codigoUsu);
                     });
                     
                     fn_ConsultarUsuarios();
@@ -302,8 +296,8 @@ jQuery(function($) {
                         let idMenu = $(this).attr('data');
                         let idSubMenu = $(this).attr('id');
                         let estadoRol = $(this).is(':checked') ? 'si' : 'no';
-    
-                        fn_RegistrarUsuarioRolesEditar(idRol, idMenu, idSubMenu, estadoRol);
+                        let codigoUsu = $("#valorEditarCodigoUsuario").val();
+                        fn_RegistrarUsuarioRolesEditar(idRol, idMenu, idSubMenu, estadoRol, codigoUsu);
                     });
                     
                     fn_ConsultarUsuarios();
@@ -363,7 +357,7 @@ jQuery(function($) {
         $(this).val(inputValue);
     });
 
-    function fn_RegistrarUsuarioRolesEditar(idRol, idMenu, idSubMenu, estadoRol){
+    function fn_RegistrarUsuarioRolesEditar(idRol, idMenu, idSubMenu, estadoRol, usuarioRegistroCli){
         $.ajax({
             url: '/fn_consulta_RegistrarUsuarioRolesEditar',
             method: 'GET',
@@ -372,6 +366,7 @@ jQuery(function($) {
                 idMenu: idMenu,
                 idSubMenu: idSubMenu,
                 estadoRol: estadoRol,
+                usuarioRegistroCli: usuarioRegistroCli,
             },
             success: function(response) {
             },

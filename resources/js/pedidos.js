@@ -412,7 +412,7 @@ jQuery(function($) {
 
                     if (nuevaFila == ""){
                         tbodyPedidoDelCliente.append(
-                            '<tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="6" class="text-center">No hay datos</td></tr>'
+                            '<tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="12" class="text-center">No hay datos</td></tr>'
                         );
                     }else{
                         let totalPedidoFormateado = totalPedidosFinal.toLocaleString('es-ES', {

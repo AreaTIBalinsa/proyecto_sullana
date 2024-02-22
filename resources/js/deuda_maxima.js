@@ -4,6 +4,7 @@ window.$ = jQuery;
 jQuery(function($) {
 
     fn_DeudaMaximaClientes();
+    DataTableED('#tablaDeudaMaxima');
 
     function fn_DeudaMaximaClientes() {
         $.ajax({
@@ -16,11 +17,19 @@ jQuery(function($) {
                     let tbodyDeudaMaxima = $('#bodyDeudaMaxima');
                     tbodyDeudaMaxima.empty();
                     response.forEach(function(obj){
+                        let limitEndeudamiento = parseFloat(obj.limitEndeudamiento);
+                        let totalFormateado = limitEndeudamiento.toLocaleString('es-ES', {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2,
+                            useGrouping: true,
+                        }); 
+
                         let nuevaFila = $('<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
                         // Agregar las celdas con la información
                         nuevaFila.append($('<td class="hidden">').text(obj.codigoCli));
                         nuevaFila.append($('<td class="border dark:border-gray-700 p-2 font-medium whitespace-nowrap">').text(obj.nombreCompleto));
-                        nuevaFila.append($('<td class="border dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(obj.limitEndeudamiento));
+                        nuevaFila.append($('<td class="border dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(totalFormateado));
+                        nuevaFila.append($('<td class="hidden">').text(obj.limitEndeudamiento));
                         // Agregar la nueva fila al tbody
                         tbodyDeudaMaxima.append(nuevaFila);
                     });
@@ -43,7 +52,7 @@ jQuery(function($) {
         let fila = $(this).closest('tr');
         let idCodigoCliente = fila.find('td:eq(0)').text();
         let nombreCompleto = fila.find('td:eq(1)').text();
-        let montoDeuda = fila.find('td:eq(2)').text();
+        let montoDeuda = fila.find('td:eq(3)').text();
 
         $('#idCodigoClienteDeudaMaxima').attr('value', idCodigoCliente);
         $('#nombreClienteDeudaMaxima').text(nombreCompleto);
@@ -95,5 +104,22 @@ jQuery(function($) {
             }
         });
     }
+
+    $('#filtrarClienteDeudaMaxima').on('input', function() {
+        let nombreFiltrar = $('#filtrarClienteDeudaMaxima').val().toUpperCase(); ; // Obtiene el valor del campo de filtro
+
+        // Mostrar todas las filas
+        $('#tablaDeudaMaxima tbody tr').show();
+    
+        // Filtrar por nombre si se proporciona un valor
+        if (nombreFiltrar) {
+            $('#tablaDeudaMaxima tbody tr').each(function() {
+                let nombre = $(this).find('td:eq(1)').text().toUpperCase().trim();
+                if (nombre.indexOf(nombreFiltrar) === -1) {
+                    $(this).hide();
+                }
+            });
+        }
+    });
 
 });
