@@ -26,9 +26,10 @@ class SubmenusTableSeeder extends Seeder
             ['idSubMenu' => 10, 'idMenu' => 3, 'nombreSubMenu' => 'Saldos', 'idNombreSubMenu' => '#', 'hrefSubMenu' => '/agregar_saldo', 'iconHtml' => 'bx bx-money-withdraw', 'estadoSubMenu' => 1],
             ['idSubMenu' => 11, 'idMenu' => 4, 'nombreSubMenu' => 'Agregar Usuario', 'idNombreSubMenu' => '#', 'hrefSubMenu' => '/registrar_usuarios', 'iconHtml' => 'bx bxs-user-badge', 'estadoSubMenu' => 1],
             ['idSubMenu' => 12, 'idMenu' => 4, 'nombreSubMenu' => 'Consultar Usuario', 'idNombreSubMenu' => '#', 'hrefSubMenu' => '/consultar_usuarios', 'iconHtml' => 'bx bxs-user-account', 'estadoSubMenu' => 1],
-            ['idSubMenu' => 13, 'idMenu' => 1, 'nombreSubMenu' => 'Pedidos', 'idNombreSubMenu' => '#', 'hrefSubMenu' => '/pedidos', 'iconHtml' => 'bx bx-stats', 'estadoSubMenu' => 1],
+            ['idSubMenu' => 13, 'idMenu' => 1, 'nombreSubMenu' => 'Pedidos', 'idNombreSubMenu' => '#', 'hrefSubMenu' => '/pedidos', 'iconHtml' => 'bx bx-list-plus', 'estadoSubMenu' => 1],
             ['idSubMenu' => 14, 'idMenu' => 3, 'nombreSubMenu' => 'Caja Chica', 'idNombreSubMenu' => '#', 'hrefSubMenu' => '/caja_chica', 'iconHtml' => 'bx bx-box', 'estadoSubMenu' => 1],
             ['idSubMenu' => 15, 'idMenu' => 1, 'nombreSubMenu' => 'Deuda Maxima', 'idNombreSubMenu' => '#', 'hrefSubMenu' => '/deuda_maxima', 'iconHtml' => 'bx bxs-hand', 'estadoSubMenu' => 1],
+            ['idSubMenu' => 16, 'idMenu' => 2, 'nombreSubMenu' => 'Seguimiento Pedidos', 'idNombreSubMenu' => '#', 'hrefSubMenu' => '/seguimiento_pedidos', 'iconHtml' => 'bx bx-stats', 'estadoSubMenu' => 1],
         ]);
     }
 }

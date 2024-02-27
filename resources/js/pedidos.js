@@ -341,14 +341,14 @@ jQuery(function($) {
                         <th class="px-2 py-4 text-center">Nombre de Cliente</th>
                         <th class="px-2 py-4 text-center">Yugo Vivo</th>
                         <th class="px-2 py-4 text-center">Yugo Pelado</th>
-                        <th class="px-2 py-4 text-center">Tecnico Vivo</th>
-                        <th class="px-2 py-4 text-center">Tecnico Pelado</th>
+                        <th class="px-2 py-4 text-center">Tecnica Vivo</th>
+                        <th class="px-2 py-4 text-center">Tecnica Pelado</th>
                         <th class="px-2 py-4 text-center">Gallina Doble</th>
                         <th class="px-2 py-4 text-center">Gallina Chica</th>
                         <th class="px-2 py-4 text-center">Gallo</th>
                         <th class="px-2 py-4 text-center">Pollo XX</th>
                         <th class="px-2 py-4 text-center">Brasa Yugo</th>
-                        <th class="px-2 py-4 text-center">Brasa Tecnico</th>
+                        <th class="px-2 py-4 text-center">Brasa Tecnica</th>
                         <th class="px-2 py-4 text-center whitespace-nowrap">TOTAL</th>
                     </tr>`);
                     tbodyPedidoDelCliente.empty();

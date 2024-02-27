@@ -20,6 +20,7 @@ use App\Http\Controllers\ConfiguracionesController;
 use App\Http\Controllers\CajaChicaController;
 use App\Http\Controllers\DeudaMaximaController;
 use App\Http\Controllers\PedidosController;
+use App\Http\Controllers\SeguimientoPedidosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -62,6 +63,7 @@ Route::get('/agregar_saldo',[AgregarSaldoController::class,'show']);
 Route::get('/pedidos',[PedidosController::class,'show']);
 Route::get('/caja_chica',[CajaChicaController::class,'show']);
 Route::get('/deuda_maxima',[DeudaMaximaController::class,'show']);
+Route::get('/seguimiento_pedidos',[SeguimientoPedidosController::class,'show']);
 
 /* ============================== Termina Controladores para Mostrar Vistas ============================== */
 
@@ -164,3 +166,5 @@ Route::get('/fn_consulta_ActualizarPedidoCliente',[PedidosController::class,'con
 Route::get('/fn_consulta_EliminarPedido',[PedidosController::class,'consulta_EliminarPedido']);
 Route::get('/fn_consulta_TraerPedidosAnteriores',[PedidosController::class,'consulta_TraerPedidosAnteriores']);
 Route::get('/fn_consulta_VerificarPedido',[PedidosController::class,'consulta_VerificarPedido']);
+
+Route::get('/fn_consulta_TraerPedidosSeguimientoClientes',[SeguimientoPedidosController::class,'consulta_TraerPedidosSeguimientoClientes']);

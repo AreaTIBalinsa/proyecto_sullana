@@ -21,6 +21,7 @@ export default defineConfig({
                     'resources/js/agregar_saldo.js',
                     'resources/js/reporte_acumulado.js',
                     'resources/js/configuraciones.js',
+                    'resources/js/pedidos.js',
                     'resources/js/caja_chica.js',
                     'resources/js/deuda_maxima.js'],
             refresh: true,
