@@ -98,7 +98,7 @@ jQuery(function($) {
         if (cantidadFiltrar) {
             $('#tablaConsultarPesadas tbody tr').each(function() {
                 let cantidad = $(this).find('td:eq(3)').text().trim();
-                if (cantidad !== cantidadFiltrar) {
+                if (cantidad.indexOf(cantidadFiltrar) === -1) {
                     $(this).hide();
                 }
             });
@@ -106,7 +106,7 @@ jQuery(function($) {
 
         if (filtrarEliminadas) {
             $('#tablaConsultarPesadas tbody tr').each(function() {
-                let columna9 = $(this).find('td:eq(9)').text().trim();
+                let columna9 = $(this).find('td:eq(10)').text().trim();
                 if (columna9 !== '0') {
                     $(this).hide();
                 }

@@ -73,11 +73,16 @@ jQuery(function($) {
                     // Iterar sobre los objetos y mostrar sus propiedades
                     response.forEach(function (obj) {
                         let totalPedidos = 0;
-                        totalPedidos = parseInt(obj.cantidadPrimerEspecie) + parseInt(obj.cantidadSegundaEspecie) + parseInt(obj.cantidadTerceraEspecie) + parseInt(obj.cantidadCuartaEspecie);
+                        totalPedidos = parseInt(obj.cantidadPrimerEspecie) + parseInt(obj.cantidadSegundaEspecie) + parseInt(obj.cantidadTerceraEspecie) 
+                        + parseInt(obj.cantidadCuartaEspecie);
+                        
                         let totalPedidosPesados = 0;
-                        totalPedidosPesados = parseFloat(obj.sumaCantidadPrimerEspecie) + parseFloat(obj.sumaCantidadSegundaEspecie) + parseFloat(obj.sumaCantidadTerceraEspecie) + parseFloat(obj.sumaCantidadCuartaEspecie);
+                        totalPedidosPesados = parseFloat(obj.sumaCantidadPrimerEspecie) + parseFloat(obj.sumaCantidadSegundaEspecie) 
+                        + parseFloat(obj.sumaCantidadTerceraEspecie) + parseFloat(obj.sumaCantidadCuartaEspecie);
 
                         let totalCantidadPedidosFila = totalPedidos - totalPedidosPesados;
+
+
 
                         let diferenciaPrimerEspecie = 0;
                         diferenciaPrimerEspecie = parseInt(obj.cantidadPrimerEspecie) - parseFloat(obj.sumaCantidadPrimerEspecie)

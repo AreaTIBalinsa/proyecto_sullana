@@ -83,10 +83,6 @@
                         <select class="w-full uppercase h-10 outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-lg" name="idProveedorAgregarGuia" id="idProveedorAgregarGuia">
                         </select>
                     </div>
-                    <div class="mt-4 flex justify-center items-center flex-col gap-4">
-                        <select class="w-full uppercase h-10 outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-lg" name="idEspecieAgregarGuia" id="idEspecieAgregarGuia" disabled>
-                        </select>
-                    </div>
                     <div class="mt-4 flex justify-center items-center h-10">
                         <div class="text-sm px-3 flex h-full items-center justify-center text-center border border-gray-300 dark:border-gray-600 bg-gray-300 dark:bg-gray-600 rounded-l-lg">
                             <h4 class="font-medium text-gray-900 dark:text-gray-300 min-w-max">Cantidad</h4>
@@ -148,10 +144,6 @@
                     </div>
                     <div class="mt-4 flex justify-center items-center flex-col gap-4">
                         <select class="w-full uppercase h-10 outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-lg" name="idProveedorAgregarGuiaEditar" id="idProveedorAgregarGuiaEditar">
-                        </select>
-                    </div>
-                    <div class="mt-4 flex justify-center items-center flex-col gap-4">
-                        <select class="w-full uppercase h-10 outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-lg" name="idEspecieAgregarGuiaEditar" id="idEspecieAgregarGuiaEditar" disabled>
                         </select>
                     </div>
                     <div class="mt-4 flex justify-center items-center h-10">

@@ -18,6 +18,5 @@ class ActualizarGuia extends Model
         'precioGuia',
         'fechaGuia',
         'idProveedor',
-        'idEspecie',
     ];
 }

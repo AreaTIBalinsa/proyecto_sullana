@@ -13,10 +13,8 @@ jQuery(function($) {
     $('#fechaRegistrarGuia').val(fechaHoy);
 
     fn_ConsultarProveedor(fechaHoy,fechaHoy);
-    fn_declararEspecies();
     fn_declararProveedor();
     fn_declararProveedorEditar();
-    fn_declararEspeciesEditar();
 
     $('#btnBuscarReportePorProveedor').on('click', function () {
         let fechaDesde = $('#fechaDesdeReportePorProveedor').val();
@@ -77,16 +75,10 @@ jQuery(function($) {
                                 pagoAProveedoresPorDia += totalAPagar;
                                 cantidadAProveedoresPorDia += parseInt(obj.cantidadGuia);
                                 pesoAProveedoresPorDia += parseFloat(obj.pesoGuia);
-                                let nombreEspecie = "";
-                                if (obj.idProveedor == 1 || obj.idProveedor == 2 || obj.idProveedor == 3) {
-                                    nombreEspecie = obj.nombreEspecieVenta;
-                                }else if (obj.idProveedor == 4 || obj.idProveedor == 5){
-                                    nombreEspecie = obj.nombreEspecieCompra+" "+obj.nombreEspecieVenta;
-                                }
                                 // Agregar las celdas con la información
                                 nuevaFila.append($('<td class="hidden">').text(obj.idGuia));
                                 nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(obj.numGuia));
-                                nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(nombreEspecie));
+                                nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(obj.nombreEspecieCompra));
                                 nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(obj.cantidadGuia == 1 ? `${obj.cantidadGuia} Ud.` : `${obj.cantidadGuia} Uds.`));
                                 if (tipoUsuario =='Administrador'){
                                     nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(obj.pesoGuia+" Kg."));
@@ -140,80 +132,6 @@ jQuery(function($) {
 
         $(this).val(inputValue);
     });
-
-    function fn_declararEspecies(){
-        $.ajax({
-            url: '/fn_consulta_DatosEspecie',
-            method: 'GET',
-            success: function(response) {
-                // Verificar si la respuesta es un arreglo de objetos
-                if (Array.isArray(response)) {
-
-                    // Obtener el select
-                    let selectPresentacion = $('#idEspecieAgregarGuia');
-                    
-                    // Vaciar el select actual, si es necesario
-                    selectPresentacion.empty();
-
-                    // Agregar la opción inicial "Seleccione tipo"
-                    selectPresentacion.append($('<option>', {
-                        value: '0',
-                        text: 'Seleccione presentación',
-                        disabled: true,
-                        selected: true
-                    }));
-
-                    // Iterar sobre los objetos y mostrar sus propiedades
-                    response.forEach(function(obj) {
-                        let option = $('<option>', {
-                            value: obj.idEspecie,
-                            text: obj.nombreEspecie
-                        });
-                        selectPresentacion.append(option);
-                    });
-
-                } else {
-                    console.log("La respuesta no es un arreglo de objetos.");
-                }
-            },
-            error: function(error) {
-                console.error("ERROR",error);
-            }
-        });
-    }
-
-    function fn_declararEspeciesEditar(){
-        $.ajax({
-            url: '/fn_consulta_DatosEspecie',
-            method: 'GET',
-            success: function(response) {
-                // Verificar si la respuesta es un arreglo de objetos
-                if (Array.isArray(response)) {
-
-                    // Obtener el select
-                    let selectPresentacionEditar = $('#idEspecieAgregarGuiaEditar');
-                    
-                    // Vaciar el select actual, si es necesario
-                    selectPresentacionEditar.empty();
-
-                    // Iterar sobre los objetos y mostrar sus propiedades
-                    response.forEach(function(obj) {
-                        let option = $('<option>', {
-                            value: obj.idEspecie,
-                            text: obj.nombreEspecie
-                        });
-                        selectPresentacionEditar.append(option);
-                    });
-
-                } else {
-                    console.log("La respuesta no es un arreglo de objetos.");
-                }
-            },
-            error: function(error) {
-                console.error("ERROR",error);
-            }
-        });
-    }
 
     function fn_declararProveedor(){
         $.ajax({
@@ -290,32 +208,6 @@ jQuery(function($) {
         });
     }
 
-    $("#idProveedorAgregarGuia").on("change",function() {
-        var selectedValue = $(this).val();
-        if (selectedValue === "1" || selectedValue === "2" || selectedValue === "3") {
-            $("#idEspecieAgregarGuia").val(selectedValue);
-            $("#idEspecieAgregarGuia").prop("disabled", true);
-        } else if (selectedValue === "4" || selectedValue === "5") {
-            $("#idEspecieAgregarGuia").prop("disabled", false);
-        } else {
-            $("#idEspecieAgregarGuia").val("0");
-            $("#idEspecieAgregarGuia").prop("disabled", true);
-        }
-    });
-
-    $("#idProveedorAgregarGuiaEditar").on("change",function() {
-        var selectedValue = $(this).val();
-        if (selectedValue === "1" || selectedValue === "2" || selectedValue === "3") {
-            $("#idEspecieAgregarGuiaEditar").val(selectedValue);
-            $("#idEspecieAgregarGuiaEditar").prop("disabled", true);
-        } else if (selectedValue === "4" || selectedValue === "5") {
-            $("#idEspecieAgregarGuiaEditar").prop("disabled", false);
-        } else {
-            $("#idEspecieAgregarGuiaEditar").val("0");
-            $("#idEspecieAgregarGuiaEditar").prop("disabled", true);
-        }
-    });
-
     $('.cerrarModalRegistrarGuias, #ModalRegistrarGuias .opacity-75').on('click', function (e) {
         $('#ModalRegistrarGuias').addClass('hidden');
         $('#ModalRegistrarGuias').removeClass('flex');
@@ -337,20 +229,18 @@ jQuery(function($) {
 
     $('#btnGuardarRegistrarGuias').on('click', function () {
         let idProveedor = $('#idProveedorAgregarGuia').val();
-        let idEspecie = $('#idEspecieAgregarGuia').val();
         let cantidadAgregarGuia = $('#valorCantidadAgregarGuia').val();
         let pesoAgregarGuia = $('#valorPesoAgregarGuia').val();
         let precioAgregarGuia = $('#valorPrecioAgregarGuia').val();
         let fechaRegistrarGuia = $('#fechaRegistrarGuia').val();
         let valorNumeroGuiaAgregarGuia = $('#valorNumeroGuiaAgregarGuia').val();
         
-        fn_RegistrarGuia(idProveedor,idEspecie,cantidadAgregarGuia,pesoAgregarGuia,precioAgregarGuia,fechaRegistrarGuia,valorNumeroGuiaAgregarGuia);
+        fn_RegistrarGuia(idProveedor,cantidadAgregarGuia,pesoAgregarGuia,precioAgregarGuia,fechaRegistrarGuia,valorNumeroGuiaAgregarGuia);
 
     });
 
     $('#btnGuardarRegistrarGuiasEditar').on('click', function () {
         let idProveedorEditar = $('#idProveedorAgregarGuiaEditar').val();
-        let idEspecieEditar = $('#idEspecieAgregarGuiaEditar').val();
         let cantidadAgregarGuiaEditar = $('#valorCantidadAgregarGuiaEditar').val();
         let pesoAgregarGuiaEditar = $('#valorPesoAgregarGuiaEditar').val();
         let precioAgregarGuiaEditar = $('#valorPrecioAgregarGuiaEditar').val();
@@ -358,18 +248,17 @@ jQuery(function($) {
         let valorNumeroGuiaAgregarGuiaEditar = $('#valorNumeroGuiaAgregarGuiaEditar').val();
         let idActualizarGuia = $('#idGuiaEditar').attr('value');
         
-        fn_RegistrarGuiaEditar(idActualizarGuia,idProveedorEditar,idEspecieEditar,cantidadAgregarGuiaEditar,pesoAgregarGuiaEditar,precioAgregarGuiaEditar,fechaRegistrarGuiaEditar,valorNumeroGuiaAgregarGuiaEditar);
+        fn_RegistrarGuiaEditar(idActualizarGuia,idProveedorEditar,cantidadAgregarGuiaEditar,pesoAgregarGuiaEditar,precioAgregarGuiaEditar,fechaRegistrarGuiaEditar,valorNumeroGuiaAgregarGuiaEditar);
 
     });
 
-    function fn_RegistrarGuiaEditar(idActualizarGuia,idProveedorEditar,idEspecieEditar,cantidadAgregarGuiaEditar,pesoAgregarGuiaEditar,precioAgregarGuiaEditar,fechaRegistrarGuiaEditar,valorNumeroGuiaAgregarGuiaEditar){
+    function fn_RegistrarGuiaEditar(idActualizarGuia,idProveedorEditar,cantidadAgregarGuiaEditar,pesoAgregarGuiaEditar,precioAgregarGuiaEditar,fechaRegistrarGuiaEditar,valorNumeroGuiaAgregarGuiaEditar){
         $.ajax({
             url: '/fn_consulta_RegistrarGuiaEditar',
             method: 'GET',
             data: {
                 idActualizarGuia:idActualizarGuia,
                 idProveedorEditar: idProveedorEditar,
-                idEspecieEditar: idEspecieEditar,
                 cantidadAgregarGuiaEditar:cantidadAgregarGuiaEditar,
                 pesoAgregarGuiaEditar:pesoAgregarGuiaEditar,
                 precioAgregarGuiaEditar:precioAgregarGuiaEditar,
@@ -401,13 +290,12 @@ jQuery(function($) {
         });
     }
 
-    function fn_RegistrarGuia(idProveedor,idEspecie,cantidadAgregarGuia,pesoAgregarGuia,precioAgregarGuia,fechaRegistrarGuia,valorNumeroGuiaAgregarGuia){
+    function fn_RegistrarGuia(idProveedor,cantidadAgregarGuia,pesoAgregarGuia,precioAgregarGuia,fechaRegistrarGuia,valorNumeroGuiaAgregarGuia){
         $.ajax({
             url: '/fn_consulta_RegistrarGuia',
             method: 'GET',
             data: {
                 idProveedor: idProveedor,
-                idEspecie: idEspecie,
                 cantidadAgregarGuia:cantidadAgregarGuia,
                 pesoAgregarGuia:pesoAgregarGuia,
                 precioAgregarGuia:precioAgregarGuia,

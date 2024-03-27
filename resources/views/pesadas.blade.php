@@ -134,11 +134,6 @@
                     <input type="text" id="precioTerceraEspecieCambiarPesada" class="hidden" value="0.00">
                     <input type="text" id="precioCuartaEspecieCambiarPesada" class="hidden" value="0.00">
 
-                    <input type="text" id="valorConversionPrimerEspecieCambiarPesada" class="hidden" value="0.00">
-                    <input type="text" id="valorConversionSegundaEspecieCambiarPesada" class="hidden" value="0.00">
-                    <input type="text" id="valorConversionTerceraEspecieCambiarPesada" class="hidden" value="0.00">
-                    <input type="text" id="valorConversionCuartaEspecieCambiarPesada" class="hidden" value="0.00">
-
                     <input type="text" id="idProcesoCambiarPesada" class="hidden" value="0">
                 </div>
             </div>

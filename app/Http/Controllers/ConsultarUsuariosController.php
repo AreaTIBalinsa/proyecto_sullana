@@ -30,7 +30,7 @@ class ConsultarUsuariosController extends Controller
                 rutaPerfilUsu,email,username,
                 email_verified_at,password,remember_token,
                 IFNULL(CONCAT_WS(" ", nombresUsu, apellidoPaternoUsu, apellidoMaternoUsu), "") AS nombreCompleto
-            FROM users WHERE estadoUser = 1');
+            FROM users WHERE estadoUser = 1 and id != 1');
             
             // Devuelve los datos en formato JSON
             return response()->json($datos);

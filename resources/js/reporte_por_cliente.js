@@ -33,6 +33,9 @@ jQuery(function ($) {
     var nombreDecimaTerceraEspecieGlobal = ""
     var nombreDecimaCuartaEspecieGlobal = ""
     var nombreDecimaQuintaEspecieGlobal = ""
+    var nombreDecimaSextaEspecieGlobal = ""
+    var nombreDecimaSeptimaEspecieGlobal = ""
+    var nombreDecimaOctavaEspecieGlobal = ""
 
     $('#btnExportarExcelReportePorCliente').on('click', function () {
         // Obtener los valores de los inputs
@@ -123,6 +126,9 @@ jQuery(function ($) {
                     nombreDecimaTerceraEspecieGlobal = response[11].nombreEspecie;
                     nombreDecimaCuartaEspecieGlobal = response[12].nombreEspecie;
                     nombreDecimaQuintaEspecieGlobal = response[13].nombreEspecie;
+                    nombreDecimaSextaEspecieGlobal = response[14].nombreEspecie;
+                    nombreDecimaSeptimaEspecieGlobal = response[15].nombreEspecie;
+                    nombreDecimaOctavaEspecieGlobal = response[16].nombreEspecie;
                 } else {
                     console.log("La respuesta no es un arreglo de objetos.");
                 }
@@ -251,6 +257,9 @@ jQuery(function ($) {
                         let totalPesoDecimaTerceraEspecie = 0;
                         let totalPesoDecimaCuartaEspecie = 0;
                         let totalPesoDecimaQuintaEspecie = 0;
+                        let totalPesoDecimaSextaEspecie = 0;
+                        let totalPesoDecimaSeptimaEspecie = 0;
+                        let totalPesoDecimaOctavaEspecie = 0;
 
                         let totalCantidadPrimerEspecie = 0;
                         let totalCantidadSegundaEspecie = 0;
@@ -266,6 +275,9 @@ jQuery(function ($) {
                         let totalCantidadDecimaTerceraEspecie = 0;
                         let totalCantidadDecimaCuartaEspecie = 0;
                         let totalCantidadDecimaQuintaEspecie = 0;
+                        let totalCantidadDecimaSextaEspecie = 0;
+                        let totalCantidadDecimaSeptimaEspecie = 0;
+                        let totalCantidadDecimaOctavaEspecie = 0;
 
                         let ventaPesoTotalNeto = 0
                         let ventaCantidadTotal = 0
@@ -379,6 +391,27 @@ jQuery(function ($) {
                                     }else{
                                         totalPesoDecimaQuintaEspecie += parseFloat(pesoNetoPes) + parseFloat(pesoNetoJabas);
                                     }
+                                } else if (nombreEspecie == nombreDecimaSextaEspecieGlobal) {
+                                    totalCantidadDecimaSextaEspecie += cantidadPes;
+                                    if (pesoNetoPes > 0){
+                                        totalPesoDecimaSextaEspecie += parseFloat(pesoNetoPes) - parseFloat(pesoNetoJabas);
+                                    }else{
+                                        totalPesoDecimaSextaEspecie += parseFloat(pesoNetoPes) + parseFloat(pesoNetoJabas);
+                                    }
+                                }else if (nombreEspecie == nombreDecimaSeptimaEspecieGlobal) {
+                                    totalCantidadDecimaSeptimaEspecie += cantidadPes;
+                                    if (pesoNetoPes > 0){
+                                        totalPesoDecimaSeptimaEspecie += parseFloat(pesoNetoPes) - parseFloat(pesoNetoJabas);
+                                    }else{
+                                        totalPesoDecimaSeptimaEspecie += parseFloat(pesoNetoPes) + parseFloat(pesoNetoJabas);
+                                    }
+                                }else if (nombreEspecie == nombreDecimaOctavaEspecieGlobal) {
+                                    totalCantidadDecimaOctavaEspecie += cantidadPes;
+                                    if (pesoNetoPes > 0){
+                                        totalPesoDecimaOctavaEspecie += parseFloat(pesoNetoPes) - parseFloat(pesoNetoJabas);
+                                    }else{
+                                        totalPesoDecimaOctavaEspecie += parseFloat(pesoNetoPes) + parseFloat(pesoNetoJabas);
+                                    }
                                 }
                                 if (parseFloat(pesoNetoPes) > 0){
                                     ventaPesoTotalNeto += parseFloat(pesoNetoPes) - parseFloat(pesoNetoJabas);
@@ -409,6 +442,9 @@ jQuery(function ($) {
                             totalPesoDecimaTerceraEspecie,
                             totalPesoDecimaCuartaEspecie,
                             totalPesoDecimaQuintaEspecie,
+                            totalPesoDecimaSextaEspecie,
+                            totalPesoDecimaSeptimaEspecie,
+                            totalPesoDecimaOctavaEspecie,
 
                             totalCantidadPrimerEspecie,
                             totalCantidadSegundaEspecie,
@@ -424,6 +460,9 @@ jQuery(function ($) {
                             totalCantidadDecimaTerceraEspecie,
                             totalCantidadDecimaCuartaEspecie,
                             totalCantidadDecimaQuintaEspecie,
+                            totalCantidadDecimaSextaEspecie,
+                            totalCantidadDecimaSeptimaEspecie,
+                            totalCantidadDecimaOctavaEspecie,
 
                             ventaPesoTotalNeto,
                             ventaCantidadTotal
@@ -531,6 +570,9 @@ jQuery(function ($) {
         totalPesoDecimaTerceraEspecie,
         totalPesoDecimaCuartaEspecie,
         totalPesoDecimaQuintaEspecie,
+        totalPesoDecimaSextaEspecie,
+        totalPesoDecimaSeptimaEspecie,
+        totalPesoDecimaOctavaEspecie,
 
         totalCantidadPrimerEspecie,
         totalCantidadSegundaEspecie,
@@ -546,6 +588,9 @@ jQuery(function ($) {
         totalCantidadDecimaTerceraEspecie,
         totalCantidadDecimaCuartaEspecie,
         totalCantidadDecimaQuintaEspecie,
+        totalCantidadDecimaSextaEspecie,
+        totalCantidadDecimaSeptimaEspecie,
+        totalCantidadDecimaOctavaEspecie,
 
         ventaPesoTotalNeto,
         ventaCantidadTotal)
@@ -586,6 +631,9 @@ jQuery(function ($) {
         filas.push(construirFila(nombreDecimaTerceraEspecieGlobal, totalCantidadDecimaTerceraEspecie, totalPesoDecimaTerceraEspecie));
         filas.push(construirFila(nombreDecimaCuartaEspecieGlobal, totalCantidadDecimaCuartaEspecie, totalPesoDecimaCuartaEspecie));
         filas.push(construirFila(nombreDecimaQuintaEspecieGlobal, totalCantidadDecimaQuintaEspecie, totalPesoDecimaQuintaEspecie));
+        filas.push(construirFila(nombreDecimaSextaEspecieGlobal, totalCantidadDecimaSextaEspecie, totalPesoDecimaSextaEspecie));
+        filas.push(construirFila(nombreDecimaSeptimaEspecieGlobal, totalCantidadDecimaSeptimaEspecie, totalPesoDecimaSeptimaEspecie));
+        filas.push(construirFila(nombreDecimaOctavaEspecieGlobal, totalCantidadDecimaOctavaEspecie, totalPesoDecimaOctavaEspecie));
 
         filas.push(`
             <tr class="bg-white dark:bg-gray-800 h-0.5">

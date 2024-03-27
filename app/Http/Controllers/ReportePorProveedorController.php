@@ -28,7 +28,6 @@ class ReportePorProveedorController extends Controller
             // Realiza la consulta a la base de datos
             $datos = DB::select('select idGuia, 
                     numGuia,
-                    tb_especies_venta.nombreEspecie as nombreEspecieVenta,
                     tb_especies_compra.nombreEspecie as nombreEspecieCompra,
                     tb_guias.idProveedor,
                     pesoGuia,
@@ -36,7 +35,6 @@ class ReportePorProveedorController extends Controller
                     precioGuia,
                     fechaGuia
                     from tb_guias
-                    INNER JOIN tb_especies_venta ON tb_guias.idEspecie = tb_especies_venta.idEspecie
                     INNER JOIN tb_especies_compra ON tb_guias.idProveedor = tb_especies_compra.idEspecie 
                     WHERE tb_guias.estadoGuia = 1 AND fechaGuia BETWEEN ? AND ? order by idGuia asc',[$fechaDesde,$fechaHasta]);
 
@@ -67,7 +65,6 @@ class ReportePorProveedorController extends Controller
     public function consulta_RegistrarGuia(Request $request)
     {
         $idProveedor = $request->input('idProveedor');
-        $idEspecie = $request->input('idEspecie');
         $cantidadAgregarGuia = $request->input('cantidadAgregarGuia');
         $pesoAgregarGuia = $request->input('pesoAgregarGuia');
         $precioAgregarGuia = $request->input('precioAgregarGuia');
@@ -77,7 +74,6 @@ class ReportePorProveedorController extends Controller
         if (Auth::check()) {
             $registrarGuia = new RegistrarGuia;
             $registrarGuia->idProveedor = $idProveedor;
-            $registrarGuia->idEspecie = $idEspecie;
             $registrarGuia->cantidadGuia = $cantidadAgregarGuia;
             $registrarGuia->precioGuia = $precioAgregarGuia;
             $registrarGuia->pesoGuia = $pesoAgregarGuia;
@@ -140,7 +136,6 @@ class ReportePorProveedorController extends Controller
     {
         $idActualizarGuia = $request->input('idActualizarGuia');
         $idProveedorEditar = $request->input('idProveedorEditar');
-        $idEspecieEditar = $request->input('idEspecieEditar');
         $cantidadAgregarGuiaEditar = $request->input('cantidadAgregarGuiaEditar');
         $pesoAgregarGuiaEditar = $request->input('pesoAgregarGuiaEditar');
         $precioAgregarGuiaEditar = $request->input('precioAgregarGuiaEditar');
@@ -152,7 +147,6 @@ class ReportePorProveedorController extends Controller
             $ActualizarGuia->where('idGuia', $idActualizarGuia)
                 ->update([
                     'idProveedor' => $idProveedorEditar,
-                    'idEspecie' => $idEspecieEditar,
                     'cantidadGuia' => $cantidadAgregarGuiaEditar,
                     'pesoGuia' => $pesoAgregarGuiaEditar,
                     'precioGuia' => $precioAgregarGuiaEditar,

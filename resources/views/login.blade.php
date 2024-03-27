@@ -21,7 +21,7 @@
         <div class="max-w-[850px] w-full">
             <div class="flex rounded-lg drop-shadow-md overflow-hidden mx-auto max-w-sm lg:max-w-4xl bg-gray-100 dark:bg-gray-800">
                 <div class="hidden lg:block lg:w-1/2 bg-cover"
-                    style="background-image:url('https://images.unsplash.com/photo-1546514714-df0ccc50d7bf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=667&q=80')">
+                    style="background-image:url('{{ asset('img/logoLogin.svg') }}')">
                 </div>
                 <div class="w-full p-8 lg:w-1/2 ">
                     <h2 class="text-2xl font-semibold text-gray-900 dark:text-white text-center">Hola</h2>
