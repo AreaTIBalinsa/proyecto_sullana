@@ -32,6 +32,10 @@ class EspeciesVentaTableSeeder extends Seeder
             ['idEspecie' => 16, 'nombreEspecie' => 'POLLO XX'],
             ['idEspecie' => 17, 'nombreEspecie' => 'BRASA YUGO'],
             ['idEspecie' => 18, 'nombreEspecie' => 'BRASA TECNICA'],
+            ['idEspecie' => 19, 'nombreEspecie' => 'POLLO XX VIVO'],
+            ['idEspecie' => 20, 'nombreEspecie' => 'GALLINA DOBLE VIVO'],
+            ['idEspecie' => 21, 'nombreEspecie' => 'GALLINA CHICA VIVO'],
+            ['idEspecie' => 22, 'nombreEspecie' => 'GALLO VIVO']
         ]);
     }
 }

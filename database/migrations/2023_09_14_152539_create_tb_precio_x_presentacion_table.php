@@ -32,6 +32,10 @@ return new class extends Migration
             $table->decimal('decimaSextaEspecie', 8, 2)->default(10.00);
             $table->decimal('decimaSeptimaEspecie', 8, 2)->default(10.00);
             $table->decimal('decimaOctavaEspecie', 8, 2)->default(10.00);
+            $table->decimal('decimaNovenaEspecie', 8, 2)->default(10.00);
+            $table->decimal('vigesimaEspecie', 8, 2)->default(10.00);
+            $table->decimal('vigesimaPrimeraEspecie', 8, 2)->default(10.00);
+            $table->decimal('vigesimaSegundaEspecie', 8, 2)->default(10.00);
             $table->timestamps();
         });
     }

@@ -14,8 +14,9 @@ return new class extends Migration
         Schema::create('tb_guias', function (Blueprint $table) {
             $table->id('idGuia');
             $table->string('numGuia', 100)->nullable();
-            $table->decimal('pesoGuia', 8, 2);
             $table->integer('cantidadGuia');
+            $table->decimal('pesoBrutoGuia', 8, 2);
+            $table->decimal('pesoTaraGuia', 8, 2);
             $table->decimal('precioGuia', 8, 2)->nullable();
             $table->date('fechaGuia')->default(now());
             $table->integer('idProveedor');

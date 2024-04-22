@@ -125,7 +125,7 @@
                     </div>
                 </div>
                 <div class="bg-yellow-400 w-full rounded-lg py-5 flex flex-col items-center">
-                    <h5 class="text-white font-bold text-3xl md:text-4xl">POLLO MALTRATADO</h5>
+                    <h5 class="text-white font-bold text-3xl md:text-4xl">MALTRATADO</h5>
                     <div class="flex row">
                         <div class="flex flex-col items-start">
                             <div class="text-white font-semibold text-xl md:text-2xl flex justify-between w-full whitespace-nowrap px-2 gap-2">CANTIDAD<span>:</span></div>
