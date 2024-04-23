@@ -5,7 +5,7 @@ jQuery(function($) {
     
     fn_declarar_especies();
     fn_traerDatosEnTiempoReal();
-    setInterval(fn_traerDatosEnTiempoReal, 10000);
+    setInterval(fn_traerDatosEnTiempoReal, 100000);
 
     // Obtener la fecha actual en formato ISO (YYYY-MM-DD)
     const ahoraEnNY = new Date();
