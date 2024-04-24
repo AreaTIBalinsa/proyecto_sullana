@@ -29,8 +29,8 @@
                                         <div class="text-white font-semibold text-xl md:text-2xl flex justify-between w-full whitespace-nowrap gap-2">PESO TOTAL<span>:</span></div>
                                     </div>
                                     <div class="flex flex-col items-start">
-                                        <div class="text-white font-semibold text-xl md:text-2xl pl-2" id="totalUnidadesPrimerEspec">0 Uds.</div>
-                                        <div class="text-white font-semibold text-xl md:text-2xl pl-2" id="totalKgPrimerEspec">0.00 Kg</div>
+                                        <div class="text-white font-semibold text-xl md:text-2xl pl-2" id="cantidadTotalYugo">0 Uds.</div>
+                                        <div class="text-white font-semibold text-xl md:text-2xl pl-2" id="pesoTotalYugo">0.00 Kg</div>
                                     </div>
                                 </div>
                                 <div class="text-white w-full flex justify-center p-1">En linea
@@ -96,8 +96,8 @@
                                         <div class="text-white font-semibold text-xl md:text-2xl flex justify-between w-full whitespace-nowrap gap-2">PESO TOTAL<span>:</span></div>
                                     </div>
                                     <div class="flex flex-col items-start">
-                                        <div class="text-white font-semibold text-xl md:text-2xl pl-2" id="totalUnidadesPrimerEspec">0 Uds.</div>
-                                        <div class="text-white font-semibold text-xl md:text-2xl pl-2" id="totalKgPrimerEspec">0.00 Kg</div>
+                                        <div class="text-white font-semibold text-xl md:text-2xl pl-2" id="cantidadTotalTecnica">0 Uds.</div>
+                                        <div class="text-white font-semibold text-xl md:text-2xl pl-2" id="pesoTotalTecnica">0.00 Kg</div>
                                     </div>
                                 </div>
                                 <div class="text-white w-full flex justify-center p-1">En linea
@@ -163,8 +163,8 @@
                                         <div class="text-white font-semibold text-xl md:text-2xl flex justify-between w-full whitespace-nowrap gap-2">PESO TOTAL<span>:</span></div>
                                     </div>
                                     <div class="flex flex-col items-start">
-                                        <div class="text-white font-semibold text-xl md:text-2xl pl-2" id="totalUnidadesPrimerEspec">0 Uds.</div>
-                                        <div class="text-white font-semibold text-xl md:text-2xl pl-2" id="totalKgPrimerEspec">0.00 Kg</div>
+                                        <div class="text-white font-semibold text-xl md:text-2xl pl-2" id="cantidadTotalPolloXX">0 Uds.</div>
+                                        <div class="text-white font-semibold text-xl md:text-2xl pl-2" id="pesoTotalPolloXX">0.00 Kg</div>
                                     </div>
                                 </div>
                                 <div class="text-white w-full flex justify-center p-1">En linea
@@ -183,8 +183,8 @@
                                     <span class="leading-tight font-bold">Pollo XX Vivo</span>
                                 </div>
                                 <div class="w-full flex flex-col text-gray-800 dark:text-white">
-                                    <div class="flex flex-1 border justify-center font-semibold">Cantidad :&nbsp;<span class="font-normal" id="totalUnidadesTerceraEspecie">0 Uds.</span></div>
-                                    <div class="flex flex-1 border justify-center font-semibold">Peso :&nbsp;<span class="font-normal" id="totalKgTerceraEspecie">0.00 Kg</span></div>
+                                    <div class="flex flex-1 border justify-center font-semibold">Cantidad :&nbsp;<span class="font-normal" id="totalUnidadesDecimaNovenaEspecie">0 Uds.</span></div>
+                                    <div class="flex flex-1 border justify-center font-semibold">Peso :&nbsp;<span class="font-normal" id="totalKgDecimaNovenaEspecie">0.00 Kg</span></div>
                                 </div>
                                 <div class="flex space-x-2 rtl:space-x-reverse items-center">
                                     <svg class="flex-shrink-0 w-3.5 h-3.5 text-blue-600 dark:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -220,8 +220,8 @@
                                         <div class="text-white font-semibold text-xl md:text-2xl flex justify-between w-full whitespace-nowrap gap-2">PESO TOTAL<span>:</span></div>
                                     </div>
                                     <div class="flex flex-col items-start">
-                                        <div class="text-white font-semibold text-xl md:text-2xl pl-2" id="totalUnidadesPrimerEspec">0 Uds.</div>
-                                        <div class="text-white font-semibold text-xl md:text-2xl pl-2" id="totalKgPrimerEspec">0.00 Kg</div>
+                                        <div class="text-white font-semibold text-xl md:text-2xl pl-2" id="cantidadTotalGallo">0 Uds.</div>
+                                        <div class="text-white font-semibold text-xl md:text-2xl pl-2" id="pesoTotalGallo">0.00 Kg</div>
                                     </div>
                                 </div>
                                 <div class="text-white w-full flex justify-center p-1">En linea
@@ -240,8 +240,8 @@
                                     <span class="leading-tight font-bold">Gallo Vivo</span>
                                 </div>
                                 <div class="w-full flex flex-col text-gray-800 dark:text-white">
-                                    <div class="flex flex-1 border justify-center font-semibold">Cantidad :&nbsp;<span class="font-normal" id="totalUnidadesTerceraEspecie">0 Uds.</span></div>
-                                    <div class="flex flex-1 border justify-center font-semibold">Peso :&nbsp;<span class="font-normal" id="totalKgTerceraEspecie">0.00 Kg</span></div>
+                                    <div class="flex flex-1 border justify-center font-semibold">Cantidad :&nbsp;<span class="font-normal" id="totalUnidadesVigesimaSegundaEspecie">0 Uds.</span></div>
+                                    <div class="flex flex-1 border justify-center font-semibold">Peso :&nbsp;<span class="font-normal" id="totalKgVigesimaSegundaEspecie">0.00 Kg</span></div>
                                 </div>
                                 <div class="flex space-x-2 rtl:space-x-reverse items-center">
                                     <svg class="flex-shrink-0 w-3.5 h-3.5 text-blue-600 dark:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -277,8 +277,8 @@
                                         <div class="text-white font-semibold text-xl md:text-2xl flex justify-between w-full whitespace-nowrap gap-2">PESO TOTAL<span>:</span></div>
                                     </div>
                                     <div class="flex flex-col items-start">
-                                        <div class="text-white font-semibold text-xl md:text-2xl pl-2" id="totalUnidadesPrimerEspec">0 Uds.</div>
-                                        <div class="text-white font-semibold text-xl md:text-2xl pl-2" id="totalKgPrimerEspec">0.00 Kg</div>
+                                        <div class="text-white font-semibold text-xl md:text-2xl pl-2" id="cantidadTotalGallinaDoble">0 Uds.</div>
+                                        <div class="text-white font-semibold text-xl md:text-2xl pl-2" id="pesoTotalGallinaDoble">0.00 Kg</div>
                                     </div>
                                 </div>
                                 <div class="text-white w-full flex justify-center p-1">En linea
@@ -297,8 +297,8 @@
                                     <span class="leading-tight font-bold">Gallina Doble Vivo</span>
                                 </div>
                                 <div class="w-full flex flex-col text-gray-800 dark:text-white">
-                                    <div class="flex flex-1 border justify-center font-semibold">Cantidad :&nbsp;<span class="font-normal" id="totalUnidadesTerceraEspecie">0 Uds.</span></div>
-                                    <div class="flex flex-1 border justify-center font-semibold">Peso :&nbsp;<span class="font-normal" id="totalKgTerceraEspecie">0.00 Kg</span></div>
+                                    <div class="flex flex-1 border justify-center font-semibold">Cantidad :&nbsp;<span class="font-normal" id="totalUnidadesVigesimaEspecie">0 Uds.</span></div>
+                                    <div class="flex flex-1 border justify-center font-semibold">Peso :&nbsp;<span class="font-normal" id="totalKgVigesimaEspecie">0.00 Kg</span></div>
                                 </div>
                                 <div class="flex space-x-2 rtl:space-x-reverse items-center">
                                     <svg class="flex-shrink-0 w-3.5 h-3.5 text-blue-600 dark:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -334,8 +334,8 @@
                                         <div class="text-white font-semibold text-xl md:text-2xl flex justify-between w-full whitespace-nowrap gap-2">PESO TOTAL<span>:</span></div>
                                     </div>
                                     <div class="flex flex-col items-start">
-                                        <div class="text-white font-semibold text-xl md:text-2xl pl-2" id="totalUnidadesPrimerEspec">0 Uds.</div>
-                                        <div class="text-white font-semibold text-xl md:text-2xl pl-2" id="totalKgPrimerEspec">0.00 Kg</div>
+                                        <div class="text-white font-semibold text-xl md:text-2xl pl-2" id="cantidadTotalGallinaChica">0 Uds.</div>
+                                        <div class="text-white font-semibold text-xl md:text-2xl pl-2" id="pesoTotalGallinaChica">0.00 Kg</div>
                                     </div>
                                 </div>
                                 <div class="text-white w-full flex justify-center p-1">En linea
@@ -354,8 +354,8 @@
                                     <span class="leading-tight font-bold">Gallina Chica Vivo</span>
                                 </div>
                                 <div class="w-full flex flex-col text-gray-800 dark:text-white">
-                                    <div class="flex flex-1 border justify-center font-semibold">Cantidad :&nbsp;<span class="font-normal" id="totalUnidadesTerceraEspecie">0 Uds.</span></div>
-                                    <div class="flex flex-1 border justify-center font-semibold">Peso :&nbsp;<span class="font-normal" id="totalKgTerceraEspecie">0.00 Kg</span></div>
+                                    <div class="flex flex-1 border justify-center font-semibold">Cantidad :&nbsp;<span class="font-normal" id="totalUnidadesVigesimaPrimeraEspecie">0 Uds.</span></div>
+                                    <div class="flex flex-1 border justify-center font-semibold">Peso :&nbsp;<span class="font-normal" id="totalKgVigesimaPrimeraEspecie">0.00 Kg</span></div>
                                 </div>
                                 <div class="flex space-x-2 rtl:space-x-reverse items-center">
                                     <svg class="flex-shrink-0 w-3.5 h-3.5 text-blue-600 dark:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -391,8 +391,8 @@
                                         <div class="text-white font-semibold text-xl md:text-2xl flex justify-between w-full whitespace-nowrap gap-2">PESO TOTAL<span>:</span></div>
                                     </div>
                                     <div class="flex flex-col items-start">
-                                        <div class="text-white font-semibold text-xl md:text-2xl pl-2" id="totalUnidadesPrimerEspec">0 Uds.</div>
-                                        <div class="text-white font-semibold text-xl md:text-2xl pl-2" id="totalKgPrimerEspec">0.00 Kg</div>
+                                        <div class="text-white font-semibold text-xl md:text-2xl pl-2" id="cantidadTotalPolloMaltratado">0 Uds.</div>
+                                        <div class="text-white font-semibold text-xl md:text-2xl pl-2" id="pesoTotalPolloMaltratado">0.00 Kg</div>
                                     </div>
                                 </div>
                                 <div class="text-white w-full flex justify-center p-1">En linea
@@ -411,8 +411,8 @@
                                     <span class="leading-tight font-bold">Maltratado Vivo</span>
                                 </div>
                                 <div class="w-full flex flex-col text-gray-800 dark:text-white">
-                                    <div class="flex flex-1 border justify-center font-semibold">Cantidad :&nbsp;<span class="font-normal" id="totalUnidadesTerceraEspecie">0 Uds.</span></div>
-                                    <div class="flex flex-1 border justify-center font-semibold">Peso :&nbsp;<span class="font-normal" id="totalKgTerceraEspecie">0.00 Kg</span></div>
+                                    <div class="flex flex-1 border justify-center font-semibold">Cantidad :&nbsp;<span class="font-normal" id="totalUnidadesVigesimaTerceraEspecie">0 Uds.</span></div>
+                                    <div class="flex flex-1 border justify-center font-semibold">Peso :&nbsp;<span class="font-normal" id="totalKgVigesimaTerceraEspecie">0.00 Kg</span></div>
                                 </div>
                                 <div class="flex space-x-2 rtl:space-x-reverse items-center">
                                     <svg class="flex-shrink-0 w-3.5 h-3.5 text-blue-600 dark:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -448,8 +448,8 @@
                                         <div class="text-white font-semibold text-xl md:text-2xl flex justify-between w-full whitespace-nowrap gap-2">PESO TOTAL<span>:</span></div>
                                     </div>
                                     <div class="flex flex-col items-start">
-                                        <div class="text-white font-semibold text-xl md:text-2xl pl-2" id="totalUnidadesPrimerEspec">0 Uds.</div>
-                                        <div class="text-white font-semibold text-xl md:text-2xl pl-2" id="totalKgPrimerEspec">0.00 Kg</div>
+                                        <div class="text-white font-semibold text-xl md:text-2xl pl-2" id="cantidadTotalPolloTrozado">0 Uds.</div>
+                                        <div class="text-white font-semibold text-xl md:text-2xl pl-2" id="pesoTotalPolloTrozado">0.00 Kg</div>
                                     </div>
                                 </div>
                                 <div class="text-white w-full flex justify-center p-1">En linea

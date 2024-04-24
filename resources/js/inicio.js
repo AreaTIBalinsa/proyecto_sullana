@@ -5,7 +5,7 @@ jQuery(function($) {
     
     fn_declarar_especies();
     fn_traerDatosEnTiempoReal();
-    setInterval(fn_traerDatosEnTiempoReal, 100000);
+    setInterval(fn_traerDatosEnTiempoReal, 10000);
 
     // Obtener la fecha actual en formato ISO (YYYY-MM-DD)
     const ahoraEnNY = new Date();
@@ -102,6 +102,11 @@ jQuery(function($) {
                 let cantidadDecimaSextaEspecie = 0
                 let cantidadDecimaSeptimaEspecie = 0
                 let cantidadDecimaOctavaEspecie = 0
+                let cantidadDecimaNovenaEspecie = 0
+                let cantidadVigesimaEspecie = 0
+                let cantidadVigesimaPrimeraEspecie = 0
+                let cantidadVigesimaSegundaEspecie = 0
+                let cantidadVigesimaTerceraEspecie = 0
 
                 let pesoTotalPrimerEspecie = 0.0
                 let pesoTotalSegundaEspecie = 0.0
@@ -120,14 +125,36 @@ jQuery(function($) {
                 let pesoTotalDecimaSextaEspecie = 0.0
                 let pesoTotalDecimaSeptimaEspecie = 0.0
                 let pesoTotalDecimaOctavaEspecie = 0.0
+                let pesoTotalDecimaNovenaEspecie = 0.0
+                let pesoTotalVigesimaEspecie = 0.0
+                let pesoTotalVigesimaPrimeraEspecie = 0.0
+                let pesoTotalVigesimaSegundaEspecie = 0.0
+                let pesoTotalVigesimaTerceraEspecie = 0.0
 
                 let cantidadTotalesEspecie = 0
                 let pesoTotalesEspecie = 0.0
 
+                let cantidadTotalYugo = 0
+                let pesoTotalYugo = 0
+                let cantidadTotalTecnica = 0
+                let pesoTotalTecnica = 0
+                let cantidadTotalPolloXX = 0
+                let pesoTotalPolloXX = 0
+                let cantidadTotalGallo = 0
+                let pesoTotalGallo = 0
+                let cantidadTotalGallinaDoble = 0
+                let pesoTotalGallinaDoble = 0
+                let cantidadTotalGallinaChica = 0
+                let pesoTotalGallinaChica = 0
+                let cantidadTotalPolloTrozado = 0
+                let pesoTotalPolloTrozado = 0
+                let cantidadTotalPolloMaltratado = 0
+                let pesoTotalPolloMaltratado = 0
+
                 // Verificar si la respuesta es un arreglo de objetos
                 if (Array.isArray(response)) {
 
-                    console.log(response)
+                    // console.log(response)
                     // Iterar sobre los objetos y mostrar sus propiedades
                     response.forEach(function(obj) {
 
@@ -255,6 +282,41 @@ jQuery(function($) {
                             }else{
                                 pesoTotalDecimaOctavaEspecie += pesoNetoPes + pesoNetoJabas
                             }
+                        }else if (idEspecie == 19){
+                            cantidadDecimaNovenaEspecie += cantidadPes
+                            if(pesoNetoPes>pesoNetoJabas){
+                                pesoTotalDecimaNovenaEspecie += pesoNetoPes - pesoNetoJabas
+                            }else{
+                                pesoTotalDecimaNovenaEspecie += pesoNetoPes + pesoNetoJabas
+                            }
+                        }else if (idEspecie == 20){
+                            cantidadVigesimaEspecie += cantidadPes
+                            if(pesoNetoPes>pesoNetoJabas){
+                                pesoTotalVigesimaEspecie += pesoNetoPes - pesoNetoJabas
+                            }else{
+                                pesoTotalVigesimaEspecie += pesoNetoPes + pesoNetoJabas
+                            }
+                        }else if (idEspecie == 21){
+                            cantidadVigesimaPrimeraEspecie += cantidadPes
+                            if(pesoNetoPes>pesoNetoJabas){
+                                pesoTotalVigesimaPrimeraEspecie += pesoNetoPes - pesoNetoJabas
+                            }else{
+                                pesoTotalVigesimaPrimeraEspecie += pesoNetoPes + pesoNetoJabas
+                            }
+                        }else if (idEspecie == 22){
+                            cantidadVigesimaSegundaEspecie += cantidadPes
+                            if(pesoNetoPes>pesoNetoJabas){
+                                pesoTotalVigesimaSegundaEspecie += pesoNetoPes - pesoNetoJabas
+                            }else{
+                                pesoTotalVigesimaSegundaEspecie += pesoNetoPes + pesoNetoJabas
+                            }
+                        }else if (idEspecie == 23){
+                            cantidadVigesimaTerceraEspecie += cantidadPes
+                            if(pesoNetoPes>pesoNetoJabas){
+                                pesoTotalVigesimaTerceraEspecie += pesoNetoPes - pesoNetoJabas
+                            }else{
+                                pesoTotalVigesimaTerceraEspecie += pesoNetoPes + pesoNetoJabas
+                            }
                         }
 
                     });
@@ -263,11 +325,37 @@ jQuery(function($) {
                     cantidadCuartaEspecie + cantidadQuintaEspecie + cantidadSextaEspecie + cantidadSeptimaEspecie + cantidadOctavaEspecie +
                     cantidadDecimaEspecie + cantidadDecimaPrimeraEspecie + cantidadDecimaSegundaEspecie + cantidadDecimaTerceraEspecie +
                     cantidadDecimaCuartaEspecie + cantidadDecimaQuintaEspecie + cantidadDecimaSextaEspecie + cantidadDecimaSeptimaEspecie +
-                    cantidadDecimaOctavaEspecie;
+                    cantidadDecimaOctavaEspecie + cantidadDecimaNovenaEspecie + cantidadVigesimaEspecie + cantidadVigesimaPrimeraEspecie + cantidadVigesimaSegundaEspecie + cantidadVigesimaTerceraEspecie;
                     pesoTotalesEspecie = pesoTotalPrimerEspecie + pesoTotalSegundaEspecie + pesoTotalTerceraEspecie + pesoTotalCuartaEspecie +
                     pesoTotalQuintaEspecie + pesoTotalSextaEspecie + pesoTotalSeptimaEspecie + pesoTotalOctavaEspecie + pesoTotalDecimaEspecie +
                     pesoTotalDecimaPrimeraEspecie + pesoTotalDecimaSegundaEspecie + pesoTotalDecimaTerceraEspecie + pesoTotalDecimaCuartaEspecie +
-                    pesoTotalDecimaQuintaEspecie + pesoTotalDecimaSextaEspecie + pesoTotalDecimaSeptimaEspecie + pesoTotalDecimaOctavaEspecie;
+                    pesoTotalDecimaQuintaEspecie + pesoTotalDecimaSextaEspecie + pesoTotalDecimaSeptimaEspecie + pesoTotalDecimaOctavaEspecie + pesoTotalDecimaNovenaEspecie + pesoTotalVigesimaEspecie + pesoTotalVigesimaPrimeraEspecie + pesoTotalVigesimaSegundaEspecie + pesoTotalVigesimaTerceraEspecie;
+
+                    cantidadTotalYugo = cantidadPrimerEspecie + cantidadSegundaEspecie + cantidadDecimaSeptimaEspecie
+                    pesoTotalYugo = pesoTotalPrimerEspecie + pesoTotalSegundaEspecie + pesoTotalDecimaSeptimaEspecie
+
+                    cantidadTotalTecnica = cantidadTerceraEspecie + cantidadCuartaEspecie + cantidadDecimaOctavaEspecie
+                    pesoTotalTecnica = pesoTotalTerceraEspecie + pesoTotalCuartaEspecie + pesoTotalDecimaOctavaEspecie
+
+                    cantidadTotalPolloXX = cantidadDecimaSextaEspecie + cantidadDecimaNovenaEspecie
+                    pesoTotalPolloXX = pesoTotalDecimaSextaEspecie + pesoTotalDecimaNovenaEspecie
+
+                    cantidadTotalGallo = cantidadSeptimaEspecie + cantidadVigesimaSegundaEspecie
+                    pesoTotalGallo = pesoTotalSeptimaEspecie + pesoTotalVigesimaSegundaEspecie
+
+                    cantidadTotalGallinaDoble = cantidadQuintaEspecie + cantidadVigesimaEspecie
+                    pesoTotalGallinaDoble = pesoTotalQuintaEspecie + pesoTotalVigesimaEspecie
+
+                    cantidadTotalGallinaChica = cantidadSextaEspecie + cantidadVigesimaPrimeraEspecie
+                    pesoTotalGallinaChica = pesoTotalSextaEspecie + pesoTotalVigesimaPrimeraEspecie
+
+                    cantidadTotalPolloTrozado = cantidadDecimaEspecie + cantidadDecimaPrimeraEspecie + cantidadDecimaSegundaEspecie + cantidadDecimaTerceraEspecie + 
+                    cantidadDecimaCuartaEspecie + cantidadDecimaQuintaEspecie
+                    pesoTotalPolloTrozado = pesoTotalDecimaEspecie + pesoTotalDecimaPrimeraEspecie + pesoTotalDecimaSegundaEspecie + pesoTotalDecimaTerceraEspecie + 
+                    pesoTotalDecimaCuartaEspecie + pesoTotalDecimaQuintaEspecie
+
+                    cantidadTotalPolloMaltratado = cantidadOctavaEspecie + cantidadVigesimaTerceraEspecie
+                    pesoTotalPolloMaltratado = pesoTotalOctavaEspecie + pesoTotalVigesimaTerceraEspecie
 
                 } else {
                     console.log("La respuesta no es un arreglo de objetos.");
@@ -324,8 +412,40 @@ jQuery(function($) {
                 $('#totalUnidadesDecimaOctavaEspecie').text(cantidadDecimaOctavaEspecie + " " + (cantidadDecimaOctavaEspecie === 1 ? "Ud." : "Uds."));
                 $('#totalKgDecimaOctavaEspecie').text(pesoTotalDecimaOctavaEspecie.toFixed(2) + " Kg");
 
+                $('#totalUnidadesDecimaNovenaEspecie').text(cantidadDecimaNovenaEspecie + " " + (cantidadDecimaNovenaEspecie === 1 ? "Ud." : "Uds."));
+                $('#totalKgDecimaNovenaEspecie').text(pesoTotalDecimaNovenaEspecie.toFixed(2) + " Kg");
+
+                $('#totalUnidadesVigesimaEspecie').text(cantidadVigesimaEspecie + " " + (cantidadVigesimaEspecie === 1 ? "Ud." : "Uds."));
+                $('#totalKgVigesimaEspecie').text(pesoTotalVigesimaEspecie.toFixed(2) + " Kg");
+
+                $('#totalUnidadesVigesimaPrimeraEspecie').text(cantidadVigesimaPrimeraEspecie + " " + (cantidadVigesimaPrimeraEspecie === 1 ? "Ud." : "Uds."));
+                $('#totalKgVigesimaPrimeraEspecie').text(pesoTotalVigesimaPrimeraEspecie.toFixed(2) + " Kg");
+
+                $('#totalUnidadesVigesimaSegundaEspecie').text(cantidadVigesimaSegundaEspecie + " " + (cantidadVigesimaSegundaEspecie === 1 ? "Ud." : "Uds."));
+                $('#totalKgVigesimaSegundaEspecie').text(pesoTotalVigesimaSegundaEspecie.toFixed(2) + " Kg");
+
+                $('#totalUnidadesVigesimaTerceraEspecie').text(cantidadVigesimaTerceraEspecie + " " + (cantidadVigesimaTerceraEspecie === 1 ? "Ud." : "Uds."));
+                $('#totalKgVigesimaTerceraEspecie').text(pesoTotalVigesimaTerceraEspecie.toFixed(2) + " Kg");
+
                 $('#totalUnidadesEspecies').text(cantidadTotalesEspecie + " " + (cantidadTotalesEspecie === 1 ? "Ud." : "Uds."));
                 $('#totalKgEspecies').text(pesoTotalesEspecie.toFixed(2) + " Kg");
+                // ========
+                $('#cantidadTotalYugo').text(cantidadTotalYugo + " " + (cantidadTotalYugo === 1 ? "Ud." : "Uds."));
+                $('#pesoTotalYugo').text(pesoTotalYugo.toFixed(2) + " Kg");
+                $('#cantidadTotalTecnica').text(cantidadTotalTecnica + " " + (cantidadTotalTecnica === 1 ? "Ud." : "Uds."));
+                $('#pesoTotalTecnica').text(pesoTotalTecnica.toFixed(2) + " Kg");
+                $('#cantidadTotalPolloXX').text(cantidadTotalPolloXX + " " + (cantidadTotalPolloXX === 1 ? "Ud." : "Uds."));
+                $('#pesoTotalPolloXX').text(pesoTotalPolloXX.toFixed(2) + " Kg");
+                $('#cantidadTotalGallo').text(cantidadTotalGallo + " " + (cantidadTotalGallo === 1 ? "Ud." : "Uds."));
+                $('#pesoTotalGallo').text(pesoTotalGallo.toFixed(2) + " Kg");
+                $('#cantidadTotalGallinaDoble').text(cantidadTotalGallinaDoble + " " + (cantidadTotalGallinaDoble === 1 ? "Ud." : "Uds."));
+                $('#pesoTotalGallinaDoble').text(pesoTotalGallinaDoble.toFixed(2) + " Kg");
+                $('#cantidadTotalGallinaChica').text(cantidadTotalGallinaChica + " " + (cantidadTotalGallinaChica === 1 ? "Ud." : "Uds."));
+                $('#pesoTotalGallinaChica').text(pesoTotalGallinaChica.toFixed(2) + " Kg");
+                $('#cantidadTotalPolloTrozado').text(cantidadTotalPolloTrozado + " " + (cantidadTotalPolloTrozado === 1 ? "Ud." : "Uds."));
+                $('#pesoTotalPolloTrozado').text(pesoTotalPolloTrozado.toFixed(2) + " Kg");
+                $('#cantidadTotalPolloMaltratado').text(cantidadTotalPolloMaltratado + " " + (cantidadTotalPolloMaltratado === 1 ? "Ud." : "Uds."));
+                $('#pesoTotalPolloMaltratado').text(pesoTotalPolloMaltratado.toFixed(2) + " Kg");
                 
             },
             error: function(error) {
