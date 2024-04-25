@@ -13,10 +13,11 @@ class ActualizarGuia extends Model
 
     protected $fillable = [
         'numGuia',
-        'pesoGuia',
         'cantidadGuia',
         'precioGuia',
         'fechaGuia',
         'idProveedor',
+        'pesoBrutoGuia',
+        'pesoTaraGuia',
     ];
 }

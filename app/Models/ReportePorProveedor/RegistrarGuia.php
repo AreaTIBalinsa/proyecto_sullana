@@ -15,8 +15,9 @@ class RegistrarGuia extends Model
         'idProveedor',
         'cantidadGuia',
         'precioGuia',
-        'pesoGuia',
         'fechaGuia',
         'numGuia',
+        'pesoBrutoGuia',
+        'pesoTaraGuia',
     ];
 }

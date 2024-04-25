@@ -12,9 +12,8 @@ jQuery(function($) {
     $('#fechaHastaReporteAcumulado').val(fechaHoy);
     $('#fechaReporteExcel').val(fechaHoy);
 
-    fn_TraerReporteAcumulado(fechaHoy,fechaHoy);
-    fn_TraerReporteAcumuladoDetalle(fechaHoy,fechaHoy);
-
+    // fn_TraerReporteAcumulado(fechaHoy,fechaHoy);
+    // fn_TraerReporteAcumuladoDetalle(fechaHoy,fechaHoy);
     fn_declarar_especies();
 
     var primerEspecieGlobal = 0
@@ -374,6 +373,10 @@ jQuery(function($) {
     });
 
     function fn_TraerReporteAcumuladoDetalle(fecha) {
+        $('#eskeleto').removeClass('hidden');
+        $('#eskeleto').addClass('absolute');
+        $('#divReporteAcumuladoDetalleExcel').removeClass('overflow-auto');
+        $('#divReporteAcumuladoDetalleExcel').addClass('overflow-hidden');
         $.ajax({
             url: '/fn_consulta_TraerReporteAcumuladoDetalle',
             method: 'GET',
@@ -1921,7 +1924,53 @@ jQuery(function($) {
             , venta17, venta18, totalSaldoAnteriorSubTotales, totalSaldoActualSubTotales, totalCobranzaSubTotales, totalNuevoSaldoSubTotales,
             totalPesoDescTotalFor,totalVentaDescTotalFor,totalPrecioVentaDescTotalFor, contadorTotalPrecioVentaDescTotal);
         tbodyReporteAcumuladoExcel.html(bodyReporteAcumuladoExcel);
+        $('#eskeleto').removeClass('absolute');
+        $('#eskeleto').addClass('hidden');
+        $('#divReporteAcumuladoDetalleExcel').addClass('overflow-auto');
+        $('#divReporteAcumuladoDetalleExcel').removeClass('overflow-hidden');
     }
+
+    var cantidadTotalesPrimerEspecie = 0
+    var cantidadTotalesSegundaEspecie = 0
+    var cantidadTotalesTerceraEspecie = 0
+    var cantidadTotalesCuartaEspecie = 0
+    var cantidadTotalesQuintaEspecie = 0
+    var cantidadTotalesSextaEspecie = 0
+    var cantidadTotalesSeptimaEspecie = 0
+    var cantidadTotalesOctavaEspecie = 0
+    var cantidadTotalesNovenaEspecie = 0
+    var cantidadTotalesDecimaEspecie = 0
+    var cantidadTotalesDecimaPrimeraEspecie = 0
+    var cantidadTotalesDecimaSegundaEspecie = 0
+    var cantidadTotalesDecimaTerceraEspecie = 0
+
+    var pesoTotalesPrimerEspecie = 0
+    var pesoTotalesSegundaEspecie = 0
+    var pesoTotalesTerceraEspecie = 0
+    var pesoTotalesCuartaEspecie = 0
+    var pesoTotalesQuintaEspecie = 0
+    var pesoTotalesSextaEspecie = 0
+    var pesoTotalesSeptimaEspecie = 0
+    var pesoTotalesOctavaEspecie = 0
+    var pesoTotalesNovenaEspecie = 0
+    var pesoTotalesDecimaEspecie = 0
+    var pesoTotalesDecimaPrimeraEspecie = 0
+    var pesoTotalesDecimaSegundaEspecie = 0
+    var pesoTotalesDecimaTerceraEspecie = 0
+
+    var precioTotalesPrimerEspecie = 0
+    var precioTotalesSegundaEspecie = 0
+    var precioTotalesTerceraEspecie = 0
+    var precioTotalesCuartaEspecie = 0
+    var precioTotalesQuintaEspecie = 0
+    var precioTotalesSextaEspecie = 0
+    var precioTotalesSeptimaEspecie = 0
+    var precioTotalesOctavaEspecie = 0
+    var precioTotalesNovenaEspecie = 0
+    var precioTotalesDecimaEspecie = 0
+    var precioTotalesDecimaPrimeraEspecie = 0
+    var precioTotalesDecimaSegundaEspecie = 0
+    var precioTotalesDecimaTerceraEspecie = 0
 
     function construirFilaTotalExcel(
         cantidad1, cantidad2, cantidad3, cantidad4, cantidad5, cantidad6
@@ -2098,6 +2147,48 @@ jQuery(function($) {
         if (peso18 != 0 && cantidad18 != 0){
             promedio18 = peso18 / cantidad18;
         }
+
+        cantidadTotalesPrimerEspecie = cantidad1
+        cantidadTotalesSegundaEspecie = cantidad2
+        cantidadTotalesTerceraEspecie = cantidad3
+        cantidadTotalesCuartaEspecie = cantidad4
+        cantidadTotalesQuintaEspecie = cantidad5
+        cantidadTotalesSextaEspecie = cantidad6
+        cantidadTotalesSeptimaEspecie = cantidad7
+        cantidadTotalesOctavaEspecie = cantidad8
+        cantidadTotalesNovenaEspecie = cantidad10
+        cantidadTotalesDecimaEspecie = cantidad11
+        cantidadTotalesDecimaPrimeraEspecie = cantidad12
+        cantidadTotalesDecimaSegundaEspecie = cantidad13
+        cantidadTotalesDecimaTerceraEspecie = cantidad14
+
+        pesoTotalesPrimerEspecie = peso1
+        pesoTotalesSegundaEspecie = peso2
+        pesoTotalesTerceraEspecie = peso3
+        pesoTotalesCuartaEspecie = peso4
+        pesoTotalesQuintaEspecie = peso5
+        pesoTotalesSextaEspecie = peso6
+        pesoTotalesSeptimaEspecie = peso7
+        pesoTotalesOctavaEspecie = peso8
+        pesoTotalesNovenaEspecie = peso10
+        pesoTotalesDecimaEspecie = peso11
+        pesoTotalesDecimaPrimeraEspecie = peso12
+        pesoTotalesDecimaSegundaEspecie = peso13
+        pesoTotalesDecimaTerceraEspecie = peso14
+
+        precioTotalesPrimerEspecie = precio1
+        precioTotalesSegundaEspecie = precio2
+        precioTotalesTerceraEspecie = precio3
+        precioTotalesCuartaEspecie = precio4
+        precioTotalesQuintaEspecie = precio5
+        precioTotalesSextaEspecie = precio6
+        precioTotalesSeptimaEspecie = precio7
+        precioTotalesOctavaEspecie = precio8
+        precioTotalesNovenaEspecie = precio10
+        precioTotalesDecimaEspecie = precio11
+        precioTotalesDecimaPrimeraEspecie = precio12
+        precioTotalesDecimaSegundaEspecie = precio13
+        precioTotalesDecimaTerceraEspecie = precio14
 
             return `
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900 sticky bottom-0">

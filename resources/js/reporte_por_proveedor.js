@@ -55,6 +55,8 @@ jQuery(function($) {
                         let pagoAProveedoresPorDia = 0.00;
                         let cantidadAProveedoresPorDia = 0;
                         let pesoAProveedoresPorDia = 0.0;
+                        let pesoBrutoProveedoresPorDia = 0.0;
+                        let pesoTaraProveedoresPorDia = 0.0;
 
                         if (sinRepetidos.length > 1) {
                             nuevaFila = $('<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
@@ -70,19 +72,23 @@ jQuery(function($) {
                                 if (obj.precioGuia != "" && obj.precioGuia != null) {
                                     precioGuia = parseFloat(obj.precioGuia);
                                 }
-                                let promedio = parseFloat(obj.pesoGuia)/parseFloat(obj.cantidadGuia);
-                                let totalAPagar = parseFloat(precioGuia)*parseFloat(obj.pesoGuia);
+                                let pesoNeto = parseFloat(obj.pesoBrutoGuia)-parseFloat(obj.pesoTaraGuia);
+                                let promedio = parseFloat(pesoNeto)/parseFloat(obj.cantidadGuia);
+                                let totalAPagar = parseFloat(precioGuia)*parseFloat(pesoNeto);
                                 pagoAProveedoresPorDia += totalAPagar;
                                 cantidadAProveedoresPorDia += parseInt(obj.cantidadGuia);
-                                pesoAProveedoresPorDia += parseFloat(obj.pesoGuia);
+                                pesoAProveedoresPorDia += parseFloat(pesoNeto);
+                                pesoBrutoProveedoresPorDia += parseFloat(obj.pesoBrutoGuia);
+                                pesoTaraProveedoresPorDia += parseFloat(obj.pesoTaraGuia);
                                 // Agregar las celdas con la información
                                 nuevaFila.append($('<td class="hidden">').text(obj.idGuia));
                                 nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(obj.numGuia));
                                 nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(obj.nombreEspecieCompra));
                                 nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(obj.cantidadGuia == 1 ? `${obj.cantidadGuia} Ud.` : `${obj.cantidadGuia} Uds.`));
-                                if (tipoUsuario =='Administrador'){
-                                    nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(obj.pesoGuia+" Kg."));
-                                }
+                                nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(obj.pesoBrutoGuia));
+                                nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(obj.pesoTaraGuia));
+                                nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(pesoNeto+" Kg."));
+                                
                                 nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text((promedio).toFixed(2)));
                                 if (tipoUsuario =='Administrador'){
                                     nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(precioGuia.toFixed(2)));
@@ -98,14 +104,16 @@ jQuery(function($) {
                         if (tipoUsuario =='Administrador'){
                             nuevaFila = $('<tr class="bg-white dark:bg-gray-800 h-0.5">');
                             nuevaFila.append($('<td class="dark:border-gray-700 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(""));
-                            nuevaFila.append($('<td class="text-center h-0.5 bg-gray-800 dark:bg-gray-300" colspan="6">').text(""));
+                            nuevaFila.append($('<td class="text-center h-0.5 bg-gray-800 dark:bg-gray-300" colspan="9">').text(""));
                             nuevaFila.append($('<td class="border-r dark:border-gray-700 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(""));
                             tbodyProveedor.append(nuevaFila);
                             nuevaFila = $('<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
                             nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(""));
                             nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text("TOTALES:"));
                             nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text((cantidadAProveedoresPorDia == 1 ? `${cantidadAProveedoresPorDia} Ud.` : `${cantidadAProveedoresPorDia} Uds.`)));
-                            nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(pesoAProveedoresPorDia.toFixed(2)+" Kg."));
+                            nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(pesoBrutoProveedoresPorDia.toFixed(2) + " Kg."));
+                            nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(pesoTaraProveedoresPorDia.toFixed(2) + " Kg."));
+                            nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(pesoAProveedoresPorDia.toFixed(2) + " Kg."));
                             nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(""));
                             nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(""));
                             nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text("S/. "+pagoAProveedoresPorDia.toFixed(2)));
@@ -223,19 +231,21 @@ jQuery(function($) {
         $('#idProveedorAgregarGuia').val($('#idProveedorAgregarGuia option:first').val());
         $('#idEspecieAgregarGuia').val($('#idEspecieAgregarGuia option:first').val());
         $('#valorCantidadAgregarGuia').val('');
-        $('#valorPesoAgregarGuia').val('');
+        $('#valorPesoBruto').val('');
+        $('#valorPesoTara').val('');
         $('#valorPrecioAgregarGuia').val('');
     });
 
     $('#btnGuardarRegistrarGuias').on('click', function () {
         let idProveedor = $('#idProveedorAgregarGuia').val();
         let cantidadAgregarGuia = $('#valorCantidadAgregarGuia').val();
-        let pesoAgregarGuia = $('#valorPesoAgregarGuia').val();
+        let precioPesoBruto = $('#valorPesoBruto').val();
+        let precioPesoTara = $('#valorPesoTara').val();
         let precioAgregarGuia = $('#valorPrecioAgregarGuia').val();
         let fechaRegistrarGuia = $('#fechaRegistrarGuia').val();
         let valorNumeroGuiaAgregarGuia = $('#valorNumeroGuiaAgregarGuia').val();
         
-        fn_RegistrarGuia(idProveedor,cantidadAgregarGuia,pesoAgregarGuia,precioAgregarGuia,fechaRegistrarGuia,valorNumeroGuiaAgregarGuia);
+        fn_RegistrarGuia(idProveedor,cantidadAgregarGuia,precioPesoBruto,precioPesoTara,precioAgregarGuia,fechaRegistrarGuia,valorNumeroGuiaAgregarGuia);
 
     });
 
@@ -244,15 +254,17 @@ jQuery(function($) {
         let cantidadAgregarGuiaEditar = $('#valorCantidadAgregarGuiaEditar').val();
         let pesoAgregarGuiaEditar = $('#valorPesoAgregarGuiaEditar').val();
         let precioAgregarGuiaEditar = $('#valorPrecioAgregarGuiaEditar').val();
+        let pesoBrutoEditar = $('#valorPesoBrutoEditar').val();
+        let pesoTaraEditar = $('#valorPesoTaraEditar').val();
         let fechaRegistrarGuiaEditar = $('#fechaRegistrarGuiaEditar').val();
         let valorNumeroGuiaAgregarGuiaEditar = $('#valorNumeroGuiaAgregarGuiaEditar').val();
         let idActualizarGuia = $('#idGuiaEditar').attr('value');
         
-        fn_RegistrarGuiaEditar(idActualizarGuia,idProveedorEditar,cantidadAgregarGuiaEditar,pesoAgregarGuiaEditar,precioAgregarGuiaEditar,fechaRegistrarGuiaEditar,valorNumeroGuiaAgregarGuiaEditar);
+        fn_RegistrarGuiaEditar(idActualizarGuia,idProveedorEditar,cantidadAgregarGuiaEditar,pesoAgregarGuiaEditar,precioAgregarGuiaEditar,pesoBrutoEditar,pesoTaraEditar,fechaRegistrarGuiaEditar,valorNumeroGuiaAgregarGuiaEditar);
 
     });
 
-    function fn_RegistrarGuiaEditar(idActualizarGuia,idProveedorEditar,cantidadAgregarGuiaEditar,pesoAgregarGuiaEditar,precioAgregarGuiaEditar,fechaRegistrarGuiaEditar,valorNumeroGuiaAgregarGuiaEditar){
+    function fn_RegistrarGuiaEditar(idActualizarGuia,idProveedorEditar,cantidadAgregarGuiaEditar,pesoAgregarGuiaEditar,precioAgregarGuiaEditar,pesoBrutoEditar,pesoTaraEditar,fechaRegistrarGuiaEditar,valorNumeroGuiaAgregarGuiaEditar){
         $.ajax({
             url: '/fn_consulta_RegistrarGuiaEditar',
             method: 'GET',
@@ -261,6 +273,8 @@ jQuery(function($) {
                 idProveedorEditar: idProveedorEditar,
                 cantidadAgregarGuiaEditar:cantidadAgregarGuiaEditar,
                 pesoAgregarGuiaEditar:pesoAgregarGuiaEditar,
+                pesoBrutoEditar:pesoBrutoEditar,
+                pesoTaraEditar:pesoTaraEditar,
                 precioAgregarGuiaEditar:precioAgregarGuiaEditar,
                 fechaRegistrarGuiaEditar:fechaRegistrarGuiaEditar,
                 valorNumeroGuiaAgregarGuiaEditar:valorNumeroGuiaAgregarGuiaEditar,
@@ -290,14 +304,15 @@ jQuery(function($) {
         });
     }
 
-    function fn_RegistrarGuia(idProveedor,cantidadAgregarGuia,pesoAgregarGuia,precioAgregarGuia,fechaRegistrarGuia,valorNumeroGuiaAgregarGuia){
+    function fn_RegistrarGuia(idProveedor,cantidadAgregarGuia,precioPesoBruto,precioPesoTara,precioAgregarGuia,fechaRegistrarGuia,valorNumeroGuiaAgregarGuia){
         $.ajax({
             url: '/fn_consulta_RegistrarGuia',
             method: 'GET',
             data: {
                 idProveedor: idProveedor,
                 cantidadAgregarGuia:cantidadAgregarGuia,
-                pesoAgregarGuia:pesoAgregarGuia,
+                precioPesoBruto:precioPesoBruto,
+                precioPesoTara:precioPesoTara,
                 precioAgregarGuia:precioAgregarGuia,
                 fechaRegistrarGuia:fechaRegistrarGuia,
                 valorNumeroGuiaAgregarGuia:valorNumeroGuiaAgregarGuia,
@@ -399,8 +414,9 @@ jQuery(function($) {
                     $('#idProveedorAgregarGuiaEditar').val(obj.idProveedor);
                     $('#idEspecieAgregarGuiaEditar').val(obj.idEspecie);
                     $('#valorCantidadAgregarGuiaEditar').val(obj.cantidadGuia);
-                    $('#valorPesoAgregarGuiaEditar').val(obj.pesoGuia);
                     $('#valorPrecioAgregarGuiaEditar').val(obj.precioGuia);
+                    $('#valorPesoBrutoEditar').val(obj.pesoBrutoGuia);
+                    $('#valorPesoTaraEditar').val(obj.pesoTaraGuia);
                     $('#fechaRegistrarGuiaEditar').val(obj.fechaGuia);
                     $('#valorNumeroGuiaAgregarGuiaEditar').val(obj.numGuia);
                     $('#idGuiaEditar').attr("value",obj.idGuia);

@@ -36,6 +36,10 @@ class SeguimientoPedidosController extends Controller
                 SUM(CASE WHEN tb_pesadas.idEspecie = 16 THEN tb_pesadas.cantidadPes ELSE 0 END) AS sumaCantidadOctavaEspecie,
                 SUM(CASE WHEN tb_pesadas.idEspecie = 17 THEN tb_pesadas.cantidadPes ELSE 0 END) AS sumaCantidadNovenaEspecie,
                 SUM(CASE WHEN tb_pesadas.idEspecie = 18 THEN tb_pesadas.cantidadPes ELSE 0 END) AS sumaCantidadDecimaEspecie,
+                SUM(CASE WHEN tb_pesadas.idEspecie = 19 THEN tb_pesadas.cantidadPes ELSE 0 END) AS sumaCantidadDecimaPrimeraEspecie,
+                SUM(CASE WHEN tb_pesadas.idEspecie = 20 THEN tb_pesadas.cantidadPes ELSE 0 END) AS sumaCantidadDecimaSegundaEspecie,
+                SUM(CASE WHEN tb_pesadas.idEspecie = 21 THEN tb_pesadas.cantidadPes ELSE 0 END) AS sumaCantidadDecimaTerceraEspecie,
+                SUM(CASE WHEN tb_pesadas.idEspecie = 22 THEN tb_pesadas.cantidadPes ELSE 0 END) AS sumaCantidadDecimaCuartaEspecie,
     
                 SUM(CASE WHEN tb_pesadas2.idEspecie = 1 THEN tb_pesadas2.cantidadPes ELSE 0 END) AS sumaCantidadPrimerEspecieDos,
                 SUM(CASE WHEN tb_pesadas2.idEspecie = 2 THEN tb_pesadas2.cantidadPes ELSE 0 END) AS sumaCantidadSegundaEspecieDos,
@@ -47,6 +51,10 @@ class SeguimientoPedidosController extends Controller
                 SUM(CASE WHEN tb_pesadas2.idEspecie = 16 THEN tb_pesadas2.cantidadPes ELSE 0 END) AS sumaCantidadOctavaEspecieDos,
                 SUM(CASE WHEN tb_pesadas2.idEspecie = 17 THEN tb_pesadas2.cantidadPes ELSE 0 END) AS sumaCantidadNovenaEspecieDos,
                 SUM(CASE WHEN tb_pesadas2.idEspecie = 18 THEN tb_pesadas2.cantidadPes ELSE 0 END) AS sumaCantidadDecimaEspecieDos,
+                SUM(CASE WHEN tb_pesadas2.idEspecie = 19 THEN tb_pesadas2.cantidadPes ELSE 0 END) AS sumaCantidadDecimaPrimeraEspecieDos,
+                SUM(CASE WHEN tb_pesadas2.idEspecie = 20 THEN tb_pesadas2.cantidadPes ELSE 0 END) AS sumaCantidadDecimaSegundaEspecieDos,
+                SUM(CASE WHEN tb_pesadas2.idEspecie = 21 THEN tb_pesadas2.cantidadPes ELSE 0 END) AS sumaCantidadDecimaTerceraEspecieDos,
+                SUM(CASE WHEN tb_pesadas2.idEspecie = 22 THEN tb_pesadas2.cantidadPes ELSE 0 END) AS sumaCantidadDecimaCuartaEspecieDos,
     
                 MAX(tb_pedidos.fechaRegistroPedido) AS fechaRegistroPedido,
                 MAX(tb_pedidos.estadoPedido) AS estadoPedido,
@@ -60,7 +68,11 @@ class SeguimientoPedidosController extends Controller
                 tb_pedidos.pedidoSeptimaEspecie AS cantidadSeptimaEspecie,
                 tb_pedidos.pedidoOctavaEspecie AS cantidadOctavaEspecie,
                 tb_pedidos.pedidoNovenaEspecie AS cantidadNovenaEspecie,
-                tb_pedidos.pedidoDecimaEspecie AS cantidadDecimaEspecie              
+                tb_pedidos.pedidoDecimaEspecie AS cantidadDecimaEspecie,              
+                tb_pedidos.pedidoDecimaPrimeraEspecie AS cantidadDecimaPrimeraEspecie,              
+                tb_pedidos.pedidoDecimaSegundaEspecie AS cantidadDecimaSegundaEspecie,              
+                tb_pedidos.pedidoDecimaTerceraEspecie AS cantidadDecimaTerceraEspecie,              
+                tb_pedidos.pedidoDecimaCuartaEspecie AS cantidadDecimaCuartaEspecie              
     
             FROM tb_pedidos
             INNER JOIN tb_clientes ON tb_clientes.codigoCli = tb_pedidos.codigoCliPedidos

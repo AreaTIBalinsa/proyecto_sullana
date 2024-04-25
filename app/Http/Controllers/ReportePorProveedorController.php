@@ -30,10 +30,11 @@ class ReportePorProveedorController extends Controller
                     numGuia,
                     tb_especies_compra.nombreEspecie as nombreEspecieCompra,
                     tb_guias.idProveedor,
-                    pesoGuia,
                     cantidadGuia,
                     precioGuia,
-                    fechaGuia
+                    fechaGuia,
+                    pesoBrutoGuia,
+                    pesoTaraGuia
                     from tb_guias
                     INNER JOIN tb_especies_compra ON tb_guias.idProveedor = tb_especies_compra.idEspecie 
                     WHERE tb_guias.estadoGuia = 1 AND fechaGuia BETWEEN ? AND ? order by idGuia asc',[$fechaDesde,$fechaHasta]);
@@ -66,9 +67,10 @@ class ReportePorProveedorController extends Controller
     {
         $idProveedor = $request->input('idProveedor');
         $cantidadAgregarGuia = $request->input('cantidadAgregarGuia');
-        $pesoAgregarGuia = $request->input('pesoAgregarGuia');
         $precioAgregarGuia = $request->input('precioAgregarGuia');
         $fechaRegistrarGuia = $request->input('fechaRegistrarGuia');
+        $precioPesoBruto = $request->input('precioPesoBruto');
+        $precioPesoTara = $request->input('precioPesoTara');
         $valorNumeroGuiaAgregarGuia = $request->input('valorNumeroGuiaAgregarGuia');
 
         if (Auth::check()) {
@@ -76,7 +78,8 @@ class ReportePorProveedorController extends Controller
             $registrarGuia->idProveedor = $idProveedor;
             $registrarGuia->cantidadGuia = $cantidadAgregarGuia;
             $registrarGuia->precioGuia = $precioAgregarGuia;
-            $registrarGuia->pesoGuia = $pesoAgregarGuia;
+            $registrarGuia->pesoBrutoGuia = $precioPesoBruto;
+            $registrarGuia->pesoTaraGuia = $precioPesoTara;
             $registrarGuia->fechaGuia = $fechaRegistrarGuia;
             $registrarGuia->numGuia = $valorNumeroGuiaAgregarGuia;
             $registrarGuia->save();
@@ -117,10 +120,11 @@ class ReportePorProveedorController extends Controller
             numGuia,
             idEspecie,
             idProveedor,
-            pesoGuia,
             cantidadGuia,
             precioGuia,
-            fechaGuia
+            fechaGuia,
+            pesoBrutoGuia,
+            pesoTaraGuia
             from tb_guias
             WHERE idGuia = ?',[$codigoGuia]);
 
@@ -137,7 +141,8 @@ class ReportePorProveedorController extends Controller
         $idActualizarGuia = $request->input('idActualizarGuia');
         $idProveedorEditar = $request->input('idProveedorEditar');
         $cantidadAgregarGuiaEditar = $request->input('cantidadAgregarGuiaEditar');
-        $pesoAgregarGuiaEditar = $request->input('pesoAgregarGuiaEditar');
+        $pesoBrutoEditar = $request->input('pesoBrutoEditar');
+        $pesoTaraEditar = $request->input('pesoTaraEditar');
         $precioAgregarGuiaEditar = $request->input('precioAgregarGuiaEditar');
         $fechaRegistrarGuiaEditar = $request->input('fechaRegistrarGuiaEditar');
         $valorNumeroGuiaAgregarGuiaEditar = $request->input('valorNumeroGuiaAgregarGuiaEditar');
@@ -148,7 +153,8 @@ class ReportePorProveedorController extends Controller
                 ->update([
                     'idProveedor' => $idProveedorEditar,
                     'cantidadGuia' => $cantidadAgregarGuiaEditar,
-                    'pesoGuia' => $pesoAgregarGuiaEditar,
+                    'pesoBrutoGuia' => $pesoBrutoEditar,
+                    'pesoTaraGuia' => $pesoTaraEditar,
                     'precioGuia' => $precioAgregarGuiaEditar,
                     'fechaGuia' => $fechaRegistrarGuiaEditar,
                     'numGuia' => $valorNumeroGuiaAgregarGuiaEditar,

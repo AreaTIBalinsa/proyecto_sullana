@@ -29,7 +29,8 @@ class PedidosController extends Controller
             SELECT
             idPedido,codigoCliPedidos,pedidoPrimerEspecie,pedidoSegundaEspecie,
             pedidoTercerEspecie,pedidoCuartaEspecie,pedidoQuintaEspecie,pedidoSextaEspecie,
-            pedidoSeptimaEspecie,pedidoOctavaEspecie,pedidoNovenaEspecie,pedidoDecimaEspecie,
+            pedidoSeptimaEspecie,pedidoOctavaEspecie,pedidoNovenaEspecie,pedidoDecimaEspecie,pedidoDecimaPrimeraEspecie,
+            pedidoDecimaSegundaEspecie, pedidoDecimaTerceraEspecie, pedidoDecimaCuartaEspecie, comentarioPedido,
             IFNULL(CONCAT_WS(" ", nombresCli, apellidoPaternoCli, apellidoMaternoCli), "") AS nombreCompleto,fechaRegistroPedido
             FROM tb_pedidos
             INNER JOIN tb_clientes on tb_clientes.codigoCli = tb_pedidos.codigoCliPedidos
@@ -57,6 +58,11 @@ class PedidosController extends Controller
         $octavaEspecie = $request->input('octavaEspecie');
         $novenaEspecie = $request->input('novenaEspecie');
         $decimaEspecie = $request->input('decimaEspecie');
+        $decimaPrimeraEspecie = $request->input('decimaPrimeraEspecie');
+        $decimaSegundaEspecie = $request->input('decimaSegundaEspecie');
+        $decimaTerceraEspecie = $request->input('decimaTerceraEspecie');
+        $decimaCuartaEspecie = $request->input('decimaCuartaEspecie');
+        $pedidoComentario = $request->input('comentarioPedido');
         $fechaAgregarPedido = $request->input('fechaAgregarPedido');
 
         if (Auth::check()) {
@@ -72,6 +78,11 @@ class PedidosController extends Controller
             $agregarPedido->pedidoOctavaEspecie = $octavaEspecie === null ? 0 : $octavaEspecie;
             $agregarPedido->pedidoNovenaEspecie = $novenaEspecie === null ? 0 : $novenaEspecie;
             $agregarPedido->pedidoDecimaEspecie = $decimaEspecie === null ? 0 : $decimaEspecie;
+            $agregarPedido->pedidoDecimaPrimeraEspecie = $decimaPrimeraEspecie === null ? 0 : $decimaPrimeraEspecie;
+            $agregarPedido->pedidoDecimaSegundaEspecie = $decimaSegundaEspecie === null ? 0 : $decimaSegundaEspecie;
+            $agregarPedido->pedidoDecimaTerceraEspecie = $decimaTerceraEspecie === null ? 0 : $decimaTerceraEspecie;
+            $agregarPedido->pedidoDecimaCuartaEspecie = $decimaCuartaEspecie === null ? 0 : $decimaCuartaEspecie;
+            $agregarPedido->comentarioPedido = $pedidoComentario;
             $agregarPedido->fechaRegistroPedido = $fechaAgregarPedido;
             $agregarPedido->estadoPedido = 1;
             $agregarPedido->save();
@@ -113,11 +124,15 @@ class PedidosController extends Controller
         $octavaEspecie = $request->input('octavaEspecie');
         $novenaEspecie = $request->input('novenaEspecie');
         $decimaEspecie = $request->input('decimaEspecie');
+        $decimaPrimeraEspecie = $request->input('decimaPrimeraEspecie');
+        $decimaSegundaEspecie = $request->input('decimaSegundaEspecie');
+        $decimaTerceraEspecie = $request->input('decimaTerceraEspecie');
+        $decimaCuartaEspecie = $request->input('decimaCuartaEspecie');
+        $pedidoComentario = $request->input('comentarioPedido');
         $fechaAgregarPedido = $request->input('fechaAgregarPedido');
         $idPedidoCliente = $request->input('idPedidoCliente');
 
         if (Auth::check()) {
-            $ActualizarPedidoCliente = new ActualizarPedidoCliente;
             $ActualizarPedidoCliente = new ActualizarPedidoCliente;
             $ActualizarPedidoCliente->where('idPedido', $idPedidoCliente)
                 ->update([
@@ -131,6 +146,12 @@ class PedidosController extends Controller
                     'pedidoOctavaEspecie' => $octavaEspecie === null ? 0 : $octavaEspecie,
                     'pedidoNovenaEspecie' => $novenaEspecie === null ? 0 : $novenaEspecie,
                     'pedidoDecimaEspecie' => $decimaEspecie === null ? 0 : $decimaEspecie,
+                    'pedidoDecimaPrimeraEspecie' => $decimaPrimeraEspecie === null ? 0 : $decimaPrimeraEspecie,
+                    'pedidoDecimaSegundaEspecie' => $decimaSegundaEspecie === null ? 0 : $decimaSegundaEspecie,
+                    'pedidoDecimaTerceraEspecie' => $decimaTerceraEspecie === null ? 0 : $decimaTerceraEspecie,
+                    'pedidoDecimaCuartaEspecie' => $decimaCuartaEspecie === null ? 0 : $decimaCuartaEspecie,
+                    'comentarioPedido' => $pedidoComentario,
+
                     'fechaRegistroPedido' => $fechaAgregarPedido,
                 ]);
             
@@ -150,7 +171,8 @@ class PedidosController extends Controller
             SELECT
             idPedido,codigoCliPedidos,pedidoPrimerEspecie,pedidoSegundaEspecie,
             pedidoTercerEspecie,pedidoCuartaEspecie,pedidoQuintaEspecie,pedidoSextaEspecie,
-            pedidoSeptimaEspecie,pedidoOctavaEspecie,pedidoNovenaEspecie,pedidoDecimaEspecie,
+            pedidoSeptimaEspecie,pedidoOctavaEspecie,pedidoNovenaEspecie,pedidoDecimaEspecie,pedidoDecimaPrimeraEspecie,
+            pedidoDecimaSegundaEspecie, pedidoDecimaTerceraEspecie, pedidoDecimaCuartaEspecie, comentarioPedido,
             IFNULL(CONCAT_WS(" ", nombresCli, apellidoPaternoCli, apellidoMaternoCli), "") AS nombreCompleto,fechaRegistroPedido
             FROM tb_pedidos
             INNER JOIN tb_clientes on tb_clientes.codigoCli = tb_pedidos.codigoCliPedidos

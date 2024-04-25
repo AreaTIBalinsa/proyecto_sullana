@@ -102,7 +102,7 @@
                 <input class="lg:max-w-xs w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg focus:ring-primary-600 focus:border-primary-600 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" autocomplete="off" id="filtrarClienteReporteAcumuladoExcel" placeholder="Ingrese Nombre de Cliente">
             </div>
 
-            <div class="relative rounded-lg overflow-auto aside_scrollEDINSON" id="divReporteAcumuladoDetalleExcel">
+            <div class="relative rounded-lg overflow-auto aside_scrollEDINSON max-h-[600px] h-full" id="divReporteAcumuladoDetalleExcel">
                 <table class="w-full border-separate border-spacing-0 text-gray-500 dark:text-gray-400 select-none relative text-sm" id="tablaReporteAcumuladoExcel">
                     <caption class="bg-blue-600 text-gray-50 p-2 font-bold text-lg rounded-t-lg border-x-2 sticky top-0 border-t-2 z-50" id="fechaReporteExcelTitle"></caption>
                     <thead id="headerReporteAcumuladoExcel" class="bg-blue-600 text-gray-50 sticky top-[46px] text-xs uppercase z-50 border-separate">
@@ -248,7 +248,64 @@
                         </tr>
                     </thead>
                     <tbody id="bodyReporteAcumuladoExcel">
-                        <tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="90" class="text-center">No hay datos</td></tr>
+                        <tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="100" class="text-center border-2">No hay datos</td></tr>
+                    </tbody>
+                </table>
+                <div class="bg-gray-50 dark:bg-gray-900 hidden top-0 left-0 z-[100] w-full max-h-[600px] h-full" id="eskeleto">
+                    <div role="status" class="animate-pulse w-full">
+                        <table class="mb-2">
+                            <caption class="bg-gray-200 dark:bg-gray-700 h-10 w-full mb-[2px] rounded-t-lg"></caption>
+                            <thead>
+                                <tr>
+                                    <th class="bg-gray-200 border-2 border-l-0 border-gray-300 dark:border-gray-900 h-10 w-[74.44px] dark:bg-gray-700"></th>
+                                    <th class="bg-gray-200 border-2 border-gray-300 dark:border-gray-900 h-10 w-[299.63px] dark:bg-gray-700"></th>
+                                    <th class="bg-gray-200 border-2 border-gray-300 dark:border-gray-900 h-10 w-[73.16px] dark:bg-gray-700"></th>
+                                    <th class="bg-gray-200 border-2 border-gray-300 dark:border-gray-900 h-10 w-[299.63px] dark:bg-gray-700"></th>
+                                    <th class="bg-gray-200 border-2 border-gray-300 dark:border-gray-900 h-10 w-[73.16px] dark:bg-gray-700"></th>
+                                    <th class="bg-gray-200 border-2 border-gray-300 dark:border-gray-900 h-10 w-[299.63px] dark:bg-gray-700"></th>
+                                    <th class="bg-gray-200 border-2 border-gray-300 dark:border-gray-900 h-10 w-[73.16px] dark:bg-gray-700"></th>
+                                    <th class="bg-gray-200 border-2 border-gray-300 dark:border-gray-900 h-10 w-[299.63px] dark:bg-gray-700"></th>
+                                    <th class="bg-gray-200 border-2 border-r-0 border-gray-300 dark:border-gray-900 h-10 w-[73.16px] dark:bg-gray-700"></th>
+                                </tr>
+                            </thead>
+                        </table>
+                        <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-2.5"></div>
+                        <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-2.5"></div>
+                        <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-2.5"></div>
+                        <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-2.5"></div>
+                        <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-2.5"></div>
+                        <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-2.5"></div>
+                        <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-2.5"></div>
+                        <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-2.5"></div>
+                        <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-2.5"></div>
+                        <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-2.5"></div>
+                        <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-2.5"></div>
+                        <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-2.5"></div>
+                        <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-2.5"></div>
+                        <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-2.5"></div>
+                        <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-2.5"></div>
+                        <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-2.5"></div>
+                        <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-2.5"></div>
+                        <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-2.5"></div>
+                        <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-2.5"></div>
+                        <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-full"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-5">
+                <table class="mb-2">
+                    <caption class="bg-blue-600 text-gray-50 p-2 font-bold text-lg rounded-t-lg border-x-2 sticky top-0 border-t-2 z-50">TOTALES</caption>
+                    <thead class="bg-blue-600 text-gray-50 uppercase z-50 text-sm">
+                        <tr>
+                            <th class="bg-blue-600 border-2 px-4">VARIEDAD</th>
+                            <th class="bg-blue-600 border-2 px-4">CANTIDAD</th>
+                            <th class="bg-blue-600 border-2 px-4">PESO</th>
+                            <th class="bg-blue-600 border-2 px-4">SUBTOTAL</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bodyReporteAcumuladoExcelTotales" class="text-gray-900 dark:text-gray-50 ">
+                        <tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="4" class="text-center border-2">No hay datos</td></tr>
                     </tbody>
                 </table>
             </div>

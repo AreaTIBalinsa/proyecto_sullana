@@ -25,6 +25,11 @@ class AgregarPedido extends Model
         'pedidoOctavaEspecie',
         'pedidoNovenaEspecie',
         'pedidoDecimaEspecie',
+        'pedidoDecimaPrimeraEspecie',
+        'pedidoDecimaSegundaEspecie',
+        'pedidoDecimaTerceraEspecie',
+        'pedidoDecimaCuartaEspecie',
+        'comentarioPedido',
         'estadoPedido',
     ];
 

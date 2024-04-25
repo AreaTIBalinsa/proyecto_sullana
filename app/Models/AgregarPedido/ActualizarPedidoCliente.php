@@ -24,6 +24,11 @@ class ActualizarPedidoCliente extends Model
         'pedidoOctavaEspecie',
         'pedidoNovenaEspecie',
         'pedidoDecimaEspecie',
+        'pedidoDecimaPrimeraEspecie',
+        'pedidoDecimaSegundaEspecie',
+        'pedidoDecimaTerceraEspecie',
+        'pedidoDecimaCuartaEspecie',
+        'comentarioPedido',
         'fechaRegistroPedido',
     ];
 

@@ -18,7 +18,7 @@
                 <button class="flex gap-2 justify-center items-center cursor-pointer uppercase bg-blue-600 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-2.5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 hover:bg-blue-700" type="submit" autocomplete="off" id="filtrarPedidosFecha"><i class='bx bx-search-alt text-lg'></i></button>
             </div>
         </div>
-        <div class="relative overflow-auto max-h-[500px] aside_scrollED shadow-md rounded-lg md:mx-5 md:mb-5">
+        <div class="relative overflow-auto max-h-[650px] aside_scrollED shadow-md rounded-lg md:mx-5 md:mb-5">
             <table class="border-separate border-spacing-0 w-full text-sm text-left text-gray-500 dark:text-gray-400" id="tablaPedidos">
                 <thead class="text-xs text-gray-100 uppercase bg-blue-600 sticky top-0" id="headerPedidos">
                     <tr>

@@ -51,7 +51,8 @@ class ConfiguracionesController extends Controller
                 idEspecie != 9 and idEspecie != 10
                 and idEspecie != 11 and idEspecie != 13
                 and idEspecie != 12 and idEspecie != 14
-                and idEspecie != 15 and idEspecie != 8');
+                and idEspecie != 15 and idEspecie != 8 and idEspecie != 23
+                ORDER BY FIELD(idEspecie,1,2,17,3,4,18,16,19,5,20,6,21,7,22)');
             
             // Devuelve los datos en formato JSON
             return response()->json($datos);

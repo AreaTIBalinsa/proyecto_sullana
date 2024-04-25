@@ -134,7 +134,7 @@ jQuery(function($) {
             case '4':
                 $('#divPedidoTecnicoPelado').addClass('flex');
                 $('#divPedidoTecnicoPelado').removeClass('hidden');
-                $('#inputCantidadTecnicoVivo').focus();
+                $('#inputCantidadTecnicoPelado').focus();
                 break;
             case '5':
                 $('#divPedidoGallinaDoble').addClass('flex');
@@ -165,6 +165,26 @@ jQuery(function($) {
                 $('#divPedidoBrasaTecnico').addClass('flex');
                 $('#divPedidoBrasaTecnico').removeClass('hidden');
                 $('#inputCantidadBrasaTecnico').focus();
+                break;
+            case '19':
+                $('#divPedidoPolloXXVivo').addClass('flex');
+                $('#divPedidoPolloXXVivo').removeClass('hidden');
+                $('#inputCantidadPolloXXVivo').focus();
+                break;
+            case '20':
+                $('#divPedidoGallinaDobleVivo').addClass('flex');
+                $('#divPedidoGallinaDobleVivo').removeClass('hidden');
+                $('#inputCantidadGallinaDobleVivo').focus();
+                break;
+            case '21':
+                $('#divPedidoGallinaChicaVivo').addClass('flex');
+                $('#divPedidoGallinaChicaVivo').removeClass('hidden');
+                $('#inputCantidadGallinaChicaVivo').focus();
+                break;
+            case '22':
+                $('#divPedidoGalloVivo').addClass('flex');
+                $('#divPedidoGalloVivo').removeClass('hidden');
+                $('#inputCantidadGalloVivo').focus();
                 break;
             default:
                 console.log('Gaaaaaaaaaa');
@@ -227,6 +247,26 @@ jQuery(function($) {
                 $('#divPedidoBrasaTecnicoEditar').removeClass('hidden');
                 $('#inputCantidadBrasaTecnicoEditar').focus();
                 break;
+            case '19':
+                $('#divPedidoPolloXXVivoEditar').addClass('flex');
+                $('#divPedidoPolloXXVivoEditar').removeClass('hidden');
+                $('#inputCantidadPolloXXVivoEditar').focus();
+                break;
+            case '20':
+                $('#divPedidoGallinaDobleVivoEditar').addClass('flex');
+                $('#divPedidoGallinaDobleVivoEditar').removeClass('hidden');
+                $('#inputCantidadGallinaDobleVivoEditar').focus();
+                break;
+            case '21':
+                $('#divPedidoGallinaChicaVivoEditar').addClass('flex');
+                $('#divPedidoGallinaChicaVivoEditar').removeClass('hidden');
+                $('#inputCantidadGallinaChicaVivoEditar').focus();
+                break;
+            case '22':
+                $('#divPedidoGalloVivoEditar').addClass('flex');
+                $('#divPedidoGalloVivoEditar').removeClass('hidden');
+                $('#inputCantidadGalloVivoEditar').focus();
+                break;
             default:
                 console.log('Gaaaaaaaaaa');
                 break;
@@ -249,6 +289,10 @@ jQuery(function($) {
         $('#inputCantidadPolloXX').val("");
         $('#inputCantidadBrasaYugo').val("");
         $('#inputCantidadBrasaTecnico').val("");
+        $('#inputCantidadPolloXXVivo').val("");
+        $('#inputCantidadGallinaDobleVivo').val("");
+        $('#inputCantidadGallinaChicaVivo').val("");
+        $('#inputCantidadGalloVivo').val("");
 
         $('#idRegistrarPedidoCliente').addClass('border-green-500 dark:border-gray-600 border-gray-300').removeClass('border-red-500');
         $('#filtrarPedidosFecha').trigger('click');
@@ -338,17 +382,22 @@ jQuery(function($) {
                     TtotalesPedidos.empty();
                     TtotalesPedidos.append(`<tr>
                         <th class="hidden">Id</th>
-                        <th class="px-2 py-4 text-center">Nombre de Cliente</th>
-                        <th class="px-2 py-4 text-center">Yugo Vivo</th>
-                        <th class="px-2 py-4 text-center">Yugo Pelado</th>
-                        <th class="px-2 py-4 text-center">Tecnica Vivo</th>
-                        <th class="px-2 py-4 text-center">Tecnica Pelado</th>
-                        <th class="px-2 py-4 text-center">Gallina Doble</th>
-                        <th class="px-2 py-4 text-center">Gallina Chica</th>
-                        <th class="px-2 py-4 text-center">Gallo</th>
-                        <th class="px-2 py-4 text-center">Pollo XX</th>
-                        <th class="px-2 py-4 text-center">Brasa Yugo</th>
-                        <th class="px-2 py-4 text-center">Brasa Tecnica</th>
+                        <th class="border-r px-2 py-4 text-center whitespace-nowrap">Nombre de Cliente</th>
+                        <th class="border-r px-2 py-4 text-center">Yugo Vivo</th>
+                        <th class="border-r px-2 py-4 text-center">Yugo Pelado</th>
+                        <th class="border-r px-2 py-4 text-center">Tecnica Vivo</th>
+                        <th class="border-r px-2 py-4 text-center">Tecnica Pelado</th>
+                        <th class="border-r px-2 py-4 text-center">Gallina Doble Pelado</th>
+                        <th class="border-r px-2 py-4 text-center">Gallina Chica Pelado</th>
+                        <th class="border-r px-2 py-4 text-center">Gallo Pelado</th>
+                        <th class="border-r px-2 py-4 text-center">Pollo XX Pelado</th>
+                        <th class="border-r px-2 py-4 text-center">Brasa Yugo</th>
+                        <th class="border-r px-2 py-4 text-center">Brasa Tecnica</th>
+                        <th class="border-r px-2 py-4 text-center">Pollo XX Vivo</th>
+                        <th class="border-r px-2 py-4 text-center">Gallina Doble Vivo</th>
+                        <th class="border-r px-2 py-4 text-center">Gallina Chica Vivo</th>
+                        <th class="border-r px-2 py-4 text-center">Gallo Vivo</th>
+                        <th class="border-r px-2 py-4 text-center">Comentario</th>
                         <th class="px-2 py-4 text-center whitespace-nowrap">TOTAL</th>
                     </tr>`);
                     tbodyPedidoDelCliente.empty();
@@ -364,6 +413,10 @@ jQuery(function($) {
                     let totalPedido8 = 0;
                     let totalPedido9 = 0;
                     let totalPedido10 = 0;
+                    let totalPedido11 = 0;
+                    let totalPedido12 = 0;
+                    let totalPedido13 = 0;
+                    let totalPedido14 = 0;
 
                     // Iterar sobre los objetos y mostrar sus propiedades
                     response.forEach(function (obj) {
@@ -383,13 +436,20 @@ jQuery(function($) {
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center">').text(obj.pedidoOctavaEspecie));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center">').text(obj.pedidoNovenaEspecie));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center">').text(obj.pedidoDecimaEspecie));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center">').text(obj.pedidoDecimaPrimeraEspecie));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center">').text(obj.pedidoDecimaSegundaEspecie));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center">').text(obj.pedidoDecimaTerceraEspecie));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center">').text(obj.pedidoDecimaCuartaEspecie));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center">').text(obj.comentarioPedido));
                         
                         let totalPedidos = 0;
                         totalPedidos = parseInt(obj.pedidoPrimerEspecie) + parseInt(obj.pedidoSegundaEspecie) + 
                         parseInt(obj.pedidoTercerEspecie) + parseInt(obj.pedidoCuartaEspecie)+
                         parseInt(obj.pedidoQuintaEspecie) + parseInt(obj.pedidoSextaEspecie)+
                         parseInt(obj.pedidoSeptimaEspecie) + parseInt(obj.pedidoOctavaEspecie)+
-                        parseInt(obj.pedidoNovenaEspecie) + parseInt(obj.pedidoDecimaEspecie);
+                        parseInt(obj.pedidoNovenaEspecie) + parseInt(obj.pedidoDecimaEspecie)+ 
+                        parseInt(obj.pedidoDecimaPrimeraEspecie) + parseInt(obj.pedidoDecimaSegundaEspecie)+
+                        parseInt(obj.pedidoDecimaTerceraEspecie) + parseInt(obj.pedidoDecimaCuartaEspecie);
                         totalPedidosFinal += totalPedidos;
 
                         totalPedido1 += parseInt(obj.pedidoPrimerEspecie);
@@ -402,6 +462,10 @@ jQuery(function($) {
                         totalPedido8 += parseInt(obj.pedidoOctavaEspecie);
                         totalPedido9 += parseInt(obj.pedidoNovenaEspecie);
                         totalPedido10 += parseInt(obj.pedidoDecimaEspecie);
+                        totalPedido11 += parseInt(obj.pedidoDecimaPrimeraEspecie);
+                        totalPedido12 += parseInt(obj.pedidoDecimaSegundaEspecie);
+                        totalPedido13 += parseInt(obj.pedidoDecimaTerceraEspecie);
+                        totalPedido14 += parseInt(obj.pedidoDecimaCuartaEspecie);
 
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(totalPedidos));                                              
                         nuevaFila.append($('<td class="hidden">').text(obj.fechaRegistroPedido));
@@ -412,7 +476,7 @@ jQuery(function($) {
 
                     if (nuevaFila == ""){
                         tbodyPedidoDelCliente.append(
-                            '<tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="12" class="text-center">No hay datos</td></tr>'
+                            '<tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="17" class="text-center">No hay datos</td></tr>'
                         );
                     }else{
                         let totalPedidoFormateado = totalPedidosFinal.toLocaleString('es-ES', {
@@ -433,12 +497,17 @@ jQuery(function($) {
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(totalPedido8));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(totalPedido9));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(totalPedido10));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(totalPedido11));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(totalPedido12));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(totalPedido13));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(totalPedido14));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(totalPedidoFormateado));
                         // Agregar la nueva fila al tbody
                         TtotalesPedidos.append(nuevaFila);
 
                         nuevaFila = $('<tr class="class="bg-white dark:bg-gray-800 h-0.5" cursor-pointer">');
-                        nuevaFila= ($('<td class="text-center h-0.5 bg-gray-800 dark:bg-gray-300" colspan="12">').text(""));
+                        nuevaFila= ($('<td class="text-center h-0.5 bg-gray-800 dark:bg-gray-300" colspan="17">').text(""));
                         TtotalesPedidos.append(nuevaFila);
                     }
 
@@ -498,6 +567,11 @@ jQuery(function($) {
                     let octavaEspecie = $('#inputCantidadPolloXX').val();
                     let novenaEspecie = $('#inputCantidadBrasaYugo').val();
                     let decimaEspecie = $('#inputCantidadBrasaTecnico').val();
+                    let decimaPrimeraEspecie = $('#inputCantidadPolloXXVivo').val();
+                    let decimaSegundaEspecie = $('#inputCantidadGallinaDobleVivo').val();
+                    let decimaTerceraEspecie = $('#inputCantidadGallinaChicaVivo').val();
+                    let decimaCuartaEspecie = $('#inputCantidadGalloVivo').val();
+                    let comentarioPedido = $('#comentarioAgregarPedido').val();
                     let fechaAgregarPedido = $('#fechaAgregarPedido').val();
 
                     let todosCamposCompletos = true
@@ -510,7 +584,7 @@ jQuery(function($) {
                     }
                 
                     if (todosCamposCompletos) {
-                        fn_AgregarPedidoCliente(selectedCodigoCliPedidos,primerEspecie,segundaEspecie,terceraEspecie,cuartaEspecie,quintaEspecie,sextaEspecie,septimaEspecie,octavaEspecie,novenaEspecie,decimaEspecie,fechaAgregarPedido);
+                        fn_AgregarPedidoCliente(selectedCodigoCliPedidos,primerEspecie,segundaEspecie,terceraEspecie,cuartaEspecie,quintaEspecie,sextaEspecie,septimaEspecie,octavaEspecie,novenaEspecie,decimaEspecie,decimaPrimeraEspecie,decimaSegundaEspecie,decimaTerceraEspecie,decimaCuartaEspecie,comentarioPedido,fechaAgregarPedido);
                     } else {
                         // Mostrar una alerta de que debe completar los campos obligatorios
                         alertify.notify('Debe seleccionar Cliente', 'error', 3);
@@ -528,7 +602,7 @@ jQuery(function($) {
         });
     }
 
-    function fn_AgregarPedidoCliente(selectedCodigoCliPedidos,primerEspecie,segundaEspecie,terceraEspecie,cuartaEspecie,quintaEspecie,sextaEspecie,septimaEspecie,octavaEspecie,novenaEspecie,decimaEspecie,fechaAgregarPedido){
+    function fn_AgregarPedidoCliente(selectedCodigoCliPedidos,primerEspecie,segundaEspecie,terceraEspecie,cuartaEspecie,quintaEspecie,sextaEspecie,septimaEspecie,octavaEspecie,novenaEspecie,decimaEspecie,decimaPrimeraEspecie,decimaSegundaEspecie,decimaTerceraEspecie,decimaCuartaEspecie,comentarioPedido,fechaAgregarPedido){
         $.ajax({
             url: '/fn_consulta_AgregarPedidoCliente',
             method: 'GET',
@@ -544,6 +618,11 @@ jQuery(function($) {
                 octavaEspecie: octavaEspecie,
                 novenaEspecie: novenaEspecie,
                 decimaEspecie: decimaEspecie,
+                decimaPrimeraEspecie: decimaPrimeraEspecie,
+                decimaSegundaEspecie: decimaSegundaEspecie,
+                decimaTerceraEspecie: decimaTerceraEspecie,
+                decimaCuartaEspecie: decimaCuartaEspecie,
+                comentarioPedido: comentarioPedido,
                 fechaAgregarPedido: fechaAgregarPedido,
             },
             success: function(response) {
@@ -660,6 +739,10 @@ jQuery(function($) {
         let total9 = 0;
         let total10 = 0;
         let total11 = 0;
+        let total12 = 0;
+        let total13 = 0;
+        let total14 = 0;
+        let total15 = 0;
 
         // Sumar los montos de las filas visibles
         $('#bodyPedidos tr.filaEditable:visible').each(function () {
@@ -685,6 +768,14 @@ jQuery(function($) {
             total10 += isNaN(monto10) ? 0 : monto10;
             let monto11 = parseFloat($(this).find('td:eq(12)').text());
             total11 += isNaN(monto11) ? 0 : monto11;
+            let monto12 = parseFloat($(this).find('td:eq(13)').text());
+            total12 += isNaN(monto12) ? 0 : monto12;
+            let monto13 = parseFloat($(this).find('td:eq(14)').text());
+            total13 += isNaN(monto13) ? 0 : monto13;
+            let monto14 = parseFloat($(this).find('td:eq(15)').text());
+            total14 += isNaN(monto14) ? 0 : monto14;
+            let monto15 = parseFloat($(this).find('td:eq(17)').text());
+            total15 += isNaN(monto15) ? 0 : monto15;
         });
 
         // Actualizar el valor en la fila "TOTAL"
@@ -743,6 +834,26 @@ jQuery(function($) {
             maximumFractionDigits: 0,
             useGrouping: true,
         });
+        let totalFormateado12 = total12.toLocaleString('es-ES', {
+            minimumFractionDigits: 0,   
+            maximumFractionDigits: 0,
+            useGrouping: true,
+        });
+        let totalFormateado13 = total13.toLocaleString('es-ES', {
+            minimumFractionDigits: 0,   
+            maximumFractionDigits: 0,
+            useGrouping: true,
+        });
+        let totalFormateado14 = total14.toLocaleString('es-ES', {
+            minimumFractionDigits: 0,   
+            maximumFractionDigits: 0,
+            useGrouping: true,
+        });
+        let totalFormateado15 = total15.toLocaleString('es-ES', {
+            minimumFractionDigits: 0,   
+            maximumFractionDigits: 0,
+            useGrouping: true,
+        });
 
         $('#headerPedidos tr:last td:eq(1)').text(totalFormateado1);
         $('#headerPedidos tr:last td:eq(2)').text(totalFormateado2);
@@ -755,6 +866,10 @@ jQuery(function($) {
         $('#headerPedidos tr:last td:eq(9)').text(totalFormateado9);
         $('#headerPedidos tr:last td:eq(10)').text(totalFormateado10);
         $('#headerPedidos tr:last td:eq(11)').text(totalFormateado11);
+        $('#headerPedidos tr:last td:eq(12)').text(totalFormateado12);
+        $('#headerPedidos tr:last td:eq(13)').text(totalFormateado13);
+        $('#headerPedidos tr:last td:eq(14)').text(totalFormateado14);
+        $('#headerPedidos tr:last td:eq(16)').text(totalFormateado15);
     };
 
     $(document).on('dblclick', '#tablaPedidos tbody tr.filaEditable', function (e) {
@@ -775,12 +890,18 @@ jQuery(function($) {
             let pedidoOctavaEspecie = fila.find('td:eq(9)').text();
             let pedidoNovenaEspecie = fila.find('td:eq(10)').text();
             let pedidoDecimaEspecie = fila.find('td:eq(11)').text();
-            let fechaPedido = fila.find('td:eq(13)').text();
-            let codigoCliente = fila.find('td:eq(14)').text();
+            let pedidoDecimaPrimeraEspecie = fila.find('td:eq(12)').text();
+            let pedidoDecimaSegundaEspecie = fila.find('td:eq(13)').text();
+            let pedidoDecimaTerceraEspecie = fila.find('td:eq(14)').text();
+            let pedidoDecimaCuartaEspecie = fila.find('td:eq(15)').text();
+            let pedidoComentario = fila.find('td:eq(16)').text();
+            let fechaPedido = fila.find('td:eq(18)').text();
+            let codigoCliente = fila.find('td:eq(19)').text();
 
             $('#idPedidosEditar').attr("value", idPedido)
             $('#idRegistrarPedidoClienteEditar').val(nombreCliente);
             $('#selectedCodigoCliPedidosEditar').attr("value", codigoCliente);
+
             if (pedidoPrimerEspecie > 0){
                 $('#divPedidoYugoVivoEditar').addClass('flex');
                 $('#divPedidoYugoVivoEditar').removeClass('hidden');
@@ -832,6 +953,29 @@ jQuery(function($) {
             }
             $('#inputCantidadBrasaTecnicoEditar').val(pedidoDecimaEspecie);
 
+            if (pedidoDecimaPrimeraEspecie > 0){
+                $('#divPedidoPolloXXVivoEditar').addClass('flex');
+                $('#divPedidoPolloXXVivoEditar').removeClass('hidden');
+            }
+            $('#inputCantidadPolloXXVivoEditar').val(pedidoDecimaPrimeraEspecie);
+            if (pedidoDecimaSegundaEspecie > 0){
+                $('#divPedidoGallinaDobleVivoEditar').addClass('flex');
+                $('#divPedidoGallinaDobleVivoEditar').removeClass('hidden');
+            }
+            $('#inputCantidadGallinaDobleVivoEditar').val(pedidoDecimaSegundaEspecie);
+            if (pedidoDecimaTerceraEspecie > 0){
+                $('#divPedidoGallinaChicaVivoEditar').addClass('flex');
+                $('#divPedidoGallinaChicaVivoEditar').removeClass('hidden');
+            }
+            $('#inputCantidadGallinaChicaVivoEditar').val(pedidoDecimaTerceraEspecie);
+            if (pedidoDecimaCuartaEspecie > 0){
+                $('#divPedidoGalloVivoEditar').addClass('flex');
+                $('#divPedidoGalloVivoEditar').removeClass('hidden');
+            }
+            $('#inputCantidadGalloVivoEditar').val(pedidoDecimaCuartaEspecie);
+
+            $('#comentarioAgregarPedidoEditar').val(pedidoComentario);
+
             $('#fechaAgregarPedidoEditar').val(fechaPedido);
 
             $('#ModalAgregarPedidoEditar').addClass('flex');
@@ -850,14 +994,19 @@ jQuery(function($) {
         let octavaEspecie = $('#inputCantidadPolloXXEditar').val();
         let novenaEspecie = $('#inputCantidadBrasaYugoEditar').val();
         let decimaEspecie = $('#inputCantidadBrasaTecnicoEditar').val();
+        let decimaPrimeraEspecie = $('#inputCantidadPolloXXVivoEditar').val();
+        let decimaSegundaEspecie = $('#inputCantidadGallinaDobleVivoEditar').val();
+        let decimaTerceraEspecie = $('#inputCantidadGallinaChicaVivoEditar').val();
+        let decimaCuartaEspecie = $('#inputCantidadGalloVivoEditar').val();
+        let comentarioPedido = $('#comentarioAgregarPedidoEditar').val();
         let fechaAgregarPedido = $('#fechaAgregarPedidoEditar').val();
         let idPedidoCliente = $('#idPedidosEditar').attr("value");
 
-        fn_ActualizarPedidoCliente(primerEspecie,segundaEspecie,terceraEspecie,cuartaEspecie,quintaEspecie,sextaEspecie,septimaEspecie,octavaEspecie,novenaEspecie,decimaEspecie,fechaAgregarPedido,idPedidoCliente);
+        fn_ActualizarPedidoCliente(primerEspecie,segundaEspecie,terceraEspecie,cuartaEspecie,quintaEspecie,sextaEspecie,septimaEspecie,octavaEspecie,novenaEspecie,decimaEspecie,decimaPrimeraEspecie,decimaSegundaEspecie,decimaTerceraEspecie,decimaCuartaEspecie,comentarioPedido,fechaAgregarPedido,idPedidoCliente);
 
     });  
 
-    function fn_ActualizarPedidoCliente(primerEspecie,segundaEspecie,terceraEspecie,cuartaEspecie,quintaEspecie,sextaEspecie,septimaEspecie,octavaEspecie,novenaEspecie,decimaEspecie,fechaAgregarPedido,idPedidoCliente){
+    function fn_ActualizarPedidoCliente(primerEspecie,segundaEspecie,terceraEspecie,cuartaEspecie,quintaEspecie,sextaEspecie,septimaEspecie,octavaEspecie,novenaEspecie,decimaEspecie,decimaPrimeraEspecie,decimaSegundaEspecie,decimaTerceraEspecie,decimaCuartaEspecie,comentarioPedido,fechaAgregarPedido,idPedidoCliente){
         $.ajax({
             url: '/fn_consulta_ActualizarPedidoCliente',
             method: 'GET',
@@ -872,6 +1021,11 @@ jQuery(function($) {
                 octavaEspecie: octavaEspecie,
                 novenaEspecie: novenaEspecie,
                 decimaEspecie: decimaEspecie,
+                decimaPrimeraEspecie: decimaPrimeraEspecie,
+                decimaSegundaEspecie: decimaSegundaEspecie,
+                decimaTerceraEspecie: decimaTerceraEspecie,
+                decimaCuartaEspecie: decimaCuartaEspecie,
+                comentarioPedido: comentarioPedido,
                 fechaAgregarPedido: fechaAgregarPedido,
                 idPedidoCliente: idPedidoCliente,
             },
@@ -1050,14 +1204,14 @@ jQuery(function($) {
             // Recorrer ArrayPedidosRevisar
             let fechaRegistrarPedidoADia = $('#fechaRegistrarPedidoADia').val();
             arrayPedidosRevisar.forEach(function(pedido) {
-                fn_AgregarPedidoClienteDespuesDeRevisar(pedido.codigoCliPedidos, pedido.pedidoPrimerEspecie, pedido.pedidoSegundaEspecie, pedido.pedidoTercerEspecie, pedido.pedidoCuartaEspecie, pedido.pedidoQuintaEspecie, pedido.pedidoSextaEspecie, pedido.pedidoSeptimaEspecie, pedido.pedidoOctavaEspecie, pedido.pedidoNovenaEspecie, pedido.pedidoDecimaEspecie, fechaRegistrarPedidoADia);
+                fn_AgregarPedidoClienteDespuesDeRevisar(pedido.codigoCliPedidos, pedido.pedidoPrimerEspecie, pedido.pedidoSegundaEspecie, pedido.pedidoTercerEspecie, pedido.pedidoCuartaEspecie, pedido.pedidoQuintaEspecie, pedido.pedidoSextaEspecie, pedido.pedidoSeptimaEspecie, pedido.pedidoOctavaEspecie, pedido.pedidoNovenaEspecie, pedido.pedidoDecimaEspecie, pedido.pedidoDecimaPrimeraEspecie, pedido.pedidoDecimaSegundaEspecie, pedido.pedidoDecimaTerceraEspecie, pedido.pedidoDecimaCuartaEspecie, pedido.comentarioPedido, fechaRegistrarPedidoADia);
             });
         }else{
             alertify.notify('No hay pedidos que registrar.', 'error', 3);
         }
     });
 
-    function fn_AgregarPedidoClienteDespuesDeRevisar(selectedCodigoCliPedidos,primerEspecie,segundaEspecie,terceraEspecie,cuartaEspecie,quintaEspecie,sextaEspecie,septimaEspecie,octavaEspecie,novenaEspecie,decimaEspecie,fechaAgregarPedido){
+    function fn_AgregarPedidoClienteDespuesDeRevisar(selectedCodigoCliPedidos,primerEspecie,segundaEspecie,terceraEspecie,cuartaEspecie,quintaEspecie,sextaEspecie,septimaEspecie,octavaEspecie,novenaEspecie,decimaEspecie,decimaPrimeraEspecie,decimaSegundaEspecie,decimaTerceraEspecie,decimaCuartaEspecie,comentarioPedido,fechaAgregarPedido){
         $.ajax({
             url: '/fn_consulta_AgregarPedidoCliente',
             method: 'GET',
@@ -1073,6 +1227,11 @@ jQuery(function($) {
                 octavaEspecie: octavaEspecie,
                 novenaEspecie: novenaEspecie,
                 decimaEspecie: decimaEspecie,
+                decimaPrimeraEspecie: decimaPrimeraEspecie,
+                decimaSegundaEspecie: decimaSegundaEspecie,
+                decimaTerceraEspecie: decimaTerceraEspecie,
+                decimaCuartaEspecie: decimaCuartaEspecie,
+                comentarioPedido: comentarioPedido,
                 fechaAgregarPedido: fechaAgregarPedido,
             },
             success: function(response) {

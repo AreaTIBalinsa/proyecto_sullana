@@ -32,5 +32,10 @@ class ActualizarPreciosXPresentacion extends Model
         'decimaSextaEspecie',
         'decimaSeptimaEspecie',
         'decimaOctavaEspecie',
+        'decimaNovenaEspecie',
+        'vigesimaEspecie',
+        'vigesimaPrimeraEspecie',
+        'vigesimaSegundaEspecie',
+        'vigesimaTerceraEspecie',
     ];
 }
