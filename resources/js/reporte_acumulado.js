@@ -91,9 +91,19 @@ jQuery(function($) {
 
     function fn_TraerReporteAcumuladoDetalle(fecha) {
         $('#eskeleto').removeClass('hidden');
-        $('#eskeleto').addClass('absolute');
+        $('#eskeleto').addClass('sticky');
         $('#divReporteAcumuladoDetalleExcel').removeClass('overflow-auto');
         $('#divReporteAcumuladoDetalleExcel').addClass('overflow-hidden h-full');
+        $('#eskeletoUno').removeClass('hidden');
+        $('#eskeletoUno').addClass('sticky');
+        $('#divTotalesUno').removeClass('overflow-auto');
+        $('#divTotalesUno').addClass('overflow-hidden h-full max-h-[550px]');
+        $('#eskeletoDos').removeClass('hidden');
+        $('#eskeletoDos').addClass('sticky');
+        $('#divTotalesDos').removeClass('overflow-auto');
+        $('#divTotalesDos').addClass('overflow-hidden h-full max-h-[300px]');
+        let tbodyReporteAcumuladoExcel = $('#bodyReporteAcumuladoExcel');
+        tbodyReporteAcumuladoExcel.empty();
         $.ajax({
             url: '/fn_consulta_TraerReporteAcumuladoDetalle',
             method: 'GET',
@@ -761,16 +771,32 @@ jQuery(function($) {
             , venta17, venta18, totalSaldoAnteriorSubTotales, totalSaldoActualSubTotales, totalCobranzaSubTotales, totalNuevoSaldoSubTotales,
             totalPesoDescTotalFor,totalVentaDescTotalFor,totalPrecioVentaDescTotalFor, contadorTotalPrecioVentaDescTotal);
         tbodyReporteAcumuladoExcel.html(bodyReporteAcumuladoExcel);
-        $('#eskeleto').removeClass('absolute');
+        $('#eskeleto').removeClass('sticky');
         $('#eskeleto').addClass('hidden');
         $('#divReporteAcumuladoDetalleExcel').addClass('overflow-auto');
         $('#divReporteAcumuladoDetalleExcel').removeClass('overflow-hidden h-full');
+
+        $('#eskeletoUno').removeClass('sticky');
+        $('#eskeletoUno').addClass('hidden');
+        $('#divTotalesUno').addClass('overflow-auto');
+        $('#divTotalesUno').removeClass('overflow-hidden h-full max-h-[550px]');
+
+        $('#eskeletoDos').removeClass('sticky');
+        $('#eskeletoDos').addClass('hidden');
+        $('#divTotalesDos').addClass('overflow-auto');
+        $('#divTotalesDos').removeClass('overflow-hidden h-full max-h-[300px]');
 
         let bodyReporteAcumuladoExcelTotales="";
         let tbodyReporteAcumuladoExcelTotales = $('#bodyReporteAcumuladoExcelTotales');
         tbodyReporteAcumuladoExcelTotales.empty();
         bodyReporteAcumuladoExcelTotales += construirFilaTotalesExcel();
         tbodyReporteAcumuladoExcelTotales.html(bodyReporteAcumuladoExcelTotales);
+
+        let bodyReporteAcumuladoExcelTotalesTrozado="";
+        let tbodyReporteAcumuladoExcelTotalesTrozado = $('#bodyReporteAcumuladoExcelTotalesTrozado');
+        tbodyReporteAcumuladoExcelTotalesTrozado.empty();
+        bodyReporteAcumuladoExcelTotalesTrozado += construirFilaTotalesExcelTrozado();
+        tbodyReporteAcumuladoExcelTotalesTrozado.html(bodyReporteAcumuladoExcelTotalesTrozado);
     }
 
     var cantidadTotalesPrimerEspecie = 0
@@ -844,9 +870,11 @@ jQuery(function($) {
 
     function construirFilaTotalesExcel()
     {
-        let cantidadTotalesEspecies = cantidadTotalesPrimerEspecie+cantidadTotalesSegundaEspecie+cantidadTotalesTerceraEspecie+cantidadTotalesCuartaEspecie+cantidadTotalesQuintaEspecie+cantidadTotalesSextaEspecie+cantidadTotalesSeptimaEspecie+cantidadTotalesOctavaEspecie+cantidadTotalesNovenaEspecie+cantidadTotalesDecimaEspecie+cantidadTotalesDecimaPrimeraEspecie+cantidadTotalesDecimaSegundaEspecie+cantidadTotalesDecimaTerceraEspecie+cantidadTotalesDecimaCuartaEspecie+cantidadTotalesDecimaQuintaEspecie+cantidadTotalesDecimaSextaEspecie+cantidadTotalesDecimaSeptimaEspecie
-        let pesoTotalesEspecies = pesoTotalesPrimerEspecie+pesoTotalesSegundaEspecie+pesoTotalesTerceraEspecie+pesoTotalesCuartaEspecie+pesoTotalesQuintaEspecie+pesoTotalesSextaEspecie+pesoTotalesSeptimaEspecie+pesoTotalesOctavaEspecie+pesoTotalesNovenaEspecie+pesoTotalesDecimaEspecie+pesoTotalesDecimaPrimeraEspecie+pesoTotalesDecimaSegundaEspecie+pesoTotalesDecimaTerceraEspecie+pesoTotalesDecimaCuartaEspecie+pesoTotalesDecimaQuintaEspecie+pesoTotalesDecimaSextaEspecie+pesoTotalesDecimaSeptimaEspecie
-        let precioTotalesEspecies = precioTotalesPrimerEspecie+precioTotalesSegundaEspecie+precioTotalesTerceraEspecie+precioTotalesCuartaEspecie+precioTotalesQuintaEspecie+precioTotalesSextaEspecie+precioTotalesSeptimaEspecie+precioTotalesOctavaEspecie+precioTotalesNovenaEspecie+precioTotalesDecimaEspecie+precioTotalesDecimaPrimeraEspecie+precioTotalesDecimaSegundaEspecie+precioTotalesDecimaTerceraEspecie+precioTotalesDecimaCuartaEspecie+precioTotalesDecimaQuintaEspecie+precioTotalesDecimaSextaEspecie+precioTotalesDecimaSeptimaEspecie
+        let cantidadTotalesEspecies = cantidadTotalesPrimerEspecie+cantidadTotalesSegundaEspecie+cantidadTotalesTerceraEspecie+cantidadTotalesCuartaEspecie+cantidadTotalesQuintaEspecie+cantidadTotalesSextaEspecie+cantidadTotalesSeptimaEspecie+cantidadTotalesOctavaEspecie+cantidadTotalesDecimaQuintaEspecie+cantidadTotalesDecimaSextaEspecie+cantidadTotalesDecimaSeptimaEspecie+cantidadTotalesDecimaOctavaEspecie+cantidadTotalesDecimaNovenaEspecie+cantidadTotalesVigesimaEspecie+cantidadTotalesVigesimaPrimeraEspecie+cantidadTotalesVigesimaSegundaEspecie
+
+        let pesoTotalesEspecies = pesoTotalesPrimerEspecie+pesoTotalesSegundaEspecie+pesoTotalesTerceraEspecie+pesoTotalesCuartaEspecie+pesoTotalesQuintaEspecie+pesoTotalesSextaEspecie+pesoTotalesSeptimaEspecie+pesoTotalesOctavaEspecie+pesoTotalesDecimaQuintaEspecie+pesoTotalesDecimaSextaEspecie+pesoTotalesDecimaSeptimaEspecie+pesoTotalesDecimaOctavaEspecie+pesoTotalesDecimaNovenaEspecie+pesoTotalesVigesimaEspecie+pesoTotalesVigesimaPrimeraEspecie+pesoTotalesVigesimaSegundaEspecie
+
+        let precioTotalesEspecies = precioTotalesPrimerEspecie+precioTotalesSegundaEspecie+precioTotalesTerceraEspecie+precioTotalesCuartaEspecie+precioTotalesQuintaEspecie+precioTotalesSextaEspecie+precioTotalesSeptimaEspecie+precioTotalesOctavaEspecie+precioTotalesDecimaQuintaEspecie+precioTotalesDecimaSextaEspecie+precioTotalesDecimaSeptimaEspecie+precioTotalesDecimaOctavaEspecie+precioTotalesDecimaNovenaEspecie+precioTotalesVigesimaEspecie+precioTotalesVigesimaPrimeraEspecie+precioTotalesVigesimaSegundaEspecie
         
         return `
         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900">
@@ -941,13 +969,28 @@ jQuery(function($) {
         </tr>
         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900">
             <td class="text-sm text-left border-2 py-1 px-2 whitespace-nowrap">MALTRATADO VIVO</td>
-            <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">${cantidadTotalesDecimaSegundaEspecie}</td>
-            <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">${(pesoTotalesDecimaSegundaEspecie).toFixed(2)} Kg.</td>
-            <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">S/. ${(precioTotalesDecimaSegundaEspecie).toFixed(2)}</td> 
+            <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">${cantidadTotalesVigesimaSegundaEspecie}</td>
+            <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">${(pesoTotalesVigesimaSegundaEspecie).toFixed(2)} Kg.</td>
+            <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">S/. ${(precioTotalesVigesimaSegundaEspecie).toFixed(2)}</td> 
         </tr>
-        <tr class="bg-blue-600 border-b dark:border-gray-700text-gray-200">
-            <td colspan="4" class="text-sm text-center border-2 font-bold">POLLO TROZADO</td>
+        <tr class="bg-blue-600 border-b dark:border-gray-700 text-gray-200">
+            <td class="text-sm text-left border-2 py-1 px-2 whitespace-nowrap font-bold">TOTAL :</td>
+            <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap font-semibold">${cantidadTotalesEspecies}</td>
+            <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap font-semibold">${(pesoTotalesEspecies).toFixed(2)} Kg.</td>
+            <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap font-semibold">S/. ${(precioTotalesEspecies).toFixed(2)}</td> 
         </tr>
+        `;
+    }
+
+    function construirFilaTotalesExcelTrozado()
+    {
+        let cantidadTotalesEspecies = cantidadTotalesNovenaEspecie+ cantidadTotalesDecimaEspecie+cantidadTotalesDecimaPrimeraEspecie+cantidadTotalesDecimaSegundaEspecie+cantidadTotalesDecimaTerceraEspecie+cantidadTotalesDecimaCuartaEspecie
+
+        let pesoTotalesEspecies = pesoTotalesNovenaEspecie+pesoTotalesDecimaEspecie+pesoTotalesDecimaPrimeraEspecie+pesoTotalesDecimaSegundaEspecie+pesoTotalesDecimaTerceraEspecie+pesoTotalesDecimaCuartaEspecie
+
+        let precioTotalesEspecies = precioTotalesNovenaEspecie+precioTotalesDecimaEspecie+precioTotalesDecimaPrimeraEspecie+precioTotalesDecimaSegundaEspecie+precioTotalesDecimaTerceraEspecie+precioTotalesDecimaCuartaEspecie
+        
+        return `
         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900">
             <td class="text-sm text-left border-2 py-1 px-2 whitespace-nowrap">PECHUGA</td>
             <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">${cantidadTotalesNovenaEspecie}</td>
@@ -1996,6 +2039,215 @@ jQuery(function($) {
         fila.removeClass('bg-white dark:bg-gray-800');
         fila.addClass('bg-gray-300 dark:bg-gray-600');
     });
+
+    fn_declararEspeciesCambiarPrecios();
+    function fn_declararEspeciesCambiarPrecios(){
+        $.ajax({
+            url: '/fn_consulta_DatosEspecie',
+            method: 'GET',
+            success: function(response) {
+                // Verificar si la respuesta es un arreglo de objetos
+                if (Array.isArray(response)) {
+                    
+                    // Obtener el select
+                    let selectPresentacion = $('#especiesCambioPrecioPesadas');
+                    
+                    // Vaciar el select actual, si es necesario
+                    selectPresentacion.empty();
+
+                    // Agregar la opción inicial "Seleccione tipo"
+                    selectPresentacion.append($('<option>', {
+                        value: '0',
+                        text: 'Seleccione presentación',
+                        disabled: true,
+                        selected: true
+                    }));
+
+                    // Iterar sobre los objetos y mostrar sus propiedades
+                    response.forEach(function(obj) {
+                        let option = $('<option>', {
+                            value: obj.idEspecie,
+                            text: obj.nombreEspecie
+                        });
+                        selectPresentacion.append(option);
+                    });
+
+                } else {
+                    console.log("La respuesta no es un arreglo de objetos.");
+                }
+            },
+            error: function(error) {
+                console.error("ERROR",error);
+            }
+        });
+    }
+
+    $('#idCambiarPrecioPesadaCliente').on('input', function () {
+        let inputCambiarPrecioCliente = $(this).val();
+        let contenedorClientes = $('#contenedorClientesCambiarPrecioPesada');
+        contenedorClientes.empty();
+
+        if (inputCambiarPrecioCliente.length > 0 && inputCambiarPrecioCliente != "") {
+            fn_TraerClientesCambiarPrecios(inputCambiarPrecioCliente);
+        } else {
+            contenedorClientes.empty();
+            contenedorClientes.addClass('hidden');
+        }
+    });
+
+    function fn_TraerClientesCambiarPrecios(inputAgregarPagoCliente) {
+
+        $.ajax({
+            url: '/fn_consulta_TraerClientesAgregarPagoCliente',
+            method: 'GET',
+            data: {
+                inputAgregarPagoCliente: inputAgregarPagoCliente,
+            },
+            success: function (response) {
+                // Limpia las sugerencias anteriores
+                let contenedorClientes = $('#contenedorClientesCambiarPrecioPesada')
+                contenedorClientes.empty();
+
+                // Verificar si la respuesta es un arreglo de objetos
+                if (Array.isArray(response) && response.length > 0) {
+                    // Iterar sobre los objetos y mostrar sus propiedades como sugerencias
+                    response.forEach(function (obj) {
+                        var suggestion = $('<div class="cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700 p-2 border-b border-gray-300/40">' + obj.nombreCompleto + '</div>');
+
+                        // Maneja el clic en la sugerencia
+                        suggestion.on("click", function () {
+                            // Rellena el campo de entrada con el nombre completo
+                            $('#idCambiarPrecioPesadaCliente').val(obj.nombreCompleto);
+
+                            // Actualiza las etiquetas ocultas con los datos seleccionados
+                            $('#selectedCodigoCliCambiarPrecioPesada').attr("value", obj.codigoCli);
+
+                            // Oculta las sugerencias
+                            contenedorClientes.addClass('hidden');
+                        });
+
+                        contenedorClientes.append(suggestion);
+                    });
+
+                    // Muestra las sugerencias
+                    contenedorClientes.removeClass('hidden');
+                } else {
+                    // Oculta las sugerencias si no hay resultados
+                    contenedorClientes.addClass('hidden');
+                }
+            },
+            error: function (error) {
+                console.error("ERROR", error);
+            }
+        });
+    };
+
+    $(document).on("click", "#btnCambiarPrecioPesadas", function() {      
+        $('#ModalCambiarPrecioPesada').addClass('flex');
+        $('#ModalCambiarPrecioPesada').removeClass('hidden');
+        $('#selectedCodigoCliCambiarPrecioPesada').attr('value',"");
+        $('#fechaCambiarPrecioPesada').val(fechaHoy);
+        $('#especiesCambioPrecioPesadas').val(0);
+        $('#nuevoPrecioCambiarPesadas').val("");
+        $('#idCambiarPrecioPesadaCliente').val("");
+        $("#nuevoPrecioCambiarPesadas").removeClass('border-red-500').addClass('dark:border-gray-600 border-gray-300');
+        $("#especiesCambioPrecioPesadas").removeClass('border-red-500').addClass('dark:border-gray-600 border-gray-300');
+        $("#idCambiarPrecioPesadaCliente").removeClass('border-red-500').addClass('dark:border-gray-600 border-gray-300');
+    });
+
+    $('.cerrarModalCambiarPrecioPesada, #ModalCambiarPrecioPesada .opacity-75').on('click', function (e) {
+        $('#ModalCambiarPrecioPesada').addClass('hidden');
+        $('#ModalCambiarPrecioPesada').removeClass('flex');
+    });
+
+    $('#btnCambiarPrecioPesada').on('click', function () {
+        let codigoCliente = $('#selectedCodigoCliCambiarPrecioPesada').attr('value');
+        let fechaCambioPrecio = $('#fechaCambiarPrecioPesada').val();
+        let especieCambioPrecio = $('#especiesCambioPrecioPesadas').val();
+        let nuevoPrecio = $('#nuevoPrecioCambiarPesadas').val();
+
+        let contadorErrores = 0
+
+        if (codigoCliente == 0 || codigoCliente == ""){
+            contadorErrores++;
+            $("#idCambiarPrecioPesadaCliente").removeClass('dark:border-gray-600 border-gray-300').addClass('border-red-500');
+        }else{
+            $("#idCambiarPrecioPesadaCliente").removeClass('border-red-500').addClass('dark:border-gray-600 border-gray-300');
+        }
+        if (especieCambioPrecio == 0 || especieCambioPrecio == "" || especieCambioPrecio === null){
+            contadorErrores++;
+            $("#especiesCambioPrecioPesadas").removeClass('dark:border-gray-600 border-gray-300').addClass('border-red-500');
+        }else{
+            $("#especiesCambioPrecioPesadas").removeClass('border-red-500').addClass('dark:border-gray-600 border-gray-300');
+        }
+        if(nuevoPrecio == ""){
+            contadorErrores++;
+            $("#nuevoPrecioCambiarPesadas").removeClass('dark:border-gray-600 border-gray-300').addClass('border-red-500');
+        }else{
+            $("#nuevoPrecioCambiarPesadas").removeClass('border-red-500').addClass('dark:border-gray-600 border-gray-300');
+        }
+
+        if (contadorErrores <= 0){
+            Swal.fire({
+                title: '¿Desea cambiar los registros?',
+                text: "¡Estas seguro de cambiar el precio de las pesadas!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                cancelButtonText: '¡No, cancelar!',
+                confirmButtonText: '¡Si, cambiar!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    fn_CambiarPrecioPesadas(codigoCliente, fechaCambioPrecio, especieCambioPrecio, nuevoPrecio);
+                }
+            })
+        }else{
+            alertify.notify('Debe rellenar todos los campos.', 'error', 3);
+        }
+
+    });
+
+    function fn_CambiarPrecioPesadas(codigoCliente, fechaCambioPrecio, especieCambioPrecio, nuevoPrecio){
+        $.ajax({
+            url: '/fn_consulta_CambiarPrecioPesadas',
+            method: 'GET',
+            data: {
+                codigoCliente: codigoCliente,
+                fechaCambioPrecio : fechaCambioPrecio,
+                especieCambioPrecio: especieCambioPrecio,
+                nuevoPrecio: nuevoPrecio,
+            },
+            success: function(response) {
+                if (response.success) {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Se cambio los precios correctamente.',
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+                    $('#selectedCodigoCliCambiarPrecioPesada').attr('value',"");
+                    $('#fechaCambiarPrecioPesada').val(fechaHoy);
+                    $('#especiesCambioPrecioPesadas').val(0);
+                    $('#nuevoPrecioCambiarPesadas').val("");
+                    $('#idCambiarPrecioPesadaCliente').val("");
+                    $('#ModalCambiarPrecioPesada').addClass('hidden');
+                    $('#ModalCambiarPrecioPesada').removeClass('flex');
+
+                    $('#btnBuscarCuentaDelCliente').trigger('click');
+                } 
+            },
+            error: function(error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Error: Ocurrio un error inesperado durante la operacion',
+                  })
+                console.error("ERROR",error);
+            }
+        });
+    }
 
 });
 

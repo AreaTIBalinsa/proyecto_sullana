@@ -85,7 +85,8 @@ class SeguimientoPedidosController extends Controller
             WHERE estadoPedido = 1 AND fechaRegistroPedido = ?
             GROUP BY idPedido, nombreCompleto, codigoCliPedidos, cantidadPrimerEspecie, cantidadSegundaEspecie, cantidadTerceraEspecie, 
             cantidadCuartaEspecie, cantidadQuintaEspecie, cantidadSextaEspecie, cantidadSeptimaEspecie, cantidadOctavaEspecie,
-            cantidadNovenaEspecie, cantidadDecimaEspecie
+            cantidadNovenaEspecie, cantidadDecimaEspecie, cantidadDecimaPrimeraEspecie, cantidadDecimaSegundaEspecie, cantidadDecimaTerceraEspecie,
+            cantidadDecimaCuartaEspecie
             ORDER BY nombreCompleto ASC;
             ',[$fechaBuscarPedidos]);
     

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\ReporteAcumulado\TraerDatosReporteAcumulado;
+use App\Models\ReporteAcumulado\ActualizarPrecioPesadas;
+use App\Models\ReporteAcumulado\ActualizarPrecioPesadas2;
 
 class ReporteAcumuladoController extends Controller
 {
@@ -362,6 +364,96 @@ class ReporteAcumuladoController extends Controller
         return $consulta;
     }
 
+    public function consulta_DecimaNovenaEspecie($fecha,$clienteCodigo) {
+        $consulta = DB::table('tb_pesadas')
+            ->selectRaw('fechaRegistroPes')
+            ->selectRaw('SUM(IF(idEspecie = 19 AND pesoNetoPes > 0.0, pesoNetoPes - pesoNetoJabas, 0)) AS totalPesoDecimaNovenaEspecie')
+            ->selectRaw('SUM(IF(idEspecie = 19 AND pesoNetoPes < 0.0, pesoNetoPes + pesoNetoJabas, 0)) AS totalPesoDescuentoDecimaNovenaEspecie')
+            ->selectRaw('SUM(IF(idEspecie = 19 AND cantidadPes < 0, cantidadPes, 0)) AS totalCantidadDescuentoDecimaNovenaEspecie')
+            ->selectRaw('SUM(IF(idEspecie = 19 AND pesoNetoPes > 0.0, (pesoNetoPes - pesoNetoJabas) * precioPes, 0)) AS totalVentaDecimaNovenaEspecie')
+            ->selectRaw('SUM(IF(idEspecie = 19 AND pesoNetoPes < 0.0, (pesoNetoPes + pesoNetoJabas) * precioPes, 0)) AS totalVentaDescuentoDecimaNovenaEspecie')
+            ->selectRaw('SUM(IF(idEspecie = 19 AND cantidadPes > 0, cantidadPes, 0)) AS totalCantidadDecimaNovenaEspecie')
+            ->where('estadoPes', 1)
+            ->where('codigoCli', $clienteCodigo)
+            ->where('fechaRegistroPes','=', $fecha)
+            ->groupBy('fechaRegistroPes')
+            ->get();
+    
+        return $consulta;
+    }
+
+    public function consulta_VigesimaEspecie($fecha,$clienteCodigo) {
+        $consulta = DB::table('tb_pesadas')
+            ->selectRaw('fechaRegistroPes')
+            ->selectRaw('SUM(IF(idEspecie = 20 AND pesoNetoPes > 0.0, pesoNetoPes - pesoNetoJabas, 0)) AS totalPesoVigesimaEspecie')
+            ->selectRaw('SUM(IF(idEspecie = 20 AND pesoNetoPes < 0.0, pesoNetoPes + pesoNetoJabas, 0)) AS totalPesoDescuentoVigesimaEspecie')
+            ->selectRaw('SUM(IF(idEspecie = 20 AND cantidadPes < 0, cantidadPes, 0)) AS totalCantidadDescuentoVigesimaEspecie')
+            ->selectRaw('SUM(IF(idEspecie = 20 AND pesoNetoPes > 0.0, (pesoNetoPes - pesoNetoJabas) * precioPes, 0)) AS totalVentaVigesimaEspecie')
+            ->selectRaw('SUM(IF(idEspecie = 20 AND pesoNetoPes < 0.0, (pesoNetoPes + pesoNetoJabas) * precioPes, 0)) AS totalVentaDescuentoVigesimaEspecie')
+            ->selectRaw('SUM(IF(idEspecie = 20 AND cantidadPes > 0, cantidadPes, 0)) AS totalCantidadVigesimaEspecie')
+            ->where('estadoPes', 1)
+            ->where('codigoCli', $clienteCodigo)
+            ->where('fechaRegistroPes','=', $fecha)
+            ->groupBy('fechaRegistroPes')
+            ->get();
+    
+        return $consulta;
+    }
+
+    public function consulta_VigesimaPrimeraEspecie($fecha,$clienteCodigo) {
+        $consulta = DB::table('tb_pesadas')
+            ->selectRaw('fechaRegistroPes')
+            ->selectRaw('SUM(IF(idEspecie = 21 AND pesoNetoPes > 0.0, pesoNetoPes - pesoNetoJabas, 0)) AS totalPesoVigesimaPrimeraEspecie')
+            ->selectRaw('SUM(IF(idEspecie = 21 AND pesoNetoPes < 0.0, pesoNetoPes + pesoNetoJabas, 0)) AS totalPesoDescuentoVigesimaPrimeraEspecie')
+            ->selectRaw('SUM(IF(idEspecie = 21 AND cantidadPes < 0, cantidadPes, 0)) AS totalCantidadDescuentoVigesimaPrimeraEspecie')
+            ->selectRaw('SUM(IF(idEspecie = 21 AND pesoNetoPes > 0.0, (pesoNetoPes - pesoNetoJabas) * precioPes, 0)) AS totalVentaVigesimaPrimeraEspecie')
+            ->selectRaw('SUM(IF(idEspecie = 21 AND pesoNetoPes < 0.0, (pesoNetoPes + pesoNetoJabas) * precioPes, 0)) AS totalVentaDescuentoVigesimaPrimeraEspecie')
+            ->selectRaw('SUM(IF(idEspecie = 21 AND cantidadPes > 0, cantidadPes, 0)) AS totalCantidadVigesimaPrimeraEspecie')
+            ->where('estadoPes', 1)
+            ->where('codigoCli', $clienteCodigo)
+            ->where('fechaRegistroPes','=', $fecha)
+            ->groupBy('fechaRegistroPes')
+            ->get();
+    
+        return $consulta;
+    }
+
+    public function consulta_VigesimaSegundaEspecie($fecha,$clienteCodigo) {
+        $consulta = DB::table('tb_pesadas')
+            ->selectRaw('fechaRegistroPes')
+            ->selectRaw('SUM(IF(idEspecie = 22 AND pesoNetoPes > 0.0, pesoNetoPes - pesoNetoJabas, 0)) AS totalPesoVigesimaSegundaEspecie')
+            ->selectRaw('SUM(IF(idEspecie = 22 AND pesoNetoPes < 0.0, pesoNetoPes + pesoNetoJabas, 0)) AS totalPesoDescuentoVigesimaSegundaEspecie')
+            ->selectRaw('SUM(IF(idEspecie = 22 AND cantidadPes < 0, cantidadPes, 0)) AS totalCantidadDescuentoVigesimaSegundaEspecie')
+            ->selectRaw('SUM(IF(idEspecie = 22 AND pesoNetoPes > 0.0, (pesoNetoPes - pesoNetoJabas) * precioPes, 0)) AS totalVentaVigesimaSegundaEspecie')
+            ->selectRaw('SUM(IF(idEspecie = 22 AND pesoNetoPes < 0.0, (pesoNetoPes + pesoNetoJabas) * precioPes, 0)) AS totalVentaDescuentoVigesimaSegundaEspecie')
+            ->selectRaw('SUM(IF(idEspecie = 22 AND cantidadPes > 0, cantidadPes, 0)) AS totalCantidadVigesimaSegundaEspecie')
+            ->where('estadoPes', 1)
+            ->where('codigoCli', $clienteCodigo)
+            ->where('fechaRegistroPes','=', $fecha)
+            ->groupBy('fechaRegistroPes')
+            ->get();
+    
+        return $consulta;
+    }
+
+    public function consulta_VigesimaTerceraEspecie($fecha,$clienteCodigo) {
+        $consulta = DB::table('tb_pesadas')
+            ->selectRaw('fechaRegistroPes')
+            ->selectRaw('SUM(IF(idEspecie = 23 AND pesoNetoPes > 0.0, pesoNetoPes - pesoNetoJabas, 0)) AS totalPesoVigesimaTerceraEspecie')
+            ->selectRaw('SUM(IF(idEspecie = 23 AND pesoNetoPes < 0.0, pesoNetoPes + pesoNetoJabas, 0)) AS totalPesoDescuentoVigesimaTerceraEspecie')
+            ->selectRaw('SUM(IF(idEspecie = 23 AND cantidadPes < 0, cantidadPes, 0)) AS totalCantidadDescuentoVigesimaTerceraEspecie')
+            ->selectRaw('SUM(IF(idEspecie = 23 AND pesoNetoPes > 0.0, (pesoNetoPes - pesoNetoJabas) * precioPes, 0)) AS totalVentaVigesimaTerceraEspecie')
+            ->selectRaw('SUM(IF(idEspecie = 23 AND pesoNetoPes < 0.0, (pesoNetoPes + pesoNetoJabas) * precioPes, 0)) AS totalVentaDescuentoVigesimaTerceraEspecie')
+            ->selectRaw('SUM(IF(idEspecie = 23 AND cantidadPes > 0, cantidadPes, 0)) AS totalCantidadVigesimaTerceraEspecie')
+            ->where('estadoPes', 1)
+            ->where('codigoCli', $clienteCodigo)
+            ->where('fechaRegistroPes','=', $fecha)
+            ->groupBy('fechaRegistroPes')
+            ->get();
+    
+        return $consulta;
+    }
+
     // Termina
 
     /* ================================================================== */
@@ -687,6 +779,96 @@ class ReporteAcumuladoController extends Controller
         return $consulta;
     }
 
+    public function consulta_DecimaNovenaEspecie2($fecha,$clienteCodigo) {
+        $consulta = DB::table('tb_pesadas2')
+            ->selectRaw('fechaRegistroPes')
+            ->selectRaw('SUM(IF(idEspecie = 19 AND pesoNetoPes > 0.0, pesoNetoPes - pesoNetoJabas, 0)) AS totalPesoDecimaNovenaEspecie2')
+            ->selectRaw('SUM(IF(idEspecie = 19 AND pesoNetoPes < 0.0, pesoNetoPes + pesoNetoJabas, 0)) AS totalPesoDescuentoDecimaNovenaEspecie2')
+            ->selectRaw('SUM(IF(idEspecie = 19 AND cantidadPes < 0, cantidadPes, 0)) AS totalCantidadDescuentoDecimaNovenaEspecie2')
+            ->selectRaw('SUM(IF(idEspecie = 19 AND pesoNetoPes > 0.0, (pesoNetoPes - pesoNetoJabas) * precioPes, 0)) AS totalVentaDecimaNovenaEspecie2')
+            ->selectRaw('SUM(IF(idEspecie = 19 AND pesoNetoPes < 0.0, (pesoNetoPes + pesoNetoJabas) * precioPes, 0)) AS totalVentaDescuentoDecimaNovenaEspecie2')
+            ->selectRaw('SUM(IF(idEspecie = 19 AND cantidadPes > 0, cantidadPes, 0)) AS totalCantidadDecimaNovenaEspecie2')
+            ->where('estadoPes', 1)
+            ->where('codigoCli', $clienteCodigo)
+            ->where('fechaRegistroPes','=', $fecha)
+            ->groupBy('fechaRegistroPes')
+            ->get();
+    
+        return $consulta;
+    }
+
+    public function consulta_VigesimaEspecie2($fecha,$clienteCodigo) {
+        $consulta = DB::table('tb_pesadas2')
+            ->selectRaw('fechaRegistroPes')
+            ->selectRaw('SUM(IF(idEspecie = 20 AND pesoNetoPes > 0.0, pesoNetoPes - pesoNetoJabas, 0)) AS totalPesoVigesimaEspecie2')
+            ->selectRaw('SUM(IF(idEspecie = 20 AND pesoNetoPes < 0.0, pesoNetoPes + pesoNetoJabas, 0)) AS totalPesoDescuentoVigesimaEspecie2')
+            ->selectRaw('SUM(IF(idEspecie = 20 AND cantidadPes < 0, cantidadPes, 0)) AS totalCantidadDescuentoVigesimaEspecie2')
+            ->selectRaw('SUM(IF(idEspecie = 20 AND pesoNetoPes > 0.0, (pesoNetoPes - pesoNetoJabas) * precioPes, 0)) AS totalVentaVigesimaEspecie2')
+            ->selectRaw('SUM(IF(idEspecie = 20 AND pesoNetoPes < 0.0, (pesoNetoPes + pesoNetoJabas) * precioPes, 0)) AS totalVentaDescuentoVigesimaEspecie2')
+            ->selectRaw('SUM(IF(idEspecie = 20 AND cantidadPes > 0, cantidadPes, 0)) AS totalCantidadVigesimaEspecie2')
+            ->where('estadoPes', 1)
+            ->where('codigoCli', $clienteCodigo)
+            ->where('fechaRegistroPes','=', $fecha)
+            ->groupBy('fechaRegistroPes')
+            ->get();
+    
+        return $consulta;
+    }
+
+    public function consulta_VigesimaPrimeraEspecie2($fecha,$clienteCodigo) {
+        $consulta = DB::table('tb_pesadas2')
+            ->selectRaw('fechaRegistroPes')
+            ->selectRaw('SUM(IF(idEspecie = 21 AND pesoNetoPes > 0.0, pesoNetoPes - pesoNetoJabas, 0)) AS totalPesoVigesimaPrimeraEspecie2')
+            ->selectRaw('SUM(IF(idEspecie = 21 AND pesoNetoPes < 0.0, pesoNetoPes + pesoNetoJabas, 0)) AS totalPesoDescuentoVigesimaPrimeraEspecie2')
+            ->selectRaw('SUM(IF(idEspecie = 21 AND cantidadPes < 0, cantidadPes, 0)) AS totalCantidadDescuentoVigesimaPrimeraEspecie2')
+            ->selectRaw('SUM(IF(idEspecie = 21 AND pesoNetoPes > 0.0, (pesoNetoPes - pesoNetoJabas) * precioPes, 0)) AS totalVentaVigesimaPrimeraEspecie2')
+            ->selectRaw('SUM(IF(idEspecie = 21 AND pesoNetoPes < 0.0, (pesoNetoPes + pesoNetoJabas) * precioPes, 0)) AS totalVentaDescuentoVigesimaPrimeraEspecie2')
+            ->selectRaw('SUM(IF(idEspecie = 21 AND cantidadPes > 0, cantidadPes, 0)) AS totalCantidadVigesimaPrimeraEspecie2')
+            ->where('estadoPes', 1)
+            ->where('codigoCli', $clienteCodigo)
+            ->where('fechaRegistroPes','=', $fecha)
+            ->groupBy('fechaRegistroPes')
+            ->get();
+    
+        return $consulta;
+    }
+
+    public function consulta_VigesimaSegundaEspecie2($fecha,$clienteCodigo) {
+        $consulta = DB::table('tb_pesadas2')
+            ->selectRaw('fechaRegistroPes')
+            ->selectRaw('SUM(IF(idEspecie = 22 AND pesoNetoPes > 0.0, pesoNetoPes - pesoNetoJabas, 0)) AS totalPesoVigesimaSegundaEspecie2')
+            ->selectRaw('SUM(IF(idEspecie = 22 AND pesoNetoPes < 0.0, pesoNetoPes + pesoNetoJabas, 0)) AS totalPesoDescuentoVigesimaSegundaEspecie2')
+            ->selectRaw('SUM(IF(idEspecie = 22 AND cantidadPes < 0, cantidadPes, 0)) AS totalCantidadDescuentoVigesimaSegundaEspecie2')
+            ->selectRaw('SUM(IF(idEspecie = 22 AND pesoNetoPes > 0.0, (pesoNetoPes - pesoNetoJabas) * precioPes, 0)) AS totalVentaVigesimaSegundaEspecie2')
+            ->selectRaw('SUM(IF(idEspecie = 22 AND pesoNetoPes < 0.0, (pesoNetoPes + pesoNetoJabas) * precioPes, 0)) AS totalVentaDescuentoVigesimaSegundaEspecie2')
+            ->selectRaw('SUM(IF(idEspecie = 22 AND cantidadPes > 0, cantidadPes, 0)) AS totalCantidadVigesimaSegundaEspecie2')
+            ->where('estadoPes', 1)
+            ->where('codigoCli', $clienteCodigo)
+            ->where('fechaRegistroPes','=', $fecha)
+            ->groupBy('fechaRegistroPes')
+            ->get();
+    
+        return $consulta;
+    }
+
+    public function consulta_VigesimaTerceraEspecie2($fecha,$clienteCodigo) {
+        $consulta = DB::table('tb_pesadas2')
+            ->selectRaw('fechaRegistroPes')
+            ->selectRaw('SUM(IF(idEspecie = 23 AND pesoNetoPes > 0.0, pesoNetoPes - pesoNetoJabas, 0)) AS totalPesoVigesimaTerceraEspecie2')
+            ->selectRaw('SUM(IF(idEspecie = 23 AND pesoNetoPes < 0.0, pesoNetoPes + pesoNetoJabas, 0)) AS totalPesoDescuentoVigesimaTerceraEspecie2')
+            ->selectRaw('SUM(IF(idEspecie = 23 AND cantidadPes < 0, cantidadPes, 0)) AS totalCantidadDescuentoVigesimaTerceraEspecie2')
+            ->selectRaw('SUM(IF(idEspecie = 23 AND pesoNetoPes > 0.0, (pesoNetoPes - pesoNetoJabas) * precioPes, 0)) AS totalVentaVigesimaTerceraEspecie2')
+            ->selectRaw('SUM(IF(idEspecie = 23 AND pesoNetoPes < 0.0, (pesoNetoPes + pesoNetoJabas) * precioPes, 0)) AS totalVentaDescuentoVigesimaTerceraEspecie2')
+            ->selectRaw('SUM(IF(idEspecie = 23 AND cantidadPes > 0, cantidadPes, 0)) AS totalCantidadVigesimaTerceraEspecie2')
+            ->where('estadoPes', 1)
+            ->where('codigoCli', $clienteCodigo)
+            ->where('fechaRegistroPes','=', $fecha)
+            ->groupBy('fechaRegistroPes')
+            ->get();
+    
+        return $consulta;
+    }
+
     /* ================================================================== */
     /* =============================Consulta============================= */
     /* ================================================================== */
@@ -789,6 +971,11 @@ class ReporteAcumuladoController extends Controller
                     'totalesDecimaSextaEspecie' => $this->consulta_DecimaSextaEspecie($fecha, $clienteCodigo),
                     'totalesDecimaSeptimaEspecie' => $this->consulta_DecimaSeptimaEspecie($fecha, $clienteCodigo),
                     'totalesDecimaOctavaEspecie' => $this->consulta_DecimaOctavaEspecie($fecha, $clienteCodigo),
+                    'totalesDecimaNovenaEspecie' => $this->consulta_DecimaNovenaEspecie($fecha, $clienteCodigo),
+                    'totalesVigesimaEspecie' => $this->consulta_VigesimaEspecie($fecha, $clienteCodigo),
+                    'totalesVigesimaPrimeraEspecie' => $this->consulta_VigesimaPrimeraEspecie($fecha, $clienteCodigo),
+                    'totalesVigesimaSegundaEspecie' => $this->consulta_VigesimaSegundaEspecie($fecha, $clienteCodigo),
+                    'totalesVigesimaTerceraEspecie' => $this->consulta_VigesimaTerceraEspecie($fecha, $clienteCodigo),
                     'ventaAnterior' => $this->consulta_VentaAnterior($fecha, $clienteCodigo),
 
                     'totalesPrimerEspecie2' => $this->consulta_PrimeraEspecie2($fecha, $clienteCodigo),
@@ -808,6 +995,11 @@ class ReporteAcumuladoController extends Controller
                     'totalesDecimaSextaEspecie2' => $this->consulta_DecimaSextaEspecie2($fecha, $clienteCodigo),
                     'totalesDecimaSeptimaEspecie2' => $this->consulta_DecimaSeptimaEspecie2($fecha, $clienteCodigo),
                     'totalesDecimaOctavaEspecie2' => $this->consulta_DecimaOctavaEspecie2($fecha, $clienteCodigo),
+                    'totalesDecimaNovenaEspecie2' => $this->consulta_DecimaNovenaEspecie2($fecha, $clienteCodigo),
+                    'totalesVigesimaEspecie2' => $this->consulta_VigesimaEspecie2($fecha, $clienteCodigo),
+                    'totalesVigesimaPrimeraEspecie2' => $this->consulta_VigesimaPrimeraEspecie2($fecha, $clienteCodigo),
+                    'totalesVigesimaSegundaEspecie2' => $this->consulta_VigesimaSegundaEspecie2($fecha, $clienteCodigo),
+                    'totalesVigesimaTerceraEspecie2' => $this->consulta_VigesimaTerceraEspecie2($fecha, $clienteCodigo),
                     'ventaAnterior2' => $this->consulta_VentaAnterior2($fecha, $clienteCodigo),
 
                     'totalDescuentos' => $this->consulta_Descuentos($fecha, $clienteCodigo),
@@ -826,8 +1018,37 @@ class ReporteAcumuladoController extends Controller
         // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
         return response()->json(['error' => 'Usuario no autenticado'], 401);
     }
-    
-    // Las otras funciones de consulta_PagoAnterior, consulta_Pagos, etc., también deben recibir $clienteCodigo y aplicarlo en sus consultas.
-        
+
+    public function consulta_CambiarPrecioPesadas(Request $request)
+    {
+        $codigoCliente = $request->input('codigoCliente');
+        $fechaCambioPrecio = $request->input('fechaCambioPrecio');
+        $especieCambioPrecio = $request->input('especieCambioPrecio');
+        $nuevoPrecio = $request->input('nuevoPrecio');
+
+        if (Auth::check()) {
+            $ActualizarPrecioCliente = new ActualizarPrecioPesadas;
+            $ActualizarPrecioCliente->where('codigoCli', $codigoCliente)
+                ->where('fechaRegistroPes', $fechaCambioPrecio)
+                ->where('idEspecie', $especieCambioPrecio)
+                ->update([
+                    'precioPes' => $nuevoPrecio,
+                    'estadoWebPes' => 0,
+                ]);
+
+            $ActualizarPrecioCliente2 = new ActualizarPrecioPesadas2;
+            $ActualizarPrecioCliente2->where('codigoCli', $codigoCliente)
+                ->where('fechaRegistroPes', $fechaCambioPrecio)
+                ->where('idEspecie', $especieCambioPrecio)
+                ->update([
+                    'precioPes' => $nuevoPrecio,
+                    'estadoWebPes' => 0,
+                ]);
+            
+            return response()->json(['success' => true], 200);
+        }
+        // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
+        return response()->json(['error' => 'Usuario no autenticado'], 401);
+    }
     
 }

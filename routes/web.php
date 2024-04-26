@@ -142,6 +142,7 @@ Route::get('/fn_consulta_RegistrarGuiaEditar', [ReportePorProveedorController::c
 
 Route::get('/fn_consulta_TraerReporteAcumulado',[ReporteAcumuladoController::class,'consulta_TraerReporteAcumulado']);
 Route::get('/fn_consulta_TraerReporteAcumuladoDetalle',[ReporteAcumuladoController::class,'consulta_TraerReporteAcumuladoDetalle']);
+Route::get('/fn_consulta_CambiarPrecioPesadas', [ReporteAcumuladoController::class,'consulta_CambiarPrecioPesadas']);
 
 Route::get('/fn_consulta_TraerClientesAgregarSaldo',[AgregarSaldoController::class,'consulta_TraerClientesAgregarSaldo']);
 Route::get('/fn_consulta_AgregarSaldo',[AgregarSaldoController::class,'consulta_AgregarSaldo']);

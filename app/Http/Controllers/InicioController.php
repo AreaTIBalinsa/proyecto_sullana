@@ -23,6 +23,7 @@ class InicioController extends Controller
         if (Auth::check()) {
             // Realiza la consulta a la base de datos
             $datos = DatosEspecie::select('idEspecie', 'nombreEspecie')
+                ->orderByRaw("FIELD(idEspecie,1,2,17,3,4,18,16,19,5,20,6,21,7,22,8,23,10,11,12,13,14,15)")
                 ->orderBy('idEspecie', 'asc')
                 ->where('idEspecie', '!=' , '9')
                 ->get();
