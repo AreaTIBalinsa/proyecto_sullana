@@ -108,6 +108,14 @@ class RegistrarClientesController extends Controller
             $registrarPreciosXPresentacion->decimaTerceraEspecie = 10.00;
             $registrarPreciosXPresentacion->decimaCuartaEspecie = 10.00;
             $registrarPreciosXPresentacion->decimaQuintaOtrasEspecies = 10.00;
+            $registrarPreciosXPresentacion->decimaSextaEspecie = 10.00;
+            $registrarPreciosXPresentacion->decimaSeptimaEspecie = 10.00;
+            $registrarPreciosXPresentacion->decimaOctavaEspecie = 10.00;
+            $registrarPreciosXPresentacion->decimaNovenaEspecie = 10.00;
+            $registrarPreciosXPresentacion->vigesimaEspecie = 10.00;
+            $registrarPreciosXPresentacion->vigesimaPrimeraEspecie = 10.00;
+            $registrarPreciosXPresentacion->vigesimaSegundaEspecie = 10.00;
+            $registrarPreciosXPresentacion->vigesimaTerceraEspecie = 10.00;
             $registrarPreciosXPresentacion->save();
             return response()->json(['success' => true], 200);
         }

@@ -28,5 +28,13 @@ class PrecioXPresentacion extends Model
         'decimaTerceraEspecie',
         'decimaCuartaEspecie',
         'decimaQuintaOtrasEspecies',
+        'decimaSextaEspecie',
+        'decimaSeptimaEspecie',
+        'decimaOctavaEspecie',
+        'decimaNovenaEspecie',
+        'vigesimaEspecie',
+        'vigesimaPrimeraEspecie',
+        'vigesimaSegundaEspecie',
+        'vigesimaTerceraEspecie',
     ];
 }
