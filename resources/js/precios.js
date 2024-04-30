@@ -581,6 +581,18 @@ jQuery(function($) {
                         let idFila = $(this).find('td:eq(0)').text();
                         if (idFila == idClienteActualizarPrecioXPresentacion) {
                             $(this).find('td:eq(' + (parseInt(numeroEspeciePrecioXPresentacion)+1) + ')').text(parseFloat(valorActualizarPrecioXPresentacion).toFixed(2));
+                            if (parseInt(numeroEspeciePrecioXPresentacion)+1 == 3){
+                                $(this).find('td:eq(17)').text(parseFloat(valorActualizarPrecioXPresentacion).toFixed(2));
+                            }
+                            if (parseInt(numeroEspeciePrecioXPresentacion)+1 == 5){
+                                $(this).find('td:eq(18)').text(parseFloat(valorActualizarPrecioXPresentacion).toFixed(2));
+                            }
+                            if (parseInt(numeroEspeciePrecioXPresentacion)+1 == 17){
+                                $(this).find('td:eq(3)').text(parseFloat(valorActualizarPrecioXPresentacion).toFixed(2));
+                            }
+                            if (parseInt(numeroEspeciePrecioXPresentacion)+1 == 18){
+                                $(this).find('td:eq(5)').text(parseFloat(valorActualizarPrecioXPresentacion).toFixed(2));
+                            }
                             return false;
                         }
                     });                    

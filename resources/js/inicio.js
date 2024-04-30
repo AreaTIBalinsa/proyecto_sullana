@@ -93,6 +93,7 @@ jQuery(function($) {
                 let cantidadSextaEspecie = 0
                 let cantidadSeptimaEspecie = 0
                 let cantidadOctavaEspecie = 0
+                let cantidadNovenaEspecie = 0
                 let cantidadDecimaEspecie = 0
                 let cantidadDecimaPrimeraEspecie = 0
                 let cantidadDecimaSegundaEspecie = 0
@@ -219,6 +220,8 @@ jQuery(function($) {
                             }else{
                                 pesoTotalOctavaEspecie += pesoNetoPes + pesoNetoJabas
                             }
+                        }else if (idEspecie == 9) {
+                            cantidadNovenaEspecie += cantidadPes
                         }else if (idEspecie == 10) {
                             cantidadDecimaEspecie += cantidadPes
                             if(pesoNetoPes>pesoNetoJabas){
@@ -325,7 +328,7 @@ jQuery(function($) {
                     cantidadCuartaEspecie + cantidadQuintaEspecie + cantidadSextaEspecie + cantidadSeptimaEspecie + cantidadOctavaEspecie +
                     cantidadDecimaEspecie + cantidadDecimaPrimeraEspecie + cantidadDecimaSegundaEspecie + cantidadDecimaTerceraEspecie +
                     cantidadDecimaCuartaEspecie + cantidadDecimaQuintaEspecie + cantidadDecimaSextaEspecie + cantidadDecimaSeptimaEspecie +
-                    cantidadDecimaOctavaEspecie + cantidadDecimaNovenaEspecie + cantidadVigesimaEspecie + cantidadVigesimaPrimeraEspecie + cantidadVigesimaSegundaEspecie + cantidadVigesimaTerceraEspecie;
+                    cantidadDecimaOctavaEspecie + cantidadDecimaNovenaEspecie + cantidadVigesimaEspecie + cantidadVigesimaPrimeraEspecie + cantidadVigesimaSegundaEspecie + cantidadVigesimaTerceraEspecie + cantidadNovenaEspecie;
                     pesoTotalesEspecie = pesoTotalPrimerEspecie + pesoTotalSegundaEspecie + pesoTotalTerceraEspecie + pesoTotalCuartaEspecie +
                     pesoTotalQuintaEspecie + pesoTotalSextaEspecie + pesoTotalSeptimaEspecie + pesoTotalOctavaEspecie + pesoTotalDecimaEspecie +
                     pesoTotalDecimaPrimeraEspecie + pesoTotalDecimaSegundaEspecie + pesoTotalDecimaTerceraEspecie + pesoTotalDecimaCuartaEspecie +
@@ -350,7 +353,7 @@ jQuery(function($) {
                     pesoTotalGallinaChica = pesoTotalSextaEspecie + pesoTotalVigesimaPrimeraEspecie
 
                     cantidadTotalPolloTrozado = cantidadDecimaEspecie + cantidadDecimaPrimeraEspecie + cantidadDecimaSegundaEspecie + cantidadDecimaTerceraEspecie + 
-                    cantidadDecimaCuartaEspecie + cantidadDecimaQuintaEspecie
+                    cantidadDecimaCuartaEspecie + cantidadDecimaQuintaEspecie + cantidadNovenaEspecie
                     pesoTotalPolloTrozado = pesoTotalDecimaEspecie + pesoTotalDecimaPrimeraEspecie + pesoTotalDecimaSegundaEspecie + pesoTotalDecimaTerceraEspecie + 
                     pesoTotalDecimaCuartaEspecie + pesoTotalDecimaQuintaEspecie
 

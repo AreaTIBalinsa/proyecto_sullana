@@ -203,6 +203,33 @@ jQuery(function($) {
                         totalPesoDescuentoDecimaOctavaEspecie: parseFloat(item.totalesDecimaOctavaEspecie[0]?.totalPesoDescuentoDecimaOctavaEspecie || 0),
                         totalVentaDecimaOctavaEspecie: parseFloat(item.totalesDecimaOctavaEspecie[0]?.totalVentaDecimaOctavaEspecie || 0),
                         totalCantidadDecimaOctavaEspecie: parseInt(item.totalesDecimaOctavaEspecie[0]?.totalCantidadDecimaOctavaEspecie || 0),
+
+                        totalPesoDecimaNovenaEspecie: parseFloat(item.totalesDecimaNovenaEspecie[0]?.totalPesoDecimaNovenaEspecie || 0),
+                        totalPesoDescuentoDecimaNovenaEspecie: parseFloat(item.totalesDecimaNovenaEspecie[0]?.totalPesoDescuentoDecimaNovenaEspecie || 0),
+                        totalVentaDecimaNovenaEspecie: parseFloat(item.totalesDecimaNovenaEspecie[0]?.totalVentaDecimaNovenaEspecie || 0),
+                        totalCantidadDecimaNovenaEspecie: parseInt(item.totalesDecimaNovenaEspecie[0]?.totalCantidadDecimaNovenaEspecie || 0),
+
+                        totalPesoVigesimaEspecie: parseFloat(item.totalesVigesimaEspecie[0]?.totalPesoVigesimaEspecie || 0),
+                        totalPesoDescuentoVigesimaEspecie: parseFloat(item.totalesVigesimaEspecie[0]?.totalPesoDescuentoVigesimaEspecie || 0),
+                        totalVentaVigesimaEspecie: parseFloat(item.totalesVigesimaEspecie[0]?.totalVentaVigesimaEspecie || 0),
+                        totalCantidadVigesimaEspecie: parseInt(item.totalesVigesimaEspecie[0]?.totalCantidadVigesimaEspecie || 0),
+
+                        totalPesoVigesimaPrimeraEspecie: parseFloat(item.totalesVigesimaPrimeraEspecie[0]?.totalPesoVigesimaPrimeraEspecie || 0),
+                        totalPesoDescuentoVigesimaPrimeraEspecie: parseFloat(item.totalesVigesimaPrimeraEspecie[0]?.totalPesoDescuentoVigesimaPrimeraEspecie || 0),
+                        totalVentaVigesimaPrimeraEspecie: parseFloat(item.totalesVigesimaPrimeraEspecie[0]?.totalVentaVigesimaPrimeraEspecie || 0),
+                        totalCantidadVigesimaPrimeraEspecie: parseInt(item.totalesVigesimaPrimeraEspecie[0]?.totalCantidadVigesimaPrimeraEspecie || 0),
+
+                        totalPesoVigesimaSegundaEspecie: parseFloat(item.totalesVigesimaSegundaEspecie[0]?.totalPesoVigesimaSegundaEspecie || 0),
+                        totalPesoDescuentoVigesimaSegundaEspecie: parseFloat(item.totalesVigesimaSegundaEspecie[0]?.totalPesoDescuentoVigesimaSegundaEspecie || 0),
+                        totalVentaVigesimaSegundaEspecie: parseFloat(item.totalesVigesimaSegundaEspecie[0]?.totalVentaVigesimaSegundaEspecie || 0),
+                        totalCantidadVigesimaSegundaEspecie: parseInt(item.totalesVigesimaSegundaEspecie[0]?.totalCantidadVigesimaSegundaEspecie || 0),
+
+                        totalPesoVigesimaTerceraEspecie: parseFloat(item.totalesVigesimaTerceraEspecie[0]?.totalPesoVigesimaTerceraEspecie || 0),
+                        totalPesoDescuentoVigesimaTerceraEspecie: parseFloat(item.totalesVigesimaTerceraEspecie[0]?.totalPesoDescuentoVigesimaTerceraEspecie || 0),
+                        totalVentaVigesimaTerceraEspecie: parseFloat(item.totalesVigesimaTerceraEspecie[0]?.totalVentaVigesimaTerceraEspecie || 0),
+                        totalCantidadVigesimaTerceraEspecie: parseInt(item.totalesVigesimaTerceraEspecie[0]?.totalCantidadVigesimaTerceraEspecie || 0),
+
+                        totalCantidadNovenaEspecie: parseInt(item.totalesNovenaEspecie[0]?.totalCantidadNovenaEspecie || 0),
                         
                         totalCantidadDescuentoPrimerEspecie: parseInt(item.totalesPrimerEspecie[0]?.totalCantidadDescuentoPrimerEspecie.replace(/[^0-9.-]+/g,"") || 0),
                         totalVentaDescuentoPrimerEspecie: parseFloat(item.totalesPrimerEspecie[0]?.totalVentaDescuentoPrimerEspecie.replace(/[^0-9.-]+/g,"") || 0),
@@ -254,6 +281,21 @@ jQuery(function($) {
                         
                         totalCantidadDescuentoDecimaOctavaEspecie: parseInt(item.totalesDecimaOctavaEspecie[0]?.totalCantidadDescuentoDecimaOctavaEspecie.replace(/[^0-9.-]+/g,"") || 0),
                         totalVentaDescuentoDecimaOctavaEspecie: parseFloat(item.totalesDecimaOctavaEspecie[0]?.totalVentaDescuentoDecimaOctavaEspecie.replace(/[^0-9.-]+/g,"") || 0),
+                        
+                        totalCantidadDescuentoDecimaNovenaEspecie: parseInt(item.totalesDecimaNovenaEspecie[0]?.totalCantidadDescuentoDecimaNovenaEspecie.replace(/[^0-9.-]+/g,"") || 0),
+                        totalVentaDescuentoDecimaNovenaEspecie: parseFloat(item.totalesDecimaNovenaEspecie[0]?.totalVentaDescuentoDecimaNovenaEspecie.replace(/[^0-9.-]+/g,"") || 0),
+                        
+                        totalCantidadDescuentoVigesimaEspecie: parseInt(item.totalesVigesimaEspecie[0]?.totalCantidadDescuentoVigesimaEspecie.replace(/[^0-9.-]+/g,"") || 0),
+                        totalVentaDescuentoVigesimaEspecie: parseFloat(item.totalesVigesimaEspecie[0]?.totalVentaDescuentoVigesimaEspecie.replace(/[^0-9.-]+/g,"") || 0),
+                        
+                        totalCantidadDescuentoVigesimaPrimeraEspecie: parseInt(item.totalesVigesimaPrimeraEspecie[0]?.totalCantidadDescuentoVigesimaPrimeraEspecie.replace(/[^0-9.-]+/g,"") || 0),
+                        totalVentaDescuentoVigesimaPrimeraEspecie: parseFloat(item.totalesVigesimaPrimeraEspecie[0]?.totalVentaDescuentoVigesimaPrimeraEspecie.replace(/[^0-9.-]+/g,"") || 0),
+                        
+                        totalCantidadDescuentoVigesimaSegundaEspecie: parseInt(item.totalesVigesimaSegundaEspecie[0]?.totalCantidadDescuentoVigesimaSegundaEspecie.replace(/[^0-9.-]+/g,"") || 0),
+                        totalVentaDescuentoVigesimaSegundaEspecie: parseFloat(item.totalesVigesimaSegundaEspecie[0]?.totalVentaDescuentoVigesimaSegundaEspecie.replace(/[^0-9.-]+/g,"") || 0),
+                        
+                        totalCantidadDescuentoVigesimaTerceraEspecie: parseInt(item.totalesVigesimaTerceraEspecie[0]?.totalCantidadDescuentoVigesimaTerceraEspecie.replace(/[^0-9.-]+/g,"") || 0),
+                        totalVentaDescuentoVigesimaTerceraEspecie: parseFloat(item.totalesVigesimaTerceraEspecie[0]?.totalVentaDescuentoVigesimaTerceraEspecie.replace(/[^0-9.-]+/g,"") || 0),
 
                         /* ================================================================== */
                         /* =============================Consulta============================= */
@@ -343,6 +385,33 @@ jQuery(function($) {
                         totalPesoDescuentoDecimaOctavaEspecie2: parseFloat(item.totalesDecimaOctavaEspecie2[0]?.totalPesoDescuentoDecimaOctavaEspecie2 || 0),
                         totalVentaDecimaOctavaEspecie2: parseFloat(item.totalesDecimaOctavaEspecie2[0]?.totalVentaDecimaOctavaEspecie2 || 0),
                         totalCantidadDecimaOctavaEspecie2: parseInt(item.totalesDecimaOctavaEspecie2[0]?.totalCantidadDecimaOctavaEspecie2 || 0),
+
+                        totalPesoDecimaNovenaEspecie2: parseFloat(item.totalesDecimaNovenaEspecie2[0]?.totalPesoDecimaNovenaEspecie2 || 0),
+                        totalPesoDescuentoDecimaNovenaEspecie2: parseFloat(item.totalesDecimaNovenaEspecie2[0]?.totalPesoDescuentoDecimaNovenaEspecie2 || 0),
+                        totalVentaDecimaNovenaEspecie2: parseFloat(item.totalesDecimaNovenaEspecie2[0]?.totalVentaDecimaNovenaEspecie2 || 0),
+                        totalCantidadDecimaNovenaEspecie2: parseInt(item.totalesDecimaNovenaEspecie2[0]?.totalCantidadDecimaNovenaEspecie2 || 0),
+
+                        totalPesoVigesimaEspecie2: parseFloat(item.totalesVigesimaEspecie2[0]?.totalPesoVigesimaEspecie2 || 0),
+                        totalPesoDescuentoVigesimaEspecie2: parseFloat(item.totalesVigesimaEspecie2[0]?.totalPesoDescuentoVigesimaEspecie2 || 0),
+                        totalVentaVigesimaEspecie2: parseFloat(item.totalesVigesimaEspecie2[0]?.totalVentaVigesimaEspecie2 || 0),
+                        totalCantidadVigesimaEspecie2: parseInt(item.totalesVigesimaEspecie2[0]?.totalCantidadVigesimaEspecie2 || 0),
+
+                        totalPesoVigesimaPrimeraEspecie2: parseFloat(item.totalesVigesimaPrimeraEspecie2[0]?.totalPesoVigesimaPrimeraEspecie2 || 0),
+                        totalPesoDescuentoVigesimaPrimeraEspecie2: parseFloat(item.totalesVigesimaPrimeraEspecie2[0]?.totalPesoDescuentoVigesimaPrimeraEspecie2 || 0),
+                        totalVentaVigesimaPrimeraEspecie2: parseFloat(item.totalesVigesimaPrimeraEspecie2[0]?.totalVentaVigesimaPrimeraEspecie2 || 0),
+                        totalCantidadVigesimaPrimeraEspecie2: parseInt(item.totalesVigesimaPrimeraEspecie2[0]?.totalCantidadVigesimaPrimeraEspecie2 || 0),
+
+                        totalPesoVigesimaSegundaEspecie2: parseFloat(item.totalesVigesimaSegundaEspecie2[0]?.totalPesoVigesimaSegundaEspecie2 || 0),
+                        totalPesoDescuentoVigesimaSegundaEspecie2: parseFloat(item.totalesVigesimaSegundaEspecie2[0]?.totalPesoDescuentoVigesimaSegundaEspecie2 || 0),
+                        totalVentaVigesimaSegundaEspecie2: parseFloat(item.totalesVigesimaSegundaEspecie2[0]?.totalVentaVigesimaSegundaEspecie2 || 0),
+                        totalCantidadVigesimaSegundaEspecie2: parseInt(item.totalesVigesimaSegundaEspecie2[0]?.totalCantidadVigesimaSegundaEspecie2 || 0),
+
+                        totalPesoVigesimaTerceraEspecie2: parseFloat(item.totalesVigesimaTerceraEspecie2[0]?.totalPesoVigesimaTerceraEspecie2 || 0),
+                        totalPesoDescuentoVigesimaTerceraEspecie2: parseFloat(item.totalesVigesimaTerceraEspecie2[0]?.totalPesoDescuentoVigesimaTerceraEspecie2 || 0),
+                        totalVentaVigesimaTerceraEspecie2: parseFloat(item.totalesVigesimaTerceraEspecie2[0]?.totalVentaVigesimaTerceraEspecie2 || 0),
+                        totalCantidadVigesimaTerceraEspecie2: parseInt(item.totalesVigesimaTerceraEspecie2[0]?.totalCantidadVigesimaTerceraEspecie2 || 0),
+
+                        totalCantidadNovenaEspecie2: parseInt(item.totalesNovenaEspecie2[0]?.totalCantidadNovenaEspecie2 || 0),
                         
                         totalCantidadDescuentoPrimerEspecie2: parseInt(item.totalesPrimerEspecie2[0]?.totalCantidadDescuentoPrimerEspecie2.replace(/[^0-9.-]+/g,"") || 0),
                         totalVentaDescuentoPrimerEspecie2: parseFloat(item.totalesPrimerEspecie2[0]?.totalVentaDescuentoPrimerEspecie2.replace(/[^0-9.-]+/g,"") || 0),
@@ -395,6 +464,20 @@ jQuery(function($) {
                         totalCantidadDescuentoDecimaOctavaEspecie2: parseInt(item.totalesDecimaOctavaEspecie2[0]?.totalCantidadDescuentoDecimaOctavaEspecie2.replace(/[^0-9.-]+/g,"") || 0),
                         totalVentaDescuentoDecimaOctavaEspecie2: parseFloat(item.totalesDecimaOctavaEspecie2[0]?.totalVentaDescuentoDecimaOctavaEspecie2.replace(/[^0-9.-]+/g,"") || 0),
 
+                        totalCantidadDescuentoDecimaNovenaEspecie2: parseInt(item.totalesDecimaNovenaEspecie2[0]?.totalCantidadDescuentoDecimaNovenaEspecie2.replace(/[^0-9.-]+/g,"") || 0),
+                        totalVentaDescuentoDecimaNovenaEspecie2: parseFloat(item.totalesDecimaNovenaEspecie2[0]?.totalVentaDescuentoDecimaNovenaEspecie2.replace(/[^0-9.-]+/g,"") || 0),
+                        
+                        totalCantidadDescuentoVigesimaEspecie2: parseInt(item.totalesVigesimaEspecie2[0]?.totalCantidadDescuentoVigesimaEspecie2.replace(/[^0-9.-]+/g,"") || 0),
+                        totalVentaDescuentoVigesimaEspecie2: parseFloat(item.totalesVigesimaEspecie2[0]?.totalVentaDescuentoVigesimaEspecie2.replace(/[^0-9.-]+/g,"") || 0),
+                        
+                        totalCantidadDescuentoVigesimaPrimeraEspecie2: parseInt(item.totalesVigesimaPrimeraEspecie2[0]?.totalCantidadDescuentoVigesimaPrimeraEspecie2.replace(/[^0-9.-]+/g,"") || 0),
+                        totalVentaDescuentoVigesimaPrimeraEspecie2: parseFloat(item.totalesVigesimaPrimeraEspecie2[0]?.totalVentaDescuentoVigesimaPrimeraEspecie2.replace(/[^0-9.-]+/g,"") || 0),
+                        
+                        totalCantidadDescuentoVigesimaSegundaEspecie2: parseInt(item.totalesVigesimaSegundaEspecie2[0]?.totalCantidadDescuentoVigesimaSegundaEspecie2.replace(/[^0-9.-]+/g,"") || 0),
+                        totalVentaDescuentoVigesimaSegundaEspecie2: parseFloat(item.totalesVigesimaSegundaEspecie2[0]?.totalVentaDescuentoVigesimaSegundaEspecie2.replace(/[^0-9.-]+/g,"") || 0),
+                        
+                        totalCantidadDescuentoVigesimaTerceraEspecie2: parseInt(item.totalesVigesimaTerceraEspecie2[0]?.totalCantidadDescuentoVigesimaTerceraEspecie2.replace(/[^0-9.-]+/g,"") || 0),
+                        totalVentaDescuentoVigesimaTerceraEspecie2: parseFloat(item.totalesVigesimaTerceraEspecie2[0]?.totalVentaDescuentoVigesimaTerceraEspecie2.replace(/[^0-9.-]+/g,"") || 0),
                         
                         /* ================================================================== */
                         /* ================================================================== */
@@ -430,7 +513,13 @@ jQuery(function($) {
                     "DecimaQuintaEspecie",
                     "DecimaSextaEspecie",
                     "DecimaSeptimaEspecie",
-                    "DecimaOctavaEspecie"
+                    "DecimaOctavaEspecie",
+                    "DecimaNovenaEspecie",
+                    "VigesimaEspecie",
+                    "VigesimaPrimeraEspecie",
+                    "VigesimaSegundaEspecie",
+                    "VigesimaTerceraEspecie",
+                    "NovenaEspecie"
                   ];
                   
                   const mainProperties = [
@@ -563,6 +652,12 @@ jQuery(function($) {
         let cantidad16 = 0;
         let cantidad17 = 0;
         let cantidad18 = 0;
+        let cantidad19 = 0;
+        let cantidad20 = 0;
+        let cantidad21 = 0;
+        let cantidad22 = 0;
+        let cantidad23 = 0;
+        let cantidad9 = 0;
 
         let peso1 = 0.00;
         let peso2 = 0.00;
@@ -581,6 +676,11 @@ jQuery(function($) {
         let peso16 = 0.00;
         let peso17 = 0.00;
         let peso18 = 0.00;
+        let peso19 = 0.00;
+        let peso20 = 0.00;
+        let peso21 = 0.00;
+        let peso22 = 0.00;
+        let peso23 = 0.00;
 
         let venta1 = 0.00;
         let venta2 = 0.00;
@@ -599,6 +699,11 @@ jQuery(function($) {
         let venta16 = 0.00;
         let venta17 = 0.00;
         let venta18 = 0.00;
+        let venta19 = 0.00;
+        let venta20 = 0.00;
+        let venta21 = 0.00;
+        let venta22 = 0.00;
+        let venta23 = 0.00;
 
         let totalSaldoAnteriorSubTotales = 0;
         let totalSaldoActualSubTotales = 0;
@@ -630,6 +735,11 @@ jQuery(function($) {
             peso16 += parseFloat(item.totalPesoDecimaSextaEspecie) + parseFloat(item.totalPesoDescuentoDecimaSextaEspecie);
             peso17 += parseFloat(item.totalPesoDecimaSeptimaEspecie) + parseFloat(item.totalPesoDescuentoDecimaSeptimaEspecie);
             peso18 += parseFloat(item.totalPesoDecimaOctavaEspecie) + parseFloat(item.totalPesoDescuentoDecimaOctavaEspecie);
+            peso19 += parseFloat(item.totalPesoDecimaNovenaEspecie) + parseFloat(item.totalPesoDescuentoDecimaNovenaEspecie);
+            peso20 += parseFloat(item.totalPesoVigesimaEspecie) + parseFloat(item.totalPesoDescuentoVigesimaEspecie);
+            peso21 += parseFloat(item.totalPesoVigesimaPrimeraEspecie) + parseFloat(item.totalPesoDescuentoVigesimaPrimeraEspecie);
+            peso22 += parseFloat(item.totalPesoVigesimaSegundaEspecie) + parseFloat(item.totalPesoDescuentoVigesimaSegundaEspecie);
+            peso23 += parseFloat(item.totalPesoVigesimaTerceraEspecie) + parseFloat(item.totalPesoDescuentoVigesimaTerceraEspecie);
 
             cantidad1 += parseInt(item.totalCantidadPrimerEspecie) + parseInt(item.totalCantidadDescuentoPrimerEspecie);
             cantidad2 += parseInt(item.totalCantidadSegundaEspecie) + parseInt(item.totalCantidadDescuentoSegundaEspecie);
@@ -648,6 +758,12 @@ jQuery(function($) {
             cantidad16 += parseInt(item.totalCantidadDecimaSextaEspecie) + parseInt(item.totalCantidadDescuentoDecimaSextaEspecie);
             cantidad17 += parseInt(item.totalCantidadDecimaSeptimaEspecie) + parseInt(item.totalCantidadDescuentoDecimaSeptimaEspecie);
             cantidad18 += parseInt(item.totalCantidadDecimaOctavaEspecie) + parseInt(item.totalCantidadDescuentoDecimaOctavaEspecie);
+            cantidad19 += parseInt(item.totalCantidadDecimaNovenaEspecie) + parseInt(item.totalCantidadDescuentoDecimaNovenaEspecie);
+            cantidad20 += parseInt(item.totalCantidadVigesimaEspecie) + parseInt(item.totalCantidadDescuentoVigesimaEspecie);
+            cantidad21 += parseInt(item.totalCantidadVigesimaPrimeraEspecie) + parseInt(item.totalCantidadDescuentoVigesimaPrimeraEspecie);
+            cantidad22 += parseInt(item.totalCantidadVigesimaSegundaEspecie) + parseInt(item.totalCantidadDescuentoVigesimaSegundaEspecie);
+            cantidad23 += parseInt(item.totalCantidadVigesimaTerceraEspecie) + parseInt(item.totalCantidadDescuentoVigesimaTerceraEspecie);
+            cantidad9 += parseInt(item.totalCantidadNovenaEspecie);
 
             venta1 += parseFloat(item.totalVentaPrimerEspecie) + parseFloat(item.totalVentaDescuentoPrimerEspecie);
             venta2 += parseFloat(item.totalVentaSegundaEspecie) + parseFloat(item.totalVentaDescuentoSegundaEspecie);
@@ -666,6 +782,11 @@ jQuery(function($) {
             venta16 += parseFloat(item.totalVentaDecimaSextaEspecie) + parseFloat(item.totalVentaDescuentoDecimaSextaEspecie);
             venta17 += parseFloat(item.totalVentaDecimaSeptimaEspecie) + parseFloat(item.totalVentaDescuentoDecimaSeptimaEspecie);
             venta18 += parseFloat(item.totalVentaDecimaOctavaEspecie) + parseFloat(item.totalVentaDescuentoDecimaOctavaEspecie);
+            venta19 += parseFloat(item.totalVentaDecimaNovenaEspecie) + parseFloat(item.totalVentaDescuentoDecimaNovenaEspecie);
+            venta20 += parseFloat(item.totalVentaVigesimaEspecie) + parseFloat(item.totalVentaDescuentoVigesimaEspecie);
+            venta21 += parseFloat(item.totalVentaVigesimaPrimeraEspecie) + parseFloat(item.totalVentaDescuentoVigesimaPrimeraEspecie);
+            venta22 += parseFloat(item.totalVentaVigesimaSegundaEspecie) + parseFloat(item.totalVentaDescuentoVigesimaSegundaEspecie);
+            venta23 += parseFloat(item.totalVentaVigesimaTerceraEspecie) + parseFloat(item.totalVentaDescuentoVigesimaTerceraEspecie);
 
             // ======================================================
 
@@ -686,6 +807,11 @@ jQuery(function($) {
             let totalVentaDecimaSextaEspecie = parseFloat(item.totalVentaDecimaSextaEspecie);
             let totalVentaDecimaSeptimaEspecie = parseFloat(item.totalVentaDecimaSeptimaEspecie);
             let totalVentaDecimaOctavaEspecie = parseFloat(item.totalVentaDecimaOctavaEspecie);
+            let totalVentaDecimaNovenaEspecie = parseFloat(item.totalVentaDecimaNovenaEspecie);
+            let totalVentaVigesimaEspecie = parseFloat(item.totalVentaVigesimaEspecie);
+            let totalVentaVigesimaPrimeraEspecie = parseFloat(item.totalVentaVigesimaPrimeraEspecie);
+            let totalVentaVigesimaSegundaEspecie = parseFloat(item.totalVentaVigesimaSegundaEspecie);
+            let totalVentaVigesimaTerceraEspecie = parseFloat(item.totalVentaVigesimaTerceraEspecie);
 
             let totalVentaDescuentoPrimerEspecie = parseFloat(item.totalVentaDescuentoPrimerEspecie);
             let totalVentaDescuentoSegundaEspecie = parseFloat(item.totalVentaDescuentoSegundaEspecie);
@@ -704,6 +830,11 @@ jQuery(function($) {
             let totalVentaDescuentoDecimaSextaEspecie = parseFloat(item.totalVentaDescuentoDecimaSextaEspecie);
             let totalVentaDescuentoDecimaSeptimaEspecie = parseFloat(item.totalVentaDescuentoDecimaSeptimaEspecie);
             let totalVentaDescuentoDecimaOctavaEspecie = parseFloat(item.totalVentaDescuentoDecimaOctavaEspecie);
+            let totalVentaDescuentoDecimaNovenaEspecie = parseFloat(item.totalVentaDescuentoDecimaNovenaEspecie);
+            let totalVentaDescuentoVigesimaEspecie = parseFloat(item.totalVentaDescuentoVigesimaEspecie);
+            let totalVentaDescuentoVigesimaPrimeraEspecie = parseFloat(item.totalVentaDescuentoVigesimaPrimeraEspecie);
+            let totalVentaDescuentoVigesimaSegundaEspecie = parseFloat(item.totalVentaDescuentoVigesimaSegundaEspecie);
+            let totalVentaDescuentoVigesimaTerceraEspecie = parseFloat(item.totalVentaDescuentoVigesimaTerceraEspecie);
 
             let ventaTotalPrimerEspecie = totalVentaPrimerEspecie + totalVentaDescuentoPrimerEspecie;
             let ventaTotalSegundaEspecie = totalVentaSegundaEspecie + totalVentaDescuentoSegundaEspecie;
@@ -722,8 +853,13 @@ jQuery(function($) {
             let ventaTotalDecimaSextaEspecie = totalVentaDecimaSextaEspecie + totalVentaDescuentoDecimaSextaEspecie;
             let ventaTotalDecimaSeptimaEspecie = totalVentaDecimaSeptimaEspecie + totalVentaDescuentoDecimaSeptimaEspecie;
             let ventaTotalDecimaOctavaEspecie = totalVentaDecimaOctavaEspecie + totalVentaDescuentoDecimaOctavaEspecie;
+            let ventaTotalDecimaNovenaEspecie = totalVentaDecimaNovenaEspecie + totalVentaDescuentoDecimaNovenaEspecie;
+            let ventaTotalVigesimaEspecie = totalVentaVigesimaEspecie + totalVentaDescuentoVigesimaEspecie;
+            let ventaTotalVigesimaPrimeraEspecie = totalVentaVigesimaPrimeraEspecie + totalVentaDescuentoVigesimaPrimeraEspecie;
+            let ventaTotalVigesimaSegundaEspecie = totalVentaVigesimaSegundaEspecie + totalVentaDescuentoVigesimaSegundaEspecie;
+            let ventaTotalVigesimaTerceraEspecie = totalVentaVigesimaTerceraEspecie + totalVentaDescuentoVigesimaTerceraEspecie;
 
-            let ventaTotal = ventaTotalPrimerEspecie + ventaTotalSegundaEspecie + ventaTotalTerceraEspecie + ventaTotalCuartaEspecie + ventaTotalQuintaEspecie + ventaTotalSextaEspecie + ventaTotalSeptimaEspecie + ventaTotalOctavaEspecie + ventaTotalDecimaSextaEspecie + ventaTotalDecimaSeptimaEspecie + ventaTotalDecimaOctavaEspecie + item.totalVentaDescuento;
+            let ventaTotal = ventaTotalPrimerEspecie + ventaTotalSegundaEspecie + ventaTotalTerceraEspecie + ventaTotalCuartaEspecie + ventaTotalQuintaEspecie + ventaTotalSextaEspecie + ventaTotalSeptimaEspecie + ventaTotalOctavaEspecie + ventaTotalDecimaSextaEspecie + ventaTotalDecimaSeptimaEspecie + ventaTotalDecimaOctavaEspecie + ventaTotalDecimaNovenaEspecie + ventaTotalVigesimaEspecie + ventaTotalVigesimaPrimeraEspecie + ventaTotalVigesimaSegundaEspecie + ventaTotalVigesimaTerceraEspecie + item.totalVentaDescuento;
 
             // + ventaTotalDecimaEspecie + ventaTotalDecimaPrimeraEspecie + ventaTotalDecimaSegundaEspecie + ventaTotalDecimaTerceraEspecie + ventaTotalDecimaCuartaEspecie + ventaTotalDecimaQuintaEspecie +
 
@@ -763,12 +899,12 @@ jQuery(function($) {
         //console.log("bodyReporteAcumuladoExcel",bodyReporteAcumuladoExcel);
         bodyReporteAcumuladoExcel += construirFilaTotalExcel(cantidad1, cantidad2, cantidad3, cantidad4, cantidad5, cantidad6
             , cantidad7, cantidad8, cantidad10, cantidad11, cantidad12, cantidad13
-            , cantidad14, cantidad15, cantidad16, cantidad17, cantidad18,
+            , cantidad14, cantidad15, cantidad16, cantidad17, cantidad18, cantidad19, cantidad20, cantidad21, cantidad22, cantidad23, cantidad9,
             peso1, peso2, peso3 , peso4, peso5, peso6, peso7, peso8, peso10
-            , peso11, peso12, peso13, peso14, peso15, peso16, peso17, peso18
+            , peso11, peso12, peso13, peso14, peso15, peso16, peso17, peso18, peso19, peso20, peso21, peso22, peso23
             , venta1, venta2, venta3, venta4, venta5, venta6, venta7, venta8
             , venta10, venta11, venta12, venta13, venta14, venta15, venta16
-            , venta17, venta18, totalSaldoAnteriorSubTotales, totalSaldoActualSubTotales, totalCobranzaSubTotales, totalNuevoSaldoSubTotales,
+            , venta17, venta18, venta19, venta20, venta21, venta22, venta23, totalSaldoAnteriorSubTotales, totalSaldoActualSubTotales, totalCobranzaSubTotales, totalNuevoSaldoSubTotales,
             totalPesoDescTotalFor,totalVentaDescTotalFor,totalPrecioVentaDescTotalFor, contadorTotalPrecioVentaDescTotal);
         tbodyReporteAcumuladoExcel.html(bodyReporteAcumuladoExcel);
         $('#eskeleto').removeClass('sticky');
@@ -821,6 +957,7 @@ jQuery(function($) {
     var cantidadTotalesVigesimaEspecie = 0
     var cantidadTotalesVigesimaPrimeraEspecie = 0
     var cantidadTotalesVigesimaSegundaEspecie = 0
+    var cantidadTotalNovenaEspecie = 0
 
     var pesoTotalesPrimerEspecie = 0
     var pesoTotalesSegundaEspecie = 0
@@ -870,11 +1007,14 @@ jQuery(function($) {
 
     function construirFilaTotalesExcel()
     {
-        let cantidadTotalesEspecies = cantidadTotalesPrimerEspecie+cantidadTotalesSegundaEspecie+cantidadTotalesTerceraEspecie+cantidadTotalesCuartaEspecie+cantidadTotalesQuintaEspecie+cantidadTotalesSextaEspecie+cantidadTotalesSeptimaEspecie+cantidadTotalesOctavaEspecie+cantidadTotalesDecimaQuintaEspecie+cantidadTotalesDecimaSextaEspecie+cantidadTotalesDecimaSeptimaEspecie+cantidadTotalesDecimaOctavaEspecie+cantidadTotalesDecimaNovenaEspecie+cantidadTotalesVigesimaEspecie+cantidadTotalesVigesimaPrimeraEspecie+cantidadTotalesVigesimaSegundaEspecie
+        let cantidadTotalesEspecies = cantidadTotalesPrimerEspecie+cantidadTotalesSegundaEspecie+cantidadTotalesTerceraEspecie+cantidadTotalesCuartaEspecie+cantidadTotalesQuintaEspecie+cantidadTotalesSextaEspecie+cantidadTotalesSeptimaEspecie+cantidadTotalesOctavaEspecie+cantidadTotalesDecimaQuintaEspecie+cantidadTotalesDecimaSextaEspecie+cantidadTotalesDecimaSeptimaEspecie+cantidadTotalesDecimaOctavaEspecie+cantidadTotalesDecimaNovenaEspecie+cantidadTotalesVigesimaEspecie+cantidadTotalesVigesimaPrimeraEspecie+cantidadTotalesVigesimaSegundaEspecie+cantidadTotalNovenaEspecie
 
-        let pesoTotalesEspecies = pesoTotalesPrimerEspecie+pesoTotalesSegundaEspecie+pesoTotalesTerceraEspecie+pesoTotalesCuartaEspecie+pesoTotalesQuintaEspecie+pesoTotalesSextaEspecie+pesoTotalesSeptimaEspecie+pesoTotalesOctavaEspecie+pesoTotalesDecimaQuintaEspecie+pesoTotalesDecimaSextaEspecie+pesoTotalesDecimaSeptimaEspecie+pesoTotalesDecimaOctavaEspecie+pesoTotalesDecimaNovenaEspecie+pesoTotalesVigesimaEspecie+pesoTotalesVigesimaPrimeraEspecie+pesoTotalesVigesimaSegundaEspecie
+        let pesoTotalesEspecies = pesoTotalesPrimerEspecie+pesoTotalesSegundaEspecie+pesoTotalesTerceraEspecie+pesoTotalesCuartaEspecie+pesoTotalesQuintaEspecie+pesoTotalesSextaEspecie+pesoTotalesSeptimaEspecie+pesoTotalesOctavaEspecie+pesoTotalesDecimaQuintaEspecie+pesoTotalesDecimaSextaEspecie+pesoTotalesDecimaSeptimaEspecie+pesoTotalesDecimaOctavaEspecie+pesoTotalesDecimaNovenaEspecie+pesoTotalesVigesimaEspecie+pesoTotalesVigesimaPrimeraEspecie+pesoTotalesVigesimaSegundaEspecie+pesoTotalesNovenaEspecie+pesoTotalesDecimaEspecie+pesoTotalesDecimaPrimeraEspecie+pesoTotalesDecimaSegundaEspecie+pesoTotalesDecimaTerceraEspecie+pesoTotalesDecimaCuartaEspecie
 
-        let precioTotalesEspecies = precioTotalesPrimerEspecie+precioTotalesSegundaEspecie+precioTotalesTerceraEspecie+precioTotalesCuartaEspecie+precioTotalesQuintaEspecie+precioTotalesSextaEspecie+precioTotalesSeptimaEspecie+precioTotalesOctavaEspecie+precioTotalesDecimaQuintaEspecie+precioTotalesDecimaSextaEspecie+precioTotalesDecimaSeptimaEspecie+precioTotalesDecimaOctavaEspecie+precioTotalesDecimaNovenaEspecie+precioTotalesVigesimaEspecie+precioTotalesVigesimaPrimeraEspecie+precioTotalesVigesimaSegundaEspecie
+        let precioTotalesEspecies = precioTotalesPrimerEspecie+precioTotalesSegundaEspecie+precioTotalesTerceraEspecie+precioTotalesCuartaEspecie+precioTotalesQuintaEspecie+precioTotalesSextaEspecie+precioTotalesSeptimaEspecie+precioTotalesOctavaEspecie+precioTotalesDecimaQuintaEspecie+precioTotalesDecimaSextaEspecie+precioTotalesDecimaSeptimaEspecie+precioTotalesDecimaOctavaEspecie+precioTotalesDecimaNovenaEspecie+precioTotalesVigesimaEspecie+precioTotalesVigesimaPrimeraEspecie+precioTotalesVigesimaSegundaEspecie+precioTotalesNovenaEspecie+precioTotalesDecimaEspecie+precioTotalesDecimaPrimeraEspecie+precioTotalesDecimaSegundaEspecie+precioTotalesDecimaTerceraEspecie+precioTotalesDecimaCuartaEspecie
+
+        let pesoTotalNovenaEspecie = pesoTotalesNovenaEspecie+pesoTotalesDecimaEspecie+pesoTotalesDecimaPrimeraEspecie+pesoTotalesDecimaSegundaEspecie+pesoTotalesDecimaTerceraEspecie+pesoTotalesDecimaCuartaEspecie
+        let precioTotalNovenaEspecie = precioTotalesNovenaEspecie+precioTotalesDecimaEspecie+precioTotalesDecimaPrimeraEspecie+precioTotalesDecimaSegundaEspecie+precioTotalesDecimaTerceraEspecie+precioTotalesDecimaCuartaEspecie
         
         return `
         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900">
@@ -973,6 +1113,12 @@ jQuery(function($) {
             <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">${(pesoTotalesVigesimaSegundaEspecie).toFixed(2)} Kg.</td>
             <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">S/. ${(precioTotalesVigesimaSegundaEspecie).toFixed(2)}</td> 
         </tr>
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900">
+            <td class="text-sm text-left border-2 py-1 px-2 whitespace-nowrap">TROZADO</td>
+            <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">${cantidadTotalNovenaEspecie}</td>
+            <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">${(pesoTotalNovenaEspecie).toFixed(2)} Kg.</td>
+            <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">S/. ${(precioTotalNovenaEspecie).toFixed(2)}</td> 
+        </tr>
         <tr class="bg-blue-600 border-b dark:border-gray-700 text-gray-200">
             <td class="text-sm text-left border-2 py-1 px-2 whitespace-nowrap font-bold">TOTAL :</td>
             <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap font-semibold">${cantidadTotalesEspecies}</td>
@@ -1038,14 +1184,14 @@ jQuery(function($) {
 
     function construirFilaTotalExcel(
         cantidad1, cantidad2, cantidad3, cantidad4, cantidad5, cantidad6
-        , cantidad7, cantidad8, cantidad10, cantidad11, cantidad12, cantidad13
-        , cantidad14, cantidad15, cantidad16, cantidad17, cantidad18,
-        peso1, peso2, peso3 , peso4, peso5, peso6, peso7, peso8, peso10
-        , peso11, peso12, peso13, peso14, peso15, peso16, peso17, peso18
-        , venta1, venta2, venta3, venta4, venta5, venta6, venta7, venta8
-        , venta10, venta11, venta12, venta13, venta14, venta15, venta16
-        , venta17, venta18, totalSaldoAnteriorSubTotales, totalSaldoActualSubTotales, totalCobranzaSubTotales, totalNuevoSaldoSubTotales,
-        totalPesoDescTotalFor,totalVentaDescTotalFor,totalPrecioVentaDescTotalFor, contadorTotalPrecioVentaDescTotal) {
+            , cantidad7, cantidad8, cantidad10, cantidad11, cantidad12, cantidad13
+            , cantidad14, cantidad15, cantidad16, cantidad17, cantidad18, cantidad19, cantidad20, cantidad21, cantidad22, cantidad23, cantidad9,
+            peso1, peso2, peso3 , peso4, peso5, peso6, peso7, peso8, peso10
+            , peso11, peso12, peso13, peso14, peso15, peso16, peso17, peso18, peso19, peso20, peso21, peso22, peso23
+            , venta1, venta2, venta3, venta4, venta5, venta6, venta7, venta8
+            , venta10, venta11, venta12, venta13, venta14, venta15, venta16
+            , venta17, venta18, venta19, venta20, venta21, venta22, venta23, totalSaldoAnteriorSubTotales, totalSaldoActualSubTotales, totalCobranzaSubTotales, totalNuevoSaldoSubTotales,
+            totalPesoDescTotalFor,totalVentaDescTotalFor,totalPrecioVentaDescTotalFor, contadorTotalPrecioVentaDescTotal) {
 
         let totalPrecioVentaDescTotalFinal = 0;
 
@@ -1053,9 +1199,9 @@ jQuery(function($) {
             totalPrecioVentaDescTotalFinal = totalPrecioVentaDescTotalFor / contadorTotalPrecioVentaDescTotal;
         }
 
-        let totalDeSubtotales = venta1 + venta2 + venta3 + venta4 + venta5 + venta6 + venta7 + venta8 + venta16 + venta17 + venta18;
-        let totalCantidadSubTotales = cantidad1 + cantidad2 + cantidad3 + cantidad4 + cantidad5 + cantidad6 + cantidad7 + cantidad8 + cantidad16 + cantidad17 + cantidad18;
-        let totalPesoSubTotales = peso1 + peso2 + peso3 + peso4 + peso5 + peso6 + peso7 + peso8 + peso16 + peso17 + peso18;
+        let totalDeSubtotales = venta1 + venta2 + venta3 + venta4 + venta5 + venta6 + venta7 + venta8 + venta10 + venta11 + venta12 + venta13 + venta14 + venta15 + venta16 + venta17 + venta18 + venta19 + venta20 + venta21 + venta22 + venta23;
+        let totalCantidadSubTotales = cantidad1 + cantidad2 + cantidad3 + cantidad4 + cantidad5 + cantidad6 + cantidad7 + cantidad8 + cantidad10 + cantidad11 + cantidad12 + cantidad13 + cantidad14 + cantidad15 + cantidad16 + cantidad17 + cantidad18 + cantidad19 + cantidad20 + cantidad21 + cantidad22 + cantidad23 + cantidad9;
+        let totalPesoSubTotales = peso1 + peso2 + peso3 + peso4 + peso5 + peso6 + peso7 + peso8 + peso10 + peso11 + peso12 + peso13 + peso14 + peso15 + peso16 + peso17 + peso18 + peso19 + peso20 + peso21 + peso22+ peso23;
         
         let precio1 = 0;
         if (venta1 != 0 && peso1 != 0){
@@ -1210,6 +1356,55 @@ jQuery(function($) {
             promedio18 = peso18 / cantidad18;
         }
 
+        let precio19 = 0;
+        if (venta19 != 0 && peso19 != 0){
+            precio19 = venta19 / peso19;
+        }
+        let promedio19 = 0;
+        if (peso19 != 0 && cantidad19 != 0){
+            promedio19 = peso19 / cantidad19;
+        }
+
+        let precio20 = 0;
+        if (venta20 != 0 && peso20 != 0){
+            precio20 = venta20 / peso20;
+        }
+        let promedio20 = 0;
+        if (peso20 != 0 && cantidad20 != 0){
+            promedio20 = peso20 / cantidad20;
+        }
+
+        let precio21 = 0;
+        if (venta21 != 0 && peso21 != 0){
+            precio21 = venta21 / peso21;
+        }
+        let promedio21 = 0;
+        if (peso21 != 0 && cantidad21 != 0){
+            promedio21 = peso21 / cantidad21;
+        }
+
+        let precio22 = 0;
+        if (venta22 != 0 && peso22 != 0){
+            precio22 = venta22 / peso22;
+        }
+        let promedio22 = 0;
+        if (peso22 != 0 && cantidad22 != 0){
+            promedio22 = peso22 / cantidad22;
+        }
+
+        let precio23 = 0;
+        if (venta23 != 0 && peso23 != 0){
+            precio23 = venta23 / peso23;
+        }
+        let promedio23 = 0;
+        if (peso23 != 0 && cantidad23 != 0){
+            promedio23 = peso23 / cantidad23;
+        }
+
+        let cantidad24 = cantidad10 + cantidad11 + cantidad12 + cantidad13 + cantidad14 + cantidad15 + cantidad9;
+        let peso24 = peso10 + peso11 + peso12 + peso13 + peso14 + peso15;
+        let venta24 = venta10 + venta11 + venta12 + venta13 + venta14 + venta15;
+
         cantidadTotalesPrimerEspecie = cantidad1
         cantidadTotalesSegundaEspecie = cantidad2
         cantidadTotalesTerceraEspecie = cantidad3
@@ -1227,11 +1422,12 @@ jQuery(function($) {
         cantidadTotalesDecimaQuintaEspecie = cantidad16
         cantidadTotalesDecimaSextaEspecie = cantidad17
         cantidadTotalesDecimaSeptimaEspecie = cantidad18
-        cantidadTotalesDecimaOctavaEspecie = 0
-        cantidadTotalesDecimaNovenaEspecie = 0
-        cantidadTotalesVigesimaEspecie = 0
-        cantidadTotalesVigesimaPrimeraEspecie = 0
-        cantidadTotalesVigesimaSegundaEspecie = 0
+        cantidadTotalesDecimaOctavaEspecie = cantidad19
+        cantidadTotalesDecimaNovenaEspecie = cantidad20
+        cantidadTotalesVigesimaEspecie = cantidad21
+        cantidadTotalesVigesimaPrimeraEspecie = cantidad22
+        cantidadTotalesVigesimaSegundaEspecie = cantidad23
+        cantidadTotalNovenaEspecie = cantidad9
 
         pesoTotalesPrimerEspecie = peso1
         pesoTotalesSegundaEspecie = peso2
@@ -1250,11 +1446,11 @@ jQuery(function($) {
         pesoTotalesDecimaQuintaEspecie = peso16
         pesoTotalesDecimaSextaEspecie = peso17
         pesoTotalesDecimaSeptimaEspecie = peso18
-        pesoTotalesDecimaOctavaEspecie = 0
-        pesoTotalesDecimaNovenaEspecie = 0
-        pesoTotalesVigesimaEspecie = 0
-        pesoTotalesVigesimaPrimeraEspecie = 0
-        pesoTotalesVigesimaSegundaEspecie = 0
+        pesoTotalesDecimaOctavaEspecie = peso19
+        pesoTotalesDecimaNovenaEspecie = peso20
+        pesoTotalesVigesimaEspecie = peso21
+        pesoTotalesVigesimaPrimeraEspecie = peso22
+        pesoTotalesVigesimaSegundaEspecie = peso23
 
         precioTotalesPrimerEspecie = venta1
         precioTotalesSegundaEspecie = venta2
@@ -1273,11 +1469,11 @@ jQuery(function($) {
         precioTotalesDecimaQuintaEspecie = venta16
         precioTotalesDecimaSextaEspecie = venta17
         precioTotalesDecimaSeptimaEspecie = venta18
-        precioTotalesDecimaOctavaEspecie = 0
-        precioTotalesDecimaNovenaEspecie = 0
-        precioTotalesVigesimaEspecie = 0
-        precioTotalesVigesimaPrimeraEspecie = 0
-        precioTotalesVigesimaSegundaEspecie = 0
+        precioTotalesDecimaOctavaEspecie = venta19
+        precioTotalesDecimaNovenaEspecie = venta20
+        precioTotalesVigesimaEspecie = venta21
+        precioTotalesVigesimaPrimeraEspecie = venta22
+        precioTotalesVigesimaSegundaEspecie = venta23
 
             return `
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900 sticky bottom-0">
@@ -1317,12 +1513,18 @@ jQuery(function($) {
                 <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${(precio18).toFixed(2)}</td>
                 <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${venta18.toFixed(2)}</td>
                 <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(promedio18).toFixed(2)}</td>
-
+                
                 <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${cantidad16}</td>
                 <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(peso16).toFixed(2)} Kg.</td>
                 <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${(precio16).toFixed(2)}</td>
                 <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${venta16.toFixed(2)}</td>
                 <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(promedio16).toFixed(2)}</td>
+
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${cantidad19}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(peso19).toFixed(2)} Kg.</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${(precio19).toFixed(2)}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${venta19.toFixed(2)}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(promedio19).toFixed(2)}</td>
 
                 <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${cantidad5}</td>
                 <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(peso5).toFixed(2)} Kg.</td>
@@ -1330,11 +1532,23 @@ jQuery(function($) {
                 <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${venta5.toFixed(2)}</td>
                 <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(promedio5).toFixed(2)}</td>
 
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${cantidad20}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(peso20).toFixed(2)} Kg.</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${(precio20).toFixed(2)}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${venta20.toFixed(2)}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(promedio20).toFixed(2)}</td>
+
                 <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${cantidad6}</td>
                 <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(peso6).toFixed(2)} Kg.</td>
                 <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${(precio6).toFixed(2)}</td>
                 <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${venta6.toFixed(2)}</td>
                 <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(promedio6).toFixed(2)}</td>
+
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${cantidad21}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(peso21).toFixed(2)} Kg.</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${(precio21).toFixed(2)}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${venta21.toFixed(2)}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(promedio21).toFixed(2)}</td>
 
                 <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${cantidad7}</td>
                 <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(peso7).toFixed(2)} Kg.</td>
@@ -1342,11 +1556,29 @@ jQuery(function($) {
                 <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${venta7.toFixed(2)}</td>
                 <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(promedio7).toFixed(2)}</td>
 
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${cantidad22}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(peso22).toFixed(2)} Kg.</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${(precio22).toFixed(2)}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${venta22.toFixed(2)}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(promedio22).toFixed(2)}</td>
+
                 <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${cantidad8}</td>
                 <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(peso8).toFixed(2)} Kg.</td>
                 <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${(precio8).toFixed(2)}</td>
                 <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${venta8.toFixed(2)}</td>
                 <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(promedio8).toFixed(2)}</td>
+
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${cantidad23}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(peso23).toFixed(2)} Kg.</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${(precio23).toFixed(2)}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${venta23.toFixed(2)}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(promedio23).toFixed(2)}</td>
+
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${cantidad24}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(peso24).toFixed(2)} Kg.</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/N</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${venta24.toFixed(2)}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/N</td>
 
                 <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(totalPesoDescTotalFor).toFixed(2)} Kg.</td>
                 <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVentaDescTotalFinal).toFixed(2)}</td>
@@ -1825,15 +2057,177 @@ jQuery(function($) {
 
         // ==============================================
 
+        let totalPeso19 = parseFloat(item.totalPesoDecimaNovenaEspecie);
+        let totalCantidad19 = parseInt(item.totalCantidadDecimaNovenaEspecie);
+        let totalVenta19 = parseFloat(item.totalVentaDecimaNovenaEspecie);
+        let totalPesoDescuentoDecimaNovenaEspecie19 = parseFloat(item.totalPesoDescuentoDecimaNovenaEspecie);
+        let totalCantidadDescuentoDecimaNovenaEspecie19 = parseInt(item.totalCantidadDescuentoDecimaNovenaEspecie);
+        let totalVentaDescuentoDecimaNovenaEspecie19 = parseFloat(item.totalVentaDescuentoDecimaNovenaEspecie);
+
+        totalPeso19 = totalPeso19 + totalPesoDescuentoDecimaNovenaEspecie19;
+        totalCantidad19 = totalCantidad19 + totalCantidadDescuentoDecimaNovenaEspecie19;
+        totalVenta19 = totalVenta19 + totalVentaDescuentoDecimaNovenaEspecie19;
+
+        let promedio19 = 0;
+        if (totalPeso19 != 0){
+            promedio19 = totalPeso19/totalCantidad19;
+        }else{
+            promedio19 = 0;
+        }
+
+        let totalPrecioVenta19 = 0;
+        if (totalVenta19 != 0){
+            totalPrecioVenta19 = totalVenta19/totalPeso19;
+        }else{
+            totalPrecioVenta19 = 0;
+        }
+
+        // ==============================================
+
+        let totalPeso20 = parseFloat(item.totalPesoVigesimaEspecie);
+        let totalCantidad20 = parseInt(item.totalCantidadVigesimaEspecie);
+        let totalVenta20 = parseFloat(item.totalVentaVigesimaEspecie);
+        let totalPesoDescuentoVigesimaEspecie20 = parseFloat(item.totalPesoDescuentoVigesimaEspecie);
+        let totalCantidadDescuentoVigesimaEspecie20 = parseInt(item.totalCantidadDescuentoVigesimaEspecie);
+        let totalVentaDescuentoVigesimaEspecie20 = parseFloat(item.totalVentaDescuentoVigesimaEspecie);
+
+        totalPeso20 = totalPeso20 + totalPesoDescuentoVigesimaEspecie20;
+        totalCantidad20 = totalCantidad20 + totalCantidadDescuentoVigesimaEspecie20;
+        totalVenta20 = totalVenta20 + totalVentaDescuentoVigesimaEspecie20;
+
+        let promedio20 = 0;
+        if (totalPeso20 != 0){
+            promedio20 = totalPeso20/totalCantidad20;
+        }else{
+            promedio20 = 0;
+        }
+
+        let totalPrecioVenta20 = 0;
+        if (totalVenta20 != 0){
+            totalPrecioVenta20 = totalVenta20/totalPeso20;
+        }else{
+            totalPrecioVenta20 = 0;
+        }
+
+        // ==============================================
+
+        let totalPeso21 = parseFloat(item.totalPesoVigesimaPrimeraEspecie);
+        let totalCantidad21 = parseInt(item.totalCantidadVigesimaPrimeraEspecie);
+        let totalVenta21 = parseFloat(item.totalVentaVigesimaPrimeraEspecie);
+        let totalPesoDescuentoVigesimaPrimeraEspecie21 = parseFloat(item.totalPesoDescuentoVigesimaPrimeraEspecie);
+        let totalCantidadDescuentoVigesimaPrimeraEspecie21 = parseInt(item.totalCantidadDescuentoVigesimaPrimeraEspecie);
+        let totalVentaDescuentoVigesimaPrimeraEspecie21 = parseFloat(item.totalVentaDescuentoVigesimaPrimeraEspecie);
+
+        totalPeso21 = totalPeso21 + totalPesoDescuentoVigesimaPrimeraEspecie21;
+        totalCantidad21 = totalCantidad21 + totalCantidadDescuentoVigesimaPrimeraEspecie21;
+        totalVenta21 = totalVenta21 + totalVentaDescuentoVigesimaPrimeraEspecie21;
+
+        let promedio21 = 0;
+        if (totalPeso21 != 0){
+            promedio21 = totalPeso21/totalCantidad21;
+        }else{
+            promedio21 = 0;
+        }
+
+        let totalPrecioVenta21 = 0;
+        if (totalVenta21 != 0){
+            totalPrecioVenta21 = totalVenta21/totalPeso21;
+        }else{
+            totalPrecioVenta21 = 0;
+        }
+
+        // ==============================================
+
+        let totalPeso22 = parseFloat(item.totalPesoVigesimaSegundaEspecie);
+        let totalCantidad22 = parseInt(item.totalCantidadVigesimaSegundaEspecie);
+        let totalVenta22 = parseFloat(item.totalVentaVigesimaSegundaEspecie);
+        let totalPesoDescuentoVigesimaSegundaEspecie22 = parseFloat(item.totalPesoDescuentoVigesimaSegundaEspecie);
+        let totalCantidadDescuentoVigesimaSegundaEspecie22 = parseInt(item.totalCantidadDescuentoVigesimaSegundaEspecie);
+        let totalVentaDescuentoVigesimaSegundaEspecie22 = parseFloat(item.totalVentaDescuentoVigesimaSegundaEspecie);
+
+        totalPeso22 = totalPeso22 + totalPesoDescuentoVigesimaSegundaEspecie22;
+        totalCantidad22 = totalCantidad22 + totalCantidadDescuentoVigesimaSegundaEspecie22;
+        totalVenta22 = totalVenta22 + totalVentaDescuentoVigesimaSegundaEspecie22;
+
+        let promedio22 = 0;
+        if (totalPeso22 != 0){
+            promedio22 = totalPeso22/totalCantidad22;
+        }else{
+            promedio22 = 0;
+        }
+
+        let totalPrecioVenta22 = 0;
+        if (totalVenta22 != 0){
+            totalPrecioVenta22 = totalVenta22/totalPeso22;
+        }else{
+            totalPrecioVenta22 = 0;
+        }
+
+        // ==============================================
+
+        let totalPeso23 = parseFloat(item.totalPesoVigesimaTerceraEspecie);
+        let totalCantidad23 = parseInt(item.totalCantidadVigesimaTerceraEspecie);
+        let totalVenta23 = parseFloat(item.totalVentaVigesimaTerceraEspecie);
+        let totalPesoDescuentoVigesimaTerceraEspecie23 = parseFloat(item.totalPesoDescuentoVigesimaTerceraEspecie);
+        let totalCantidadDescuentoVigesimaTerceraEspecie23 = parseInt(item.totalCantidadDescuentoVigesimaTerceraEspecie);
+        let totalVentaDescuentoVigesimaTerceraEspecie23 = parseFloat(item.totalVentaDescuentoVigesimaTerceraEspecie);
+
+        totalPeso23 = totalPeso23 + totalPesoDescuentoVigesimaTerceraEspecie23;
+        totalCantidad23 = totalCantidad23 + totalCantidadDescuentoVigesimaTerceraEspecie23;
+        totalVenta23 = totalVenta23 + totalVentaDescuentoVigesimaTerceraEspecie23;
+
+        let promedio23 = 0;
+        if (totalPeso23 != 0){
+            promedio23 = totalPeso23/totalCantidad23;
+        }else{
+            promedio23 = 0;
+        }
+
+        let totalPrecioVenta23 = 0;
+        if (totalVenta23 != 0){
+            totalPrecioVenta23 = totalVenta23/totalPeso23;
+        }else{
+            totalPrecioVenta23 = 0;
+        }
+
+        // ==============================================
+
+        let totalPeso24 = totalPeso10 + totalPeso11 + totalPeso12 + totalPeso13 + totalPeso14 + totalPeso15;
+        let totalCantidad24 = totalCantidad10 + totalCantidad11 + totalCantidad12 + totalCantidad13 + totalCantidad14 + totalCantidad15;
+        let totalVenta24 = totalVenta10 + totalVenta11 + totalVenta12 + totalVenta13 + totalVenta14 + totalVenta15;
+        let totalPesoDescuentoVigesimaCuartaEspecie24 = totalPesoDescuentoDecimaEspecie10 + totalPesoDescuentoDecimaPrimeraEspecie11 + totalPesoDescuentoDecimaSegundaEspecie12 + totalPesoDescuentoDecimaTerceraEspecie13 + totalPesoDescuentoDecimaCuartaEspecie14 + totalPesoDescuentoDecimaQuintaEspecie15;
+        let totalCantidadDescuentoVigesimaCuartaEspecie24 = totalCantidadDescuentoDecimaEspecie10 + totalCantidadDescuentoDecimaPrimeraEspecie11 + totalCantidadDescuentoDecimaSegundaEspecie12 + totalCantidadDescuentoDecimaTerceraEspecie13 + totalCantidadDescuentoDecimaCuartaEspecie14 + totalCantidadDescuentoDecimaQuintaEspecie15;
+        let totalVentaDescuentoVigesimaCuartaEspecie24 = totalVentaDescuentoDecimaEspecie10 + totalVentaDescuentoDecimaPrimeraEspecie11 + totalVentaDescuentoDecimaSegundaEspecie12 + totalVentaDescuentoDecimaTerceraEspecie13 + totalVentaDescuentoDecimaCuartaEspecie14 + totalVentaDescuentoDecimaQuintaEspecie15;
+
+        totalPeso24 = totalPeso24 + totalPesoDescuentoVigesimaCuartaEspecie24;
+        totalCantidad24 = totalCantidad24 + totalCantidadDescuentoVigesimaCuartaEspecie24;
+        totalVenta24 = totalVenta24 + totalVentaDescuentoVigesimaCuartaEspecie24;
+
+        let promedio24 = 0;
+        if (totalPeso24 != 0){
+            promedio24 = totalPeso24/totalCantidad24;
+        }else{
+            promedio24 = 0;
+        }
+
+        let totalPrecioVenta24 = 0;
+        if (totalVenta24 != 0){
+            totalPrecioVenta24 = totalVenta24/totalPeso24;
+        }else{
+            totalPrecioVenta24 = 0;
+        }
+
+        // ==============================================
+
         let totalDelTotalCantidad = 0;
         let totalDelTotalPeso = 0.00;
         let totalDelTotalVenta = 0.00;
 
-        totalDelTotalCantidad = totalCantidad1 +totalCantidad2 + totalCantidad3 + totalCantidad4 + totalCantidad5 + totalCantidad6 + totalCantidad7 + totalCantidad8 + totalCantidad16 + totalCantidad17 + totalCantidad18;
+        totalDelTotalCantidad = totalCantidad1 +totalCantidad2 + totalCantidad3 + totalCantidad4 + totalCantidad5 + totalCantidad6 + totalCantidad7 + totalCantidad8 + totalCantidad10 + totalCantidad11 + totalCantidad12 + totalCantidad13 + totalCantidad14 + totalCantidad15 + totalCantidad16 + totalCantidad17 + totalCantidad18 + totalCantidad19 + totalCantidad20 + totalCantidad21 + totalCantidad22 + totalCantidad23;
 
-        totalDelTotalPeso = totalPeso1 + totalPeso2 + totalPeso3 + totalPeso4 + totalPeso5 + totalPeso6 + totalPeso7 + totalPeso8 + totalPeso16 + totalPeso17 + totalPeso18;
+        totalDelTotalPeso = totalPeso1 + totalPeso2 + totalPeso3 + totalPeso4 + totalPeso5 + totalPeso6 + totalPeso7 + totalPeso8 + totalPeso10 + totalPeso11 + totalPeso12 + totalPeso13 + totalPeso14 + totalPeso15 + totalPeso16 + totalPeso17 + totalPeso18 + totalPeso18 + totalPeso19 + totalPeso20 + totalPeso21 + totalPeso22 + totalPeso23;
 
-        totalDelTotalVenta = totalVenta1 + totalVenta2 + totalVenta3 + totalVenta4 + totalVenta5 + totalVenta6 + totalVenta7 + totalVenta8 + totalVenta16 + totalVenta17 + totalVenta18;
+        totalDelTotalVenta = totalVenta1 + totalVenta2 + totalVenta3 + totalVenta4 + totalVenta5 + totalVenta6 + totalVenta7 + totalVenta8 + totalVenta10 + totalVenta11 + totalVenta12 + totalVenta13 + totalVenta14 + totalVenta15 + totalVenta16 + totalVenta17 + totalVenta18 + totalVenta19 + totalVenta20 + totalVenta21 + totalVenta22 + totalVenta23;
 
         // ==============================================
 
@@ -1854,6 +2248,11 @@ jQuery(function($) {
         let totalVentaDecimaSextaEspecie = parseFloat(item.totalVentaDecimaSextaEspecie);
         let totalVentaDecimaSeptimaEspecie = parseFloat(item.totalVentaDecimaSeptimaEspecie);
         let totalVentaDecimaOctavaEspecie = parseFloat(item.totalVentaDecimaOctavaEspecie);
+        let totalVentaDecimaNovenaEspecie = parseFloat(item.totalVentaDecimaNovenaEspecie);
+        let totalVentaVigesimaEspecie = parseFloat(item.totalVentaVigesimaEspecie);
+        let totalVentaVigesimaPrimeraEspecie = parseFloat(item.totalVentaVigesimaPrimeraEspecie);
+        let totalVentaVigesimaSegundaEspecie = parseFloat(item.totalVentaVigesimaSegundaEspecie);
+        let totalVentaVigesimaTerceraEspecie = parseFloat(item.totalVentaVigesimaTerceraEspecie);
 
         let totalVentaDescuentoPrimerEspecie = parseFloat(item.totalVentaDescuentoPrimerEspecie);
         let totalVentaDescuentoSegundaEspecie = parseFloat(item.totalVentaDescuentoSegundaEspecie);
@@ -1872,6 +2271,11 @@ jQuery(function($) {
         let totalVentaDescuentoDecimaSextaEspecie = parseFloat(item.totalVentaDescuentoDecimaSextaEspecie);
         let totalVentaDescuentoDecimaSeptimaEspecie = parseFloat(item.totalVentaDescuentoDecimaSeptimaEspecie);
         let totalVentaDescuentoDecimaOctavaEspecie = parseFloat(item.totalVentaDescuentoDecimaOctavaEspecie);
+        let totalVentaDescuentoDecimaNovenaEspecie = parseFloat(item.totalVentaDescuentoDecimaNovenaEspecie);
+        let totalVentaDescuentoVigesimaEspecie = parseFloat(item.totalVentaDescuentoVigesimaEspecie);
+        let totalVentaDescuentoVigesimaPrimeraEspecie = parseFloat(item.totalVentaDescuentoVigesimaPrimeraEspecie);
+        let totalVentaDescuentoVigesimaSegundaEspecie = parseFloat(item.totalVentaDescuentoVigesimaSegundaEspecie);
+        let totalVentaDescuentoVigesimaTerceraEspecie = parseFloat(item.totalVentaDescuentoVigesimaTerceraEspecie);
 
         let ventaTotalPrimerEspecie = totalVentaPrimerEspecie + totalVentaDescuentoPrimerEspecie;
         let ventaTotalSegundaEspecie = totalVentaSegundaEspecie + totalVentaDescuentoSegundaEspecie;
@@ -1890,8 +2294,13 @@ jQuery(function($) {
         let ventaTotalDecimaSextaEspecie = totalVentaDecimaSextaEspecie + totalVentaDescuentoDecimaSextaEspecie;
         let ventaTotalDecimaSeptimaEspecie = totalVentaDecimaSeptimaEspecie + totalVentaDescuentoDecimaSeptimaEspecie;
         let ventaTotalDecimaOctavaEspecie = totalVentaDecimaOctavaEspecie + totalVentaDescuentoDecimaOctavaEspecie;
+        let ventaTotalDecimaNovenaEspecie = totalVentaDecimaNovenaEspecie + totalVentaDescuentoDecimaNovenaEspecie;
+        let ventaTotalVigesimaEspecie = totalVentaVigesimaEspecie + totalVentaDescuentoVigesimaEspecie;
+        let ventaTotalVigesimaPrimeraEspecie = totalVentaVigesimaPrimeraEspecie + totalVentaDescuentoVigesimaPrimeraEspecie;
+        let ventaTotalVigesimaSegundaEspecie = totalVentaVigesimaSegundaEspecie + totalVentaDescuentoVigesimaSegundaEspecie;
+        let ventaTotalVigesimaTerceraEspecie = totalVentaVigesimaTerceraEspecie + totalVentaDescuentoVigesimaTerceraEspecie;
 
-        let ventaTotal = ventaTotalPrimerEspecie + ventaTotalSegundaEspecie + ventaTotalTerceraEspecie + ventaTotalCuartaEspecie + ventaTotalQuintaEspecie + ventaTotalSextaEspecie + ventaTotalSeptimaEspecie + ventaTotalOctavaEspecie + ventaTotalDecimaEspecie + ventaTotalDecimaPrimeraEspecie + ventaTotalDecimaSegundaEspecie + ventaTotalDecimaTerceraEspecie + ventaTotalDecimaCuartaEspecie + ventaTotalDecimaQuintaEspecie + ventaTotalDecimaSextaEspecie + ventaTotalDecimaSeptimaEspecie + ventaTotalDecimaOctavaEspecie + item.totalVentaDescuento;
+        let ventaTotal = ventaTotalPrimerEspecie + ventaTotalSegundaEspecie + ventaTotalTerceraEspecie + ventaTotalCuartaEspecie + ventaTotalQuintaEspecie + ventaTotalSextaEspecie + ventaTotalSeptimaEspecie + ventaTotalOctavaEspecie + ventaTotalDecimaEspecie + ventaTotalDecimaPrimeraEspecie + ventaTotalDecimaSegundaEspecie + ventaTotalDecimaTerceraEspecie + ventaTotalDecimaCuartaEspecie + ventaTotalDecimaQuintaEspecie + ventaTotalDecimaSextaEspecie + ventaTotalDecimaSeptimaEspecie + ventaTotalDecimaOctavaEspecie + ventaTotalDecimaNovenaEspecie + ventaTotalVigesimaEspecie + ventaTotalVigesimaPrimeraEspecie + ventaTotalVigesimaSegundaEspecie + ventaTotalVigesimaTerceraEspecie + item.totalVentaDescuento;
 
         let ventaAnterior = parseFloat(item.ventaAnterior);
         let pagoAnterior = parseFloat(item.pagoAnterior);
@@ -1964,11 +2373,23 @@ jQuery(function($) {
                 <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#CAA122]">S/. ${totalVenta16.toFixed(2)}</td>
                 <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(promedio16).toFixed(2)}</td>
 
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${totalCantidad19}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(totalPeso19).toFixed(2)} Kg.</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta19).toFixed(2)}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#CAA122]">S/. ${totalVenta19.toFixed(2)}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(promedio19).toFixed(2)}</td>
+
                 <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${totalCantidad5}</td>
                 <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(totalPeso5).toFixed(2)} Kg.</td>
                 <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta5).toFixed(2)}</td>
                 <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#CAA122]">S/. ${totalVenta5.toFixed(2)}</td>
                 <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(promedio5).toFixed(2)}</td>
+
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${totalCantidad20}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(totalPeso20).toFixed(2)} Kg.</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta20).toFixed(2)}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#CAA122]">S/. ${totalVenta20.toFixed(2)}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(promedio20).toFixed(2)}</td>
 
                 <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${totalCantidad6}</td>
                 <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(totalPeso6).toFixed(2)} Kg.</td>
@@ -1976,17 +2397,41 @@ jQuery(function($) {
                 <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#CAA122]">S/. ${totalVenta6.toFixed(2)}</td>
                 <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(promedio6).toFixed(2)}</td>
 
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${totalCantidad21}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(totalPeso21).toFixed(2)} Kg.</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta21).toFixed(2)}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#CAA122]">S/. ${totalVenta21.toFixed(2)}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(promedio21).toFixed(2)}</td>
+
                 <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${totalCantidad7}</td>
                 <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(totalPeso7).toFixed(2)} Kg.</td>
                 <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta7).toFixed(2)}</td>
                 <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#CAA122]">S/. ${totalVenta7.toFixed(2)}</td>
                 <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(promedio7).toFixed(2)}</td>
 
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${totalCantidad22}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(totalPeso22).toFixed(2)} Kg.</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta22).toFixed(2)}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#CAA122]">S/. ${totalVenta22.toFixed(2)}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(promedio22).toFixed(2)}</td>
+
                 <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${totalCantidad8}</td>
                 <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(totalPeso8).toFixed(2)} Kg.</td>
                 <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta8).toFixed(2)}</td>
                 <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#CAA122]">S/. ${totalVenta8.toFixed(2)}</td>
                 <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(promedio8).toFixed(2)}</td>
+
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${totalCantidad23}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(totalPeso23).toFixed(2)} Kg.</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta23).toFixed(2)}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#CAA122]">S/. ${totalVenta23.toFixed(2)}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(promedio23).toFixed(2)}</td>
+
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${totalCantidad24}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(totalPeso24).toFixed(2)} Kg.</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta24).toFixed(2)}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#CAA122]">S/. ${totalVenta24.toFixed(2)}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(promedio24).toFixed(2)}</td>
 
                 <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(totalPesoDesc).toFixed(2)} Kg.</td>
                 <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVentaDesc).toFixed(2)}</td>

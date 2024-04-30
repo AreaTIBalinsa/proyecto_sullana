@@ -454,6 +454,19 @@ class ReporteAcumuladoController extends Controller
         return $consulta;
     }
 
+    public function consulta_NovenaEspecie($fecha,$clienteCodigo) {
+        $consulta = DB::table('tb_pesadas')
+            ->selectRaw('fechaRegistroPes')
+            ->selectRaw('SUM(IF(idEspecie = 9 AND cantidadPes > 0, cantidadPes, 0)) AS totalCantidadNovenaEspecie')
+            ->where('estadoPes', 1)
+            ->where('codigoCli', $clienteCodigo)
+            ->where('fechaRegistroPes','=', $fecha)
+            ->groupBy('fechaRegistroPes')
+            ->get();
+    
+        return $consulta;
+    }
+
     // Termina
 
     /* ================================================================== */
@@ -869,6 +882,19 @@ class ReporteAcumuladoController extends Controller
         return $consulta;
     }
 
+    public function consulta_NovenaEspecie2($fecha,$clienteCodigo) {
+        $consulta = DB::table('tb_pesadas2')
+            ->selectRaw('fechaRegistroPes')
+            ->selectRaw('SUM(IF(idEspecie = 9 AND cantidadPes > 0, cantidadPes, 0)) AS totalCantidadNovenaEspecie2')
+            ->where('estadoPes', 1)
+            ->where('codigoCli', $clienteCodigo)
+            ->where('fechaRegistroPes','=', $fecha)
+            ->groupBy('fechaRegistroPes')
+            ->get();
+    
+        return $consulta;
+    }
+
     /* ================================================================== */
     /* =============================Consulta============================= */
     /* ================================================================== */
@@ -976,6 +1002,7 @@ class ReporteAcumuladoController extends Controller
                     'totalesVigesimaPrimeraEspecie' => $this->consulta_VigesimaPrimeraEspecie($fecha, $clienteCodigo),
                     'totalesVigesimaSegundaEspecie' => $this->consulta_VigesimaSegundaEspecie($fecha, $clienteCodigo),
                     'totalesVigesimaTerceraEspecie' => $this->consulta_VigesimaTerceraEspecie($fecha, $clienteCodigo),
+                    'totalesNovenaEspecie' => $this->consulta_NovenaEspecie($fecha, $clienteCodigo),
                     'ventaAnterior' => $this->consulta_VentaAnterior($fecha, $clienteCodigo),
 
                     'totalesPrimerEspecie2' => $this->consulta_PrimeraEspecie2($fecha, $clienteCodigo),
@@ -1000,6 +1027,7 @@ class ReporteAcumuladoController extends Controller
                     'totalesVigesimaPrimeraEspecie2' => $this->consulta_VigesimaPrimeraEspecie2($fecha, $clienteCodigo),
                     'totalesVigesimaSegundaEspecie2' => $this->consulta_VigesimaSegundaEspecie2($fecha, $clienteCodigo),
                     'totalesVigesimaTerceraEspecie2' => $this->consulta_VigesimaTerceraEspecie2($fecha, $clienteCodigo),
+                    'totalesNovenaEspecie2' => $this->consulta_NovenaEspecie2($fecha, $clienteCodigo),
                     'ventaAnterior2' => $this->consulta_VentaAnterior2($fecha, $clienteCodigo),
 
                     'totalDescuentos' => $this->consulta_Descuentos($fecha, $clienteCodigo),
