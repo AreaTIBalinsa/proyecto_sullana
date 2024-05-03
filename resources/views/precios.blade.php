@@ -359,7 +359,7 @@
                             <th class="p-4 text-center whitespace-nowrap">MENUDENCIA</th>
                             <th class="p-4 text-center whitespace-nowrap">DORSO</th>
                             <th class="p-4 text-center whitespace-nowrap">OTROS</th>
-                            <th class="p-4 text-center whitespace-nowrap">POLLO XX</th>
+                            <th class="p-4 text-center whitespace-nowrap">POLLO XX PELADO</th>
                             <th class="p-4 text-center whitespace-nowrap">BRASA YUGO</th>
                             <th class="p-4 text-center whitespace-nowrap">BRASA TECNICA</th>
                             <th class="p-4 text-center whitespace-nowrap">POLLO XX VIVO</th>

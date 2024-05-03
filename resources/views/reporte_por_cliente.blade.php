@@ -42,6 +42,11 @@
                 </div>
             </div>
         </div>
+        <div class="flex items-center justify-end rounded-xl md:mx-5 mt-0 mb-5">
+            <input id="editarDatosReportePorCliente" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+            <label for="editarDatosReportePorCliente" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Editar Datos</label>
+        </div>
+        
         {{-- Tabla --}}
         <div class="relative overflow-auto rounded-lg md:mx-5 md:mb-5 max-h-[500px] aside_scrollED">
             <table class="border-collapse w-full text-gray-500 dark:text-gray-400 select-none relative text-sm" id="tablaReportePorCliente" style="-webkit-user-select: none">
@@ -54,8 +59,10 @@
                         <th class="px-4 font-medium whitespace-nowrap">CANTIDAD</th>
                         <th class="px-4 font-medium whitespace-nowrap">PESO NETO</th>
                         <th class="px-4 font-medium whitespace-nowrap">PROMEDIO</th>
-                        <th class="px-4 font-medium whitespace-nowrap">PESO REG. (Kg.)</th>
-                        <th class="px-4 font-medium whitespace-nowrap">PESO JABAS</th>
+                        <th class="px-4 font-medium whitespace-nowrap hidden border-l-2">CANTIDAD</th>
+                        <th class="px-4 font-medium whitespace-nowrap hidden">PESO REG. (Kg.)</th>
+                        <th class="px-4 font-medium whitespace-nowrap hidden">PESO JABAS</th>
+                        <th class="hidden">Tabla Identificador</th>
                     </tr>
                 </thead>
                 <tbody id="bodyReportePorCliente">
@@ -125,6 +132,38 @@
                 <div class="border-t dark:border-gray-500 w-full sm:flex sm:flex-row-reverse pt-4">
                     <button type="button" class="inline-flex w-full justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-700 sm:ml-3 sm:w-auto" id="btnActualizarPesoReportePorCliente">Actualizar</button>
                     <button type="button" class="mt-3 inline-flex w-full justify-center rounded-md bg-red-500 hover:bg-red-600 px-3 py-2 text-sm font-semibold text-gray-100 sm:mt-0 sm:w-auto cerrarModalPesoReportePorCliente" id="cerrarModalCantidadReportePorClientebtn">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="fixed inset-0 overflow-y-auto z-[100] hidden" id="ModalPesoJabasReportePorCliente">
+    <div class="flex justify-center items-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+        <!-- Fondo oscuro overlay -->
+        <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+            <div class="absolute inset-0 bg-gray-900 opacity-75"></div>
+        </div>
+
+        <!-- Contenido del modal -->
+        <div class="absolute rounded-lg max-h-max inset-0 m-auto align-bottom bg-white dark:bg-slate-700 text-left overflow-hidden shadow-xl transform transition-all sm:max-w-lg sm:w-full">
+            <div class="p-4">
+                <div class="flex flex-col">
+                    <div class="border-b rounded-t dark:border-gray-500 p-2 flex justify-center">
+                        <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Actualizar Peso Jabas</h3>
+                    </div>
+                    <div class="mt-4 flex justify-center items-center flex-col gap-4">
+                        <label id="idPesoJabasReportePorCliente" class="hidden"></label>
+                        <label id="tablaIdentificadoraPesoJabas" class="hidden"></label>
+                        <p class="text-sm text-gray-300">Ingrese nuevo peso de jabas.</p>
+                        <input class="p-2 rounded-lg text-base outline-none border-none text-center" type="text" id="nuevoPesoJabasReportePorCliente" autocomplete="off" placeholder="0">
+                    </div>
+                </div>
+            </div>
+            <div class="px-4 pb-4">
+                <div class="border-t dark:border-gray-500 w-full sm:flex sm:flex-row-reverse pt-4">
+                    <button type="button" class="inline-flex w-full justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-700 sm:ml-3 sm:w-auto" id="btnActualizarPesoJabasReportePorCliente">Actualizar</button>
+                    <button type="button" class="mt-3 inline-flex w-full justify-center rounded-md bg-red-500 hover:bg-red-600 px-3 py-2 text-sm font-semibold text-gray-100 sm:mt-0 sm:w-auto cerrarModalPesoJabasReportePorCliente">Cancelar</button>
                 </div>
             </div>
         </div>

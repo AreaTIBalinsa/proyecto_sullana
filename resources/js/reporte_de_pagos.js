@@ -189,62 +189,7 @@ jQuery(function ($) {
         let fechaAgregarDescuentoCliente = $('#fechaAgregarDescuento').val();
         let especieAgregarDescuentoCliente = $('#presentacionAgregarDescuentoCliente').find("option:selected").val();
         let comentarioAgregarDescuentoCliente = $('#comentarioAgregarDescuentoCliente').val();
-
-        let precioPrimerEspecieDescuento = $('#precioPrimerEspecieDescuento').val();
-        let precioSegundaEspecieDescuento = $('#precioSegundaEspecieDescuento').val();
-        let precioTerceraEspecieDescuento = $('#precioTerceraEspecieDescuento').val();
-        let precioCuartaEspecieDescuento = $('#precioCuartaEspecieDescuento').val();
-        let precioQuintaEspecieDescuento = $('#precioQuintaEspecieDescuento').val();
-        let precioSextaEspecieDescuento = $('#precioSextaEspecieDescuento').val();
-        let precioSeptimaEspecieDescuento = $('#precioSeptimaEspecieDescuento').val();
-        let precioOctavaEspecieDescuento = $('#precioOctavaEspecieDescuento').val();
-        let precioDecimaEspecieDescuento = $('#precioDecimaEspecieDescuento').val();
-        let precioDecimaPrimeraEspecieDescuento = $('#precioDecimaPrimeraEspecieDescuento').val();
-        let precioDecimaSegundaEspecieDescuento = $('#precioDecimaSegundaEspecieDescuento').val();
-        let precioDecimaTerceraEspecieDescuento = $('#precioDecimaTerceraEspecieDescuento').val();
-        let precioDecimaCuartaEspecieDescuento = $('#precioDecimaCuartaEspecieDescuento').val();
-        let precioDecimaQuintaEspecieDescuento = $('#precioDecimaQuintaEspecieDescuento').val();
-        let precioDecimaSextaEspecieDescuento = $('#precioDecimaSextaEspecieDescuento').val()
-        let precioDecimaSeptimaEspecieDescuento = $('#precioDecimaSeptimaEspecieDescuento').val()
-        let precioDecimaOctavaEspecieDescuento = $('#precioDecimaOctavaEspecieDescuento').val()
-
-        let precioAgregarDescuentoCliente = 0
-
-        if (especieAgregarDescuentoCliente == primerEspecieGlobal){
-            precioAgregarDescuentoCliente = precioPrimerEspecieDescuento
-        }else if (especieAgregarDescuentoCliente == segundaEspecieGlobal){
-            precioAgregarDescuentoCliente = precioSegundaEspecieDescuento
-        }else if (especieAgregarDescuentoCliente == terceraEspecieGlobal){
-            precioAgregarDescuentoCliente = precioTerceraEspecieDescuento
-        }else if (especieAgregarDescuentoCliente == cuartaEspecieGlobal){
-            precioAgregarDescuentoCliente = precioCuartaEspecieDescuento
-        }else if (especieAgregarDescuentoCliente == quintaEspecieGlobal){
-            precioAgregarDescuentoCliente = precioQuintaEspecieDescuento
-        }else if (especieAgregarDescuentoCliente == sextaEspecieGlobal){
-            precioAgregarDescuentoCliente = precioSextaEspecieDescuento
-        }else if (especieAgregarDescuentoCliente == septimaEspecieGlobal){
-            precioAgregarDescuentoCliente = precioSeptimaEspecieDescuento
-        }else if (especieAgregarDescuentoCliente == octavaEspecieGlobal){
-            precioAgregarDescuentoCliente = precioOctavaEspecieDescuento
-        }else if (especieAgregarDescuentoCliente == decimaEspecieGlobal){
-            precioAgregarDescuentoCliente = precioDecimaEspecieDescuento
-        }else if (especieAgregarDescuentoCliente == decimaPrimeraEspecieGlobal){
-            precioAgregarDescuentoCliente = precioDecimaPrimeraEspecieDescuento
-        }else if (especieAgregarDescuentoCliente == decimaSegundaEspecieGlobal ){
-            precioAgregarDescuentoCliente = precioDecimaSegundaEspecieDescuento
-        }else if (especieAgregarDescuentoCliente == decimaTerceraEspecieGlobal ){
-            precioAgregarDescuentoCliente = precioDecimaTerceraEspecieDescuento
-        }else if (especieAgregarDescuentoCliente == decimaCuartaEspecieGlobal ){
-            precioAgregarDescuentoCliente = precioDecimaCuartaEspecieDescuento
-        }else if (especieAgregarDescuentoCliente == decimaQuintaEspecieGlobal ){
-            precioAgregarDescuentoCliente = precioDecimaQuintaEspecieDescuento
-        }else if (especieAgregarDescuentoCliente == 16 ){
-            precioAgregarDescuentoCliente = precioDecimaSextaEspecieDescuento
-        }else if (especieAgregarDescuentoCliente == 17 ){
-            precioAgregarDescuentoCliente = precioDecimaSeptimaEspecieDescuento
-        }else if (especieAgregarDescuentoCliente == 18 ){
-            precioAgregarDescuentoCliente = precioDecimaOctavaEspecieDescuento
-        }
+        let precioAgregarDescuentoCliente = $('#valorPrecioDescuento').val();
 
         $('#divAgregarDescuentoCliente .validarCampo').each(function() {
             let valorCampo = $(this).val();
@@ -872,7 +817,7 @@ jQuery(function ($) {
                     // Iterar sobre los objetos y mostrar sus propiedades
                     response.forEach(function (obj) {
                         // Crear una nueva fila
-                        nuevaFila = $('<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
+                        nuevaFila = $('<tr class="bg-white border-b editarPagos dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
 
                         // Agregar las celdas con la información
                         nuevaFila.append($('<td class="hidden">').text(obj.idDescuento));
@@ -1087,7 +1032,7 @@ jQuery(function ($) {
         let codigoDescuento = $(this).closest("tr").find("td:first").text();
         Swal.fire({
             title: '¿Desea eliminar el Registro?',
-            text: "¡Estas seguro de eliminar el pago!",
+            text: "¡Estas seguro de eliminar el descuento!",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -1113,7 +1058,7 @@ jQuery(function ($) {
                     Swal.fire({
                         position: 'center',
                         icon: 'success',
-                        title: 'Se elimino el pago correctamente',
+                        title: 'Se elimino el descuento correctamente',
                         showConfirmButton: false,
                         timer: 2000
                     });

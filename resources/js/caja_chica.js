@@ -135,18 +135,16 @@ jQuery(function($) {
     });
 
     $(document).on("dblclick", "#bodyReporteDePagos tr.editarPagos", function() {
-        if (tipoUsuario =='Administrador'){
-            let fila = $(this).closest('tr');
-            let idReporteDePago= fila.find('td:eq(0)').text();
-            //console.log('Report', idReporteDePago);
+        let fila = $(this).closest('tr');
+        let idReporteDePago= fila.find('td:eq(0)').text();
+        //console.log('Report', idReporteDePago);
 
-            $('#idReporteDePago').attr("value",idReporteDePago);
-            fn_EditarPago(idReporteDePago);
-            
-            $('#ModalAgregarPagoClienteEditar').addClass('flex');
-            $('#ModalAgregarPagoClienteEditar').removeClass('hidden');
+        $('#idReporteDePago').attr("value",idReporteDePago);
+        fn_EditarPago(idReporteDePago);
+        
+        $('#ModalAgregarPagoClienteEditar').addClass('flex');
+        $('#ModalAgregarPagoClienteEditar').removeClass('hidden');
 
-        }
     });
 
     $('#registrar_agregarPago_submit').on('click', function () {
@@ -746,23 +744,21 @@ jQuery(function($) {
 
     $(document).on('contextmenu', '#bodyReporteDePagos tr.editarPagos', function (e) {
         e.preventDefault();
-        if (tipoUsuario =='Administrador'){
-            let codigoPago = $(this).closest("tr").find("td:first").text();
-            Swal.fire({
-                title: '¿Desea eliminar el Registro?',
-                text: "¡Estas seguro de eliminar el pago!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                cancelButtonText: '¡No, cancelar!',
-                confirmButtonText: '¡Si,eliminar!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    fn_EliminarPago(codigoPago);
-                }
-            })
-        }
+        let codigoPago = $(this).closest("tr").find("td:first").text();
+        Swal.fire({
+            title: '¿Desea eliminar el Registro?',
+            text: "¡Estas seguro de eliminar el pago!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: '¡No, cancelar!',
+            confirmButtonText: '¡Si,eliminar!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fn_EliminarPago(codigoPago);
+            }
+        })
     });
 
     function fn_EliminarPago(codigoPago){
@@ -797,23 +793,21 @@ jQuery(function($) {
     
     $(document).on('contextmenu', '#bodyReporteDeEgresos tr.editarPagos', function (e) {
         e.preventDefault();
-        if (tipoUsuario =='Administrador'){
-            let codigoEgreso = $(this).closest("tr").find("td:first").text();
-            Swal.fire({
-                title: '¿Desea eliminar el Registro?',
-                text: "¡Estas seguro de eliminar el egreso!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                cancelButtonText: '¡No, cancelar!',
-                confirmButtonText: '¡Si,eliminar!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    fn_EliminarEgreso(codigoEgreso);
-                }
-            })
-        }
+        let codigoEgreso = $(this).closest("tr").find("td:first").text();
+        Swal.fire({
+            title: '¿Desea eliminar el Registro?',
+            text: "¡Estas seguro de eliminar el egreso!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: '¡No, cancelar!',
+            confirmButtonText: '¡Si,eliminar!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fn_EliminarEgreso(codigoEgreso);
+            }
+        })
     });
 
     function fn_EliminarEgreso(codigoEgreso){
@@ -847,36 +841,33 @@ jQuery(function($) {
     }
 
     $(document).on("dblclick", "#bodyReporteDeEgresos tr.editarPagos", function() {
-        if (tipoUsuario =='Administrador'){
-            let fila = $(this).closest('tr');
-            let idReporteDeEgreso= fila.find('td:eq(0)').text();
-            let usoEgreso= fila.find('td:eq(1)').text();
-            let importeEgreso= fila.find('td:eq(2)').text();
-            let formaDePagoEgreso= fila.find('td:eq(3)').text();
-            let bancoEgreso= fila.find('td:eq(4)').text();
-            let codigoTransEgreso= fila.find('td:eq(5)').text();
-            let fechaEgreso= fila.find('td:eq(6)').text();
+        let fila = $(this).closest('tr');
+        let idReporteDeEgreso= fila.find('td:eq(0)').text();
+        let usoEgreso= fila.find('td:eq(1)').text();
+        let importeEgreso= fila.find('td:eq(2)').text();
+        let formaDePagoEgreso= fila.find('td:eq(3)').text();
+        let bancoEgreso= fila.find('td:eq(4)').text();
+        let codigoTransEgreso= fila.find('td:eq(5)').text();
+        let fechaEgreso= fila.find('td:eq(6)').text();
 
-            $('#idReporteDeEgreso').val(idReporteDeEgreso);
+        $('#idReporteDeEgreso').val(idReporteDeEgreso);
 
-            $('#idAgregarEgresoEditar').val(usoEgreso);
-            $('#valorAgregarEgresoClienteEditar').val(importeEgreso);
-            $('#formaDePagoEgresoEditar').val(formaDePagoEgreso);
-            $('#bancoAgregarEgresoClienteEditar').val(bancoEgreso);
-            $('#fechaAgregarEgresoEditar').val(fechaEgreso);
-            $('#codAgregarEgresoClienteEditar').val(codigoTransEgreso);
-            if (formaDePagoEgreso == 'Transferencia'){
-                $('#divBancoEgresoEditar').removeClass('hidden').addClass('flex');
-                $('#divCodTransEgresoEditar').removeClass('hidden').addClass('flex');
-            }else{
-                $('#divBancoEgresoEditar').removeClass('flex').addClass('hidden');
-                $('#divCodTransEgresoEditar').removeClass('flex').addClass('hidden');
-            }
-            
-            $('#ModalAgregarEgresoEditar').addClass('flex');
-            $('#ModalAgregarEgresoEditar').removeClass('hidden');
-
+        $('#idAgregarEgresoEditar').val(usoEgreso);
+        $('#valorAgregarEgresoClienteEditar').val(importeEgreso);
+        $('#formaDePagoEgresoEditar').val(formaDePagoEgreso);
+        $('#bancoAgregarEgresoClienteEditar').val(bancoEgreso);
+        $('#fechaAgregarEgresoEditar').val(fechaEgreso);
+        $('#codAgregarEgresoClienteEditar').val(codigoTransEgreso);
+        if (formaDePagoEgreso == 'Transferencia'){
+            $('#divBancoEgresoEditar').removeClass('hidden').addClass('flex');
+            $('#divCodTransEgresoEditar').removeClass('hidden').addClass('flex');
+        }else{
+            $('#divBancoEgresoEditar').removeClass('flex').addClass('hidden');
+            $('#divCodTransEgresoEditar').removeClass('flex').addClass('hidden');
         }
+        
+        $('#ModalAgregarEgresoEditar').addClass('flex');
+        $('#ModalAgregarEgresoEditar').removeClass('hidden');
     });
 
     $('.cerrarModalAgregarEgresoEditar, #ModalAgregarEgresoEditar .opacity-75').on('click', function (e) {

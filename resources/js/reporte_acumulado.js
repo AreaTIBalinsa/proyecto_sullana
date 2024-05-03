@@ -11,6 +11,7 @@ jQuery(function($) {
     $('#fechaDesdeReporteAcumulado').val(fechaHoy);
     $('#fechaHastaReporteAcumulado').val(fechaHoy);
     $('#fechaReporteExcel').val(fechaHoy);
+    $('#fechaCambiarPrecioPesada').val(fechaHoy);
 
     fn_TraerReporteAcumuladoDetalle(fechaHoy,fechaHoy);
     fn_declarar_especies();
@@ -2225,7 +2226,7 @@ jQuery(function($) {
 
         totalDelTotalCantidad = totalCantidad1 +totalCantidad2 + totalCantidad3 + totalCantidad4 + totalCantidad5 + totalCantidad6 + totalCantidad7 + totalCantidad8 + totalCantidad10 + totalCantidad11 + totalCantidad12 + totalCantidad13 + totalCantidad14 + totalCantidad15 + totalCantidad16 + totalCantidad17 + totalCantidad18 + totalCantidad19 + totalCantidad20 + totalCantidad21 + totalCantidad22 + totalCantidad23;
 
-        totalDelTotalPeso = totalPeso1 + totalPeso2 + totalPeso3 + totalPeso4 + totalPeso5 + totalPeso6 + totalPeso7 + totalPeso8 + totalPeso10 + totalPeso11 + totalPeso12 + totalPeso13 + totalPeso14 + totalPeso15 + totalPeso16 + totalPeso17 + totalPeso18 + totalPeso18 + totalPeso19 + totalPeso20 + totalPeso21 + totalPeso22 + totalPeso23;
+        totalDelTotalPeso = totalPeso1 + totalPeso2 + totalPeso3 + totalPeso4 + totalPeso5 + totalPeso6 + totalPeso7 + totalPeso8 + totalPeso10 + totalPeso11 + totalPeso12 + totalPeso13 + totalPeso14 + totalPeso15 + totalPeso16 + totalPeso17 + totalPeso18 + totalPeso19 + totalPeso20 + totalPeso21 + totalPeso22 + totalPeso23;
 
         totalDelTotalVenta = totalVenta1 + totalVenta2 + totalVenta3 + totalVenta4 + totalVenta5 + totalVenta6 + totalVenta7 + totalVenta8 + totalVenta10 + totalVenta11 + totalVenta12 + totalVenta13 + totalVenta14 + totalVenta15 + totalVenta16 + totalVenta17 + totalVenta18 + totalVenta19 + totalVenta20 + totalVenta21 + totalVenta22 + totalVenta23;
 
@@ -2591,7 +2592,6 @@ jQuery(function($) {
         $('#ModalCambiarPrecioPesada').addClass('flex');
         $('#ModalCambiarPrecioPesada').removeClass('hidden');
         $('#selectedCodigoCliCambiarPrecioPesada').attr('value',"");
-        $('#fechaCambiarPrecioPesada').val(fechaHoy);
         $('#especiesCambioPrecioPesadas').val(0);
         $('#nuevoPrecioCambiarPesadas').val("");
         $('#idCambiarPrecioPesadaCliente').val("");

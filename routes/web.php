@@ -95,6 +95,7 @@ Route::get('/fn_consulta_TraerClientesReportePorCliente', [ReportePorClienteCont
 Route::get('/fn_consulta_TraerReportePorCliente', [ReportePorClienteController::class,'consulta_TraerReportePorCliente']);
 Route::get('/fn_consulta_ActualizarCantidadReportePorCliente', [ReportePorClienteController::class,'consulta_ActualizarCantidadReportePorCliente']);
 Route::get('/fn_consulta_ActualizarPesoReportePorCliente', [ReportePorClienteController::class,'consulta_ActualizarPesoReportePorCliente']);
+Route::get('/fn_consulta_ActualizarPesoJabasReportePorCliente', [ReportePorClienteController::class,'consulta_ActualizarPesoJabasReportePorCliente']);
 Route::get('/fn_consulta_EliminarPesada', [ReportePorClienteController::class,'consulta_EliminarPesada']);
 
 Route::get('/fn_consulta_ConsultarClientes', [ConsultarClientesController::class,'consulta_ConsultarClientes']);

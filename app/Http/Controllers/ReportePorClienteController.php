@@ -9,6 +9,8 @@ use App\Models\ReportePorCliente\CantidadReportePorCliente;
 use App\Models\ReportePorCliente\CantidadReportePorCliente2;
 use App\Models\ReportePorCliente\PesoReportePorCliente;
 use App\Models\ReportePorCliente\PesoReportePorCliente2;
+use App\Models\ReportePorCliente\PesoJabasReportePorCliente;
+use App\Models\ReportePorCliente\PesoJabasReportePorCliente2;
 use App\Models\ReportePorCliente\EliminarReportePorCliente;
 use Illuminate\Support\Facades\DB;
 
@@ -125,6 +127,27 @@ class ReportePorClienteController extends Controller
             $PesoReportePorCliente->where('idPesada', $idCodigoPesada)
                 ->update([
                     'pesoNetoPes' => $nuevoPesoReportePorCliente,
+                    'estadoWebPes' => 0,
+                ]);
+            
+            return response()->json(['success' => true], 200);
+        }
+
+        // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
+        return response()->json(['error' => 'Usuario no autenticado'], 401);
+    }
+
+    public function consulta_ActualizarPesoJabasReportePorCliente(Request $request)
+    {
+        $idCodigoPesada = $request->input('idCodigoPesada');
+        $nuevoPesoJabasReportePorCliente = $request->input('nuevoPesoReportePorCliente');
+        $tablaIdentificadoraPeso = $request->input('tablaIdentificadoraPeso');
+
+        if (Auth::check()) {
+            $PesoJabasReportePorCliente = ($tablaIdentificadoraPeso === 'tb_pesadas') ? new PesoJabasReportePorCliente : new PesoJabasReportePorCliente2;
+            $PesoJabasReportePorCliente->where('idPesada', $idCodigoPesada)
+                ->update([
+                    'pesoNetoJabas' => $nuevoPesoJabasReportePorCliente,
                     'estadoWebPes' => 0,
                 ]);
             

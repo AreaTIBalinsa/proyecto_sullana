@@ -1,4 +1,5 @@
-import jQuery from 'jquery';
+import jQuery, { extend } from 'jquery';
+import button from 'kutty/src/button';
 
 window.$ = jQuery;
 
@@ -424,7 +425,7 @@ jQuery(function ($) {
                         bodyReportePorCliente += `
                             <tr class="bg-white dark:bg-gray-800 h-0.5">
                                 <td class="text-center" colspan="2"></td>
-                                <td class="text-center h-0.5 bg-gray-800 dark:bg-gray-300" colspan="6"></td>
+                                <td class="text-center h-0.5 bg-gray-800 dark:bg-gray-300" colspan="7"></td>
                             </tr>
                         `
                         bodyReportePorCliente += construirFilaTotales(
@@ -489,6 +490,9 @@ jQuery(function ($) {
     }
 
     function construirFilaFecha(item) {
+        let mostrarColumnas = localStorage.getItem('editarDatos') === 'true'; // Verificar si editarDatos es true
+    
+        // Construir la fila de la tabla con la condición para las últimas columnas
         return `
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <td class="text-center py-1 px-2 hidden"></td>
@@ -498,11 +502,20 @@ jQuery(function ($) {
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                ${mostrarColumnas ? `
+                    <td class="text-center py-1 px-2 whitespace-nowrap border-l-2"></td>
+                    <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                    <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                ` : `
+                    <td class="text-center py-1 px-2 whitespace-nowrap hidden border-l-2"></td>
+                    <td class="text-center py-1 px-2 whitespace-nowrap hidden"></td>
+                    <td class="text-center py-1 px-2 whitespace-nowrap hidden"></td>
+                `}
+                <td class="text-center py-1 px-2 hidden"></td>
             </tr>
         `;
     }
+    
 
     function construirFilaDatos(item) {
         let horaPes = item.horaPes
@@ -519,14 +532,9 @@ jQuery(function ($) {
         let observacionPes = item.observacionPes
         if (observacionPes != ""){
             observacionPes = `
-            <div class="observacionPesHover relative">       
-                <button type="button" class="text-gray-900 dark:text-gray-400"><i class='bx bx-info-circle'></i></button>
-                <div class="absolute z-[1000000] top-0 right-0 max-w-[256px] w-full text-sm text-gray-500 bg-white border border-gray-200 rounded-lg shadow-sm dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
-                    <div class="px-3 py-2">
+                <div class="text-sm text-gray-500 bg-white border border-gray-200 rounded-lg shadow-sm dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
                         <p>${observacionPes}</p>
-                    </div>
-                </div>
-            </div>`
+                </div>`
         }else{
             observacionPes = "";
         }
@@ -539,17 +547,26 @@ jQuery(function ($) {
             pesoNeto = parseFloat(item.pesoNetoPes) + parseFloat(item.pesoNetoJabas)
         }
 
+        let mostrarColumnas = localStorage.getItem('editarDatos') === 'true'; // Verificar si editarDatos es true
+
         return `
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <td class="hidden">${item.idPesada}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${observacionPes}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${horaPes}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${nombreEspecie}</td>
-                <td class="text-center py-1 px-2 cantidadReportePorCliente whitespace-nowrap">${cantidadPes}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${cantidadPes}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${pesoNeto.toFixed(2)}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${promedio}</td>
-                <td class="text-center py-1 px-2 pesoReportePorCliente whitespace-nowrap">${pesoNetoPes}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${pesoNetoJabas}</td>
+                ${mostrarColumnas ? `
+                    <td class="text-center py-1 px-2 cantidadReportePorCliente whitespace-nowrap border-l-2">${cantidadPes}</td>
+                    <td class="text-center py-1 px-2 pesoReportePorCliente whitespace-nowrap">${pesoNetoPes}</td>
+                    <td class="text-center py-1 px-2 pesoJabasReportePorCliente whitespace-nowrap">${pesoNetoJabas}</td>
+                `:`
+                    <td class="text-center py-1 px-2 cantidadReportePorCliente whitespace-nowrap border-l-2 hidden">${cantidadPes}</td>
+                    <td class="text-center py-1 px-2 pesoReportePorCliente whitespace-nowrap hidden">${pesoNetoPes}</td>
+                    <td class="text-center py-1 px-2 pesoJabasReportePorCliente whitespace-nowrap hidden">${pesoNetoJabas}</td>
+                `}
                 <td class="hidden">${item.tabla_iden}</td>
             </tr>
         `;
@@ -596,6 +613,8 @@ jQuery(function ($) {
         ventaCantidadTotal)
     {
         let filas = [];
+
+        let mostrarColumnas = localStorage.getItem('editarDatos') === 'true'; // Verificar si editarDatos es true
     
         function construirFila(nombreEspecie, totalCantidad, totalPeso) {
             if (totalCantidad !== 0 || totalPeso !== 0) {       
@@ -608,8 +627,16 @@ jQuery(function ($) {
                         <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidad === 1 ? `${totalCantidad} Ud.` : `${totalCantidad} Uds.`}</td>
                         <td class="text-center py-1 px-2 whitespace-nowrap">${totalPeso.toFixed(2)} Kg.</td>
                         <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-                        <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-                        <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                        ${mostrarColumnas ? `
+                            <td class="text-center py-1 px-2 whitespace-nowrap border-l-2"></td>
+                            <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                            <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                        `:`
+                            <td class="text-center py-1 px-2 whitespace-nowrap hidden border-l-2"></td>
+                            <td class="text-center py-1 px-2 whitespace-nowrap hidden"></td>
+                            <td class="text-center py-1 px-2 whitespace-nowrap hidden"></td>
+                        `}
+                        <td class="text-center py-1 px-2 hidden"></td>
                     </tr>
                 `;
             } else {
@@ -638,7 +665,7 @@ jQuery(function ($) {
         filas.push(`
             <tr class="bg-white dark:bg-gray-800 h-0.5">
                 <td class="text-center" colspan="2"></td>
-                <td class="text-center h-0.5 bg-gray-800 dark:bg-gray-300" colspan="6"></td>
+                <td class="text-center h-0.5 bg-gray-800 dark:bg-gray-300" colspan="7"></td>
             </tr>
         `);
 
@@ -651,8 +678,16 @@ jQuery(function ($) {
                 <td class="text-center py-1 px-2 whitespace-nowrap">${ventaCantidadTotal === 1 ? `${ventaCantidadTotal} Ud.` : `${ventaCantidadTotal} Uds.`}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${ventaPesoTotalNeto.toFixed(2)} Kg.</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                ${mostrarColumnas ? `
+                    <td class="text-center py-1 px-2 whitespace-nowrap border-l-2"></td>
+                    <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                    <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                `:`
+                    <td class="text-center py-1 px-2 whitespace-nowrap hidden border-l-2"></td>
+                    <td class="text-center py-1 px-2 whitespace-nowrap hidden"></td>
+                    <td class="text-center py-1 px-2 whitespace-nowrap hidden"></td>
+                `}
+                <td class="text-center py-1 px-2 hidden"></td>
             </tr>
         `);
 
@@ -667,6 +702,11 @@ jQuery(function ($) {
     $('.cerrarModalPesoReportePorCliente, #ModalPesoReportePorCliente .opacity-75').on('click', function (e) {
         $('#ModalPesoReportePorCliente').addClass('hidden');
         $('#ModalPesoReportePorCliente').removeClass('flex');
+    });
+
+    $('.cerrarModalPesoJabasReportePorCliente, #ModalPesoJabasReportePorCliente .opacity-75').on('click', function (e) {
+        $('#ModalPesoJabasReportePorCliente').addClass('hidden');
+        $('#ModalPesoJabasReportePorCliente').removeClass('flex');
     });
 
     $(document).on('input', '#nuevoCantidadReportePorCliente', function () {
@@ -701,37 +741,48 @@ jQuery(function ($) {
     });
 
     $(document).on("dblclick", "#tablaReportePorCliente tr td.cantidadReportePorCliente", function() {
-        if (tipoUsuario =='Administrador'){
-            let fila = $(this).closest('tr');
-            let idCantidadReportePorCliente = fila.find('td:eq(0)').text();
-            let cantidadReportePorCliente = fila.find('td:eq(4)').text();
-            let tabla_identificadora = fila.find('td:eq(9)').text();
-            
-            $('#ModalCantidadReportePorCliente').addClass('flex');
-            $('#ModalCantidadReportePorCliente').removeClass('hidden');
-    
-            $('#idCantidadReportePorCliente').attr("value",idCantidadReportePorCliente);
-            $('#nuevoCantidadReportePorCliente').val(cantidadReportePorCliente);
-            $('#tablaIdentificadoraCan').attr("value",tabla_identificadora);
-            $('#nuevoCantidadReportePorCliente').focus();
-        }
+        let fila = $(this).closest('tr');
+        let idCantidadReportePorCliente = fila.find('td:eq(0)').text();
+        let cantidadReportePorCliente = fila.find('td:eq(7)').text();
+        let tabla_identificadora = fila.find('td:eq(10)').text();
+        
+        $('#ModalCantidadReportePorCliente').addClass('flex');
+        $('#ModalCantidadReportePorCliente').removeClass('hidden');
+
+        $('#idCantidadReportePorCliente').attr("value",idCantidadReportePorCliente);
+        $('#nuevoCantidadReportePorCliente').val(cantidadReportePorCliente);
+        $('#tablaIdentificadoraCan').attr("value",tabla_identificadora);
+        $('#nuevoCantidadReportePorCliente').focus();
     });
 
     $(document).on("dblclick", "#tablaReportePorCliente tr td.pesoReportePorCliente", function() {
-        if (tipoUsuario =='Administrador'){
-            let fila = $(this).closest('tr');
-            let idPesoReportePorCliente = fila.find('td:eq(0)').text();
-            let pesoReportePorCliente = fila.find('td:eq(7)').text();
-            let tabla_identificadora = fila.find('td:eq(9)').text();
-            
-            $('#ModalPesoReportePorCliente').addClass('flex');
-            $('#ModalPesoReportePorCliente').removeClass('hidden');
+        let fila = $(this).closest('tr');
+        let idPesoReportePorCliente = fila.find('td:eq(0)').text();
+        let pesoReportePorCliente = fila.find('td:eq(8)').text();
+        let tabla_identificadora = fila.find('td:eq(10)').text();
+        
+        $('#ModalPesoReportePorCliente').addClass('flex');
+        $('#ModalPesoReportePorCliente').removeClass('hidden');
 
-            $('#idPesoReportePorCliente').attr("value",idPesoReportePorCliente);
-            $('#nuevoPesoReportePorCliente').val(pesoReportePorCliente);
-            $('#tablaIdentificadoraPeso').attr("value",tabla_identificadora);
-            $('#nuevoPesoReportePorCliente').focus();
-        }
+        $('#idPesoReportePorCliente').attr("value",idPesoReportePorCliente);
+        $('#nuevoPesoReportePorCliente').val(pesoReportePorCliente);
+        $('#tablaIdentificadoraPeso').attr("value",tabla_identificadora);
+        $('#nuevoPesoReportePorCliente').focus();
+    });
+
+    $(document).on("dblclick", "#tablaReportePorCliente tr td.pesoJabasReportePorCliente", function() {
+        let fila = $(this).closest('tr');
+        let idPesoReportePorCliente = fila.find('td:eq(0)').text();
+        let pesoJabasReportePorCliente = fila.find('td:eq(9)').text();
+        let tabla_identificadora = fila.find('td:eq(10)').text();
+        
+        $('#ModalPesoJabasReportePorCliente').addClass('flex');
+        $('#ModalPesoJabasReportePorCliente').removeClass('hidden');
+
+        $('#idPesoJabasReportePorCliente').attr("value",idPesoReportePorCliente);
+        $('#nuevoPesoJabasReportePorCliente').val(pesoJabasReportePorCliente);
+        $('#tablaIdentificadoraPesoJabas').attr("value",tabla_identificadora);
+        $('#nuevoPesoJabasReportePorCliente').focus();
     });
 
     $('#btnActualizarCantidadReportePorCliente').on('click', function () {
@@ -756,6 +807,18 @@ jQuery(function ($) {
             alertify.notify('El peso no debe ser vacio', 'error', 3);
         } else {
             fn_ActualizarPesoReportePorCliente(idCodigoPesada, nuevoPesoReportePorCliente, tablaIdentificadoraPeso);
+        }
+    });
+
+    $('#btnActualizarPesoJabasReportePorCliente').on('click', function () {
+        let idCodigoPesada = $('#idPesoJabasReportePorCliente').attr("value");
+        let tablaIdentificadoraPeso = $('#tablaIdentificadoraPesoJabas').attr("value");
+        let nuevoPesoReportePorCliente = $('#nuevoPesoJabasReportePorCliente').val();
+
+        if (nuevoPesoReportePorCliente === null || nuevoPesoReportePorCliente.trim() === '') {
+            alertify.notify('El peso no debe ser vacio', 'error', 3);
+        } else {
+            fn_ActualizarPesoJabasReportePorCliente(idCodigoPesada, nuevoPesoReportePorCliente, tablaIdentificadoraPeso);
         }
     });
 
@@ -831,6 +894,42 @@ jQuery(function ($) {
         });
     }
 
+    function fn_ActualizarPesoJabasReportePorCliente(idCodigoPesada, nuevoPesoReportePorCliente, tablaIdentificadoraPeso){
+        $.ajax({
+            url: '/fn_consulta_ActualizarPesoJabasReportePorCliente',
+            method: 'GET',
+            data: {
+                idCodigoPesada: idCodigoPesada,
+                nuevoPesoReportePorCliente: nuevoPesoReportePorCliente,
+                tablaIdentificadoraPeso: tablaIdentificadoraPeso,
+            },
+            success: function(response) {
+                if (response.success) {
+
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Se actualizo el peso de jabas correctamente',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+
+                    $('#ModalPesoJabasReportePorCliente').addClass('hidden');
+                    $('#ModalPesoJabasReportePorCliente').removeClass('flex');
+                    $('#btnBuscarReportePorCliente').trigger('click');
+                }
+            },
+            error: function(error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Error: Ocurrio un error inesperado durante la operacion',
+                  })
+                console.error("ERROR",error);
+            }
+        });
+    }
+
     $(document).on('contextmenu', '#tablaReportePorCliente tbody tr', function (e) {
         e.preventDefault();
         if (tipoUsuario =='Administrador'){
@@ -881,5 +980,38 @@ jQuery(function ($) {
             }
         });
     }
+
+    // Convertir el valor recuperado a booleano si es necesario
+    if (localStorage.getItem('editarDatos') === 'true') {
+        $('#editarDatosReportePorCliente').prop('checked', true);
+        $('#tablaReportePorCliente th:nth-child(8)').show();
+        $('#tablaReportePorCliente th:nth-child(9)').show();
+        $('#tablaReportePorCliente th:nth-child(10)').show();
+    } else {
+        $('#editarDatosReportePorCliente').prop('checked', false);
+        $('#tablaReportePorCliente th:nth-child(8)').hide();
+        $('#tablaReportePorCliente th:nth-child(9)').hide();
+        $('#tablaReportePorCliente th:nth-child(10)').hide();
+    }
+
+    $('#editarDatosReportePorCliente').on('change',function(){
+        if(this.checked){
+            $('#tablaReportePorCliente td:nth-child(8)').show();
+            $('#tablaReportePorCliente td:nth-child(9)').show();
+            $('#tablaReportePorCliente td:nth-child(10)').show();
+            $('#tablaReportePorCliente th:nth-child(8)').show();
+            $('#tablaReportePorCliente th:nth-child(9)').show();
+            $('#tablaReportePorCliente th:nth-child(10)').show();
+            localStorage.setItem('editarDatos', true);
+        } else {
+            $('#tablaReportePorCliente td:nth-child(8)').hide();
+            $('#tablaReportePorCliente td:nth-child(9)').hide();
+            $('#tablaReportePorCliente td:nth-child(10)').hide();
+            $('#tablaReportePorCliente th:nth-child(8)').hide();
+            $('#tablaReportePorCliente th:nth-child(9)').hide();
+            $('#tablaReportePorCliente th:nth-child(10)').hide();
+            localStorage.setItem('editarDatos', false);
+        }
+    });
 
 });
