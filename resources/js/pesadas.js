@@ -1,4 +1,12 @@
 import jQuery from 'jquery';
+import jszip from 'jszip';
+import pdfmake from 'pdfmake';
+import DataTable from 'datatables.net-dt';
+import 'datatables.net-buttons-dt';
+import 'datatables.net-buttons/js/buttons.html5.mjs';
+import 'datatables.net-buttons/js/buttons.print.mjs';
+import 'datatables.net-responsive-dt';
+
 window.$ = jQuery;
 
 jQuery(function($) {
@@ -13,7 +21,7 @@ jQuery(function($) {
     $('#fechaHastaPesadas').val(fechaHoy);
     
     fn_ConsultarPesadasDesdeHasta(fechaHoy,fechaHoy);
-    DataTableED('#tablaConsultarPesadas');
+    // DataTableED('#tablaConsultarPesadas');
     declarar_especies()
 
     var primerEspecieGlobal = 0
@@ -88,7 +96,7 @@ jQuery(function($) {
 
         if (nombreFiltrar) {
             $('#tablaConsultarPesadas tbody tr').each(function() {
-                let nombre = $(this).find('td:eq(1)').text().toUpperCase().trim();
+                let nombre = $(this).find('td:eq(0)').text().toUpperCase().trim();
                 if (nombre.indexOf(nombreFiltrar) === -1) {
                     $(this).hide();
                 }
@@ -97,7 +105,7 @@ jQuery(function($) {
 
         if (cantidadFiltrar) {
             $('#tablaConsultarPesadas tbody tr').each(function() {
-                let cantidad = $(this).find('td:eq(3)').text().trim();
+                let cantidad = $(this).find('td:eq(2)').text().trim();
                 if (cantidad.indexOf(cantidadFiltrar) === -1) {
                     $(this).hide();
                 }
@@ -106,7 +114,7 @@ jQuery(function($) {
 
         if (filtrarEliminadas) {
             $('#tablaConsultarPesadas tbody tr').each(function() {
-                let columna9 = $(this).find('td:eq(10)').text().trim();
+                let columna9 = $(this).find('td:eq(8)').text().trim();
                 if (columna9 !== '0') {
                     $(this).hide();
                 }
@@ -159,7 +167,7 @@ jQuery(function($) {
                                 nuevaFila = $('<tr class="Pesadas bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-200 text-gray-900 dark:text-white dark:hover:bg-gray-600 cursor-pointer">');
                             }
                             // Agregar las celdas con la información
-                            nuevaFila.append($('<td class="hidden">').text(obj.idPesada));
+                            nuevaFila.append($('<td class="">').text(obj.idPesada));
                             nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 font-medium whitespace-nowrap">').text(obj.nombreCompleto));
                             nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(obj.nombreEspecie));
                             nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(obj.cantidadPes));
@@ -174,17 +182,15 @@ jQuery(function($) {
                             nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(obj.pesoNetoJabas));
                             nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(obj.horaPes));
                             nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(obj.fechaRegistroPes));
-                            nuevaFila.append($('<td class="hidden">').text(obj.idEspecie));
-                            if (tipoUsuario == 'Administrador'){
-                                nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(obj.precioPes));
-                            }
-                            nuevaFila.append($('<td class="hidden">').text(obj.estadoPes));
+                            nuevaFila.append($('<td class="">').text(obj.idEspecie));
+                            nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(obj.precioPes));
+                            nuevaFila.append($('<td class="">').text(obj.estadoPes));
                         }else{
                             if(tipoUsuario =='Administrador'){
                                 nuevaFila = $('<tr class="Pesadas bg-red-500 border-b dark:border-gray-700 hover:bg-red-600 cursor-pointer text-gray-50">');
 
                                 // Agregar las celdas con la información
-                                nuevaFila.append($('<td class="hidden">').text(obj.idPesada));
+                                nuevaFila.append($('<td class="">').text(obj.idPesada));
                                 nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 font-medium whitespace-nowrap">').text(obj.nombreCompleto));
                                 nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(obj.nombreEspecie));
                                 nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(obj.cantidadPes));
@@ -199,16 +205,50 @@ jQuery(function($) {
                                 nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(obj.pesoNetoJabas));
                                 nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(obj.horaPes));
                                 nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(obj.fechaRegistroPes));
-                                if (tipoUsuario == 'Administrador'){
-                                    nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(obj.precioPes));
-                                }
-                                nuevaFila.append($('<td class="hidden">').text(obj.estadoPes));
+                                nuevaFila.append($('<td class="">').text(obj.idEspecie));
+                                nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(obj.precioPes));
+                                nuevaFila.append($('<td class="">').text(obj.estadoPes));
                             }
                         }
                         
                         // Agregar la nueva fila al tbody
                         tbodyConsultarPesadas.append(nuevaFila);
                     });
+
+                    $('#tablaConsultarPesadas').DataTable( {
+                        paging: false,
+                        searching: false,
+                        info: false,
+                        // scrollX: true,
+                        dom: 'Bfrtip',
+                        buttons: [
+                            {
+                                extend: "excel",              // Extend the excel button
+                                text: 'Exportar a Excel',
+                                className: 'bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-600 rounded mb-5',
+                                excelStyles: {                // Add an excelStyles definition
+                                    template: "blue_medium",  // Apply the 'blue_medium' template
+                                },
+                            },
+                        ],
+                        columnDefs: [
+                            {
+                                target: 0,
+                                visible: false,
+                                searchable: false
+                            },
+                            {
+                                target: 9,
+                                visible: false,
+                                searchable: false
+                            },
+                            {
+                                target: 11,
+                                visible: false,
+                                searchable: false
+                            }
+                        ]
+                    } );
 
                     if (response.length == 0) {
                         tbodyConsultarPesadas.html(`<tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="8" class="text-center">No hay datos</td></tr>`);

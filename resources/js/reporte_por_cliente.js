@@ -1,5 +1,4 @@
-import jQuery, { extend } from 'jquery';
-import button from 'kutty/src/button';
+import jQuery from 'jquery';
 
 window.$ = jQuery;
 
