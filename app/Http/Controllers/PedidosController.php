@@ -19,31 +19,45 @@ class PedidosController extends Controller
         return redirect('/login');
     }
 
-    public function consulta_TraerPedidosClientes(Request $request ){
+    public function consulta_TraerPedidosClientes(Request $request)
+{
+    $fechaBuscarPedidos = $request->input('fechaBuscarPedidos');
 
-        $fechaBuscarPedidos = $request->input('fechaBuscarPedidos');
+    if (Auth::check()) {
+        // Realiza la consulta a la base de datos
+        $datos = DB::select('
+            SELECT 
+                IFNULL(CONCAT_WS(" ", c.nombresCli, c.apellidoPaternoCli, c.apellidoMaternoCli), "") AS nombreCompleto, 
+                c.codigoCli as codigoCliPedidos, 
+                COALESCE(p.fechaRegistroPedido, ?) AS fechaRegistroPedido, 
+                COALESCE(p.pedidoPrimerEspecie, 0) AS pedidoPrimerEspecie, 
+                COALESCE(p.pedidoSegundaEspecie, 0) AS pedidoSegundaEspecie,
+                COALESCE(p.pedidoTercerEspecie, 0) AS pedidoTercerEspecie, 
+                COALESCE(p.pedidoCuartaEspecie, 0) AS pedidoCuartaEspecie, 
+                COALESCE(p.pedidoQuintaEspecie, 0) AS pedidoQuintaEspecie, 
+                COALESCE(p.pedidoSextaEspecie, 0) AS pedidoSextaEspecie, 
+                COALESCE(p.pedidoSeptimaEspecie, 0) AS pedidoSeptimaEspecie, 
+                COALESCE(p.pedidoOctavaEspecie, 0) AS pedidoOctavaEspecie, 
+                COALESCE(p.pedidoNovenaEspecie, 0) AS pedidoNovenaEspecie, 
+                COALESCE(p.pedidoDecimaEspecie, 0) AS pedidoDecimaEspecie, 
+                COALESCE(p.pedidoDecimaPrimeraEspecie, 0) AS pedidoDecimaPrimeraEspecie, 
+                COALESCE(p.pedidoDecimaSegundaEspecie, 0) AS pedidoDecimaSegundaEspecie, 
+                COALESCE(p.pedidoDecimaTerceraEspecie, 0) AS pedidoDecimaTerceraEspecie, 
+                COALESCE(p.pedidoDecimaCuartaEspecie, 0) AS pedidoDecimaCuartaEspecie, 
+                COALESCE(p.comentarioPedido, "") AS comentarioPedido
+            FROM tb_clientes c
+            LEFT JOIN tb_pedidos p ON c.codigoCli = p.codigoCliPedidos AND p.fechaRegistroPedido = ?
+            WHERE c.idEstadoCli = 1 AND c.estadoEliminadoCli = 1
+            ORDER BY nombreCompleto ASC', [$fechaBuscarPedidos, $fechaBuscarPedidos]);
 
-        if (Auth::check()) {
-            // Realiza la consulta a la base de datos
-            $datos = DB::select('
-            SELECT
-            idPedido,codigoCliPedidos,pedidoPrimerEspecie,pedidoSegundaEspecie,
-            pedidoTercerEspecie,pedidoCuartaEspecie,pedidoQuintaEspecie,pedidoSextaEspecie,
-            pedidoSeptimaEspecie,pedidoOctavaEspecie,pedidoNovenaEspecie,pedidoDecimaEspecie,pedidoDecimaPrimeraEspecie,
-            pedidoDecimaSegundaEspecie, pedidoDecimaTerceraEspecie, pedidoDecimaCuartaEspecie, comentarioPedido,
-            IFNULL(CONCAT_WS(" ", nombresCli, apellidoPaternoCli, apellidoMaternoCli), "") AS nombreCompleto,fechaRegistroPedido
-            FROM tb_pedidos
-            INNER JOIN tb_clientes on tb_clientes.codigoCli = tb_pedidos.codigoCliPedidos
-            WHERE estadoPedido = 1 and fechaRegistroPedido = ?
-            ORDER BY nombreCompleto ASC',[$fechaBuscarPedidos]);
-
-            // Devuelve los datos en formato JSON
-            return response()->json($datos);
-        }
-
-        // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
-        return response()->json(['error' => 'Usuario no autenticado'], 401);
+        // Devuelve los datos en formato JSON
+        return response()->json($datos);
     }
+
+    // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
+    return response()->json(['error' => 'Usuario no autenticado'], 401);
+}
+
 
     public function consulta_AgregarPedidoCliente(Request $request){
 
@@ -201,6 +215,130 @@ class PedidosController extends Controller
     
             // Devuelve true si el pedido existe, false de lo contrario
             return response()->json(['existePedido' => $pedidoExistente]);
+        }
+    
+        // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
+        return response()->json(['error' => 'Usuario no autenticado'], 401);
+    }
+
+    public function consulta_RegistrarActualizarPedido(Request $request) {
+        $fechaPedido = $request->input('fechaPedido');
+        $codigoCli = $request->input('codigoCli');
+        $columnaPedido = $request->input('columnaPedido');
+        $nuevoValor = $request->input('nuevoContenido');
+    
+        if (Auth::check()) {
+            // Realiza la consulta a la base de datos
+            $pedidoExistente = DB::table('tb_pedidos')
+                ->where('codigoCliPedidos', $codigoCli)
+                ->where('fechaRegistroPedido', $fechaPedido)
+                ->where('estadoPedido', 1)
+                ->exists();
+
+            if (!$pedidoExistente) {
+                $agregarPedido = new AgregarPedido;
+                $agregarPedido->codigoCliPedidos = $codigoCli;
+                $agregarPedido->pedidoPrimerEspecie = 0;
+                $agregarPedido->pedidoSegundaEspecie = 0;
+                $agregarPedido->pedidoTercerEspecie = 0;
+                $agregarPedido->pedidoCuartaEspecie = 0;
+                $agregarPedido->pedidoQuintaEspecie = 0;
+                $agregarPedido->pedidoSextaEspecie = 0;
+                $agregarPedido->pedidoSeptimaEspecie = 0;
+                $agregarPedido->pedidoOctavaEspecie = 0;
+                $agregarPedido->pedidoNovenaEspecie = 0;
+                $agregarPedido->pedidoDecimaEspecie = 0;
+                $agregarPedido->pedidoDecimaPrimeraEspecie = 0;
+                $agregarPedido->pedidoDecimaSegundaEspecie = 0;
+                $agregarPedido->pedidoDecimaTerceraEspecie = 0;
+                $agregarPedido->pedidoDecimaCuartaEspecie = 0;
+                $agregarPedido->comentarioPedido = "";
+                $agregarPedido->fechaRegistroPedido = $fechaPedido;
+                $agregarPedido->estadoPedido = 1;
+                $agregarPedido->save();
+            }
+            
+            switch ($columnaPedido) {
+                case 1:
+                    AgregarPedido::where('codigoCliPedidos', $codigoCli)
+                    ->where('fechaRegistroPedido', $fechaPedido)
+                        ->update(['pedidoPrimerEspecie' => $nuevoValor === null ? 0 : $nuevoValor]);
+                    break;
+                case 2:
+                    AgregarPedido::where('codigoCliPedidos', $codigoCli)
+                    ->where('fechaRegistroPedido', $fechaPedido)
+                        ->update(['pedidoSegundaEspecie' => $nuevoValor === null ? 0 : $nuevoValor]);
+                    break;
+                case 3:
+                    AgregarPedido::where('codigoCliPedidos', $codigoCli)
+                    ->where('fechaRegistroPedido', $fechaPedido)
+                        ->update(['pedidoTercerEspecie' => $nuevoValor === null ? 0 : $nuevoValor]);
+                    break;
+                case 4:
+                    AgregarPedido::where('codigoCliPedidos', $codigoCli)
+                    ->where('fechaRegistroPedido', $fechaPedido)
+                        ->update(['pedidoCuartaEspecie' => $nuevoValor === null ? 0 : $nuevoValor]);
+                    break;
+                case 5:
+                    AgregarPedido::where('codigoCliPedidos', $codigoCli)
+                    ->where('fechaRegistroPedido', $fechaPedido)
+                        ->update(['pedidoQuintaEspecie' => $nuevoValor === null ? 0 : $nuevoValor]);
+                    break;
+                case 6:
+                    AgregarPedido::where('codigoCliPedidos', $codigoCli)
+                    ->where('fechaRegistroPedido', $fechaPedido)
+                        ->update(['pedidoSextaEspecie' => $nuevoValor === null ? 0 : $nuevoValor]);
+                    break;
+                case 7:
+                    AgregarPedido::where('codigoCliPedidos', $codigoCli)
+                    ->where('fechaRegistroPedido', $fechaPedido)
+                        ->update(['pedidoSeptimaEspecie' => $nuevoValor === null ? 0 : $nuevoValor]);
+                    break;
+                case 8:
+                    AgregarPedido::where('codigoCliPedidos', $codigoCli)
+                    ->where('fechaRegistroPedido', $fechaPedido)
+                        ->update(['pedidoOctavaEspecie' => $nuevoValor === null ? 0 : $nuevoValor]);
+                    break;
+                case 9:
+                    AgregarPedido::where('codigoCliPedidos', $codigoCli)
+                    ->where('fechaRegistroPedido', $fechaPedido)
+                        ->update(['pedidoNovenaEspecie' => $nuevoValor === null ? 0 : $nuevoValor]);
+                    break;
+                case 10:
+                    AgregarPedido::where('codigoCliPedidos', $codigoCli)
+                    ->where('fechaRegistroPedido', $fechaPedido)
+                        ->update(['pedidoDecimaEspecie' => $nuevoValor === null ? 0 : $nuevoValor]);
+                    break;
+                case 11:
+                    AgregarPedido::where('codigoCliPedidos', $codigoCli)
+                    ->where('fechaRegistroPedido', $fechaPedido)
+                        ->update(['pedidoDecimaPrimeraEspecie' => $nuevoValor === null ? 0 : $nuevoValor]);
+                    break;
+                case 12:
+                    AgregarPedido::where('codigoCliPedidos', $codigoCli)
+                    ->where('fechaRegistroPedido', $fechaPedido)
+                        ->update(['pedidoDecimaSegundaEspecie' => $nuevoValor === null ? 0 : $nuevoValor]);
+                    break;
+                case 13:
+                    AgregarPedido::where('codigoCliPedidos', $codigoCli)
+                    ->where('fechaRegistroPedido', $fechaPedido)
+                        ->update(['pedidoDecimaTerceraEspecie' => $nuevoValor === null ? 0 : $nuevoValor]);
+                    break;
+                case 14:
+                    AgregarPedido::where('codigoCliPedidos', $codigoCli)
+                    ->where('fechaRegistroPedido', $fechaPedido)
+                        ->update(['pedidoDecimaCuartaEspecie' => $nuevoValor === null ? 0 : $nuevoValor]);
+                    break;     
+                case 15:
+                    AgregarPedido::where('codigoCliPedidos', $codigoCli)
+                    ->where('fechaRegistroPedido', $fechaPedido)
+                        ->update(['comentarioPedido' => $nuevoValor]);
+                    break;        
+                default:
+                    return response()->json(['error' => 'Número de especie inválido'], 400);
+            }
+
+            return response()->json(['success' => true], 200);
         }
     
         // Si el usuario no está autenticado, puedes devolver un error o redirigirlo

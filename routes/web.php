@@ -168,5 +168,6 @@ Route::get('/fn_consulta_ActualizarPedidoCliente',[PedidosController::class,'con
 Route::get('/fn_consulta_EliminarPedido',[PedidosController::class,'consulta_EliminarPedido']);
 Route::get('/fn_consulta_TraerPedidosAnteriores',[PedidosController::class,'consulta_TraerPedidosAnteriores']);
 Route::get('/fn_consulta_VerificarPedido',[PedidosController::class,'consulta_VerificarPedido']);
+Route::get('/fn_consulta_RegistrarActualizarPedido',[PedidosController::class,'consulta_RegistrarActualizarPedido']);
 
 Route::get('/fn_consulta_TraerPedidosSeguimientoClientes',[SeguimientoPedidosController::class,'consulta_TraerPedidosSeguimientoClientes']);

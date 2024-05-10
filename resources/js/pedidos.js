@@ -362,6 +362,7 @@ jQuery(function($) {
     };
 
     $('#filtrarPedidosFecha').on('click', function () {
+        // $('#filtrarClientePedidos').val('');
         let fechaBuscarPedidos = $('#fechaBuscarPedidos').val();
         fn_TraerPedidosClientes(fechaBuscarPedidos);
     });
@@ -421,26 +422,25 @@ jQuery(function($) {
                     // Iterar sobre los objetos y mostrar sus propiedades
                     response.forEach(function (obj) {
                         // Crear una nueva fila
-                        nuevaFila = $('<tr class="bg-white filaEditable border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
+                        nuevaFila = $('<tr class="bg-white text-sm filaEditable border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
 
                         // Agregar las celdas con la información
-                        nuevaFila.append($('<td class="hidden">').text(obj.idPedido));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 font-medium text-gray-900 dark:text-white">').text(obj.nombreCompleto));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center">').text(obj.pedidoPrimerEspecie));                        
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center">').text(obj.pedidoSegundaEspecie));                        
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center">').text(obj.pedidoTercerEspecie));                        
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center">').text(obj.pedidoCuartaEspecie));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center">').text(obj.pedidoQuintaEspecie));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center">').text(obj.pedidoSextaEspecie));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center">').text(obj.pedidoSeptimaEspecie));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center">').text(obj.pedidoOctavaEspecie));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center">').text(obj.pedidoNovenaEspecie));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center">').text(obj.pedidoDecimaEspecie));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center">').text(obj.pedidoDecimaPrimeraEspecie));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center">').text(obj.pedidoDecimaSegundaEspecie));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center">').text(obj.pedidoDecimaTerceraEspecie));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center">').text(obj.pedidoDecimaCuartaEspecie));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center">').text(obj.comentarioPedido));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center valorEditable" data-columna="1">').text(obj.pedidoPrimerEspecie));                        
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center valorEditable" data-columna="2">').text(obj.pedidoSegundaEspecie));                        
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center valorEditable" data-columna="3">').text(obj.pedidoTercerEspecie));                        
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center valorEditable" data-columna="4">').text(obj.pedidoCuartaEspecie));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center valorEditable" data-columna="5">').text(obj.pedidoQuintaEspecie));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center valorEditable" data-columna="6">').text(obj.pedidoSextaEspecie));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center valorEditable" data-columna="7">').text(obj.pedidoSeptimaEspecie));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center valorEditable" data-columna="8">').text(obj.pedidoOctavaEspecie));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center valorEditable" data-columna="9">').text(obj.pedidoNovenaEspecie));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center valorEditable" data-columna="10">').text(obj.pedidoDecimaEspecie));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center valorEditable" data-columna="11">').text(obj.pedidoDecimaPrimeraEspecie));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center valorEditable" data-columna="12">').text(obj.pedidoDecimaSegundaEspecie));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center valorEditable" data-columna="13">').text(obj.pedidoDecimaTerceraEspecie));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center valorEditable" data-columna="14">').text(obj.pedidoDecimaCuartaEspecie));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center valorEditable" data-columna="15">').text(obj.comentarioPedido));
                         
                         let totalPedidos = 0;
                         totalPedidos = parseInt(obj.pedidoPrimerEspecie) + parseInt(obj.pedidoSegundaEspecie) + 
@@ -510,6 +510,22 @@ jQuery(function($) {
                         nuevaFila= ($('<td class="text-center h-0.5 bg-gray-800 dark:bg-gray-300" colspan="17">').text(""));
                         TtotalesPedidos.append(nuevaFila);
                     }
+
+                    let nombreFiltrar = $('#filtrarClientePedidos').val().toUpperCase();
+                    // Ocultar todas las filas excepto las de Fecha y las filas con colspan="6"
+                    $('#tablaPedidos tbody tr').show();
+
+                    if (nombreFiltrar) {
+                        $('#tablaPedidos tbody tr').each(function() {
+                            let nombre = $(this).find('td:eq(0)').text().toUpperCase().trim();
+                            if (nombre.indexOf(nombreFiltrar) === -1) {
+                                $(this).hide();
+                            }
+                        });
+                    }
+
+                    // Actualizar la fila "TOTAL" según los resultados filtrados
+                    updateTotal();
 
                 } else {
                     console.log("La respuesta no es un arreglo de objetos.");
@@ -715,7 +731,7 @@ jQuery(function($) {
 
         if (nombreFiltrar) {
             $('#tablaPedidos tbody tr').each(function() {
-                let nombre = $(this).find('td:eq(1)').text().toUpperCase().trim();
+                let nombre = $(this).find('td:eq(0)').text().toUpperCase().trim();
                 if (nombre.indexOf(nombreFiltrar) === -1) {
                     $(this).hide();
                 }
@@ -746,35 +762,35 @@ jQuery(function($) {
 
         // Sumar los montos de las filas visibles
         $('#bodyPedidos tr.filaEditable:visible').each(function () {
-            let monto1 = parseFloat($(this).find('td:eq(2)').text());
+            let monto1 = parseFloat($(this).find('td:eq(1)').text());
             total1 += isNaN(monto1) ? 0 : monto1;
-            let monto2 = parseFloat($(this).find('td:eq(3)').text());
+            let monto2 = parseFloat($(this).find('td:eq(2)').text());
             total2 += isNaN(monto2) ? 0 : monto2;
-            let monto3 = parseFloat($(this).find('td:eq(4)').text());
+            let monto3 = parseFloat($(this).find('td:eq(3)').text());
             total3 += isNaN(monto3) ? 0 : monto3;
-            let monto4 = parseFloat($(this).find('td:eq(5)').text());
+            let monto4 = parseFloat($(this).find('td:eq(4)').text());
             total4 += isNaN(monto4) ? 0 : monto4;
-            let monto5 = parseFloat($(this).find('td:eq(6)').text());
+            let monto5 = parseFloat($(this).find('td:eq(5)').text());
             total5 += isNaN(monto5) ? 0 : monto5;
-            let monto6 = parseFloat($(this).find('td:eq(7)').text());
+            let monto6 = parseFloat($(this).find('td:eq(6)').text());
             total6 += isNaN(monto6) ? 0 : monto6;
-            let monto7 = parseFloat($(this).find('td:eq(8)').text());
+            let monto7 = parseFloat($(this).find('td:eq(7)').text());
             total7 += isNaN(monto7) ? 0 : monto7;
-            let monto8 = parseFloat($(this).find('td:eq(9)').text());
+            let monto8 = parseFloat($(this).find('td:eq(8)').text());
             total8 += isNaN(monto8) ? 0 : monto8;
-            let monto9 = parseFloat($(this).find('td:eq(10)').text());
+            let monto9 = parseFloat($(this).find('td:eq(9)').text());
             total9 += isNaN(monto9) ? 0 : monto9;
-            let monto10 = parseFloat($(this).find('td:eq(11)').text());
+            let monto10 = parseFloat($(this).find('td:eq(10)').text());
             total10 += isNaN(monto10) ? 0 : monto10;
-            let monto11 = parseFloat($(this).find('td:eq(12)').text());
+            let monto11 = parseFloat($(this).find('td:eq(11)').text());
             total11 += isNaN(monto11) ? 0 : monto11;
-            let monto12 = parseFloat($(this).find('td:eq(13)').text());
+            let monto12 = parseFloat($(this).find('td:eq(12)').text());
             total12 += isNaN(monto12) ? 0 : monto12;
-            let monto13 = parseFloat($(this).find('td:eq(14)').text());
+            let monto13 = parseFloat($(this).find('td:eq(13)').text());
             total13 += isNaN(monto13) ? 0 : monto13;
-            let monto14 = parseFloat($(this).find('td:eq(15)').text());
+            let monto14 = parseFloat($(this).find('td:eq(14)').text());
             total14 += isNaN(monto14) ? 0 : monto14;
-            let monto15 = parseFloat($(this).find('td:eq(17)').text());
+            let monto15 = parseFloat($(this).find('td:eq(16)').text());
             total15 += isNaN(monto15) ? 0 : monto15;
         });
 
@@ -872,116 +888,116 @@ jQuery(function($) {
         $('#headerPedidos tr:last td:eq(16)').text(totalFormateado15);
     };
 
-    $(document).on('dblclick', '#tablaPedidos tbody tr.filaEditable', function (e) {
-        e.preventDefault();
-        if (tipoUsuario =='Administrador'){
-            $('#contenedorDeEspeciesPedidosEditar').find('div').addClass('hidden').removeClass('flex');
-            $('#selectEspecieAgregarPedidoEditar').val($('#selectEspecieAgregarPedidoEditar option:first').val());
-            let fila = $(this).closest('tr');
-            let idPedido = fila.find('td:eq(0)').text();
-            let nombreCliente = fila.find('td:eq(1)').text();
-            let pedidoPrimerEspecie = fila.find('td:eq(2)').text();
-            let pedidoSegundaEspecie = fila.find('td:eq(3)').text();
-            let pedidoTerceraEspecie = fila.find('td:eq(4)').text();
-            let pedidoCuartaEspecie = fila.find('td:eq(5)').text();
-            let pedidoQuintaEspecie = fila.find('td:eq(6)').text();
-            let pedidoSextaEspecie = fila.find('td:eq(7)').text();
-            let pedidoSeptimaEspecie = fila.find('td:eq(8)').text();
-            let pedidoOctavaEspecie = fila.find('td:eq(9)').text();
-            let pedidoNovenaEspecie = fila.find('td:eq(10)').text();
-            let pedidoDecimaEspecie = fila.find('td:eq(11)').text();
-            let pedidoDecimaPrimeraEspecie = fila.find('td:eq(12)').text();
-            let pedidoDecimaSegundaEspecie = fila.find('td:eq(13)').text();
-            let pedidoDecimaTerceraEspecie = fila.find('td:eq(14)').text();
-            let pedidoDecimaCuartaEspecie = fila.find('td:eq(15)').text();
-            let pedidoComentario = fila.find('td:eq(16)').text();
-            let fechaPedido = fila.find('td:eq(18)').text();
-            let codigoCliente = fila.find('td:eq(19)').text();
+    // $(document).on('dblclick', '#tablaPedidos tbody tr.filaEditable', function (e) {
+    //     e.preventDefault();
+    //     if (tipoUsuario =='Administrador'){
+    //         $('#contenedorDeEspeciesPedidosEditar').find('div').addClass('hidden').removeClass('flex');
+    //         $('#selectEspecieAgregarPedidoEditar').val($('#selectEspecieAgregarPedidoEditar option:first').val());
+    //         let fila = $(this).closest('tr');
+    //         let idPedido = fila.find('td:eq(0)').text();
+    //         let nombreCliente = fila.find('td:eq(1)').text();
+    //         let pedidoPrimerEspecie = fila.find('td:eq(2)').text();
+    //         let pedidoSegundaEspecie = fila.find('td:eq(3)').text();
+    //         let pedidoTerceraEspecie = fila.find('td:eq(4)').text();
+    //         let pedidoCuartaEspecie = fila.find('td:eq(5)').text();
+    //         let pedidoQuintaEspecie = fila.find('td:eq(6)').text();
+    //         let pedidoSextaEspecie = fila.find('td:eq(7)').text();
+    //         let pedidoSeptimaEspecie = fila.find('td:eq(8)').text();
+    //         let pedidoOctavaEspecie = fila.find('td:eq(9)').text();
+    //         let pedidoNovenaEspecie = fila.find('td:eq(10)').text();
+    //         let pedidoDecimaEspecie = fila.find('td:eq(11)').text();
+    //         let pedidoDecimaPrimeraEspecie = fila.find('td:eq(12)').text();
+    //         let pedidoDecimaSegundaEspecie = fila.find('td:eq(13)').text();
+    //         let pedidoDecimaTerceraEspecie = fila.find('td:eq(14)').text();
+    //         let pedidoDecimaCuartaEspecie = fila.find('td:eq(15)').text();
+    //         let pedidoComentario = fila.find('td:eq(16)').text();
+    //         let fechaPedido = fila.find('td:eq(18)').text();
+    //         let codigoCliente = fila.find('td:eq(19)').text();
 
-            $('#idPedidosEditar').attr("value", idPedido)
-            $('#idRegistrarPedidoClienteEditar').val(nombreCliente);
-            $('#selectedCodigoCliPedidosEditar').attr("value", codigoCliente);
+    //         $('#idPedidosEditar').attr("value", idPedido)
+    //         $('#idRegistrarPedidoClienteEditar').val(nombreCliente);
+    //         $('#selectedCodigoCliPedidosEditar').attr("value", codigoCliente);
 
-            if (pedidoPrimerEspecie > 0){
-                $('#divPedidoYugoVivoEditar').addClass('flex');
-                $('#divPedidoYugoVivoEditar').removeClass('hidden');
-            }
-            $('#inputCantidadYugoVivoEditar').val(pedidoPrimerEspecie);
-            if (pedidoSegundaEspecie > 0){
-                $('#divPedidoYugoPeladoEditar').addClass('flex');
-                $('#divPedidoYugoPeladoEditar').removeClass('hidden');
-            }
-            $('#inputCantidadYugoPeladoEditar').val(pedidoSegundaEspecie);
-            if (pedidoTerceraEspecie > 0){
-                $('#divPedidoTecnicoVivoEditar').addClass('flex');
-                $('#divPedidoTecnicoVivoEditar').removeClass('hidden');
-            }
-            $('#inputCantidadTecnicoVivoEditar').val(pedidoTerceraEspecie);
-            if (pedidoCuartaEspecie > 0){
-                $('#divPedidoTecnicoPeladoEditar').addClass('flex');
-                $('#divPedidoTecnicoPeladoEditar').removeClass('hidden');
-            }
-            $('#inputCantidadTecnicoPeladoEditar').val(pedidoCuartaEspecie);
-            if (pedidoQuintaEspecie > 0){
-                $('#divPedidoGallinaDobleEditar').addClass('flex');
-                $('#divPedidoGallinaDobleEditar').removeClass('hidden');
-            }
-            $('#inputCantidadGallinaDobleEditar').val(pedidoQuintaEspecie);
-            if (pedidoSextaEspecie > 0){
-                $('#divPedidoGallinaChicaEditar').addClass('flex');
-                $('#divPedidoGallinaChicaEditar').removeClass('hidden');
-            }
-            $('#inputCantidadGallinaChicaEditar').val(pedidoSextaEspecie);
-            if (pedidoSeptimaEspecie > 0){
-                $('#divPedidoGalloEditar').addClass('flex');
-                $('#divPedidoGalloEditar').removeClass('hidden');
-            }
-            $('#inputCantidadGalloEditar').val(pedidoSeptimaEspecie);
-            if (pedidoOctavaEspecie > 0){
-                $('#divPedidoPolloXXEditar').addClass('flex');
-                $('#divPedidoPolloXXEditar').removeClass('hidden');
-            }
-            $('#inputCantidadPolloXXEditar').val(pedidoOctavaEspecie);
-            if (pedidoNovenaEspecie > 0){
-                $('#divPedidoBrasaYugoEditar').addClass('flex');
-                $('#divPedidoBrasaYugoEditar').removeClass('hidden');
-            }
-            $('#inputCantidadBrasaYugoEditar').val(pedidoNovenaEspecie);
-            if (pedidoDecimaEspecie > 0){
-                $('#divPedidoBrasaTecnicoEditar').addClass('flex');
-                $('#divPedidoBrasaTecnicoEditar').removeClass('hidden');
-            }
-            $('#inputCantidadBrasaTecnicoEditar').val(pedidoDecimaEspecie);
+    //         if (pedidoPrimerEspecie > 0){
+    //             $('#divPedidoYugoVivoEditar').addClass('flex');
+    //             $('#divPedidoYugoVivoEditar').removeClass('hidden');
+    //         }
+    //         $('#inputCantidadYugoVivoEditar').val(pedidoPrimerEspecie);
+    //         if (pedidoSegundaEspecie > 0){
+    //             $('#divPedidoYugoPeladoEditar').addClass('flex');
+    //             $('#divPedidoYugoPeladoEditar').removeClass('hidden');
+    //         }
+    //         $('#inputCantidadYugoPeladoEditar').val(pedidoSegundaEspecie);
+    //         if (pedidoTerceraEspecie > 0){
+    //             $('#divPedidoTecnicoVivoEditar').addClass('flex');
+    //             $('#divPedidoTecnicoVivoEditar').removeClass('hidden');
+    //         }
+    //         $('#inputCantidadTecnicoVivoEditar').val(pedidoTerceraEspecie);
+    //         if (pedidoCuartaEspecie > 0){
+    //             $('#divPedidoTecnicoPeladoEditar').addClass('flex');
+    //             $('#divPedidoTecnicoPeladoEditar').removeClass('hidden');
+    //         }
+    //         $('#inputCantidadTecnicoPeladoEditar').val(pedidoCuartaEspecie);
+    //         if (pedidoQuintaEspecie > 0){
+    //             $('#divPedidoGallinaDobleEditar').addClass('flex');
+    //             $('#divPedidoGallinaDobleEditar').removeClass('hidden');
+    //         }
+    //         $('#inputCantidadGallinaDobleEditar').val(pedidoQuintaEspecie);
+    //         if (pedidoSextaEspecie > 0){
+    //             $('#divPedidoGallinaChicaEditar').addClass('flex');
+    //             $('#divPedidoGallinaChicaEditar').removeClass('hidden');
+    //         }
+    //         $('#inputCantidadGallinaChicaEditar').val(pedidoSextaEspecie);
+    //         if (pedidoSeptimaEspecie > 0){
+    //             $('#divPedidoGalloEditar').addClass('flex');
+    //             $('#divPedidoGalloEditar').removeClass('hidden');
+    //         }
+    //         $('#inputCantidadGalloEditar').val(pedidoSeptimaEspecie);
+    //         if (pedidoOctavaEspecie > 0){
+    //             $('#divPedidoPolloXXEditar').addClass('flex');
+    //             $('#divPedidoPolloXXEditar').removeClass('hidden');
+    //         }
+    //         $('#inputCantidadPolloXXEditar').val(pedidoOctavaEspecie);
+    //         if (pedidoNovenaEspecie > 0){
+    //             $('#divPedidoBrasaYugoEditar').addClass('flex');
+    //             $('#divPedidoBrasaYugoEditar').removeClass('hidden');
+    //         }
+    //         $('#inputCantidadBrasaYugoEditar').val(pedidoNovenaEspecie);
+    //         if (pedidoDecimaEspecie > 0){
+    //             $('#divPedidoBrasaTecnicoEditar').addClass('flex');
+    //             $('#divPedidoBrasaTecnicoEditar').removeClass('hidden');
+    //         }
+    //         $('#inputCantidadBrasaTecnicoEditar').val(pedidoDecimaEspecie);
 
-            if (pedidoDecimaPrimeraEspecie > 0){
-                $('#divPedidoPolloXXVivoEditar').addClass('flex');
-                $('#divPedidoPolloXXVivoEditar').removeClass('hidden');
-            }
-            $('#inputCantidadPolloXXVivoEditar').val(pedidoDecimaPrimeraEspecie);
-            if (pedidoDecimaSegundaEspecie > 0){
-                $('#divPedidoGallinaDobleVivoEditar').addClass('flex');
-                $('#divPedidoGallinaDobleVivoEditar').removeClass('hidden');
-            }
-            $('#inputCantidadGallinaDobleVivoEditar').val(pedidoDecimaSegundaEspecie);
-            if (pedidoDecimaTerceraEspecie > 0){
-                $('#divPedidoGallinaChicaVivoEditar').addClass('flex');
-                $('#divPedidoGallinaChicaVivoEditar').removeClass('hidden');
-            }
-            $('#inputCantidadGallinaChicaVivoEditar').val(pedidoDecimaTerceraEspecie);
-            if (pedidoDecimaCuartaEspecie > 0){
-                $('#divPedidoGalloVivoEditar').addClass('flex');
-                $('#divPedidoGalloVivoEditar').removeClass('hidden');
-            }
-            $('#inputCantidadGalloVivoEditar').val(pedidoDecimaCuartaEspecie);
+    //         if (pedidoDecimaPrimeraEspecie > 0){
+    //             $('#divPedidoPolloXXVivoEditar').addClass('flex');
+    //             $('#divPedidoPolloXXVivoEditar').removeClass('hidden');
+    //         }
+    //         $('#inputCantidadPolloXXVivoEditar').val(pedidoDecimaPrimeraEspecie);
+    //         if (pedidoDecimaSegundaEspecie > 0){
+    //             $('#divPedidoGallinaDobleVivoEditar').addClass('flex');
+    //             $('#divPedidoGallinaDobleVivoEditar').removeClass('hidden');
+    //         }
+    //         $('#inputCantidadGallinaDobleVivoEditar').val(pedidoDecimaSegundaEspecie);
+    //         if (pedidoDecimaTerceraEspecie > 0){
+    //             $('#divPedidoGallinaChicaVivoEditar').addClass('flex');
+    //             $('#divPedidoGallinaChicaVivoEditar').removeClass('hidden');
+    //         }
+    //         $('#inputCantidadGallinaChicaVivoEditar').val(pedidoDecimaTerceraEspecie);
+    //         if (pedidoDecimaCuartaEspecie > 0){
+    //             $('#divPedidoGalloVivoEditar').addClass('flex');
+    //             $('#divPedidoGalloVivoEditar').removeClass('hidden');
+    //         }
+    //         $('#inputCantidadGalloVivoEditar').val(pedidoDecimaCuartaEspecie);
 
-            $('#comentarioAgregarPedidoEditar').val(pedidoComentario);
+    //         $('#comentarioAgregarPedidoEditar').val(pedidoComentario);
 
-            $('#fechaAgregarPedidoEditar').val(fechaPedido);
+    //         $('#fechaAgregarPedidoEditar').val(fechaPedido);
 
-            $('#ModalAgregarPedidoEditar').addClass('flex');
-            $('#ModalAgregarPedidoEditar').removeClass('hidden');
-        }
-    });
+    //         $('#ModalAgregarPedidoEditar').addClass('flex');
+    //         $('#ModalAgregarPedidoEditar').removeClass('hidden');
+    //     }
+    // });
 
     $('#btnActualizarPedido').on('click', function () {
         let primerEspecie = $('#inputCantidadYugoVivoEditar').val();
@@ -1265,4 +1281,99 @@ jQuery(function($) {
             }
         });
     }
+
+    // Agregar evento clic a las celdas de la tabla
+    $(document).on('click', '#bodyPedidos td.valorEditable', function (e) {
+        if (tipoUsuario =='Administrador'){
+            let contenidoActual = $(this).text().trim();
+            let anchoTd = $(this).outerWidth();
+            let altoTd = $(this).outerHeight(); // Obtener la altura del td
+            let claseActual = $(this).attr('class'); // Almacenar la clase actual del td
+            let columnaPedido = $(this).data('columna');
+        
+            // Remover la clase p-2 del td
+            $(this).removeClass('p-2');
+        
+            let input = $('<input type="text" class="bg-transparent border-none h-full m-auto w-full text-sm text-center">')
+            .val(contenidoActual)
+            .on('input', function(e) {
+                if (columnaPedido != 15){
+                    let valor = $(this).val().trim();
+        
+                    // Validar si el valor es un número entero
+                    if (!/^\d*$/.test(valor)) {
+                        // Si no es un número entero, eliminar los caracteres no válidos
+                        $(this).val(valor.replace(/\D/g, ''));
+                    }
+                }
+            });
+            input.css({
+                'max-width': anchoTd,
+                'height': altoTd // Establecer la altura del input igual a la altura del td
+            });
+        
+            $(this).empty().append(input);
+            input.focus();
+        
+            // Almacenar referencias a la fila y a la celda
+            let fila = $(this).closest('tr');
+            let celdaColumna17 = fila.find('td:eq(17)');
+            let celdaColumna18 = fila.find('td:eq(18)');
+        
+            // Manejar evento de presionar Enter o salir del input
+            input.on('keypress blur', function(e) {
+                if (e.type === 'keypress' && e.which !== 13) {
+                    return; // Si no es la tecla Enter, salir
+                }
+
+                let nuevoContenido = $(this).val().trim();
+                $(this).parent().text(nuevoContenido);
+        
+                // Extraer valores de las columnas 0 y 18
+                let fechaPedido = celdaColumna17.text().trim();
+                let codigoCli = celdaColumna18.text().trim();
+
+                // Volver a agregar la clase al td
+                $(this).addClass(claseActual);
+        
+                fn_RegistrarActualizarPedidoCliente(codigoCli,fechaPedido,nuevoContenido,columnaPedido);
+            });
+        }
+    });    
+
+    function fn_RegistrarActualizarPedidoCliente(codigoCli,fechaPedido,nuevoContenido,columnaPedido){
+        $.ajax({
+            url: '/fn_consulta_RegistrarActualizarPedido',
+            method: 'GET',
+            data: {
+                codigoCli: codigoCli,
+                fechaPedido: fechaPedido,
+                nuevoContenido: nuevoContenido,
+                columnaPedido: columnaPedido,
+            },
+            success: function(response) {
+                if (response.success) {
+
+                    // Swal.fire({
+                    //     position: 'center',
+                    //     icon: 'success',
+                    //     title: 'Se actualizo el pedido correctamente',
+                    //     showConfirmButton: false,
+                    //     timer: 1500
+                    // });
+                    $('#filtrarPedidosFecha').trigger('click');
+                    // $('#filtrarClientePedidos').val('');
+                }
+            },
+            error: function(error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Error: Ocurrio un error inesperado durante la operacion',
+                  })
+                console.error("ERROR",error);
+            }
+        });
+    }
+    
 });
