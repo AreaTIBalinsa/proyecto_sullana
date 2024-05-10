@@ -50,7 +50,7 @@
             <table class="border-collapse w-full text-gray-500 dark:text-gray-400 select-none relative text-sm table-auto" id="tablaConsultarPesadas">
                 <thead id="headerConsultarPesadas" class="bg-blue-600 text-gray-50 sticky top-0 text-xs uppercase">
                     <tr class="h-10">
-                        <th class="px-4 hidden">ID</th>
+                        <th class="px-4">ID</th>
                         <th class="px-4 whitespace-nowrap">Nombre de Cliente</th>
                         <th class="px-4 whitespace-nowrap">Especie</th>
                         <th class="px-4 whitespace-nowrap">Cantidad</th>
@@ -59,9 +59,9 @@
                         <th class="px-4 whitespace-nowrap">Peso Tara</th>
                         <th class="px-4 whitespace-nowrap">Hora</th>
                         <th class="px-4 whitespace-nowrap">Fecha</th>
-                        <th class="px-4 hidden">Especie</th>
+                        <th class="px-4">Especie</th>
                         <th class="px-4 whitespace-nowrap">Precio</th>
-                        <th class="px-4 hidden">Estado</th>
+                        <th class="px-4">Estado</th>
                     </tr>
                 </thead>
                 <tbody id="bodyConsultarPesadas">

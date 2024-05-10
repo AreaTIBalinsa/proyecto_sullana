@@ -114,7 +114,7 @@ jQuery(function($) {
 
         if (filtrarEliminadas) {
             $('#tablaConsultarPesadas tbody tr').each(function() {
-                let columna9 = $(this).find('td:eq(8)').text().trim();
+                let columna9 = $(this).find('td:eq(9)').text().trim();
                 if (columna9 !== '0') {
                     $(this).hide();
                 }
@@ -243,8 +243,8 @@ jQuery(function($) {
                                 searchable: false
                             },
                             {
-                                target: 11,
-                                visible: false,
+                                targets: 11,
+                                width: '0%',
                                 searchable: false
                             }
                         ]
