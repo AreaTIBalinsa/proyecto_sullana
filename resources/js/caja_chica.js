@@ -38,7 +38,7 @@ jQuery(function($) {
 
     function fn_TraerPagosFechas(fechaDesdeTraerPagos, fechaHastaTraerPagos) {
         $.ajax({
-            url: '/fn_consulta_TraerPagosFechas',
+            url: '/fn_consulta_TraerPagosFechas2',
             method: 'GET',
             data:{
                 fechaDesdeTraerPagos:fechaDesdeTraerPagos,
@@ -244,7 +244,7 @@ jQuery(function($) {
 
     function fn_AgregarPagoCliente(codigoCliente,montoAgregarPagoCliente,fechaAgregarPagoCliente,formaDePago,codAgregarPagoCliente,comentarioAgregarPagoCliente,bancoAgregarPagoCliente,horaAgregarPago){
         $.ajax({
-            url: '/fn_consulta_AgregarPagoCliente',
+            url: '/fn_consulta_AgregarPagoCliente2',
             method: 'GET',
             data: {
                 codigoCliente: codigoCliente,

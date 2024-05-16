@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\AgregarEgresoCliente\AgregarEgresoCliente;
+use App\Models\AgregarPagoCliente\AgregarPagoCliente;
 
 class CajaChicaController extends Controller
 {
@@ -14,6 +15,69 @@ class CajaChicaController extends Controller
             return view('caja_chica');
         }
         return redirect('/login');
+    }
+
+    public function consulta_TraerPagosFechas(Request $request){
+
+        $fechaDesde = $request->input('fechaDesdeTraerPagos');
+        $fechaHasta = $request->input('fechaHastaTraerPagos');
+
+        if (Auth::check()) {
+            // Realiza la consulta a la base de datos
+            $datos = DB::select('
+                    SELECT tb_pagos.idPagos, 
+                    tb_pagos.cantidadAbonoPag,
+                    tb_pagos.tipoAbonoPag,
+                    tb_pagos.fechaOperacionPag,
+                    tb_pagos.codigoTransferenciaPag,
+                    tb_pagos.observacion,
+                    tb_pagos.fechaRegistroPag,
+                    tb_pagos.horaOperacionPag,
+                    tb_pagos.bancaPago,
+                   IFNULL(CONCAT_WS(" ", nombresCli, apellidoPaternoCli, apellidoMaternoCli), "") AS nombreCompleto
+            FROM tb_pagos
+            INNER JOIN tb_clientes ON tb_clientes.codigoCli = tb_pagos.codigoCli  
+            WHERE tb_pagos.estadoPago = 1 and clasificacionPago = 2 and tipoAbonoPag != ? and fechaOperacionPag BETWEEN ? AND ?', ["Saldo",$fechaDesde, $fechaHasta]);
+
+            // Devuelve los datos en formato JSON
+            return response()->json($datos);
+        }
+
+        // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
+        return response()->json(['error' => 'Usuario no autenticado'], 401);
+    }
+
+    public function consulta_AgregarPagoCliente(Request $request){
+
+        $codigoCliente = $request->input('codigoCliente');
+        $montoAgregarPagoCliente = $request->input('montoAgregarPagoCliente');
+        $fechaAgregarPagoCliente = $request->input('fechaAgregarPagoCliente');
+        $formaDePago = $request->input('formaDePago');
+        $codAgregarPagoCliente = $request->input('codAgregarPagoCliente');
+        $comentarioAgregarPagoCliente = $request->input('comentarioAgregarPagoCliente');
+        $bancoAgregarPagoCliente = $request->input('bancoAgregarPagoCliente');
+        $horaAgregarPago = $request->input('horaAgregarPago');
+
+        if (Auth::check()) {
+            $agregarPagoCliente = new AgregarPagoCliente;
+            $agregarPagoCliente->codigoCli = $codigoCliente;
+            $agregarPagoCliente->tipoAbonoPag = $formaDePago;
+            $agregarPagoCliente->cantidadAbonoPag = $montoAgregarPagoCliente;
+            $agregarPagoCliente->fechaOperacionPag = $fechaAgregarPagoCliente;
+            $agregarPagoCliente->codigoTransferenciaPag = $codAgregarPagoCliente;
+            $agregarPagoCliente->observacion = $comentarioAgregarPagoCliente;
+            $agregarPagoCliente->bancaPago = $bancoAgregarPagoCliente;
+            $agregarPagoCliente->horaOperacionPag = $horaAgregarPago;
+            $agregarPagoCliente->fechaRegistroPag = now()->setTimezone('America/New_York')->toDateString();
+            $agregarPagoCliente->estadoPago = 1;
+            $agregarPagoCliente->clasificacionPago = 2;
+            $agregarPagoCliente->save();
+    
+            return response()->json(['success' => true], 200);
+        }
+
+        // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
+        return response()->json(['error' => 'Usuario no autenticado'], 401);
     }
 
     public function consulta_AgregarEgreso (Request $request){

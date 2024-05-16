@@ -362,7 +362,7 @@ jQuery(function($) {
     };
 
     $('#filtrarPedidosFecha').on('click', function () {
-        // $('#filtrarClientePedidos').val('');
+        $('#filtrarClientePedidos').val('');
         let fechaBuscarPedidos = $('#fechaBuscarPedidos').val();
         fn_TraerPedidosClientes(fechaBuscarPedidos);
     });
@@ -654,7 +654,8 @@ jQuery(function($) {
 
                     $('#ModalAgregarPedido').addClass('hidden');
                     $('#ModalAgregarPedido').removeClass('flex');
-                    $('#filtrarPedidosFecha').trigger('click');
+                    let fechaBuscarPedidos = $('#fechaBuscarPedidos').val();
+                    fn_TraerPedidosClientes(fechaBuscarPedidos);
                 }
             },
             error: function(error) {
@@ -710,7 +711,8 @@ jQuery(function($) {
                         showConfirmButton: false,
                         timer: 2000
                     });
-                    $('#filtrarPedidosFecha').trigger('click');
+                    let fechaBuscarPedidos = $('#fechaBuscarPedidos').val();
+                    fn_TraerPedidosClientes(fechaBuscarPedidos);
                 }
             },
             error: function(error) {
@@ -1058,7 +1060,8 @@ jQuery(function($) {
 
                     $('#ModalAgregarPedidoEditar').addClass('hidden');
                     $('#ModalAgregarPedidoEditar').removeClass('flex');
-                    $('#filtrarPedidosFecha').trigger('click');
+                    let fechaBuscarPedidos = $('#fechaBuscarPedidos').val();
+                    fn_TraerPedidosClientes(fechaBuscarPedidos);
                 }
             },
             error: function(error) {
@@ -1265,7 +1268,9 @@ jQuery(function($) {
                             showConfirmButton: false,
                             timer: 1500
                         });
-                        $('#filtrarPedidosFecha').trigger('click');
+                        // $('#filtrarPedidosFecha').trigger('click');
+                        let fechaBuscarPedidos = $('#fechaBuscarPedidos').val();
+                        fn_TraerPedidosClientes(fechaBuscarPedidos);
                     }
                 }
             },
@@ -1361,7 +1366,10 @@ jQuery(function($) {
                     //     showConfirmButton: false,
                     //     timer: 1500
                     // });
-                    $('#filtrarPedidosFecha').trigger('click');
+                    // $('#filtrarPedidosFecha').trigger('click');
+                    alertify.notify('Se actualizo el pedido correctamente', 'success', 1);
+                    let fechaBuscarPedidos = $('#fechaBuscarPedidos').val();
+                    fn_TraerPedidosClientes(fechaBuscarPedidos);
                     // $('#filtrarClientePedidos').val('');
                 }
             },

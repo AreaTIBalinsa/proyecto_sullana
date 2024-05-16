@@ -931,6 +931,7 @@ class ReporteDePagosController extends Controller
         $comentarioAgregarPagoCliente = $request->input('comentarioAgregarPagoCliente');
         $bancoAgregarPagoCliente = $request->input('bancoAgregarPagoCliente');
         $horaAgregarPago = $request->input('horaAgregarPago');
+        $pagoDerivado = $request->input('pagoDerivado');
 
         if (Auth::check()) {
             $agregarPagoCliente = new AgregarPagoCliente;
@@ -944,6 +945,7 @@ class ReporteDePagosController extends Controller
             $agregarPagoCliente->horaOperacionPag = $horaAgregarPago;
             $agregarPagoCliente->fechaRegistroPag = now()->setTimezone('America/New_York')->toDateString();
             $agregarPagoCliente->estadoPago = 1;
+            $agregarPagoCliente->clasificacionPago = $pagoDerivado;
             $agregarPagoCliente->save();
     
             return response()->json(['success' => true], 200);
@@ -1038,7 +1040,67 @@ class ReporteDePagosController extends Controller
                    IFNULL(CONCAT_WS(" ", nombresCli, apellidoPaternoCli, apellidoMaternoCli), "") AS nombreCompleto
             FROM tb_pagos
             INNER JOIN tb_clientes ON tb_clientes.codigoCli = tb_pagos.codigoCli  
-            WHERE tb_pagos.estadoPago = 1 and tipoAbonoPag != ? and fechaOperacionPag BETWEEN ? AND ?', ["Saldo",$fechaDesde, $fechaHasta]);
+            WHERE tb_pagos.estadoPago = 1 and clasificacionPago = 1 and tipoAbonoPag != ? and fechaOperacionPag BETWEEN ? AND ?', ["Saldo",$fechaDesde, $fechaHasta]);
+
+            // Devuelve los datos en formato JSON
+            return response()->json($datos);
+        }
+
+        // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
+        return response()->json(['error' => 'Usuario no autenticado'], 401);
+    }
+
+    public function consulta_TraerPagosFechasItem2(Request $request){
+
+        $fechaDesde = $request->input('fechaDesdeTraerPagos');
+        $fechaHasta = $request->input('fechaHastaTraerPagos');
+
+        if (Auth::check()) {
+            // Realiza la consulta a la base de datos
+            $datos = DB::select('
+                    SELECT tb_pagos.idPagos, 
+                    tb_pagos.cantidadAbonoPag,
+                    tb_pagos.tipoAbonoPag,
+                    tb_pagos.fechaOperacionPag,
+                    tb_pagos.codigoTransferenciaPag,
+                    tb_pagos.observacion,
+                    tb_pagos.fechaRegistroPag,
+                    tb_pagos.horaOperacionPag,
+                    tb_pagos.bancaPago,
+                   IFNULL(CONCAT_WS(" ", nombresCli, apellidoPaternoCli, apellidoMaternoCli), "") AS nombreCompleto
+            FROM tb_pagos
+            INNER JOIN tb_clientes ON tb_clientes.codigoCli = tb_pagos.codigoCli  
+            WHERE tb_pagos.estadoPago = 1 and clasificacionPago = 2 and tipoAbonoPag != ? and fechaOperacionPag BETWEEN ? AND ?', ["Saldo",$fechaDesde, $fechaHasta]);
+
+            // Devuelve los datos en formato JSON
+            return response()->json($datos);
+        }
+
+        // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
+        return response()->json(['error' => 'Usuario no autenticado'], 401);
+    }
+
+    public function consulta_TraerPagosFechasItem3(Request $request){
+
+        $fechaDesde = $request->input('fechaDesdeTraerPagos');
+        $fechaHasta = $request->input('fechaHastaTraerPagos');
+
+        if (Auth::check()) {
+            // Realiza la consulta a la base de datos
+            $datos = DB::select('
+                    SELECT tb_pagos.idPagos, 
+                    tb_pagos.cantidadAbonoPag,
+                    tb_pagos.tipoAbonoPag,
+                    tb_pagos.fechaOperacionPag,
+                    tb_pagos.codigoTransferenciaPag,
+                    tb_pagos.observacion,
+                    tb_pagos.fechaRegistroPag,
+                    tb_pagos.horaOperacionPag,
+                    tb_pagos.bancaPago,
+                   IFNULL(CONCAT_WS(" ", nombresCli, apellidoPaternoCli, apellidoMaternoCli), "") AS nombreCompleto
+            FROM tb_pagos
+            INNER JOIN tb_clientes ON tb_clientes.codigoCli = tb_pagos.codigoCli  
+            WHERE tb_pagos.estadoPago = 1 and clasificacionPago = 3 and tipoAbonoPag != ? and fechaOperacionPag BETWEEN ? AND ?', ["Saldo",$fechaDesde, $fechaHasta]);
 
             // Devuelve los datos en formato JSON
             return response()->json($datos);
@@ -1261,6 +1323,36 @@ class ReporteDePagosController extends Controller
             FROM tb_pagos
             WHERE codigoCli = ? AND estadoPago = 1 AND fechaOperacionPag BETWEEN ? AND ?', [$codigoCli, $fechaInicio, $fechaFin]);
             
+            // Devuelve los datos en formato JSON
+            return response()->json($datos);
+        }
+
+        // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
+        return response()->json(['error' => 'Usuario no autenticado'], 401);
+    }
+
+    public function consulta_VerificarCodigoPago(Request $request){
+
+        $codAgregarPagoCliente = $request->input('codAgregarPagoCliente');
+
+        if (Auth::check()) {
+            // Realiza la consulta a la base de datos
+            $datos = DB::select('
+            SELECT tb_pagos.idPagos, 
+                    tb_pagos.cantidadAbonoPag,
+                    tb_pagos.tipoAbonoPag,
+                    tb_pagos.fechaOperacionPag,
+                    tb_pagos.codigoTransferenciaPag,
+                    tb_pagos.observacion,
+                    tb_pagos.fechaRegistroPag,
+                    tb_pagos.horaOperacionPag,
+                    tb_pagos.bancaPago,
+                    tb_clientes.codigoCli,
+                   IFNULL(CONCAT_WS(" ", nombresCli, apellidoPaternoCli, apellidoMaternoCli), "") AS nombreCompleto
+            FROM tb_pagos
+            INNER JOIN tb_clientes ON tb_clientes.codigoCli = tb_pagos.codigoCli
+            WHERE codigoTransferenciaPag = ? ',[$codAgregarPagoCliente]);
+
             // Devuelve los datos en formato JSON
             return response()->json($datos);
         }
