@@ -11,30 +11,29 @@ jQuery(function($) {
 
     /* ============ Eventos ============ */
 
-    $(document).on("dblclick", "#tablaPreciosXPresentacion #bodyPreciosXPresentacion tr td.precioColumna", function() {
-        let fila = $(this).closest('tr');
-        let idPrecioXPresentacion = fila.find('td:eq(0)').text();
-        let nombrePrecioXPresentacion = fila.find('td:eq(1)').text();
-        let nuevoPrecioXPresentacion = $(this).text();
-        let idPresentacion = $(this).data('columna');
-        let nombreColumna = $(this).closest('table').find('th:eq(' + (parseInt(idPresentacion)+1) + ')').text();
+    // $(document).on("dblclick", "#tablaPreciosXPresentacion #bodyPreciosXPresentacion tr td.precioColumna", function() {
+    //     let fila = $(this).closest('tr');
+    //     let idPrecioXPresentacion = fila.find('td:eq(0)').text();
+    //     let nombrePrecioXPresentacion = fila.find('td:eq(1)').text();
+    //     let nuevoPrecioXPresentacion = $(this).text();
+    //     let idPresentacion = $(this).data('columna');
+    //     let nombreColumna = $(this).closest('table').find('th:eq(' + (parseInt(idPresentacion)+1) + ')').text();
         
-        $('#ModalPreciosXPresentacion').removeClass('hidden');
-        $('#ModalPreciosXPresentacion').addClass('flex');
-        $('#nombrePrecioXPresentacion').html(nombrePrecioXPresentacion);
-        $('#nombrePresentacionModal').html(nombreColumna);
+    //     $('#ModalPreciosXPresentacion').removeClass('hidden');
+    //     $('#ModalPreciosXPresentacion').addClass('flex');
+    //     $('#nombrePrecioXPresentacion').html(nombrePrecioXPresentacion);
+    //     $('#nombrePresentacionModal').html(nombreColumna);
 
-        $('#nuevoValorPrecioXPresentacion').val(nuevoPrecioXPresentacion);
-        $('#idClientePrecioXPresentacion').attr("value",idPrecioXPresentacion);
-        $('#idEspeciePrecioXActualizar').attr("value",idPresentacion);
-        $('#nuevoValorPrecioXPresentacion').focus();
-    });
+    //     $('#nuevoValorPrecioXPresentacion').val(nuevoPrecioXPresentacion);
+    //     $('#idClientePrecioXPresentacion').attr("value",idPrecioXPresentacion);
+    //     $('#idEspeciePrecioXActualizar').attr("value",idPresentacion);
+    //     $('#nuevoValorPrecioXPresentacion').focus();
+    // });
 
     /* ============ Evento para abrir modal y editar precios de pollos ============ */
 
     $(document).on("dblclick contextmenu", ".divPreciosMinimos .preciosMinimosEspecies", function(e) {
         e.preventDefault();
-        console.log("Weyyy");
         // Obtén el precio del input actual
         let inputPrecioMinimo = $(this).val();
         
@@ -358,7 +357,7 @@ jQuery(function($) {
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer precioColumna" data-columna="19">').text(obj.vigesimaEspecie));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer precioColumna" data-columna="20">').text(obj.vigesimaPrimeraEspecie));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer precioColumna" data-columna="21">').text(obj.vigesimaSegundaEspecie));
-                        nuevaFila.append($('<td class="px-4 py-2 text-center cursor-pointer precioColumna" data-columna="22">').text(obj.vigesimaTerceraEspecie));
+                        nuevaFila.append($('<td class="p-2 text-center cursor-pointer precioColumna" data-columna="22">').text(obj.vigesimaTerceraEspecie));
                         nuevaFila.append($('<td class="hidden">').text(obj.idGrupo));
 
                         // Agregar la nueva fila al tbody
@@ -744,6 +743,83 @@ jQuery(function($) {
         else if (event.key === 189 || event.key === "-") {
             $("#cerrarModalPreciosXPresentacion").trigger("click");
         }
+    });
+
+    // Agregar evento clic a las celdas de la tabla
+    $(document).on('click', '#bodyPreciosXPresentacion td.precioColumna', function (e) {
+        // Verificar si el td ya contiene un input
+        if ($(this).find('input').length > 0) {
+            return;
+        }
+
+        let contenidoActual = $(this).text().trim();
+        let anchoTd = $(this).outerWidth();
+        let altoTd = $(this).outerHeight(); // Obtener la altura del td
+        let claseActual = $(this).attr('class'); // Almacenar la clase actual del td
+        let columnaPedido = $(this).data('columna');
+    
+        // Remover la clase p-2 del td
+        $(this).removeClass('p-2');
+    
+        let input = $('<input type="text" class="bg-transparent border-none h-full m-auto w-full text-sm text-center validarSoloNumerosDosDecimales">')
+        .val(contenidoActual)
+        .on('input', function(e) {
+            let inputValue = $(this).val().trim();
+
+            // Elimina todos los caracteres excepto los dígitos y un punto decimal
+            inputValue = inputValue.replace(/[^0-9.]/g, '');
+
+            // Verifica si ya hay un punto decimal presente
+            if (inputValue.indexOf('.') !== -1) {
+                // Si ya hay un punto, elimina los puntos adicionales
+                inputValue = inputValue.replace(/(\..*)\./g, '$1');
+
+                // Limita el número de decimales a dos
+                let parts = inputValue.split('.');
+                if (parts[1] && parts[1].length > 2) {
+                    parts[1] = parts[1].substring(0, 2);
+                    inputValue = parts[0] + '.' + parts[1];
+                }
+            }
+
+            // Establece el valor limpio en el input
+            $(this).val(inputValue);
+        });
+        input.css({
+            'max-width': anchoTd,
+            'height': altoTd // Establecer la altura del input igual a la altura del td
+        });
+    
+        $(this).empty().append(input);
+        input.focus();
+    
+        // Almacenar referencias a la fila y a la celda
+        let fila = $(this).closest('tr');
+        let celdaColumna0 = fila.find('td:eq(0)');
+    
+        // Manejar evento de presionar Enter o salir del input
+        input.on('keypress blur', function(e) {
+            if (e.type === 'keypress' && e.which !== 13) {
+                return; // Si no es la tecla Enter, salir
+            }
+    
+            let nuevoContenido = $(this).val().trim();
+            $(this).parent().text(nuevoContenido);
+    
+            // Extraer valores de las columnas 0
+            let codigoCli = celdaColumna0.text().trim();
+
+            // Volver a agregar la clase al td
+            $(this).addClass(claseActual);
+            
+            if(nuevoContenido == ""){
+                nuevoContenido = 0;
+            }
+
+            if(contenidoActual != nuevoContenido){
+                fn_ActualizarPrecioXPresentacion(codigoCli, nuevoContenido, columnaPedido);
+            }
+        });
     });
 
 });

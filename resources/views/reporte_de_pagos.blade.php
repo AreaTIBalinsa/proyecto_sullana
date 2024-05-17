@@ -65,7 +65,6 @@
                                 <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Banco</th>
                                 <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Codigo</th>
                                 <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Fecha</th>
-                                <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Hora</th>
                                 <th class="p-4 border-r-[1px] border-b-2 text-center whitespace-nowrap">Observaciones</th>
                             </tr>
                         </thead>
@@ -91,7 +90,7 @@
                         </tbody>
                     </table>
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                        <caption class="bg-violet-600 p-2 w-full rounded-rt-lg border-b-2 text-sm font-bold text-gray-100">Cobranza de Paul</caption>
+                        <caption class="bg-violet-600 p-2 w-full rounded-rt-lg border-b-2 text-sm font-bold text-gray-100">Cobranza de Paul Ingresos</caption>
                         <thead class="text-xs text-gray-100 uppercase bg-violet-600">
                             <tr>
                                 <th class="hidden">Id</th>
@@ -99,8 +98,7 @@
                                 <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Importe</th>
                                 <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Forma Pago</th>
                                 <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Fecha</th>
-                                <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Hora</th>
-                                <th class="p-4 border-b-2 border-r-2 text-center whitespace-nowrap">Observaciones</th>
+                                <th class="p-4 border-b-2 border-r-[1px] text-center whitespace-nowrap">Observaciones</th>
                             </tr>
                         </thead>
                         <tbody id="bodyReporteDePagosCobranzaDePaul">
@@ -112,11 +110,10 @@
                         <thead class="text-xs text-gray-100 uppercase bg-yellow-400">
                             <tr>
                                 <th class="hidden">Id</th>
-                                <th class="p-4 border-r-2 border-b-2 border-l-[1px] whitespace-nowrap">Uso Ehgreso</th>
+                                <th class="p-4 border-r-2 border-b-2 border-l-[1px] whitespace-nowrap">Uso Egreso</th>
                                 <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Importe</th>
                                 <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Forma Pago</th>
                                 <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Fecha</th>
-                                <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Hora</th>
                                 <th class="p-4 border-b-2 border-r-2 text-center whitespace-nowrap">Observaciones</th>
                             </tr>
                         </thead>
@@ -254,24 +251,26 @@
                         <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Agregar Pago</h3>
                     </div>
                     <div class="mt-4 flex justify-center items-center flex-col gap-4" id="divAgregarPagoCliente">
-                        <div class="flex justify-center items-start flex-col relative w-full h-full">
-                            <label for="idAgregarPagoCliente" class="mb-2 text-base font-medium text-gray-900 dark:text-white">Cliente :</label>
-                            <div class="flex max-w-xs w-full">
-                                <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
-                                    <i class='bx bxs-user-circle text-xl'></i>
-                                </span>
-                                <input class="validarCampo max-w-xs w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg focus:ring-primary-600 focus:border-primary-600 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="idAgregarPagoCliente" autocomplete="off" id="idAgregarPagoCliente" placeholder="Ingrese Nombre de Cliente">
+                        <div class="w-full h-full" id="divClienteOpcional">
+                            <div class="flex justify-center items-start flex-col relative w-full h-full">
+                                <label for="idAgregarPagoCliente" class="mb-2 text-base font-medium text-gray-900 dark:text-white">Cliente :</label>
+                                <div class="flex max-w-xs w-full">
+                                    <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
+                                        <i class='bx bxs-user-circle text-xl'></i>
+                                    </span>
+                                    <input class="max-w-xs w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg focus:ring-primary-600 focus:border-primary-600 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="idAgregarPagoCliente" autocomplete="off" id="idAgregarPagoCliente" placeholder="Ingrese Nombre de Cliente">
+                                </div>
+            
+                                <!-- Etiquetas ocultas para almacenar los datos seleccionados -->
+                                <label id="selectedCodigoCliAgregarPagoCliente" class="hidden" val=""></label>
+            
+                                <!-- Contenedor para las sugerencias -->
+                                <div id="contenedorClientesAgregarPagoCliente" class="max-w-xs w-full overflow-hidden overflow-y-auto absolute max-h-40 z-10 text-gray-900 dark:text-gray-50 top-full left-0 bg-white dark:bg-gray-800 border rounded hidden outline-none">
+                                    <!-- Aquí se mostrarán las sugerencias -->
+                                </div>
                             </div>
-        
-                            <!-- Etiquetas ocultas para almacenar los datos seleccionados -->
-                            <label id="selectedCodigoCliAgregarPagoCliente" class="hidden" val=""></label>
-        
-                            <!-- Contenedor para las sugerencias -->
-                            <div id="contenedorClientesAgregarPagoCliente" class="max-w-xs w-full overflow-hidden overflow-y-auto absolute max-h-40 z-10 text-gray-900 dark:text-gray-50 top-full left-0 bg-white dark:bg-gray-800 border rounded hidden outline-none">
-                                <!-- Aquí se mostrarán las sugerencias -->
-                            </div>
+                            <h2 class="text-base font-medium text-gray-900 dark:text-white text-start w-full">Deuda Total : S/ <span id="deudaTotal">0.00</span></h2>
                         </div>
-                        <h2 class="text-base font-medium text-gray-900 dark:text-white text-start w-full">Deuda Total : S/ <span id="deudaTotal">0.00</span></h2>
                         <div class="flex w-full h-10">
                             <div class="text-sm px-3 flex items-center justify-center text-center border border-gray-300 dark:border-gray-600 bg-gray-300 dark:bg-gray-600 rounded-l-lg">
                                 <h4 class="font-medium text-gray-900 dark:text-gray-300 min-w-max">Pago Derivado a :</h4>
@@ -280,14 +279,15 @@
                                 <option value="1">Depositos a Banco</option>
                                 <option value="2">Caja Chica</option>
                                 <option value="3">Cobranza de Paul</option>
-                                <option value="4">Depositos a Granja</option>
+                                <option value="4">Egresos de Paul</option>
+                                <option value="5">Depositos a Granja</option>
                             </select>                          
                         </div>
                         <div class="flex w-full justify-start items-center gap-2">
                             <h5 for="fechaAgregarPago" class="text-base text-gray-900 dark:text-gray-50 min-w-max">Fecha :</h5>
                             <input type="date" class="outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 px-2.5 py-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-full" id="fechaAgregarPago">
                         </div>
-                        <div class="flex w-full justify-start items-center gap-2">
+                        <div class="flex w-full justify-start items-center gap-2" id="divHoraaa">
                             <h5 for="horaAgregarPago" class="text-base text-gray-900 dark:text-gray-50 min-w-max">Hora :</h5>
                             <input type="time" step="1" class="outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 px-2.5 py-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-full" id="horaAgregarPago">
                         </div>
@@ -304,6 +304,7 @@
                             <select class="w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="formaDePago" id="formaDePago">
                                 <option value="Efectivo">Efectivo</option>
                                 <option value="Transferencia">Transferencia</option>
+                                <option value="Yape">Yape</option>
                             </select>                          
                         </div>
                         <div class="hidden w-full h-10" id="divBanco">
@@ -394,6 +395,7 @@
                             <select class="w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="formaDePagoEditar" id="formaDePagoEditar">
                                 <option value="Efectivo">Efectivo</option>
                                 <option value="Transferencia">Transferencia</option>
+                                <option value="Yape">Yape</option>
                             </select>                          
                         </div>
                         <div class="hidden w-full h-10" id="divBancoEditar">
@@ -615,6 +617,7 @@
                             <select class="w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="formaDePagoEgresoEditar" id="formaDePagoEgresoEditar">
                                 <option value="Efectivo">Efectivo</option>
                                 <option value="Transferencia">Transferencia</option>
+                                <option value="Yape">Yape</option>
                             </select>                          
                         </div>
                         <div class="hidden w-full h-10" id="divBancoEgresoEditar">

@@ -41,9 +41,7 @@ jQuery(function ($) {
     // Eventos para abrir y cerrar modal de Agregar Pago
 
     $('#registrar_agregarPago_submit').on('click', function () {
-        $('#ModalAgregarPagoCliente').addClass('flex');
-        $('#ModalAgregarPagoCliente').removeClass('hidden');
-        $('#idAgregarPagoCliente').focus();
+        // $('#idAgregarPagoCliente').focus();
 
         $('#idAgregarPagoCliente').val('');
         $('#valorAgregarPagoCliente').val('');
@@ -51,10 +49,35 @@ jQuery(function ($) {
         $('#comentarioAgregarPagoCliente').val('');
         $('#selectedCodigoCliAgregarPagoCliente').attr('val', '');
         $('#deudaTotal').text('0.00');
-        $('#fechaAgregarPago').val(fechaHoy);
         $('#formaDePago').val($('#formaDePago option:first').val());
-        $('#divCodTrans').removeClass('flex').addClass('hidden');
-        $('#divBanco').removeClass('flex').addClass('hidden');
+        $('#pagoDerivado').val();
+
+        let pagoDerivado = $('#pagoDerivado').val();
+        if(pagoDerivado == $('#pagoDerivado option:first').val()){
+            $('#divClienteOpcional').hide();
+            $('#divHoraaa').show();
+            $('#formaDePago').val('Transferencia');
+            $('#valorAgregarPagoCliente').focus();
+        }else{
+            $('#divClienteOpcional').show();
+            $('#divHoraaa').hide();
+            $('#formaDePago').val($('#formaDePago option:first').val());
+            $('#idAgregarPagoCliente').focus();
+        }
+
+        let selectedOption = $('#formaDePago').val();
+        if (selectedOption === 'Transferencia') {
+            // Si se selecciona "Transferencia", muestra el div con id "codTrans"
+            $('#divCodTrans').removeClass('hidden').addClass('flex');
+            $('#divBanco').removeClass('hidden').addClass('flex');
+        } else {
+            // Si se selecciona cualquier otra opción, oculta el div "codTrans"
+            $('#divCodTrans').removeClass('flex').addClass('hidden');
+            $('#divBanco').removeClass('flex').addClass('hidden');
+        }
+
+        $('#ModalAgregarPagoCliente').addClass('flex');
+        $('#ModalAgregarPagoCliente').removeClass('hidden');
     });
 
     $('.cerrarModalAgregarPagoCliente, #ModalAgregarPagoCliente .opacity-75').on('click', function (e) {
@@ -308,7 +331,43 @@ jQuery(function ($) {
     // Hace aparecer o desaparecer el div para registrar codigo de tranferencia segun sea transferencia o efectivo
 
     $('#formaDePago').on('change',function() {
-        var selectedOption = $(this).val();
+
+        let pagoDerivado = $('#pagoDerivado').val();
+        if(pagoDerivado == $('#pagoDerivado option:first').val()){
+            $('#divClienteOpcional').hide();
+            $('#divHoraaa').show();
+            $('#formaDePago').val('Transferencia');
+        }else{
+            $('#divClienteOpcional').show();
+            $('#divHoraaa').hide();
+        }
+
+        var selectedOption = $('#formaDePago').val();
+        if (selectedOption === 'Transferencia') {
+            // Si se selecciona "Transferencia", muestra el div con id "codTrans"
+            $('#divCodTrans').removeClass('hidden').addClass('flex');
+            $('#divBanco').removeClass('hidden').addClass('flex');
+        } else {
+            // Si se selecciona cualquier otra opción, oculta el div "codTrans"
+            $('#divCodTrans').removeClass('flex').addClass('hidden');
+            $('#divBanco').removeClass('flex').addClass('hidden');
+        }
+    });
+
+    $('#pagoDerivado').on('change',function() {
+
+        let pagoDerivado = $('#pagoDerivado').val();
+        if(pagoDerivado == $('#pagoDerivado option:first').val()){
+            $('#divClienteOpcional').hide();
+            $('#divHoraaa').show();
+            $('#formaDePago').val('Transferencia');
+        }else{
+            $('#divClienteOpcional').show();
+            $('#divHoraaa').hide();
+            $('#formaDePago').val('Efectivo');
+        }
+
+        var selectedOption = $('#formaDePago').val();
         if (selectedOption === 'Transferencia') {
             // Si se selecciona "Transferencia", muestra el div con id "codTrans"
             $('#divCodTrans').removeClass('hidden').addClass('flex');
@@ -821,7 +880,11 @@ jQuery(function ($) {
                     // Iterar sobre los objetos y mostrar sus propiedades
                     response.forEach(function(obj) {
                         // Crear una nueva fila
-                        nuevaFila = $('<tr class="bg-white editarPagos border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
+                        if (obj.nombreCompleto == ""){
+                            nuevaFila = $('<tr class="bg-red-600 editarPagos border-b dark:border-gray-700 cursor-pointer text-white">');
+                        }else{
+                            nuevaFila = $('<tr class="bg-white editarPagos border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
+                        }
                         totalPago += parseFloat(obj.cantidadAbonoPag);
                         // Agregar las celdas con la información
                         nuevaFila.append($('<td class="hidden">').text(obj.idPagos));
@@ -841,7 +904,7 @@ jQuery(function ($) {
                         tbodyReporteDePagos.html(`<tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="8" class="text-center">No hay datos</td></tr>`);
                     }else{
                         nuevaFila = $('<tr class="class="bg-white dark:bg-gray-800 h-0.5" cursor-pointer">');
-                        nuevaFila.append($('<td class="text-center h-0.5 bg-gray-800 dark:bg-gray-300" colspan="8">').text(""));
+                        nuevaFila.append($('<td class="text-center h-0.5 bg-gray-400 dark:bg-gray-300" colspan="8">').text(""));
                         tbodyReporteDePagos.append(nuevaFila);
 
                         nuevaFila = $('<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
@@ -902,7 +965,7 @@ jQuery(function ($) {
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(obj.bancaPago));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(obj.codigoTransferenciaPag));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(obj.fechaOperacionPag));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(obj.horaOperacionPag));
+                        // nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(obj.horaOperacionPag));
                         nuevaFila.append($('<td class="px-4 py-2 text-center cursor-pointer">').text(obj.observacion));
                         // Agregar la nueva fila al tbody
                         tbodyReporteDePagos.append(nuevaFila);
@@ -912,7 +975,7 @@ jQuery(function ($) {
                         tbodyReporteDePagos.html(`<tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="8" class="text-center">No hay datos</td></tr>`);
                     }else{
                         nuevaFila = $('<tr class="class="bg-white dark:bg-gray-800 h-0.5" cursor-pointer">');
-                        nuevaFila.append($('<td class="text-center h-0.5 bg-gray-800 dark:bg-gray-300" colspan="8">').text(""));
+                        nuevaFila.append($('<td class="text-center h-0.5 bg-gray-400 dark:bg-gray-300" colspan="8">').text(""));
                         tbodyReporteDePagos.append(nuevaFila);
 
                         nuevaFila = $('<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
@@ -923,7 +986,7 @@ jQuery(function ($) {
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
+                        // nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
                         nuevaFila.append($('<td class="px-4 py-2 text-center cursor-pointer">').text(""));
                         // Agregar la nueva fila al tbody
                         tbodyReporteDePagos.append(nuevaFila);
@@ -971,7 +1034,7 @@ jQuery(function ($) {
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(parseFloat(obj.cantidadAbonoPag).toFixed(2)));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(obj.tipoAbonoPag));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(obj.fechaOperacionPag));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(obj.horaOperacionPag));
+                        // nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(obj.horaOperacionPag));
                         nuevaFila.append($('<td class="px-4 py-2 text-center cursor-pointer">').text(obj.observacion));
                         // Agregar la nueva fila al tbody
                         tbodyReporteDePagos.append(nuevaFila);
@@ -981,7 +1044,7 @@ jQuery(function ($) {
                         tbodyReporteDePagos.html(`<tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="8" class="text-center">No hay datos</td></tr>`);
                     }else{
                         nuevaFila = $('<tr class="class="bg-white dark:bg-gray-800 h-0.5" cursor-pointer">');
-                        nuevaFila.append($('<td class="text-center h-0.5 bg-gray-800 dark:bg-gray-300" colspan="8">').text(""));
+                        nuevaFila.append($('<td class="text-center h-0.5 bg-gray-400 dark:bg-gray-300" colspan="8">').text(""));
                         tbodyReporteDePagos.append(nuevaFila);
 
                         nuevaFila = $('<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
@@ -990,7 +1053,7 @@ jQuery(function ($) {
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text("S/. "+totalPago.toFixed(2)));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
+                        // nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
                         nuevaFila.append($('<td class="px-4 py-2 text-center cursor-pointer">').text(""));
                         // Agregar la nueva fila al tbody
                         tbodyReporteDePagos.append(nuevaFila);

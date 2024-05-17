@@ -1028,19 +1028,19 @@ class ReporteDePagosController extends Controller
         if (Auth::check()) {
             // Realiza la consulta a la base de datos
             $datos = DB::select('
-                    SELECT tb_pagos.idPagos, 
-                    tb_pagos.cantidadAbonoPag,
-                    tb_pagos.tipoAbonoPag,
-                    tb_pagos.fechaOperacionPag,
-                    tb_pagos.codigoTransferenciaPag,
-                    tb_pagos.observacion,
-                    tb_pagos.fechaRegistroPag,
-                    tb_pagos.horaOperacionPag,
-                    tb_pagos.bancaPago,
-                   IFNULL(CONCAT_WS(" ", nombresCli, apellidoPaternoCli, apellidoMaternoCli), "") AS nombreCompleto
-            FROM tb_pagos
-            INNER JOIN tb_clientes ON tb_clientes.codigoCli = tb_pagos.codigoCli  
-            WHERE tb_pagos.estadoPago = 1 and clasificacionPago = 1 and tipoAbonoPag != ? and fechaOperacionPag BETWEEN ? AND ?', ["Saldo",$fechaDesde, $fechaHasta]);
+                SELECT tb_pagos.idPagos, 
+                tb_pagos.cantidadAbonoPag,
+                tb_pagos.tipoAbonoPag,
+                tb_pagos.fechaOperacionPag,
+                tb_pagos.codigoTransferenciaPag,
+                tb_pagos.observacion,
+                tb_pagos.fechaRegistroPag,
+                tb_pagos.horaOperacionPag,
+                tb_pagos.bancaPago,
+               IFNULL(CONCAT_WS(" ", nombresCli, apellidoPaternoCli, apellidoMaternoCli), "") AS nombreCompleto
+        FROM tb_pagos
+        LEFT JOIN tb_clientes ON tb_clientes.codigoCli = tb_pagos.codigoCli  
+        WHERE tb_pagos.estadoPago = 1 and clasificacionPago = 1 and tipoAbonoPag != ? and fechaOperacionPag BETWEEN ? AND ?', ["Saldo",$fechaDesde, $fechaHasta]);
 
             // Devuelve los datos en formato JSON
             return response()->json($datos);
@@ -1058,19 +1058,19 @@ class ReporteDePagosController extends Controller
         if (Auth::check()) {
             // Realiza la consulta a la base de datos
             $datos = DB::select('
-                    SELECT tb_pagos.idPagos, 
-                    tb_pagos.cantidadAbonoPag,
-                    tb_pagos.tipoAbonoPag,
-                    tb_pagos.fechaOperacionPag,
-                    tb_pagos.codigoTransferenciaPag,
-                    tb_pagos.observacion,
-                    tb_pagos.fechaRegistroPag,
-                    tb_pagos.horaOperacionPag,
-                    tb_pagos.bancaPago,
-                   IFNULL(CONCAT_WS(" ", nombresCli, apellidoPaternoCli, apellidoMaternoCli), "") AS nombreCompleto
-            FROM tb_pagos
-            INNER JOIN tb_clientes ON tb_clientes.codigoCli = tb_pagos.codigoCli  
-            WHERE tb_pagos.estadoPago = 1 and clasificacionPago = 2 and tipoAbonoPag != ? and fechaOperacionPag BETWEEN ? AND ?', ["Saldo",$fechaDesde, $fechaHasta]);
+                SELECT tb_pagos.idPagos, 
+                tb_pagos.cantidadAbonoPag,
+                tb_pagos.tipoAbonoPag,
+                tb_pagos.fechaOperacionPag,
+                tb_pagos.codigoTransferenciaPag,
+                tb_pagos.observacion,
+                tb_pagos.fechaRegistroPag,
+                tb_pagos.horaOperacionPag,
+                tb_pagos.bancaPago,
+               IFNULL(CONCAT_WS(" ", nombresCli, apellidoPaternoCli, apellidoMaternoCli), "") AS nombreCompleto
+        FROM tb_pagos
+        LEFT JOIN tb_clientes ON tb_clientes.codigoCli = tb_pagos.codigoCli  
+        WHERE tb_pagos.estadoPago = 1 and clasificacionPago = 2 and tipoAbonoPag != ? and fechaOperacionPag BETWEEN ? AND ?', ["Saldo",$fechaDesde, $fechaHasta]);
 
             // Devuelve los datos en formato JSON
             return response()->json($datos);
@@ -1088,19 +1088,19 @@ class ReporteDePagosController extends Controller
         if (Auth::check()) {
             // Realiza la consulta a la base de datos
             $datos = DB::select('
-                    SELECT tb_pagos.idPagos, 
-                    tb_pagos.cantidadAbonoPag,
-                    tb_pagos.tipoAbonoPag,
-                    tb_pagos.fechaOperacionPag,
-                    tb_pagos.codigoTransferenciaPag,
-                    tb_pagos.observacion,
-                    tb_pagos.fechaRegistroPag,
-                    tb_pagos.horaOperacionPag,
-                    tb_pagos.bancaPago,
-                   IFNULL(CONCAT_WS(" ", nombresCli, apellidoPaternoCli, apellidoMaternoCli), "") AS nombreCompleto
-            FROM tb_pagos
-            INNER JOIN tb_clientes ON tb_clientes.codigoCli = tb_pagos.codigoCli  
-            WHERE tb_pagos.estadoPago = 1 and clasificacionPago = 3 and tipoAbonoPag != ? and fechaOperacionPag BETWEEN ? AND ?', ["Saldo",$fechaDesde, $fechaHasta]);
+                SELECT tb_pagos.idPagos, 
+                tb_pagos.cantidadAbonoPag,
+                tb_pagos.tipoAbonoPag,
+                tb_pagos.fechaOperacionPag,
+                tb_pagos.codigoTransferenciaPag,
+                tb_pagos.observacion,
+                tb_pagos.fechaRegistroPag,
+                tb_pagos.horaOperacionPag,
+                tb_pagos.bancaPago,
+               IFNULL(CONCAT_WS(" ", nombresCli, apellidoPaternoCli, apellidoMaternoCli), "") AS nombreCompleto
+        FROM tb_pagos
+        LEFT JOIN tb_clientes ON tb_clientes.codigoCli = tb_pagos.codigoCli  
+        WHERE tb_pagos.estadoPago = 1 and clasificacionPago = 3 and tipoAbonoPag != ? and fechaOperacionPag BETWEEN ? AND ?', ["Saldo",$fechaDesde, $fechaHasta]);
 
             // Devuelve los datos en formato JSON
             return response()->json($datos);
@@ -1129,7 +1129,7 @@ class ReporteDePagosController extends Controller
                     tb_clientes.codigoCli,
                    IFNULL(CONCAT_WS(" ", nombresCli, apellidoPaternoCli, apellidoMaternoCli), "") AS nombreCompleto
             FROM tb_pagos
-            INNER JOIN tb_clientes ON tb_clientes.codigoCli = tb_pagos.codigoCli  
+            LEFT JOIN tb_clientes ON tb_clientes.codigoCli = tb_pagos.codigoCli  
             WHERE tb_pagos.idPagos = ?', [$idReporteDePago]);
 
             // Devuelve los datos en formato JSON

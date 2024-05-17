@@ -1289,6 +1289,12 @@ jQuery(function($) {
 
     // Agregar evento clic a las celdas de la tabla
     $(document).on('click', '#bodyPedidos td.valorEditable', function (e) {
+
+        // Verificar si el td ya contiene un input
+        if ($(this).find('input').length > 0) {
+            return;
+        }
+
         if (tipoUsuario =='Administrador'){
             let contenidoActual = $(this).text().trim();
             let anchoTd = $(this).outerWidth();
@@ -1340,8 +1346,10 @@ jQuery(function($) {
 
                 // Volver a agregar la clase al td
                 $(this).addClass(claseActual);
-        
-                fn_RegistrarActualizarPedidoCliente(codigoCli,fechaPedido,nuevoContenido,columnaPedido);
+
+                if(contenidoActual != nuevoContenido){
+                    fn_RegistrarActualizarPedidoCliente(codigoCli,fechaPedido,nuevoContenido,columnaPedido);
+                }
             });
         }
     });    

@@ -63,7 +63,8 @@ class PreciosController extends Controller
     public function consulta_ActualizarPrecioXPresentacion(Request $request){
 
         $idClienteActualizarPrecioXPresentacion = $request->input('idClienteActualizarPrecioXPresentacion');
-        $valorActualizarPrecioXPresentacion = $request->input('valorActualizarPrecioXPresentacion');
+        $valorActualizarPrecioXPresentacion1 = $request->input('valorActualizarPrecioXPresentacion');
+        $valorActualizarPrecioXPresentacion = $valorActualizarPrecioXPresentacion1 === null ? 0 : $valorActualizarPrecioXPresentacion1;
         $numeroEspeciePrecioXPresentacion = $request->input('numeroEspeciePrecioXPresentacion');
 
         if (Auth::check()) {
