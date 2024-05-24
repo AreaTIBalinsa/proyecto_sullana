@@ -68,10 +68,13 @@ Route::get('/seguimiento_pedidos',[SeguimientoPedidosController::class,'show']);
 /* ============================== Termina Controladores para Mostrar Vistas ============================== */
 
 Route::get('/fn_consulta_DatosEspecie', [InicioController::class,'consulta_DatosEspecie']);
+Route::get('/fn_consulta_DatosEspecie2', [InicioController::class,'consulta_DatosEspecie2']);
 Route::get('/fn_consulta_TraerDatosEnTiempoReal', [InicioController::class,'consulta_TraerDatosEnTiempoReal']);
 Route::get('/fn_consulta_TraerDatosEnTiempoRealCompra', [InicioController::class,'consulta_TraerDatosEnTiempoRealCompra']);
 Route::get('/fn_consulta_TraerDatosDiasAnteriores', [InicioController::class,'consulta_TraerDatosDiasAnteriores']);
 Route::get('/fn_consulta_TraerDatosDiasAnterioresCompra', [InicioController::class,'consulta_TraerDatosDiasAnterioresCompra']);
+
+Route::post('/convertir_pdf_a_imagen', [InicioController::class, 'convertirPdfAImagen']);
 
 Route::get('/fn_consulta_RolesUsuario', [RegisterController::class,'consulta_RolesUsuario']);
 Route::get('/fn_consulta_RegistrarUsuario',[RegisterController::class,'consulta_RegistrarUsuario']);

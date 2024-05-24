@@ -23,6 +23,11 @@ jQuery(function ($) {
     var decimaSextaEspecieGlobal = 0;
     var decimaSeptimaEspecieGlobal = 0;
     var decimaOctavaEspecieGlobal = 0;
+    var decimaNovenaEspecieGlobal = 0;
+    var vigesimaEspecieGlobal = 0;
+    var vigesimaPrimeraEspecieGlobal = 0;
+    var vigesimaSegundaEspecieGlobal = 0;
+    var vigesimaTerceraEspecieGlobal = 0;
 
     var nombrePrimerEspecieGlobal = "";
     var nombreSegundaEspecieGlobal = "";
@@ -41,10 +46,15 @@ jQuery(function ($) {
     var nombreDecimaSextaEspecieGlobal = "";
     var nombreDecimaSeptimaEspecieGlobal = "";
     var nombreDecimaOctavaEspecieGlobal = "";
+    var nombreDecimaNovenaEspecieGlobal = "";
+    var nombreVigesimaEspecieGlobal = "";
+    var nombreVigesimaPrimeraEspecieGlobal = "";
+    var nombreVigesimaSegundaEspecieGlobal = "";
+    var nombreVigesimaTerceraEspecieGlobal = "";
 
     function declarar_especies(){
         $.ajax({
-            url: '/fn_consulta_DatosEspecie',
+            url: '/fn_consulta_DatosEspecie2',
             method: 'GET',
             success: function(response) {
                 // Verificar si la respuesta es un arreglo de objetos
@@ -67,6 +77,11 @@ jQuery(function ($) {
                     decimaSextaEspecieGlobal = parseInt(response[14].idEspecie);
                     decimaSeptimaEspecieGlobal = parseInt(response[15].idEspecie);
                     decimaOctavaEspecieGlobal = parseInt(response[16].idEspecie);
+                    decimaNovenaEspecieGlobal = parseInt(response[17].idEspecie);
+                    vigesimaEspecieGlobal = parseInt(response[18].idEspecie);
+                    vigesimaPrimeraEspecieGlobal = parseInt(response[19].idEspecie);
+                    vigesimaSegundaEspecieGlobal = parseInt(response[20].idEspecie);
+                    vigesimaTerceraEspecieGlobal = parseInt(response[21].idEspecie);
 
                     nombrePrimerEspecieGlobal = response[0].nombreEspecie;
                     nombreSegundaEspecieGlobal = response[1].nombreEspecie;
@@ -85,6 +100,11 @@ jQuery(function ($) {
                     nombreDecimaSextaEspecieGlobal = response[14].nombreEspecie;
                     nombreDecimaSeptimaEspecieGlobal = response[15].nombreEspecie;
                     nombreDecimaOctavaEspecieGlobal = response[16].nombreEspecie;
+                    nombreDecimaNovenaEspecieGlobal = response[17].nombreEspecie;
+                    nombreVigesimaEspecieGlobal = response[18].nombreEspecie;
+                    nombreVigesimaPrimeraEspecieGlobal = response[19].nombreEspecie;
+                    nombreVigesimaSegundaEspecieGlobal = response[20].nombreEspecie;
+                    nombreVigesimaTerceraEspecieGlobal = response[21].nombreEspecie;
                 } else {
                     console.log("La respuesta no es un arreglo de objetos.");
                 }
@@ -199,6 +219,26 @@ jQuery(function ($) {
                             totalPesoDescuentoDecimaOctavaEspecie: 0,
                             totalVentaDecimaOctavaEspecie: 0,
                             totalCantidadDecimaOctavaEspecie: 0,
+                            totalPesoDecimaNovenaEspecie: 0,
+                            totalPesoDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDecimaNovenaEspecie: 0,
+                            totalCantidadDecimaNovenaEspecie: 0,
+                            totalPesoVigesimaEspecie: 0,
+                            totalPesoDescuentoVigesimaEspecie: 0,
+                            totalVentaVigesimaEspecie: 0,
+                            totalCantidadVigesimaEspecie: 0,
+                            totalPesoVigesimaPrimeraEspecie: 0,
+                            totalPesoDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaVigesimaPrimeraEspecie: 0,
+                            totalCantidadVigesimaPrimeraEspecie: 0,
+                            totalPesoVigesimaSegundaEspecie: 0,
+                            totalPesoDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaVigesimaSegundaEspecie: 0,
+                            totalCantidadVigesimaSegundaEspecie: 0,
+                            totalPesoVigesimaTerceraEspecie: 0,
+                            totalPesoDescuentoVigesimaTerceraEspecie: 0,
+                            totalVentaVigesimaTerceraEspecie: 0,
+                            totalCantidadVigesimaTerceraEspecie: 0,
                             
                             totalPesoDescuento: 0,
                             totalVentaDescuento: 0,
@@ -220,6 +260,11 @@ jQuery(function ($) {
                             totalCantidadDescuentoDecimaSextaEspecie: 0,
                             totalCantidadDescuentoDecimaSeptimaEspecie: 0,
                             totalCantidadDescuentoDecimaOctavaEspecie: 0,
+                            totalCantidadDescuentoDecimaNovenaEspecie: 0,
+                            totalCantidadDescuentoVigesimaEspecie: 0,
+                            totalCantidadDescuentoVigesimaPrimeraEspecie: 0,
+                            totalCantidadDescuentoVigesimaSegundaEspecie: 0,
+                            totalCantidadDescuentoVigesimaTerceraEspecie: 0,
 
                             totalVentaDescuentoPrimerEspecie: 0,
                             totalVentaDescuentoSegundaEspecie: 0,
@@ -237,7 +282,12 @@ jQuery(function ($) {
                             totalVentaDescuentoDecimaQuintaEspecie: 0,
                             totalVentaDescuentoDecimaSextaEspecie: 0,
                             totalVentaDescuentoDecimaSeptimaEspecie: 0,
-                            totalVentaDescuentoDecimaOctavaEspecie: 0
+                            totalVentaDescuentoDecimaOctavaEspecie: 0,
+                            totalVentaDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDescuentoVigesimaEspecie: 0,
+                            totalVentaDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaDescuentoVigesimaTerceraEspecie: 0
 
                         };
                     }
@@ -322,6 +372,26 @@ jQuery(function ($) {
                             totalPesoDescuentoDecimaOctavaEspecie: 0,
                             totalVentaDecimaOctavaEspecie: 0,
                             totalCantidadDecimaOctavaEspecie: 0,
+                            totalPesoDecimaNovenaEspecie: 0,
+                            totalPesoDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDecimaNovenaEspecie: 0,
+                            totalCantidadDecimaNovenaEspecie: 0,
+                            totalPesoVigesimaEspecie: 0,
+                            totalPesoDescuentoVigesimaEspecie: 0,
+                            totalVentaVigesimaEspecie: 0,
+                            totalCantidadVigesimaEspecie: 0,
+                            totalPesoVigesimaPrimeraEspecie: 0,
+                            totalPesoDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaVigesimaPrimeraEspecie: 0,
+                            totalCantidadVigesimaPrimeraEspecie: 0,
+                            totalPesoVigesimaSegundaEspecie: 0,
+                            totalPesoDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaVigesimaSegundaEspecie: 0,
+                            totalCantidadVigesimaSegundaEspecie: 0,
+                            totalPesoVigesimaTerceraEspecie: 0,
+                            totalPesoDescuentoVigesimaTerceraEspecie: 0,
+                            totalVentaVigesimaTerceraEspecie: 0,
+                            totalCantidadVigesimaTerceraEspecie: 0,
                             
                             totalPesoDescuento: 0,
                             totalVentaDescuento: 0,
@@ -343,6 +413,11 @@ jQuery(function ($) {
                             totalCantidadDescuentoDecimaSextaEspecie: 0,
                             totalCantidadDescuentoDecimaSeptimaEspecie: 0,
                             totalCantidadDescuentoDecimaOctavaEspecie: 0,
+                            totalCantidadDescuentoDecimaNovenaEspecie: 0,
+                            totalCantidadDescuentoVigesimaEspecie: 0,
+                            totalCantidadDescuentoVigesimaPrimeraEspecie: 0,
+                            totalCantidadDescuentoVigesimaSegundaEspecie: 0,
+                            totalCantidadDescuentoVigesimaTerceraEspecie: 0,
 
                             totalVentaDescuentoPrimerEspecie: 0,
                             totalVentaDescuentoSegundaEspecie: 0,
@@ -360,7 +435,12 @@ jQuery(function ($) {
                             totalVentaDescuentoDecimaQuintaEspecie: 0,
                             totalVentaDescuentoDecimaSextaEspecie: 0,
                             totalVentaDescuentoDecimaSeptimaEspecie: 0,
-                            totalVentaDescuentoDecimaOctavaEspecie: 0
+                            totalVentaDescuentoDecimaOctavaEspecie: 0,
+                            totalVentaDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDescuentoVigesimaEspecie: 0,
+                            totalVentaDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaDescuentoVigesimaTerceraEspecie: 0
 
                         };
                     }
@@ -445,6 +525,26 @@ jQuery(function ($) {
                             totalPesoDescuentoDecimaOctavaEspecie: 0,
                             totalVentaDecimaOctavaEspecie: 0,
                             totalCantidadDecimaOctavaEspecie: 0,
+                            totalPesoDecimaNovenaEspecie: 0,
+                            totalPesoDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDecimaNovenaEspecie: 0,
+                            totalCantidadDecimaNovenaEspecie: 0,
+                            totalPesoVigesimaEspecie: 0,
+                            totalPesoDescuentoVigesimaEspecie: 0,
+                            totalVentaVigesimaEspecie: 0,
+                            totalCantidadVigesimaEspecie: 0,
+                            totalPesoVigesimaPrimeraEspecie: 0,
+                            totalPesoDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaVigesimaPrimeraEspecie: 0,
+                            totalCantidadVigesimaPrimeraEspecie: 0,
+                            totalPesoVigesimaSegundaEspecie: 0,
+                            totalPesoDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaVigesimaSegundaEspecie: 0,
+                            totalCantidadVigesimaSegundaEspecie: 0,
+                            totalPesoVigesimaTerceraEspecie: 0,
+                            totalPesoDescuentoVigesimaTerceraEspecie: 0,
+                            totalVentaVigesimaTerceraEspecie: 0,
+                            totalCantidadVigesimaTerceraEspecie: 0,
                             
                             totalPesoDescuento: 0,
                             totalVentaDescuento: 0,
@@ -466,6 +566,11 @@ jQuery(function ($) {
                             totalCantidadDescuentoDecimaSextaEspecie: 0,
                             totalCantidadDescuentoDecimaSeptimaEspecie: 0,
                             totalCantidadDescuentoDecimaOctavaEspecie: 0,
+                            totalCantidadDescuentoDecimaNovenaEspecie: 0,
+                            totalCantidadDescuentoVigesimaEspecie: 0,
+                            totalCantidadDescuentoVigesimaPrimeraEspecie: 0,
+                            totalCantidadDescuentoVigesimaSegundaEspecie: 0,
+                            totalCantidadDescuentoVigesimaTerceraEspecie: 0,
 
                             totalVentaDescuentoPrimerEspecie: 0,
                             totalVentaDescuentoSegundaEspecie: 0,
@@ -483,7 +588,12 @@ jQuery(function ($) {
                             totalVentaDescuentoDecimaQuintaEspecie: 0,
                             totalVentaDescuentoDecimaSextaEspecie: 0,
                             totalVentaDescuentoDecimaSeptimaEspecie: 0,
-                            totalVentaDescuentoDecimaOctavaEspecie: 0
+                            totalVentaDescuentoDecimaOctavaEspecie: 0,
+                            totalVentaDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDescuentoVigesimaEspecie: 0,
+                            totalVentaDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaDescuentoVigesimaTerceraEspecie: 0
 
                         };
                     }
@@ -568,6 +678,26 @@ jQuery(function ($) {
                             totalPesoDescuentoDecimaOctavaEspecie: 0,
                             totalVentaDecimaOctavaEspecie: 0,
                             totalCantidadDecimaOctavaEspecie: 0,
+                            totalPesoDecimaNovenaEspecie: 0,
+                            totalPesoDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDecimaNovenaEspecie: 0,
+                            totalCantidadDecimaNovenaEspecie: 0,
+                            totalPesoVigesimaEspecie: 0,
+                            totalPesoDescuentoVigesimaEspecie: 0,
+                            totalVentaVigesimaEspecie: 0,
+                            totalCantidadVigesimaEspecie: 0,
+                            totalPesoVigesimaPrimeraEspecie: 0,
+                            totalPesoDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaVigesimaPrimeraEspecie: 0,
+                            totalCantidadVigesimaPrimeraEspecie: 0,
+                            totalPesoVigesimaSegundaEspecie: 0,
+                            totalPesoDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaVigesimaSegundaEspecie: 0,
+                            totalCantidadVigesimaSegundaEspecie: 0,
+                            totalPesoVigesimaTerceraEspecie: 0,
+                            totalPesoDescuentoVigesimaTerceraEspecie: 0,
+                            totalVentaVigesimaTerceraEspecie: 0,
+                            totalCantidadVigesimaTerceraEspecie: 0,
                             
                             totalPesoDescuento: 0,
                             totalVentaDescuento: 0,
@@ -589,6 +719,11 @@ jQuery(function ($) {
                             totalCantidadDescuentoDecimaSextaEspecie: 0,
                             totalCantidadDescuentoDecimaSeptimaEspecie: 0,
                             totalCantidadDescuentoDecimaOctavaEspecie: 0,
+                            totalCantidadDescuentoDecimaNovenaEspecie: 0,
+                            totalCantidadDescuentoVigesimaEspecie: 0,
+                            totalCantidadDescuentoVigesimaPrimeraEspecie: 0,
+                            totalCantidadDescuentoVigesimaSegundaEspecie: 0,
+                            totalCantidadDescuentoVigesimaTerceraEspecie: 0,
 
                             totalVentaDescuentoPrimerEspecie: 0,
                             totalVentaDescuentoSegundaEspecie: 0,
@@ -606,7 +741,12 @@ jQuery(function ($) {
                             totalVentaDescuentoDecimaQuintaEspecie: 0,
                             totalVentaDescuentoDecimaSextaEspecie: 0,
                             totalVentaDescuentoDecimaSeptimaEspecie: 0,
-                            totalVentaDescuentoDecimaOctavaEspecie: 0
+                            totalVentaDescuentoDecimaOctavaEspecie: 0,
+                            totalVentaDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDescuentoVigesimaEspecie: 0,
+                            totalVentaDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaDescuentoVigesimaTerceraEspecie: 0
 
                         };
                     }
@@ -693,6 +833,26 @@ jQuery(function ($) {
                             totalPesoDescuentoDecimaOctavaEspecie: 0,
                             totalVentaDecimaOctavaEspecie: 0,
                             totalCantidadDecimaOctavaEspecie: 0,
+                            totalPesoDecimaNovenaEspecie: 0,
+                            totalPesoDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDecimaNovenaEspecie: 0,
+                            totalCantidadDecimaNovenaEspecie: 0,
+                            totalPesoVigesimaEspecie: 0,
+                            totalPesoDescuentoVigesimaEspecie: 0,
+                            totalVentaVigesimaEspecie: 0,
+                            totalCantidadVigesimaEspecie: 0,
+                            totalPesoVigesimaPrimeraEspecie: 0,
+                            totalPesoDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaVigesimaPrimeraEspecie: 0,
+                            totalCantidadVigesimaPrimeraEspecie: 0,
+                            totalPesoVigesimaSegundaEspecie: 0,
+                            totalPesoDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaVigesimaSegundaEspecie: 0,
+                            totalCantidadVigesimaSegundaEspecie: 0,
+                            totalPesoVigesimaTerceraEspecie: 0,
+                            totalPesoDescuentoVigesimaTerceraEspecie: 0,
+                            totalVentaVigesimaTerceraEspecie: 0,
+                            totalCantidadVigesimaTerceraEspecie: 0,
                             
                             totalPesoDescuento: 0,
                             totalVentaDescuento: 0,
@@ -714,6 +874,11 @@ jQuery(function ($) {
                             totalCantidadDescuentoDecimaSextaEspecie: 0,
                             totalCantidadDescuentoDecimaSeptimaEspecie: 0,
                             totalCantidadDescuentoDecimaOctavaEspecie: 0,
+                            totalCantidadDescuentoDecimaNovenaEspecie: 0,
+                            totalCantidadDescuentoVigesimaEspecie: 0,
+                            totalCantidadDescuentoVigesimaPrimeraEspecie: 0,
+                            totalCantidadDescuentoVigesimaSegundaEspecie: 0,
+                            totalCantidadDescuentoVigesimaTerceraEspecie: 0,
 
                             totalVentaDescuentoPrimerEspecie: 0,
                             totalVentaDescuentoSegundaEspecie: 0,
@@ -731,7 +896,12 @@ jQuery(function ($) {
                             totalVentaDescuentoDecimaQuintaEspecie: 0,
                             totalVentaDescuentoDecimaSextaEspecie: 0,
                             totalVentaDescuentoDecimaSeptimaEspecie: 0,
-                            totalVentaDescuentoDecimaOctavaEspecie: 0
+                            totalVentaDescuentoDecimaOctavaEspecie: 0,
+                            totalVentaDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDescuentoVigesimaEspecie: 0,
+                            totalVentaDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaDescuentoVigesimaTerceraEspecie: 0
 
                         };
                     }
@@ -816,6 +986,26 @@ jQuery(function ($) {
                             totalPesoDescuentoDecimaOctavaEspecie: 0,
                             totalVentaDecimaOctavaEspecie: 0,
                             totalCantidadDecimaOctavaEspecie: 0,
+                            totalPesoDecimaNovenaEspecie: 0,
+                            totalPesoDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDecimaNovenaEspecie: 0,
+                            totalCantidadDecimaNovenaEspecie: 0,
+                            totalPesoVigesimaEspecie: 0,
+                            totalPesoDescuentoVigesimaEspecie: 0,
+                            totalVentaVigesimaEspecie: 0,
+                            totalCantidadVigesimaEspecie: 0,
+                            totalPesoVigesimaPrimeraEspecie: 0,
+                            totalPesoDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaVigesimaPrimeraEspecie: 0,
+                            totalCantidadVigesimaPrimeraEspecie: 0,
+                            totalPesoVigesimaSegundaEspecie: 0,
+                            totalPesoDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaVigesimaSegundaEspecie: 0,
+                            totalCantidadVigesimaSegundaEspecie: 0,
+                            totalPesoVigesimaTerceraEspecie: 0,
+                            totalPesoDescuentoVigesimaTerceraEspecie: 0,
+                            totalVentaVigesimaTerceraEspecie: 0,
+                            totalCantidadVigesimaTerceraEspecie: 0,
                             
                             totalPesoDescuento: 0,
                             totalVentaDescuento: 0,
@@ -837,6 +1027,11 @@ jQuery(function ($) {
                             totalCantidadDescuentoDecimaSextaEspecie: 0,
                             totalCantidadDescuentoDecimaSeptimaEspecie: 0,
                             totalCantidadDescuentoDecimaOctavaEspecie: 0,
+                            totalCantidadDescuentoDecimaNovenaEspecie: 0,
+                            totalCantidadDescuentoVigesimaEspecie: 0,
+                            totalCantidadDescuentoVigesimaPrimeraEspecie: 0,
+                            totalCantidadDescuentoVigesimaSegundaEspecie: 0,
+                            totalCantidadDescuentoVigesimaTerceraEspecie: 0,
 
                             totalVentaDescuentoPrimerEspecie: 0,
                             totalVentaDescuentoSegundaEspecie: 0,
@@ -854,7 +1049,12 @@ jQuery(function ($) {
                             totalVentaDescuentoDecimaQuintaEspecie: 0,
                             totalVentaDescuentoDecimaSextaEspecie: 0,
                             totalVentaDescuentoDecimaSeptimaEspecie: 0,
-                            totalVentaDescuentoDecimaOctavaEspecie: 0
+                            totalVentaDescuentoDecimaOctavaEspecie: 0,
+                            totalVentaDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDescuentoVigesimaEspecie: 0,
+                            totalVentaDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaDescuentoVigesimaTerceraEspecie: 0
 
                         };
                     }
@@ -939,6 +1139,26 @@ jQuery(function ($) {
                             totalPesoDescuentoDecimaOctavaEspecie: 0,
                             totalVentaDecimaOctavaEspecie: 0,
                             totalCantidadDecimaOctavaEspecie: 0,
+                            totalPesoDecimaNovenaEspecie: 0,
+                            totalPesoDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDecimaNovenaEspecie: 0,
+                            totalCantidadDecimaNovenaEspecie: 0,
+                            totalPesoVigesimaEspecie: 0,
+                            totalPesoDescuentoVigesimaEspecie: 0,
+                            totalVentaVigesimaEspecie: 0,
+                            totalCantidadVigesimaEspecie: 0,
+                            totalPesoVigesimaPrimeraEspecie: 0,
+                            totalPesoDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaVigesimaPrimeraEspecie: 0,
+                            totalCantidadVigesimaPrimeraEspecie: 0,
+                            totalPesoVigesimaSegundaEspecie: 0,
+                            totalPesoDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaVigesimaSegundaEspecie: 0,
+                            totalCantidadVigesimaSegundaEspecie: 0,
+                            totalPesoVigesimaTerceraEspecie: 0,
+                            totalPesoDescuentoVigesimaTerceraEspecie: 0,
+                            totalVentaVigesimaTerceraEspecie: 0,
+                            totalCantidadVigesimaTerceraEspecie: 0,
                             
                             totalPesoDescuento: 0,
                             totalVentaDescuento: 0,
@@ -960,6 +1180,11 @@ jQuery(function ($) {
                             totalCantidadDescuentoDecimaSextaEspecie: 0,
                             totalCantidadDescuentoDecimaSeptimaEspecie: 0,
                             totalCantidadDescuentoDecimaOctavaEspecie: 0,
+                            totalCantidadDescuentoDecimaNovenaEspecie: 0,
+                            totalCantidadDescuentoVigesimaEspecie: 0,
+                            totalCantidadDescuentoVigesimaPrimeraEspecie: 0,
+                            totalCantidadDescuentoVigesimaSegundaEspecie: 0,
+                            totalCantidadDescuentoVigesimaTerceraEspecie: 0,
 
                             totalVentaDescuentoPrimerEspecie: 0,
                             totalVentaDescuentoSegundaEspecie: 0,
@@ -977,7 +1202,12 @@ jQuery(function ($) {
                             totalVentaDescuentoDecimaQuintaEspecie: 0,
                             totalVentaDescuentoDecimaSextaEspecie: 0,
                             totalVentaDescuentoDecimaSeptimaEspecie: 0,
-                            totalVentaDescuentoDecimaOctavaEspecie: 0
+                            totalVentaDescuentoDecimaOctavaEspecie: 0,
+                            totalVentaDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDescuentoVigesimaEspecie: 0,
+                            totalVentaDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaDescuentoVigesimaTerceraEspecie: 0
 
                         };
                     }
@@ -1062,6 +1292,26 @@ jQuery(function ($) {
                             totalPesoDescuentoDecimaOctavaEspecie: 0,
                             totalVentaDecimaOctavaEspecie: 0,
                             totalCantidadDecimaOctavaEspecie: 0,
+                            totalPesoDecimaNovenaEspecie: 0,
+                            totalPesoDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDecimaNovenaEspecie: 0,
+                            totalCantidadDecimaNovenaEspecie: 0,
+                            totalPesoVigesimaEspecie: 0,
+                            totalPesoDescuentoVigesimaEspecie: 0,
+                            totalVentaVigesimaEspecie: 0,
+                            totalCantidadVigesimaEspecie: 0,
+                            totalPesoVigesimaPrimeraEspecie: 0,
+                            totalPesoDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaVigesimaPrimeraEspecie: 0,
+                            totalCantidadVigesimaPrimeraEspecie: 0,
+                            totalPesoVigesimaSegundaEspecie: 0,
+                            totalPesoDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaVigesimaSegundaEspecie: 0,
+                            totalCantidadVigesimaSegundaEspecie: 0,
+                            totalPesoVigesimaTerceraEspecie: 0,
+                            totalPesoDescuentoVigesimaTerceraEspecie: 0,
+                            totalVentaVigesimaTerceraEspecie: 0,
+                            totalCantidadVigesimaTerceraEspecie: 0,
                             
                             totalPesoDescuento: 0,
                             totalVentaDescuento: 0,
@@ -1083,6 +1333,11 @@ jQuery(function ($) {
                             totalCantidadDescuentoDecimaSextaEspecie: 0,
                             totalCantidadDescuentoDecimaSeptimaEspecie: 0,
                             totalCantidadDescuentoDecimaOctavaEspecie: 0,
+                            totalCantidadDescuentoDecimaNovenaEspecie: 0,
+                            totalCantidadDescuentoVigesimaEspecie: 0,
+                            totalCantidadDescuentoVigesimaPrimeraEspecie: 0,
+                            totalCantidadDescuentoVigesimaSegundaEspecie: 0,
+                            totalCantidadDescuentoVigesimaTerceraEspecie: 0,
 
                             totalVentaDescuentoPrimerEspecie: 0,
                             totalVentaDescuentoSegundaEspecie: 0,
@@ -1100,7 +1355,12 @@ jQuery(function ($) {
                             totalVentaDescuentoDecimaQuintaEspecie: 0,
                             totalVentaDescuentoDecimaSextaEspecie: 0,
                             totalVentaDescuentoDecimaSeptimaEspecie: 0,
-                            totalVentaDescuentoDecimaOctavaEspecie: 0
+                            totalVentaDescuentoDecimaOctavaEspecie: 0,
+                            totalVentaDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDescuentoVigesimaEspecie: 0,
+                            totalVentaDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaDescuentoVigesimaTerceraEspecie: 0
 
                         };
                     }
@@ -1185,6 +1445,26 @@ jQuery(function ($) {
                             totalPesoDescuentoDecimaOctavaEspecie: 0,
                             totalVentaDecimaOctavaEspecie: 0,
                             totalCantidadDecimaOctavaEspecie: 0,
+                            totalPesoDecimaNovenaEspecie: 0,
+                            totalPesoDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDecimaNovenaEspecie: 0,
+                            totalCantidadDecimaNovenaEspecie: 0,
+                            totalPesoVigesimaEspecie: 0,
+                            totalPesoDescuentoVigesimaEspecie: 0,
+                            totalVentaVigesimaEspecie: 0,
+                            totalCantidadVigesimaEspecie: 0,
+                            totalPesoVigesimaPrimeraEspecie: 0,
+                            totalPesoDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaVigesimaPrimeraEspecie: 0,
+                            totalCantidadVigesimaPrimeraEspecie: 0,
+                            totalPesoVigesimaSegundaEspecie: 0,
+                            totalPesoDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaVigesimaSegundaEspecie: 0,
+                            totalCantidadVigesimaSegundaEspecie: 0,
+                            totalPesoVigesimaTerceraEspecie: 0,
+                            totalPesoDescuentoVigesimaTerceraEspecie: 0,
+                            totalVentaVigesimaTerceraEspecie: 0,
+                            totalCantidadVigesimaTerceraEspecie: 0,
                             
                             totalPesoDescuento: 0,
                             totalVentaDescuento: 0,
@@ -1206,6 +1486,11 @@ jQuery(function ($) {
                             totalCantidadDescuentoDecimaSextaEspecie: 0,
                             totalCantidadDescuentoDecimaSeptimaEspecie: 0,
                             totalCantidadDescuentoDecimaOctavaEspecie: 0,
+                            totalCantidadDescuentoDecimaNovenaEspecie: 0,
+                            totalCantidadDescuentoVigesimaEspecie: 0,
+                            totalCantidadDescuentoVigesimaPrimeraEspecie: 0,
+                            totalCantidadDescuentoVigesimaSegundaEspecie: 0,
+                            totalCantidadDescuentoVigesimaTerceraEspecie: 0,
 
                             totalVentaDescuentoPrimerEspecie: 0,
                             totalVentaDescuentoSegundaEspecie: 0,
@@ -1223,7 +1508,12 @@ jQuery(function ($) {
                             totalVentaDescuentoDecimaQuintaEspecie: 0,
                             totalVentaDescuentoDecimaSextaEspecie: 0,
                             totalVentaDescuentoDecimaSeptimaEspecie: 0,
-                            totalVentaDescuentoDecimaOctavaEspecie: 0
+                            totalVentaDescuentoDecimaOctavaEspecie: 0,
+                            totalVentaDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDescuentoVigesimaEspecie: 0,
+                            totalVentaDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaDescuentoVigesimaTerceraEspecie: 0
 
                         };
                     }
@@ -1308,6 +1598,26 @@ jQuery(function ($) {
                             totalPesoDescuentoDecimaOctavaEspecie: 0,
                             totalVentaDecimaOctavaEspecie: 0,
                             totalCantidadDecimaOctavaEspecie: 0,
+                            totalPesoDecimaNovenaEspecie: 0,
+                            totalPesoDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDecimaNovenaEspecie: 0,
+                            totalCantidadDecimaNovenaEspecie: 0,
+                            totalPesoVigesimaEspecie: 0,
+                            totalPesoDescuentoVigesimaEspecie: 0,
+                            totalVentaVigesimaEspecie: 0,
+                            totalCantidadVigesimaEspecie: 0,
+                            totalPesoVigesimaPrimeraEspecie: 0,
+                            totalPesoDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaVigesimaPrimeraEspecie: 0,
+                            totalCantidadVigesimaPrimeraEspecie: 0,
+                            totalPesoVigesimaSegundaEspecie: 0,
+                            totalPesoDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaVigesimaSegundaEspecie: 0,
+                            totalCantidadVigesimaSegundaEspecie: 0,
+                            totalPesoVigesimaTerceraEspecie: 0,
+                            totalPesoDescuentoVigesimaTerceraEspecie: 0,
+                            totalVentaVigesimaTerceraEspecie: 0,
+                            totalCantidadVigesimaTerceraEspecie: 0,
                             
                             totalPesoDescuento: 0,
                             totalVentaDescuento: 0,
@@ -1329,6 +1639,11 @@ jQuery(function ($) {
                             totalCantidadDescuentoDecimaSextaEspecie: 0,
                             totalCantidadDescuentoDecimaSeptimaEspecie: 0,
                             totalCantidadDescuentoDecimaOctavaEspecie: 0,
+                            totalCantidadDescuentoDecimaNovenaEspecie: 0,
+                            totalCantidadDescuentoVigesimaEspecie: 0,
+                            totalCantidadDescuentoVigesimaPrimeraEspecie: 0,
+                            totalCantidadDescuentoVigesimaSegundaEspecie: 0,
+                            totalCantidadDescuentoVigesimaTerceraEspecie: 0,
 
                             totalVentaDescuentoPrimerEspecie: 0,
                             totalVentaDescuentoSegundaEspecie: 0,
@@ -1346,7 +1661,12 @@ jQuery(function ($) {
                             totalVentaDescuentoDecimaQuintaEspecie: 0,
                             totalVentaDescuentoDecimaSextaEspecie: 0,
                             totalVentaDescuentoDecimaSeptimaEspecie: 0,
-                            totalVentaDescuentoDecimaOctavaEspecie: 0
+                            totalVentaDescuentoDecimaOctavaEspecie: 0,
+                            totalVentaDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDescuentoVigesimaEspecie: 0,
+                            totalVentaDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaDescuentoVigesimaTerceraEspecie: 0
 
                         };
                     }
@@ -1431,6 +1751,26 @@ jQuery(function ($) {
                             totalPesoDescuentoDecimaOctavaEspecie: 0,
                             totalVentaDecimaOctavaEspecie: 0,
                             totalCantidadDecimaOctavaEspecie: 0,
+                            totalPesoDecimaNovenaEspecie: 0,
+                            totalPesoDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDecimaNovenaEspecie: 0,
+                            totalCantidadDecimaNovenaEspecie: 0,
+                            totalPesoVigesimaEspecie: 0,
+                            totalPesoDescuentoVigesimaEspecie: 0,
+                            totalVentaVigesimaEspecie: 0,
+                            totalCantidadVigesimaEspecie: 0,
+                            totalPesoVigesimaPrimeraEspecie: 0,
+                            totalPesoDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaVigesimaPrimeraEspecie: 0,
+                            totalCantidadVigesimaPrimeraEspecie: 0,
+                            totalPesoVigesimaSegundaEspecie: 0,
+                            totalPesoDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaVigesimaSegundaEspecie: 0,
+                            totalCantidadVigesimaSegundaEspecie: 0,
+                            totalPesoVigesimaTerceraEspecie: 0,
+                            totalPesoDescuentoVigesimaTerceraEspecie: 0,
+                            totalVentaVigesimaTerceraEspecie: 0,
+                            totalCantidadVigesimaTerceraEspecie: 0,
                             
                             totalPesoDescuento: 0,
                             totalVentaDescuento: 0,
@@ -1452,6 +1792,11 @@ jQuery(function ($) {
                             totalCantidadDescuentoDecimaSextaEspecie: 0,
                             totalCantidadDescuentoDecimaSeptimaEspecie: 0,
                             totalCantidadDescuentoDecimaOctavaEspecie: 0,
+                            totalCantidadDescuentoDecimaNovenaEspecie: 0,
+                            totalCantidadDescuentoVigesimaEspecie: 0,
+                            totalCantidadDescuentoVigesimaPrimeraEspecie: 0,
+                            totalCantidadDescuentoVigesimaSegundaEspecie: 0,
+                            totalCantidadDescuentoVigesimaTerceraEspecie: 0,
 
                             totalVentaDescuentoPrimerEspecie: 0,
                             totalVentaDescuentoSegundaEspecie: 0,
@@ -1469,7 +1814,12 @@ jQuery(function ($) {
                             totalVentaDescuentoDecimaQuintaEspecie: 0,
                             totalVentaDescuentoDecimaSextaEspecie: 0,
                             totalVentaDescuentoDecimaSeptimaEspecie: 0,
-                            totalVentaDescuentoDecimaOctavaEspecie: 0
+                            totalVentaDescuentoDecimaOctavaEspecie: 0,
+                            totalVentaDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDescuentoVigesimaEspecie: 0,
+                            totalVentaDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaDescuentoVigesimaTerceraEspecie: 0
 
                         };
                     }
@@ -1554,6 +1904,26 @@ jQuery(function ($) {
                             totalPesoDescuentoDecimaOctavaEspecie: 0,
                             totalVentaDecimaOctavaEspecie: 0,
                             totalCantidadDecimaOctavaEspecie: 0,
+                            totalPesoDecimaNovenaEspecie: 0,
+                            totalPesoDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDecimaNovenaEspecie: 0,
+                            totalCantidadDecimaNovenaEspecie: 0,
+                            totalPesoVigesimaEspecie: 0,
+                            totalPesoDescuentoVigesimaEspecie: 0,
+                            totalVentaVigesimaEspecie: 0,
+                            totalCantidadVigesimaEspecie: 0,
+                            totalPesoVigesimaPrimeraEspecie: 0,
+                            totalPesoDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaVigesimaPrimeraEspecie: 0,
+                            totalCantidadVigesimaPrimeraEspecie: 0,
+                            totalPesoVigesimaSegundaEspecie: 0,
+                            totalPesoDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaVigesimaSegundaEspecie: 0,
+                            totalCantidadVigesimaSegundaEspecie: 0,
+                            totalPesoVigesimaTerceraEspecie: 0,
+                            totalPesoDescuentoVigesimaTerceraEspecie: 0,
+                            totalVentaVigesimaTerceraEspecie: 0,
+                            totalCantidadVigesimaTerceraEspecie: 0,
                             
                             totalPesoDescuento: 0,
                             totalVentaDescuento: 0,
@@ -1575,6 +1945,11 @@ jQuery(function ($) {
                             totalCantidadDescuentoDecimaSextaEspecie: 0,
                             totalCantidadDescuentoDecimaSeptimaEspecie: 0,
                             totalCantidadDescuentoDecimaOctavaEspecie: 0,
+                            totalCantidadDescuentoDecimaNovenaEspecie: 0,
+                            totalCantidadDescuentoVigesimaEspecie: 0,
+                            totalCantidadDescuentoVigesimaPrimeraEspecie: 0,
+                            totalCantidadDescuentoVigesimaSegundaEspecie: 0,
+                            totalCantidadDescuentoVigesimaTerceraEspecie: 0,
 
                             totalVentaDescuentoPrimerEspecie: 0,
                             totalVentaDescuentoSegundaEspecie: 0,
@@ -1592,7 +1967,12 @@ jQuery(function ($) {
                             totalVentaDescuentoDecimaQuintaEspecie: 0,
                             totalVentaDescuentoDecimaSextaEspecie: 0,
                             totalVentaDescuentoDecimaSeptimaEspecie: 0,
-                            totalVentaDescuentoDecimaOctavaEspecie: 0
+                            totalVentaDescuentoDecimaOctavaEspecie: 0,
+                            totalVentaDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDescuentoVigesimaEspecie: 0,
+                            totalVentaDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaDescuentoVigesimaTerceraEspecie: 0
 
                         };
                     }
@@ -1677,6 +2057,26 @@ jQuery(function ($) {
                             totalPesoDescuentoDecimaOctavaEspecie: 0,
                             totalVentaDecimaOctavaEspecie: 0,
                             totalCantidadDecimaOctavaEspecie: 0,
+                            totalPesoDecimaNovenaEspecie: 0,
+                            totalPesoDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDecimaNovenaEspecie: 0,
+                            totalCantidadDecimaNovenaEspecie: 0,
+                            totalPesoVigesimaEspecie: 0,
+                            totalPesoDescuentoVigesimaEspecie: 0,
+                            totalVentaVigesimaEspecie: 0,
+                            totalCantidadVigesimaEspecie: 0,
+                            totalPesoVigesimaPrimeraEspecie: 0,
+                            totalPesoDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaVigesimaPrimeraEspecie: 0,
+                            totalCantidadVigesimaPrimeraEspecie: 0,
+                            totalPesoVigesimaSegundaEspecie: 0,
+                            totalPesoDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaVigesimaSegundaEspecie: 0,
+                            totalCantidadVigesimaSegundaEspecie: 0,
+                            totalPesoVigesimaTerceraEspecie: 0,
+                            totalPesoDescuentoVigesimaTerceraEspecie: 0,
+                            totalVentaVigesimaTerceraEspecie: 0,
+                            totalCantidadVigesimaTerceraEspecie: 0,
                             
                             totalPesoDescuento: 0,
                             totalVentaDescuento: 0,
@@ -1698,6 +2098,11 @@ jQuery(function ($) {
                             totalCantidadDescuentoDecimaSextaEspecie: 0,
                             totalCantidadDescuentoDecimaSeptimaEspecie: 0,
                             totalCantidadDescuentoDecimaOctavaEspecie: 0,
+                            totalCantidadDescuentoDecimaNovenaEspecie: 0,
+                            totalCantidadDescuentoVigesimaEspecie: 0,
+                            totalCantidadDescuentoVigesimaPrimeraEspecie: 0,
+                            totalCantidadDescuentoVigesimaSegundaEspecie: 0,
+                            totalCantidadDescuentoVigesimaTerceraEspecie: 0,
 
                             totalVentaDescuentoPrimerEspecie: 0,
                             totalVentaDescuentoSegundaEspecie: 0,
@@ -1715,7 +2120,12 @@ jQuery(function ($) {
                             totalVentaDescuentoDecimaQuintaEspecie: 0,
                             totalVentaDescuentoDecimaSextaEspecie: 0,
                             totalVentaDescuentoDecimaSeptimaEspecie: 0,
-                            totalVentaDescuentoDecimaOctavaEspecie: 0
+                            totalVentaDescuentoDecimaOctavaEspecie: 0,
+                            totalVentaDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDescuentoVigesimaEspecie: 0,
+                            totalVentaDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaDescuentoVigesimaTerceraEspecie: 0
 
                         };
                     }
@@ -1800,6 +2210,26 @@ jQuery(function ($) {
                             totalPesoDescuentoDecimaOctavaEspecie: 0,
                             totalVentaDecimaOctavaEspecie: 0,
                             totalCantidadDecimaOctavaEspecie: 0,
+                            totalPesoDecimaNovenaEspecie: 0,
+                            totalPesoDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDecimaNovenaEspecie: 0,
+                            totalCantidadDecimaNovenaEspecie: 0,
+                            totalPesoVigesimaEspecie: 0,
+                            totalPesoDescuentoVigesimaEspecie: 0,
+                            totalVentaVigesimaEspecie: 0,
+                            totalCantidadVigesimaEspecie: 0,
+                            totalPesoVigesimaPrimeraEspecie: 0,
+                            totalPesoDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaVigesimaPrimeraEspecie: 0,
+                            totalCantidadVigesimaPrimeraEspecie: 0,
+                            totalPesoVigesimaSegundaEspecie: 0,
+                            totalPesoDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaVigesimaSegundaEspecie: 0,
+                            totalCantidadVigesimaSegundaEspecie: 0,
+                            totalPesoVigesimaTerceraEspecie: 0,
+                            totalPesoDescuentoVigesimaTerceraEspecie: 0,
+                            totalVentaVigesimaTerceraEspecie: 0,
+                            totalCantidadVigesimaTerceraEspecie: 0,
                             
                             totalPesoDescuento: 0,
                             totalVentaDescuento: 0,
@@ -1821,6 +2251,11 @@ jQuery(function ($) {
                             totalCantidadDescuentoDecimaSextaEspecie: 0,
                             totalCantidadDescuentoDecimaSeptimaEspecie: 0,
                             totalCantidadDescuentoDecimaOctavaEspecie: 0,
+                            totalCantidadDescuentoDecimaNovenaEspecie: 0,
+                            totalCantidadDescuentoVigesimaEspecie: 0,
+                            totalCantidadDescuentoVigesimaPrimeraEspecie: 0,
+                            totalCantidadDescuentoVigesimaSegundaEspecie: 0,
+                            totalCantidadDescuentoVigesimaTerceraEspecie: 0,
 
                             totalVentaDescuentoPrimerEspecie: 0,
                             totalVentaDescuentoSegundaEspecie: 0,
@@ -1838,7 +2273,12 @@ jQuery(function ($) {
                             totalVentaDescuentoDecimaQuintaEspecie: 0,
                             totalVentaDescuentoDecimaSextaEspecie: 0,
                             totalVentaDescuentoDecimaSeptimaEspecie: 0,
-                            totalVentaDescuentoDecimaOctavaEspecie: 0
+                            totalVentaDescuentoDecimaOctavaEspecie: 0,
+                            totalVentaDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDescuentoVigesimaEspecie: 0,
+                            totalVentaDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaDescuentoVigesimaTerceraEspecie: 0
 
                         };
                     }
@@ -1923,6 +2363,26 @@ jQuery(function ($) {
                             totalPesoDescuentoDecimaOctavaEspecie: 0,
                             totalVentaDecimaOctavaEspecie: 0,
                             totalCantidadDecimaOctavaEspecie: 0,
+                            totalPesoDecimaNovenaEspecie: 0,
+                            totalPesoDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDecimaNovenaEspecie: 0,
+                            totalCantidadDecimaNovenaEspecie: 0,
+                            totalPesoVigesimaEspecie: 0,
+                            totalPesoDescuentoVigesimaEspecie: 0,
+                            totalVentaVigesimaEspecie: 0,
+                            totalCantidadVigesimaEspecie: 0,
+                            totalPesoVigesimaPrimeraEspecie: 0,
+                            totalPesoDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaVigesimaPrimeraEspecie: 0,
+                            totalCantidadVigesimaPrimeraEspecie: 0,
+                            totalPesoVigesimaSegundaEspecie: 0,
+                            totalPesoDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaVigesimaSegundaEspecie: 0,
+                            totalCantidadVigesimaSegundaEspecie: 0,
+                            totalPesoVigesimaTerceraEspecie: 0,
+                            totalPesoDescuentoVigesimaTerceraEspecie: 0,
+                            totalVentaVigesimaTerceraEspecie: 0,
+                            totalCantidadVigesimaTerceraEspecie: 0,
                             
                             totalPesoDescuento: 0,
                             totalVentaDescuento: 0,
@@ -1944,6 +2404,11 @@ jQuery(function ($) {
                             totalCantidadDescuentoDecimaSextaEspecie: 0,
                             totalCantidadDescuentoDecimaSeptimaEspecie: 0,
                             totalCantidadDescuentoDecimaOctavaEspecie: 0,
+                            totalCantidadDescuentoDecimaNovenaEspecie: 0,
+                            totalCantidadDescuentoVigesimaEspecie: 0,
+                            totalCantidadDescuentoVigesimaPrimeraEspecie: 0,
+                            totalCantidadDescuentoVigesimaSegundaEspecie: 0,
+                            totalCantidadDescuentoVigesimaTerceraEspecie: 0,
 
                             totalVentaDescuentoPrimerEspecie: 0,
                             totalVentaDescuentoSegundaEspecie: 0,
@@ -1961,7 +2426,12 @@ jQuery(function ($) {
                             totalVentaDescuentoDecimaQuintaEspecie: 0,
                             totalVentaDescuentoDecimaSextaEspecie: 0,
                             totalVentaDescuentoDecimaSeptimaEspecie: 0,
-                            totalVentaDescuentoDecimaOctavaEspecie: 0
+                            totalVentaDescuentoDecimaOctavaEspecie: 0,
+                            totalVentaDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDescuentoVigesimaEspecie: 0,
+                            totalVentaDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaDescuentoVigesimaTerceraEspecie: 0
 
                         };
                     }
@@ -2046,6 +2516,26 @@ jQuery(function ($) {
                             totalPesoDescuentoDecimaOctavaEspecie: 0,
                             totalVentaDecimaOctavaEspecie: 0,
                             totalCantidadDecimaOctavaEspecie: 0,
+                            totalPesoDecimaNovenaEspecie: 0,
+                            totalPesoDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDecimaNovenaEspecie: 0,
+                            totalCantidadDecimaNovenaEspecie: 0,
+                            totalPesoVigesimaEspecie: 0,
+                            totalPesoDescuentoVigesimaEspecie: 0,
+                            totalVentaVigesimaEspecie: 0,
+                            totalCantidadVigesimaEspecie: 0,
+                            totalPesoVigesimaPrimeraEspecie: 0,
+                            totalPesoDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaVigesimaPrimeraEspecie: 0,
+                            totalCantidadVigesimaPrimeraEspecie: 0,
+                            totalPesoVigesimaSegundaEspecie: 0,
+                            totalPesoDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaVigesimaSegundaEspecie: 0,
+                            totalCantidadVigesimaSegundaEspecie: 0,
+                            totalPesoVigesimaTerceraEspecie: 0,
+                            totalPesoDescuentoVigesimaTerceraEspecie: 0,
+                            totalVentaVigesimaTerceraEspecie: 0,
+                            totalCantidadVigesimaTerceraEspecie: 0,
                             
                             totalPesoDescuento: 0,
                             totalVentaDescuento: 0,
@@ -2067,6 +2557,11 @@ jQuery(function ($) {
                             totalCantidadDescuentoDecimaSextaEspecie: 0,
                             totalCantidadDescuentoDecimaSeptimaEspecie: 0,
                             totalCantidadDescuentoDecimaOctavaEspecie: 0,
+                            totalCantidadDescuentoDecimaNovenaEspecie: 0,
+                            totalCantidadDescuentoVigesimaEspecie: 0,
+                            totalCantidadDescuentoVigesimaPrimeraEspecie: 0,
+                            totalCantidadDescuentoVigesimaSegundaEspecie: 0,
+                            totalCantidadDescuentoVigesimaTerceraEspecie: 0,
 
                             totalVentaDescuentoPrimerEspecie: 0,
                             totalVentaDescuentoSegundaEspecie: 0,
@@ -2084,7 +2579,12 @@ jQuery(function ($) {
                             totalVentaDescuentoDecimaQuintaEspecie: 0,
                             totalVentaDescuentoDecimaSextaEspecie: 0,
                             totalVentaDescuentoDecimaSeptimaEspecie: 0,
-                            totalVentaDescuentoDecimaOctavaEspecie: 0
+                            totalVentaDescuentoDecimaOctavaEspecie: 0,
+                            totalVentaDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDescuentoVigesimaEspecie: 0,
+                            totalVentaDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaDescuentoVigesimaTerceraEspecie: 0
 
                         };
                     }
@@ -2169,6 +2669,26 @@ jQuery(function ($) {
                             totalPesoDescuentoDecimaOctavaEspecie: 0,
                             totalVentaDecimaOctavaEspecie: 0,
                             totalCantidadDecimaOctavaEspecie: 0,
+                            totalPesoDecimaNovenaEspecie: 0,
+                            totalPesoDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDecimaNovenaEspecie: 0,
+                            totalCantidadDecimaNovenaEspecie: 0,
+                            totalPesoVigesimaEspecie: 0,
+                            totalPesoDescuentoVigesimaEspecie: 0,
+                            totalVentaVigesimaEspecie: 0,
+                            totalCantidadVigesimaEspecie: 0,
+                            totalPesoVigesimaPrimeraEspecie: 0,
+                            totalPesoDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaVigesimaPrimeraEspecie: 0,
+                            totalCantidadVigesimaPrimeraEspecie: 0,
+                            totalPesoVigesimaSegundaEspecie: 0,
+                            totalPesoDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaVigesimaSegundaEspecie: 0,
+                            totalCantidadVigesimaSegundaEspecie: 0,
+                            totalPesoVigesimaTerceraEspecie: 0,
+                            totalPesoDescuentoVigesimaTerceraEspecie: 0,
+                            totalVentaVigesimaTerceraEspecie: 0,
+                            totalCantidadVigesimaTerceraEspecie: 0,
                             
                             totalPesoDescuento: 0,
                             totalVentaDescuento: 0,
@@ -2190,6 +2710,11 @@ jQuery(function ($) {
                             totalCantidadDescuentoDecimaSextaEspecie: 0,
                             totalCantidadDescuentoDecimaSeptimaEspecie: 0,
                             totalCantidadDescuentoDecimaOctavaEspecie: 0,
+                            totalCantidadDescuentoDecimaNovenaEspecie: 0,
+                            totalCantidadDescuentoVigesimaEspecie: 0,
+                            totalCantidadDescuentoVigesimaPrimeraEspecie: 0,
+                            totalCantidadDescuentoVigesimaSegundaEspecie: 0,
+                            totalCantidadDescuentoVigesimaTerceraEspecie: 0,
 
                             totalVentaDescuentoPrimerEspecie: 0,
                             totalVentaDescuentoSegundaEspecie: 0,
@@ -2207,7 +2732,12 @@ jQuery(function ($) {
                             totalVentaDescuentoDecimaQuintaEspecie: 0,
                             totalVentaDescuentoDecimaSextaEspecie: 0,
                             totalVentaDescuentoDecimaSeptimaEspecie: 0,
-                            totalVentaDescuentoDecimaOctavaEspecie: 0
+                            totalVentaDescuentoDecimaOctavaEspecie: 0,
+                            totalVentaDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDescuentoVigesimaEspecie: 0,
+                            totalVentaDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaDescuentoVigesimaTerceraEspecie: 0
 
                         };
                     }
@@ -2218,6 +2748,766 @@ jQuery(function ($) {
                     combinedData[fecha].totalVentaDecimaOctavaEspecie = parseFloat(item.totalVentaDecimaOctavaEspecie);
                     combinedData[fecha].totalCantidadDecimaOctavaEspecie = parseInt(item.totalCantidadDecimaOctavaEspecie);
                     combinedData[fecha].totalVentaDescuentoDecimaOctavaEspecie = parseFloat(item.totalVentaDescuentoDecimaOctavaEspecie);
+                });
+
+                response.totalesDecimaNovenaEspecie.forEach(function (item) {
+                    var fecha = item.fechaRegistroPes;
+                    if (!combinedData[fecha]) {
+                        combinedData[fecha] = {
+                            totalPesoPrimerEspecie: 0,
+                            totalPesoDescuentoPrimerEspecie: 0,
+                            totalVentaPrimerEspecie: 0,
+                            totalCantidadPrimerEspecie: 0,
+                            totalPesoSegundaEspecie: 0,
+                            totalPesoDescuentoSegundaEspecie: 0,
+                            totalVentaSegundaEspecie: 0,
+                            totalCantidadSegundaEspecie: 0,
+                            totalPesoTerceraEspecie: 0,
+                            totalPesoDescuentoTerceraEspecie: 0,
+                            totalVentaTerceraEspecie: 0,
+                            totalCantidadTerceraEspecie: 0,
+                            totalPesoCuartaEspecie: 0,
+                            totalPesoDescuentoCuartaEspecie: 0,
+                            totalVentaCuartaEspecie: 0,
+                            totalCantidadCuartaEspecie: 0,
+                            totalPesoQuintaEspecie: 0,
+                            totalPesoDescuentoQuintaEspecie: 0,
+                            totalVentaQuintaEspecie: 0,
+                            totalCantidadQuintaEspecie: 0,
+                            totalPesoSextaEspecie: 0,
+                            totalPesoDescuentoSextaEspecie: 0,
+                            totalVentaSextaEspecie: 0,
+                            totalCantidadSextaEspecie: 0,
+                            totalPesoSeptimaEspecie: 0,
+                            totalPesoDescuentoSeptimaEspecie: 0,
+                            totalVentaSeptimaEspecie: 0,
+                            totalCantidadSeptimaEspecie: 0,
+                            totalPesoOctavaEspecie: 0,
+                            totalPesoDescuentoOctavaEspecie: 0,
+                            totalVentaOctavaEspecie: 0,
+                            totalCantidadOctavaEspecie: 0,
+                            totalPesoDecimaEspecie: 0,
+                            totalPesoDescuentoDecimaEspecie: 0,
+                            totalVentaDecimaEspecie: 0,
+                            totalCantidadDecimaEspecie: 0,
+                            totalPesoDecimaPrimeraEspecie: 0,
+                            totalPesoDescuentoDecimaPrimeraEspecie: 0,
+                            totalVentaDecimaPrimeraEspecie: 0,
+                            totalCantidadDecimaPrimeraEspecie: 0,
+                            totalPesoDecimaSegundaEspecie: 0,
+                            totalPesoDescuentoDecimaSegundaEspecie: 0,
+                            totalVentaDecimaSegundaEspecie: 0,
+                            totalCantidadDecimaSegundaEspecie: 0,
+                            totalPesoDecimaTerceraEspecie: 0,
+                            totalPesoDescuentoDecimaTerceraEspecie: 0,
+                            totalVentaDecimaTerceraEspecie: 0,
+                            totalCantidadDecimaTerceraEspecie: 0,
+                            totalPesoDecimaCuartaEspecie: 0,
+                            totalPesoDescuentoDecimaCuartaEspecie: 0,
+                            totalVentaDecimaCuartaEspecie: 0,
+                            totalCantidadDecimaCuartaEspecie: 0,
+                            totalPesoDecimaQuintaEspecie: 0,
+                            totalPesoDescuentoDecimaQuintaEspecie: 0,
+                            totalVentaDecimaQuintaEspecie: 0,
+                            totalCantidadDecimaQuintaEspecie: 0,
+                            totalPesoDecimaSextaEspecie: 0,
+                            totalPesoDescuentoDecimaSextaEspecie: 0,
+                            totalVentaDecimaSextaEspecie: 0,
+                            totalCantidadDecimaSextaEspecie: 0,
+                            totalPesoDecimaSeptimaEspecie: 0,
+                            totalPesoDescuentoDecimaSeptimaEspecie: 0,
+                            totalVentaDecimaSeptimaEspecie: 0,
+                            totalCantidadDecimaSeptimaEspecie: 0,
+                            totalPesoDecimaOctavaEspecie: 0,
+                            totalPesoDescuentoDecimaOctavaEspecie: 0,
+                            totalVentaDecimaOctavaEspecie: 0,
+                            totalCantidadDecimaOctavaEspecie: 0,
+                            totalPesoDecimaNovenaEspecie: 0,
+                            totalPesoDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDecimaNovenaEspecie: 0,
+                            totalCantidadDecimaNovenaEspecie: 0,
+                            totalPesoVigesimaEspecie: 0,
+                            totalPesoDescuentoVigesimaEspecie: 0,
+                            totalVentaVigesimaEspecie: 0,
+                            totalCantidadVigesimaEspecie: 0,
+                            totalPesoVigesimaPrimeraEspecie: 0,
+                            totalPesoDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaVigesimaPrimeraEspecie: 0,
+                            totalCantidadVigesimaPrimeraEspecie: 0,
+                            totalPesoVigesimaSegundaEspecie: 0,
+                            totalPesoDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaVigesimaSegundaEspecie: 0,
+                            totalCantidadVigesimaSegundaEspecie: 0,
+                            totalPesoVigesimaTerceraEspecie: 0,
+                            totalPesoDescuentoVigesimaTerceraEspecie: 0,
+                            totalVentaVigesimaTerceraEspecie: 0,
+                            totalCantidadVigesimaTerceraEspecie: 0,
+                            
+                            totalPesoDescuento: 0,
+                            totalVentaDescuento: 0,
+                            pagos: 0,
+                            totalCantidadDescuentoPrimerEspecie: 0,
+                            totalCantidadDescuentoSegundaEspecie: 0,
+                            totalCantidadDescuentoTerceraEspecie: 0,
+                            totalCantidadDescuentoCuartaEspecie: 0,
+                            totalCantidadDescuentoQuintaEspecie: 0,
+                            totalCantidadDescuentoSextaEspecie: 0,
+                            totalCantidadDescuentoSeptimaEspecie: 0,
+                            totalCantidadDescuentoOctavaEspecie: 0,
+                            totalCantidadDescuentoDecimaEspecie: 0,
+                            totalCantidadDescuentoDecimaPrimeraEspecie: 0,
+                            totalCantidadDescuentoDecimaSegundaEspecie: 0,
+                            totalCantidadDescuentoDecimaTerceraEspecie: 0,
+                            totalCantidadDescuentoDecimaCuartaEspecie: 0,
+                            totalCantidadDescuentoDecimaQuintaEspecie: 0,
+                            totalCantidadDescuentoDecimaSextaEspecie: 0,
+                            totalCantidadDescuentoDecimaSeptimaEspecie: 0,
+                            totalCantidadDescuentoDecimaOctavaEspecie: 0,
+                            totalCantidadDescuentoDecimaNovenaEspecie: 0,
+                            totalCantidadDescuentoVigesimaEspecie: 0,
+                            totalCantidadDescuentoVigesimaPrimeraEspecie: 0,
+                            totalCantidadDescuentoVigesimaSegundaEspecie: 0,
+                            totalCantidadDescuentoVigesimaTerceraEspecie: 0,
+
+                            totalVentaDescuentoPrimerEspecie: 0,
+                            totalVentaDescuentoSegundaEspecie: 0,
+                            totalVentaDescuentoTerceraEspecie: 0,
+                            totalVentaDescuentoCuartaEspecie: 0,
+                            totalVentaDescuentoQuintaEspecie: 0,
+                            totalVentaDescuentoSextaEspecie: 0,
+                            totalVentaDescuentoSeptimaEspecie: 0,
+                            totalVentaDescuentoOctavaEspecie: 0,
+                            totalVentaDescuentoDecimaEspecie: 0,
+                            totalVentaDescuentoDecimaPrimeraEspecie: 0,
+                            totalVentaDescuentoDecimaSegundaEspecie: 0,
+                            totalVentaDescuentoDecimaTerceraEspecie: 0,
+                            totalVentaDescuentoDecimaCuartaEspecie: 0,
+                            totalVentaDescuentoDecimaQuintaEspecie: 0,
+                            totalVentaDescuentoDecimaSextaEspecie: 0,
+                            totalVentaDescuentoDecimaSeptimaEspecie: 0,
+                            totalVentaDescuentoDecimaOctavaEspecie: 0,
+                            totalVentaDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDescuentoVigesimaEspecie: 0,
+                            totalVentaDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaDescuentoVigesimaTerceraEspecie: 0
+                        };
+                    }
+    
+                    combinedData[fecha].totalPesoDecimaNovenaEspecie += parseFloat(item.totalPesoDecimaNovenaEspecie);
+                    combinedData[fecha].totalPesoDescuentoDecimaNovenaEspecie += parseFloat(item.totalPesoDescuentoDecimaNovenaEspecie);
+                    combinedData[fecha].totalCantidadDescuentoDecimaNovenaEspecie += parseInt(item.totalCantidadDescuentoDecimaNovenaEspecie);
+                    combinedData[fecha].totalVentaDecimaNovenaEspecie += parseFloat(item.totalVentaDecimaNovenaEspecie);
+                    combinedData[fecha].totalCantidadDecimaNovenaEspecie += parseInt(item.totalCantidadDecimaNovenaEspecie);
+                    combinedData[fecha].totalVentaDescuentoDecimaNovenaEspecie += parseFloat(item.totalVentaDescuentoDecimaNovenaEspecie);
+                });
+
+                response.totalesVigesimaEspecie.forEach(function (item) {
+                    var fecha = item.fechaRegistroPes;
+                    if (!combinedData[fecha]) {
+                        combinedData[fecha] = {
+                            totalPesoPrimerEspecie: 0,
+                            totalPesoDescuentoPrimerEspecie: 0,
+                            totalVentaPrimerEspecie: 0,
+                            totalCantidadPrimerEspecie: 0,
+                            totalPesoSegundaEspecie: 0,
+                            totalPesoDescuentoSegundaEspecie: 0,
+                            totalVentaSegundaEspecie: 0,
+                            totalCantidadSegundaEspecie: 0,
+                            totalPesoTerceraEspecie: 0,
+                            totalPesoDescuentoTerceraEspecie: 0,
+                            totalVentaTerceraEspecie: 0,
+                            totalCantidadTerceraEspecie: 0,
+                            totalPesoCuartaEspecie: 0,
+                            totalPesoDescuentoCuartaEspecie: 0,
+                            totalVentaCuartaEspecie: 0,
+                            totalCantidadCuartaEspecie: 0,
+                            totalPesoQuintaEspecie: 0,
+                            totalPesoDescuentoQuintaEspecie: 0,
+                            totalVentaQuintaEspecie: 0,
+                            totalCantidadQuintaEspecie: 0,
+                            totalPesoSextaEspecie: 0,
+                            totalPesoDescuentoSextaEspecie: 0,
+                            totalVentaSextaEspecie: 0,
+                            totalCantidadSextaEspecie: 0,
+                            totalPesoSeptimaEspecie: 0,
+                            totalPesoDescuentoSeptimaEspecie: 0,
+                            totalVentaSeptimaEspecie: 0,
+                            totalCantidadSeptimaEspecie: 0,
+                            totalPesoOctavaEspecie: 0,
+                            totalPesoDescuentoOctavaEspecie: 0,
+                            totalVentaOctavaEspecie: 0,
+                            totalCantidadOctavaEspecie: 0,
+                            totalPesoDecimaEspecie: 0,
+                            totalPesoDescuentoDecimaEspecie: 0,
+                            totalVentaDecimaEspecie: 0,
+                            totalCantidadDecimaEspecie: 0,
+                            totalPesoDecimaPrimeraEspecie: 0,
+                            totalPesoDescuentoDecimaPrimeraEspecie: 0,
+                            totalVentaDecimaPrimeraEspecie: 0,
+                            totalCantidadDecimaPrimeraEspecie: 0,
+                            totalPesoDecimaSegundaEspecie: 0,
+                            totalPesoDescuentoDecimaSegundaEspecie: 0,
+                            totalVentaDecimaSegundaEspecie: 0,
+                            totalCantidadDecimaSegundaEspecie: 0,
+                            totalPesoDecimaTerceraEspecie: 0,
+                            totalPesoDescuentoDecimaTerceraEspecie: 0,
+                            totalVentaDecimaTerceraEspecie: 0,
+                            totalCantidadDecimaTerceraEspecie: 0,
+                            totalPesoDecimaCuartaEspecie: 0,
+                            totalPesoDescuentoDecimaCuartaEspecie: 0,
+                            totalVentaDecimaCuartaEspecie: 0,
+                            totalCantidadDecimaCuartaEspecie: 0,
+                            totalPesoDecimaQuintaEspecie: 0,
+                            totalPesoDescuentoDecimaQuintaEspecie: 0,
+                            totalVentaDecimaQuintaEspecie: 0,
+                            totalCantidadDecimaQuintaEspecie: 0,
+                            totalPesoDecimaSextaEspecie: 0,
+                            totalPesoDescuentoDecimaSextaEspecie: 0,
+                            totalVentaDecimaSextaEspecie: 0,
+                            totalCantidadDecimaSextaEspecie: 0,
+                            totalPesoDecimaSeptimaEspecie: 0,
+                            totalPesoDescuentoDecimaSeptimaEspecie: 0,
+                            totalVentaDecimaSeptimaEspecie: 0,
+                            totalCantidadDecimaSeptimaEspecie: 0,
+                            totalPesoDecimaOctavaEspecie: 0,
+                            totalPesoDescuentoDecimaOctavaEspecie: 0,
+                            totalVentaDecimaOctavaEspecie: 0,
+                            totalCantidadDecimaOctavaEspecie: 0,
+                            totalPesoDecimaNovenaEspecie: 0,
+                            totalPesoDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDecimaNovenaEspecie: 0,
+                            totalCantidadDecimaNovenaEspecie: 0,
+                            totalPesoVigesimaEspecie: 0,
+                            totalPesoDescuentoVigesimaEspecie: 0,
+                            totalVentaVigesimaEspecie: 0,
+                            totalCantidadVigesimaEspecie: 0,
+                            totalPesoVigesimaPrimeraEspecie: 0,
+                            totalPesoDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaVigesimaPrimeraEspecie: 0,
+                            totalCantidadVigesimaPrimeraEspecie: 0,
+                            totalPesoVigesimaSegundaEspecie: 0,
+                            totalPesoDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaVigesimaSegundaEspecie: 0,
+                            totalCantidadVigesimaSegundaEspecie: 0,
+                            totalPesoVigesimaTerceraEspecie: 0,
+                            totalPesoDescuentoVigesimaTerceraEspecie: 0,
+                            totalVentaVigesimaTerceraEspecie: 0,
+                            totalCantidadVigesimaTerceraEspecie: 0,
+                            
+                            totalPesoDescuento: 0,
+                            totalVentaDescuento: 0,
+                            pagos: 0,
+                            totalCantidadDescuentoPrimerEspecie: 0,
+                            totalCantidadDescuentoSegundaEspecie: 0,
+                            totalCantidadDescuentoTerceraEspecie: 0,
+                            totalCantidadDescuentoCuartaEspecie: 0,
+                            totalCantidadDescuentoQuintaEspecie: 0,
+                            totalCantidadDescuentoSextaEspecie: 0,
+                            totalCantidadDescuentoSeptimaEspecie: 0,
+                            totalCantidadDescuentoOctavaEspecie: 0,
+                            totalCantidadDescuentoDecimaEspecie: 0,
+                            totalCantidadDescuentoDecimaPrimeraEspecie: 0,
+                            totalCantidadDescuentoDecimaSegundaEspecie: 0,
+                            totalCantidadDescuentoDecimaTerceraEspecie: 0,
+                            totalCantidadDescuentoDecimaCuartaEspecie: 0,
+                            totalCantidadDescuentoDecimaQuintaEspecie: 0,
+                            totalCantidadDescuentoDecimaSextaEspecie: 0,
+                            totalCantidadDescuentoDecimaSeptimaEspecie: 0,
+                            totalCantidadDescuentoDecimaOctavaEspecie: 0,
+                            totalCantidadDescuentoDecimaNovenaEspecie: 0,
+                            totalCantidadDescuentoVigesimaEspecie: 0,
+                            totalCantidadDescuentoVigesimaPrimeraEspecie: 0,
+                            totalCantidadDescuentoVigesimaSegundaEspecie: 0,
+                            totalCantidadDescuentoVigesimaTerceraEspecie: 0,
+
+                            totalVentaDescuentoPrimerEspecie: 0,
+                            totalVentaDescuentoSegundaEspecie: 0,
+                            totalVentaDescuentoTerceraEspecie: 0,
+                            totalVentaDescuentoCuartaEspecie: 0,
+                            totalVentaDescuentoQuintaEspecie: 0,
+                            totalVentaDescuentoSextaEspecie: 0,
+                            totalVentaDescuentoSeptimaEspecie: 0,
+                            totalVentaDescuentoOctavaEspecie: 0,
+                            totalVentaDescuentoDecimaEspecie: 0,
+                            totalVentaDescuentoDecimaPrimeraEspecie: 0,
+                            totalVentaDescuentoDecimaSegundaEspecie: 0,
+                            totalVentaDescuentoDecimaTerceraEspecie: 0,
+                            totalVentaDescuentoDecimaCuartaEspecie: 0,
+                            totalVentaDescuentoDecimaQuintaEspecie: 0,
+                            totalVentaDescuentoDecimaSextaEspecie: 0,
+                            totalVentaDescuentoDecimaSeptimaEspecie: 0,
+                            totalVentaDescuentoDecimaOctavaEspecie: 0,
+                            totalVentaDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDescuentoVigesimaEspecie: 0,
+                            totalVentaDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaDescuentoVigesimaTerceraEspecie: 0
+                        };
+                    }
+    
+                    combinedData[fecha].totalPesoVigesimaEspecie += parseFloat(item.totalPesoVigesimaEspecie);
+                    combinedData[fecha].totalPesoDescuentoVigesimaEspecie += parseFloat(item.totalPesoDescuentoVigesimaEspecie);
+                    combinedData[fecha].totalCantidadDescuentoVigesimaEspecie += parseInt(item.totalCantidadDescuentoVigesimaEspecie);
+                    combinedData[fecha].totalVentaVigesimaEspecie += parseFloat(item.totalVentaVigesimaEspecie);
+                    combinedData[fecha].totalCantidadVigesimaEspecie += parseInt(item.totalCantidadVigesimaEspecie);
+                    combinedData[fecha].totalVentaDescuentoVigesimaEspecie += parseFloat(item.totalVentaDescuentoVigesimaEspecie);
+                });
+
+                response.totalesVigesimaPrimeraEspecie.forEach(function (item) {
+                    var fecha = item.fechaRegistroPes;
+                    if (!combinedData[fecha]) {
+                        combinedData[fecha] = {
+                            totalPesoPrimerEspecie: 0,
+                            totalPesoDescuentoPrimerEspecie: 0,
+                            totalVentaPrimerEspecie: 0,
+                            totalCantidadPrimerEspecie: 0,
+                            totalPesoSegundaEspecie: 0,
+                            totalPesoDescuentoSegundaEspecie: 0,
+                            totalVentaSegundaEspecie: 0,
+                            totalCantidadSegundaEspecie: 0,
+                            totalPesoTerceraEspecie: 0,
+                            totalPesoDescuentoTerceraEspecie: 0,
+                            totalVentaTerceraEspecie: 0,
+                            totalCantidadTerceraEspecie: 0,
+                            totalPesoCuartaEspecie: 0,
+                            totalPesoDescuentoCuartaEspecie: 0,
+                            totalVentaCuartaEspecie: 0,
+                            totalCantidadCuartaEspecie: 0,
+                            totalPesoQuintaEspecie: 0,
+                            totalPesoDescuentoQuintaEspecie: 0,
+                            totalVentaQuintaEspecie: 0,
+                            totalCantidadQuintaEspecie: 0,
+                            totalPesoSextaEspecie: 0,
+                            totalPesoDescuentoSextaEspecie: 0,
+                            totalVentaSextaEspecie: 0,
+                            totalCantidadSextaEspecie: 0,
+                            totalPesoSeptimaEspecie: 0,
+                            totalPesoDescuentoSeptimaEspecie: 0,
+                            totalVentaSeptimaEspecie: 0,
+                            totalCantidadSeptimaEspecie: 0,
+                            totalPesoOctavaEspecie: 0,
+                            totalPesoDescuentoOctavaEspecie: 0,
+                            totalVentaOctavaEspecie: 0,
+                            totalCantidadOctavaEspecie: 0,
+                            totalPesoDecimaEspecie: 0,
+                            totalPesoDescuentoDecimaEspecie: 0,
+                            totalVentaDecimaEspecie: 0,
+                            totalCantidadDecimaEspecie: 0,
+                            totalPesoDecimaPrimeraEspecie: 0,
+                            totalPesoDescuentoDecimaPrimeraEspecie: 0,
+                            totalVentaDecimaPrimeraEspecie: 0,
+                            totalCantidadDecimaPrimeraEspecie: 0,
+                            totalPesoDecimaSegundaEspecie: 0,
+                            totalPesoDescuentoDecimaSegundaEspecie: 0,
+                            totalVentaDecimaSegundaEspecie: 0,
+                            totalCantidadDecimaSegundaEspecie: 0,
+                            totalPesoDecimaTerceraEspecie: 0,
+                            totalPesoDescuentoDecimaTerceraEspecie: 0,
+                            totalVentaDecimaTerceraEspecie: 0,
+                            totalCantidadDecimaTerceraEspecie: 0,
+                            totalPesoDecimaCuartaEspecie: 0,
+                            totalPesoDescuentoDecimaCuartaEspecie: 0,
+                            totalVentaDecimaCuartaEspecie: 0,
+                            totalCantidadDecimaCuartaEspecie: 0,
+                            totalPesoDecimaQuintaEspecie: 0,
+                            totalPesoDescuentoDecimaQuintaEspecie: 0,
+                            totalVentaDecimaQuintaEspecie: 0,
+                            totalCantidadDecimaQuintaEspecie: 0,
+                            totalPesoDecimaSextaEspecie: 0,
+                            totalPesoDescuentoDecimaSextaEspecie: 0,
+                            totalVentaDecimaSextaEspecie: 0,
+                            totalCantidadDecimaSextaEspecie: 0,
+                            totalPesoDecimaSeptimaEspecie: 0,
+                            totalPesoDescuentoDecimaSeptimaEspecie: 0,
+                            totalVentaDecimaSeptimaEspecie: 0,
+                            totalCantidadDecimaSeptimaEspecie: 0,
+                            totalPesoDecimaOctavaEspecie: 0,
+                            totalPesoDescuentoDecimaOctavaEspecie: 0,
+                            totalVentaDecimaOctavaEspecie: 0,
+                            totalCantidadDecimaOctavaEspecie: 0,
+                            totalPesoDecimaNovenaEspecie: 0,
+                            totalPesoDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDecimaNovenaEspecie: 0,
+                            totalCantidadDecimaNovenaEspecie: 0,
+                            totalPesoVigesimaEspecie: 0,
+                            totalPesoDescuentoVigesimaEspecie: 0,
+                            totalVentaVigesimaEspecie: 0,
+                            totalCantidadVigesimaEspecie: 0,
+                            totalPesoVigesimaPrimeraEspecie: 0,
+                            totalPesoDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaVigesimaPrimeraEspecie: 0,
+                            totalCantidadVigesimaPrimeraEspecie: 0,
+                            totalPesoVigesimaSegundaEspecie: 0,
+                            totalPesoDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaVigesimaSegundaEspecie: 0,
+                            totalCantidadVigesimaSegundaEspecie: 0,
+                            totalPesoVigesimaTerceraEspecie: 0,
+                            totalPesoDescuentoVigesimaTerceraEspecie: 0,
+                            totalVentaVigesimaTerceraEspecie: 0,
+                            totalCantidadVigesimaTerceraEspecie: 0,
+                            
+                            totalPesoDescuento: 0,
+                            totalVentaDescuento: 0,
+                            pagos: 0,
+                            totalCantidadDescuentoPrimerEspecie: 0,
+                            totalCantidadDescuentoSegundaEspecie: 0,
+                            totalCantidadDescuentoTerceraEspecie: 0,
+                            totalCantidadDescuentoCuartaEspecie: 0,
+                            totalCantidadDescuentoQuintaEspecie: 0,
+                            totalCantidadDescuentoSextaEspecie: 0,
+                            totalCantidadDescuentoSeptimaEspecie: 0,
+                            totalCantidadDescuentoOctavaEspecie: 0,
+                            totalCantidadDescuentoDecimaEspecie: 0,
+                            totalCantidadDescuentoDecimaPrimeraEspecie: 0,
+                            totalCantidadDescuentoDecimaSegundaEspecie: 0,
+                            totalCantidadDescuentoDecimaTerceraEspecie: 0,
+                            totalCantidadDescuentoDecimaCuartaEspecie: 0,
+                            totalCantidadDescuentoDecimaQuintaEspecie: 0,
+                            totalCantidadDescuentoDecimaSextaEspecie: 0,
+                            totalCantidadDescuentoDecimaSeptimaEspecie: 0,
+                            totalCantidadDescuentoDecimaOctavaEspecie: 0,
+                            totalCantidadDescuentoDecimaNovenaEspecie: 0,
+                            totalCantidadDescuentoVigesimaEspecie: 0,
+                            totalCantidadDescuentoVigesimaPrimeraEspecie: 0,
+                            totalCantidadDescuentoVigesimaSegundaEspecie: 0,
+                            totalCantidadDescuentoVigesimaTerceraEspecie: 0,
+
+                            totalVentaDescuentoPrimerEspecie: 0,
+                            totalVentaDescuentoSegundaEspecie: 0,
+                            totalVentaDescuentoTerceraEspecie: 0,
+                            totalVentaDescuentoCuartaEspecie: 0,
+                            totalVentaDescuentoQuintaEspecie: 0,
+                            totalVentaDescuentoSextaEspecie: 0,
+                            totalVentaDescuentoSeptimaEspecie: 0,
+                            totalVentaDescuentoOctavaEspecie: 0,
+                            totalVentaDescuentoDecimaEspecie: 0,
+                            totalVentaDescuentoDecimaPrimeraEspecie: 0,
+                            totalVentaDescuentoDecimaSegundaEspecie: 0,
+                            totalVentaDescuentoDecimaTerceraEspecie: 0,
+                            totalVentaDescuentoDecimaCuartaEspecie: 0,
+                            totalVentaDescuentoDecimaQuintaEspecie: 0,
+                            totalVentaDescuentoDecimaSextaEspecie: 0,
+                            totalVentaDescuentoDecimaSeptimaEspecie: 0,
+                            totalVentaDescuentoDecimaOctavaEspecie: 0,
+                            totalVentaDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDescuentoVigesimaEspecie: 0,
+                            totalVentaDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaDescuentoVigesimaTerceraEspecie: 0
+                        };
+                    }
+    
+                    combinedData[fecha].totalPesoVigesimaPrimeraEspecie += parseFloat(item.totalPesoVigesimaPrimeraEspecie);
+                    combinedData[fecha].totalPesoDescuentoVigesimaPrimeraEspecie += parseFloat(item.totalPesoDescuentoVigesimaPrimeraEspecie);
+                    combinedData[fecha].totalCantidadDescuentoVigesimaPrimeraEspecie += parseInt(item.totalCantidadDescuentoVigesimaPrimeraEspecie);
+                    combinedData[fecha].totalVentaVigesimaPrimeraEspecie += parseFloat(item.totalVentaVigesimaPrimeraEspecie);
+                    combinedData[fecha].totalCantidadVigesimaPrimeraEspecie += parseInt(item.totalCantidadVigesimaPrimeraEspecie);
+                    combinedData[fecha].totalVentaDescuentoVigesimaPrimeraEspecie += parseFloat(item.totalVentaDescuentoVigesimaPrimeraEspecie);
+                });
+
+                response.totalesVigesimaSegundaEspecie.forEach(function (item) {
+                    var fecha = item.fechaRegistroPes;
+                    if (!combinedData[fecha]) {
+                        combinedData[fecha] = {
+                            totalPesoPrimerEspecie: 0,
+                            totalPesoDescuentoPrimerEspecie: 0,
+                            totalVentaPrimerEspecie: 0,
+                            totalCantidadPrimerEspecie: 0,
+                            totalPesoSegundaEspecie: 0,
+                            totalPesoDescuentoSegundaEspecie: 0,
+                            totalVentaSegundaEspecie: 0,
+                            totalCantidadSegundaEspecie: 0,
+                            totalPesoTerceraEspecie: 0,
+                            totalPesoDescuentoTerceraEspecie: 0,
+                            totalVentaTerceraEspecie: 0,
+                            totalCantidadTerceraEspecie: 0,
+                            totalPesoCuartaEspecie: 0,
+                            totalPesoDescuentoCuartaEspecie: 0,
+                            totalVentaCuartaEspecie: 0,
+                            totalCantidadCuartaEspecie: 0,
+                            totalPesoQuintaEspecie: 0,
+                            totalPesoDescuentoQuintaEspecie: 0,
+                            totalVentaQuintaEspecie: 0,
+                            totalCantidadQuintaEspecie: 0,
+                            totalPesoSextaEspecie: 0,
+                            totalPesoDescuentoSextaEspecie: 0,
+                            totalVentaSextaEspecie: 0,
+                            totalCantidadSextaEspecie: 0,
+                            totalPesoSeptimaEspecie: 0,
+                            totalPesoDescuentoSeptimaEspecie: 0,
+                            totalVentaSeptimaEspecie: 0,
+                            totalCantidadSeptimaEspecie: 0,
+                            totalPesoOctavaEspecie: 0,
+                            totalPesoDescuentoOctavaEspecie: 0,
+                            totalVentaOctavaEspecie: 0,
+                            totalCantidadOctavaEspecie: 0,
+                            totalPesoDecimaEspecie: 0,
+                            totalPesoDescuentoDecimaEspecie: 0,
+                            totalVentaDecimaEspecie: 0,
+                            totalCantidadDecimaEspecie: 0,
+                            totalPesoDecimaPrimeraEspecie: 0,
+                            totalPesoDescuentoDecimaPrimeraEspecie: 0,
+                            totalVentaDecimaPrimeraEspecie: 0,
+                            totalCantidadDecimaPrimeraEspecie: 0,
+                            totalPesoDecimaSegundaEspecie: 0,
+                            totalPesoDescuentoDecimaSegundaEspecie: 0,
+                            totalVentaDecimaSegundaEspecie: 0,
+                            totalCantidadDecimaSegundaEspecie: 0,
+                            totalPesoDecimaTerceraEspecie: 0,
+                            totalPesoDescuentoDecimaTerceraEspecie: 0,
+                            totalVentaDecimaTerceraEspecie: 0,
+                            totalCantidadDecimaTerceraEspecie: 0,
+                            totalPesoDecimaCuartaEspecie: 0,
+                            totalPesoDescuentoDecimaCuartaEspecie: 0,
+                            totalVentaDecimaCuartaEspecie: 0,
+                            totalCantidadDecimaCuartaEspecie: 0,
+                            totalPesoDecimaQuintaEspecie: 0,
+                            totalPesoDescuentoDecimaQuintaEspecie: 0,
+                            totalVentaDecimaQuintaEspecie: 0,
+                            totalCantidadDecimaQuintaEspecie: 0,
+                            totalPesoDecimaSextaEspecie: 0,
+                            totalPesoDescuentoDecimaSextaEspecie: 0,
+                            totalVentaDecimaSextaEspecie: 0,
+                            totalCantidadDecimaSextaEspecie: 0,
+                            totalPesoDecimaSeptimaEspecie: 0,
+                            totalPesoDescuentoDecimaSeptimaEspecie: 0,
+                            totalVentaDecimaSeptimaEspecie: 0,
+                            totalCantidadDecimaSeptimaEspecie: 0,
+                            totalPesoDecimaOctavaEspecie: 0,
+                            totalPesoDescuentoDecimaOctavaEspecie: 0,
+                            totalVentaDecimaOctavaEspecie: 0,
+                            totalCantidadDecimaOctavaEspecie: 0,
+                            totalPesoDecimaNovenaEspecie: 0,
+                            totalPesoDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDecimaNovenaEspecie: 0,
+                            totalCantidadDecimaNovenaEspecie: 0,
+                            totalPesoVigesimaEspecie: 0,
+                            totalPesoDescuentoVigesimaEspecie: 0,
+                            totalVentaVigesimaEspecie: 0,
+                            totalCantidadVigesimaEspecie: 0,
+                            totalPesoVigesimaPrimeraEspecie: 0,
+                            totalPesoDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaVigesimaPrimeraEspecie: 0,
+                            totalCantidadVigesimaPrimeraEspecie: 0,
+                            totalPesoVigesimaSegundaEspecie: 0,
+                            totalPesoDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaVigesimaSegundaEspecie: 0,
+                            totalCantidadVigesimaSegundaEspecie: 0,
+                            totalPesoVigesimaTerceraEspecie: 0,
+                            totalPesoDescuentoVigesimaTerceraEspecie: 0,
+                            totalVentaVigesimaTerceraEspecie: 0,
+                            totalCantidadVigesimaTerceraEspecie: 0,
+                            
+                            totalPesoDescuento: 0,
+                            totalVentaDescuento: 0,
+                            pagos: 0,
+                            totalCantidadDescuentoPrimerEspecie: 0,
+                            totalCantidadDescuentoSegundaEspecie: 0,
+                            totalCantidadDescuentoTerceraEspecie: 0,
+                            totalCantidadDescuentoCuartaEspecie: 0,
+                            totalCantidadDescuentoQuintaEspecie: 0,
+                            totalCantidadDescuentoSextaEspecie: 0,
+                            totalCantidadDescuentoSeptimaEspecie: 0,
+                            totalCantidadDescuentoOctavaEspecie: 0,
+                            totalCantidadDescuentoDecimaEspecie: 0,
+                            totalCantidadDescuentoDecimaPrimeraEspecie: 0,
+                            totalCantidadDescuentoDecimaSegundaEspecie: 0,
+                            totalCantidadDescuentoDecimaTerceraEspecie: 0,
+                            totalCantidadDescuentoDecimaCuartaEspecie: 0,
+                            totalCantidadDescuentoDecimaQuintaEspecie: 0,
+                            totalCantidadDescuentoDecimaSextaEspecie: 0,
+                            totalCantidadDescuentoDecimaSeptimaEspecie: 0,
+                            totalCantidadDescuentoDecimaOctavaEspecie: 0,
+                            totalCantidadDescuentoDecimaNovenaEspecie: 0,
+                            totalCantidadDescuentoVigesimaEspecie: 0,
+                            totalCantidadDescuentoVigesimaPrimeraEspecie: 0,
+                            totalCantidadDescuentoVigesimaSegundaEspecie: 0,
+                            totalCantidadDescuentoVigesimaTerceraEspecie: 0,
+
+                            totalVentaDescuentoPrimerEspecie: 0,
+                            totalVentaDescuentoSegundaEspecie: 0,
+                            totalVentaDescuentoTerceraEspecie: 0,
+                            totalVentaDescuentoCuartaEspecie: 0,
+                            totalVentaDescuentoQuintaEspecie: 0,
+                            totalVentaDescuentoSextaEspecie: 0,
+                            totalVentaDescuentoSeptimaEspecie: 0,
+                            totalVentaDescuentoOctavaEspecie: 0,
+                            totalVentaDescuentoDecimaEspecie: 0,
+                            totalVentaDescuentoDecimaPrimeraEspecie: 0,
+                            totalVentaDescuentoDecimaSegundaEspecie: 0,
+                            totalVentaDescuentoDecimaTerceraEspecie: 0,
+                            totalVentaDescuentoDecimaCuartaEspecie: 0,
+                            totalVentaDescuentoDecimaQuintaEspecie: 0,
+                            totalVentaDescuentoDecimaSextaEspecie: 0,
+                            totalVentaDescuentoDecimaSeptimaEspecie: 0,
+                            totalVentaDescuentoDecimaOctavaEspecie: 0,
+                            totalVentaDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDescuentoVigesimaEspecie: 0,
+                            totalVentaDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaDescuentoVigesimaTerceraEspecie: 0
+                        };
+                    }
+    
+                    combinedData[fecha].totalPesoVigesimaSegundaEspecie += parseFloat(item.totalPesoVigesimaSegundaEspecie);
+                    combinedData[fecha].totalPesoDescuentoVigesimaSegundaEspecie += parseFloat(item.totalPesoDescuentoVigesimaSegundaEspecie);
+                    combinedData[fecha].totalCantidadDescuentoVigesimaSegundaEspecie += parseInt(item.totalCantidadDescuentoVigesimaSegundaEspecie);
+                    combinedData[fecha].totalVentaVigesimaSegundaEspecie += parseFloat(item.totalVentaVigesimaSegundaEspecie);
+                    combinedData[fecha].totalCantidadVigesimaSegundaEspecie += parseInt(item.totalCantidadVigesimaSegundaEspecie);
+                    combinedData[fecha].totalVentaDescuentoVigesimaSegundaEspecie += parseFloat(item.totalVentaDescuentoVigesimaSegundaEspecie);
+                });
+
+                response.totalesVigesimaTerceraEspecie.forEach(function (item) {
+                    var fecha = item.fechaRegistroPes;
+                    if (!combinedData[fecha]) {
+                        combinedData[fecha] = {
+                            totalPesoPrimerEspecie: 0,
+                            totalPesoDescuentoPrimerEspecie: 0,
+                            totalVentaPrimerEspecie: 0,
+                            totalCantidadPrimerEspecie: 0,
+                            totalPesoSegundaEspecie: 0,
+                            totalPesoDescuentoSegundaEspecie: 0,
+                            totalVentaSegundaEspecie: 0,
+                            totalCantidadSegundaEspecie: 0,
+                            totalPesoTerceraEspecie: 0,
+                            totalPesoDescuentoTerceraEspecie: 0,
+                            totalVentaTerceraEspecie: 0,
+                            totalCantidadTerceraEspecie: 0,
+                            totalPesoCuartaEspecie: 0,
+                            totalPesoDescuentoCuartaEspecie: 0,
+                            totalVentaCuartaEspecie: 0,
+                            totalCantidadCuartaEspecie: 0,
+                            totalPesoQuintaEspecie: 0,
+                            totalPesoDescuentoQuintaEspecie: 0,
+                            totalVentaQuintaEspecie: 0,
+                            totalCantidadQuintaEspecie: 0,
+                            totalPesoSextaEspecie: 0,
+                            totalPesoDescuentoSextaEspecie: 0,
+                            totalVentaSextaEspecie: 0,
+                            totalCantidadSextaEspecie: 0,
+                            totalPesoSeptimaEspecie: 0,
+                            totalPesoDescuentoSeptimaEspecie: 0,
+                            totalVentaSeptimaEspecie: 0,
+                            totalCantidadSeptimaEspecie: 0,
+                            totalPesoOctavaEspecie: 0,
+                            totalPesoDescuentoOctavaEspecie: 0,
+                            totalVentaOctavaEspecie: 0,
+                            totalCantidadOctavaEspecie: 0,
+                            totalPesoDecimaEspecie: 0,
+                            totalPesoDescuentoDecimaEspecie: 0,
+                            totalVentaDecimaEspecie: 0,
+                            totalCantidadDecimaEspecie: 0,
+                            totalPesoDecimaPrimeraEspecie: 0,
+                            totalPesoDescuentoDecimaPrimeraEspecie: 0,
+                            totalVentaDecimaPrimeraEspecie: 0,
+                            totalCantidadDecimaPrimeraEspecie: 0,
+                            totalPesoDecimaSegundaEspecie: 0,
+                            totalPesoDescuentoDecimaSegundaEspecie: 0,
+                            totalVentaDecimaSegundaEspecie: 0,
+                            totalCantidadDecimaSegundaEspecie: 0,
+                            totalPesoDecimaTerceraEspecie: 0,
+                            totalPesoDescuentoDecimaTerceraEspecie: 0,
+                            totalVentaDecimaTerceraEspecie: 0,
+                            totalCantidadDecimaTerceraEspecie: 0,
+                            totalPesoDecimaCuartaEspecie: 0,
+                            totalPesoDescuentoDecimaCuartaEspecie: 0,
+                            totalVentaDecimaCuartaEspecie: 0,
+                            totalCantidadDecimaCuartaEspecie: 0,
+                            totalPesoDecimaQuintaEspecie: 0,
+                            totalPesoDescuentoDecimaQuintaEspecie: 0,
+                            totalVentaDecimaQuintaEspecie: 0,
+                            totalCantidadDecimaQuintaEspecie: 0,
+                            totalPesoDecimaSextaEspecie: 0,
+                            totalPesoDescuentoDecimaSextaEspecie: 0,
+                            totalVentaDecimaSextaEspecie: 0,
+                            totalCantidadDecimaSextaEspecie: 0,
+                            totalPesoDecimaSeptimaEspecie: 0,
+                            totalPesoDescuentoDecimaSeptimaEspecie: 0,
+                            totalVentaDecimaSeptimaEspecie: 0,
+                            totalCantidadDecimaSeptimaEspecie: 0,
+                            totalPesoDecimaOctavaEspecie: 0,
+                            totalPesoDescuentoDecimaOctavaEspecie: 0,
+                            totalVentaDecimaOctavaEspecie: 0,
+                            totalCantidadDecimaOctavaEspecie: 0,
+                            totalPesoDecimaNovenaEspecie: 0,
+                            totalPesoDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDecimaNovenaEspecie: 0,
+                            totalCantidadDecimaNovenaEspecie: 0,
+                            totalPesoVigesimaEspecie: 0,
+                            totalPesoDescuentoVigesimaEspecie: 0,
+                            totalVentaVigesimaEspecie: 0,
+                            totalCantidadVigesimaEspecie: 0,
+                            totalPesoVigesimaPrimeraEspecie: 0,
+                            totalPesoDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaVigesimaPrimeraEspecie: 0,
+                            totalCantidadVigesimaPrimeraEspecie: 0,
+                            totalPesoVigesimaSegundaEspecie: 0,
+                            totalPesoDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaVigesimaSegundaEspecie: 0,
+                            totalCantidadVigesimaSegundaEspecie: 0,
+                            totalPesoVigesimaTerceraEspecie: 0,
+                            totalPesoDescuentoVigesimaTerceraEspecie: 0,
+                            totalVentaVigesimaTerceraEspecie: 0,
+                            totalCantidadVigesimaTerceraEspecie: 0,
+                            
+                            totalPesoDescuento: 0,
+                            totalVentaDescuento: 0,
+                            pagos: 0,
+                            totalCantidadDescuentoPrimerEspecie: 0,
+                            totalCantidadDescuentoSegundaEspecie: 0,
+                            totalCantidadDescuentoTerceraEspecie: 0,
+                            totalCantidadDescuentoCuartaEspecie: 0,
+                            totalCantidadDescuentoQuintaEspecie: 0,
+                            totalCantidadDescuentoSextaEspecie: 0,
+                            totalCantidadDescuentoSeptimaEspecie: 0,
+                            totalCantidadDescuentoOctavaEspecie: 0,
+                            totalCantidadDescuentoDecimaEspecie: 0,
+                            totalCantidadDescuentoDecimaPrimeraEspecie: 0,
+                            totalCantidadDescuentoDecimaSegundaEspecie: 0,
+                            totalCantidadDescuentoDecimaTerceraEspecie: 0,
+                            totalCantidadDescuentoDecimaCuartaEspecie: 0,
+                            totalCantidadDescuentoDecimaQuintaEspecie: 0,
+                            totalCantidadDescuentoDecimaSextaEspecie: 0,
+                            totalCantidadDescuentoDecimaSeptimaEspecie: 0,
+                            totalCantidadDescuentoDecimaOctavaEspecie: 0,
+                            totalCantidadDescuentoDecimaNovenaEspecie: 0,
+                            totalCantidadDescuentoVigesimaEspecie: 0,
+                            totalCantidadDescuentoVigesimaPrimeraEspecie: 0,
+                            totalCantidadDescuentoVigesimaSegundaEspecie: 0,
+                            totalCantidadDescuentoVigesimaTerceraEspecie: 0,
+
+                            totalVentaDescuentoPrimerEspecie: 0,
+                            totalVentaDescuentoSegundaEspecie: 0,
+                            totalVentaDescuentoTerceraEspecie: 0,
+                            totalVentaDescuentoCuartaEspecie: 0,
+                            totalVentaDescuentoQuintaEspecie: 0,
+                            totalVentaDescuentoSextaEspecie: 0,
+                            totalVentaDescuentoSeptimaEspecie: 0,
+                            totalVentaDescuentoOctavaEspecie: 0,
+                            totalVentaDescuentoDecimaEspecie: 0,
+                            totalVentaDescuentoDecimaPrimeraEspecie: 0,
+                            totalVentaDescuentoDecimaSegundaEspecie: 0,
+                            totalVentaDescuentoDecimaTerceraEspecie: 0,
+                            totalVentaDescuentoDecimaCuartaEspecie: 0,
+                            totalVentaDescuentoDecimaQuintaEspecie: 0,
+                            totalVentaDescuentoDecimaSextaEspecie: 0,
+                            totalVentaDescuentoDecimaSeptimaEspecie: 0,
+                            totalVentaDescuentoDecimaOctavaEspecie: 0,
+                            totalVentaDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDescuentoVigesimaEspecie: 0,
+                            totalVentaDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaDescuentoVigesimaTerceraEspecie: 0
+                        };
+                    }
+    
+                    combinedData[fecha].totalPesoVigesimaTerceraEspecie += parseFloat(item.totalPesoVigesimaTerceraEspecie);
+                    combinedData[fecha].totalPesoDescuentoVigesimaTerceraEspecie += parseFloat(item.totalPesoDescuentoVigesimaTerceraEspecie);
+                    combinedData[fecha].totalCantidadDescuentoVigesimaTerceraEspecie += parseInt(item.totalCantidadDescuentoVigesimaTerceraEspecie);
+                    combinedData[fecha].totalVentaVigesimaTerceraEspecie += parseFloat(item.totalVentaVigesimaTerceraEspecie);
+                    combinedData[fecha].totalCantidadVigesimaTerceraEspecie += parseInt(item.totalCantidadVigesimaTerceraEspecie);
+                    combinedData[fecha].totalVentaDescuentoVigesimaTerceraEspecie += parseFloat(item.totalVentaDescuentoVigesimaTerceraEspecie);
                 });
 
                 // Termina
@@ -2294,6 +3584,26 @@ jQuery(function ($) {
                             totalPesoDescuentoDecimaOctavaEspecie: 0,
                             totalVentaDecimaOctavaEspecie: 0,
                             totalCantidadDecimaOctavaEspecie: 0,
+                            totalPesoDecimaNovenaEspecie: 0,
+                            totalPesoDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDecimaNovenaEspecie: 0,
+                            totalCantidadDecimaNovenaEspecie: 0,
+                            totalPesoVigesimaEspecie: 0,
+                            totalPesoDescuentoVigesimaEspecie: 0,
+                            totalVentaVigesimaEspecie: 0,
+                            totalCantidadVigesimaEspecie: 0,
+                            totalPesoVigesimaPrimeraEspecie: 0,
+                            totalPesoDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaVigesimaPrimeraEspecie: 0,
+                            totalCantidadVigesimaPrimeraEspecie: 0,
+                            totalPesoVigesimaSegundaEspecie: 0,
+                            totalPesoDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaVigesimaSegundaEspecie: 0,
+                            totalCantidadVigesimaSegundaEspecie: 0,
+                            totalPesoVigesimaTerceraEspecie: 0,
+                            totalPesoDescuentoVigesimaTerceraEspecie: 0,
+                            totalVentaVigesimaTerceraEspecie: 0,
+                            totalCantidadVigesimaTerceraEspecie: 0,
                             
                             totalPesoDescuento: 0,
                             totalVentaDescuento: 0,
@@ -2315,6 +3625,11 @@ jQuery(function ($) {
                             totalCantidadDescuentoDecimaSextaEspecie: 0,
                             totalCantidadDescuentoDecimaSeptimaEspecie: 0,
                             totalCantidadDescuentoDecimaOctavaEspecie: 0,
+                            totalCantidadDescuentoDecimaNovenaEspecie: 0,
+                            totalCantidadDescuentoVigesimaEspecie: 0,
+                            totalCantidadDescuentoVigesimaPrimeraEspecie: 0,
+                            totalCantidadDescuentoVigesimaSegundaEspecie: 0,
+                            totalCantidadDescuentoVigesimaTerceraEspecie: 0,
 
                             totalVentaDescuentoPrimerEspecie: 0,
                             totalVentaDescuentoSegundaEspecie: 0,
@@ -2332,7 +3647,12 @@ jQuery(function ($) {
                             totalVentaDescuentoDecimaQuintaEspecie: 0,
                             totalVentaDescuentoDecimaSextaEspecie: 0,
                             totalVentaDescuentoDecimaSeptimaEspecie: 0,
-                            totalVentaDescuentoDecimaOctavaEspecie: 0
+                            totalVentaDescuentoDecimaOctavaEspecie: 0,
+                            totalVentaDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDescuentoVigesimaEspecie: 0,
+                            totalVentaDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaDescuentoVigesimaTerceraEspecie: 0
 
                         };
                     }
@@ -2417,6 +3737,26 @@ jQuery(function ($) {
                             totalPesoDescuentoDecimaOctavaEspecie: 0,
                             totalVentaDecimaOctavaEspecie: 0,
                             totalCantidadDecimaOctavaEspecie: 0,
+                            totalPesoDecimaNovenaEspecie: 0,
+                            totalPesoDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDecimaNovenaEspecie: 0,
+                            totalCantidadDecimaNovenaEspecie: 0,
+                            totalPesoVigesimaEspecie: 0,
+                            totalPesoDescuentoVigesimaEspecie: 0,
+                            totalVentaVigesimaEspecie: 0,
+                            totalCantidadVigesimaEspecie: 0,
+                            totalPesoVigesimaPrimeraEspecie: 0,
+                            totalPesoDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaVigesimaPrimeraEspecie: 0,
+                            totalCantidadVigesimaPrimeraEspecie: 0,
+                            totalPesoVigesimaSegundaEspecie: 0,
+                            totalPesoDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaVigesimaSegundaEspecie: 0,
+                            totalCantidadVigesimaSegundaEspecie: 0,
+                            totalPesoVigesimaTerceraEspecie: 0,
+                            totalPesoDescuentoVigesimaTerceraEspecie: 0,
+                            totalVentaVigesimaTerceraEspecie: 0,
+                            totalCantidadVigesimaTerceraEspecie: 0,
                             
                             totalPesoDescuento: 0,
                             totalVentaDescuento: 0,
@@ -2438,6 +3778,11 @@ jQuery(function ($) {
                             totalCantidadDescuentoDecimaSextaEspecie: 0,
                             totalCantidadDescuentoDecimaSeptimaEspecie: 0,
                             totalCantidadDescuentoDecimaOctavaEspecie: 0,
+                            totalCantidadDescuentoDecimaNovenaEspecie: 0,
+                            totalCantidadDescuentoVigesimaEspecie: 0,
+                            totalCantidadDescuentoVigesimaPrimeraEspecie: 0,
+                            totalCantidadDescuentoVigesimaSegundaEspecie: 0,
+                            totalCantidadDescuentoVigesimaTerceraEspecie: 0,
 
                             totalVentaDescuentoPrimerEspecie: 0,
                             totalVentaDescuentoSegundaEspecie: 0,
@@ -2455,7 +3800,12 @@ jQuery(function ($) {
                             totalVentaDescuentoDecimaQuintaEspecie: 0,
                             totalVentaDescuentoDecimaSextaEspecie: 0,
                             totalVentaDescuentoDecimaSeptimaEspecie: 0,
-                            totalVentaDescuentoDecimaOctavaEspecie: 0
+                            totalVentaDescuentoDecimaOctavaEspecie: 0,
+                            totalVentaDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDescuentoVigesimaEspecie: 0,
+                            totalVentaDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaDescuentoVigesimaTerceraEspecie: 0
 
                         };
                     }
@@ -2540,6 +3890,26 @@ jQuery(function ($) {
                             totalPesoDescuentoDecimaOctavaEspecie: 0,
                             totalVentaDecimaOctavaEspecie: 0,
                             totalCantidadDecimaOctavaEspecie: 0,
+                            totalPesoDecimaNovenaEspecie: 0,
+                            totalPesoDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDecimaNovenaEspecie: 0,
+                            totalCantidadDecimaNovenaEspecie: 0,
+                            totalPesoVigesimaEspecie: 0,
+                            totalPesoDescuentoVigesimaEspecie: 0,
+                            totalVentaVigesimaEspecie: 0,
+                            totalCantidadVigesimaEspecie: 0,
+                            totalPesoVigesimaPrimeraEspecie: 0,
+                            totalPesoDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaVigesimaPrimeraEspecie: 0,
+                            totalCantidadVigesimaPrimeraEspecie: 0,
+                            totalPesoVigesimaSegundaEspecie: 0,
+                            totalPesoDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaVigesimaSegundaEspecie: 0,
+                            totalCantidadVigesimaSegundaEspecie: 0,
+                            totalPesoVigesimaTerceraEspecie: 0,
+                            totalPesoDescuentoVigesimaTerceraEspecie: 0,
+                            totalVentaVigesimaTerceraEspecie: 0,
+                            totalCantidadVigesimaTerceraEspecie: 0,
                             
                             totalPesoDescuento: 0,
                             totalVentaDescuento: 0,
@@ -2561,6 +3931,11 @@ jQuery(function ($) {
                             totalCantidadDescuentoDecimaSextaEspecie: 0,
                             totalCantidadDescuentoDecimaSeptimaEspecie: 0,
                             totalCantidadDescuentoDecimaOctavaEspecie: 0,
+                            totalCantidadDescuentoDecimaNovenaEspecie: 0,
+                            totalCantidadDescuentoVigesimaEspecie: 0,
+                            totalCantidadDescuentoVigesimaPrimeraEspecie: 0,
+                            totalCantidadDescuentoVigesimaSegundaEspecie: 0,
+                            totalCantidadDescuentoVigesimaTerceraEspecie: 0,
 
                             totalVentaDescuentoPrimerEspecie: 0,
                             totalVentaDescuentoSegundaEspecie: 0,
@@ -2578,7 +3953,12 @@ jQuery(function ($) {
                             totalVentaDescuentoDecimaQuintaEspecie: 0,
                             totalVentaDescuentoDecimaSextaEspecie: 0,
                             totalVentaDescuentoDecimaSeptimaEspecie: 0,
-                            totalVentaDescuentoDecimaOctavaEspecie: 0
+                            totalVentaDescuentoDecimaOctavaEspecie: 0,
+                            totalVentaDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDescuentoVigesimaEspecie: 0,
+                            totalVentaDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaDescuentoVigesimaTerceraEspecie: 0
 
                         };
                     }
@@ -2663,6 +4043,26 @@ jQuery(function ($) {
                             totalPesoDescuentoDecimaOctavaEspecie: 0,
                             totalVentaDecimaOctavaEspecie: 0,
                             totalCantidadDecimaOctavaEspecie: 0,
+                            totalPesoDecimaNovenaEspecie: 0,
+                            totalPesoDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDecimaNovenaEspecie: 0,
+                            totalCantidadDecimaNovenaEspecie: 0,
+                            totalPesoVigesimaEspecie: 0,
+                            totalPesoDescuentoVigesimaEspecie: 0,
+                            totalVentaVigesimaEspecie: 0,
+                            totalCantidadVigesimaEspecie: 0,
+                            totalPesoVigesimaPrimeraEspecie: 0,
+                            totalPesoDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaVigesimaPrimeraEspecie: 0,
+                            totalCantidadVigesimaPrimeraEspecie: 0,
+                            totalPesoVigesimaSegundaEspecie: 0,
+                            totalPesoDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaVigesimaSegundaEspecie: 0,
+                            totalCantidadVigesimaSegundaEspecie: 0,
+                            totalPesoVigesimaTerceraEspecie: 0,
+                            totalPesoDescuentoVigesimaTerceraEspecie: 0,
+                            totalVentaVigesimaTerceraEspecie: 0,
+                            totalCantidadVigesimaTerceraEspecie: 0,
                             
                             totalPesoDescuento: 0,
                             totalVentaDescuento: 0,
@@ -2684,6 +4084,11 @@ jQuery(function ($) {
                             totalCantidadDescuentoDecimaSextaEspecie: 0,
                             totalCantidadDescuentoDecimaSeptimaEspecie: 0,
                             totalCantidadDescuentoDecimaOctavaEspecie: 0,
+                            totalCantidadDescuentoDecimaNovenaEspecie: 0,
+                            totalCantidadDescuentoVigesimaEspecie: 0,
+                            totalCantidadDescuentoVigesimaPrimeraEspecie: 0,
+                            totalCantidadDescuentoVigesimaSegundaEspecie: 0,
+                            totalCantidadDescuentoVigesimaTerceraEspecie: 0,
 
                             totalVentaDescuentoPrimerEspecie: 0,
                             totalVentaDescuentoSegundaEspecie: 0,
@@ -2701,7 +4106,12 @@ jQuery(function ($) {
                             totalVentaDescuentoDecimaQuintaEspecie: 0,
                             totalVentaDescuentoDecimaSextaEspecie: 0,
                             totalVentaDescuentoDecimaSeptimaEspecie: 0,
-                            totalVentaDescuentoDecimaOctavaEspecie: 0
+                            totalVentaDescuentoDecimaOctavaEspecie: 0,
+                            totalVentaDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDescuentoVigesimaEspecie: 0,
+                            totalVentaDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaDescuentoVigesimaTerceraEspecie: 0
 
                         };
                     }
@@ -2788,6 +4198,26 @@ jQuery(function ($) {
                             totalPesoDescuentoDecimaOctavaEspecie: 0,
                             totalVentaDecimaOctavaEspecie: 0,
                             totalCantidadDecimaOctavaEspecie: 0,
+                            totalPesoDecimaNovenaEspecie: 0,
+                            totalPesoDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDecimaNovenaEspecie: 0,
+                            totalCantidadDecimaNovenaEspecie: 0,
+                            totalPesoVigesimaEspecie: 0,
+                            totalPesoDescuentoVigesimaEspecie: 0,
+                            totalVentaVigesimaEspecie: 0,
+                            totalCantidadVigesimaEspecie: 0,
+                            totalPesoVigesimaPrimeraEspecie: 0,
+                            totalPesoDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaVigesimaPrimeraEspecie: 0,
+                            totalCantidadVigesimaPrimeraEspecie: 0,
+                            totalPesoVigesimaSegundaEspecie: 0,
+                            totalPesoDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaVigesimaSegundaEspecie: 0,
+                            totalCantidadVigesimaSegundaEspecie: 0,
+                            totalPesoVigesimaTerceraEspecie: 0,
+                            totalPesoDescuentoVigesimaTerceraEspecie: 0,
+                            totalVentaVigesimaTerceraEspecie: 0,
+                            totalCantidadVigesimaTerceraEspecie: 0,
                             
                             totalPesoDescuento: 0,
                             totalVentaDescuento: 0,
@@ -2809,6 +4239,11 @@ jQuery(function ($) {
                             totalCantidadDescuentoDecimaSextaEspecie: 0,
                             totalCantidadDescuentoDecimaSeptimaEspecie: 0,
                             totalCantidadDescuentoDecimaOctavaEspecie: 0,
+                            totalCantidadDescuentoDecimaNovenaEspecie: 0,
+                            totalCantidadDescuentoVigesimaEspecie: 0,
+                            totalCantidadDescuentoVigesimaPrimeraEspecie: 0,
+                            totalCantidadDescuentoVigesimaSegundaEspecie: 0,
+                            totalCantidadDescuentoVigesimaTerceraEspecie: 0,
 
                             totalVentaDescuentoPrimerEspecie: 0,
                             totalVentaDescuentoSegundaEspecie: 0,
@@ -2826,7 +4261,12 @@ jQuery(function ($) {
                             totalVentaDescuentoDecimaQuintaEspecie: 0,
                             totalVentaDescuentoDecimaSextaEspecie: 0,
                             totalVentaDescuentoDecimaSeptimaEspecie: 0,
-                            totalVentaDescuentoDecimaOctavaEspecie: 0
+                            totalVentaDescuentoDecimaOctavaEspecie: 0,
+                            totalVentaDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDescuentoVigesimaEspecie: 0,
+                            totalVentaDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaDescuentoVigesimaTerceraEspecie: 0
 
                         };
                     }
@@ -2911,6 +4351,26 @@ jQuery(function ($) {
                             totalPesoDescuentoDecimaOctavaEspecie: 0,
                             totalVentaDecimaOctavaEspecie: 0,
                             totalCantidadDecimaOctavaEspecie: 0,
+                            totalPesoDecimaNovenaEspecie: 0,
+                            totalPesoDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDecimaNovenaEspecie: 0,
+                            totalCantidadDecimaNovenaEspecie: 0,
+                            totalPesoVigesimaEspecie: 0,
+                            totalPesoDescuentoVigesimaEspecie: 0,
+                            totalVentaVigesimaEspecie: 0,
+                            totalCantidadVigesimaEspecie: 0,
+                            totalPesoVigesimaPrimeraEspecie: 0,
+                            totalPesoDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaVigesimaPrimeraEspecie: 0,
+                            totalCantidadVigesimaPrimeraEspecie: 0,
+                            totalPesoVigesimaSegundaEspecie: 0,
+                            totalPesoDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaVigesimaSegundaEspecie: 0,
+                            totalCantidadVigesimaSegundaEspecie: 0,
+                            totalPesoVigesimaTerceraEspecie: 0,
+                            totalPesoDescuentoVigesimaTerceraEspecie: 0,
+                            totalVentaVigesimaTerceraEspecie: 0,
+                            totalCantidadVigesimaTerceraEspecie: 0,
                             
                             totalPesoDescuento: 0,
                             totalVentaDescuento: 0,
@@ -2932,6 +4392,11 @@ jQuery(function ($) {
                             totalCantidadDescuentoDecimaSextaEspecie: 0,
                             totalCantidadDescuentoDecimaSeptimaEspecie: 0,
                             totalCantidadDescuentoDecimaOctavaEspecie: 0,
+                            totalCantidadDescuentoDecimaNovenaEspecie: 0,
+                            totalCantidadDescuentoVigesimaEspecie: 0,
+                            totalCantidadDescuentoVigesimaPrimeraEspecie: 0,
+                            totalCantidadDescuentoVigesimaSegundaEspecie: 0,
+                            totalCantidadDescuentoVigesimaTerceraEspecie: 0,
 
                             totalVentaDescuentoPrimerEspecie: 0,
                             totalVentaDescuentoSegundaEspecie: 0,
@@ -2949,7 +4414,12 @@ jQuery(function ($) {
                             totalVentaDescuentoDecimaQuintaEspecie: 0,
                             totalVentaDescuentoDecimaSextaEspecie: 0,
                             totalVentaDescuentoDecimaSeptimaEspecie: 0,
-                            totalVentaDescuentoDecimaOctavaEspecie: 0
+                            totalVentaDescuentoDecimaOctavaEspecie: 0,
+                            totalVentaDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDescuentoVigesimaEspecie: 0,
+                            totalVentaDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaDescuentoVigesimaTerceraEspecie: 0
 
                         };
                     }
@@ -3034,6 +4504,26 @@ jQuery(function ($) {
                             totalPesoDescuentoDecimaOctavaEspecie: 0,
                             totalVentaDecimaOctavaEspecie: 0,
                             totalCantidadDecimaOctavaEspecie: 0,
+                            totalPesoDecimaNovenaEspecie: 0,
+                            totalPesoDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDecimaNovenaEspecie: 0,
+                            totalCantidadDecimaNovenaEspecie: 0,
+                            totalPesoVigesimaEspecie: 0,
+                            totalPesoDescuentoVigesimaEspecie: 0,
+                            totalVentaVigesimaEspecie: 0,
+                            totalCantidadVigesimaEspecie: 0,
+                            totalPesoVigesimaPrimeraEspecie: 0,
+                            totalPesoDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaVigesimaPrimeraEspecie: 0,
+                            totalCantidadVigesimaPrimeraEspecie: 0,
+                            totalPesoVigesimaSegundaEspecie: 0,
+                            totalPesoDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaVigesimaSegundaEspecie: 0,
+                            totalCantidadVigesimaSegundaEspecie: 0,
+                            totalPesoVigesimaTerceraEspecie: 0,
+                            totalPesoDescuentoVigesimaTerceraEspecie: 0,
+                            totalVentaVigesimaTerceraEspecie: 0,
+                            totalCantidadVigesimaTerceraEspecie: 0,
                             
                             totalPesoDescuento: 0,
                             totalVentaDescuento: 0,
@@ -3055,6 +4545,11 @@ jQuery(function ($) {
                             totalCantidadDescuentoDecimaSextaEspecie: 0,
                             totalCantidadDescuentoDecimaSeptimaEspecie: 0,
                             totalCantidadDescuentoDecimaOctavaEspecie: 0,
+                            totalCantidadDescuentoDecimaNovenaEspecie: 0,
+                            totalCantidadDescuentoVigesimaEspecie: 0,
+                            totalCantidadDescuentoVigesimaPrimeraEspecie: 0,
+                            totalCantidadDescuentoVigesimaSegundaEspecie: 0,
+                            totalCantidadDescuentoVigesimaTerceraEspecie: 0,
 
                             totalVentaDescuentoPrimerEspecie: 0,
                             totalVentaDescuentoSegundaEspecie: 0,
@@ -3072,7 +4567,12 @@ jQuery(function ($) {
                             totalVentaDescuentoDecimaQuintaEspecie: 0,
                             totalVentaDescuentoDecimaSextaEspecie: 0,
                             totalVentaDescuentoDecimaSeptimaEspecie: 0,
-                            totalVentaDescuentoDecimaOctavaEspecie: 0
+                            totalVentaDescuentoDecimaOctavaEspecie: 0,
+                            totalVentaDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDescuentoVigesimaEspecie: 0,
+                            totalVentaDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaDescuentoVigesimaTerceraEspecie: 0
 
                         };
                     }
@@ -3157,6 +4657,26 @@ jQuery(function ($) {
                             totalPesoDescuentoDecimaOctavaEspecie: 0,
                             totalVentaDecimaOctavaEspecie: 0,
                             totalCantidadDecimaOctavaEspecie: 0,
+                            totalPesoDecimaNovenaEspecie: 0,
+                            totalPesoDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDecimaNovenaEspecie: 0,
+                            totalCantidadDecimaNovenaEspecie: 0,
+                            totalPesoVigesimaEspecie: 0,
+                            totalPesoDescuentoVigesimaEspecie: 0,
+                            totalVentaVigesimaEspecie: 0,
+                            totalCantidadVigesimaEspecie: 0,
+                            totalPesoVigesimaPrimeraEspecie: 0,
+                            totalPesoDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaVigesimaPrimeraEspecie: 0,
+                            totalCantidadVigesimaPrimeraEspecie: 0,
+                            totalPesoVigesimaSegundaEspecie: 0,
+                            totalPesoDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaVigesimaSegundaEspecie: 0,
+                            totalCantidadVigesimaSegundaEspecie: 0,
+                            totalPesoVigesimaTerceraEspecie: 0,
+                            totalPesoDescuentoVigesimaTerceraEspecie: 0,
+                            totalVentaVigesimaTerceraEspecie: 0,
+                            totalCantidadVigesimaTerceraEspecie: 0,
                             
                             totalPesoDescuento: 0,
                             totalVentaDescuento: 0,
@@ -3178,6 +4698,11 @@ jQuery(function ($) {
                             totalCantidadDescuentoDecimaSextaEspecie: 0,
                             totalCantidadDescuentoDecimaSeptimaEspecie: 0,
                             totalCantidadDescuentoDecimaOctavaEspecie: 0,
+                            totalCantidadDescuentoDecimaNovenaEspecie: 0,
+                            totalCantidadDescuentoVigesimaEspecie: 0,
+                            totalCantidadDescuentoVigesimaPrimeraEspecie: 0,
+                            totalCantidadDescuentoVigesimaSegundaEspecie: 0,
+                            totalCantidadDescuentoVigesimaTerceraEspecie: 0,
 
                             totalVentaDescuentoPrimerEspecie: 0,
                             totalVentaDescuentoSegundaEspecie: 0,
@@ -3195,7 +4720,12 @@ jQuery(function ($) {
                             totalVentaDescuentoDecimaQuintaEspecie: 0,
                             totalVentaDescuentoDecimaSextaEspecie: 0,
                             totalVentaDescuentoDecimaSeptimaEspecie: 0,
-                            totalVentaDescuentoDecimaOctavaEspecie: 0
+                            totalVentaDescuentoDecimaOctavaEspecie: 0,
+                            totalVentaDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDescuentoVigesimaEspecie: 0,
+                            totalVentaDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaDescuentoVigesimaTerceraEspecie: 0
 
                         };
                     }
@@ -3280,6 +4810,26 @@ jQuery(function ($) {
                             totalPesoDescuentoDecimaOctavaEspecie: 0,
                             totalVentaDecimaOctavaEspecie: 0,
                             totalCantidadDecimaOctavaEspecie: 0,
+                            totalPesoDecimaNovenaEspecie: 0,
+                            totalPesoDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDecimaNovenaEspecie: 0,
+                            totalCantidadDecimaNovenaEspecie: 0,
+                            totalPesoVigesimaEspecie: 0,
+                            totalPesoDescuentoVigesimaEspecie: 0,
+                            totalVentaVigesimaEspecie: 0,
+                            totalCantidadVigesimaEspecie: 0,
+                            totalPesoVigesimaPrimeraEspecie: 0,
+                            totalPesoDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaVigesimaPrimeraEspecie: 0,
+                            totalCantidadVigesimaPrimeraEspecie: 0,
+                            totalPesoVigesimaSegundaEspecie: 0,
+                            totalPesoDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaVigesimaSegundaEspecie: 0,
+                            totalCantidadVigesimaSegundaEspecie: 0,
+                            totalPesoVigesimaTerceraEspecie: 0,
+                            totalPesoDescuentoVigesimaTerceraEspecie: 0,
+                            totalVentaVigesimaTerceraEspecie: 0,
+                            totalCantidadVigesimaTerceraEspecie: 0,
                             
                             totalPesoDescuento: 0,
                             totalVentaDescuento: 0,
@@ -3301,6 +4851,11 @@ jQuery(function ($) {
                             totalCantidadDescuentoDecimaSextaEspecie: 0,
                             totalCantidadDescuentoDecimaSeptimaEspecie: 0,
                             totalCantidadDescuentoDecimaOctavaEspecie: 0,
+                            totalCantidadDescuentoDecimaNovenaEspecie: 0,
+                            totalCantidadDescuentoVigesimaEspecie: 0,
+                            totalCantidadDescuentoVigesimaPrimeraEspecie: 0,
+                            totalCantidadDescuentoVigesimaSegundaEspecie: 0,
+                            totalCantidadDescuentoVigesimaTerceraEspecie: 0,
 
                             totalVentaDescuentoPrimerEspecie: 0,
                             totalVentaDescuentoSegundaEspecie: 0,
@@ -3318,7 +4873,12 @@ jQuery(function ($) {
                             totalVentaDescuentoDecimaQuintaEspecie: 0,
                             totalVentaDescuentoDecimaSextaEspecie: 0,
                             totalVentaDescuentoDecimaSeptimaEspecie: 0,
-                            totalVentaDescuentoDecimaOctavaEspecie: 0
+                            totalVentaDescuentoDecimaOctavaEspecie: 0,
+                            totalVentaDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDescuentoVigesimaEspecie: 0,
+                            totalVentaDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaDescuentoVigesimaTerceraEspecie: 0
 
                         };
                     }
@@ -3403,6 +4963,26 @@ jQuery(function ($) {
                             totalPesoDescuentoDecimaOctavaEspecie: 0,
                             totalVentaDecimaOctavaEspecie: 0,
                             totalCantidadDecimaOctavaEspecie: 0,
+                            totalPesoDecimaNovenaEspecie: 0,
+                            totalPesoDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDecimaNovenaEspecie: 0,
+                            totalCantidadDecimaNovenaEspecie: 0,
+                            totalPesoVigesimaEspecie: 0,
+                            totalPesoDescuentoVigesimaEspecie: 0,
+                            totalVentaVigesimaEspecie: 0,
+                            totalCantidadVigesimaEspecie: 0,
+                            totalPesoVigesimaPrimeraEspecie: 0,
+                            totalPesoDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaVigesimaPrimeraEspecie: 0,
+                            totalCantidadVigesimaPrimeraEspecie: 0,
+                            totalPesoVigesimaSegundaEspecie: 0,
+                            totalPesoDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaVigesimaSegundaEspecie: 0,
+                            totalCantidadVigesimaSegundaEspecie: 0,
+                            totalPesoVigesimaTerceraEspecie: 0,
+                            totalPesoDescuentoVigesimaTerceraEspecie: 0,
+                            totalVentaVigesimaTerceraEspecie: 0,
+                            totalCantidadVigesimaTerceraEspecie: 0,
                             
                             totalPesoDescuento: 0,
                             totalVentaDescuento: 0,
@@ -3424,6 +5004,11 @@ jQuery(function ($) {
                             totalCantidadDescuentoDecimaSextaEspecie: 0,
                             totalCantidadDescuentoDecimaSeptimaEspecie: 0,
                             totalCantidadDescuentoDecimaOctavaEspecie: 0,
+                            totalCantidadDescuentoDecimaNovenaEspecie: 0,
+                            totalCantidadDescuentoVigesimaEspecie: 0,
+                            totalCantidadDescuentoVigesimaPrimeraEspecie: 0,
+                            totalCantidadDescuentoVigesimaSegundaEspecie: 0,
+                            totalCantidadDescuentoVigesimaTerceraEspecie: 0,
 
                             totalVentaDescuentoPrimerEspecie: 0,
                             totalVentaDescuentoSegundaEspecie: 0,
@@ -3441,7 +5026,12 @@ jQuery(function ($) {
                             totalVentaDescuentoDecimaQuintaEspecie: 0,
                             totalVentaDescuentoDecimaSextaEspecie: 0,
                             totalVentaDescuentoDecimaSeptimaEspecie: 0,
-                            totalVentaDescuentoDecimaOctavaEspecie: 0
+                            totalVentaDescuentoDecimaOctavaEspecie: 0,
+                            totalVentaDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDescuentoVigesimaEspecie: 0,
+                            totalVentaDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaDescuentoVigesimaTerceraEspecie: 0
 
                         };
                     }
@@ -3526,6 +5116,26 @@ jQuery(function ($) {
                             totalPesoDescuentoDecimaOctavaEspecie: 0,
                             totalVentaDecimaOctavaEspecie: 0,
                             totalCantidadDecimaOctavaEspecie: 0,
+                            totalPesoDecimaNovenaEspecie: 0,
+                            totalPesoDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDecimaNovenaEspecie: 0,
+                            totalCantidadDecimaNovenaEspecie: 0,
+                            totalPesoVigesimaEspecie: 0,
+                            totalPesoDescuentoVigesimaEspecie: 0,
+                            totalVentaVigesimaEspecie: 0,
+                            totalCantidadVigesimaEspecie: 0,
+                            totalPesoVigesimaPrimeraEspecie: 0,
+                            totalPesoDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaVigesimaPrimeraEspecie: 0,
+                            totalCantidadVigesimaPrimeraEspecie: 0,
+                            totalPesoVigesimaSegundaEspecie: 0,
+                            totalPesoDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaVigesimaSegundaEspecie: 0,
+                            totalCantidadVigesimaSegundaEspecie: 0,
+                            totalPesoVigesimaTerceraEspecie: 0,
+                            totalPesoDescuentoVigesimaTerceraEspecie: 0,
+                            totalVentaVigesimaTerceraEspecie: 0,
+                            totalCantidadVigesimaTerceraEspecie: 0,
                             
                             totalPesoDescuento: 0,
                             totalVentaDescuento: 0,
@@ -3547,6 +5157,11 @@ jQuery(function ($) {
                             totalCantidadDescuentoDecimaSextaEspecie: 0,
                             totalCantidadDescuentoDecimaSeptimaEspecie: 0,
                             totalCantidadDescuentoDecimaOctavaEspecie: 0,
+                            totalCantidadDescuentoDecimaNovenaEspecie: 0,
+                            totalCantidadDescuentoVigesimaEspecie: 0,
+                            totalCantidadDescuentoVigesimaPrimeraEspecie: 0,
+                            totalCantidadDescuentoVigesimaSegundaEspecie: 0,
+                            totalCantidadDescuentoVigesimaTerceraEspecie: 0,
 
                             totalVentaDescuentoPrimerEspecie: 0,
                             totalVentaDescuentoSegundaEspecie: 0,
@@ -3564,7 +5179,12 @@ jQuery(function ($) {
                             totalVentaDescuentoDecimaQuintaEspecie: 0,
                             totalVentaDescuentoDecimaSextaEspecie: 0,
                             totalVentaDescuentoDecimaSeptimaEspecie: 0,
-                            totalVentaDescuentoDecimaOctavaEspecie: 0
+                            totalVentaDescuentoDecimaOctavaEspecie: 0,
+                            totalVentaDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDescuentoVigesimaEspecie: 0,
+                            totalVentaDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaDescuentoVigesimaTerceraEspecie: 0
 
                         };
                     }
@@ -3649,6 +5269,26 @@ jQuery(function ($) {
                             totalPesoDescuentoDecimaOctavaEspecie: 0,
                             totalVentaDecimaOctavaEspecie: 0,
                             totalCantidadDecimaOctavaEspecie: 0,
+                            totalPesoDecimaNovenaEspecie: 0,
+                            totalPesoDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDecimaNovenaEspecie: 0,
+                            totalCantidadDecimaNovenaEspecie: 0,
+                            totalPesoVigesimaEspecie: 0,
+                            totalPesoDescuentoVigesimaEspecie: 0,
+                            totalVentaVigesimaEspecie: 0,
+                            totalCantidadVigesimaEspecie: 0,
+                            totalPesoVigesimaPrimeraEspecie: 0,
+                            totalPesoDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaVigesimaPrimeraEspecie: 0,
+                            totalCantidadVigesimaPrimeraEspecie: 0,
+                            totalPesoVigesimaSegundaEspecie: 0,
+                            totalPesoDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaVigesimaSegundaEspecie: 0,
+                            totalCantidadVigesimaSegundaEspecie: 0,
+                            totalPesoVigesimaTerceraEspecie: 0,
+                            totalPesoDescuentoVigesimaTerceraEspecie: 0,
+                            totalVentaVigesimaTerceraEspecie: 0,
+                            totalCantidadVigesimaTerceraEspecie: 0,
                             
                             totalPesoDescuento: 0,
                             totalVentaDescuento: 0,
@@ -3670,6 +5310,11 @@ jQuery(function ($) {
                             totalCantidadDescuentoDecimaSextaEspecie: 0,
                             totalCantidadDescuentoDecimaSeptimaEspecie: 0,
                             totalCantidadDescuentoDecimaOctavaEspecie: 0,
+                            totalCantidadDescuentoDecimaNovenaEspecie: 0,
+                            totalCantidadDescuentoVigesimaEspecie: 0,
+                            totalCantidadDescuentoVigesimaPrimeraEspecie: 0,
+                            totalCantidadDescuentoVigesimaSegundaEspecie: 0,
+                            totalCantidadDescuentoVigesimaTerceraEspecie: 0,
 
                             totalVentaDescuentoPrimerEspecie: 0,
                             totalVentaDescuentoSegundaEspecie: 0,
@@ -3687,7 +5332,12 @@ jQuery(function ($) {
                             totalVentaDescuentoDecimaQuintaEspecie: 0,
                             totalVentaDescuentoDecimaSextaEspecie: 0,
                             totalVentaDescuentoDecimaSeptimaEspecie: 0,
-                            totalVentaDescuentoDecimaOctavaEspecie: 0
+                            totalVentaDescuentoDecimaOctavaEspecie: 0,
+                            totalVentaDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDescuentoVigesimaEspecie: 0,
+                            totalVentaDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaDescuentoVigesimaTerceraEspecie: 0
 
                         };
                     }
@@ -3772,6 +5422,26 @@ jQuery(function ($) {
                             totalPesoDescuentoDecimaOctavaEspecie: 0,
                             totalVentaDecimaOctavaEspecie: 0,
                             totalCantidadDecimaOctavaEspecie: 0,
+                            totalPesoDecimaNovenaEspecie: 0,
+                            totalPesoDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDecimaNovenaEspecie: 0,
+                            totalCantidadDecimaNovenaEspecie: 0,
+                            totalPesoVigesimaEspecie: 0,
+                            totalPesoDescuentoVigesimaEspecie: 0,
+                            totalVentaVigesimaEspecie: 0,
+                            totalCantidadVigesimaEspecie: 0,
+                            totalPesoVigesimaPrimeraEspecie: 0,
+                            totalPesoDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaVigesimaPrimeraEspecie: 0,
+                            totalCantidadVigesimaPrimeraEspecie: 0,
+                            totalPesoVigesimaSegundaEspecie: 0,
+                            totalPesoDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaVigesimaSegundaEspecie: 0,
+                            totalCantidadVigesimaSegundaEspecie: 0,
+                            totalPesoVigesimaTerceraEspecie: 0,
+                            totalPesoDescuentoVigesimaTerceraEspecie: 0,
+                            totalVentaVigesimaTerceraEspecie: 0,
+                            totalCantidadVigesimaTerceraEspecie: 0,
                             
                             totalPesoDescuento: 0,
                             totalVentaDescuento: 0,
@@ -3793,6 +5463,11 @@ jQuery(function ($) {
                             totalCantidadDescuentoDecimaSextaEspecie: 0,
                             totalCantidadDescuentoDecimaSeptimaEspecie: 0,
                             totalCantidadDescuentoDecimaOctavaEspecie: 0,
+                            totalCantidadDescuentoDecimaNovenaEspecie: 0,
+                            totalCantidadDescuentoVigesimaEspecie: 0,
+                            totalCantidadDescuentoVigesimaPrimeraEspecie: 0,
+                            totalCantidadDescuentoVigesimaSegundaEspecie: 0,
+                            totalCantidadDescuentoVigesimaTerceraEspecie: 0,
 
                             totalVentaDescuentoPrimerEspecie: 0,
                             totalVentaDescuentoSegundaEspecie: 0,
@@ -3810,7 +5485,12 @@ jQuery(function ($) {
                             totalVentaDescuentoDecimaQuintaEspecie: 0,
                             totalVentaDescuentoDecimaSextaEspecie: 0,
                             totalVentaDescuentoDecimaSeptimaEspecie: 0,
-                            totalVentaDescuentoDecimaOctavaEspecie: 0
+                            totalVentaDescuentoDecimaOctavaEspecie: 0,
+                            totalVentaDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDescuentoVigesimaEspecie: 0,
+                            totalVentaDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaDescuentoVigesimaTerceraEspecie: 0
 
                         };
                     }
@@ -3895,6 +5575,26 @@ jQuery(function ($) {
                             totalPesoDescuentoDecimaOctavaEspecie: 0,
                             totalVentaDecimaOctavaEspecie: 0,
                             totalCantidadDecimaOctavaEspecie: 0,
+                            totalPesoDecimaNovenaEspecie: 0,
+                            totalPesoDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDecimaNovenaEspecie: 0,
+                            totalCantidadDecimaNovenaEspecie: 0,
+                            totalPesoVigesimaEspecie: 0,
+                            totalPesoDescuentoVigesimaEspecie: 0,
+                            totalVentaVigesimaEspecie: 0,
+                            totalCantidadVigesimaEspecie: 0,
+                            totalPesoVigesimaPrimeraEspecie: 0,
+                            totalPesoDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaVigesimaPrimeraEspecie: 0,
+                            totalCantidadVigesimaPrimeraEspecie: 0,
+                            totalPesoVigesimaSegundaEspecie: 0,
+                            totalPesoDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaVigesimaSegundaEspecie: 0,
+                            totalCantidadVigesimaSegundaEspecie: 0,
+                            totalPesoVigesimaTerceraEspecie: 0,
+                            totalPesoDescuentoVigesimaTerceraEspecie: 0,
+                            totalVentaVigesimaTerceraEspecie: 0,
+                            totalCantidadVigesimaTerceraEspecie: 0,
                             
                             totalPesoDescuento: 0,
                             totalVentaDescuento: 0,
@@ -3916,6 +5616,11 @@ jQuery(function ($) {
                             totalCantidadDescuentoDecimaSextaEspecie: 0,
                             totalCantidadDescuentoDecimaSeptimaEspecie: 0,
                             totalCantidadDescuentoDecimaOctavaEspecie: 0,
+                            totalCantidadDescuentoDecimaNovenaEspecie: 0,
+                            totalCantidadDescuentoVigesimaEspecie: 0,
+                            totalCantidadDescuentoVigesimaPrimeraEspecie: 0,
+                            totalCantidadDescuentoVigesimaSegundaEspecie: 0,
+                            totalCantidadDescuentoVigesimaTerceraEspecie: 0,
 
                             totalVentaDescuentoPrimerEspecie: 0,
                             totalVentaDescuentoSegundaEspecie: 0,
@@ -3933,7 +5638,12 @@ jQuery(function ($) {
                             totalVentaDescuentoDecimaQuintaEspecie: 0,
                             totalVentaDescuentoDecimaSextaEspecie: 0,
                             totalVentaDescuentoDecimaSeptimaEspecie: 0,
-                            totalVentaDescuentoDecimaOctavaEspecie: 0
+                            totalVentaDescuentoDecimaOctavaEspecie: 0,
+                            totalVentaDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDescuentoVigesimaEspecie: 0,
+                            totalVentaDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaDescuentoVigesimaTerceraEspecie: 0
 
                         };
                     }
@@ -4018,6 +5728,26 @@ jQuery(function ($) {
                             totalPesoDescuentoDecimaOctavaEspecie: 0,
                             totalVentaDecimaOctavaEspecie: 0,
                             totalCantidadDecimaOctavaEspecie: 0,
+                            totalPesoDecimaNovenaEspecie: 0,
+                            totalPesoDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDecimaNovenaEspecie: 0,
+                            totalCantidadDecimaNovenaEspecie: 0,
+                            totalPesoVigesimaEspecie: 0,
+                            totalPesoDescuentoVigesimaEspecie: 0,
+                            totalVentaVigesimaEspecie: 0,
+                            totalCantidadVigesimaEspecie: 0,
+                            totalPesoVigesimaPrimeraEspecie: 0,
+                            totalPesoDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaVigesimaPrimeraEspecie: 0,
+                            totalCantidadVigesimaPrimeraEspecie: 0,
+                            totalPesoVigesimaSegundaEspecie: 0,
+                            totalPesoDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaVigesimaSegundaEspecie: 0,
+                            totalCantidadVigesimaSegundaEspecie: 0,
+                            totalPesoVigesimaTerceraEspecie: 0,
+                            totalPesoDescuentoVigesimaTerceraEspecie: 0,
+                            totalVentaVigesimaTerceraEspecie: 0,
+                            totalCantidadVigesimaTerceraEspecie: 0,
                             
                             totalPesoDescuento: 0,
                             totalVentaDescuento: 0,
@@ -4039,6 +5769,11 @@ jQuery(function ($) {
                             totalCantidadDescuentoDecimaSextaEspecie: 0,
                             totalCantidadDescuentoDecimaSeptimaEspecie: 0,
                             totalCantidadDescuentoDecimaOctavaEspecie: 0,
+                            totalCantidadDescuentoDecimaNovenaEspecie: 0,
+                            totalCantidadDescuentoVigesimaEspecie: 0,
+                            totalCantidadDescuentoVigesimaPrimeraEspecie: 0,
+                            totalCantidadDescuentoVigesimaSegundaEspecie: 0,
+                            totalCantidadDescuentoVigesimaTerceraEspecie: 0,
 
                             totalVentaDescuentoPrimerEspecie: 0,
                             totalVentaDescuentoSegundaEspecie: 0,
@@ -4056,7 +5791,12 @@ jQuery(function ($) {
                             totalVentaDescuentoDecimaQuintaEspecie: 0,
                             totalVentaDescuentoDecimaSextaEspecie: 0,
                             totalVentaDescuentoDecimaSeptimaEspecie: 0,
-                            totalVentaDescuentoDecimaOctavaEspecie: 0
+                            totalVentaDescuentoDecimaOctavaEspecie: 0,
+                            totalVentaDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDescuentoVigesimaEspecie: 0,
+                            totalVentaDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaDescuentoVigesimaTerceraEspecie: 0
 
                         };
                     }
@@ -4141,6 +5881,26 @@ jQuery(function ($) {
                             totalPesoDescuentoDecimaOctavaEspecie: 0,
                             totalVentaDecimaOctavaEspecie: 0,
                             totalCantidadDecimaOctavaEspecie: 0,
+                            totalPesoDecimaNovenaEspecie: 0,
+                            totalPesoDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDecimaNovenaEspecie: 0,
+                            totalCantidadDecimaNovenaEspecie: 0,
+                            totalPesoVigesimaEspecie: 0,
+                            totalPesoDescuentoVigesimaEspecie: 0,
+                            totalVentaVigesimaEspecie: 0,
+                            totalCantidadVigesimaEspecie: 0,
+                            totalPesoVigesimaPrimeraEspecie: 0,
+                            totalPesoDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaVigesimaPrimeraEspecie: 0,
+                            totalCantidadVigesimaPrimeraEspecie: 0,
+                            totalPesoVigesimaSegundaEspecie: 0,
+                            totalPesoDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaVigesimaSegundaEspecie: 0,
+                            totalCantidadVigesimaSegundaEspecie: 0,
+                            totalPesoVigesimaTerceraEspecie: 0,
+                            totalPesoDescuentoVigesimaTerceraEspecie: 0,
+                            totalVentaVigesimaTerceraEspecie: 0,
+                            totalCantidadVigesimaTerceraEspecie: 0,
                             
                             totalPesoDescuento: 0,
                             totalVentaDescuento: 0,
@@ -4162,6 +5922,11 @@ jQuery(function ($) {
                             totalCantidadDescuentoDecimaSextaEspecie: 0,
                             totalCantidadDescuentoDecimaSeptimaEspecie: 0,
                             totalCantidadDescuentoDecimaOctavaEspecie: 0,
+                            totalCantidadDescuentoDecimaNovenaEspecie: 0,
+                            totalCantidadDescuentoVigesimaEspecie: 0,
+                            totalCantidadDescuentoVigesimaPrimeraEspecie: 0,
+                            totalCantidadDescuentoVigesimaSegundaEspecie: 0,
+                            totalCantidadDescuentoVigesimaTerceraEspecie: 0,
 
                             totalVentaDescuentoPrimerEspecie: 0,
                             totalVentaDescuentoSegundaEspecie: 0,
@@ -4179,7 +5944,12 @@ jQuery(function ($) {
                             totalVentaDescuentoDecimaQuintaEspecie: 0,
                             totalVentaDescuentoDecimaSextaEspecie: 0,
                             totalVentaDescuentoDecimaSeptimaEspecie: 0,
-                            totalVentaDescuentoDecimaOctavaEspecie: 0
+                            totalVentaDescuentoDecimaOctavaEspecie: 0,
+                            totalVentaDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDescuentoVigesimaEspecie: 0,
+                            totalVentaDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaDescuentoVigesimaTerceraEspecie: 0
 
                         };
                     }
@@ -4264,6 +6034,26 @@ jQuery(function ($) {
                             totalPesoDescuentoDecimaOctavaEspecie: 0,
                             totalVentaDecimaOctavaEspecie: 0,
                             totalCantidadDecimaOctavaEspecie: 0,
+                            totalPesoDecimaNovenaEspecie: 0,
+                            totalPesoDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDecimaNovenaEspecie: 0,
+                            totalCantidadDecimaNovenaEspecie: 0,
+                            totalPesoVigesimaEspecie: 0,
+                            totalPesoDescuentoVigesimaEspecie: 0,
+                            totalVentaVigesimaEspecie: 0,
+                            totalCantidadVigesimaEspecie: 0,
+                            totalPesoVigesimaPrimeraEspecie: 0,
+                            totalPesoDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaVigesimaPrimeraEspecie: 0,
+                            totalCantidadVigesimaPrimeraEspecie: 0,
+                            totalPesoVigesimaSegundaEspecie: 0,
+                            totalPesoDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaVigesimaSegundaEspecie: 0,
+                            totalCantidadVigesimaSegundaEspecie: 0,
+                            totalPesoVigesimaTerceraEspecie: 0,
+                            totalPesoDescuentoVigesimaTerceraEspecie: 0,
+                            totalVentaVigesimaTerceraEspecie: 0,
+                            totalCantidadVigesimaTerceraEspecie: 0,
                             
                             totalPesoDescuento: 0,
                             totalVentaDescuento: 0,
@@ -4285,6 +6075,11 @@ jQuery(function ($) {
                             totalCantidadDescuentoDecimaSextaEspecie: 0,
                             totalCantidadDescuentoDecimaSeptimaEspecie: 0,
                             totalCantidadDescuentoDecimaOctavaEspecie: 0,
+                            totalCantidadDescuentoDecimaNovenaEspecie: 0,
+                            totalCantidadDescuentoVigesimaEspecie: 0,
+                            totalCantidadDescuentoVigesimaPrimeraEspecie: 0,
+                            totalCantidadDescuentoVigesimaSegundaEspecie: 0,
+                            totalCantidadDescuentoVigesimaTerceraEspecie: 0,
 
                             totalVentaDescuentoPrimerEspecie: 0,
                             totalVentaDescuentoSegundaEspecie: 0,
@@ -4302,7 +6097,12 @@ jQuery(function ($) {
                             totalVentaDescuentoDecimaQuintaEspecie: 0,
                             totalVentaDescuentoDecimaSextaEspecie: 0,
                             totalVentaDescuentoDecimaSeptimaEspecie: 0,
-                            totalVentaDescuentoDecimaOctavaEspecie: 0
+                            totalVentaDescuentoDecimaOctavaEspecie: 0,
+                            totalVentaDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDescuentoVigesimaEspecie: 0,
+                            totalVentaDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaDescuentoVigesimaTerceraEspecie: 0
 
                         };
                     }
@@ -4313,6 +6113,766 @@ jQuery(function ($) {
                     combinedData[fecha].totalVentaDecimaOctavaEspecie += parseFloat(item.totalVentaDecimaOctavaEspecie2);
                     combinedData[fecha].totalCantidadDecimaOctavaEspecie += parseInt(item.totalCantidadDecimaOctavaEspecie2);
                     combinedData[fecha].totalVentaDescuentoDecimaOctavaEspecie += parseFloat(item.totalVentaDescuentoDecimaOctavaEspecie2);
+                });
+
+                response.totalesDecimaNovenaEspecie2.forEach(function (item) {
+                    var fecha = item.fechaRegistroPes;
+                    if (!combinedData[fecha]) {
+                        combinedData[fecha] = {
+                            totalPesoPrimerEspecie: 0,
+                            totalPesoDescuentoPrimerEspecie: 0,
+                            totalVentaPrimerEspecie: 0,
+                            totalCantidadPrimerEspecie: 0,
+                            totalPesoSegundaEspecie: 0,
+                            totalPesoDescuentoSegundaEspecie: 0,
+                            totalVentaSegundaEspecie: 0,
+                            totalCantidadSegundaEspecie: 0,
+                            totalPesoTerceraEspecie: 0,
+                            totalPesoDescuentoTerceraEspecie: 0,
+                            totalVentaTerceraEspecie: 0,
+                            totalCantidadTerceraEspecie: 0,
+                            totalPesoCuartaEspecie: 0,
+                            totalPesoDescuentoCuartaEspecie: 0,
+                            totalVentaCuartaEspecie: 0,
+                            totalCantidadCuartaEspecie: 0,
+                            totalPesoQuintaEspecie: 0,
+                            totalPesoDescuentoQuintaEspecie: 0,
+                            totalVentaQuintaEspecie: 0,
+                            totalCantidadQuintaEspecie: 0,
+                            totalPesoSextaEspecie: 0,
+                            totalPesoDescuentoSextaEspecie: 0,
+                            totalVentaSextaEspecie: 0,
+                            totalCantidadSextaEspecie: 0,
+                            totalPesoSeptimaEspecie: 0,
+                            totalPesoDescuentoSeptimaEspecie: 0,
+                            totalVentaSeptimaEspecie: 0,
+                            totalCantidadSeptimaEspecie: 0,
+                            totalPesoOctavaEspecie: 0,
+                            totalPesoDescuentoOctavaEspecie: 0,
+                            totalVentaOctavaEspecie: 0,
+                            totalCantidadOctavaEspecie: 0,
+                            totalPesoDecimaEspecie: 0,
+                            totalPesoDescuentoDecimaEspecie: 0,
+                            totalVentaDecimaEspecie: 0,
+                            totalCantidadDecimaEspecie: 0,
+                            totalPesoDecimaPrimeraEspecie: 0,
+                            totalPesoDescuentoDecimaPrimeraEspecie: 0,
+                            totalVentaDecimaPrimeraEspecie: 0,
+                            totalCantidadDecimaPrimeraEspecie: 0,
+                            totalPesoDecimaSegundaEspecie: 0,
+                            totalPesoDescuentoDecimaSegundaEspecie: 0,
+                            totalVentaDecimaSegundaEspecie: 0,
+                            totalCantidadDecimaSegundaEspecie: 0,
+                            totalPesoDecimaTerceraEspecie: 0,
+                            totalPesoDescuentoDecimaTerceraEspecie: 0,
+                            totalVentaDecimaTerceraEspecie: 0,
+                            totalCantidadDecimaTerceraEspecie: 0,
+                            totalPesoDecimaCuartaEspecie: 0,
+                            totalPesoDescuentoDecimaCuartaEspecie: 0,
+                            totalVentaDecimaCuartaEspecie: 0,
+                            totalCantidadDecimaCuartaEspecie: 0,
+                            totalPesoDecimaQuintaEspecie: 0,
+                            totalPesoDescuentoDecimaQuintaEspecie: 0,
+                            totalVentaDecimaQuintaEspecie: 0,
+                            totalCantidadDecimaQuintaEspecie: 0,
+                            totalPesoDecimaSextaEspecie: 0,
+                            totalPesoDescuentoDecimaSextaEspecie: 0,
+                            totalVentaDecimaSextaEspecie: 0,
+                            totalCantidadDecimaSextaEspecie: 0,
+                            totalPesoDecimaSeptimaEspecie: 0,
+                            totalPesoDescuentoDecimaSeptimaEspecie: 0,
+                            totalVentaDecimaSeptimaEspecie: 0,
+                            totalCantidadDecimaSeptimaEspecie: 0,
+                            totalPesoDecimaOctavaEspecie: 0,
+                            totalPesoDescuentoDecimaOctavaEspecie: 0,
+                            totalVentaDecimaOctavaEspecie: 0,
+                            totalCantidadDecimaOctavaEspecie: 0,
+                            totalPesoDecimaNovenaEspecie: 0,
+                            totalPesoDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDecimaNovenaEspecie: 0,
+                            totalCantidadDecimaNovenaEspecie: 0,
+                            totalPesoVigesimaEspecie: 0,
+                            totalPesoDescuentoVigesimaEspecie: 0,
+                            totalVentaVigesimaEspecie: 0,
+                            totalCantidadVigesimaEspecie: 0,
+                            totalPesoVigesimaPrimeraEspecie: 0,
+                            totalPesoDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaVigesimaPrimeraEspecie: 0,
+                            totalCantidadVigesimaPrimeraEspecie: 0,
+                            totalPesoVigesimaSegundaEspecie: 0,
+                            totalPesoDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaVigesimaSegundaEspecie: 0,
+                            totalCantidadVigesimaSegundaEspecie: 0,
+                            totalPesoVigesimaTerceraEspecie: 0,
+                            totalPesoDescuentoVigesimaTerceraEspecie: 0,
+                            totalVentaVigesimaTerceraEspecie: 0,
+                            totalCantidadVigesimaTerceraEspecie: 0,
+                            
+                            totalPesoDescuento: 0,
+                            totalVentaDescuento: 0,
+                            pagos: 0,
+                            totalCantidadDescuentoPrimerEspecie: 0,
+                            totalCantidadDescuentoSegundaEspecie: 0,
+                            totalCantidadDescuentoTerceraEspecie: 0,
+                            totalCantidadDescuentoCuartaEspecie: 0,
+                            totalCantidadDescuentoQuintaEspecie: 0,
+                            totalCantidadDescuentoSextaEspecie: 0,
+                            totalCantidadDescuentoSeptimaEspecie: 0,
+                            totalCantidadDescuentoOctavaEspecie: 0,
+                            totalCantidadDescuentoDecimaEspecie: 0,
+                            totalCantidadDescuentoDecimaPrimeraEspecie: 0,
+                            totalCantidadDescuentoDecimaSegundaEspecie: 0,
+                            totalCantidadDescuentoDecimaTerceraEspecie: 0,
+                            totalCantidadDescuentoDecimaCuartaEspecie: 0,
+                            totalCantidadDescuentoDecimaQuintaEspecie: 0,
+                            totalCantidadDescuentoDecimaSextaEspecie: 0,
+                            totalCantidadDescuentoDecimaSeptimaEspecie: 0,
+                            totalCantidadDescuentoDecimaOctavaEspecie: 0,
+                            totalCantidadDescuentoDecimaNovenaEspecie: 0,
+                            totalCantidadDescuentoVigesimaEspecie: 0,
+                            totalCantidadDescuentoVigesimaPrimeraEspecie: 0,
+                            totalCantidadDescuentoVigesimaSegundaEspecie: 0,
+                            totalCantidadDescuentoVigesimaTerceraEspecie: 0,
+
+                            totalVentaDescuentoPrimerEspecie: 0,
+                            totalVentaDescuentoSegundaEspecie: 0,
+                            totalVentaDescuentoTerceraEspecie: 0,
+                            totalVentaDescuentoCuartaEspecie: 0,
+                            totalVentaDescuentoQuintaEspecie: 0,
+                            totalVentaDescuentoSextaEspecie: 0,
+                            totalVentaDescuentoSeptimaEspecie: 0,
+                            totalVentaDescuentoOctavaEspecie: 0,
+                            totalVentaDescuentoDecimaEspecie: 0,
+                            totalVentaDescuentoDecimaPrimeraEspecie: 0,
+                            totalVentaDescuentoDecimaSegundaEspecie: 0,
+                            totalVentaDescuentoDecimaTerceraEspecie: 0,
+                            totalVentaDescuentoDecimaCuartaEspecie: 0,
+                            totalVentaDescuentoDecimaQuintaEspecie: 0,
+                            totalVentaDescuentoDecimaSextaEspecie: 0,
+                            totalVentaDescuentoDecimaSeptimaEspecie: 0,
+                            totalVentaDescuentoDecimaOctavaEspecie: 0,
+                            totalVentaDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDescuentoVigesimaEspecie: 0,
+                            totalVentaDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaDescuentoVigesimaTerceraEspecie: 0
+                        };
+                    }
+    
+                    combinedData[fecha].totalPesoDecimaNovenaEspecie += parseFloat(item.totalPesoDecimaNovenaEspecie2);
+                    combinedData[fecha].totalPesoDescuentoDecimaNovenaEspecie += parseFloat(item.totalPesoDescuentoDecimaNovenaEspecie2);
+                    combinedData[fecha].totalCantidadDescuentoDecimaNovenaEspecie += parseInt(item.totalCantidadDescuentoDecimaNovenaEspecie2);
+                    combinedData[fecha].totalVentaDecimaNovenaEspecie += parseFloat(item.totalVentaDecimaNovenaEspecie2);
+                    combinedData[fecha].totalCantidadDecimaNovenaEspecie += parseInt(item.totalCantidadDecimaNovenaEspecie2);
+                    combinedData[fecha].totalVentaDescuentoDecimaNovenaEspecie += parseFloat(item.totalVentaDescuentoDecimaNovenaEspecie2);
+                });
+
+                response.totalesVigesimaEspecie2.forEach(function (item) {
+                    var fecha = item.fechaRegistroPes;
+                    if (!combinedData[fecha]) {
+                        combinedData[fecha] = {
+                            totalPesoPrimerEspecie: 0,
+                            totalPesoDescuentoPrimerEspecie: 0,
+                            totalVentaPrimerEspecie: 0,
+                            totalCantidadPrimerEspecie: 0,
+                            totalPesoSegundaEspecie: 0,
+                            totalPesoDescuentoSegundaEspecie: 0,
+                            totalVentaSegundaEspecie: 0,
+                            totalCantidadSegundaEspecie: 0,
+                            totalPesoTerceraEspecie: 0,
+                            totalPesoDescuentoTerceraEspecie: 0,
+                            totalVentaTerceraEspecie: 0,
+                            totalCantidadTerceraEspecie: 0,
+                            totalPesoCuartaEspecie: 0,
+                            totalPesoDescuentoCuartaEspecie: 0,
+                            totalVentaCuartaEspecie: 0,
+                            totalCantidadCuartaEspecie: 0,
+                            totalPesoQuintaEspecie: 0,
+                            totalPesoDescuentoQuintaEspecie: 0,
+                            totalVentaQuintaEspecie: 0,
+                            totalCantidadQuintaEspecie: 0,
+                            totalPesoSextaEspecie: 0,
+                            totalPesoDescuentoSextaEspecie: 0,
+                            totalVentaSextaEspecie: 0,
+                            totalCantidadSextaEspecie: 0,
+                            totalPesoSeptimaEspecie: 0,
+                            totalPesoDescuentoSeptimaEspecie: 0,
+                            totalVentaSeptimaEspecie: 0,
+                            totalCantidadSeptimaEspecie: 0,
+                            totalPesoOctavaEspecie: 0,
+                            totalPesoDescuentoOctavaEspecie: 0,
+                            totalVentaOctavaEspecie: 0,
+                            totalCantidadOctavaEspecie: 0,
+                            totalPesoDecimaEspecie: 0,
+                            totalPesoDescuentoDecimaEspecie: 0,
+                            totalVentaDecimaEspecie: 0,
+                            totalCantidadDecimaEspecie: 0,
+                            totalPesoDecimaPrimeraEspecie: 0,
+                            totalPesoDescuentoDecimaPrimeraEspecie: 0,
+                            totalVentaDecimaPrimeraEspecie: 0,
+                            totalCantidadDecimaPrimeraEspecie: 0,
+                            totalPesoDecimaSegundaEspecie: 0,
+                            totalPesoDescuentoDecimaSegundaEspecie: 0,
+                            totalVentaDecimaSegundaEspecie: 0,
+                            totalCantidadDecimaSegundaEspecie: 0,
+                            totalPesoDecimaTerceraEspecie: 0,
+                            totalPesoDescuentoDecimaTerceraEspecie: 0,
+                            totalVentaDecimaTerceraEspecie: 0,
+                            totalCantidadDecimaTerceraEspecie: 0,
+                            totalPesoDecimaCuartaEspecie: 0,
+                            totalPesoDescuentoDecimaCuartaEspecie: 0,
+                            totalVentaDecimaCuartaEspecie: 0,
+                            totalCantidadDecimaCuartaEspecie: 0,
+                            totalPesoDecimaQuintaEspecie: 0,
+                            totalPesoDescuentoDecimaQuintaEspecie: 0,
+                            totalVentaDecimaQuintaEspecie: 0,
+                            totalCantidadDecimaQuintaEspecie: 0,
+                            totalPesoDecimaSextaEspecie: 0,
+                            totalPesoDescuentoDecimaSextaEspecie: 0,
+                            totalVentaDecimaSextaEspecie: 0,
+                            totalCantidadDecimaSextaEspecie: 0,
+                            totalPesoDecimaSeptimaEspecie: 0,
+                            totalPesoDescuentoDecimaSeptimaEspecie: 0,
+                            totalVentaDecimaSeptimaEspecie: 0,
+                            totalCantidadDecimaSeptimaEspecie: 0,
+                            totalPesoDecimaOctavaEspecie: 0,
+                            totalPesoDescuentoDecimaOctavaEspecie: 0,
+                            totalVentaDecimaOctavaEspecie: 0,
+                            totalCantidadDecimaOctavaEspecie: 0,
+                            totalPesoDecimaNovenaEspecie: 0,
+                            totalPesoDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDecimaNovenaEspecie: 0,
+                            totalCantidadDecimaNovenaEspecie: 0,
+                            totalPesoVigesimaEspecie: 0,
+                            totalPesoDescuentoVigesimaEspecie: 0,
+                            totalVentaVigesimaEspecie: 0,
+                            totalCantidadVigesimaEspecie: 0,
+                            totalPesoVigesimaPrimeraEspecie: 0,
+                            totalPesoDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaVigesimaPrimeraEspecie: 0,
+                            totalCantidadVigesimaPrimeraEspecie: 0,
+                            totalPesoVigesimaSegundaEspecie: 0,
+                            totalPesoDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaVigesimaSegundaEspecie: 0,
+                            totalCantidadVigesimaSegundaEspecie: 0,
+                            totalPesoVigesimaTerceraEspecie: 0,
+                            totalPesoDescuentoVigesimaTerceraEspecie: 0,
+                            totalVentaVigesimaTerceraEspecie: 0,
+                            totalCantidadVigesimaTerceraEspecie: 0,
+                            
+                            totalPesoDescuento: 0,
+                            totalVentaDescuento: 0,
+                            pagos: 0,
+                            totalCantidadDescuentoPrimerEspecie: 0,
+                            totalCantidadDescuentoSegundaEspecie: 0,
+                            totalCantidadDescuentoTerceraEspecie: 0,
+                            totalCantidadDescuentoCuartaEspecie: 0,
+                            totalCantidadDescuentoQuintaEspecie: 0,
+                            totalCantidadDescuentoSextaEspecie: 0,
+                            totalCantidadDescuentoSeptimaEspecie: 0,
+                            totalCantidadDescuentoOctavaEspecie: 0,
+                            totalCantidadDescuentoDecimaEspecie: 0,
+                            totalCantidadDescuentoDecimaPrimeraEspecie: 0,
+                            totalCantidadDescuentoDecimaSegundaEspecie: 0,
+                            totalCantidadDescuentoDecimaTerceraEspecie: 0,
+                            totalCantidadDescuentoDecimaCuartaEspecie: 0,
+                            totalCantidadDescuentoDecimaQuintaEspecie: 0,
+                            totalCantidadDescuentoDecimaSextaEspecie: 0,
+                            totalCantidadDescuentoDecimaSeptimaEspecie: 0,
+                            totalCantidadDescuentoDecimaOctavaEspecie: 0,
+                            totalCantidadDescuentoDecimaNovenaEspecie: 0,
+                            totalCantidadDescuentoVigesimaEspecie: 0,
+                            totalCantidadDescuentoVigesimaPrimeraEspecie: 0,
+                            totalCantidadDescuentoVigesimaSegundaEspecie: 0,
+                            totalCantidadDescuentoVigesimaTerceraEspecie: 0,
+
+                            totalVentaDescuentoPrimerEspecie: 0,
+                            totalVentaDescuentoSegundaEspecie: 0,
+                            totalVentaDescuentoTerceraEspecie: 0,
+                            totalVentaDescuentoCuartaEspecie: 0,
+                            totalVentaDescuentoQuintaEspecie: 0,
+                            totalVentaDescuentoSextaEspecie: 0,
+                            totalVentaDescuentoSeptimaEspecie: 0,
+                            totalVentaDescuentoOctavaEspecie: 0,
+                            totalVentaDescuentoDecimaEspecie: 0,
+                            totalVentaDescuentoDecimaPrimeraEspecie: 0,
+                            totalVentaDescuentoDecimaSegundaEspecie: 0,
+                            totalVentaDescuentoDecimaTerceraEspecie: 0,
+                            totalVentaDescuentoDecimaCuartaEspecie: 0,
+                            totalVentaDescuentoDecimaQuintaEspecie: 0,
+                            totalVentaDescuentoDecimaSextaEspecie: 0,
+                            totalVentaDescuentoDecimaSeptimaEspecie: 0,
+                            totalVentaDescuentoDecimaOctavaEspecie: 0,
+                            totalVentaDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDescuentoVigesimaEspecie: 0,
+                            totalVentaDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaDescuentoVigesimaTerceraEspecie: 0
+                        };
+                    }
+    
+                    combinedData[fecha].totalPesoVigesimaEspecie += parseFloat(item.totalPesoVigesimaEspecie2);
+                    combinedData[fecha].totalPesoDescuentoVigesimaEspecie += parseFloat(item.totalPesoDescuentoVigesimaEspecie2);
+                    combinedData[fecha].totalCantidadDescuentoVigesimaEspecie += parseInt(item.totalCantidadDescuentoVigesimaEspecie2);
+                    combinedData[fecha].totalVentaVigesimaEspecie += parseFloat(item.totalVentaVigesimaEspecie2);
+                    combinedData[fecha].totalCantidadVigesimaEspecie += parseInt(item.totalCantidadVigesimaEspecie2);
+                    combinedData[fecha].totalVentaDescuentoVigesimaEspecie += parseFloat(item.totalVentaDescuentoVigesimaEspecie2);
+                });
+
+                response.totalesVigesimaPrimeraEspecie2.forEach(function (item) {
+                    var fecha = item.fechaRegistroPes;
+                    if (!combinedData[fecha]) {
+                        combinedData[fecha] = {
+                            totalPesoPrimerEspecie: 0,
+                            totalPesoDescuentoPrimerEspecie: 0,
+                            totalVentaPrimerEspecie: 0,
+                            totalCantidadPrimerEspecie: 0,
+                            totalPesoSegundaEspecie: 0,
+                            totalPesoDescuentoSegundaEspecie: 0,
+                            totalVentaSegundaEspecie: 0,
+                            totalCantidadSegundaEspecie: 0,
+                            totalPesoTerceraEspecie: 0,
+                            totalPesoDescuentoTerceraEspecie: 0,
+                            totalVentaTerceraEspecie: 0,
+                            totalCantidadTerceraEspecie: 0,
+                            totalPesoCuartaEspecie: 0,
+                            totalPesoDescuentoCuartaEspecie: 0,
+                            totalVentaCuartaEspecie: 0,
+                            totalCantidadCuartaEspecie: 0,
+                            totalPesoQuintaEspecie: 0,
+                            totalPesoDescuentoQuintaEspecie: 0,
+                            totalVentaQuintaEspecie: 0,
+                            totalCantidadQuintaEspecie: 0,
+                            totalPesoSextaEspecie: 0,
+                            totalPesoDescuentoSextaEspecie: 0,
+                            totalVentaSextaEspecie: 0,
+                            totalCantidadSextaEspecie: 0,
+                            totalPesoSeptimaEspecie: 0,
+                            totalPesoDescuentoSeptimaEspecie: 0,
+                            totalVentaSeptimaEspecie: 0,
+                            totalCantidadSeptimaEspecie: 0,
+                            totalPesoOctavaEspecie: 0,
+                            totalPesoDescuentoOctavaEspecie: 0,
+                            totalVentaOctavaEspecie: 0,
+                            totalCantidadOctavaEspecie: 0,
+                            totalPesoDecimaEspecie: 0,
+                            totalPesoDescuentoDecimaEspecie: 0,
+                            totalVentaDecimaEspecie: 0,
+                            totalCantidadDecimaEspecie: 0,
+                            totalPesoDecimaPrimeraEspecie: 0,
+                            totalPesoDescuentoDecimaPrimeraEspecie: 0,
+                            totalVentaDecimaPrimeraEspecie: 0,
+                            totalCantidadDecimaPrimeraEspecie: 0,
+                            totalPesoDecimaSegundaEspecie: 0,
+                            totalPesoDescuentoDecimaSegundaEspecie: 0,
+                            totalVentaDecimaSegundaEspecie: 0,
+                            totalCantidadDecimaSegundaEspecie: 0,
+                            totalPesoDecimaTerceraEspecie: 0,
+                            totalPesoDescuentoDecimaTerceraEspecie: 0,
+                            totalVentaDecimaTerceraEspecie: 0,
+                            totalCantidadDecimaTerceraEspecie: 0,
+                            totalPesoDecimaCuartaEspecie: 0,
+                            totalPesoDescuentoDecimaCuartaEspecie: 0,
+                            totalVentaDecimaCuartaEspecie: 0,
+                            totalCantidadDecimaCuartaEspecie: 0,
+                            totalPesoDecimaQuintaEspecie: 0,
+                            totalPesoDescuentoDecimaQuintaEspecie: 0,
+                            totalVentaDecimaQuintaEspecie: 0,
+                            totalCantidadDecimaQuintaEspecie: 0,
+                            totalPesoDecimaSextaEspecie: 0,
+                            totalPesoDescuentoDecimaSextaEspecie: 0,
+                            totalVentaDecimaSextaEspecie: 0,
+                            totalCantidadDecimaSextaEspecie: 0,
+                            totalPesoDecimaSeptimaEspecie: 0,
+                            totalPesoDescuentoDecimaSeptimaEspecie: 0,
+                            totalVentaDecimaSeptimaEspecie: 0,
+                            totalCantidadDecimaSeptimaEspecie: 0,
+                            totalPesoDecimaOctavaEspecie: 0,
+                            totalPesoDescuentoDecimaOctavaEspecie: 0,
+                            totalVentaDecimaOctavaEspecie: 0,
+                            totalCantidadDecimaOctavaEspecie: 0,
+                            totalPesoDecimaNovenaEspecie: 0,
+                            totalPesoDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDecimaNovenaEspecie: 0,
+                            totalCantidadDecimaNovenaEspecie: 0,
+                            totalPesoVigesimaEspecie: 0,
+                            totalPesoDescuentoVigesimaEspecie: 0,
+                            totalVentaVigesimaEspecie: 0,
+                            totalCantidadVigesimaEspecie: 0,
+                            totalPesoVigesimaPrimeraEspecie: 0,
+                            totalPesoDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaVigesimaPrimeraEspecie: 0,
+                            totalCantidadVigesimaPrimeraEspecie: 0,
+                            totalPesoVigesimaSegundaEspecie: 0,
+                            totalPesoDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaVigesimaSegundaEspecie: 0,
+                            totalCantidadVigesimaSegundaEspecie: 0,
+                            totalPesoVigesimaTerceraEspecie: 0,
+                            totalPesoDescuentoVigesimaTerceraEspecie: 0,
+                            totalVentaVigesimaTerceraEspecie: 0,
+                            totalCantidadVigesimaTerceraEspecie: 0,
+                            
+                            totalPesoDescuento: 0,
+                            totalVentaDescuento: 0,
+                            pagos: 0,
+                            totalCantidadDescuentoPrimerEspecie: 0,
+                            totalCantidadDescuentoSegundaEspecie: 0,
+                            totalCantidadDescuentoTerceraEspecie: 0,
+                            totalCantidadDescuentoCuartaEspecie: 0,
+                            totalCantidadDescuentoQuintaEspecie: 0,
+                            totalCantidadDescuentoSextaEspecie: 0,
+                            totalCantidadDescuentoSeptimaEspecie: 0,
+                            totalCantidadDescuentoOctavaEspecie: 0,
+                            totalCantidadDescuentoDecimaEspecie: 0,
+                            totalCantidadDescuentoDecimaPrimeraEspecie: 0,
+                            totalCantidadDescuentoDecimaSegundaEspecie: 0,
+                            totalCantidadDescuentoDecimaTerceraEspecie: 0,
+                            totalCantidadDescuentoDecimaCuartaEspecie: 0,
+                            totalCantidadDescuentoDecimaQuintaEspecie: 0,
+                            totalCantidadDescuentoDecimaSextaEspecie: 0,
+                            totalCantidadDescuentoDecimaSeptimaEspecie: 0,
+                            totalCantidadDescuentoDecimaOctavaEspecie: 0,
+                            totalCantidadDescuentoDecimaNovenaEspecie: 0,
+                            totalCantidadDescuentoVigesimaEspecie: 0,
+                            totalCantidadDescuentoVigesimaPrimeraEspecie: 0,
+                            totalCantidadDescuentoVigesimaSegundaEspecie: 0,
+                            totalCantidadDescuentoVigesimaTerceraEspecie: 0,
+
+                            totalVentaDescuentoPrimerEspecie: 0,
+                            totalVentaDescuentoSegundaEspecie: 0,
+                            totalVentaDescuentoTerceraEspecie: 0,
+                            totalVentaDescuentoCuartaEspecie: 0,
+                            totalVentaDescuentoQuintaEspecie: 0,
+                            totalVentaDescuentoSextaEspecie: 0,
+                            totalVentaDescuentoSeptimaEspecie: 0,
+                            totalVentaDescuentoOctavaEspecie: 0,
+                            totalVentaDescuentoDecimaEspecie: 0,
+                            totalVentaDescuentoDecimaPrimeraEspecie: 0,
+                            totalVentaDescuentoDecimaSegundaEspecie: 0,
+                            totalVentaDescuentoDecimaTerceraEspecie: 0,
+                            totalVentaDescuentoDecimaCuartaEspecie: 0,
+                            totalVentaDescuentoDecimaQuintaEspecie: 0,
+                            totalVentaDescuentoDecimaSextaEspecie: 0,
+                            totalVentaDescuentoDecimaSeptimaEspecie: 0,
+                            totalVentaDescuentoDecimaOctavaEspecie: 0,
+                            totalVentaDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDescuentoVigesimaEspecie: 0,
+                            totalVentaDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaDescuentoVigesimaTerceraEspecie: 0
+                        };
+                    }
+    
+                    combinedData[fecha].totalPesoVigesimaPrimeraEspecie += parseFloat(item.totalPesoVigesimaPrimeraEspecie2);
+                    combinedData[fecha].totalPesoDescuentoVigesimaPrimeraEspecie += parseFloat(item.totalPesoDescuentoVigesimaPrimeraEspecie2);
+                    combinedData[fecha].totalCantidadDescuentoVigesimaPrimeraEspecie += parseInt(item.totalCantidadDescuentoVigesimaPrimeraEspecie2);
+                    combinedData[fecha].totalVentaVigesimaPrimeraEspecie += parseFloat(item.totalVentaVigesimaPrimeraEspecie2);
+                    combinedData[fecha].totalCantidadVigesimaPrimeraEspecie += parseInt(item.totalCantidadVigesimaPrimeraEspecie2);
+                    combinedData[fecha].totalVentaDescuentoVigesimaPrimeraEspecie += parseFloat(item.totalVentaDescuentoVigesimaPrimeraEspecie2);
+                });
+
+                response.totalesVigesimaSegundaEspecie2.forEach(function (item) {
+                    var fecha = item.fechaRegistroPes;
+                    if (!combinedData[fecha]) {
+                        combinedData[fecha] = {
+                            totalPesoPrimerEspecie: 0,
+                            totalPesoDescuentoPrimerEspecie: 0,
+                            totalVentaPrimerEspecie: 0,
+                            totalCantidadPrimerEspecie: 0,
+                            totalPesoSegundaEspecie: 0,
+                            totalPesoDescuentoSegundaEspecie: 0,
+                            totalVentaSegundaEspecie: 0,
+                            totalCantidadSegundaEspecie: 0,
+                            totalPesoTerceraEspecie: 0,
+                            totalPesoDescuentoTerceraEspecie: 0,
+                            totalVentaTerceraEspecie: 0,
+                            totalCantidadTerceraEspecie: 0,
+                            totalPesoCuartaEspecie: 0,
+                            totalPesoDescuentoCuartaEspecie: 0,
+                            totalVentaCuartaEspecie: 0,
+                            totalCantidadCuartaEspecie: 0,
+                            totalPesoQuintaEspecie: 0,
+                            totalPesoDescuentoQuintaEspecie: 0,
+                            totalVentaQuintaEspecie: 0,
+                            totalCantidadQuintaEspecie: 0,
+                            totalPesoSextaEspecie: 0,
+                            totalPesoDescuentoSextaEspecie: 0,
+                            totalVentaSextaEspecie: 0,
+                            totalCantidadSextaEspecie: 0,
+                            totalPesoSeptimaEspecie: 0,
+                            totalPesoDescuentoSeptimaEspecie: 0,
+                            totalVentaSeptimaEspecie: 0,
+                            totalCantidadSeptimaEspecie: 0,
+                            totalPesoOctavaEspecie: 0,
+                            totalPesoDescuentoOctavaEspecie: 0,
+                            totalVentaOctavaEspecie: 0,
+                            totalCantidadOctavaEspecie: 0,
+                            totalPesoDecimaEspecie: 0,
+                            totalPesoDescuentoDecimaEspecie: 0,
+                            totalVentaDecimaEspecie: 0,
+                            totalCantidadDecimaEspecie: 0,
+                            totalPesoDecimaPrimeraEspecie: 0,
+                            totalPesoDescuentoDecimaPrimeraEspecie: 0,
+                            totalVentaDecimaPrimeraEspecie: 0,
+                            totalCantidadDecimaPrimeraEspecie: 0,
+                            totalPesoDecimaSegundaEspecie: 0,
+                            totalPesoDescuentoDecimaSegundaEspecie: 0,
+                            totalVentaDecimaSegundaEspecie: 0,
+                            totalCantidadDecimaSegundaEspecie: 0,
+                            totalPesoDecimaTerceraEspecie: 0,
+                            totalPesoDescuentoDecimaTerceraEspecie: 0,
+                            totalVentaDecimaTerceraEspecie: 0,
+                            totalCantidadDecimaTerceraEspecie: 0,
+                            totalPesoDecimaCuartaEspecie: 0,
+                            totalPesoDescuentoDecimaCuartaEspecie: 0,
+                            totalVentaDecimaCuartaEspecie: 0,
+                            totalCantidadDecimaCuartaEspecie: 0,
+                            totalPesoDecimaQuintaEspecie: 0,
+                            totalPesoDescuentoDecimaQuintaEspecie: 0,
+                            totalVentaDecimaQuintaEspecie: 0,
+                            totalCantidadDecimaQuintaEspecie: 0,
+                            totalPesoDecimaSextaEspecie: 0,
+                            totalPesoDescuentoDecimaSextaEspecie: 0,
+                            totalVentaDecimaSextaEspecie: 0,
+                            totalCantidadDecimaSextaEspecie: 0,
+                            totalPesoDecimaSeptimaEspecie: 0,
+                            totalPesoDescuentoDecimaSeptimaEspecie: 0,
+                            totalVentaDecimaSeptimaEspecie: 0,
+                            totalCantidadDecimaSeptimaEspecie: 0,
+                            totalPesoDecimaOctavaEspecie: 0,
+                            totalPesoDescuentoDecimaOctavaEspecie: 0,
+                            totalVentaDecimaOctavaEspecie: 0,
+                            totalCantidadDecimaOctavaEspecie: 0,
+                            totalPesoDecimaNovenaEspecie: 0,
+                            totalPesoDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDecimaNovenaEspecie: 0,
+                            totalCantidadDecimaNovenaEspecie: 0,
+                            totalPesoVigesimaEspecie: 0,
+                            totalPesoDescuentoVigesimaEspecie: 0,
+                            totalVentaVigesimaEspecie: 0,
+                            totalCantidadVigesimaEspecie: 0,
+                            totalPesoVigesimaPrimeraEspecie: 0,
+                            totalPesoDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaVigesimaPrimeraEspecie: 0,
+                            totalCantidadVigesimaPrimeraEspecie: 0,
+                            totalPesoVigesimaSegundaEspecie: 0,
+                            totalPesoDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaVigesimaSegundaEspecie: 0,
+                            totalCantidadVigesimaSegundaEspecie: 0,
+                            totalPesoVigesimaTerceraEspecie: 0,
+                            totalPesoDescuentoVigesimaTerceraEspecie: 0,
+                            totalVentaVigesimaTerceraEspecie: 0,
+                            totalCantidadVigesimaTerceraEspecie: 0,
+                            
+                            totalPesoDescuento: 0,
+                            totalVentaDescuento: 0,
+                            pagos: 0,
+                            totalCantidadDescuentoPrimerEspecie: 0,
+                            totalCantidadDescuentoSegundaEspecie: 0,
+                            totalCantidadDescuentoTerceraEspecie: 0,
+                            totalCantidadDescuentoCuartaEspecie: 0,
+                            totalCantidadDescuentoQuintaEspecie: 0,
+                            totalCantidadDescuentoSextaEspecie: 0,
+                            totalCantidadDescuentoSeptimaEspecie: 0,
+                            totalCantidadDescuentoOctavaEspecie: 0,
+                            totalCantidadDescuentoDecimaEspecie: 0,
+                            totalCantidadDescuentoDecimaPrimeraEspecie: 0,
+                            totalCantidadDescuentoDecimaSegundaEspecie: 0,
+                            totalCantidadDescuentoDecimaTerceraEspecie: 0,
+                            totalCantidadDescuentoDecimaCuartaEspecie: 0,
+                            totalCantidadDescuentoDecimaQuintaEspecie: 0,
+                            totalCantidadDescuentoDecimaSextaEspecie: 0,
+                            totalCantidadDescuentoDecimaSeptimaEspecie: 0,
+                            totalCantidadDescuentoDecimaOctavaEspecie: 0,
+                            totalCantidadDescuentoDecimaNovenaEspecie: 0,
+                            totalCantidadDescuentoVigesimaEspecie: 0,
+                            totalCantidadDescuentoVigesimaPrimeraEspecie: 0,
+                            totalCantidadDescuentoVigesimaSegundaEspecie: 0,
+                            totalCantidadDescuentoVigesimaTerceraEspecie: 0,
+
+                            totalVentaDescuentoPrimerEspecie: 0,
+                            totalVentaDescuentoSegundaEspecie: 0,
+                            totalVentaDescuentoTerceraEspecie: 0,
+                            totalVentaDescuentoCuartaEspecie: 0,
+                            totalVentaDescuentoQuintaEspecie: 0,
+                            totalVentaDescuentoSextaEspecie: 0,
+                            totalVentaDescuentoSeptimaEspecie: 0,
+                            totalVentaDescuentoOctavaEspecie: 0,
+                            totalVentaDescuentoDecimaEspecie: 0,
+                            totalVentaDescuentoDecimaPrimeraEspecie: 0,
+                            totalVentaDescuentoDecimaSegundaEspecie: 0,
+                            totalVentaDescuentoDecimaTerceraEspecie: 0,
+                            totalVentaDescuentoDecimaCuartaEspecie: 0,
+                            totalVentaDescuentoDecimaQuintaEspecie: 0,
+                            totalVentaDescuentoDecimaSextaEspecie: 0,
+                            totalVentaDescuentoDecimaSeptimaEspecie: 0,
+                            totalVentaDescuentoDecimaOctavaEspecie: 0,
+                            totalVentaDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDescuentoVigesimaEspecie: 0,
+                            totalVentaDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaDescuentoVigesimaTerceraEspecie: 0
+                        };
+                    }
+    
+                    combinedData[fecha].totalPesoVigesimaSegundaEspecie += parseFloat(item.totalPesoVigesimaSegundaEspecie2);
+                    combinedData[fecha].totalPesoDescuentoVigesimaSegundaEspecie += parseFloat(item.totalPesoDescuentoVigesimaSegundaEspecie2);
+                    combinedData[fecha].totalCantidadDescuentoVigesimaSegundaEspecie += parseInt(item.totalCantidadDescuentoVigesimaSegundaEspecie2);
+                    combinedData[fecha].totalVentaVigesimaSegundaEspecie += parseFloat(item.totalVentaVigesimaSegundaEspecie2);
+                    combinedData[fecha].totalCantidadVigesimaSegundaEspecie += parseInt(item.totalCantidadVigesimaSegundaEspecie2);
+                    combinedData[fecha].totalVentaDescuentoVigesimaSegundaEspecie += parseFloat(item.totalVentaDescuentoVigesimaSegundaEspecie2);
+                });
+
+                response.totalesVigesimaTerceraEspecie2.forEach(function (item) {
+                    var fecha = item.fechaRegistroPes;
+                    if (!combinedData[fecha]) {
+                        combinedData[fecha] = {
+                            totalPesoPrimerEspecie: 0,
+                            totalPesoDescuentoPrimerEspecie: 0,
+                            totalVentaPrimerEspecie: 0,
+                            totalCantidadPrimerEspecie: 0,
+                            totalPesoSegundaEspecie: 0,
+                            totalPesoDescuentoSegundaEspecie: 0,
+                            totalVentaSegundaEspecie: 0,
+                            totalCantidadSegundaEspecie: 0,
+                            totalPesoTerceraEspecie: 0,
+                            totalPesoDescuentoTerceraEspecie: 0,
+                            totalVentaTerceraEspecie: 0,
+                            totalCantidadTerceraEspecie: 0,
+                            totalPesoCuartaEspecie: 0,
+                            totalPesoDescuentoCuartaEspecie: 0,
+                            totalVentaCuartaEspecie: 0,
+                            totalCantidadCuartaEspecie: 0,
+                            totalPesoQuintaEspecie: 0,
+                            totalPesoDescuentoQuintaEspecie: 0,
+                            totalVentaQuintaEspecie: 0,
+                            totalCantidadQuintaEspecie: 0,
+                            totalPesoSextaEspecie: 0,
+                            totalPesoDescuentoSextaEspecie: 0,
+                            totalVentaSextaEspecie: 0,
+                            totalCantidadSextaEspecie: 0,
+                            totalPesoSeptimaEspecie: 0,
+                            totalPesoDescuentoSeptimaEspecie: 0,
+                            totalVentaSeptimaEspecie: 0,
+                            totalCantidadSeptimaEspecie: 0,
+                            totalPesoOctavaEspecie: 0,
+                            totalPesoDescuentoOctavaEspecie: 0,
+                            totalVentaOctavaEspecie: 0,
+                            totalCantidadOctavaEspecie: 0,
+                            totalPesoDecimaEspecie: 0,
+                            totalPesoDescuentoDecimaEspecie: 0,
+                            totalVentaDecimaEspecie: 0,
+                            totalCantidadDecimaEspecie: 0,
+                            totalPesoDecimaPrimeraEspecie: 0,
+                            totalPesoDescuentoDecimaPrimeraEspecie: 0,
+                            totalVentaDecimaPrimeraEspecie: 0,
+                            totalCantidadDecimaPrimeraEspecie: 0,
+                            totalPesoDecimaSegundaEspecie: 0,
+                            totalPesoDescuentoDecimaSegundaEspecie: 0,
+                            totalVentaDecimaSegundaEspecie: 0,
+                            totalCantidadDecimaSegundaEspecie: 0,
+                            totalPesoDecimaTerceraEspecie: 0,
+                            totalPesoDescuentoDecimaTerceraEspecie: 0,
+                            totalVentaDecimaTerceraEspecie: 0,
+                            totalCantidadDecimaTerceraEspecie: 0,
+                            totalPesoDecimaCuartaEspecie: 0,
+                            totalPesoDescuentoDecimaCuartaEspecie: 0,
+                            totalVentaDecimaCuartaEspecie: 0,
+                            totalCantidadDecimaCuartaEspecie: 0,
+                            totalPesoDecimaQuintaEspecie: 0,
+                            totalPesoDescuentoDecimaQuintaEspecie: 0,
+                            totalVentaDecimaQuintaEspecie: 0,
+                            totalCantidadDecimaQuintaEspecie: 0,
+                            totalPesoDecimaSextaEspecie: 0,
+                            totalPesoDescuentoDecimaSextaEspecie: 0,
+                            totalVentaDecimaSextaEspecie: 0,
+                            totalCantidadDecimaSextaEspecie: 0,
+                            totalPesoDecimaSeptimaEspecie: 0,
+                            totalPesoDescuentoDecimaSeptimaEspecie: 0,
+                            totalVentaDecimaSeptimaEspecie: 0,
+                            totalCantidadDecimaSeptimaEspecie: 0,
+                            totalPesoDecimaOctavaEspecie: 0,
+                            totalPesoDescuentoDecimaOctavaEspecie: 0,
+                            totalVentaDecimaOctavaEspecie: 0,
+                            totalCantidadDecimaOctavaEspecie: 0,
+                            totalPesoDecimaNovenaEspecie: 0,
+                            totalPesoDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDecimaNovenaEspecie: 0,
+                            totalCantidadDecimaNovenaEspecie: 0,
+                            totalPesoVigesimaEspecie: 0,
+                            totalPesoDescuentoVigesimaEspecie: 0,
+                            totalVentaVigesimaEspecie: 0,
+                            totalCantidadVigesimaEspecie: 0,
+                            totalPesoVigesimaPrimeraEspecie: 0,
+                            totalPesoDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaVigesimaPrimeraEspecie: 0,
+                            totalCantidadVigesimaPrimeraEspecie: 0,
+                            totalPesoVigesimaSegundaEspecie: 0,
+                            totalPesoDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaVigesimaSegundaEspecie: 0,
+                            totalCantidadVigesimaSegundaEspecie: 0,
+                            totalPesoVigesimaTerceraEspecie: 0,
+                            totalPesoDescuentoVigesimaTerceraEspecie: 0,
+                            totalVentaVigesimaTerceraEspecie: 0,
+                            totalCantidadVigesimaTerceraEspecie: 0,
+                            
+                            totalPesoDescuento: 0,
+                            totalVentaDescuento: 0,
+                            pagos: 0,
+                            totalCantidadDescuentoPrimerEspecie: 0,
+                            totalCantidadDescuentoSegundaEspecie: 0,
+                            totalCantidadDescuentoTerceraEspecie: 0,
+                            totalCantidadDescuentoCuartaEspecie: 0,
+                            totalCantidadDescuentoQuintaEspecie: 0,
+                            totalCantidadDescuentoSextaEspecie: 0,
+                            totalCantidadDescuentoSeptimaEspecie: 0,
+                            totalCantidadDescuentoOctavaEspecie: 0,
+                            totalCantidadDescuentoDecimaEspecie: 0,
+                            totalCantidadDescuentoDecimaPrimeraEspecie: 0,
+                            totalCantidadDescuentoDecimaSegundaEspecie: 0,
+                            totalCantidadDescuentoDecimaTerceraEspecie: 0,
+                            totalCantidadDescuentoDecimaCuartaEspecie: 0,
+                            totalCantidadDescuentoDecimaQuintaEspecie: 0,
+                            totalCantidadDescuentoDecimaSextaEspecie: 0,
+                            totalCantidadDescuentoDecimaSeptimaEspecie: 0,
+                            totalCantidadDescuentoDecimaOctavaEspecie: 0,
+                            totalCantidadDescuentoDecimaNovenaEspecie: 0,
+                            totalCantidadDescuentoVigesimaEspecie: 0,
+                            totalCantidadDescuentoVigesimaPrimeraEspecie: 0,
+                            totalCantidadDescuentoVigesimaSegundaEspecie: 0,
+                            totalCantidadDescuentoVigesimaTerceraEspecie: 0,
+
+                            totalVentaDescuentoPrimerEspecie: 0,
+                            totalVentaDescuentoSegundaEspecie: 0,
+                            totalVentaDescuentoTerceraEspecie: 0,
+                            totalVentaDescuentoCuartaEspecie: 0,
+                            totalVentaDescuentoQuintaEspecie: 0,
+                            totalVentaDescuentoSextaEspecie: 0,
+                            totalVentaDescuentoSeptimaEspecie: 0,
+                            totalVentaDescuentoOctavaEspecie: 0,
+                            totalVentaDescuentoDecimaEspecie: 0,
+                            totalVentaDescuentoDecimaPrimeraEspecie: 0,
+                            totalVentaDescuentoDecimaSegundaEspecie: 0,
+                            totalVentaDescuentoDecimaTerceraEspecie: 0,
+                            totalVentaDescuentoDecimaCuartaEspecie: 0,
+                            totalVentaDescuentoDecimaQuintaEspecie: 0,
+                            totalVentaDescuentoDecimaSextaEspecie: 0,
+                            totalVentaDescuentoDecimaSeptimaEspecie: 0,
+                            totalVentaDescuentoDecimaOctavaEspecie: 0,
+                            totalVentaDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDescuentoVigesimaEspecie: 0,
+                            totalVentaDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaDescuentoVigesimaTerceraEspecie: 0
+                        };
+                    }
+    
+                    combinedData[fecha].totalPesoVigesimaTerceraEspecie += parseFloat(item.totalPesoVigesimaTerceraEspecie2);
+                    combinedData[fecha].totalPesoDescuentoVigesimaTerceraEspecie += parseFloat(item.totalPesoDescuentoVigesimaTerceraEspecie2);
+                    combinedData[fecha].totalCantidadDescuentoVigesimaTerceraEspecie += parseInt(item.totalCantidadDescuentoVigesimaTerceraEspecie2);
+                    combinedData[fecha].totalVentaVigesimaTerceraEspecie += parseFloat(item.totalVentaVigesimaTerceraEspecie2);
+                    combinedData[fecha].totalCantidadVigesimaTerceraEspecie += parseInt(item.totalCantidadVigesimaTerceraEspecie2);
+                    combinedData[fecha].totalVentaDescuentoVigesimaTerceraEspecie += parseFloat(item.totalVentaDescuentoVigesimaTerceraEspecie2);
                 });
     
                 response.totalDescuentos.forEach(function (item) {
@@ -4387,6 +6947,26 @@ jQuery(function ($) {
                             totalPesoDescuentoDecimaOctavaEspecie: 0,
                             totalVentaDecimaOctavaEspecie: 0,
                             totalCantidadDecimaOctavaEspecie: 0,
+                            totalPesoDecimaNovenaEspecie: 0,
+                            totalPesoDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDecimaNovenaEspecie: 0,
+                            totalCantidadDecimaNovenaEspecie: 0,
+                            totalPesoVigesimaEspecie: 0,
+                            totalPesoDescuentoVigesimaEspecie: 0,
+                            totalVentaVigesimaEspecie: 0,
+                            totalCantidadVigesimaEspecie: 0,
+                            totalPesoVigesimaPrimeraEspecie: 0,
+                            totalPesoDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaVigesimaPrimeraEspecie: 0,
+                            totalCantidadVigesimaPrimeraEspecie: 0,
+                            totalPesoVigesimaSegundaEspecie: 0,
+                            totalPesoDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaVigesimaSegundaEspecie: 0,
+                            totalCantidadVigesimaSegundaEspecie: 0,
+                            totalPesoVigesimaTerceraEspecie: 0,
+                            totalPesoDescuentoVigesimaTerceraEspecie: 0,
+                            totalVentaVigesimaTerceraEspecie: 0,
+                            totalCantidadVigesimaTerceraEspecie: 0,
                             
                             totalPesoDescuento: 0,
                             totalVentaDescuento: 0,
@@ -4408,6 +6988,11 @@ jQuery(function ($) {
                             totalCantidadDescuentoDecimaSextaEspecie: 0,
                             totalCantidadDescuentoDecimaSeptimaEspecie: 0,
                             totalCantidadDescuentoDecimaOctavaEspecie: 0,
+                            totalCantidadDescuentoDecimaNovenaEspecie: 0,
+                            totalCantidadDescuentoVigesimaEspecie: 0,
+                            totalCantidadDescuentoVigesimaPrimeraEspecie: 0,
+                            totalCantidadDescuentoVigesimaSegundaEspecie: 0,
+                            totalCantidadDescuentoVigesimaTerceraEspecie: 0,
 
                             totalVentaDescuentoPrimerEspecie: 0,
                             totalVentaDescuentoSegundaEspecie: 0,
@@ -4425,7 +7010,12 @@ jQuery(function ($) {
                             totalVentaDescuentoDecimaQuintaEspecie: 0,
                             totalVentaDescuentoDecimaSextaEspecie: 0,
                             totalVentaDescuentoDecimaSeptimaEspecie: 0,
-                            totalVentaDescuentoDecimaOctavaEspecie: 0
+                            totalVentaDescuentoDecimaOctavaEspecie: 0,
+                            totalVentaDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDescuentoVigesimaEspecie: 0,
+                            totalVentaDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaDescuentoVigesimaTerceraEspecie: 0
                         };
                     }
                     combinedData[fecha].totalPesoDescuento = parseFloat(item.totalPesoDescuento);
@@ -4504,6 +7094,26 @@ jQuery(function ($) {
                             totalPesoDescuentoDecimaOctavaEspecie: 0,
                             totalVentaDecimaOctavaEspecie: 0,
                             totalCantidadDecimaOctavaEspecie: 0,
+                            totalPesoDecimaNovenaEspecie: 0,
+                            totalPesoDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDecimaNovenaEspecie: 0,
+                            totalCantidadDecimaNovenaEspecie: 0,
+                            totalPesoVigesimaEspecie: 0,
+                            totalPesoDescuentoVigesimaEspecie: 0,
+                            totalVentaVigesimaEspecie: 0,
+                            totalCantidadVigesimaEspecie: 0,
+                            totalPesoVigesimaPrimeraEspecie: 0,
+                            totalPesoDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaVigesimaPrimeraEspecie: 0,
+                            totalCantidadVigesimaPrimeraEspecie: 0,
+                            totalPesoVigesimaSegundaEspecie: 0,
+                            totalPesoDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaVigesimaSegundaEspecie: 0,
+                            totalCantidadVigesimaSegundaEspecie: 0,
+                            totalPesoVigesimaTerceraEspecie: 0,
+                            totalPesoDescuentoVigesimaTerceraEspecie: 0,
+                            totalVentaVigesimaTerceraEspecie: 0,
+                            totalCantidadVigesimaTerceraEspecie: 0,
                             
                             totalPesoDescuento: 0,
                             totalVentaDescuento: 0,
@@ -4525,6 +7135,11 @@ jQuery(function ($) {
                             totalCantidadDescuentoDecimaSextaEspecie: 0,
                             totalCantidadDescuentoDecimaSeptimaEspecie: 0,
                             totalCantidadDescuentoDecimaOctavaEspecie: 0,
+                            totalCantidadDescuentoDecimaNovenaEspecie: 0,
+                            totalCantidadDescuentoVigesimaEspecie: 0,
+                            totalCantidadDescuentoVigesimaPrimeraEspecie: 0,
+                            totalCantidadDescuentoVigesimaSegundaEspecie: 0,
+                            totalCantidadDescuentoVigesimaTerceraEspecie: 0,
 
                             totalVentaDescuentoPrimerEspecie: 0,
                             totalVentaDescuentoSegundaEspecie: 0,
@@ -4542,7 +7157,12 @@ jQuery(function ($) {
                             totalVentaDescuentoDecimaQuintaEspecie: 0,
                             totalVentaDescuentoDecimaSextaEspecie: 0,
                             totalVentaDescuentoDecimaSeptimaEspecie: 0,
-                            totalVentaDescuentoDecimaOctavaEspecie: 0
+                            totalVentaDescuentoDecimaOctavaEspecie: 0,
+                            totalVentaDescuentoDecimaNovenaEspecie: 0,
+                            totalVentaDescuentoVigesimaEspecie: 0,
+                            totalVentaDescuentoVigesimaPrimeraEspecie: 0,
+                            totalVentaDescuentoVigesimaSegundaEspecie: 0,
+                            totalVentaDescuentoVigesimaTerceraEspecie: 0
                         };
                     }
     
@@ -4573,9 +7193,9 @@ jQuery(function ($) {
             bodyCuentaDelCliente += construirFilaDatos(item);
             bodyCuentaDelCliente += construirFilaDatosTotales(item,totalSaldoAnterior,totalPagos, fecha, respuestaPagosDetallados);
             totalPagos += parseFloat(item.pagos);
-            let descuentosDePresentaciones = parseFloat(item.totalVentaDescuentoPrimerEspecie)+parseFloat(item.totalVentaDescuentoSegundaEspecie)+parseFloat(item.totalVentaDescuentoTerceraEspecie)+parseFloat(item.totalVentaDescuentoCuartaEspecie)+parseFloat(item.totalVentaDescuentoQuintaEspecie)+parseFloat(item.totalVentaDescuentoSextaEspecie)+parseFloat(item.totalVentaDescuentoSeptimaEspecie)+parseFloat(item.totalVentaDescuentoOctavaEspecie)+parseFloat(item.totalVentaDescuentoDecimaEspecie)+parseFloat(item.totalVentaDescuentoDecimaPrimeraEspecie)+parseFloat(item.totalVentaDescuentoDecimaSegundaEspecie)+parseFloat(item.totalVentaDescuentoDecimaTerceraEspecie)+parseFloat(item.totalVentaDescuentoDecimaCuartaEspecie)+parseFloat(item.totalVentaDescuentoDecimaQuintaEspecie)+parseFloat(item.totalVentaDescuentoDecimaSextaEspecie)+parseFloat(item.totalVentaDescuentoDecimaSeptimaEspecie)+parseFloat(item.totalVentaDescuentoDecimaOctavaEspecie)
+            let descuentosDePresentaciones = parseFloat(item.totalVentaDescuentoPrimerEspecie)+parseFloat(item.totalVentaDescuentoSegundaEspecie)+parseFloat(item.totalVentaDescuentoTerceraEspecie)+parseFloat(item.totalVentaDescuentoCuartaEspecie)+parseFloat(item.totalVentaDescuentoQuintaEspecie)+parseFloat(item.totalVentaDescuentoSextaEspecie)+parseFloat(item.totalVentaDescuentoSeptimaEspecie)+parseFloat(item.totalVentaDescuentoOctavaEspecie)+parseFloat(item.totalVentaDescuentoDecimaEspecie)+parseFloat(item.totalVentaDescuentoDecimaPrimeraEspecie)+parseFloat(item.totalVentaDescuentoDecimaSegundaEspecie)+parseFloat(item.totalVentaDescuentoDecimaTerceraEspecie)+parseFloat(item.totalVentaDescuentoDecimaCuartaEspecie)+parseFloat(item.totalVentaDescuentoDecimaQuintaEspecie)+parseFloat(item.totalVentaDescuentoDecimaSextaEspecie)+parseFloat(item.totalVentaDescuentoDecimaSeptimaEspecie)+parseFloat(item.totalVentaDescuentoDecimaOctavaEspecie)+parseFloat(item.totalVentaDescuentoDecimaNovenaEspecie)+parseFloat(item.totalVentaDescuentoVigesimaEspecie)+parseFloat(item.totalVentaDescuentoVigesimaPrimeraEspecie)+parseFloat(item.totalVentaDescuentoVigesimaSegundaEspecie)+parseFloat(item.totalVentaDescuentoVigesimaTerceraEspecie)
             
-            totalSaldoAnterior += parseFloat(item.totalVentaPrimerEspecie)+parseFloat(item.totalVentaSegundaEspecie)+parseFloat(item.totalVentaTerceraEspecie)+parseFloat(item.totalVentaCuartaEspecie)+parseFloat(item.totalVentaQuintaEspecie)+parseFloat(item.totalVentaSextaEspecie)+parseFloat(item.totalVentaSeptimaEspecie)+parseFloat(item.totalVentaOctavaEspecie)+parseFloat(item.totalVentaDecimaEspecie)+parseFloat(item.totalVentaDecimaPrimeraEspecie)+parseFloat(item.totalVentaDecimaSegundaEspecie)+parseFloat(item.totalVentaDecimaTerceraEspecie)+parseFloat(item.totalVentaDecimaCuartaEspecie)+parseFloat(item.totalVentaDecimaQuintaEspecie)+parseFloat(item.totalVentaDecimaSextaEspecie)+parseFloat(item.totalVentaDecimaSeptimaEspecie)+parseFloat(item.totalVentaDecimaOctavaEspecie)+parseFloat(item.totalVentaDescuento)+descuentosDePresentaciones;
+            totalSaldoAnterior += parseFloat(item.totalVentaPrimerEspecie)+parseFloat(item.totalVentaSegundaEspecie)+parseFloat(item.totalVentaTerceraEspecie)+parseFloat(item.totalVentaCuartaEspecie)+parseFloat(item.totalVentaQuintaEspecie)+parseFloat(item.totalVentaSextaEspecie)+parseFloat(item.totalVentaSeptimaEspecie)+parseFloat(item.totalVentaOctavaEspecie)+parseFloat(item.totalVentaDecimaEspecie)+parseFloat(item.totalVentaDecimaPrimeraEspecie)+parseFloat(item.totalVentaDecimaSegundaEspecie)+parseFloat(item.totalVentaDecimaTerceraEspecie)+parseFloat(item.totalVentaDecimaCuartaEspecie)+parseFloat(item.totalVentaDecimaQuintaEspecie)+parseFloat(item.totalVentaDecimaSextaEspecie)+parseFloat(item.totalVentaDecimaSeptimaEspecie)+parseFloat(item.totalVentaDecimaOctavaEspecie)+parseFloat(item.totalVentaDecimaNovenaEspecie)+parseFloat(item.totalVentaVigesimaEspecie)+parseFloat(item.totalVentaVigesimaPrimeraEspecie)+parseFloat(item.totalVentaVigesimaSegundaEspecie)+parseFloat(item.totalVentaVigesimaTerceraEspecie)+parseFloat(item.totalVentaDescuento)+descuentosDePresentaciones;
         });
         if (bodyCuentaDelCliente == ""){
             tbodyCuentaDelCliente.html(`<tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="7" class="text-center">No hay datos</td></tr>`);
@@ -4586,9 +7206,9 @@ jQuery(function ($) {
 
     function construirFilaDatosTotales(item,totalSaldoAnterior,totalPagos,fecha,respuestaPagosDetallados) {
 
-        let ventasEspecies = parseFloat(item.totalVentaPrimerEspecie)+parseFloat(item.totalVentaSegundaEspecie)+parseFloat(item.totalVentaTerceraEspecie)+parseFloat(item.totalVentaCuartaEspecie)+parseFloat(item.totalVentaQuintaEspecie)+parseFloat(item.totalVentaSextaEspecie)+parseFloat(item.totalVentaSeptimaEspecie)+parseFloat(item.totalVentaOctavaEspecie)+parseFloat(item.totalVentaDecimaEspecie)+parseFloat(item.totalVentaDecimaPrimeraEspecie)+parseFloat(item.totalVentaDecimaSegundaEspecie)+parseFloat(item.totalVentaDecimaTerceraEspecie)+parseFloat(item.totalVentaDecimaCuartaEspecie)+parseFloat(item.totalVentaDecimaQuintaEspecie)+parseFloat(item.totalVentaDecimaSextaEspecie)+parseFloat(item.totalVentaDecimaSeptimaEspecie)+parseFloat(item.totalVentaDecimaOctavaEspecie)
+        let ventasEspecies = parseFloat(item.totalVentaPrimerEspecie)+parseFloat(item.totalVentaSegundaEspecie)+parseFloat(item.totalVentaTerceraEspecie)+parseFloat(item.totalVentaCuartaEspecie)+parseFloat(item.totalVentaQuintaEspecie)+parseFloat(item.totalVentaSextaEspecie)+parseFloat(item.totalVentaSeptimaEspecie)+parseFloat(item.totalVentaOctavaEspecie)+parseFloat(item.totalVentaDecimaEspecie)+parseFloat(item.totalVentaDecimaPrimeraEspecie)+parseFloat(item.totalVentaDecimaSegundaEspecie)+parseFloat(item.totalVentaDecimaTerceraEspecie)+parseFloat(item.totalVentaDecimaCuartaEspecie)+parseFloat(item.totalVentaDecimaQuintaEspecie)+parseFloat(item.totalVentaDecimaSextaEspecie)+parseFloat(item.totalVentaDecimaSeptimaEspecie)+parseFloat(item.totalVentaDecimaOctavaEspecie)+parseFloat(item.totalVentaDecimaNovenaEspecie)+parseFloat(item.totalVentaVigesimaEspecie)+parseFloat(item.totalVentaVigesimaPrimeraEspecie)+parseFloat(item.totalVentaVigesimaSegundaEspecie)+parseFloat(item.totalVentaVigesimaTerceraEspecie)
 
-        let descuentosVentasEspecies = parseFloat(item.totalVentaDescuentoPrimerEspecie)+parseFloat(item.totalVentaDescuentoSegundaEspecie)+parseFloat(item.totalVentaDescuentoTerceraEspecie)+parseFloat(item.totalVentaDescuentoCuartaEspecie)+parseFloat(item.totalVentaDescuentoQuintaEspecie)+parseFloat(item.totalVentaDescuentoSextaEspecie)+parseFloat(item.totalVentaDescuentoSeptimaEspecie)+parseFloat(item.totalVentaDescuentoOctavaEspecie)+parseFloat(item.totalVentaDescuentoDecimaEspecie)+parseFloat(item.totalVentaDescuentoDecimaPrimeraEspecie)+parseFloat(item.totalVentaDescuentoDecimaSegundaEspecie)+parseFloat(item.totalVentaDescuentoDecimaTerceraEspecie)+parseFloat(item.totalVentaDescuentoDecimaCuartaEspecie)+parseFloat(item.totalVentaDescuentoDecimaQuintaEspecie)+parseFloat(item.totalVentaDescuentoDecimaSextaEspecie)+parseFloat(item.totalVentaDescuentoDecimaSeptimaEspecie)+parseFloat(item.totalVentaDescuentoDecimaOctavaEspecie)+parseFloat(item.totalVentaDescuento)
+        let descuentosVentasEspecies = parseFloat(item.totalVentaDescuentoPrimerEspecie)+parseFloat(item.totalVentaDescuentoSegundaEspecie)+parseFloat(item.totalVentaDescuentoTerceraEspecie)+parseFloat(item.totalVentaDescuentoCuartaEspecie)+parseFloat(item.totalVentaDescuentoQuintaEspecie)+parseFloat(item.totalVentaDescuentoSextaEspecie)+parseFloat(item.totalVentaDescuentoSeptimaEspecie)+parseFloat(item.totalVentaDescuentoOctavaEspecie)+parseFloat(item.totalVentaDescuentoDecimaEspecie)+parseFloat(item.totalVentaDescuentoDecimaPrimeraEspecie)+parseFloat(item.totalVentaDescuentoDecimaSegundaEspecie)+parseFloat(item.totalVentaDescuentoDecimaTerceraEspecie)+parseFloat(item.totalVentaDescuentoDecimaCuartaEspecie)+parseFloat(item.totalVentaDescuentoDecimaQuintaEspecie)+parseFloat(item.totalVentaDescuentoDecimaSextaEspecie)+parseFloat(item.totalVentaDescuentoDecimaSeptimaEspecie)+parseFloat(item.totalVentaDescuentoDecimaOctavaEspecie)+parseFloat(item.totalVentaDescuentoDecimaNovenaEspecie)+parseFloat(item.totalVentaDescuentoVigesimaEspecie)+parseFloat(item.totalVentaDescuentoVigesimaPrimeraEspecie)+parseFloat(item.totalVentaDescuentoVigesimaSegundaEspecie)+parseFloat(item.totalVentaDescuentoVigesimaTerceraEspecie)+parseFloat(item.totalVentaDescuento)
         
         let totalSaldoAnteriorV = totalSaldoAnterior - parseFloat(totalPagos)
 
@@ -4789,6 +7409,31 @@ jQuery(function ($) {
             precioDecimaOctavaEspecie = (parseFloat(item.totalVentaDecimaOctavaEspecie) / parseFloat(item.totalPesoDecimaOctavaEspecie)).toFixed(2);
         }
 
+        let precioDecimaNovenaEspecie = 0;
+        if (parseFloat(item.totalPesoDecimaNovenaEspecie) !== 0) {
+            precioDecimaNovenaEspecie = (parseFloat(item.totalVentaDecimaNovenaEspecie) / parseFloat(item.totalPesoDecimaNovenaEspecie)).toFixed(2);
+        }
+
+        let precioVigesimaEspecie = 0;
+        if (parseFloat(item.totalPesoVigesimaEspecie) !== 0) {
+            precioVigesimaEspecie = (parseFloat(item.totalVentaVigesimaEspecie) / parseFloat(item.totalPesoVigesimaEspecie)).toFixed(2);
+        }
+
+        let precioVigesimaPrimeraEspecie = 0;
+        if (parseFloat(item.totalPesoVigesimaPrimeraEspecie) !== 0) {
+            precioVigesimaPrimeraEspecie = (parseFloat(item.totalVentaVigesimaPrimeraEspecie) / parseFloat(item.totalPesoVigesimaPrimeraEspecie)).toFixed(2);
+        }
+
+        let precioVigesimaSegundaEspecie = 0;
+        if (parseFloat(item.totalPesoVigesimaSegundaEspecie) !== 0) {
+            precioVigesimaSegundaEspecie = (parseFloat(item.totalVentaVigesimaSegundaEspecie) / parseFloat(item.totalPesoVigesimaSegundaEspecie)).toFixed(2);
+        }
+
+        let precioVigesimaTerceraEspecie = 0;
+        if (parseFloat(item.totalPesoVigesimaTerceraEspecie) !== 0) {
+            precioVigesimaTerceraEspecie = (parseFloat(item.totalVentaVigesimaTerceraEspecie) / parseFloat(item.totalPesoVigesimaTerceraEspecie)).toFixed(2);
+        }
+
         let totalCantidadDescuento = 0
         let totalPesoDescuento = parseFloat(item.totalPesoDescuento)
         let totalVentaDescuento = parseFloat(item.totalVentaDescuento)
@@ -4815,6 +7460,11 @@ jQuery(function ($) {
         let totalCantidadDecimaSextaEspecie = parseFloat(item.totalCantidadDecimaSextaEspecie)+parseFloat(item.totalCantidadDescuentoDecimaSextaEspecie);
         let totalCantidadDecimaSeptimaEspecie = parseFloat(item.totalCantidadDecimaSeptimaEspecie)+parseFloat(item.totalCantidadDescuentoDecimaSeptimaEspecie);
         let totalCantidadDecimaOctavaEspecie = parseFloat(item.totalCantidadDecimaOctavaEspecie)+parseFloat(item.totalCantidadDescuentoDecimaOctavaEspecie);
+        let totalCantidadDecimaNovenaEspecie = parseFloat(item.totalCantidadDecimaNovenaEspecie)+parseFloat(item.totalCantidadDescuentoDecimaNovenaEspecie);
+        let totalCantidadVigesimaEspecie = parseFloat(item.totalCantidadVigesimaEspecie)+parseFloat(item.totalCantidadDescuentoVigesimaEspecie);
+        let totalCantidadVigesimaPrimeraEspecie = parseFloat(item.totalCantidadVigesimaPrimeraEspecie)+parseFloat(item.totalCantidadDescuentoVigesimaPrimeraEspecie);
+        let totalCantidadVigesimaSegundaEspecie = parseFloat(item.totalCantidadVigesimaSegundaEspecie)+parseFloat(item.totalCantidadDescuentoVigesimaSegundaEspecie);
+        let totalCantidadVigesimaTerceraEspecie = parseFloat(item.totalCantidadVigesimaTerceraEspecie)+parseFloat(item.totalCantidadDescuentoVigesimaTerceraEspecie);
 
         let totalPesoPrimerEspecie = parseFloat(item.totalPesoPrimerEspecie)+parseFloat(item.totalPesoDescuentoPrimerEspecie);
         let totalPesoSegundaEspecie = parseFloat(item.totalPesoSegundaEspecie)+parseFloat(item.totalPesoDescuentoSegundaEspecie);
@@ -4833,6 +7483,11 @@ jQuery(function ($) {
         let totalPesoDecimaSextaEspecie = parseFloat(item.totalPesoDecimaSextaEspecie)+parseFloat(item.totalPesoDescuentoDecimaSextaEspecie);
         let totalPesoDecimaSeptimaEspecie = parseFloat(item.totalPesoDecimaSeptimaEspecie)+parseFloat(item.totalPesoDescuentoDecimaSeptimaEspecie);
         let totalPesoDecimaOctavaEspecie = parseFloat(item.totalPesoDecimaOctavaEspecie)+parseFloat(item.totalPesoDescuentoDecimaOctavaEspecie);
+        let totalPesoDecimaNovenaEspecie = parseFloat(item.totalPesoDecimaNovenaEspecie)+parseFloat(item.totalPesoDescuentoDecimaNovenaEspecie);
+        let totalPesoVigesimaEspecie = parseFloat(item.totalPesoVigesimaEspecie)+parseFloat(item.totalPesoDescuentoVigesimaEspecie);
+        let totalPesoVigesimaPrimeraEspecie = parseFloat(item.totalPesoVigesimaPrimeraEspecie)+parseFloat(item.totalPesoDescuentoVigesimaPrimeraEspecie);
+        let totalPesoVigesimaSegundaEspecie = parseFloat(item.totalPesoVigesimaSegundaEspecie)+parseFloat(item.totalPesoDescuentoVigesimaEspecie);
+        let totalPesoVigesimaTerceraEspecie = parseFloat(item.totalPesoVigesimaTerceraEspecie)+parseFloat(item.totalPesoDescuentoVigesimaTerceraEspecie);
 
         let totalVentaPrimerEspecie = parseFloat(item.totalVentaPrimerEspecie)+parseFloat(item.totalVentaDescuentoPrimerEspecie);
         let totalVentaSegundaEspecie = parseFloat(item.totalVentaSegundaEspecie)+parseFloat(item.totalVentaDescuentoSegundaEspecie);
@@ -4851,6 +7506,11 @@ jQuery(function ($) {
         let totalVentaDecimaSextaEspecie = parseFloat(item.totalVentaDecimaSextaEspecie)+parseFloat(item.totalVentaDescuentoDecimaSextaEspecie);
         let totalVentaDecimaSeptimaEspecie = parseFloat(item.totalVentaDecimaSeptimaEspecie)+parseFloat(item.totalVentaDescuentoDecimaSeptimaEspecie);
         let totalVentaDecimaOctavaEspecie = parseFloat(item.totalVentaDecimaOctavaEspecie)+parseFloat(item.totalVentaDescuentoDecimaOctavaEspecie);
+        let totalVentaDecimaNovenaEspecie = parseFloat(item.totalVentaDecimaNovenaEspecie)+parseFloat(item.totalVentaDescuentoDecimaNovenaEspecie);
+        let totalVentaVigesimaEspecie = parseFloat(item.totalVentaVigesimaEspecie)+parseFloat(item.totalVentaDescuentoVigesimaEspecie);
+        let totalVentaVigesimaPrimeraEspecie = parseFloat(item.totalVentaVigesimaPrimeraEspecie)+parseFloat(item.totalVentaDescuentoVigesimaPrimeraEspecie);
+        let totalVentaVigesimaSegundaEspecie = parseFloat(item.totalVentaVigesimaSegundaEspecie)+parseFloat(item.totalVentaDescuentoVigesimaSegundaEspecie);
+        let totalVentaVigesimaTerceraEspecie = parseFloat(item.totalVentaVigesimaTerceraEspecie)+parseFloat(item.totalVentaDescuentoVigesimaTerceraEspecie);
 
         return `
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -4871,6 +7531,14 @@ jQuery(function ($) {
             </tr>
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${nombreDecimaSeptimaEspecieGlobal}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadDecimaSeptimaEspecie === 1 ? totalCantidadDecimaSeptimaEspecie + ' Ud.' : totalCantidadDecimaSeptimaEspecie + ' Uds.'}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoDecimaSeptimaEspecie).toFixed(2)} Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaDecimaSeptimaEspecie).toFixed(2)}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioDecimaSeptimaEspecie}/Kg.</td>
+            </tr>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${nombreTerceraEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadTerceraEspecie === 1 ? totalCantidadTerceraEspecie + ' Ud.' : totalCantidadTerceraEspecie + ' Uds.'}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoTerceraEspecie).toFixed(2)} Kg.</td>
@@ -4887,83 +7555,11 @@ jQuery(function ($) {
             </tr>
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${nombreQuintaEspecieGlobal}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadQuintaEspecie === 1 ? totalCantidadQuintaEspecie + ' Ud.' : totalCantidadQuintaEspecie + ' Uds.'}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoQuintaEspecie).toFixed(2)} Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaQuintaEspecie).toFixed(2)}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioQuintaEspecie}/Kg.</td>
-            </tr>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${nombreSextaEspecieGlobal}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadSextaEspecie === 1 ? totalCantidadSextaEspecie + ' Ud.' : totalCantidadSextaEspecie + ' Uds.'}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoSextaEspecie).toFixed(2)} Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaSextaEspecie).toFixed(2)}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioSextaEspecie}/Kg.</td>
-            </tr>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${nombreSeptimaEspecieGlobal}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadSeptimaEspecie === 1 ? totalCantidadSeptimaEspecie + ' Ud.' : totalCantidadSeptimaEspecie + ' Uds.'}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoSeptimaEspecie).toFixed(2)} Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaSeptimaEspecie).toFixed(2)}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioSeptimaEspecie}/Kg.</td>
-            </tr>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${nombreOctavaEspecieGlobal}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadOctavaEspecie === 1 ? totalCantidadOctavaEspecie + ' Ud.' : totalCantidadOctavaEspecie + ' Uds.'}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoOctavaEspecie).toFixed(2)} Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaOctavaEspecie).toFixed(2)}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioOctavaEspecie}/Kg.</td>
-            </tr>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${nombreDecimaEspecieGlobal}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadDecimaEspecie === 1 ? totalCantidadDecimaEspecie + ' Ud.' : totalCantidadDecimaEspecie + ' Uds.'}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoDecimaEspecie).toFixed(2)} Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaDecimaEspecie).toFixed(2)}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioDecimaEspecie}/Kg.</td>
-            </tr>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${nombreDecimaPrimeraEspecieGlobal}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadDecimaPrimeraEspecie === 1 ? totalCantidadDecimaPrimeraEspecie + ' Ud.' : totalCantidadDecimaPrimeraEspecie + ' Uds.'}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoDecimaPrimeraEspecie).toFixed(2)} Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaDecimaPrimeraEspecie).toFixed(2)}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioDecimaPrimeraEspecie}/Kg.</td>
-            </tr>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${nombreDecimaSegundaEspecieGlobal}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadDecimaSegundaEspecie === 1 ? totalCantidadDecimaSegundaEspecie + ' Ud.' : totalCantidadDecimaSegundaEspecie + ' Uds.'}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoDecimaSegundaEspecie).toFixed(2)} Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaDecimaSegundaEspecie).toFixed(2)}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioDecimaSegundaEspecie}/Kg.</td>
-            </tr>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${nombreDecimaTerceraEspecieGlobal}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadDecimaTerceraEspecie === 1 ? totalCantidadDecimaTerceraEspecie + ' Ud.' : totalCantidadDecimaTerceraEspecie + ' Uds.'}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoDecimaTerceraEspecie).toFixed(2)} Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaDecimaTerceraEspecie).toFixed(2)}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioDecimaTerceraEspecie}/Kg.</td>
-            </tr>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${nombreDecimaCuartaEspecieGlobal}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadDecimaCuartaEspecie === 1 ? totalCantidadDecimaCuartaEspecie + ' Ud.' : totalCantidadDecimaCuartaEspecie + ' Uds.'}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoDecimaCuartaEspecie).toFixed(2)} Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaDecimaCuartaEspecie).toFixed(2)}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioDecimaCuartaEspecie}/Kg.</td>
-            </tr>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${nombreDecimaQuintaEspecieGlobal}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadDecimaQuintaEspecie === 1 ? totalCantidadDecimaQuintaEspecie + ' Ud.' : totalCantidadDecimaQuintaEspecie + ' Uds.'}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoDecimaQuintaEspecie).toFixed(2)} Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaDecimaQuintaEspecie).toFixed(2)}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioDecimaQuintaEspecie}/Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${nombreDecimaOctavaEspecieGlobal}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadDecimaOctavaEspecie === 1 ? totalCantidadDecimaOctavaEspecie + ' Ud.' : totalCantidadDecimaOctavaEspecie + ' Uds.'}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoDecimaOctavaEspecie).toFixed(2)} Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaDecimaOctavaEspecie).toFixed(2)}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioDecimaOctavaEspecie}/Kg.</td>
             </tr>
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
@@ -4975,20 +7571,137 @@ jQuery(function ($) {
             </tr>
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${nombreDecimaSeptimaEspecieGlobal}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadDecimaSeptimaEspecie === 1 ? totalCantidadDecimaSeptimaEspecie + ' Ud.' : totalCantidadDecimaSeptimaEspecie + ' Uds.'}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoDecimaSeptimaEspecie).toFixed(2)} Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaDecimaSeptimaEspecie).toFixed(2)}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioDecimaSeptimaEspecie}/Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${nombreDecimaNovenaEspecieGlobal}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadDecimaNovenaEspecie === 1 ? totalCantidadDecimaNovenaEspecie + ' Ud.' : totalCantidadDecimaNovenaEspecie + ' Uds.'}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoDecimaNovenaEspecie).toFixed(2)} Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaDecimaNovenaEspecie).toFixed(2)}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioDecimaNovenaEspecie}/Kg.</td>
             </tr>
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${nombreDecimaOctavaEspecieGlobal}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadDecimaOctavaEspecie === 1 ? totalCantidadDecimaOctavaEspecie + ' Ud.' : totalCantidadDecimaOctavaEspecie + ' Uds.'}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoDecimaOctavaEspecie).toFixed(2)} Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaDecimaOctavaEspecie).toFixed(2)}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioDecimaOctavaEspecie}/Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${nombreQuintaEspecieGlobal}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadQuintaEspecie === 1 ? totalCantidadQuintaEspecie + ' Ud.' : totalCantidadQuintaEspecie + ' Uds.'}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoQuintaEspecie).toFixed(2)} Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaQuintaEspecie).toFixed(2)}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioQuintaEspecie}/Kg.</td>
             </tr>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${nombreVigesimaEspecieGlobal}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadVigesimaEspecie === 1 ? totalCantidadVigesimaEspecie + ' Ud.' : totalCantidadVigesimaEspecie + ' Uds.'}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoVigesimaEspecie).toFixed(2)} Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaVigesimaEspecie).toFixed(2)}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioVigesimaEspecie}/Kg.</td>
+            </tr>
+            ${totalVentaSextaEspecie ? `
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${nombreSextaEspecieGlobal}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadSextaEspecie === 1 ? totalCantidadSextaEspecie + ' Ud.' : totalCantidadSextaEspecie + ' Uds.'}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoSextaEspecie).toFixed(2)} Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaSextaEspecie).toFixed(2)}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioSextaEspecie}/Kg.</td>
+            </tr>` : ''}
+            ${totalVentaVigesimaPrimeraEspecie ? `
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${nombreVigesimaPrimeraEspecieGlobal}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadVigesimaPrimeraEspecie === 1 ? totalCantidadVigesimaPrimeraEspecie + ' Ud.' : totalCantidadVigesimaPrimeraEspecie + ' Uds.'}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoVigesimaPrimeraEspecie).toFixed(2)} Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaVigesimaPrimeraEspecie).toFixed(2)}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioVigesimaPrimeraEspecie}/Kg.</td>
+            </tr>` : ''}
+            ${totalVentaSeptimaEspecie ? `
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${nombreSeptimaEspecieGlobal}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadSeptimaEspecie === 1 ? totalCantidadSeptimaEspecie + ' Ud.' : totalCantidadSeptimaEspecie + ' Uds.'}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoSeptimaEspecie).toFixed(2)} Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaSeptimaEspecie).toFixed(2)}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioSeptimaEspecie}/Kg.</td>
+            </tr>` : ''}
+            ${totalVentaVigesimaSegundaEspecie ? `
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${nombreVigesimaSegundaEspecieGlobal}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadVigesimaSegundaEspecie === 1 ? totalCantidadVigesimaSegundaEspecie + ' Ud.' : totalCantidadVigesimaSegundaEspecie + ' Uds.'}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoVigesimaSegundaEspecie).toFixed(2)} Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaVigesimaSegundaEspecie).toFixed(2)}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioVigesimaSegundaEspecie}/Kg.</td>
+            </tr>` : ''}
+            ${totalVentaOctavaEspecie ? `
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${nombreOctavaEspecieGlobal}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadOctavaEspecie === 1 ? totalCantidadOctavaEspecie + ' Ud.' : totalCantidadOctavaEspecie + ' Uds.'}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoOctavaEspecie).toFixed(2)} Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaOctavaEspecie).toFixed(2)}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioOctavaEspecie}/Kg.</td>
+            </tr>` : ''}
+            ${totalVentaVigesimaTerceraEspecie ? `
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${nombreVigesimaTerceraEspecieGlobal}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadVigesimaTerceraEspecie === 1 ? totalCantidadVigesimaTerceraEspecie + ' Ud.' : totalCantidadVigesimaTerceraEspecie + ' Uds.'}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoVigesimaTerceraEspecie).toFixed(2)} Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaVigesimaTerceraEspecie).toFixed(2)}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioVigesimaTerceraEspecie}/Kg.</td>
+            </tr>` : ''}
+            ${totalVentaDecimaEspecie ? `
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${nombreDecimaEspecieGlobal}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadDecimaEspecie === 1 ? totalCantidadDecimaEspecie + ' Ud.' : totalCantidadDecimaEspecie + ' Uds.'}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoDecimaEspecie).toFixed(2)} Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaDecimaEspecie).toFixed(2)}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioDecimaEspecie}/Kg.</td>
+            </tr>` : ''}
+            ${totalVentaDecimaPrimeraEspecie ? `
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${nombreDecimaPrimeraEspecieGlobal}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadDecimaPrimeraEspecie === 1 ? totalCantidadDecimaPrimeraEspecie + ' Ud.' : totalCantidadDecimaPrimeraEspecie + ' Uds.'}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoDecimaPrimeraEspecie).toFixed(2)} Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaDecimaPrimeraEspecie).toFixed(2)}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioDecimaPrimeraEspecie}/Kg.</td>
+            </tr>` : ''}
+            ${totalVentaDecimaSegundaEspecie ? `
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${nombreDecimaSegundaEspecieGlobal}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadDecimaSegundaEspecie === 1 ? totalCantidadDecimaSegundaEspecie + ' Ud.' : totalCantidadDecimaSegundaEspecie + ' Uds.'}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoDecimaSegundaEspecie).toFixed(2)} Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaDecimaSegundaEspecie).toFixed(2)}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioDecimaSegundaEspecie}/Kg.</td>
+            </tr>` : ''}
+            ${totalVentaDecimaTerceraEspecie ? `
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${nombreDecimaTerceraEspecieGlobal}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadDecimaTerceraEspecie === 1 ? totalCantidadDecimaTerceraEspecie + ' Ud.' : totalCantidadDecimaTerceraEspecie + ' Uds.'}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoDecimaTerceraEspecie).toFixed(2)} Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaDecimaTerceraEspecie).toFixed(2)}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioDecimaTerceraEspecie}/Kg.</td>
+            </tr>` : ''}
+            ${totalVentaDecimaCuartaEspecie ? `
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${nombreDecimaCuartaEspecieGlobal}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadDecimaCuartaEspecie === 1 ? totalCantidadDecimaCuartaEspecie + ' Ud.' : totalCantidadDecimaCuartaEspecie + ' Uds.'}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoDecimaCuartaEspecie).toFixed(2)} Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaDecimaCuartaEspecie).toFixed(2)}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioDecimaCuartaEspecie}/Kg.</td>
+            </tr>` : ''}
+            ${totalVentaDecimaQuintaEspecie ? `
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${nombreDecimaQuintaEspecieGlobal}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadDecimaQuintaEspecie === 1 ? totalCantidadDecimaQuintaEspecie + ' Ud.' : totalCantidadDecimaQuintaEspecie + ' Uds.'}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoDecimaQuintaEspecie).toFixed(2)} Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaDecimaQuintaEspecie).toFixed(2)}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioDecimaQuintaEspecie}/Kg.</td>
+            </tr>` : ''}
+            ${totalVentaDescuento ? `
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">DESCUENTO</td>
@@ -4996,7 +7709,7 @@ jQuery(function ($) {
                 <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoDescuento).toFixed(2)} Kg.</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaDescuento).toFixed(2)}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioDescuentoEspecies}/Kg.</td>
-            </tr>
+            </tr>` : ''}
             <tr class="bg-white dark:bg-gray-800 h-0.5">
                 <td class="text-center" colspan="2"></td>
                 <td class="text-center h-0.5 bg-gray-800 dark:bg-gray-300" colspan="4"></td>
@@ -5004,13 +7717,4 @@ jQuery(function ($) {
         `;
     }
 
-    $('#minimizarPrecios').on('change',function(){
-        if(this.checked){
-            $('#tablaCuentaDelCliente th:nth-child(6)').hide();
-            $('#tablaCuentaDelCliente td:nth-child(6)').hide();
-        } else {
-            $('#tablaCuentaDelCliente th:nth-child(6)').show();
-            $('#tablaCuentaDelCliente td:nth-child(6)').show();
-        }
-    });
 })

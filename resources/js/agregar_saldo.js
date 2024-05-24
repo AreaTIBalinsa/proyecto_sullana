@@ -67,7 +67,13 @@ jQuery(function($) {
                                 <td class="border dark:border-gray-700 p-2 text-center whitespace-nowrap">${total.toFixed(2)}</td>
                             `));
                         }
-                        else{
+                        else if(total < 0){
+                            nuevaFila = $('<tr class="bg-green-600 border-b dark:border-gray-700 text-white hover:bg-green-700 cursor-pointer">');
+                            // Agregar las celdas con la información
+                            nuevaFila.append($('<td class="hidden">').text(obj.codigoCli));
+                            nuevaFila.append($('<td class="border dark:border-gray-700 p-2 font-medium whitespace-nowrap">').text(obj.nombreCompleto));
+                            nuevaFila.append($('<td class="border dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(parseFloat(total).toFixed(2)));
+                        }else{
                             nuevaFila = $('<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
                             // Agregar las celdas con la información
                             nuevaFila.append($('<td class="hidden">').text(obj.codigoCli));

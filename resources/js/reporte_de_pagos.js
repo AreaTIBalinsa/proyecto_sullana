@@ -1,4 +1,7 @@
 import jQuery from 'jquery';
+import jsPDF from 'jspdf/dist/jspdf.es.min.js';
+import 'jspdf-autotable';
+import html2canvas from 'html2canvas';
 
 window.$ = jQuery;
 
@@ -1843,5 +1846,29 @@ jQuery(function ($) {
             }
         });
     }
+
+    $(document).on("click", "#btnEnviarCuentaWhatsApp", function() {
+        let nombreCliente = $('#idCuentaDelCliente').val().trim();
+        let doc = new jsPDF();
+
+        let eje_y = 15
+
+        doc.setFillColor(41, 128, 186);
+        doc.roundedRect(14, 8, 182, 10, 1, 1, 'F');
+
+        doc.setTextColor(255, 255, 255);
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(16);
+        let nombreClienteWidth = doc.getStringUnitWidth(nombreCliente) * doc.internal.getFontSize() / doc.internal.scaleFactor;
+        let xPosition = (doc.internal.pageSize.width - nombreClienteWidth) / 2;
+        doc.text(nombreCliente, xPosition, eje_y);
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(12);
+        eje_y += 10
+        doc.autoTable({ html: '#tablaCuentaDelCliente', startY: eje_y });
+        
+        // Guarda el PDF
+        doc.save('cuenta_del_cliente.pdf');
+    });          
 
 })

@@ -20,9 +20,13 @@
         "datatables.net-responsive-dt": "^3.0.2",
         "firebase": "^10.4.0",
         "flowbite": "^2.2.1",
+        "html2canvas": "^1.4.1",
         "jquery": "^3.7.1",
+        "jspdf": "^2.5.1",
+        "jspdf-autotable": "^3.8.2",
         "jszip": "^3.10.1",
         "kutty": "^0.6.0",
+        "pdfjs-dist": "^4.2.67",
         "pdfmake": "^0.2.10",
         "toastr": "^2.1.4",
         "vite": "^4.4.9"

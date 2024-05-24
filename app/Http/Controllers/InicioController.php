@@ -36,6 +36,23 @@ class InicioController extends Controller
         return response()->json(['error' => 'Usuario no autenticado'], 401);
     }
 
+    public function consulta_DatosEspecie2(Request $request)
+    {
+        if (Auth::check()) {
+            // Realiza la consulta a la base de datos
+            $datos = DatosEspecie::select('idEspecie', 'nombreEspecie')
+                ->orderBy('idEspecie', 'asc')
+                ->where('idEspecie', '!=' , '9')
+                ->get();
+
+            // Devuelve los datos en formato JSON
+            return response()->json($datos);
+        }
+
+        // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
+        return response()->json(['error' => 'Usuario no autenticado'], 401);
+    }
+
     public function consulta_TraerDatosEnTiempoReal(Request $request)
     {
         if (Auth::check()) {
