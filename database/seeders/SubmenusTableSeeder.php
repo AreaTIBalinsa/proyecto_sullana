@@ -30,6 +30,7 @@ class SubmenusTableSeeder extends Seeder
             ['idSubMenu' => 14, 'idMenu' => 3, 'nombreSubMenu' => 'Caja Chica', 'idNombreSubMenu' => '#', 'hrefSubMenu' => '/caja_chica', 'iconHtml' => 'bx bx-box', 'estadoSubMenu' => 1],
             ['idSubMenu' => 15, 'idMenu' => 1, 'nombreSubMenu' => 'Deuda Maxima', 'idNombreSubMenu' => '#', 'hrefSubMenu' => '/deuda_maxima', 'iconHtml' => 'bx bxs-hand', 'estadoSubMenu' => 1],
             ['idSubMenu' => 16, 'idMenu' => 2, 'nombreSubMenu' => 'Seguimiento Pedidos', 'idNombreSubMenu' => '#', 'hrefSubMenu' => '/seguimiento_pedidos', 'iconHtml' => 'bx bx-stats', 'estadoSubMenu' => 1],
+            ['idSubMenu' => 16, 'idMenu' => 2, 'nombreSubMenu' => 'Cuenta de Cliente', 'idNombreSubMenu' => '#', 'hrefSubMenu' => '/cuenta_cliente', 'iconHtml' => 'bx bxs-user-detail', 'estadoSubMenu' => 1],
         ]);
     }
 }

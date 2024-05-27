@@ -138,7 +138,7 @@
                         </div>
     
                         <!-- Etiquetas ocultas para almacenar los datos seleccionados -->
-                        <label id="selectedCodigoCliCuentaDelCliente" class="hidden" val=""></label>
+                        <label id="selectedCodigoCliCuentaDelCliente" class="hidden" value=""></label>
     
                         <!-- Contenedor para las sugerencias -->
                         <div id="contenedorClientesCuentaDelCliente" class="max-w-xs w-full overflow-hidden overflow-y-auto absolute max-h-40 z-10 text-gray-900 dark:text-gray-50 top-full left-0 bg-white dark:bg-gray-800 border rounded hidden outline-none">
@@ -158,9 +158,9 @@
                             <button class="text-base py-2 px-5 bg-blue-600 hover:bg-blue-700 text-gray-50 rounded-lg w-full md:w-auto" id="btnBuscarCuentaDelCliente"><i class='bx bx-search-alt'></i> Buscar</button>
                         </div>
                     </div>
-                    <div class="flex items-center justify-end py-1 rounded-xl px-1">
+                    {{-- <div class="flex items-center justify-end py-1 rounded-xl px-1">
                         <button class="text-base py-2 px-5 bg-green-600 hover:bg-green-700 text-gray-50 rounded-lg w-full md:w-auto flex gap-2 items-center" id="btnEnviarCuentaWhatsApp"><img src='{{ asset("img/WhatsApp.png") }}' alt="" class="h-5"> Enviar Cuenta</button>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
             {{-- Tabla --}}

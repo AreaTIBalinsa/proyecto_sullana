@@ -15,9 +15,11 @@
         "webpack-cli": "^5.1.4"
     },
     "dependencies": {
+        "canvas": "^2.11.2",
         "datatables.net-buttons-dt": "^3.0.2",
         "datatables.net-dt": "^2.0.6",
         "datatables.net-responsive-dt": "^3.0.2",
+        "dom-to-image": "^2.6.0",
         "firebase": "^10.4.0",
         "flowbite": "^2.2.1",
         "html2canvas": "^1.4.1",
@@ -26,9 +28,12 @@
         "jspdf-autotable": "^3.8.2",
         "jszip": "^3.10.1",
         "kutty": "^0.6.0",
+        "pdf-lib": "^1.17.1",
         "pdfjs-dist": "^4.2.67",
         "pdfmake": "^0.2.10",
         "toastr": "^2.1.4",
+        "twilio": "^5.1.0",
+        "twilio-client": "^1.15.1",
         "vite": "^4.4.9"
     }
 }

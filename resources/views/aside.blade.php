@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
     <link href="https://cdn.datatables.net/2.0.6/css/dataTables.dataTables.min.css" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.1.392/pdf_viewer.min.css' rel='stylesheet'>
     <link href='{{ asset("css/alertify.css") }}' rel='stylesheet'>
     <link href='{{ asset("css/app.css") }}' rel='stylesheet'>
 </head>
@@ -106,8 +107,9 @@
     <!-- And then the single component -->
     <script src="https://cdn.jsdelivr.net/npm/kutty@latest/dist/dropdown.min.js"></script>
 
-    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.5/xlsx.full.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.12.313/pdf.min.js"></script>
 
     <?php
     $hrefSubMenus = [];
@@ -131,6 +133,8 @@
         if (hrefSubMenus.length > 0 && hrefSubMenus.indexOf(rutaActual) === -1) {
             window.location.href = hrefSubMenus[0];
         }
+
+        var node = document.getElementById('htmlcapture');
     </script>
 
 </body>

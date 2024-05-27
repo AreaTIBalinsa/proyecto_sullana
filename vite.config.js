@@ -25,6 +25,7 @@ export default defineConfig({
                     'resources/js/caja_chica.js',
                     'resources/js/deuda_maxima.js',
                     'resources/js/seguimiento_pedidos.js',
+                    'resources/js/cuenta_cliente.js',
                 ],
             refresh: true,
         }),

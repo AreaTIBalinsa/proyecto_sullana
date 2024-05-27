@@ -21,6 +21,7 @@ use App\Http\Controllers\CajaChicaController;
 use App\Http\Controllers\DeudaMaximaController;
 use App\Http\Controllers\PedidosController;
 use App\Http\Controllers\SeguimientoPedidosController;
+use App\Http\Controllers\CuentaClienteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,6 +65,7 @@ Route::get('/pedidos',[PedidosController::class,'show']);
 Route::get('/caja_chica',[CajaChicaController::class,'show']);
 Route::get('/deuda_maxima',[DeudaMaximaController::class,'show']);
 Route::get('/seguimiento_pedidos',[SeguimientoPedidosController::class,'show']);
+Route::get('/cuenta_cliente',[CuentaClienteController::class,'show']);
 
 /* ============================== Termina Controladores para Mostrar Vistas ============================== */
 
