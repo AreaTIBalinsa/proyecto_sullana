@@ -13,7 +13,7 @@
         <label id="totalCuentaDia" class="hidden" value="0"></label>
         <label id="totalPagos" class="hidden" value="0"></label>
         {{-- Segundo Contenedor Reporte Pagos --}}
-        <div class="overflow-x-auto md:mx-5 mt-0 mb-5 relative">
+        <div class="overflow-x-auto mt-0 mb-5 relative">
             <div class="flex flex-col gap-5">
                 <div class="flex justify-center items-start flex-col relative">
                     <label for="idCuentaDelCliente" class="mb-2 text-base font-medium text-gray-900 dark:text-white">Cliente :</label>
@@ -41,8 +41,21 @@
                         <button class="text-base py-2 px-5 bg-blue-600 hover:bg-blue-700 text-gray-50 rounded-lg w-full md:w-auto" id="btnBuscarCuentaDelCliente"><i class='bx bx-search-alt'></i> Buscar</button>
                     </div>
                 </div>
-                <div class="flex items-center justify-end py-1 rounded-xl px-1">
+                <div class="flex items-center justify-end py-1 rounded-xl px-1 flex-wrap gap-4">
                     <button class="text-base py-2 px-5 bg-green-600 hover:bg-green-700 text-gray-50 rounded-lg w-full md:w-auto flex gap-2 items-center justify-center" id="btnEnviarCuentaWhatsApp"><img src='{{ asset("img/WhatsApp.png") }}' alt="" class="h-5"> Enviar Cuenta</button>
+                    <div class="w-full md:w-56">
+                        <div class="flex items-center">
+                            <button class="flex p-2.5 z-20 text-sm text-gray-900 bg-gray-50 rounded-l-lg border-s-0 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-s-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500" type="button">
+                                <svg xmlns="http://www.w3.org/2000/svg"	width="30"	height="20">
+                                    <path fill="#D91023" d="m0,0h30v20H0"/>
+                                    <path fill="#FFF" d="m10,0h10v20H10"/> 	
+                                    </svg> +51
+                            </button>
+                            <div class="relative w-full">
+                                <input type="text" id="phoneInput" class="validarEntradasDeCelular block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-e-lg border-s-0 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-s-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500" placeholder="987-654-321"/>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -7,7 +7,7 @@
     },
     "devDependencies": {
         "autoprefixer": "^10.4.14",
-        "axios": "^1.1.2",
+        "axios": "^1.7.2",
         "laravel-vite-plugin": "^0.7.5",
         "postcss": "^8.4.27",
         "tailwindcss": "^3.3.3",
@@ -31,6 +31,7 @@
         "pdf-lib": "^1.17.1",
         "pdfjs-dist": "^4.2.67",
         "pdfmake": "^0.2.10",
+        "puppeteer": "^22.10.0",
         "toastr": "^2.1.4",
         "twilio": "^5.1.0",
         "twilio-client": "^1.15.1",

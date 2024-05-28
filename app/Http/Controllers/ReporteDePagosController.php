@@ -145,7 +145,7 @@ class ReporteDePagosController extends Controller
 
         if (Auth::check()) {
             // Realiza la consulta a la base de datos
-            $datos = TraerClientesCuentaDelCliente::select('idCliente', 'codigoCli',DB::raw('CONCAT_WS(" ", nombresCli, apellidoPaternoCli, apellidoMaternoCli) AS nombreCompleto'))
+            $datos = TraerClientesCuentaDelCliente::select('idCliente','contactoCli', 'codigoCli',DB::raw('CONCAT_WS(" ", nombresCli, apellidoPaternoCli, apellidoMaternoCli) AS nombreCompleto'))
                 ->where('estadoEliminadoCli','=',1)
                 ->where('idEstadoCli','=',1)
                 ->where(function($query) use ($nombreCuentaDelCliente) {
