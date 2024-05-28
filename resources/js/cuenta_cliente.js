@@ -7859,331 +7859,6 @@ jQuery(function ($) {
         `;
     }
 
-    // $(document).on("click", "#btnEnviarCuentaWhatsApp", function() {
-    //     let nombreCliente = $('#idCuentaDelCliente').val().trim();
-    //     let fechaCuentaDelCliente = $('#fechaCuentaDelCliente').val().trim();
-    //     let mensajeDeudaDia = $('#mensajeDeudaDia').text().trim();
-    //     let horaFormateada = new Date().toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit', second: '2-digit' }).replace(/ /g, '');
-    
-    //     let doc = new jsPDF();
-    
-    //     let eje_y = 15;
-    
-    //     doc.setFillColor(41, 128, 186);
-    //     doc.roundedRect(14, 8, 182, 10, 1, 1, 'F');
-    
-    //     doc.setTextColor(255, 255, 255);
-    //     doc.setFont("helvetica", "bold");
-    //     doc.setFontSize(16);
-    //     let nombreClienteWidth = doc.getStringUnitWidth(nombreCliente) * doc.internal.getFontSize() / doc.internal.scaleFactor;
-    //     let xPosition = (doc.internal.pageSize.width - nombreClienteWidth) / 2;
-    //     doc.text(nombreCliente, xPosition, eje_y);
-    //     doc.setFont("helvetica", "normal");
-    //     doc.setFontSize(12);
-    //     eje_y += 10;
-    
-    //     // Dibujar la tabla
-    //     doc.autoTable({ html: '#tablaCuentaDelCliente', startY: eje_y });
-
-    //     // Obtener la última posición Y después de la tabla
-    //     let altoTabla = doc.autoTable.previous.finalY;
-    
-    //     // Añadir el mensaje de deuda del día después de la tabla
-    //     eje_y = altoTabla + 10;
-    //     doc.setTextColor(0, 0, 0);
-    //     doc.text(mensajeDeudaDia, 14, eje_y);
-    
-    //     // let nombrePDF = `${nombreCliente}-${fechaCuentaDelCliente}-${horaFormateada}.pdf`;
-    //     // Guarda el PDF
-    //     // doc.save(nombrePDF);
-    //     let pdfBase64 = doc.output('datauristring');
-    //     renderPdfToImages(pdfBase64)
-    // });
-
-    // $(document).on("click", "#btnEnviarCuentaWhatsApp", function() {
-    //     let nombreCliente = $('#idCuentaDelCliente').val().trim();
-    //     let fechaCuentaDelCliente = $('#fechaCuentaDelCliente').val().trim();
-    //     let horaFormateada = new Date().toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit', second: '2-digit' }).replace(/ /g, '');
-    //     let nombreIMG = `${nombreCliente}-${fechaCuentaDelCliente}-${horaFormateada}.jpeg`;
-
-    //     // Obtener el contenedor y ajustar su tamaño si es necesario
-    //     let container = document.getElementById('hmtlCapture');
-    //     let originalWidth = container.offsetWidth;
-    //     let originalHeight = container.offsetHeight;
-        
-    //     // Ajustar el tamaño del contenedor para asegurarse de que todo el contenido se capture
-    //     container.style.width = originalWidth + 'px'; // Mantener el ancho original
-    //     container.style.height = originalHeight + 'px'; // Mantener la altura original
-
-    //     // Usar setTimeout para dar tiempo al navegador para ajustar el tamaño
-    //     setTimeout(function() {
-    //         domtoimage.toJpeg(container, { quality: 0.95 })
-    //         .then(function(dataUrl) {
-    //             let link = document.createElement('a');
-    //             link.download = nombreIMG;
-    //             link.href = dataUrl;
-    //             link.click();
-
-    //             // Restaurar el tamaño original del contenedor
-    //             container.style.width = originalWidth + 'px';
-    //             container.style.height = originalHeight + 'px';
-    //         });
-    //     }, 500); // 500 ms de retraso para asegurar la renderización completa
-    // });
-
-    // $(document).on("click", "#btnEnviarCuentaWhatsApp", function() {
-    //     let nombreCliente = $('#idCuentaDelCliente').val().trim();
-    //     let fechaCuentaDelCliente = $('#fechaCuentaDelCliente').val().trim();
-    //     let horaFormateada = new Date().toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit', second: '2-digit' }).replace(/ /g, '');
-    //     let nombreIMG = `${nombreCliente}-${fechaCuentaDelCliente}-${horaFormateada}.jpeg`;
-
-    //     // Obtener el contenedor y ajustar su tamaño si es necesario
-    //     let container = document.getElementById('hmtlCapture');
-    //     let originalWidth = container.offsetWidth;
-    //     let originalHeight = container.offsetHeight;
-        
-    //     // Ajustar el tamaño del contenedor para asegurarse de que todo el contenido se capture
-    //     container.style.width = originalWidth + 'px'; // Mantener el ancho original
-    //     container.style.height = originalHeight + 'px'; // Mantener la altura original
-
-    //     // Usar setTimeout para dar tiempo al navegador para ajustar el tamaño
-    //     setTimeout(function() {
-    //         domtoimage.toJpeg(container, { quality: 0.95 })
-    //         .then(function(dataUrl) {
-    //             // Subir la imagen a Firebase Storage
-    //             subirImagen(nombreIMG, dataUrl)
-    //             .then(function(snapshot) {
-    //                 // Obtener el enlace público de la imagen
-    //                 return obtenerEnlacePublico(nombreIMG);
-    //             })
-    //             .then(function(enlacePublico) {
-    //                 // Compartir el enlace por WhatsApp
-    //                 var mensaje = `¡Hola! Aquí está tu imagen: ${enlacePublico}`;
-    //                 // Aquí puedes utilizar una biblioteca o API para enviar mensajes de WhatsApp en segundo plano
-    //                 console.log(mensaje);
-    //             })
-    //             .catch(function(error) {
-    //                 console.error("Error al subir la imagen:", error);
-    //             });
-
-    //             // Restaurar el tamaño original del contenedor
-    //             container.style.width = originalWidth + 'px';
-    //             container.style.height = originalHeight + 'px';
-    //         });
-    //     }, 500); // 500 ms de retraso para asegurar la renderización completa
-    // });
-
-    // // Obtener el enlace público de la imagen
-    // function obtenerEnlacePublico(nombreImagen) {
-    //     var storageRef = firebase.storage().ref();
-    //     var imagenRef = storageRef.child(nombreImagen);
-        
-    //     return imagenRef.getDownloadURL();
-    // }
-    
-    // // Subir la imagen a Firebase Storage
-    // function subirImagen(nombreImagen, imagenBase64) {
-    //     // Obtener una referencia al almacenamiento en la nube de Firebase
-    //     var storageRef = firebase.storage().ref();
-        
-    //     // Crear una referencia a la ubicación donde se almacenará la imagen
-    //     var imagenRef = storageRef.child(nombreImagen);
-        
-    //     // Convertir la imagen en base64 a un Blob
-    //     var imagenBlob = dataURItoBlob(imagenBase64);
-        
-    //     // Subir el Blob a Firebase Storage
-    //     return imagenRef.put(imagenBlob);
-    // }
-
-    // // Función para convertir una imagen en base64 a Blob
-    // function dataURItoBlob(dataURI) {
-    //     var byteString = atob(dataURI.split(',')[1]);
-    //     var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
-    //     var ab = new ArrayBuffer(byteString.length);
-    //     var ia = new Uint8Array(ab);
-    //     for (var i = 0; i < byteString.length; i++) {
-    //         ia[i] = byteString.charCodeAt(i);
-    //     }
-    //     return new Blob([ab], { type: mimeString });
-    // }
-
-    // ni idea
-    // $(document).on("click", "#btnEnviarCuentaWhatsAppTelefono", function() {
-    //     let nombreCliente = $('#idCuentaDelCliente').val().trim();
-    //     let fechaCuentaDelCliente = $('#fechaCuentaDelCliente').val().trim();
-    //     let mensajeDeudaDia = $('#mensajeDeudaDia').text().trim();
-    //     let horaFormateada = new Date().toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit', second: '2-digit' }).replace(/ /g, '');
-    
-    //     let doc = new jsPDF();
-    
-    //     let eje_y = 15;
-    
-    //     doc.setFillColor(41, 128, 186);
-    //     doc.roundedRect(14, 8, 182, 10, 1, 1, 'F');
-    
-    //     doc.setTextColor(255, 255, 255);
-    //     doc.setFont("helvetica", "bold");
-    //     doc.setFontSize(16);
-    //     let nombreClienteWidth = doc.getStringUnitWidth(nombreCliente) * doc.internal.getFontSize() / doc.internal.scaleFactor;
-    //     let xPosition = (doc.internal.pageSize.width - nombreClienteWidth) / 2;
-    //     doc.text(nombreCliente, xPosition, eje_y);
-    //     doc.setFont("helvetica", "normal");
-    //     doc.setFontSize(12);
-    //     eje_y += 10;
-    
-    //     // Dibujar la tabla
-    //     doc.autoTable({ html: '#tablaCuentaDelCliente', startY: eje_y });
-    
-    //     // Obtener la última posición Y después de la tabla
-    //     let altoTabla = doc.autoTable.previous.finalY;
-    
-    //     // Añadir el mensaje de deuda del día después de la tabla
-    //     eje_y = altoTabla + 10;
-    //     doc.setTextColor(0, 0, 0);
-    //     doc.text(mensajeDeudaDia, 14, eje_y);
-
-    //     let nombreIMG = `${nombreCliente}-${fechaCuentaDelCliente}-${horaFormateada}`;
-    
-    //     // Generar PDF y Convertir a Imágenes
-    //     let pdfBase64 = doc.output('datauristring');
-    //     let base64Pdf = pdfBase64.split(',')[1];
-    //     downloadPdfImages(base64Pdf, nombreIMG);
-    // });
-    
-    // function downloadPdfImages(base64Pdf, nombreIMG) {
-    //     const uint8ArrayPdf = base64ToUint8Array(base64Pdf);
-    //     const loadingTask = pdfjsLib.getDocument({ data: uint8ArrayPdf });
-    //     loadingTask.promise.then(async pdf => {
-    //         const pageCount = pdf.numPages;
-    //         for (let i = 0; i < pageCount; i++) {
-    //             const page = await pdf.getPage(i + 1);
-    //             const viewport = page.getViewport({ scale: 1.5 });
-    //             const canvas = document.createElement('canvas');
-    //             canvas.width = viewport.width;
-    //             canvas.height = viewport.height;
-    //             const context = canvas.getContext('2d');
-    //             const renderContext = {
-    //                 canvasContext: context,
-    //                 viewport: viewport
-    //             };
-    //             await page.render(renderContext).promise;
-    //             const imgData = canvas.toDataURL('image/png');
-    //             downloadImage(imgData, `${nombreIMG}.png`);
-    //         }
-    //     });
-    // }
-    
-    // function downloadImage(dataUrl, filename) {
-    //     const a = document.createElement('a');
-    //     a.href = dataUrl;
-    //     a.download = filename;
-    //     a.style.display = 'none';
-    //     document.body.appendChild(a);
-    //     a.click();
-    //     document.body.removeChild(a);
-    // }
-    
-    // function base64ToUint8Array(base64) {
-    //     const raw = atob(base64);
-    //     const uint8Array = new Uint8Array(raw.length);
-    //     for (let i = 0; i < raw.length; i++) {
-    //         uint8Array[i] = raw.charCodeAt(i);
-    //     }
-    //     return uint8Array;
-    // }
-
-    // $(document).on("click", "#btnEnviarCuentaWhatsApp", function() {
-    //     let nombreCliente = $('#idCuentaDelCliente').val().trim();
-    //     let fechaCuentaDelCliente = $('#fechaCuentaDelCliente').val().trim();
-    //     let phoneNumber = $('#phoneInput').val().trim().replace(/\s/g, '');
-    //     let horaFormateada = new Date().toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit', second: '2-digit' }).replace(/ /g, '');
-    //     let nombreIMG = `${nombreCliente}-${fechaCuentaDelCliente}-${horaFormateada}.jpeg`;
-    
-    //     // Obtener el contenedor
-    //     let container = document.getElementById('hmtlCapture');
-    
-    //     // Usar setTimeout para dar tiempo al navegador para ajustar el tamaño
-    //     setTimeout(function() {
-    //         domtoimage.toJpeg(container, { quality: 0.95 })
-    //         .then(function(dataUrl) {
-    //             // Subir el archivo a file.io
-    //             subirAFileIO(dataUrl, nombreIMG)
-    //             .then(function(url) {
-    //                 // Crear el mensaje que incluye el enlace del archivo en file.io
-    //                 let mensaje = `¡Hola! Adjunto te envío la Imagen con la cuenta del cliente. Puedes descargarlo aquí: ${url}`;
-    
-    //                 // Crear el enlace de mensaje predefinido de WhatsApp
-    //                 let linkWhatsApp = `https://wa.me/+51${phoneNumber}?text=${encodeURIComponent(mensaje)}`;
-    
-    //                 // Abrir la ventana de WhatsApp con el enlace de mensaje predefinido
-    //                 window.open(linkWhatsApp, '_blank');
-    //             })
-    //             .catch(function(error) {
-    //                 console.error('Error al subir el archivo a file.io:', error);
-    //             });
-    //         });
-    //     }, 500);
-    // });
-    
-    // // Función para subir el archivo a file.io
-    // function subirAFileIO(dataUrl, nombreArchivo) {
-    //     // Construir el objeto FormData para enviar el archivo
-    //     let formData = new FormData();
-    //     formData.append('file', dataURItoBlob(dataUrl), nombreArchivo);
-    
-    //     // Realizar la solicitud POST a file.io
-    //     return fetch('https://file.io/', {
-    //         method: 'POST',
-    //         body: formData
-    //     })
-    //     .then(response => response.json())
-    //     .then(data => {
-    //         // Retornar el enlace proporcionado por file.io
-    //         return data.link;
-    //     });
-    // }
-    
-    // // Función para convertir una URI de datos en un Blob
-    // function dataURItoBlob(dataURI) {
-    //     let byteString = atob(dataURI.split(',')[1]);
-    //     let mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
-    //     let arrayBuffer = new ArrayBuffer(byteString.length);
-    //     let uint8Array = new Uint8Array(arrayBuffer);
-    //     for (let i = 0; i < byteString.length; i++) {
-    //         uint8Array[i] = byteString.charCodeAt(i);
-    //     }
-    //     return new Blob([arrayBuffer], { type: mimeString });
-    // }     
-
-    // $(document).on("click", "#btnEnviarCuentaWhatsApp", function() {
-    //     let nombreCliente = $('#idCuentaDelCliente').val().trim();
-    //     let fechaCuentaDelCliente = $('#fechaCuentaDelCliente').val().trim();
-    //     let phoneNumber = $('#phoneInput').val().trim().replace(/\s/g, '');
-    //     let horaFormateada = new Date().toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit', second: '2-digit' }).replace(/ /g, '');
-    //     let nombreIMG = `${nombreCliente}-${fechaCuentaDelCliente}-${horaFormateada}.jpeg`;
-
-    //     // Obtener el contenedor
-    //     let container = document.getElementById('hmtlCapture');
-
-    //     // Usar setTimeout para dar tiempo al navegador para ajustar el tamaño
-    //     setTimeout(function() {
-    //         domtoimage.toJpeg(container, { quality: 0.95 })
-    //         .then(function(dataUrl) {
-    //             let link = document.createElement('a');
-    //             link.download = nombreIMG;
-    //             link.href = dataUrl;
-    //             link.click();
-
-    //             // Crear el enlace de mensaje predefinido de WhatsApp
-    //             let linkWhatsApp = `https://wa.me/+51${phoneNumber}?`;
-    
-    //             // Abrir la ventana de WhatsApp con el enlace de mensaje predefinido
-    //             window.open(linkWhatsApp, '_blank');
-    //         });
-    //     }, 500); // 500 ms de retraso para asegurar la renderización completa
-    // });
-
     $(document).on("click", "#btnEnviarCuentaWhatsApp", function() {
         let nombreCliente = $('#idCuentaDelCliente').val().trim();
         let fechaCuentaDelCliente = $('#fechaCuentaDelCliente').val().trim();
@@ -8224,6 +7899,50 @@ jQuery(function ($) {
                 console.error('Error al capturar la imagen:', error);
             });
         }, 500);
-    });      
+    });   
+    
+    $(document).on("click", "#btnEnviarCuentaWhatsAppTelefono", function() {
+        let nombreCliente = $('#idCuentaDelCliente').val().trim();
+        let fechaCuentaDelCliente = $('#fechaCuentaDelCliente').val().trim();
+        let horaFormateada = new Date().toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit', second: '2-digit' }).replace(/ /g, '');
+        let nombreIMG = `${nombreCliente}-${fechaCuentaDelCliente}-${horaFormateada}.jpeg`;
+    
+        // Obtener el contenedor
+        let container = document.getElementById('hmtlCapture');
+    
+        // Almacenar el ancho original y establecer el nuevo ancho
+        let originalWidth = container.style.width;
+        container.style.width = '1200px';
+    
+        // Usar setTimeout para dar tiempo al navegador para ajustar el tamaño
+        setTimeout(function() {
+            domtoimage.toJpeg(container, { quality: 0.95 })
+            .then(function(dataUrl) {
+                // Restaurar el ancho original
+                container.style.width = originalWidth;
+    
+                let link = document.createElement('a');
+                link.download = nombreIMG;
+                link.href = dataUrl;
+                link.click();
+            })
+            .catch(function(error) {
+                // Restaurar el ancho original si hay un error
+                container.style.width = originalWidth;
+                console.error('Error al capturar la imagen:', error);
+            });
+        }, 500);
+    });  
+
+    $(document).on("click", "#btnEnviarCuentaWhatsAppTelefonoAbrir", function() {
+        let phoneNumber = $('#phoneInput').val().trim().replace(/\s/g, '');
+
+        if(phoneNumber == ""){
+            alertify.notify('Falta numero de telefono a enviar', 'error', 3);
+            return;
+        }
+    
+        window.open(`https://wa.me/+51${phoneNumber}?`);
+    });  
 
 });
