@@ -67,12 +67,12 @@
             <table class="border-collapse w-full text-gray-500 dark:text-gray-400 select-none relative text-sm" id="tablaCuentaDelCliente">
                 <thead id="headerCuentaDelCliente" class="bg-blue-600 text-gray-50">
                     <tr class="h-10">
-                        <th class="px-4 font-bold whitespace-nowrap border-r-2 border-b-2 border-gray-500 dark:border-gray-300">DIA</th>
-                        <th class="px-4 font-bold whitespace-nowrap border-r-2 border-b-2 border-gray-500 dark:border-gray-300">PRESENTACIÓN</th>
-                        <th class="px-4 font-bold whitespace-nowrap border-r-2 border-b-2 border-gray-500 dark:border-gray-300">UNIDADES</th>
-                        <th class="px-4 font-bold whitespace-nowrap border-r-2 border-b-2 border-gray-500 dark:border-gray-300">PESO</th>
-                        <th class="px-4 font-bold whitespace-nowrap border-r-2 border-b-2 border-gray-500 dark:border-gray-300">TOTAL</th>
-                        <th class="px-4 font-bold whitespace-nowrap border-b-2 border-gray-500 dark:border-gray-300">PRECIO</th>
+                        <th class="px-4 font-bold whitespace-nowrap border-r-2 border-b-2 dark:border-gray-300">DIA</th>
+                        <th class="px-4 font-bold whitespace-nowrap border-r-2 border-b-2 dark:border-gray-300">PRESENTACIÓN</th>
+                        <th class="px-4 font-bold whitespace-nowrap border-r-2 border-b-2 dark:border-gray-300">UNIDADES</th>
+                        <th class="px-4 font-bold whitespace-nowrap border-r-2 border-b-2 dark:border-gray-300">PESO</th>
+                        <th class="px-4 font-bold whitespace-nowrap border-r-2 border-b-2 dark:border-gray-300">TOTAL</th>
+                        <th class="px-4 font-bold whitespace-nowrap border-b-2 dark:border-gray-300">PRECIO</th>
                     </tr>
                 </thead>
                 <tbody id="bodyCuentaDelCliente">

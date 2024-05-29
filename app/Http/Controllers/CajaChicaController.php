@@ -99,6 +99,7 @@ class CajaChicaController extends Controller
             $agregarEgresoCliente->nombreEgresoCamal = $usoReporteEgreso;
             $agregarEgresoCliente->fechaRegistroEgreso = now()->setTimezone('America/New_York')->toDateString();
             $agregarEgresoCliente->estadoEgreso = 1;
+            $agregarEgresoCliente->clasificadoEgreso = 1;
             $agregarEgresoCliente->save();
     
             return response()->json(['success' => true], 200);
@@ -120,7 +121,7 @@ class CajaChicaController extends Controller
             nombreEgresoCamal, 
             idEgresos,tipoAbonoEgreso,cantidadAbonoEgreso,fechaOperacionEgreso,bancoEgreso,codigoTransferenciaEgreso,fechaRegistroEgreso,estadoEgreso 
             FROM tb_egresos 
-            WHERE estadoEgreso = 1 and fechaOperacionEgreso BETWEEN ? AND ?', [$fechaDesdeTraerPagos, $fechaHastaTraerPagos]);
+            WHERE estadoEgreso = 1 and clasificadoEgreso = 1 and fechaOperacionEgreso BETWEEN ? AND ?', [$fechaDesdeTraerPagos, $fechaHastaTraerPagos]);
     
             // Devuelve los datos en formato JSON
             return response()->json($datos);

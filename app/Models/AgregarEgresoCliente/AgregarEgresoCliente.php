@@ -22,6 +22,7 @@ class AgregarEgresoCliente extends Model
         'codigoTransferenciaEgreso',
         'fechaRegistroEgreso',
         'estadoEgreso',
+        'clasificadoEgreso',
     ];
 
 }

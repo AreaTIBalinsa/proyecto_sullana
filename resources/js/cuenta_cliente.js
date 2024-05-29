@@ -7656,7 +7656,7 @@ jQuery(function ($) {
 
         return `
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <td class="text-center border-b py-1 px-4 whitespace-nowrap border-r-2 border-r-gray-500 dark:border-r-gray-300 font-bold" id="fechaTabla">${fechaExcel}</td>
+                <td class="text-center border-b py-1 px-4 whitespace-nowrap border-r-2 dark:border-r-gray-300 font-bold" id="fechaTabla">${fechaExcel}</td>
                 <td class="text-left py-1 px-4 whitespace-nowrap border-r-2">${nombrePrimerEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadPrimerEspecie === 1 ? totalCantidadPrimerEspecie + ' Ud.' : totalCantidadPrimerEspecie + ' Uds.'}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoPrimerEspecie).toFixed(2)} Kg.</td>

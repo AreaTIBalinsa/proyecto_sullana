@@ -283,6 +283,13 @@
                                 <option value="5">Depositos a Granja</option>
                             </select>                          
                         </div>
+                        <div class="flex justify-center items-start flex-col relative w-full h-full" id="divEgresoPaul">
+                            <input type="text" class="hidden" value="" id="idReporteDeEgreso">
+                            <label for="idAgregarEgresoEditar" class="mb-2 text-base font-medium text-gray-900 dark:text-white">Uso :</label>
+                            <div class="flex w-full">
+                                <textarea class="validarCampo w-full outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="idAgregarEgresoEditar" autocomplete="off" id="idAgregarEgresoEditar" placeholder="Ingrese Uso"></textarea>
+                            </div>
+                        </div>
                         <div class="flex w-full justify-start items-center gap-2">
                             <h5 for="fechaAgregarPago" class="text-base text-gray-900 dark:text-gray-50 min-w-max">Fecha :</h5>
                             <input type="date" class="outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 px-2.5 py-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-full" id="fechaAgregarPago">
@@ -319,7 +326,7 @@
                             </div>
                             <input class="w-full outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-r-lg" type="text" name="codAgregarPagoCliente" autocomplete="off" id="codAgregarPagoCliente" value="">
                         </div>
-                        <div class="flex flex-col w-full">
+                        <div class="flex flex-col w-full" id="divComentario">
                             <label for="comentarioAgregarPagoCliente" class="mb-2 text-sm font-medium text-gray-900 dark:text-white md:w-24">Comentario :</label>
                             <textarea class="w-full outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="comentarioAgregarPagoCliente" autocomplete="off" id="comentarioAgregarPagoCliente"></textarea>
                         </div>

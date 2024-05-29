@@ -1294,65 +1294,95 @@ jQuery(function($) {
         if ($(this).find('input').length > 0) {
             return;
         }
-
-        if (tipoUsuario =='Administrador'){
+    
+        if (tipoUsuario == 'Administrador') {
             let contenidoActual = $(this).text().trim();
             let anchoTd = $(this).outerWidth();
             let altoTd = $(this).outerHeight(); // Obtener la altura del td
             let claseActual = $(this).attr('class'); // Almacenar la clase actual del td
             let columnaPedido = $(this).data('columna');
-        
+    
             // Remover la clase p-2 del td
             $(this).removeClass('p-2');
-        
+    
             let input = $('<input type="text" class="bg-transparent border-none h-full m-auto w-full text-sm text-center">')
-            .val(contenidoActual)
-            .on('input', function(e) {
-                if (columnaPedido != 15){
-                    let valor = $(this).val().trim();
-        
-                    // Validar si el valor es un número entero
-                    if (!/^\d*$/.test(valor)) {
-                        // Si no es un número entero, eliminar los caracteres no válidos
-                        $(this).val(valor.replace(/\D/g, ''));
+                .val(contenidoActual)
+                .on('input', function(e) {
+                    if (columnaPedido != 15) {
+                        let valor = $(this).val().trim();
+    
+                        // Validar si el valor es un número entero
+                        if (!/^\d*$/.test(valor)) {
+                            // Si no es un número entero, eliminar los caracteres no válidos
+                            $(this).val(valor.replace(/\D/g, ''));
+                        }
                     }
-                }
-            });
+                });
+    
             input.css({
                 'max-width': anchoTd,
-                'height': altoTd // Establecer la altura del input igual a la altura del td
+                'height': (altoTd - 3) + 'px'
             });
-        
+    
             $(this).empty().append(input);
             input.focus();
-        
+    
             // Almacenar referencias a la fila y a la celda
             let fila = $(this).closest('tr');
             let celdaColumna17 = fila.find('td:eq(17)');
             let celdaColumna18 = fila.find('td:eq(18)');
-        
+    
             // Manejar evento de presionar Enter o salir del input
             input.on('keypress blur', function(e) {
                 if (e.type === 'keypress' && e.which !== 13) {
                     return; // Si no es la tecla Enter, salir
                 }
-
+    
                 let nuevoContenido = $(this).val().trim();
                 $(this).parent().text(nuevoContenido);
-        
-                // Extraer valores de las columnas 0 y 18
+    
+                // Extraer valores de las columnas 17 y 18
                 let fechaPedido = celdaColumna17.text().trim();
                 let codigoCli = celdaColumna18.text().trim();
-
+    
                 // Volver a agregar la clase al td
                 $(this).addClass(claseActual);
-
-                if(contenidoActual != nuevoContenido){
-                    fn_RegistrarActualizarPedidoCliente(codigoCli,fechaPedido,nuevoContenido,columnaPedido);
+    
+                if (contenidoActual != nuevoContenido) {
+                    fn_RegistrarActualizarPedidoCliente(codigoCli, fechaPedido, nuevoContenido, columnaPedido);
+                }
+            });
+    
+            // Manejar evento de teclas de flecha
+            input.on('keydown', function(e) {
+                let keyCode = e.which;
+                let currentTd = $(this).closest('td');
+                let targetTd;
+    
+                switch (keyCode) {
+                    case 37: // Flecha izquierda
+                        targetTd = currentTd.prevAll('td[data-columna]').first();
+                        break;
+                    case 38: // Flecha arriba
+                        targetTd = currentTd.closest('tr').prevAll(':visible').first().find('td[data-columna="' + columnaPedido + '"]').first();
+                        break;
+                    case 39: // Flecha derecha
+                        targetTd = currentTd.nextAll('td[data-columna]').first();
+                        break;
+                    case 40: // Flecha abajo
+                        targetTd = currentTd.closest('tr').nextAll(':visible').first().find('td[data-columna="' + columnaPedido + '"]').first();
+                        break;
+                    default:
+                        return; // Si no es una tecla de flecha, salir
+                }
+    
+                if (targetTd && targetTd.length) {
+                    targetTd.trigger('click');
+                    e.preventDefault(); // Prevenir la acción por defecto de la tecla
                 }
             });
         }
-    });    
+    });          
 
     function fn_RegistrarActualizarPedidoCliente(codigoCli,fechaPedido,nuevoContenido,columnaPedido){
         $.ajax({

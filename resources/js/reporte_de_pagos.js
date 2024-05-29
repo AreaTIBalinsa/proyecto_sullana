@@ -58,14 +58,34 @@ jQuery(function ($) {
         let pagoDerivado = $('#pagoDerivado').val();
         if(pagoDerivado == $('#pagoDerivado option:first').val()){
             $('#divClienteOpcional').hide();
+            $('#divEgresoPaul').hide();
+            $('#divComentario').show();
             $('#divHoraaa').show();
             $('#formaDePago').val('Transferencia');
-            $('#valorAgregarPagoCliente').focus();
-        }else{
+        }else if(pagoDerivado == "2"){
             $('#divClienteOpcional').show();
+            $('#divEgresoPaul').hide();
+            $('#divComentario').show();
             $('#divHoraaa').hide();
-            $('#formaDePago').val($('#formaDePago option:first').val());
-            $('#idAgregarPagoCliente').focus();
+            $('#formaDePago').val('Efectivo');
+        }else if(pagoDerivado == "3"){
+            $('#divClienteOpcional').show();
+            $('#divEgresoPaul').hide();
+            $('#divComentario').show();
+            $('#divHoraaa').hide();
+            $('#formaDePago').val('Efectivo');
+        }else if(pagoDerivado == "4"){
+            $('#divClienteOpcional').hide();
+            $('#divEgresoPaul').show();
+            $('#divComentario').hide();
+            $('#divHoraaa').hide();
+            $('#formaDePago').val('Efectivo');
+        }else if(pagoDerivado == "5"){
+            $('#divClienteOpcional').show();
+            $('#divEgresoPaul').hide();
+            $('#divComentario').show();
+            $('#divHoraaa').hide();
+            $('#formaDePago').val('Efectivo');
         }
 
         let selectedOption = $('#formaDePago').val();
@@ -199,14 +219,19 @@ jQuery(function ($) {
         if (todosCamposCompletos) {
             let valorCampo = parseFloat($('#valorAgregarPagoCliente').val());
             if (valorCampo > 0){
-                if(formaDePago == "Efectivo"){
-                    fn_AgregarPagoCliente(codigoCliente,montoAgregarPagoCliente,fechaAgregarPagoCliente,formaDePago,codAgregarPagoCliente,comentarioAgregarPagoCliente,bancoAgregarPagoCliente,horaAgregarPago, pagoDerivado);
-                }else{
-                    if (formaDePago == "Transferencia" && codAgregarPagoCliente != ""){
-                        fn_verificarCodigoPago(codAgregarPagoCliente);
+                let pagoDerivado = $('#pagoDerivado').val();
+                if(pagoDerivado != "4"){
+                    if(formaDePago == "Efectivo"){
+                        fn_AgregarPagoCliente(codigoCliente,montoAgregarPagoCliente,fechaAgregarPagoCliente,formaDePago,codAgregarPagoCliente,comentarioAgregarPagoCliente,bancoAgregarPagoCliente,horaAgregarPago, pagoDerivado);
                     }else{
-                        alertify.notify('Debe rellenar el campo Cod. Trans.', 'error', 3);
+                        if (formaDePago == "Transferencia" && codAgregarPagoCliente != ""){
+                            fn_verificarCodigoPago(codAgregarPagoCliente);
+                        }else{
+                            alertify.notify('Debe rellenar el campo Cod. Trans.', 'error', 3);
+                        }
                     }
+                }else if (pagoDerivado == "4"){
+                    console.log("Egreso Paul");
                 }
             }else{
                 alertify.notify('El monto no puede ser 0', 'error', 3);
@@ -338,10 +363,29 @@ jQuery(function ($) {
         let pagoDerivado = $('#pagoDerivado').val();
         if(pagoDerivado == $('#pagoDerivado option:first').val()){
             $('#divClienteOpcional').hide();
+            $('#divEgresoPaul').hide();
+            $('#divComentario').show();
             $('#divHoraaa').show();
             $('#formaDePago').val('Transferencia');
-        }else{
+        }else if(pagoDerivado == "2"){
             $('#divClienteOpcional').show();
+            $('#divEgresoPaul').hide();
+            $('#divComentario').show();
+            $('#divHoraaa').hide();
+        }else if(pagoDerivado == "3"){
+            $('#divClienteOpcional').show();
+            $('#divEgresoPaul').hide();
+            $('#divComentario').show();
+            $('#divHoraaa').hide();
+        }else if(pagoDerivado == "4"){
+            $('#divClienteOpcional').hide();
+            $('#divEgresoPaul').show();
+            $('#divComentario').hide();
+            $('#divHoraaa').hide();
+        }else if(pagoDerivado == "5"){
+            $('#divClienteOpcional').show();
+            $('#divEgresoPaul').hide();
+            $('#divComentario').show();
             $('#divHoraaa').hide();
         }
 
@@ -362,10 +406,32 @@ jQuery(function ($) {
         let pagoDerivado = $('#pagoDerivado').val();
         if(pagoDerivado == $('#pagoDerivado option:first').val()){
             $('#divClienteOpcional').hide();
+            $('#divEgresoPaul').hide();
+            $('#divComentario').show();
             $('#divHoraaa').show();
             $('#formaDePago').val('Transferencia');
-        }else{
+        }else if(pagoDerivado == "2"){
             $('#divClienteOpcional').show();
+            $('#divEgresoPaul').hide();
+            $('#divComentario').show();
+            $('#divHoraaa').hide();
+            $('#formaDePago').val('Efectivo');
+        }else if(pagoDerivado == "3"){
+            $('#divClienteOpcional').show();
+            $('#divEgresoPaul').hide();
+            $('#divComentario').show();
+            $('#divHoraaa').hide();
+            $('#formaDePago').val('Efectivo');
+        }else if(pagoDerivado == "4"){
+            $('#divClienteOpcional').hide();
+            $('#divEgresoPaul').show();
+            $('#divComentario').hide();
+            $('#divHoraaa').hide();
+            $('#formaDePago').val('Efectivo');
+        }else if(pagoDerivado == "5"){
+            $('#divClienteOpcional').show();
+            $('#divEgresoPaul').hide();
+            $('#divComentario').show();
             $('#divHoraaa').hide();
             $('#formaDePago').val('Efectivo');
         }

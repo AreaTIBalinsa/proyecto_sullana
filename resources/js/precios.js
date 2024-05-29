@@ -751,7 +751,7 @@ jQuery(function($) {
         if ($(this).find('input').length > 0) {
             return;
         }
-
+    
         let contenidoActual = $(this).text().trim();
         let anchoTd = $(this).outerWidth();
         let altoTd = $(this).outerHeight(); // Obtener la altura del td
@@ -762,32 +762,33 @@ jQuery(function($) {
         $(this).removeClass('p-2');
     
         let input = $('<input type="text" class="bg-transparent border-none h-full m-auto w-full text-sm text-center validarSoloNumerosDosDecimales">')
-        .val(contenidoActual)
-        .on('input', function(e) {
-            let inputValue = $(this).val().trim();
-
-            // Elimina todos los caracteres excepto los dígitos y un punto decimal
-            inputValue = inputValue.replace(/[^0-9.]/g, '');
-
-            // Verifica si ya hay un punto decimal presente
-            if (inputValue.indexOf('.') !== -1) {
-                // Si ya hay un punto, elimina los puntos adicionales
-                inputValue = inputValue.replace(/(\..*)\./g, '$1');
-
-                // Limita el número de decimales a dos
-                let parts = inputValue.split('.');
-                if (parts[1] && parts[1].length > 2) {
-                    parts[1] = parts[1].substring(0, 2);
-                    inputValue = parts[0] + '.' + parts[1];
+            .val(contenidoActual)
+            .on('input', function(e) {
+                let inputValue = $(this).val().trim();
+    
+                // Elimina todos los caracteres excepto los dígitos y un punto decimal
+                inputValue = inputValue.replace(/[^0-9.]/g, '');
+    
+                // Verifica si ya hay un punto decimal presente
+                if (inputValue.indexOf('.') !== -1) {
+                    // Si ya hay un punto, elimina los puntos adicionales
+                    inputValue = inputValue.replace(/(\..*)\./g, '$1');
+    
+                    // Limita el número de decimales a dos
+                    let parts = inputValue.split('.');
+                    if (parts[1] && parts[1].length > 2) {
+                        parts[1] = parts[1].substring(0, 2);
+                        inputValue = parts[0] + '.' + parts[1];
+                    }
                 }
-            }
-
-            // Establece el valor limpio en el input
-            $(this).val(inputValue);
-        });
+    
+                // Establece el valor limpio en el input
+                $(this).val(inputValue);
+            });
+    
         input.css({
             'max-width': anchoTd,
-            'height': altoTd // Establecer la altura del input igual a la altura del td
+            'height': (altoTd - 3) + 'px'
         });
     
         $(this).empty().append(input);
@@ -808,18 +809,47 @@ jQuery(function($) {
     
             // Extraer valores de las columnas 0
             let codigoCli = celdaColumna0.text().trim();
-
+    
             // Volver a agregar la clase al td
             $(this).addClass(claseActual);
-            
-            if(nuevoContenido == ""){
+    
+            if (nuevoContenido == "") {
                 nuevoContenido = 0;
             }
-
-            if(contenidoActual != nuevoContenido){
+    
+            if (contenidoActual != nuevoContenido) {
                 fn_ActualizarPrecioXPresentacion(codigoCli, nuevoContenido, columnaPedido);
             }
         });
-    });
+    
+        // Manejar evento de teclas de flecha
+        input.on('keydown', function(e) {
+            let keyCode = e.which;
+            let currentTd = $(this).closest('td');
+            let targetTd;
+    
+            switch (keyCode) {
+                case 37: // Flecha izquierda
+                    targetTd = currentTd.prevAll('td[data-columna]').first();
+                    break;
+                case 38: // Flecha arriba
+                    targetTd = currentTd.closest('tr').prevAll(':visible').first().find('td[data-columna="' + columnaPedido + '"]').first();
+                    break;
+                case 39: // Flecha derecha
+                    targetTd = currentTd.nextAll('td[data-columna]').first();
+                    break;
+                case 40: // Flecha abajo
+                    targetTd = currentTd.closest('tr').nextAll(':visible').first().find('td[data-columna="' + columnaPedido + '"]').first();
+                    break;
+                default:
+                    return; // Si no es una tecla de flecha, salir
+            }
+    
+            if (targetTd && targetTd.length) {
+                targetTd.trigger('click');
+                e.preventDefault(); // Prevenir la acción por defecto de la tecla
+            }
+        });
+    });        
 
 });
