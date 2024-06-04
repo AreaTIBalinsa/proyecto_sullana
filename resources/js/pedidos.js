@@ -389,14 +389,14 @@ jQuery(function($) {
                         <th class="border-r px-2 py-4 text-center">Tecnica Vivo</th>
                         <th class="border-r px-2 py-4 text-center">Tecnica Pelado</th>
                         <th class="border-r px-2 py-4 text-center">Gallina Doble Pelado</th>
-                        <th class="border-r px-2 py-4 text-center">Gallina Chica Pelado</th>
+                        <th class="border-r px-2 py-4 text-center">Ahogados</th>
                         <th class="border-r px-2 py-4 text-center">Gallo Pelado</th>
                         <th class="border-r px-2 py-4 text-center">Pollo XX Pelado</th>
                         <th class="border-r px-2 py-4 text-center">Brasa Yugo</th>
                         <th class="border-r px-2 py-4 text-center">Brasa Tecnica</th>
                         <th class="border-r px-2 py-4 text-center">Pollo XX Vivo</th>
                         <th class="border-r px-2 py-4 text-center">Gallina Doble Vivo</th>
-                        <th class="border-r px-2 py-4 text-center">Gallina Chica Vivo</th>
+                        <th class="border-r px-2 py-4 text-center">Secos</th>
                         <th class="border-r px-2 py-4 text-center">Gallo Vivo</th>
                         <th class="border-r px-2 py-4 text-center">Comentario</th>
                         <th class="px-2 py-4 text-center whitespace-nowrap">TOTAL</th>

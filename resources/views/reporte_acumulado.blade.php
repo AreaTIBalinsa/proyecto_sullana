@@ -25,7 +25,7 @@
                     </span>
                     <input class="lg:max-w-xs w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg focus:ring-primary-600 focus:border-primary-600 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" autocomplete="off" id="filtrarClienteReporteAcumuladoExcel" placeholder="Ingrese Nombre de Cliente">
                 </div>
-                <button class="text-base py-2 px-5 bg-blue-600 md:max-w-xs w-full hover:bg-blue-700 text-gray-50 rounded-lg md:w-auto" id="btnCambiarPrecioPesadas"><span class="font-bold">S/</span> Cambiar Precios</button>
+                <button class="text-base py-2 px-5 bg-blue-600 md:max-w-xs w-full hover:bg-blue-700 text-gray-50 rounded-lg md:w-auto font-semibold" id="btnCambiarPrecioPesadas">S/ Cambiar Precios</button>
             </div>
 
             <div class="relative rounded-lg overflow-auto aside_scrollEDINSON max-h-[600px]" id="divReporteAcumuladoDetalleExcel">
@@ -94,9 +94,9 @@
                             <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap"></th>
                             <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap" colspan="4">GALLINA DOBLE VIVO</th>
                             <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap"></th>
-                            <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap" colspan="4">GALLINA CHICA PELADO</th>
+                            <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap" colspan="4">AHOGADOS</th>
                             <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap"></th>
-                            <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap" colspan="4">GALLINA CHICA VIVO</th>
+                            <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap" colspan="4">SECOS</th>
                             <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap"></th>
                             <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap" colspan="4">GALLO PELADO</th>
                             <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap"></th>

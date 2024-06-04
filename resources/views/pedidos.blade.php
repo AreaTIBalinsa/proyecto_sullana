@@ -35,14 +35,14 @@
                         <th class="px-2 py-4 text-center">Tecnica Vivo</th>
                         <th class="px-2 py-4 text-center">Tecnica Pelado</th>
                         <th class="px-2 py-4 text-center">Gallina Doble Pelado</th>
-                        <th class="px-2 py-4 text-center">Gallina Chica Pelado</th>
+                        <th class="px-2 py-4 text-center">Ahogados</th>
                         <th class="px-2 py-4 text-center">Gallo Pelado</th>
                         <th class="px-2 py-4 text-center">Pollo XX Pelado</th>
                         <th class="px-2 py-4 text-center">Brasa Yugo</th>
                         <th class="px-2 py-4 text-center">Brasa Tecnica</th>
                         <th class="px-2 py-4 text-center">Pollo XX Vivo</th>
                         <th class="px-2 py-4 text-center">Gallina Doble Vivo</th>
-                        <th class="px-2 py-4 text-center">Gallina Chica Vivo</th>
+                        <th class="px-2 py-4 text-center">Secos</th>
                         <th class="px-2 py-4 text-center">Gallo Vivo</th>
                         <th class="px-2 py-4 text-center">Comentario</th>
                         <th class="px-2 py-4 text-center whitespace-nowrap">TOTAL</th>
@@ -140,11 +140,11 @@
                                 <input class="w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" autocomplete="off" id="inputCantidadGallinaDobleVivo" placeholder="Ingrese Cantidad">
                             </div>
                             <div class="hidden flex-col justify-center w-full mt-2" id="divPedidoGallinaChica">
-                                <span class="text-base text-gray-900 dark:text-gray-50">Gallina Chica Pelado :</span>
+                                <span class="text-base text-gray-900 dark:text-gray-50">Ahogados :</span>
                                 <input class="w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" autocomplete="off" id="inputCantidadGallinaChica" placeholder="Ingrese Cantidad">
                             </div>
                             <div class="hidden flex-col justify-center w-full mt-2" id="divPedidoGallinaChicaVivo">
-                                <span class="text-base text-gray-900 dark:text-gray-50">Gallina Chica Vivo :</span>
+                                <span class="text-base text-gray-900 dark:text-gray-50">Secos :</span>
                                 <input class="w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" autocomplete="off" id="inputCantidadGallinaChicaVivo" placeholder="Ingrese Cantidad">
                             </div>
                             <div class="hidden flex-col justify-center w-full mt-2" id="divPedidoGallo">
@@ -253,11 +253,11 @@
                                 <input class="w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" autocomplete="off" id="inputCantidadGallinaDobleVivoEditar" placeholder="Ingrese Cantidad">
                             </div>
                             <div class="hidden flex-col justify-center w-full mt-2" id="divPedidoGallinaChicaEditar">
-                                <span class="text-base text-gray-900 dark:text-gray-50">Gallina Chica Pelado:</span>
+                                <span class="text-base text-gray-900 dark:text-gray-50">Ahogados:</span>
                                 <input class="w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" autocomplete="off" id="inputCantidadGallinaChicaEditar" placeholder="Ingrese Cantidad">
                             </div>
                             <div class="hidden flex-col justify-center w-full mt-2" id="divPedidoGallinaChicaVivoEditar">
-                                <span class="text-base text-gray-900 dark:text-gray-50">Gallina Chica Vivo :</span>
+                                <span class="text-base text-gray-900 dark:text-gray-50">Secos :</span>
                                 <input class="w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" autocomplete="off" id="inputCantidadGallinaChicaVivoEditar" placeholder="Ingrese Cantidad">
                             </div>
                             <div class="hidden flex-col justify-center w-full mt-2" id="divPedidoGalloEditar">

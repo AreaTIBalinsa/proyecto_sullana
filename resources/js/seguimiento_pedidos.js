@@ -228,7 +228,7 @@ jQuery(function($) {
                             <td class="hidden">${obj.idPedido}</td>
                             <td class="hidden">${obj.nombreCompleto}</td>
                             <td class="border-l-2 dark:border-gray-700 p-2 font-medium text-gray-900 whitespace-nowrap dark:text-white"></td>
-                            <td class="bg-blue-600 text-white border-l-2 border dark:border-gray-700 p-2 font-medium whitespace-nowrap text-center">GALLINA CHICA PELADO</td>
+                            <td class="bg-blue-600 text-white border-l-2 border dark:border-gray-700 p-2 font-medium whitespace-nowrap text-center">AHOGADOS</td>
                             <td class="border-[1px] dark:border-gray-600 p-2 text-center whitespace-nowrap font-semibold">${obj.cantidadSextaEspecie}</td>
                             <td class="border-[1px] dark:border-gray-600 p-2 text-center whitespace-nowrap font-semibold">${parseFloat(obj.sumaCantidadSextaEspecie+parseFloat(obj.sumaCantidadSextaEspecie))}</td>
                             <td class="border-[1px] dark:border-gray-600 p-2 text-center whitespace-nowrap font-bold text-gray-900 bg-yellow-400">${diferenciaSextaEspecie}</td>
@@ -237,7 +237,7 @@ jQuery(function($) {
                             <td class="hidden">${obj.idPedido}</td>
                             <td class="hidden">${obj.nombreCompleto}</td>
                             <td class="border-l-2 dark:border-gray-700 p-2 font-medium text-gray-900 whitespace-nowrap dark:text-white"></td>
-                            <td class="bg-blue-600 text-white border-l-2 border dark:border-gray-700 p-2 font-medium whitespace-nowrap text-center">GALLINA CHICA VIVO</td>
+                            <td class="bg-blue-600 text-white border-l-2 border dark:border-gray-700 p-2 font-medium whitespace-nowrap text-center">SECOS</td>
                             <td class="border-[1px] dark:border-gray-600 p-2 text-center whitespace-nowrap font-semibold">${obj.cantidadDecimaTerceraEspecie}</td>
                             <td class="border-[1px] dark:border-gray-600 p-2 text-center whitespace-nowrap font-semibold">${parseFloat(obj.sumaCantidadDecimaTerceraEspecie+parseFloat(obj.sumaCantidadDecimaTerceraEspecie))}</td>
                             <td class="border-[1px] dark:border-gray-600 p-2 text-center whitespace-nowrap font-bold text-gray-900 bg-yellow-400">${diferenciaDecimaTerceraEspecie}</td>

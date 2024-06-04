@@ -7375,8 +7375,8 @@ jQuery(function ($) {
                                                 <td class="text-left py-1 px-4 whitespace-nowrap font-bold border-r-2" id="idDeTablaPagos">PAGOS DE HOY</td>
                                                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                                                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-                                                <td class="text-center py-1 px-2 whitespace-nowrap font-semibold">S/. ${parseFloat(obj.cantidadAbonoPag).toFixed(2)}</td>
                                                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                                                <td class="text-center py-1 px-2 whitespace-nowrap font-semibold">S/. ${parseFloat(obj.cantidadAbonoPag).toFixed(2)}</td>
                                             </tr> `
                         masDeUnPago += 1
                     }else{
@@ -7386,8 +7386,8 @@ jQuery(function ($) {
                                                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                                                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                                                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-                                                <td class="text-center py-1 px-2 whitespace-nowrap font-semibold">S/. ${parseFloat(obj.cantidadAbonoPag).toFixed(2)}</td>
                                                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                                                <td class="text-center py-1 px-2 whitespace-nowrap font-semibold">S/. ${parseFloat(obj.cantidadAbonoPag).toFixed(2)}</td>
                                             </tr> `
                     }
                 }
@@ -7401,8 +7401,8 @@ jQuery(function ($) {
                     <td class="text-left py-1 px-4 whitespace-nowrap font-bold border-r-2" id="idDeTablaPagos">PAGOS DE HOY</td>
                     <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                     <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-                    <td class="text-center py-1 px-2 whitespace-nowrap font-semibold">S/. 0.00</td>
                     <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                    <td class="text-center py-1 px-2 whitespace-nowrap font-semibold">S/. 0.00</td>
                 </tr> `
         }
         masDeUnPago = 0;
@@ -7422,16 +7422,16 @@ jQuery(function ($) {
             <td class="text-left py-1 px-4 whitespace-nowrap font-bold border-r-2">TOTAL VENTA</td>
             <td class="text-center py-1 px-2 whitespace-nowrap"></td>
             <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-            <td class="text-center py-1 px-2 whitespace-nowrap font-semibold">S/. ${parseFloat(totalVentaDelDia).toFixed(2)}</h5></td>
             <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+            <td class="text-center py-1 px-2 whitespace-nowrap font-semibold">S/. ${parseFloat(totalVentaDelDia).toFixed(2)}</h5></td>
         </tr>
         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
             <td class="text-center py-1 px-2 whitespace-nowrap"></td>
             <td class="text-left py-1 px-4 whitespace-nowrap font-bold border-r-2">SALDO ANTERIOR</td>
             <td class="text-center py-1 px-2 whitespace-nowrap"></td>
             <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-            <td class="text-center py-1 px-2 whitespace-nowrap font-semibold">S/. ${parseFloat(totalSaldoAnteriorV).toFixed(2)}</td>
             <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+            <td class="text-center py-1 px-2 whitespace-nowrap font-semibold">S/. ${parseFloat(totalSaldoAnteriorV).toFixed(2)}</td>
         </tr>
         <tr class="bg-white dark:bg-gray-800 h-0.5">
             <td class="text-center" colspan="2"></td>
@@ -7449,8 +7449,8 @@ jQuery(function ($) {
             <td class="text-left py-1 px-4 whitespace-nowrap font-bold border-r-2">SALDO ACTUAL</td>
             <td class="text-center py-1 px-2 whitespace-nowrap"></td>
             <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-            <td class="text-center py-1 px-2 whitespace-nowrap font-semibold">S/. ${totalFormateado}</td>
             <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+            <td class="text-center py-1 px-2 whitespace-nowrap font-semibold">S/. ${totalFormateado}</td>
         </tr>
         `;
     }
@@ -7660,80 +7660,80 @@ jQuery(function ($) {
                 <td class="text-left py-1 px-4 whitespace-nowrap border-r-2">${nombrePrimerEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadPrimerEspecie === 1 ? totalCantidadPrimerEspecie + ' Ud.' : totalCantidadPrimerEspecie + ' Uds.'}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoPrimerEspecie).toFixed(2)} Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaPrimerEspecie).toFixed(2)}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioPrimerEspecie}/Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaPrimerEspecie).toFixed(2)}</td>
             </tr>
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                 <td class="text-left py-1 px-4 whitespace-nowrap border-r-2">${nombreSegundaEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadSegundaEspecie === 1 ? totalCantidadSegundaEspecie + ' Ud.' : totalCantidadSegundaEspecie + ' Uds.'}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoSegundaEspecie).toFixed(2)} Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaSegundaEspecie).toFixed(2)}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioSegundaEspecie}/Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaSegundaEspecie).toFixed(2)}</td>
             </tr>
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                 <td class="text-left py-1 px-4 whitespace-nowrap border-r-2">${nombreDecimaSeptimaEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadDecimaSeptimaEspecie === 1 ? totalCantidadDecimaSeptimaEspecie + ' Ud.' : totalCantidadDecimaSeptimaEspecie + ' Uds.'}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoDecimaSeptimaEspecie).toFixed(2)} Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaDecimaSeptimaEspecie).toFixed(2)}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioDecimaSeptimaEspecie}/Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaDecimaSeptimaEspecie).toFixed(2)}</td>
             </tr>
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                 <td class="text-left py-1 px-4 whitespace-nowrap border-r-2">${nombreTerceraEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadTerceraEspecie === 1 ? totalCantidadTerceraEspecie + ' Ud.' : totalCantidadTerceraEspecie + ' Uds.'}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoTerceraEspecie).toFixed(2)} Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaTerceraEspecie).toFixed(2)}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioTerceraEspecie}/Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaTerceraEspecie).toFixed(2)}</td>
             </tr>
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                 <td class="text-left py-1 px-4 whitespace-nowrap border-r-2">${nombreCuartaEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadCuartaEspecie === 1 ? totalCantidadCuartaEspecie + ' Ud.' : totalCantidadCuartaEspecie + ' Uds.'}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoCuartaEspecie).toFixed(2)} Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaCuartaEspecie).toFixed(2)}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioCuartaEspecie}/Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaCuartaEspecie).toFixed(2)}</td>
             </tr>
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                 <td class="text-left py-1 px-4 whitespace-nowrap border-r-2">${nombreDecimaOctavaEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadDecimaOctavaEspecie === 1 ? totalCantidadDecimaOctavaEspecie + ' Ud.' : totalCantidadDecimaOctavaEspecie + ' Uds.'}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoDecimaOctavaEspecie).toFixed(2)} Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaDecimaOctavaEspecie).toFixed(2)}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioDecimaOctavaEspecie}/Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaDecimaOctavaEspecie).toFixed(2)}</td>
             </tr>
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                 <td class="text-left py-1 px-4 whitespace-nowrap border-r-2">${nombreDecimaSextaEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadDecimaSextaEspecie === 1 ? totalCantidadDecimaSextaEspecie + ' Ud.' : totalCantidadDecimaSextaEspecie + ' Uds.'}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoDecimaSextaEspecie).toFixed(2)} Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaDecimaSextaEspecie).toFixed(2)}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioDecimaSextaEspecie}/Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaDecimaSextaEspecie).toFixed(2)}</td>
             </tr>
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                 <td class="text-left py-1 px-4 whitespace-nowrap border-r-2">${nombreDecimaNovenaEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadDecimaNovenaEspecie === 1 ? totalCantidadDecimaNovenaEspecie + ' Ud.' : totalCantidadDecimaNovenaEspecie + ' Uds.'}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoDecimaNovenaEspecie).toFixed(2)} Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaDecimaNovenaEspecie).toFixed(2)}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioDecimaNovenaEspecie}/Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaDecimaNovenaEspecie).toFixed(2)}</td>
             </tr>
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                 <td class="text-left py-1 px-4 whitespace-nowrap border-r-2">${nombreQuintaEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadQuintaEspecie === 1 ? totalCantidadQuintaEspecie + ' Ud.' : totalCantidadQuintaEspecie + ' Uds.'}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoQuintaEspecie).toFixed(2)} Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaQuintaEspecie).toFixed(2)}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioQuintaEspecie}/Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaQuintaEspecie).toFixed(2)}</td>
             </tr>
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                 <td class="text-left py-1 px-4 whitespace-nowrap border-r-2">${nombreVigesimaEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadVigesimaEspecie === 1 ? totalCantidadVigesimaEspecie + ' Ud.' : totalCantidadVigesimaEspecie + ' Uds.'}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoVigesimaEspecie).toFixed(2)} Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaVigesimaEspecie).toFixed(2)}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioVigesimaEspecie}/Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaVigesimaEspecie).toFixed(2)}</td>
             </tr>
             ${totalVentaSextaEspecie ? `
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -7741,8 +7741,8 @@ jQuery(function ($) {
                 <td class="text-left py-1 px-4 whitespace-nowrap border-r-2">${nombreSextaEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadSextaEspecie === 1 ? totalCantidadSextaEspecie + ' Ud.' : totalCantidadSextaEspecie + ' Uds.'}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoSextaEspecie).toFixed(2)} Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaSextaEspecie).toFixed(2)}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioSextaEspecie}/Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaSextaEspecie).toFixed(2)}</td>
             </tr>` : ''}
             ${totalVentaVigesimaPrimeraEspecie ? `
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -7750,8 +7750,8 @@ jQuery(function ($) {
                 <td class="text-left py-1 px-4 whitespace-nowrap border-r-2">${nombreVigesimaPrimeraEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadVigesimaPrimeraEspecie === 1 ? totalCantidadVigesimaPrimeraEspecie + ' Ud.' : totalCantidadVigesimaPrimeraEspecie + ' Uds.'}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoVigesimaPrimeraEspecie).toFixed(2)} Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaVigesimaPrimeraEspecie).toFixed(2)}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioVigesimaPrimeraEspecie}/Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaVigesimaPrimeraEspecie).toFixed(2)}</td>
             </tr>` : ''}
             ${totalVentaSeptimaEspecie ? `
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -7759,8 +7759,8 @@ jQuery(function ($) {
                 <td class="text-left py-1 px-4 whitespace-nowrap border-r-2">${nombreSeptimaEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadSeptimaEspecie === 1 ? totalCantidadSeptimaEspecie + ' Ud.' : totalCantidadSeptimaEspecie + ' Uds.'}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoSeptimaEspecie).toFixed(2)} Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaSeptimaEspecie).toFixed(2)}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioSeptimaEspecie}/Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaSeptimaEspecie).toFixed(2)}</td>
             </tr>` : ''}
             ${totalVentaVigesimaSegundaEspecie ? `
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -7768,8 +7768,8 @@ jQuery(function ($) {
                 <td class="text-left py-1 px-4 whitespace-nowrap border-r-2">${nombreVigesimaSegundaEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadVigesimaSegundaEspecie === 1 ? totalCantidadVigesimaSegundaEspecie + ' Ud.' : totalCantidadVigesimaSegundaEspecie + ' Uds.'}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoVigesimaSegundaEspecie).toFixed(2)} Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaVigesimaSegundaEspecie).toFixed(2)}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioVigesimaSegundaEspecie}/Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaVigesimaSegundaEspecie).toFixed(2)}</td>
             </tr>` : ''}
             ${totalVentaOctavaEspecie ? `
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -7777,8 +7777,8 @@ jQuery(function ($) {
                 <td class="text-left py-1 px-4 whitespace-nowrap border-r-2">${nombreOctavaEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadOctavaEspecie === 1 ? totalCantidadOctavaEspecie + ' Ud.' : totalCantidadOctavaEspecie + ' Uds.'}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoOctavaEspecie).toFixed(2)} Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaOctavaEspecie).toFixed(2)}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioOctavaEspecie}/Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaOctavaEspecie).toFixed(2)}</td>
             </tr>` : ''}
             ${totalVentaVigesimaTerceraEspecie ? `
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -7786,8 +7786,8 @@ jQuery(function ($) {
                 <td class="text-left py-1 px-4 whitespace-nowrap border-r-2">${nombreVigesimaTerceraEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadVigesimaTerceraEspecie === 1 ? totalCantidadVigesimaTerceraEspecie + ' Ud.' : totalCantidadVigesimaTerceraEspecie + ' Uds.'}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoVigesimaTerceraEspecie).toFixed(2)} Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaVigesimaTerceraEspecie).toFixed(2)}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioVigesimaTerceraEspecie}/Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaVigesimaTerceraEspecie).toFixed(2)}</td>
             </tr>` : ''}
             ${totalVentaDecimaEspecie ? `
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -7795,8 +7795,8 @@ jQuery(function ($) {
                 <td class="text-left py-1 px-4 whitespace-nowrap border-r-2">${nombreDecimaEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadDecimaEspecie === 1 ? totalCantidadDecimaEspecie + ' Ud.' : totalCantidadDecimaEspecie + ' Uds.'}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoDecimaEspecie).toFixed(2)} Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaDecimaEspecie).toFixed(2)}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioDecimaEspecie}/Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaDecimaEspecie).toFixed(2)}</td>
             </tr>` : ''}
             ${totalVentaDecimaPrimeraEspecie ? `
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -7804,8 +7804,8 @@ jQuery(function ($) {
                 <td class="text-left py-1 px-4 whitespace-nowrap border-r-2">${nombreDecimaPrimeraEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadDecimaPrimeraEspecie === 1 ? totalCantidadDecimaPrimeraEspecie + ' Ud.' : totalCantidadDecimaPrimeraEspecie + ' Uds.'}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoDecimaPrimeraEspecie).toFixed(2)} Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaDecimaPrimeraEspecie).toFixed(2)}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioDecimaPrimeraEspecie}/Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaDecimaPrimeraEspecie).toFixed(2)}</td>
             </tr>` : ''}
             ${totalVentaDecimaSegundaEspecie ? `
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -7813,8 +7813,8 @@ jQuery(function ($) {
                 <td class="text-left py-1 px-4 whitespace-nowrap border-r-2">${nombreDecimaSegundaEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadDecimaSegundaEspecie === 1 ? totalCantidadDecimaSegundaEspecie + ' Ud.' : totalCantidadDecimaSegundaEspecie + ' Uds.'}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoDecimaSegundaEspecie).toFixed(2)} Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaDecimaSegundaEspecie).toFixed(2)}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioDecimaSegundaEspecie}/Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaDecimaSegundaEspecie).toFixed(2)}</td>
             </tr>` : ''}
             ${totalVentaDecimaTerceraEspecie ? `
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -7822,8 +7822,8 @@ jQuery(function ($) {
                 <td class="text-left py-1 px-4 whitespace-nowrap border-r-2">${nombreDecimaTerceraEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadDecimaTerceraEspecie === 1 ? totalCantidadDecimaTerceraEspecie + ' Ud.' : totalCantidadDecimaTerceraEspecie + ' Uds.'}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoDecimaTerceraEspecie).toFixed(2)} Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaDecimaTerceraEspecie).toFixed(2)}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioDecimaTerceraEspecie}/Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaDecimaTerceraEspecie).toFixed(2)}</td>
             </tr>` : ''}
             ${totalVentaDecimaCuartaEspecie ? `
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -7831,8 +7831,8 @@ jQuery(function ($) {
                 <td class="text-left py-1 px-4 whitespace-nowrap border-r-2">${nombreDecimaCuartaEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadDecimaCuartaEspecie === 1 ? totalCantidadDecimaCuartaEspecie + ' Ud.' : totalCantidadDecimaCuartaEspecie + ' Uds.'}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoDecimaCuartaEspecie).toFixed(2)} Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaDecimaCuartaEspecie).toFixed(2)}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioDecimaCuartaEspecie}/Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaDecimaCuartaEspecie).toFixed(2)}</td>
             </tr>` : ''}
             ${totalVentaDecimaQuintaEspecie ? `
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -7840,8 +7840,8 @@ jQuery(function ($) {
                 <td class="text-left py-1 px-4 whitespace-nowrap border-r-2">${nombreDecimaQuintaEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadDecimaQuintaEspecie === 1 ? totalCantidadDecimaQuintaEspecie + ' Ud.' : totalCantidadDecimaQuintaEspecie + ' Uds.'}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoDecimaQuintaEspecie).toFixed(2)} Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaDecimaQuintaEspecie).toFixed(2)}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioDecimaQuintaEspecie}/Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaDecimaQuintaEspecie).toFixed(2)}</td>
             </tr>` : ''}
             ${totalVentaDescuento ? `
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -7849,8 +7849,8 @@ jQuery(function ($) {
                 <td class="text-left py-1 px-4 whitespace-nowrap border-r-2">DESCUENTO</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadDescuento === 1 ? totalCantidadDescuento + ' Ud.' : totalCantidadDescuento + ' Uds.'}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoDescuento).toFixed(2)} Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaDescuento).toFixed(2)}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioDescuentoEspecies}/Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaDescuento).toFixed(2)}</td>
             </tr>` : ''}
             <tr class="bg-white dark:bg-gray-800 h-0.5">
                 <td class="text-center" colspan="2"></td>

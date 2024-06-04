@@ -19,7 +19,7 @@ class EspeciesVentaTableSeeder extends Seeder
             ['idEspecie' => 3, 'nombreEspecie' => 'TECNICA VIVO'],
             ['idEspecie' => 4, 'nombreEspecie' => 'TECNICA PELADO'],
             ['idEspecie' => 5, 'nombreEspecie' => 'GALLINA DOBLE PELADO'],
-            ['idEspecie' => 6, 'nombreEspecie' => 'GALLINA CHICA PELADO'],
+            ['idEspecie' => 6, 'nombreEspecie' => 'AHOGADOS'],
             ['idEspecie' => 7, 'nombreEspecie' => 'GALLO PELADO'],
             ['idEspecie' => 8, 'nombreEspecie' => 'POLLO MALTRATADO'],
             ['idEspecie' => 9, 'nombreEspecie' => 'POLLO TROZADO'],
@@ -34,7 +34,7 @@ class EspeciesVentaTableSeeder extends Seeder
             ['idEspecie' => 18, 'nombreEspecie' => 'BRASA TECNICA'],
             ['idEspecie' => 19, 'nombreEspecie' => 'POLLO XX VIVO'],
             ['idEspecie' => 20, 'nombreEspecie' => 'GALLINA DOBLE VIVO'],
-            ['idEspecie' => 21, 'nombreEspecie' => 'GALLINA CHICA VIVO'],
+            ['idEspecie' => 21, 'nombreEspecie' => 'SECOS'],
             ['idEspecie' => 22, 'nombreEspecie' => 'GALLO VIVO']
         ]);
     }

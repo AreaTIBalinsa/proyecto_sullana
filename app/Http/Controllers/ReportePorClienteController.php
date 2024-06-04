@@ -12,6 +12,7 @@ use App\Models\ReportePorCliente\PesoReportePorCliente2;
 use App\Models\ReportePorCliente\PesoJabasReportePorCliente;
 use App\Models\ReportePorCliente\PesoJabasReportePorCliente2;
 use App\Models\ReportePorCliente\EliminarReportePorCliente;
+use App\Models\ReportePorCliente\EliminarReportePorCliente2;
 use Illuminate\Support\Facades\DB;
 
 class ReportePorClienteController extends Controller
@@ -161,16 +162,28 @@ class ReportePorClienteController extends Controller
     public function consulta_EliminarPesada(Request $request)
     {
         $codigoPesada = $request->input('codigoPesada');
+        $identifiTabla = $request->input('identifiTabla');
 
         if (Auth::check()) {
-            $EliminarReportePorCliente = new EliminarReportePorCliente;
-            $EliminarReportePorCliente->where('idPesada', $codigoPesada)
-                ->update([
-                    'estadoPes' => 0,
-                    'estadoWebPes' => 0,
-                ]);
-            
-            return response()->json(['success' => true], 200);
+            if ($identifiTabla == "tb_pesadas"){
+                $EliminarReportePorCliente = new EliminarReportePorCliente;
+                $EliminarReportePorCliente->where('idPesada', $codigoPesada)
+                    ->update([
+                        'estadoPes' => 0,
+                        'estadoWebPes' => 0,
+                    ]);
+                
+                return response()->json(['success' => true], 200);
+            }else if ($identifiTabla == "tb_pesadas2"){
+                $EliminarReportePorCliente = new EliminarReportePorCliente2;
+                $EliminarReportePorCliente->where('idPesada', $codigoPesada)
+                    ->update([
+                        'estadoPes' => 0,
+                        'estadoWebPes' => 0,
+                    ]);
+                
+                return response()->json(['success' => true], 200);
+            }
         }
 
         // Si el usuario no está autenticado, puedes devolver un error o redirigirlo

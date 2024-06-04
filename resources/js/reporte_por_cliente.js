@@ -933,6 +933,7 @@ jQuery(function ($) {
         e.preventDefault();
         if (tipoUsuario =='Administrador'){
             let codigoPesada = $(this).closest("tr").find("td:first").text();
+            let identifiTabla = $(this).closest("tr").find("td:eq(10)").text();
             Swal.fire({
                 title: '¿Desea eliminar el Registro?',
                 text: "¡Estas seguro de eliminar el registro!",
@@ -944,18 +945,20 @@ jQuery(function ($) {
                 confirmButtonText: '¡Si,eliminar!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                fn_EliminarPesada(codigoPesada);
+                fn_EliminarPesada(codigoPesada, identifiTabla);
+                console.log(identifiTabla, codigoPesada)
                 }
             })
         }
     });
 
-    function fn_EliminarPesada(codigoPesada){
+    function fn_EliminarPesada(codigoPesada, identifiTabla){
         $.ajax({
             url: '/fn_consulta_EliminarPesada',
             method: 'GET',
             data: {
                 codigoPesada: codigoPesada,
+                identifiTabla: identifiTabla,
             },
             success: function(response) {
                 if (response.success) {

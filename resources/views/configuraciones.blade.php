@@ -37,7 +37,7 @@
                             <th class="p-4 text-center whitespace-nowrap">Tecnica Vivo</th>
                             <th class="p-4 text-center whitespace-nowrap">Tecnica Pelado</th>
                             <th class="p-4 text-center whitespace-nowrap">Gallina Doble</th>
-                            <th class="p-4 text-center whitespace-nowrap">Gallina Chica</th>
+                            <th class="p-4 text-center whitespace-nowrap">Ahogados</th>
                             <th class="p-4 text-center whitespace-nowrap">Gallo</th>
                             <th class="p-4 text-center whitespace-nowrap">Pollo XX</th>
                             <th class="p-4 text-center whitespace-nowrap">Brasa Yugo</th>
@@ -114,7 +114,7 @@
                             <input class="w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" autocomplete="off" id="inputCantidadGallinaDoble" placeholder="Ingrese Cantidad">
                         </div>
                         <div class="hidden flex-col justify-center px-4 w-full mt-2" id="divPedidoGallinaChica">
-                            <span class="text-base text-gray-900 dark:text-gray-50">Gallina Chica :</span>
+                            <span class="text-base text-gray-900 dark:text-gray-50">Ahogados :</span>
                             <input class="w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" autocomplete="off" id="inputCantidadGallinaChica" placeholder="Ingrese Cantidad">
                         </div>
                         <div class="hidden flex-col justify-center px-4 w-full mt-2" id="divPedidoGallo">

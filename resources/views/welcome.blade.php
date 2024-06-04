@@ -327,7 +327,7 @@
                     <div id="defaultTabContent" class="bg-emerald-600 h-[calc(100%-53px)]">
                         <div class="hidden p-4 bg-emerald-600 rounded-b-lg md:p-8" id="about6" role="tabpanel" aria-labelledby="about-tab">
                             <div class="flex flex-col w-full justify-center items-center h-[calc(100%-53px)]">
-                                <h2 class="mb-3 text-3xl md:text-4xl text-center font-extrabold tracking-tight text-white">GALLINA CHICA</h2>
+                                <h2 class="mb-3 text-3xl md:text-4xl text-center font-extrabold tracking-tight text-white">AHOGADOS Y SECOS</h2>
                                 <div class="flex row mb-3 justify-center">
                                     <div class="flex flex-col items-start">
                                         <div class="text-white font-semibold text-xl md:text-2xl flex justify-between w-full whitespace-nowrap gap-2">CANTIDAD<span>:</span></div>
@@ -344,14 +344,14 @@
                             </div>
                         </div>
                         <div class="hidden p-4 bg-white rounded-b-lg md:p-8 dark:bg-gray-800 h-full" id="services6" role="tabpanel" aria-labelledby="services6-tab">
-                            <h2 class="mb-5 text-2xl font-extrabold tracking-tight text-gray-900 dark:text-white">VARIEDADES GALLINA CHICA</h2>
+                            <h2 class="mb-5 text-2xl font-extrabold tracking-tight text-gray-900 dark:text-white">AHOGADOS Y SECOS</h2>
                             <!-- List -->
                             <div class="space-y-4 text-gray-800 dark:text-gray-200">
                                 <div class="flex space-x-2 rtl:space-x-reverse items-center">
                                     <svg class="flex-shrink-0 w-3.5 h-3.5 text-blue-600 dark:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                                         <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
                                     </svg>
-                                    <span class="leading-tight font-bold">Gallina Chica Vivo</span>
+                                    <span class="leading-tight font-bold">Ahogados</span>
                                 </div>
                                 <div class="w-full flex flex-col text-gray-800 dark:text-white">
                                     <div class="flex flex-1 border justify-center font-semibold">Cantidad :&nbsp;<span class="font-normal" id="totalUnidadesVigesimaPrimeraEspecie">0 Uds.</span></div>
@@ -361,7 +361,7 @@
                                     <svg class="flex-shrink-0 w-3.5 h-3.5 text-blue-600 dark:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                                         <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
                                     </svg>
-                                    <span class="leading-tight font-bold">Gallina Chica Pelado</span>
+                                    <span class="leading-tight font-bold">Secos</span>
                                 </div>
                                 <div class="w-full flex flex-col text-gray-800 dark:text-white">
                                     <div class="flex flex-1 border justify-center font-semibold">Cantidad :&nbsp;<span class="font-normal" id="totalUnidadesSextaEspecie">0 Uds.</span></div>

@@ -1581,4 +1581,26 @@ class ReporteDePagosController extends Controller
         return response()->json(['error' => 'Usuario no autenticado'], 401);
     }
 
+    public function consulta_TraerEgresosPaulFechas(Request $request){
+
+        $fechaDesdeTraerPagos = $request->input('fechaDesdeTraerPagos');
+        $fechaHastaTraerPagos = $request->input('fechaHastaTraerPagos');
+
+        if (Auth::check()) {
+            // Realiza la consulta a la base de datos
+            $datos = DB::select('
+            SELECT 
+            nombreEgresoCamal, 
+            idEgresos,tipoAbonoEgreso,cantidadAbonoEgreso,fechaOperacionEgreso,bancoEgreso,codigoTransferenciaEgreso,fechaRegistroEgreso,estadoEgreso 
+            FROM tb_egresos 
+            WHERE estadoEgreso = 1 and clasificadoEgreso = 2 and fechaOperacionEgreso BETWEEN ? AND ?', [$fechaDesdeTraerPagos, $fechaHastaTraerPagos]);
+    
+            // Devuelve los datos en formato JSON
+            return response()->json($datos);
+        }
+    
+        // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
+        return response()->json(['error' => 'Usuario no autenticado'], 401);
+    }  
+
 }

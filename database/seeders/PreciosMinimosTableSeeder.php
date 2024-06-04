@@ -19,7 +19,7 @@ class PreciosMinimosTableSeeder extends Seeder
             ['idPrecioMinimo' => 3, 'precioMinimo' => 5, 'nombreEspeciePrecioMinimo' => "TECNICA VIVO"],
             ['idPrecioMinimo' => 4, 'precioMinimo' => 5, 'nombreEspeciePrecioMinimo' => "TECNICA PELADO"],
             ['idPrecioMinimo' => 5, 'precioMinimo' => 5, 'nombreEspeciePrecioMinimo' => "GALLINA DOBLE"],
-            ['idPrecioMinimo' => 6, 'precioMinimo' => 5, 'nombreEspeciePrecioMinimo' => "GALLINA CHICA"],
+            ['idPrecioMinimo' => 6, 'precioMinimo' => 5, 'nombreEspeciePrecioMinimo' => "AHOGADOS"],
             ['idPrecioMinimo' => 7, 'precioMinimo' => 5, 'nombreEspeciePrecioMinimo' => "GALLO"],
             ['idPrecioMinimo' => 8, 'precioMinimo' => 5, 'nombreEspeciePrecioMinimo' => "POLLO MALTRATADO"],
             ['idPrecioMinimo' => 9, 'precioMinimo' => 5, 'nombreEspeciePrecioMinimo' => "PECHUGA"],
@@ -31,6 +31,11 @@ class PreciosMinimosTableSeeder extends Seeder
             ['idPrecioMinimo' => 15, 'precioMinimo' => 5, 'nombreEspeciePrecioMinimo' => "POLLO XX"],
             ['idPrecioMinimo' => 16, 'precioMinimo' => 5, 'nombreEspeciePrecioMinimo' => "BRASA YUGO"],
             ['idPrecioMinimo' => 17, 'precioMinimo' => 5, 'nombreEspeciePrecioMinimo' => "BRASA TECNICA"],
+            ['idPrecioMinimo' => 18, 'precioMinimo' => 5, 'nombreEspeciePrecioMinimo' => "POLLO XX VIVO"],
+            ['idPrecioMinimo' => 19, 'precioMinimo' => 5, 'nombreEspeciePrecioMinimo' => "GALLINA DOBLE VIVO"],
+            ['idPrecioMinimo' => 20, 'precioMinimo' => 5, 'nombreEspeciePrecioMinimo' => "GALLINA CHICA VIVO"],
+            ['idPrecioMinimo' => 21, 'precioMinimo' => 5, 'nombreEspeciePrecioMinimo' => "GALLO VIVO"],
+            ['idPrecioMinimo' => 22, 'precioMinimo' => 5, 'nombreEspeciePrecioMinimo' => "MALTRATADO VIVO"],
         ]);
     }
 }

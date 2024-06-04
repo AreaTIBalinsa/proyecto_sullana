@@ -113,8 +113,9 @@
                                 <th class="p-4 border-r-2 border-b-2 border-l-[1px] whitespace-nowrap">Uso Egreso</th>
                                 <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Importe</th>
                                 <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Forma Pago</th>
+                                <th class="p-4 text-center border-r-2 border-b-2 whitespace-nowrap">Banco</th>
+                                <th class="p-4 text-center border-r-2 border-b-2 whitespace-nowrap">Codigo</th>
                                 <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Fecha</th>
-                                <th class="p-4 border-b-2 border-r-2 text-center whitespace-nowrap">Observaciones</th>
                             </tr>
                         </thead>
                         <tbody id="bodyReporteDePagosCobranzaDePaulEgresos">
@@ -285,9 +286,9 @@
                         </div>
                         <div class="flex justify-center items-start flex-col relative w-full h-full" id="divEgresoPaul">
                             <input type="text" class="hidden" value="" id="idReporteDeEgreso">
-                            <label for="idAgregarEgresoEditar" class="mb-2 text-base font-medium text-gray-900 dark:text-white">Uso :</label>
+                            <label for="idAgregarEgresoPaul" class="mb-2 text-base font-medium text-gray-900 dark:text-white">Uso :</label>
                             <div class="flex w-full">
-                                <textarea class="validarCampo w-full outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="idAgregarEgresoEditar" autocomplete="off" id="idAgregarEgresoEditar" placeholder="Ingrese Uso"></textarea>
+                                <textarea class="w-full outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="idAgregarEgresoPaul" autocomplete="off" id="idAgregarEgresoPaul" placeholder="Ingrese Uso"></textarea>
                             </div>
                         </div>
                         <div class="flex w-full justify-start items-center gap-2">

@@ -71,8 +71,8 @@
                         <th class="px-4 font-bold whitespace-nowrap border-r-2 border-b-2 dark:border-gray-300">PRESENTACIÓN</th>
                         <th class="px-4 font-bold whitespace-nowrap border-r-2 border-b-2 dark:border-gray-300">UNIDADES</th>
                         <th class="px-4 font-bold whitespace-nowrap border-r-2 border-b-2 dark:border-gray-300">PESO</th>
-                        <th class="px-4 font-bold whitespace-nowrap border-r-2 border-b-2 dark:border-gray-300">TOTAL</th>
-                        <th class="px-4 font-bold whitespace-nowrap border-b-2 dark:border-gray-300">PRECIO</th>
+                        <th class="px-4 font-bold whitespace-nowrap border-r-2 border-b-2 dark:border-gray-300">PRECIO</th>
+                        <th class="px-4 font-bold whitespace-nowrap border-b-2 dark:border-gray-300">TOTAL</th>
                     </tr>
                 </thead>
                 <tbody id="bodyCuentaDelCliente">
