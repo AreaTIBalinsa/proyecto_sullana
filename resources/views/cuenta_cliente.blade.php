@@ -2,7 +2,7 @@
 @extends('aside')
 @section('titulo', 'Cuenta de Cliente')
 @section('contenido')
-<main class="p-6 min-h-[calc(100%-160px)]">
+<main class="p-6 min-h-[calc(100%-161px)]">
     <div class="md:px-10 px-5 pb-5 bg-white dark:bg-gray-900 rounded-xl drop-shadow-md">
         {{-- Inicia contenedor Cuenta de Cliente --}}
         <div class="flex justify-between items-center">

@@ -119,6 +119,7 @@ Route::get('/fn_consulta_TraerPreciosClienteDescuento', [ReporteDePagosControlle
 Route::get('/fn_consulta_TraerPagosFechas', [ReporteDePagosController::class,'consulta_TraerPagosFechas']);
 Route::get('/fn_consulta_TraerPagosFechasItem2', [ReporteDePagosController::class,'consulta_TraerPagosFechasItem2']);
 Route::get('/fn_consulta_TraerPagosFechasItem3', [ReporteDePagosController::class,'consulta_TraerPagosFechasItem3']);
+Route::get('/fn_consulta_TraerPagosDirectoGranjaFechas', [ReporteDePagosController::class,'consulta_TraerPagosDirectoGranjaFechas']);
 Route::get('/fn_consulta_EditarPago', [ReporteDePagosController::class,'consulta_EditarPago']);
 Route::get('/fn_consulta_ActualizarPagoCliente', [ReporteDePagosController::class,'consulta_ActualizarPagoCliente']);
 Route::get('/fn_consulta_EliminarPago', [ReporteDePagosController::class,'consulta_EliminarPago']);
@@ -167,6 +168,7 @@ Route::get('/fn_consulta_TraerListaPedidos',[ConfiguracionesController::class,'c
 Route::get('/fn_consulta_RegistrarPedidosClientes',[ConfiguracionesController::class,'consulta_RegistrarPedidosClientes']);
 
 Route::get('/fn_consulta_AgregarEgreso',[CajaChicaController::class,'consulta_AgregarEgreso']);
+Route::get('/fn_consulta_AgregarEgresoPaul',[CajaChicaController::class,'consulta_AgregarEgresoPaul']);
 Route::get('/fn_consulta_TraerEgresosFechas',[CajaChicaController::class,'consulta_TraerEgresosFechas']);
 Route::get('/fn_consulta_EliminarEgreso',[CajaChicaController::class,'consulta_EliminarEgreso']);
 Route::get('/fn_consulta_AgregarEgresoEditar',[CajaChicaController::class,'consulta_AgregarEgresoEditar']);

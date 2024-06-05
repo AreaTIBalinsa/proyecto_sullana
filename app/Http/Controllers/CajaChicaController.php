@@ -178,4 +178,33 @@ class CajaChicaController extends Controller
         // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
         return response()->json(['error' => 'Usuario no autenticado'], 401);
     }
+
+    public function consulta_AgregarEgresoPaul (Request $request){
+
+        $montoAgregEgresoCliente = $request->input('montoAgregEgresoCliente');
+        $fechaAgregEgresoCliente = $request->input('fechaAgregEgresoCliente');
+        $formaDePagoEgreso = $request->input('formaDePagoEgreso');
+        $bancoAgregEgresoCliente = $request->input('bancoAgregEgresoCliente');
+        $codAgregEgresoCliente = $request->input('codAgregEgresoCliente');
+        $usoReporteEgreso = $request->input('usoReporteEgreso');
+
+        if (Auth::check()) {
+            $agregarEgresoCliente = new AgregarEgresoCliente;
+            $agregarEgresoCliente->cantidadAbonoEgreso = $montoAgregEgresoCliente;
+            $agregarEgresoCliente->fechaOperacionEgreso = $fechaAgregEgresoCliente;
+            $agregarEgresoCliente->tipoAbonoEgreso = $formaDePagoEgreso;
+            $agregarEgresoCliente->bancoEgreso = $bancoAgregEgresoCliente;
+            $agregarEgresoCliente->codigoTransferenciaEgreso = $codAgregEgresoCliente;
+            $agregarEgresoCliente->nombreEgresoCamal = $usoReporteEgreso;
+            $agregarEgresoCliente->fechaRegistroEgreso = now()->setTimezone('America/New_York')->toDateString();
+            $agregarEgresoCliente->estadoEgreso = 1;
+            $agregarEgresoCliente->clasificadoEgreso = 2;
+            $agregarEgresoCliente->save();
+    
+            return response()->json(['success' => true], 200);
+        }
+
+        // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
+        return response()->json(['error' => 'Usuario no autenticado'], 401);
+    }
 }

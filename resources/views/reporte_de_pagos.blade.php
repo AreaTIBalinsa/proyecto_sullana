@@ -3,7 +3,7 @@
 @extends('aside')
 @section('titulo', 'Reporte de Pagos')
 @section('contenido')
-<main class="p-6 min-h-[calc(100%-160px)]">
+<main class="p-6 min-h-[calc(100%-161px)]">
     <div class="px-5 pb-5 bg-white dark:bg-gray-900 rounded-xl drop-shadow-md">
         {{-- Inicia contenedor Reporte de Pagos --}}
         <div class="flex justify-between items-center">
@@ -13,9 +13,9 @@
         </div>
         <div id="primerContenedorReporteDePagos" class="">
             <div class="flex justify-between items-center gap-4 flex-col md:flex-row flex-wrap md:mx-5 mt-0 mb-5">
-                <button class="w-full md:w-56 flex gap-2 justify-center items-center cursor-pointer uppercase bg-green-500 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 hover:bg-green-600" type="submit" autocomplete="off" id="registrar_agregarPago_submit"><i class='bx bx-dollar-circle text-lg'></i><h5 class="min-w-max">Agregar Pago</h5></button>
+                <button class="w-full md:w-56 flex gap-2 justify-center items-center cursor-pointer uppercase bg-green-600 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 hover:bg-green-600" type="submit" autocomplete="off" id="registrar_agregarPago_submit"><i class='bx bx-dollar-circle text-lg'></i><h5 class="min-w-max">Agregar Pago</h5></button>
                 @if (auth()->user()->tipoUsu == 'Administrador')
-                <button class="w-full md:w-56 flex gap-2 justify-center items-center cursor-pointer uppercase bg-red-500 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 hover:bg-red-600" type="submit" autocomplete="off" id="registrar_agregarDescuento_submit"><i class='bx bxs-discount text-lg'></i><h5 class="min-w-max">Agregar Descuento</h5></button>
+                <button class="w-full md:w-56 flex gap-2 justify-center items-center cursor-pointer uppercase bg-red-600 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 hover:bg-red-600" type="submit" autocomplete="off" id="registrar_agregarDescuento_submit"><i class='bx bxs-discount text-lg'></i><h5 class="min-w-max">Agregar Descuento</h5></button>
                 @endif
                 <button class="w-full md:w-56 flex gap-2 justify-center items-center cursor-pointer uppercase bg-orange-500 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 hover:bg-orange-600" type="submit" autocomplete="off" id="descuento_FiltrarPorCliente_submit"><i class='bx bxs-file-find text-lg'></i><h5 class="min-w-max">Consultar Descuentos</h5></button>
                 <button class="w-full md:w-56 flex gap-2 justify-center items-center cursor-pointer uppercase bg-blue-600 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 hover:bg-blue-700" type="submit" autocomplete="off" id="registrar_FiltrarPorCliente_submit"><i class='bx bxs-user-detail text-lg'></i><h5 class="min-w-max">Estado de Cuenta</h5></button>
@@ -34,7 +34,7 @@
                 <button class="flex gap-2 justify-center items-center cursor-pointer uppercase bg-blue-600 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 hover:bg-blue-700" type="submit" autocomplete="off" id="filtrar_pagos_submit"><i class='bx bx-search-alt text-lg' ></i> Buscar</button>
             </div>
             <div class="md:m-5 mt-0">
-                <div class="relative overflow-auto max-h-[500px] aside_scrollED rounded-lg flex items-start">
+                <div class="relative overflow-auto aside_scrollED rounded-lg flex items-start">
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                         <caption class="bg-blue-600 p-2 w-full rounded-lt-lg border-b-2 text-sm font-bold text-gray-100">Bancos</caption>
                         <thead class="text-xs text-gray-100 uppercase bg-blue-600">
@@ -115,10 +115,29 @@
                                 <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Forma Pago</th>
                                 <th class="p-4 text-center border-r-2 border-b-2 whitespace-nowrap">Banco</th>
                                 <th class="p-4 text-center border-r-2 border-b-2 whitespace-nowrap">Codigo</th>
-                                <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Fecha</th>
+                                <th class="p-4 border-r-[1px] border-b-2 text-center whitespace-nowrap">Fecha</th>
                             </tr>
                         </thead>
                         <tbody id="bodyReporteDePagosCobranzaDePaulEgresos">
+                            <tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="8" class="text-center">No hay datos</td></tr>
+                        </tbody>
+                    </table>
+                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                        <caption class="bg-orange-500 p-2 w-full rounded-lt-lg border-b-2 text-sm font-bold text-gray-100">Depositos a Granja</caption>
+                        <thead class="text-xs text-gray-100 uppercase bg-orange-500">
+                            <tr>
+                                <th class="hidden">Id</th>
+                                <th class="p-4 border-r-2 border-b-2 border-l-[1px] whitespace-nowrap">Nombre de Cliente</th>
+                                <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Importe</th>
+                                <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Forma Pago</th>
+                                <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Banco</th>
+                                <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Codigo</th>
+                                <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Fecha</th>
+                                <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Hora</th>
+                                <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Observaciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="bodyReporteDePagosDirectoGranja">
                             <tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="8" class="text-center">No hay datos</td></tr>
                         </tbody>
                     </table>
