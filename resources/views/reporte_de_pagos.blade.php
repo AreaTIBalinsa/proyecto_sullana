@@ -40,7 +40,7 @@
                         <thead class="text-xs text-gray-100 uppercase bg-blue-600">
                             <tr>
                                 <th class="hidden">Id</th>
-                                <th class="p-4 border-r-2 border-b-2 whitespace-nowrap">Nombre de Cliente</th>
+                                <th class="p-4 border-l-2 border-r-2 border-b-2 whitespace-nowrap">Nombre de Cliente</th>
                                 <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Importe</th>
                                 <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Forma Pago</th>
                                 <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Banco</th>
@@ -389,7 +389,7 @@
                                 <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
                                     <i class='bx bxs-user-circle text-xl'></i>
                                 </span>
-                                <input class="validarCampo max-w-xs w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg focus:ring-primary-600 focus:border-primary-600 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="idAgregarPagoClienteEditar" autocomplete="off" id="idAgregarPagoClienteEditar" placeholder="Ingrese Nombre de Cliente">
+                                <input class="max-w-xs w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg focus:ring-primary-600 focus:border-primary-600 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="idAgregarPagoClienteEditar" autocomplete="off" id="idAgregarPagoClienteEditar" placeholder="Ingrese Nombre de Cliente">
                             </div>
         
                             <!-- Etiquetas ocultas para almacenar los datos seleccionados -->

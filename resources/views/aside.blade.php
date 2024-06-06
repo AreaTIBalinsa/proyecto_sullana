@@ -89,8 +89,8 @@
             @yield('contenido')
             <footer class="ml-auto bg-white dark:bg-gray-900 border-t border-gray-300 dark:border-gray-700">
                 <div class="2xl:container mx-auto">
-                    <div class="h-20 flex items-center justify-center"><h3 class="text-gray-900 dark:text-gray-300 text-center text-sm w-64 md:w-full">Todos los derechos reservados. Diseñado y desarrollado por <b>Industrias Balinsa.</b></h3></div>
-                    <!-- <div class="h-20 flex items-center justify-center"><h3 class="text-gray-900 dark:text-gray-300 text-center text-sm w-64 md:w-full">Todos los derechos reservados. Diseñado y desarrollado por <b>Santos Vilchez Edinson P.</b></h3></div> -->
+                    {{-- <div class="h-20 flex items-center justify-center"><h3 class="text-gray-900 dark:text-gray-300 text-center text-sm w-64 md:w-full">Todos los derechos reservados. Diseñado y desarrollado por <b>Industrias Balinsa.</b></h3></div> --}}
+                    <div class="h-20 flex items-center justify-center"><h3 class="text-gray-900 dark:text-gray-300 text-center text-sm w-64 md:w-full">Todos los derechos reservados. Diseñado y desarrollado por <b>Santos Vilchez Edinson P.</b></h3></div>
                 </div>
             </footer>
         </div> <!-- Sidebar Backdrop -->
@@ -109,7 +109,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.5/xlsx.full.min.js"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.12.313/pdf.min.js"></script>   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.12.313/pdf.min.js"></script>
 
     <?php
     $hrefSubMenus = [];

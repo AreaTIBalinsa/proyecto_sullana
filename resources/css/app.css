@@ -9,7 +9,7 @@ body{
 /* Estilo para la barra de desplazamiento */
 /* Tamaño de la barra de desplazamiento */
 body::-webkit-scrollbar {
-    width: 10px;
+    width: 12px;
 }
 /* Color de fondo de la barra de desplazamiento */
 body::-webkit-scrollbar-track {
@@ -28,8 +28,8 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 .aside_scrollED::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
+  width: 8px;
+  height: 8px;
   background: transparent;
 }
 
@@ -53,7 +53,7 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 .aside_scrollEDINSON::-webkit-scrollbar-thumb {
-  background: #999999;
+  background: #555555;
   border-radius: 5px;
 }
 

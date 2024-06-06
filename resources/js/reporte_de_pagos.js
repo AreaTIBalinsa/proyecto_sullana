@@ -936,32 +936,25 @@ jQuery(function ($) {
         $.ajax({
             url: '/fn_consulta_TraerPagosFechas',
             method: 'GET',
-            data:{
-                fechaDesdeTraerPagos:fechaDesdeTraerPagos,
-                fechaHastaTraerPagos:fechaHastaTraerPagos,
+            data: {
+                fechaDesdeTraerPagos: fechaDesdeTraerPagos,
+                fechaHastaTraerPagos: fechaHastaTraerPagos,
             },
             success: function(response) {
-
-                // Verificar si la respuesta es un arreglo de objetos
                 if (Array.isArray(response)) {
-
-                    // Obtener el select
                     let tbodyReporteDePagos = $('#bodyReporteDePagos');
                     tbodyReporteDePagos.empty();
-
+    
                     let totalPago = 0;
                     let nuevaFila = "";
-
-                    // Iterar sobre los objetos y mostrar sus propiedades
+    
                     response.forEach(function(obj) {
-                        // Crear una nueva fila
-                        if (obj.nombreCompleto == ""){
+                        if (obj.nombreCompleto == "") {
                             nuevaFila = $('<tr class="bg-red-600 editarPagos border-b dark:border-gray-700 cursor-pointer text-white">');
-                        }else{
+                        } else {
                             nuevaFila = $('<tr class="bg-white editarPagos border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
                         }
                         totalPago += parseFloat(obj.cantidadAbonoPag);
-                        // Agregar las celdas con la información
                         nuevaFila.append($('<td class="hidden">').text(obj.idPagos));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">').text(obj.nombreCompleto));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(parseFloat(obj.cantidadAbonoPag).toFixed(2)));
@@ -971,41 +964,146 @@ jQuery(function ($) {
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(obj.fechaOperacionPag));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(obj.horaOperacionPag));
                         nuevaFila.append($('<td class="p-2 text-center cursor-pointer">').text(obj.observacion));
-                        // Agregar la nueva fila al tbody
                         tbodyReporteDePagos.append(nuevaFila);
                     });
-
+    
                     if (response.length == 0) {
                         tbodyReporteDePagos.html(`<tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="8" class="text-center">No hay datos</td></tr>`);
-                    }else{
-                        nuevaFila = $('<tr class="class="bg-white dark:bg-gray-800 h-0.5" cursor-pointer">');
-                        nuevaFila.append($('<td class="text-center h-0.5 bg-gray-400 dark:bg-gray-300" colspan="8">').text(""));
-                        tbodyReporteDePagos.append(nuevaFila);
-
-                        nuevaFila = $('<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
-
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">').text("SALDO TOTAL:"));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text("S/. "+totalPago.toFixed(2)));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
-                        nuevaFila.append($('<td class="p-2 text-center cursor-pointer">').text(""));
-                        // Agregar la nueva fila al tbody
-                        tbodyReporteDePagos.append(nuevaFila);
+                    } else {
+                        agregarFilaEspaciadora(tbodyReporteDePagos);
+                        agregarFilaTotal(tbodyReporteDePagos, totalPago);
                     }
-
+                    agregarFilaEspaciadoraHeader(tbodyReporteDePagos);
+                    agregarFilaEntrada(tbodyReporteDePagos);
+                    hacerCeldasEditables(tbodyReporteDePagos);
                 } else {
                     console.log("La respuesta no es un arreglo de objetos.");
                 }
-                
             },
             error: function(error) {
-                console.error("ERROR",error);
+                console.error("ERROR", error);
             }
         });
     }
+    
+    function agregarFilaTotal(tbody, totalPago) {
+        let nuevaFila = $('<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
+        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">').text("SALDO TOTAL:"));
+        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text("S/. " + totalPago.toFixed(2)));
+        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
+        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
+        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
+        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
+        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
+        nuevaFila.append($('<td class="p-2 text-center cursor-pointer">').text(""));
+        tbody.append(nuevaFila);
+    }
+    
+    function agregarFilaEntrada(tbody) {
+        let nuevaFila = $('<tr class="bg-white pagosAgregarExcel border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 font-medium text-gray-900 whitespace-nowrap dark:text-white" contenteditable="true">').text(""));
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarSoloNumerosDosDecimalesTablas" contenteditable="true">').text(""));
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap" contenteditable="false">').text("Transferencia"));
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap convertirMayusculasTablas" contenteditable="true">').text(""));
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap convertirMayusculasTablas" contenteditable="true">').text(""));
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarFormatoFechaTablas text-gray-900 dark:text-white" contenteditable="true">').text(`${fechaHoy}`));
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarFormatoHoraTablas text-gray-900 dark:text-white" contenteditable="true">').text(""));
+        nuevaFila.append($('<td class="outline-none p-2 text-center cursor-pointer" contenteditable="true">').text(""));
+        nuevaFila.append($('<td class="outline-none p-2 text-center cursor-pointer hidden" contenteditable="true">').text("1"));
+        tbody.append(nuevaFila);
+    
+        // Evento de entrada para la columna 'formaDePagoExcel'
+        nuevaFila.find('.formaDePagoExcel').on('input', function() {
+            let textoIngresado = $(this).text().trim().toLowerCase();
+            let sugerencia = "";
+    
+            // Comprobando palabras clave y proporcionando sugerencia
+            if (textoIngresado.includes("ya")) {
+                sugerencia = "Yape";
+            } else if (textoIngresado.includes("ef")) {
+                sugerencia = "Efectivo";
+            } else if (textoIngresado.includes("tra")) {
+                sugerencia = "Transferencia";
+            }
+    
+            // Autocompletar si hay una sugerencia
+            if (sugerencia !== "") {
+                $(this).text(sugerencia);
+                // Enfocar la siguiente celda después de autocompletar
+                $(this).closest('tr').find('.convertirMayusculasTablas:first').focus();
+            }
+        });
+    
+        nuevaFila.on('input', function() {
+            let vacio = true;
+            nuevaFila.find('td').each(function() {
+                if ($(this).text().trim() !== "") {
+                    vacio = false;
+                }
+            });
+            if (!vacio) {
+                agregarFilaEntrada(tbody);
+                nuevaFila.off('input');
+            }
+        });
+    }      
+    
+    function agregarFilaEspaciadora(tbody) {
+        let nuevaFila = $('<tr class="bg-white dark:bg-gray-800 h-0.5 cursor-pointer">');
+        nuevaFila.append($('<td class="text-center h-0.5 bg-gray-400 dark:bg-gray-300" colspan="8">').text(""));
+        tbody.append(nuevaFila);
+    }
+    
+    function agregarFilaEspaciadoraHeader(tbody) {
+        let nuevaFila = $('<tr class="bg-white dark:bg-gray-800 h-8 cursor-pointer">');
+        nuevaFila.append($('<td class="text-center h-8 bg-blue-600 text-white font-semibold" colspan="7">').text("FILAS A AGREGAR"));
+        nuevaFila.append($('<td class="text-center h-8 bg-blue-600 text-white font-semibold p-2">').html(`<button class="w-full flex gap-2 justify-center items-center cursor-pointer uppercase bg-green-600 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 hover:bg-green-600 whitespace-nowrap" type="submit" autocomplete="off" id="registrar_agregarPagos_Excel"><i class='bx bx-save text-lg'></i>Guardar Pagos</button>`));
+        tbody.append(nuevaFila);
+    }
+    
+    function hacerCeldasEditables(tbody) {
+        tbody.on('keydown', 'td[contenteditable="true"]', function(e) {
+            let currentTd = $(this);
+            let currentRow = currentTd.parent();
+            let currentTdIndex = currentTd.index();
+    
+            if (e.key === "ArrowRight") {
+                e.preventDefault();
+                let nextTd = currentTd.nextAll('td[contenteditable="true"]').first();
+                if (nextTd.length) {
+                    nextTd.focus();
+                } else {
+                    let nextRow = currentRow.next();
+                    if (nextRow.length) {
+                        nextRow.children('td[contenteditable="true"]').first().focus();
+                    }
+                }
+            } else if (e.key === "ArrowLeft") {
+                e.preventDefault();
+                let prevTd = currentTd.prevAll('td[contenteditable="true"]').first();
+                if (prevTd.length) {
+                    prevTd.focus();
+                } else {
+                    let prevRow = currentRow.prev();
+                    if (prevRow.length) {
+                        prevRow.children('td[contenteditable="true"]').last().focus();
+                    }
+                }
+            } else if (e.key === "ArrowDown") {
+                e.preventDefault();
+                let nextRow = currentRow.next();
+                if (nextRow.length) {
+                    nextRow.children().eq(currentTdIndex).focus();
+                }
+            } else if (e.key === "ArrowUp") {
+                e.preventDefault();
+                let prevRow = currentRow.prev();
+                if (prevRow.length) {
+                    prevRow.children().eq(currentTdIndex).focus();
+                }
+            }
+        });
+    }        
     
     function fn_TraerPagosFechas2(fechaDesdeTraerPagos, fechaHastaTraerPagos) {
         $.ajax({
@@ -1197,7 +1295,7 @@ jQuery(function ($) {
 
                         nuevaFila = $('<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
 
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">').append($('<h5 class="min-w-max px-2">').text("SALDO TOTAL:")));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">').text("SALDO TOTAL:"));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text("S/. "+totalPago.toFixed(2)));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
@@ -2086,6 +2184,212 @@ jQuery(function ($) {
             },
             error: function(error) {
                 console.error("ERROR", error);
+            }
+        });
+    }
+
+    $(document).on('input', '.validarSoloNumerosDosDecimalesTablas', function (event) {
+        let inputValue = $(this).text();
+        let originalValue = inputValue;
+    
+        // Elimina todos los caracteres excepto los dígitos y un punto decimal
+        inputValue = inputValue.replace(/[^0-9.]/g, '');
+    
+        // Verifica si ya hay un punto decimal presente
+        if (inputValue.indexOf('.') !== -1) {
+            // Si ya hay un punto, elimina los puntos adicionales
+            inputValue = inputValue.replace(/(\..*)\./g, '$1');
+    
+            // Limita el número de decimales a dos
+            let decimalPart = inputValue.split('.')[1];
+            if (decimalPart && decimalPart.length > 2) {
+                decimalPart = decimalPart.substring(0, 2);
+                inputValue = inputValue.split('.')[0] + '.' + decimalPart;
+            }
+        }
+    
+        // Si el valor ha cambiado, actualizar el contenido
+        if (inputValue !== originalValue) {
+            let selection = window.getSelection();
+            let range = selection.getRangeAt(0);
+            let cursorPosition = range.startOffset;
+    
+            $(this).text(inputValue);
+    
+            // Restaurar la posición del cursor
+            let newRange = document.createRange();
+            newRange.setStart(this.firstChild, cursorPosition);
+            newRange.setEnd(this.firstChild, cursorPosition);
+            selection.removeAllRanges();
+            selection.addRange(newRange);
+        }
+    });
+    
+    $(document).on('input', '.convertirMayusculasTablas', function () {
+        let inputValue = $(this).text();
+    
+        // Convertir el valor a mayúsculas
+        let inputValueMayusculas = inputValue.toUpperCase();
+    
+        // Si el valor ha cambiado, actualizar el contenido
+        if (inputValue !== inputValueMayusculas) {
+            let selection = window.getSelection();
+            let range = selection.getRangeAt(0);
+            let cursorPosition = range.startOffset;
+    
+            $(this).text(inputValueMayusculas);
+    
+            // Restaurar la posición del cursor
+            let newRange = document.createRange();
+            newRange.setStart(this.firstChild, cursorPosition);
+            newRange.setEnd(this.firstChild, cursorPosition);
+            selection.removeAllRanges();
+            selection.addRange(newRange);
+        }
+    });
+    
+    $(document).on('input', '.validarFormatoFechaTablas', function () {
+        let inputValue = $(this).text();
+        let regex = /^\d{4}-\d{2}-\d{2}$/;
+    
+        // Verificar si el valor cumple con el formato de fecha YYYY-MM-DD
+        if (regex.test(inputValue)) {
+            let inputDate = new Date(inputValue);
+            let currentDate = new Date();
+            
+            // Comparar con la fecha actual (solo la fecha, sin la hora)
+            if (inputDate <= currentDate.setHours(0,0,0,0)) {
+                $(this).css('background-color', 'rgb(22 163 74)');
+            } else {
+                $(this).css('background-color', 'rgb(185 28 28)');
+            }
+        } else {
+            $(this).css('background-color', 'rgb(185 28 28)');
+        }
+    });
+
+    $(document).on('input', '.validarFormatoHoraTablas', function () {
+        let inputValue = $(this).text();
+        let regex = /^(?:2[0-3]|[01][0-9]):(?:[0-5][0-9]):(?:[0-5][0-9])$/;
+    
+        // Verificar si el valor cumple con el formato de hora HH:MM:SS
+        if (regex.test(inputValue)) {
+            $(this).css('background-color', 'rgb(22 163 74)');
+        } else {
+            $(this).css('background-color', 'rgb(185 28 28)');
+        }
+    });
+
+    $(document).on('click', '#registrar_agregarPagos_Excel', function () {
+        // Crear un contador para realizar una acción después de todas las consultas completadas
+        let completedRequests = 0;
+        let totalRequests = $('.pagosAgregarExcel:not(:last-child)').length;
+    
+        // Recorrer todas las filas con la clase pagosAgregarExcel, excluyendo la última fila
+        $('.pagosAgregarExcel:not(:last-child)').each(function() {
+            let filaActual = $(this); // Guardar referencia a la fila actual
+    
+            // Obtener los datos de cada celda de la fila actual
+            let codigoCliente = filaActual.find('td:eq(0)').text().trim();
+            let montoAgregarPagoCliente = filaActual.find('td:eq(1)').text().trim();
+            let formaDePago = filaActual.find('td:eq(2)').text().trim();
+            let bancoAgregarPagoCliente = filaActual.find('td:eq(3)').text().trim();
+            let codAgregarPagoCliente = filaActual.find('td:eq(4)').text().trim();
+            let fechaAgregarPagoCliente = filaActual.find('td:eq(5)').text().trim();
+            let horaAgregarPago = filaActual.find('td:eq(6)').text().trim();
+            let comentarioAgregarPagoCliente = filaActual.find('td:eq(7)').text().trim();
+            let pagoDerivado = filaActual.find('td:eq(8)').text().trim();
+    
+            $.ajax({
+                url: '/fn_consulta_VerificarCodigoPago',
+                method: 'GET',
+                data:{
+                    codAgregarPagoCliente: codAgregarPagoCliente,
+                },
+                success: function(response) {
+                    // Verificar si la respuesta es un arreglo de objetos
+                    if (Array.isArray(response) && response.length > 0) {
+                        response = response[0];
+                        let responseNombre = response.nombreCompleto;
+                        let responseFecha = response.fechaOperacionPag;
+                        let responseHora = response.horaOperacionPag;
+                        let responseBanco = response.bancaPago;
+                        let responseCodTransferencia = response.codigoTransferenciaPag;
+                        let responseMonto = response.cantidadAbonoPag;
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'warning',
+                            title: 'Codigo de Operación Encontrado',
+                            html: (`
+                            <hr>
+                            <br>
+                            <ul style="text-align: left; list-style-position: inside;">
+                                <li><b>Nombre : </b>${responseNombre}</li>
+                                <li><b>Fecha : </b>${responseFecha}</li>
+                                <li><b>Hora : </b>${responseHora}</li>
+                                <li><b>Monto : </b>${responseMonto}</li>
+                                <li><b>Banco : </b>${responseBanco}</li>
+                                <li><b>Codigo de Tranferencia : </b>${responseCodTransferencia}</li>
+                            </ul>`),
+                        });
+                    } else {
+                        // Llamar a la función fn_AgregarPagoCliente con los datos de la fila actual
+                        fn_AgregarPagoClienteExcel(codigoCliente, montoAgregarPagoCliente, fechaAgregarPagoCliente, formaDePago, codAgregarPagoCliente, comentarioAgregarPagoCliente, bancoAgregarPagoCliente, horaAgregarPago, pagoDerivado)
+                        .then(function() {
+                            completedRequests++;
+                            // Verificar si todas las consultas han sido completadas
+                            if (completedRequests === totalRequests) {
+                                Swal.fire({
+                                    position: 'center',
+                                    icon: 'success',
+                                    title: 'Se registro el pago correctamente',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                });
+                                // Realizar la acción después de que todas las consultas se completen
+                                let fechaDesdeTraerPagos = $('#fechaDesdeReporteDePagos').val();
+                                let fechaHastaTraerPagos = $('#fechaHastaReporteDePagos').val();
+                                fn_TraerPagosFechas(fechaDesdeTraerPagos, fechaHastaTraerPagos);
+                            }
+                        });
+                        // Eliminar la fila actual
+                        filaActual.remove();
+                    }
+                },
+                error: function(error) {
+                    console.error("ERROR", error);
+                }
+            });
+        });
+    });           
+    
+    function fn_AgregarPagoClienteExcel(codigoCliente,montoAgregarPagoCliente,fechaAgregarPagoCliente,formaDePago,codAgregarPagoCliente,comentarioAgregarPagoCliente,bancoAgregarPagoCliente,horaAgregarPago, pagoDerivado){
+        return  $.ajax({
+            url: '/fn_consulta_AgregarPagoCliente',
+            method: 'GET',
+            data: {
+                codigoCliente: codigoCliente,
+                montoAgregarPagoCliente: montoAgregarPagoCliente,
+                fechaAgregarPagoCliente: fechaAgregarPagoCliente,
+                formaDePago:formaDePago,
+                codAgregarPagoCliente:codAgregarPagoCliente,
+                comentarioAgregarPagoCliente:comentarioAgregarPagoCliente,
+                bancoAgregarPagoCliente:bancoAgregarPagoCliente,
+                horaAgregarPago:horaAgregarPago,
+                pagoDerivado:pagoDerivado,
+            },
+            success: function(response) {
+                if (response.success) {
+                    
+                }
+            },
+            error: function(error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Error: Ocurrio un error inesperado durante la operacion',
+                  })
+                console.error("ERROR",error);
             }
         });
     }

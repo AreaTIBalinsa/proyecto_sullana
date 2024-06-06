@@ -24,6 +24,7 @@
         "flowbite": "^2.2.1",
         "html2canvas": "^1.4.1",
         "jquery": "^3.7.1",
+        "jquery-ui": "^1.13.3",
         "jspdf": "^2.5.1",
         "jspdf-autotable": "^3.8.2",
         "jszip": "^3.10.1",
