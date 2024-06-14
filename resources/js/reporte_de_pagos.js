@@ -973,9 +973,6 @@ jQuery(function ($) {
                         agregarFilaEspaciadora(tbodyReporteDePagos);
                         agregarFilaTotal(tbodyReporteDePagos, totalPago);
                     }
-                    agregarFilaEspaciadoraHeader(tbodyReporteDePagos);
-                    agregarFilaEntrada(tbodyReporteDePagos);
-                    hacerCeldasEditables(tbodyReporteDePagos);
                 } else {
                     console.log("La respuesta no es un arreglo de objetos.");
                 }
@@ -984,6 +981,12 @@ jQuery(function ($) {
                 console.error("ERROR", error);
             }
         });
+    }
+
+    function agregarFilaEspaciadora(tbody) {
+        let nuevaFila = $('<tr class="bg-white dark:bg-gray-800 h-0.5 cursor-pointer">');
+        nuevaFila.append($('<td class="text-center h-0.5 bg-gray-400 dark:bg-gray-300" colspan="8">').text(""));
+        tbody.append(nuevaFila);
     }
     
     function agregarFilaTotal(tbody, totalPago) {
@@ -998,10 +1001,18 @@ jQuery(function ($) {
         nuevaFila.append($('<td class="p-2 text-center cursor-pointer">').text(""));
         tbody.append(nuevaFila);
     }
-    
+
+    tablaEditable()
+    function tablaEditable(){
+        let tbodyReporteDePagosExcel = $('#bodyReporteDePagosExcel');
+        tbodyReporteDePagosExcel.empty();
+        agregarFilaEntrada(tbodyReporteDePagosExcel);
+        hacerCeldasEditables(tbodyReporteDePagosExcel);
+    }
+
     function agregarFilaEntrada(tbody) {
         let nuevaFila = $('<tr class="bg-white pagosAgregarExcel border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
-        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 font-medium text-gray-900 whitespace-nowrap dark:text-white" contenteditable="true">').text(""));
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 font-medium text-gray-900 whitespace-nowrap dark:text-white uppercase nombreClienteTablaExcel" contenteditable="true">').text(""));
         nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarSoloNumerosDosDecimalesTablas" contenteditable="true">').text(""));
         nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap" contenteditable="false">').text("Transferencia"));
         nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap convertirMayusculasTablas" contenteditable="true">').text(""));
@@ -1010,27 +1021,46 @@ jQuery(function ($) {
         nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarFormatoHoraTablas text-gray-900 dark:text-white" contenteditable="true">').text(""));
         nuevaFila.append($('<td class="outline-none p-2 text-center cursor-pointer" contenteditable="true">').text(""));
         nuevaFila.append($('<td class="outline-none p-2 text-center cursor-pointer hidden" contenteditable="true">').text("1"));
+        nuevaFila.append($('<td class="outline-none p-2 text-center cursor-pointer hidden codigoDeClienteTablaExcel" contenteditable="false">').text("0"));
         tbody.append(nuevaFila);
     
-        // Evento de entrada para la columna 'formaDePagoExcel'
-        nuevaFila.find('.formaDePagoExcel').on('input', function() {
-            let textoIngresado = $(this).text().trim().toLowerCase();
-            let sugerencia = "";
+        nuevaFila.find('.nombreClienteTablaExcel').on('input', function() {
+            let inputText = $(this).text().trim();
+            let currentCell = $(this);
     
-            // Comprobando palabras clave y proporcionando sugerencia
-            if (textoIngresado.includes("ya")) {
-                sugerencia = "Yape";
-            } else if (textoIngresado.includes("ef")) {
-                sugerencia = "Efectivo";
-            } else if (textoIngresado.includes("tra")) {
-                sugerencia = "Transferencia";
+            if (inputText.length >= 3) { // Activar autocompletar después de 3 caracteres
+                fn_TraerClientesAgregarPagoClienteTablaExcel(inputText, (clientes) => {
+                    if (clientes) {
+                        showSuggestions(currentCell, clientes);
+                    }else{
+                        $('.suggestions-list').remove();
+                    }
+                });
+            } else {
+                hideSuggestions(currentCell);
             }
+        });
     
-            // Autocompletar si hay una sugerencia
-            if (sugerencia !== "") {
-                $(this).text(sugerencia);
-                // Enfocar la siguiente celda después de autocompletar
-                $(this).closest('tr').find('.convertirMayusculasTablas:first').focus();
+        nuevaFila.find('.nombreClienteTablaExcel').on('keydown', function(e) {
+            let suggestionsList = $('.suggestions-list');
+            let highlighted = suggestionsList.find('.highlighted');
+            if (e.key === 'ArrowDown') {
+                if (highlighted.length === 0) {
+                    suggestionsList.children().first().addClass('highlighted');
+                } else {
+                    highlighted.removeClass('highlighted').next().addClass('highlighted');
+                }
+                e.preventDefault();
+            } else if (e.key === 'ArrowUp') {
+                if (highlighted.length !== 0) {
+                    highlighted.removeClass('highlighted').prev().addClass('highlighted');
+                }
+                e.preventDefault();
+            } else if (e.key === 'Enter') {
+                if (highlighted.length !== 0) {
+                    highlighted.click();
+                    e.preventDefault();
+                }
             }
         });
     
@@ -1046,19 +1076,61 @@ jQuery(function ($) {
                 nuevaFila.off('input');
             }
         });
-    }      
-    
-    function agregarFilaEspaciadora(tbody) {
-        let nuevaFila = $('<tr class="bg-white dark:bg-gray-800 h-0.5 cursor-pointer">');
-        nuevaFila.append($('<td class="text-center h-0.5 bg-gray-400 dark:bg-gray-300" colspan="8">').text(""));
-        tbody.append(nuevaFila);
     }
     
-    function agregarFilaEspaciadoraHeader(tbody) {
-        let nuevaFila = $('<tr class="bg-white dark:bg-gray-800 h-8 cursor-pointer">');
-        nuevaFila.append($('<td class="text-center h-8 bg-blue-600 text-white font-semibold" colspan="7">').text("FILAS A AGREGAR"));
-        nuevaFila.append($('<td class="text-center h-8 bg-blue-600 text-white font-semibold p-2">').html(`<button class="w-full flex gap-2 justify-center items-center cursor-pointer uppercase bg-green-600 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 hover:bg-green-600 whitespace-nowrap" type="submit" autocomplete="off" id="registrar_agregarPagos_Excel"><i class='bx bx-save text-lg'></i>Guardar Pagos</button>`));
-        tbody.append(nuevaFila);
+    function fn_TraerClientesAgregarPagoClienteTablaExcel(inputAgregarPagoCliente, callback) {
+        $.ajax({
+            url: '/fn_consulta_TraerClientesAgregarPagoCliente',
+            method: 'GET',
+            data: {
+                inputAgregarPagoCliente: inputAgregarPagoCliente,
+            },
+            success: function(response) {
+                if (Array.isArray(response) && response.length > 0) {
+                    callback(response);
+                } else {
+                    callback(null);
+                }
+            },
+            error: function(error) {
+                console.error("ERROR", error);
+                callback(null);
+            }
+        });
+    }
+    
+    function showSuggestions(cell, clientes) {
+        hideSuggestions(cell); // Remove existing suggestions if any
+    
+        let suggestions = $('<div class="suggestions-list bg-white border-2 border-gray-500"></div>').css({
+            position: 'absolute',
+            zIndex: 1000
+        });
+    
+        clientes.forEach(cliente => {
+            let suggestionItem = $('<div class="suggestion-item p-1"></div>').text(cliente.nombreCompleto).css({
+                cursor: 'pointer'
+            });
+    
+            suggestionItem.on('click', function() {
+                cell.text(cliente.nombreCompleto);
+                cell.data('selectedCliente', cliente);
+                hideSuggestions(cell);
+
+                let codigoClienteCell = cell.closest('tr').find('td').eq(9); 
+                codigoClienteCell.text(cliente.codigoCli);
+            });
+    
+            suggestions.append(suggestionItem);
+        });
+    
+        $('body').append(suggestions);
+        let offset = cell.offset();
+        suggestions.css({ top: offset.top + cell.outerHeight(), left: offset.left });
+    }
+    
+    function hideSuggestions(cell) {
+        $('.suggestions-list').remove();
     }
     
     function hacerCeldasEditables(tbody) {
@@ -2281,16 +2353,44 @@ jQuery(function ($) {
     });
 
     $(document).on('click', '#registrar_agregarPagos_Excel', function () {
-        // Crear un contador para realizar una acción después de todas las consultas completadas
+        // Crear contadores para realizar una acción después de todas las consultas completadas y fallidas
         let completedRequests = 0;
+        let failedRequests = 0;
         let totalRequests = $('.pagosAgregarExcel:not(:last-child)').length;
+    
+        // Función para verificar si todas las solicitudes han finalizado
+        function checkCompletion() {
+            if (completedRequests + failedRequests === totalRequests) {
+                if (failedRequests > 0) {
+                    // Swal.fire({
+                    //     position: 'center',
+                    //     icon: 'warning',
+                    //     title: 'Algunos pagos no pudieron ser registrados',
+                    //     text: `Se registraron ${completedRequests} pagos correctamente y ${failedRequests} fallaron.`,
+                    //     showConfirmButton: true
+                    // });
+                } else {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Se registraron todos los pagos correctamente',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+                // Realizar la acción después de que todas las consultas se completen
+                let fechaDesdeTraerPagos = $('#fechaDesdeReporteDePagos').val();
+                let fechaHastaTraerPagos = $('#fechaHastaReporteDePagos').val();
+                fn_TraerPagosFechas(fechaDesdeTraerPagos, fechaHastaTraerPagos);
+            }
+        }
     
         // Recorrer todas las filas con la clase pagosAgregarExcel, excluyendo la última fila
         $('.pagosAgregarExcel:not(:last-child)').each(function() {
             let filaActual = $(this); // Guardar referencia a la fila actual
     
             // Obtener los datos de cada celda de la fila actual
-            let codigoCliente = filaActual.find('td:eq(0)').text().trim();
+            let nombreCliente = filaActual.find('td:eq(0)').text().trim();
             let montoAgregarPagoCliente = filaActual.find('td:eq(1)').text().trim();
             let formaDePago = filaActual.find('td:eq(2)').text().trim();
             let bancoAgregarPagoCliente = filaActual.find('td:eq(3)').text().trim();
@@ -2299,11 +2399,12 @@ jQuery(function ($) {
             let horaAgregarPago = filaActual.find('td:eq(6)').text().trim();
             let comentarioAgregarPagoCliente = filaActual.find('td:eq(7)').text().trim();
             let pagoDerivado = filaActual.find('td:eq(8)').text().trim();
+            let codigoCliente = filaActual.find('td:eq(9)').text().trim();
     
             $.ajax({
                 url: '/fn_consulta_VerificarCodigoPago',
                 method: 'GET',
-                data:{
+                data: {
                     codAgregarPagoCliente: codAgregarPagoCliente,
                 },
                 success: function(response) {
@@ -2321,36 +2422,29 @@ jQuery(function ($) {
                             icon: 'warning',
                             title: 'Codigo de Operación Encontrado',
                             html: (`
-                            <hr>
-                            <br>
-                            <ul style="text-align: left; list-style-position: inside;">
-                                <li><b>Nombre : </b>${responseNombre}</li>
-                                <li><b>Fecha : </b>${responseFecha}</li>
-                                <li><b>Hora : </b>${responseHora}</li>
-                                <li><b>Monto : </b>${responseMonto}</li>
-                                <li><b>Banco : </b>${responseBanco}</li>
-                                <li><b>Codigo de Tranferencia : </b>${responseCodTransferencia}</li>
-                            </ul>`),
+                                <hr>
+                                <br>
+                                <ul style="text-align: left; list-style-position: inside;">
+                                    <li><b>Nombre : </b>${responseNombre}</li>
+                                    <li><b>Fecha : </b>${responseFecha}</li>
+                                    <li><b>Hora : </b>${responseHora}</li>
+                                    <li><b>Monto : </b>${responseMonto}</li>
+                                    <li><b>Banco : </b>${responseBanco}</li>
+                                    <li><b>Codigo de Tranferencia : </b>${responseCodTransferencia}</li>
+                                </ul>`),
                         });
+                        failedRequests++;
+                        checkCompletion();
                     } else {
                         // Llamar a la función fn_AgregarPagoCliente con los datos de la fila actual
                         fn_AgregarPagoClienteExcel(codigoCliente, montoAgregarPagoCliente, fechaAgregarPagoCliente, formaDePago, codAgregarPagoCliente, comentarioAgregarPagoCliente, bancoAgregarPagoCliente, horaAgregarPago, pagoDerivado)
                         .then(function() {
                             completedRequests++;
-                            // Verificar si todas las consultas han sido completadas
-                            if (completedRequests === totalRequests) {
-                                Swal.fire({
-                                    position: 'center',
-                                    icon: 'success',
-                                    title: 'Se registro el pago correctamente',
-                                    showConfirmButton: false,
-                                    timer: 1500
-                                });
-                                // Realizar la acción después de que todas las consultas se completen
-                                let fechaDesdeTraerPagos = $('#fechaDesdeReporteDePagos').val();
-                                let fechaHastaTraerPagos = $('#fechaHastaReporteDePagos').val();
-                                fn_TraerPagosFechas(fechaDesdeTraerPagos, fechaHastaTraerPagos);
-                            }
+                            checkCompletion();
+                        })
+                        .catch(function() {
+                            failedRequests++;
+                            checkCompletion();
                         });
                         // Eliminar la fila actual
                         filaActual.remove();
@@ -2358,10 +2452,12 @@ jQuery(function ($) {
                 },
                 error: function(error) {
                     console.error("ERROR", error);
+                    failedRequests++;
+                    checkCompletion();
                 }
             });
         });
-    });           
+    });         
     
     function fn_AgregarPagoClienteExcel(codigoCliente,montoAgregarPagoCliente,fechaAgregarPagoCliente,formaDePago,codAgregarPagoCliente,comentarioAgregarPagoCliente,bancoAgregarPagoCliente,horaAgregarPago, pagoDerivado){
         return  $.ajax({
@@ -2393,5 +2489,930 @@ jQuery(function ($) {
             }
         });
     }
+
+    $(document).on('click', '#registrar_agregarPagos_Excel2', function () {
+        // Crear contadores para realizar una acción después de todas las consultas completadas y fallidas
+        let completedRequests = 0;
+        let failedRequests = 0;
+        let totalRequests = $('.pagosAgregarExcel2:not(:last-child)').length;
+    
+        // Función para verificar si todas las solicitudes han finalizado
+        function checkCompletion() {
+            if (completedRequests + failedRequests === totalRequests) {
+                if (failedRequests > 0) {
+                    // Swal.fire({
+                    //     position: 'center',
+                    //     icon: 'warning',
+                    //     title: 'Algunos pagos no pudieron ser registrados',
+                    //     text: `Se registraron ${completedRequests} pagos correctamente y ${failedRequests} fallaron.`,
+                    //     showConfirmButton: true
+                    // });
+                } else {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Se registraron todos los pagos correctamente',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+                // Realizar la acción después de que todas las consultas se completen
+                let fechaDesdeTraerPagos = $('#fechaDesdeReporteDePagos').val();
+                let fechaHastaTraerPagos = $('#fechaHastaReporteDePagos').val();
+                fn_TraerPagosFechas2(fechaDesdeTraerPagos, fechaHastaTraerPagos);
+            }
+        }
+    
+        // Recorrer todas las filas con la clase pagosAgregarExcel, excluyendo la última fila
+        $('.pagosAgregarExcel2:not(:last-child)').each(function() {
+            let filaActual = $(this); // Guardar referencia a la fila actual
+    
+            // Obtener los datos de cada celda de la fila actual
+            let nombreCliente = filaActual.find('td:eq(0)').text().trim();
+            let montoAgregarPagoCliente = filaActual.find('td:eq(1)').text().trim();
+            let formaDePago = filaActual.find('td:eq(2)').text().trim();
+            let bancoAgregarPagoCliente = filaActual.find('td:eq(3)').text().trim();
+            let codAgregarPagoCliente = filaActual.find('td:eq(4)').text().trim();
+            let fechaAgregarPagoCliente = filaActual.find('td:eq(5)').text().trim();
+            let horaAgregarPago = "12:00:00";
+            let comentarioAgregarPagoCliente = filaActual.find('td:eq(6)').text().trim();
+            let pagoDerivado = filaActual.find('td:eq(7)').text().trim();
+            let codigoCliente = filaActual.find('td:eq(8)').text().trim();
+
+            $.ajax({
+                url: '/fn_consulta_VerificarCodigoPago',
+                method: 'GET',
+                data: {
+                    codAgregarPagoCliente: codAgregarPagoCliente,
+                },
+                success: function(response) {
+                    // Verificar si la respuesta es un arreglo de objetos
+                    if (Array.isArray(response) && response.length > 0) {
+                        response = response[0];
+                        let responseNombre = response.nombreCompleto;
+                        let responseFecha = response.fechaOperacionPag;
+                        let responseHora = response.horaOperacionPag;
+                        let responseBanco = response.bancaPago;
+                        let responseCodTransferencia = response.codigoTransferenciaPag;
+                        let responseMonto = response.cantidadAbonoPag;
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'warning',
+                            title: 'Codigo de Operación Encontrado',
+                            html: (`
+                                <hr>
+                                <br>
+                                <ul style="text-align: left; list-style-position: inside;">
+                                    <li><b>Nombre : </b>${responseNombre}</li>
+                                    <li><b>Fecha : </b>${responseFecha}</li>
+                                    <li><b>Hora : </b>${responseHora}</li>
+                                    <li><b>Monto : </b>${responseMonto}</li>
+                                    <li><b>Banco : </b>${responseBanco}</li>
+                                    <li><b>Codigo de Tranferencia : </b>${responseCodTransferencia}</li>
+                                </ul>`),
+                        });
+                        failedRequests++;
+                        checkCompletion();
+                    } else {
+                        // Llamar a la función fn_AgregarPagoCliente con los datos de la fila actual
+                        fn_AgregarPagoClienteExcel(codigoCliente, montoAgregarPagoCliente, fechaAgregarPagoCliente, formaDePago, codAgregarPagoCliente, comentarioAgregarPagoCliente, bancoAgregarPagoCliente, horaAgregarPago, pagoDerivado)
+                        .then(function() {
+                            completedRequests++;
+                            checkCompletion();
+                        })
+                        .catch(function() {
+                            failedRequests++;
+                            checkCompletion();
+                        });
+                        // Eliminar la fila actual
+                        filaActual.remove();
+                    }
+                },
+                error: function(error) {
+                    console.error("ERROR", error);
+                    failedRequests++;
+                    checkCompletion();
+                }
+            });
+        });
+    }); 
+
+    tablaEditable2()
+    function tablaEditable2(){
+        let tbodyReporteDePagosExcel = $('#bodyReporteDePagosExcel2');
+        tbodyReporteDePagosExcel.empty();
+        agregarFilaEntrada2(tbodyReporteDePagosExcel);
+        hacerCeldasEditables(tbodyReporteDePagosExcel);
+    }
+
+    function agregarFilaEntrada2(tbody) {
+        let nuevaFila = $('<tr class="bg-white pagosAgregarExcel2 border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 font-medium text-gray-900 whitespace-nowrap dark:text-white uppercase nombreClienteTablaExcel" contenteditable="true">').text(""));
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarSoloNumerosDosDecimalesTablas" contenteditable="true">').text(""));
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap" contenteditable="true">').text("Efectivo"));
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap convertirMayusculasTablas" contenteditable="true">').text(""));
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap convertirMayusculasTablas" contenteditable="true">').text(""));
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarFormatoFechaTablas text-gray-900 dark:text-white" contenteditable="true">').text(`${fechaHoy}`));
+        nuevaFila.append($('<td class="outline-none p-2 text-center cursor-pointer" contenteditable="true">').text(""));
+        nuevaFila.append($('<td class="outline-none p-2 text-center cursor-pointer hidden" contenteditable="true">').text("2"));
+        nuevaFila.append($('<td class="outline-none p-2 text-center cursor-pointer hidden codigoDeClienteTablaExcel" contenteditable="false">').text("0"));
+        tbody.append(nuevaFila);
+    
+        nuevaFila.find('.nombreClienteTablaExcel').on('input', function() {
+            let inputText = $(this).text().trim();
+            let currentCell = $(this);
+    
+            if (inputText.length >= 3) { // Activar autocompletar después de 3 caracteres
+                fn_TraerClientesAgregarPagoClienteTablaExcel(inputText, (clientes) => {
+                    if (clientes) {
+                        showSuggestions2(currentCell, clientes);
+                    }else{
+                        $('.suggestions-list').remove();
+                    }
+                });
+            } else {
+                hideSuggestions(currentCell);
+            }
+        });
+    
+        nuevaFila.find('.nombreClienteTablaExcel').on('keydown', function(e) {
+            let suggestionsList = $('.suggestions-list');
+            let highlighted = suggestionsList.find('.highlighted');
+            if (e.key === 'ArrowDown') {
+                if (highlighted.length === 0) {
+                    suggestionsList.children().first().addClass('highlighted');
+                } else {
+                    highlighted.removeClass('highlighted').next().addClass('highlighted');
+                }
+                e.preventDefault();
+            } else if (e.key === 'ArrowUp') {
+                if (highlighted.length !== 0) {
+                    highlighted.removeClass('highlighted').prev().addClass('highlighted');
+                }
+                e.preventDefault();
+            } else if (e.key === 'Enter') {
+                if (highlighted.length !== 0) {
+                    highlighted.click();
+                    e.preventDefault();
+                }
+            }
+        });
+    
+        nuevaFila.on('input', function() {
+            let vacio = true;
+            nuevaFila.find('td').each(function() {
+                if ($(this).text().trim() !== "") {
+                    vacio = false;
+                }
+            });
+            if (!vacio) {
+                agregarFilaEntrada2(tbody);
+                nuevaFila.off('input');
+            }
+        });
+    }
+
+    function showSuggestions2(cell, clientes) {
+        hideSuggestions(cell); // Remove existing suggestions if any
+    
+        let suggestions = $('<div class="suggestions-list bg-white border-2 border-gray-500"></div>').css({
+            position: 'absolute',
+            zIndex: 1000
+        });
+    
+        clientes.forEach(cliente => {
+            let suggestionItem = $('<div class="suggestion-item p-1"></div>').text(cliente.nombreCompleto).css({
+                cursor: 'pointer'
+            });
+    
+            suggestionItem.on('click', function() {
+                cell.text(cliente.nombreCompleto);
+                cell.data('selectedCliente', cliente);
+                hideSuggestions(cell);
+
+                let codigoClienteCell = cell.closest('tr').find('td').eq(8); 
+                codigoClienteCell.text(cliente.codigoCli);
+            });
+    
+            suggestions.append(suggestionItem);
+        });
+    
+        $('body').append(suggestions);
+        let offset = cell.offset();
+        suggestions.css({ top: offset.top + cell.outerHeight(), left: offset.left });
+    }
+
+    $(document).on('click', '#registrar_agregarPagos_Excel3', function () {
+        // Crear contadores para realizar una acción después de todas las consultas completadas y fallidas
+        let completedRequests = 0;
+        let failedRequests = 0;
+        let totalRequests = $('.pagosAgregarExcel3:not(:last-child)').length;
+    
+        // Función para verificar si todas las solicitudes han finalizado
+        function checkCompletion() {
+            if (completedRequests + failedRequests === totalRequests) {
+                if (failedRequests > 0) {
+                    // Swal.fire({
+                    //     position: 'center',
+                    //     icon: 'warning',
+                    //     title: 'Algunos pagos no pudieron ser registrados',
+                    //     text: `Se registraron ${completedRequests} pagos correctamente y ${failedRequests} fallaron.`,
+                    //     showConfirmButton: true
+                    // });
+                } else {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Se registraron todos los pagos correctamente',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+                // Realizar la acción después de que todas las consultas se completen
+                let fechaDesdeTraerPagos = $('#fechaDesdeReporteDePagos').val();
+                let fechaHastaTraerPagos = $('#fechaHastaReporteDePagos').val();
+                fn_TraerPagosFechas3(fechaDesdeTraerPagos, fechaHastaTraerPagos);
+            }
+        }
+    
+        // Recorrer todas las filas con la clase pagosAgregarExcel, excluyendo la última fila
+        $('.pagosAgregarExcel3:not(:last-child)').each(function() {
+            let filaActual = $(this); // Guardar referencia a la fila actual
+    
+            // Obtener los datos de cada celda de la fila actual
+            let nombreCliente = filaActual.find('td:eq(0)').text().trim();
+            let montoAgregarPagoCliente = filaActual.find('td:eq(1)').text().trim();
+            let formaDePago = filaActual.find('td:eq(2)').text().trim();
+            let bancoAgregarPagoCliente = "";
+            let codAgregarPagoCliente = "";
+            let fechaAgregarPagoCliente = filaActual.find('td:eq(3)').text().trim();
+            let horaAgregarPago = "12:00:00";
+            let comentarioAgregarPagoCliente = filaActual.find('td:eq(4)').text().trim();
+            let pagoDerivado = filaActual.find('td:eq(5)').text().trim();
+            let codigoCliente = filaActual.find('td:eq(6)').text().trim();
+
+            $.ajax({
+                url: '/fn_consulta_VerificarCodigoPago',
+                method: 'GET',
+                data: {
+                    codAgregarPagoCliente: codAgregarPagoCliente,
+                },
+                success: function(response) {
+                    // Verificar si la respuesta es un arreglo de objetos
+                    if (Array.isArray(response) && response.length > 0) {
+                        response = response[0];
+                        let responseNombre = response.nombreCompleto;
+                        let responseFecha = response.fechaOperacionPag;
+                        let responseHora = response.horaOperacionPag;
+                        let responseBanco = response.bancaPago;
+                        let responseCodTransferencia = response.codigoTransferenciaPag;
+                        let responseMonto = response.cantidadAbonoPag;
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'warning',
+                            title: 'Codigo de Operación Encontrado',
+                            html: (`
+                                <hr>
+                                <br>
+                                <ul style="text-align: left; list-style-position: inside;">
+                                    <li><b>Nombre : </b>${responseNombre}</li>
+                                    <li><b>Fecha : </b>${responseFecha}</li>
+                                    <li><b>Hora : </b>${responseHora}</li>
+                                    <li><b>Monto : </b>${responseMonto}</li>
+                                    <li><b>Banco : </b>${responseBanco}</li>
+                                    <li><b>Codigo de Tranferencia : </b>${responseCodTransferencia}</li>
+                                </ul>`),
+                        });
+                        failedRequests++;
+                        checkCompletion();
+                    } else {
+                        // Llamar a la función fn_AgregarPagoCliente con los datos de la fila actual
+                        fn_AgregarPagoClienteExcel(codigoCliente, montoAgregarPagoCliente, fechaAgregarPagoCliente, formaDePago, codAgregarPagoCliente, comentarioAgregarPagoCliente, bancoAgregarPagoCliente, horaAgregarPago, pagoDerivado)
+                        .then(function() {
+                            completedRequests++;
+                            checkCompletion();
+                        })
+                        .catch(function() {
+                            failedRequests++;
+                            checkCompletion();
+                        });
+                        // Eliminar la fila actual
+                        filaActual.remove();
+                    }
+                },
+                error: function(error) {
+                    console.error("ERROR", error);
+                    failedRequests++;
+                    checkCompletion();
+                }
+            });
+        });
+    }); 
+
+    tablaEditable3()
+    function tablaEditable3(){
+        let tbodyReporteDePagosExcel = $('#bodyReporteDePagosExcel3');
+        tbodyReporteDePagosExcel.empty();
+        agregarFilaEntrada3(tbodyReporteDePagosExcel);
+        hacerCeldasEditables(tbodyReporteDePagosExcel);
+    }
+
+    function agregarFilaEntrada3(tbody) {
+        let nuevaFila = $('<tr class="bg-white pagosAgregarExcel3 border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 font-medium text-gray-900 whitespace-nowrap dark:text-white uppercase nombreClienteTablaExcel" contenteditable="true">').text(""));
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarSoloNumerosDosDecimalesTablas" contenteditable="true">').text(""));
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap" contenteditable="false">').text("Efectivo"));
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarFormatoFechaTablas text-gray-900 dark:text-white" contenteditable="true">').text(`${fechaHoy}`));
+        nuevaFila.append($('<td class="outline-none p-2 text-center cursor-pointer" contenteditable="true">').text(""));
+        nuevaFila.append($('<td class="outline-none p-2 text-center cursor-pointer hidden" contenteditable="true">').text("3"));
+        nuevaFila.append($('<td class="outline-none p-2 text-center cursor-pointer hidden codigoDeClienteTablaExcel" contenteditable="false">').text("0"));
+        tbody.append(nuevaFila);
+    
+        nuevaFila.find('.nombreClienteTablaExcel').on('input', function() {
+            let inputText = $(this).text().trim();
+            let currentCell = $(this);
+    
+            if (inputText.length >= 3) { // Activar autocompletar después de 3 caracteres
+                fn_TraerClientesAgregarPagoClienteTablaExcel(inputText, (clientes) => {
+                    if (clientes) {
+                        showSuggestions3(currentCell, clientes);
+                    }else{
+                        $('.suggestions-list').remove();
+                    }
+                });
+            } else {
+                hideSuggestions(currentCell);
+            }
+        });
+    
+        nuevaFila.find('.nombreClienteTablaExcel').on('keydown', function(e) {
+            let suggestionsList = $('.suggestions-list');
+            let highlighted = suggestionsList.find('.highlighted');
+            if (e.key === 'ArrowDown') {
+                if (highlighted.length === 0) {
+                    suggestionsList.children().first().addClass('highlighted');
+                } else {
+                    highlighted.removeClass('highlighted').next().addClass('highlighted');
+                }
+                e.preventDefault();
+            } else if (e.key === 'ArrowUp') {
+                if (highlighted.length !== 0) {
+                    highlighted.removeClass('highlighted').prev().addClass('highlighted');
+                }
+                e.preventDefault();
+            } else if (e.key === 'Enter') {
+                if (highlighted.length !== 0) {
+                    highlighted.click();
+                    e.preventDefault();
+                }
+            }
+        });
+    
+        nuevaFila.on('input', function() {
+            let vacio = true;
+            nuevaFila.find('td').each(function() {
+                if ($(this).text().trim() !== "") {
+                    vacio = false;
+                }
+            });
+            if (!vacio) {
+                agregarFilaEntrada3(tbody);
+                nuevaFila.off('input');
+            }
+        });
+    }
+
+    function showSuggestions3(cell, clientes) {
+        hideSuggestions(cell); // Remove existing suggestions if any
+    
+        let suggestions = $('<div class="suggestions-list bg-white border-2 border-gray-500"></div>').css({
+            position: 'absolute',
+            zIndex: 1000
+        });
+    
+        clientes.forEach(cliente => {
+            let suggestionItem = $('<div class="suggestion-item p-1"></div>').text(cliente.nombreCompleto).css({
+                cursor: 'pointer'
+            });
+    
+            suggestionItem.on('click', function() {
+                cell.text(cliente.nombreCompleto);
+                cell.data('selectedCliente', cliente);
+                hideSuggestions(cell);
+
+                let codigoClienteCell = cell.closest('tr').find('td').eq(6); 
+                codigoClienteCell.text(cliente.codigoCli);
+            });
+    
+            suggestions.append(suggestionItem);
+        });
+    
+        $('body').append(suggestions);
+        let offset = cell.offset();
+        suggestions.css({ top: offset.top + cell.outerHeight(), left: offset.left });
+    }
+
+    $(document).on('click', '#registrar_agregarPagos_Excel4', function () {
+        // Crear contadores para realizar una acción después de todas las consultas completadas y fallidas
+        let completedRequests = 0;
+        let failedRequests = 0;
+        let totalRequests = $('.pagosAgregarExcel4:not(:last-child)').length;
+    
+        // Función para verificar si todas las solicitudes han finalizado
+        function checkCompletion() {
+            if (completedRequests + failedRequests === totalRequests) {
+                if (failedRequests > 0) {
+                    // Swal.fire({
+                    //     position: 'center',
+                    //     icon: 'warning',
+                    //     title: 'Algunos pagos no pudieron ser registrados',
+                    //     text: `Se registraron ${completedRequests} pagos correctamente y ${failedRequests} fallaron.`,
+                    //     showConfirmButton: true
+                    // });
+                } else {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Se registraron todos los pagos correctamente',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+                // Realizar la acción después de que todas las consultas se completen
+                let fechaDesdeTraerPagos = $('#fechaDesdeReporteDePagos').val();
+                let fechaHastaTraerPagos = $('#fechaHastaReporteDePagos').val();
+                fn_TraerPagosDirectoGranjaFechas(fechaDesdeTraerPagos, fechaHastaTraerPagos);
+            }
+        }
+    
+        // Recorrer todas las filas con la clase pagosAgregarExcel, excluyendo la última fila
+        $('.pagosAgregarExcel4:not(:last-child)').each(function() {
+            let filaActual = $(this); // Guardar referencia a la fila actual
+    
+            // Obtener los datos de cada celda de la fila actual
+            let nombreCliente = filaActual.find('td:eq(0)').text().trim();
+            let montoAgregarPagoCliente = filaActual.find('td:eq(1)').text().trim();
+            let formaDePago = filaActual.find('td:eq(2)').text().trim();
+            let bancoAgregarPagoCliente = filaActual.find('td:eq(3)').text().trim();
+            let codAgregarPagoCliente = filaActual.find('td:eq(4)').text().trim();
+            let fechaAgregarPagoCliente = filaActual.find('td:eq(5)').text().trim();
+            let horaAgregarPago = filaActual.find('td:eq(6)').text().trim();
+            let comentarioAgregarPagoCliente = filaActual.find('td:eq(7)').text().trim();
+            let pagoDerivado = filaActual.find('td:eq(8)').text().trim();
+            let codigoCliente = filaActual.find('td:eq(9)').text().trim();
+
+            $.ajax({
+                url: '/fn_consulta_VerificarCodigoPago',
+                method: 'GET',
+                data: {
+                    codAgregarPagoCliente: codAgregarPagoCliente,
+                },
+                success: function(response) {
+                    // Verificar si la respuesta es un arreglo de objetos
+                    if (Array.isArray(response) && response.length > 0) {
+                        response = response[0];
+                        let responseNombre = response.nombreCompleto;
+                        let responseFecha = response.fechaOperacionPag;
+                        let responseHora = response.horaOperacionPag;
+                        let responseBanco = response.bancaPago;
+                        let responseCodTransferencia = response.codigoTransferenciaPag;
+                        let responseMonto = response.cantidadAbonoPag;
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'warning',
+                            title: 'Codigo de Operación Encontrado',
+                            html: (`
+                                <hr>
+                                <br>
+                                <ul style="text-align: left; list-style-position: inside;">
+                                    <li><b>Nombre : </b>${responseNombre}</li>
+                                    <li><b>Fecha : </b>${responseFecha}</li>
+                                    <li><b>Hora : </b>${responseHora}</li>
+                                    <li><b>Monto : </b>${responseMonto}</li>
+                                    <li><b>Banco : </b>${responseBanco}</li>
+                                    <li><b>Codigo de Tranferencia : </b>${responseCodTransferencia}</li>
+                                </ul>`),
+                        });
+                        failedRequests++;
+                        checkCompletion();
+                    } else {
+                        // Llamar a la función fn_AgregarPagoCliente con los datos de la fila actual
+                        fn_AgregarPagoClienteExcel(codigoCliente, montoAgregarPagoCliente, fechaAgregarPagoCliente, formaDePago, codAgregarPagoCliente, comentarioAgregarPagoCliente, bancoAgregarPagoCliente, horaAgregarPago, pagoDerivado)
+                        .then(function() {
+                            completedRequests++;
+                            checkCompletion();
+                        })
+                        .catch(function() {
+                            failedRequests++;
+                            checkCompletion();
+                        });
+                        // Eliminar la fila actual
+                        filaActual.remove();
+                    }
+                },
+                error: function(error) {
+                    console.error("ERROR", error);
+                    failedRequests++;
+                    checkCompletion();
+                }
+            });
+        });
+    }); 
+
+    tablaEditable4()
+    function tablaEditable4(){
+        let tbodyReporteDePagosExcel = $('#bodyReporteDePagosExcel4');
+        tbodyReporteDePagosExcel.empty();
+        agregarFilaEntrada4(tbodyReporteDePagosExcel);
+        hacerCeldasEditables(tbodyReporteDePagosExcel);
+    }
+
+    function agregarFilaEntrada4(tbody) {
+        let nuevaFila = $('<tr class="bg-white pagosAgregarExcel4 border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 font-medium text-gray-900 whitespace-nowrap dark:text-white uppercase nombreClienteTablaExcel" contenteditable="true">').text(""));
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarSoloNumerosDosDecimalesTablas" contenteditable="true">').text(""));
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap" contenteditable="false">').text("Transferencia"));
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap convertirMayusculasTablas" contenteditable="true">').text(""));
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap convertirMayusculasTablas" contenteditable="true">').text(""));
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarFormatoFechaTablas text-gray-900 dark:text-white" contenteditable="true">').text(`${fechaHoy}`));
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarFormatoHoraTablas text-gray-900 dark:text-white" contenteditable="true">').text(""));
+        nuevaFila.append($('<td class="outline-none p-2 text-center cursor-pointer" contenteditable="true">').text(""));
+        nuevaFila.append($('<td class="outline-none p-2 text-center cursor-pointer hidden" contenteditable="true">').text("5"));
+        nuevaFila.append($('<td class="outline-none p-2 text-center cursor-pointer hidden codigoDeClienteTablaExcel" contenteditable="false">').text("0"));
+        tbody.append(nuevaFila);
+    
+        nuevaFila.find('.nombreClienteTablaExcel').on('input', function() {
+            let inputText = $(this).text().trim();
+            let currentCell = $(this);
+    
+            if (inputText.length >= 3) { // Activar autocompletar después de 3 caracteres
+                fn_TraerClientesAgregarPagoClienteTablaExcel(inputText, (clientes) => {
+                    if (clientes) {
+                        showSuggestions(currentCell, clientes);
+                    }else{
+                        $('.suggestions-list').remove();
+                    }
+                });
+            } else {
+                hideSuggestions(currentCell);
+            }
+        });
+    
+        nuevaFila.find('.nombreClienteTablaExcel').on('keydown', function(e) {
+            let suggestionsList = $('.suggestions-list');
+            let highlighted = suggestionsList.find('.highlighted');
+            if (e.key === 'ArrowDown') {
+                if (highlighted.length === 0) {
+                    suggestionsList.children().first().addClass('highlighted');
+                } else {
+                    highlighted.removeClass('highlighted').next().addClass('highlighted');
+                }
+                e.preventDefault();
+            } else if (e.key === 'ArrowUp') {
+                if (highlighted.length !== 0) {
+                    highlighted.removeClass('highlighted').prev().addClass('highlighted');
+                }
+                e.preventDefault();
+            } else if (e.key === 'Enter') {
+                if (highlighted.length !== 0) {
+                    highlighted.click();
+                    e.preventDefault();
+                }
+            }
+        });
+    
+        nuevaFila.on('input', function() {
+            let vacio = true;
+            nuevaFila.find('td').each(function() {
+                if ($(this).text().trim() !== "") {
+                    vacio = false;
+                }
+            });
+            if (!vacio) {
+                agregarFilaEntrada4(tbody);
+                nuevaFila.off('input');
+            }
+        });
+    }
+
+    // EGRESOS
+
+    $(document).on('click', '#registrar_agregarPagos_ExcelEgreso1', function () {
+        // Crear contadores para realizar una acción después de todas las consultas completadas y fallidas
+        let completedRequests = 0;
+        let failedRequests = 0;
+        let totalRequests = $('.pagosAgregarExcelEgreso1:not(:last-child)').length;
+    
+        // Función para verificar si todas las solicitudes han finalizado
+        function checkCompletion() {
+            if (completedRequests + failedRequests === totalRequests) {
+                if (failedRequests > 0) {
+                    // Swal.fire({
+                    //     position: 'center',
+                    //     icon: 'warning',
+                    //     title: 'Algunos pagos no pudieron ser registrados',
+                    //     text: `Se registraron ${completedRequests} pagos correctamente y ${failedRequests} fallaron.`,
+                    //     showConfirmButton: true
+                    // });
+                } else {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Se registraron todos los pagos correctamente',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+                // Realizar la acción después de que todas las consultas se completen
+                let fechaDesdeTraerPagos = $('#fechaDesdeReporteDePagos').val();
+                let fechaHastaTraerPagos = $('#fechaHastaReporteDePagos').val();
+                fn_TraerEgresosFechas(fechaDesdeTraerPagos, fechaHastaTraerPagos);
+            }
+        }
+    
+        // Recorrer todas las filas con la clase pagosAgregarExcel, excluyendo la última fila
+        $('.pagosAgregarExcelEgreso1:not(:last-child)').each(function() {
+            let filaActual = $(this); // Guardar referencia a la fila actual
+    
+            // Obtener los datos de cada celda de la fila actual
+            let usoReporteEgreso = filaActual.find('td:eq(0)').text().trim();
+            let montoAgregEgresoCliente = filaActual.find('td:eq(1)').text().trim();
+            let formaDePagoEgreso = filaActual.find('td:eq(2)').text().trim();
+            let bancoAgregEgresoCliente = filaActual.find('td:eq(3)').text().trim();
+            let codAgregEgresoCliente = filaActual.find('td:eq(4)').text().trim();
+            let fechaAgregEgresoCliente = filaActual.find('td:eq(5)').text().trim();
+
+            $.ajax({
+                url: '/fn_consulta_VerificarCodigoPago',
+                method: 'GET',
+                data: {
+                    codAgregarPagoCliente: codAgregEgresoCliente,
+                },
+                success: function(response) {
+                    // Verificar si la respuesta es un arreglo de objetos
+                    if (Array.isArray(response) && response.length > 0) {
+                        response = response[0];
+                        let responseNombre = response.nombreCompleto;
+                        let responseFecha = response.fechaOperacionPag;
+                        let responseHora = response.horaOperacionPag;
+                        let responseBanco = response.bancaPago;
+                        let responseCodTransferencia = response.codigoTransferenciaPag;
+                        let responseMonto = response.cantidadAbonoPag;
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'warning',
+                            title: 'Codigo de Operación Encontrado',
+                            html: (`
+                                <hr>
+                                <br>
+                                <ul style="text-align: left; list-style-position: inside;">
+                                    <li><b>Nombre : </b>${responseNombre}</li>
+                                    <li><b>Fecha : </b>${responseFecha}</li>
+                                    <li><b>Hora : </b>${responseHora}</li>
+                                    <li><b>Monto : </b>${responseMonto}</li>
+                                    <li><b>Banco : </b>${responseBanco}</li>
+                                    <li><b>Codigo de Tranferencia : </b>${responseCodTransferencia}</li>
+                                </ul>`),
+                        });
+                        failedRequests++;
+                        checkCompletion();
+                    } else {
+                        // Llamar a la función fn_AgregarPagoCliente con los datos de la fila actual
+                        fn_AgregarEgreso(montoAgregEgresoCliente,fechaAgregEgresoCliente,formaDePagoEgreso,bancoAgregEgresoCliente,codAgregEgresoCliente,usoReporteEgreso)
+                        .then(function() {
+                            completedRequests++;
+                            checkCompletion();
+                        })
+                        .catch(function() {
+                            failedRequests++;
+                            checkCompletion();
+                        });
+                        // Eliminar la fila actual
+                        filaActual.remove();
+                    }
+                },
+                error: function(error) {
+                    console.error("ERROR", error);
+                    failedRequests++;
+                    checkCompletion();
+                }
+            });
+        });
+    }); 
+
+    tablaEditableEgreso1()
+    function tablaEditableEgreso1(){
+        let tbodyReporteDePagosExcel = $('#bodyReporteDePagosExcelEgreso1');
+        tbodyReporteDePagosExcel.empty();
+        agregarFilaEntradaEgreso1(tbodyReporteDePagosExcel);
+        hacerCeldasEditables(tbodyReporteDePagosExcel);
+    }
+
+    function agregarFilaEntradaEgreso1(tbody) {
+        let nuevaFila = $('<tr class="bg-white pagosAgregarExcelEgreso1 border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 font-medium text-gray-900 whitespace-nowrap dark:text-white" contenteditable="true">').text(""));
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarSoloNumerosDosDecimalesTablas" contenteditable="true">').text(""));
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap" contenteditable="true">').text("Efectivo"));
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap convertirMayusculasTablas" contenteditable="true">').text(""));
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap convertirMayusculasTablas" contenteditable="true">').text(""));
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarFormatoFechaTablas text-gray-900 dark:text-white" contenteditable="true">').text(`${fechaHoy}`));
+        tbody.append(nuevaFila);
+    
+        nuevaFila.on('input', function() {
+            let vacio = true;
+            nuevaFila.find('td').each(function() {
+                if ($(this).text().trim() !== "") {
+                    vacio = false;
+                }
+            });
+            if (!vacio) {
+                agregarFilaEntradaEgreso1(tbody);
+                nuevaFila.off('input');
+            }
+        });
+    }
+
+    function fn_AgregarEgreso(montoAgregEgresoCliente,fechaAgregEgresoCliente,formaDePagoEgreso,bancoAgregEgresoCliente,codAgregEgresoCliente,usoReporteEgreso){
+        return $.ajax({
+            url: '/fn_consulta_AgregarEgreso',
+            method: 'GET',
+            data:{
+                montoAgregEgresoCliente: montoAgregEgresoCliente,
+                fechaAgregEgresoCliente: fechaAgregEgresoCliente,
+                formaDePagoEgreso: formaDePagoEgreso,
+                bancoAgregEgresoCliente: bancoAgregEgresoCliente,
+                codAgregEgresoCliente: codAgregEgresoCliente,
+                usoReporteEgreso: usoReporteEgreso,
+            },
+            success: function(response) {
+                if (response.success) {
+
+                }
+            },
+            error: function(error) {
+                console.error("ERROR", error);
+            }
+        });
+    }   
+
+    // EGRESO 2
+
+    $(document).on('click', '#registrar_agregarPagos_ExcelEgreso2', function () {
+        // Crear contadores para realizar una acción después de todas las consultas completadas y fallidas
+        let completedRequests = 0;
+        let failedRequests = 0;
+        let totalRequests = $('.pagosAgregarExcelEgreso2:not(:last-child)').length;
+    
+        // Función para verificar si todas las solicitudes han finalizado
+        function checkCompletion() {
+            if (completedRequests + failedRequests === totalRequests) {
+                if (failedRequests > 0) {
+                    // Swal.fire({
+                    //     position: 'center',
+                    //     icon: 'warning',
+                    //     title: 'Algunos pagos no pudieron ser registrados',
+                    //     text: `Se registraron ${completedRequests} pagos correctamente y ${failedRequests} fallaron.`,
+                    //     showConfirmButton: true
+                    // });
+                } else {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Se registraron todos los pagos correctamente',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+                // Realizar la acción después de que todas las consultas se completen
+                let fechaDesdeTraerPagos = $('#fechaDesdeReporteDePagos').val();
+                let fechaHastaTraerPagos = $('#fechaHastaReporteDePagos').val();
+                fn_TraerEgresosPaulFechas(fechaDesdeTraerPagos, fechaHastaTraerPagos);
+            }
+        }
+    
+        // Recorrer todas las filas con la clase pagosAgregarExcel, excluyendo la última fila
+        $('.pagosAgregarExcelEgreso2:not(:last-child)').each(function() {
+            let filaActual = $(this); // Guardar referencia a la fila actual
+    
+            // Obtener los datos de cada celda de la fila actual
+            let usoReporteEgreso = filaActual.find('td:eq(0)').text().trim();
+            let montoAgregEgresoCliente = filaActual.find('td:eq(1)').text().trim();
+            let formaDePagoEgreso = filaActual.find('td:eq(2)').text().trim();
+            let bancoAgregEgresoCliente = filaActual.find('td:eq(3)').text().trim();
+            let codAgregEgresoCliente = filaActual.find('td:eq(4)').text().trim();
+            let fechaAgregEgresoCliente = filaActual.find('td:eq(5)').text().trim();
+
+            $.ajax({
+                url: '/fn_consulta_VerificarCodigoPago',
+                method: 'GET',
+                data: {
+                    codAgregarPagoCliente: codAgregEgresoCliente,
+                },
+                success: function(response) {
+                    // Verificar si la respuesta es un arreglo de objetos
+                    if (Array.isArray(response) && response.length > 0) {
+                        response = response[0];
+                        let responseNombre = response.nombreCompleto;
+                        let responseFecha = response.fechaOperacionPag;
+                        let responseHora = response.horaOperacionPag;
+                        let responseBanco = response.bancaPago;
+                        let responseCodTransferencia = response.codigoTransferenciaPag;
+                        let responseMonto = response.cantidadAbonoPag;
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'warning',
+                            title: 'Codigo de Operación Encontrado',
+                            html: (`
+                                <hr>
+                                <br>
+                                <ul style="text-align: left; list-style-position: inside;">
+                                    <li><b>Nombre : </b>${responseNombre}</li>
+                                    <li><b>Fecha : </b>${responseFecha}</li>
+                                    <li><b>Hora : </b>${responseHora}</li>
+                                    <li><b>Monto : </b>${responseMonto}</li>
+                                    <li><b>Banco : </b>${responseBanco}</li>
+                                    <li><b>Codigo de Tranferencia : </b>${responseCodTransferencia}</li>
+                                </ul>`),
+                        });
+                        failedRequests++;
+                        checkCompletion();
+                    } else {
+                        // Llamar a la función fn_AgregarPagoCliente con los datos de la fila actual
+                        fn_AgregarEgresoPaul2(montoAgregEgresoCliente,fechaAgregEgresoCliente,formaDePagoEgreso,bancoAgregEgresoCliente,codAgregEgresoCliente,usoReporteEgreso)
+                        .then(function() {
+                            completedRequests++;
+                            checkCompletion();
+                        })
+                        .catch(function() {
+                            failedRequests++;
+                            checkCompletion();
+                        });
+                        // Eliminar la fila actual
+                        filaActual.remove();
+                    }
+                },
+                error: function(error) {
+                    console.error("ERROR", error);
+                    failedRequests++;
+                    checkCompletion();
+                }
+            });
+        });
+    }); 
+
+    tablaEditableEgreso2()
+    function tablaEditableEgreso2(){
+        let tbodyReporteDePagosExcel = $('#bodyReporteDePagosExcelEgreso2');
+        tbodyReporteDePagosExcel.empty();
+        agregarFilaEntradaEgreso2(tbodyReporteDePagosExcel);
+        hacerCeldasEditables(tbodyReporteDePagosExcel);
+    }
+
+    function agregarFilaEntradaEgreso2(tbody) {
+        let nuevaFila = $('<tr class="bg-white pagosAgregarExcelEgreso2 border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 font-medium text-gray-900 whitespace-nowrap dark:text-white" contenteditable="true">').text(""));
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarSoloNumerosDosDecimalesTablas" contenteditable="true">').text(""));
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap" contenteditable="true">').text("Efectivo"));
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap convertirMayusculasTablas" contenteditable="true">').text(""));
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap convertirMayusculasTablas" contenteditable="true">').text(""));
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarFormatoFechaTablas text-gray-900 dark:text-white" contenteditable="true">').text(`${fechaHoy}`));
+        tbody.append(nuevaFila);
+    
+        nuevaFila.on('input', function() {
+            let vacio = true;
+            nuevaFila.find('td').each(function() {
+                if ($(this).text().trim() !== "") {
+                    vacio = false;
+                }
+            });
+            if (!vacio) {
+                agregarFilaEntradaEgreso2(tbody);
+                nuevaFila.off('input');
+            }
+        });
+    }
+
+    function fn_AgregarEgresoPaul2(montoAgregEgresoCliente,fechaAgregEgresoCliente,formaDePagoEgreso,bancoAgregEgresoCliente,codAgregEgresoCliente,usoReporteEgreso){
+        return $.ajax({
+            url: '/fn_consulta_AgregarEgresoPaul',
+            method: 'GET',
+            data:{
+                montoAgregEgresoCliente: montoAgregEgresoCliente,
+                fechaAgregEgresoCliente: fechaAgregEgresoCliente,
+                formaDePagoEgreso: formaDePagoEgreso,
+                bancoAgregEgresoCliente: bancoAgregEgresoCliente,
+                codAgregEgresoCliente: codAgregEgresoCliente,
+                usoReporteEgreso: usoReporteEgreso,
+            },
+            success: function(response) {
+                if (response.success) {
+
+                }
+            },
+            error: function(error) {
+                console.error("ERROR", error);
+            }
+        });
+    }   
 
 })
