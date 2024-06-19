@@ -751,7 +751,7 @@
                     </div>
                     <div class="mt-4 flex justify-center items-center flex-col gap-4" id="divAgregarEgresoEditar">
                         <div class="flex justify-center items-start flex-col relative w-full h-full">
-                            <input type="text" class="hidden" value="" id="idReporteDeEgreso">
+                            <input type="text" class="hidden" value="" id="idReporteDeEgresoEditar">
                             <label for="idAgregarEgresoEditar" class="mb-2 text-base font-medium text-gray-900 dark:text-white">Uso :</label>
                             <div class="flex w-full">
                                 <textarea class="validarCampo w-full outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="idAgregarEgresoEditar" autocomplete="off" id="idAgregarEgresoEditar" placeholder="Ingrese Uso"></textarea>

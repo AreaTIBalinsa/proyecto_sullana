@@ -60,7 +60,7 @@ jQuery(function ($) {
 
         let pagoDerivado = $('#pagoDerivado').val();
         if(pagoDerivado == $('#pagoDerivado option:first').val()){
-            $('#divClienteOpcional').hide();
+            $('#divClienteOpcional').show();
             $('#divEgresoPaul').hide();
             $('#divComentario').show();
             $('#divHoraaa').show();
@@ -69,7 +69,7 @@ jQuery(function ($) {
             $('#divClienteOpcional').show();
             $('#divEgresoPaul').hide();
             $('#divComentario').show();
-            $('#divHoraaa').hide();
+            $('#divHoraaa').show();
             $('#formaDePago').val('Efectivo');
         }else if(pagoDerivado == "3"){
             $('#divClienteOpcional').show();
@@ -87,7 +87,7 @@ jQuery(function ($) {
             $('#divClienteOpcional').show();
             $('#divEgresoPaul').hide();
             $('#divComentario').show();
-            $('#divHoraaa').hide();
+            $('#divHoraaa').show();
             $('#formaDePago').val('Efectivo');
         }
 
@@ -368,7 +368,7 @@ jQuery(function ($) {
 
         let pagoDerivado = $('#pagoDerivado').val();
         if(pagoDerivado == $('#pagoDerivado option:first').val()){
-            $('#divClienteOpcional').hide();
+            $('#divClienteOpcional').show();
             $('#divEgresoPaul').hide();
             $('#divComentario').show();
             $('#divHoraaa').show();
@@ -377,7 +377,7 @@ jQuery(function ($) {
             $('#divClienteOpcional').show();
             $('#divEgresoPaul').hide();
             $('#divComentario').show();
-            $('#divHoraaa').hide();
+            $('#divHoraaa').show();
         }else if(pagoDerivado == "3"){
             $('#divClienteOpcional').show();
             $('#divEgresoPaul').hide();
@@ -392,7 +392,7 @@ jQuery(function ($) {
             $('#divClienteOpcional').show();
             $('#divEgresoPaul').hide();
             $('#divComentario').show();
-            $('#divHoraaa').hide();
+            $('#divHoraaa').show();
         }
 
         var selectedOption = $('#formaDePago').val();
@@ -411,7 +411,7 @@ jQuery(function ($) {
 
         let pagoDerivado = $('#pagoDerivado').val();
         if(pagoDerivado == $('#pagoDerivado option:first').val()){
-            $('#divClienteOpcional').hide();
+            $('#divClienteOpcional').show();
             $('#divEgresoPaul').hide();
             $('#divComentario').show();
             $('#divHoraaa').show();
@@ -420,7 +420,7 @@ jQuery(function ($) {
             $('#divClienteOpcional').show();
             $('#divEgresoPaul').hide();
             $('#divComentario').show();
-            $('#divHoraaa').hide();
+            $('#divHoraaa').show();
             $('#formaDePago').val('Efectivo');
         }else if(pagoDerivado == "3"){
             $('#divClienteOpcional').show();
@@ -438,7 +438,7 @@ jQuery(function ($) {
             $('#divClienteOpcional').show();
             $('#divEgresoPaul').hide();
             $('#divComentario').show();
-            $('#divHoraaa').hide();
+            $('#divHoraaa').show();
             $('#formaDePago').val('Efectivo');
         }
 
@@ -606,7 +606,6 @@ jQuery(function ($) {
     }
 
     function fn_TraerClientesAgregarPagoCliente(inputAgregarPagoCliente) {
-
         $.ajax({
             url: '/fn_consulta_TraerClientesAgregarPagoCliente',
             method: 'GET',
@@ -705,7 +704,6 @@ jQuery(function ($) {
     
 
     function fn_TraerClientesAgregarDescuento(inputAgregarDescuentoCliente) {
-
         $.ajax({
             url: '/fn_consulta_TraerClientesAgregarDescuento',
             method: 'GET',
@@ -793,7 +791,6 @@ jQuery(function ($) {
     }    
 
     function fn_TraerClientesCuentaDelCliente(inputCuentaDelCliente) {
-
         $.ajax({
             url: '/fn_consulta_TraerClientesCuentaDelCliente',
             method: 'GET',
@@ -968,7 +965,7 @@ jQuery(function ($) {
                     });
     
                     if (response.length == 0) {
-                        tbodyReporteDePagos.html(`<tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="8" class="text-center">No hay datos</td></tr>`);
+                        tbodyReporteDePagos.html(`<tr class="rounded-lg border-2 border-r-[1px] dark:border-gray-700"><td colspan="8" class="text-center">No hay datos</td></tr>`);
                     } else {
                         agregarFilaEspaciadora(tbodyReporteDePagos);
                         agregarFilaTotal(tbodyReporteDePagos, totalPago);
@@ -1217,7 +1214,7 @@ jQuery(function ($) {
                     });
 
                     if (response.length == 0) {
-                        tbodyReporteDePagos.html(`<tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="8" class="text-center">No hay datos</td></tr>`);
+                        tbodyReporteDePagos.html(`<tr class="rounded-lg border-2 border-l-[1px] border-r-[1px] dark:border-gray-700"><td colspan="8" class="text-center">No hay datos</td></tr>`);
                     }else{
                         nuevaFila = $('<tr class="class="bg-white dark:bg-gray-800 h-0.5" cursor-pointer">');
                         nuevaFila.append($('<td class="text-center h-0.5 bg-gray-400 dark:bg-gray-300" colspan="8">').text(""));
@@ -1286,7 +1283,7 @@ jQuery(function ($) {
                     });
 
                     if (response.length == 0) {
-                        tbodyReporteDePagos.html(`<tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="8" class="text-center">No hay datos</td></tr>`);
+                        tbodyReporteDePagos.html(`<tr class="rounded-lg border-2 border-l-[1px] border-r-[1px] dark:border-gray-700"><td colspan="8" class="text-center">No hay datos</td></tr>`);
                     }else{
                         nuevaFila = $('<tr class="class="bg-white dark:bg-gray-800 h-0.5" cursor-pointer">');
                         nuevaFila.append($('<td class="text-center h-0.5 bg-gray-400 dark:bg-gray-300" colspan="8">').text(""));
@@ -1359,13 +1356,13 @@ jQuery(function ($) {
                     });
 
                     if (response.length == 0) {
-                        tbodyReporteDePagos.html(`<tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="8" class="text-center">No hay datos</td></tr>`);
+                        tbodyReporteDePagos.html(`<tr class="rounded-lg border-2 border-l-[1px] dark:border-gray-700"><td colspan="8" class="text-center">No hay datos</td></tr>`);
                     }else{
                         nuevaFila = $('<tr class="class="bg-white dark:bg-gray-800 h-0.5" cursor-pointer">');
                         nuevaFila.append($('<td class="text-center h-0.5 bg-gray-400 dark:bg-gray-300" colspan="8">').text(""));
                         tbodyReporteDePagos.append(nuevaFila);
 
-                        nuevaFila = $('<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
+                        nuevaFila = $('<tr class="bg-white border-b border-l-[1px] border-r-[1px] dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
 
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">').text("SALDO TOTAL:"));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text("S/. "+totalPago.toFixed(2)));
@@ -1991,7 +1988,7 @@ jQuery(function ($) {
                 });
 
                 if (response.length == 0) {
-                    tbodyReporteDePagos.html(`<tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="8" class="text-center">No hay datos</td></tr>`);
+                    tbodyReporteDePagos.html(`<tr class="rounded-lg border-2 border-l-[1px] border-r-[1px] dark:border-gray-700"><td colspan="8" class="text-center">No hay datos</td></tr>`);
                 }else{
                     nuevaFila = $('<tr class="class="bg-white dark:bg-gray-800 h-0.5" cursor-pointer">');
                     nuevaFila.append($('<td class="text-center h-0.5 bg-gray-800 dark:bg-gray-300" colspan="8">').text(""));
@@ -2050,13 +2047,13 @@ jQuery(function ($) {
                 });
 
                 if (response.length == 0) {
-                    tbodyReporteDePagos.html(`<tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="8" class="text-center">No hay datos</td></tr>`);
+                    tbodyReporteDePagos.html(`<tr class="rounded-lg border-2 border-l-[1px] border-r-[1px] dark:border-gray-700"><td colspan="8" class="text-center">No hay datos</td></tr>`);
                 }else{
                     nuevaFila = $('<tr class="class="bg-white dark:bg-gray-800 h-0.5" cursor-pointer">');
                     nuevaFila.append($('<td class="text-center h-0.5 bg-gray-800 dark:bg-gray-300" colspan="8">').text(""));
                     tbodyReporteDePagos.append(nuevaFila);
 
-                    nuevaFila = $('<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
+                    nuevaFila = $('<tr class="bg-white border-b border-l-[1px] border-r-[1px] dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
 
                     nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">').append($('<h5 class="min-w-max px-2">').text("SALDO TOTAL:")));
                     nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text("S/. "+totalPago.toFixed(2)));
@@ -2134,7 +2131,7 @@ jQuery(function ($) {
         let codigoTransEgreso= fila.find('td:eq(5)').text();
         let fechaEgreso= fila.find('td:eq(6)').text();
 
-        $('#idReporteDeEgreso').val(idReporteDeEgreso);
+        $('#idReporteDeEgresoEditar').val(idReporteDeEgreso);
 
         $('#idAgregarEgresoEditar').val(usoEgreso);
         $('#valorAgregarEgresoClienteEditar').val(importeEgreso);
@@ -2173,7 +2170,7 @@ jQuery(function ($) {
     });
 
     $('#btnAgregarEgresoEditar').on('click', function(){
-        let idReporteDeEgreso = $('#idReporteDeEgreso').val();
+        let idReporteDeEgreso = $('#idReporteDeEgresoEditar').val();
         let idAgregarEgresoEditar = $('#idAgregarEgresoEditar').val();
         let valorAgregarEgresoClienteEditar = $('#valorAgregarEgresoClienteEditar').val();
         let formaDePagoEgresoEditar = $('#formaDePagoEgresoEditar').val();
@@ -2401,6 +2398,8 @@ jQuery(function ($) {
             let pagoDerivado = filaActual.find('td:eq(8)').text().trim();
             let codigoCliente = filaActual.find('td:eq(9)').text().trim();
     
+            formaDePago = formaDePago[0].toUpperCase() + formaDePago.slice(1);
+    
             $.ajax({
                 url: '/fn_consulta_VerificarCodigoPago',
                 method: 'GET',
@@ -2538,6 +2537,8 @@ jQuery(function ($) {
             let comentarioAgregarPagoCliente = filaActual.find('td:eq(6)').text().trim();
             let pagoDerivado = filaActual.find('td:eq(7)').text().trim();
             let codigoCliente = filaActual.find('td:eq(8)').text().trim();
+
+            formaDePago = formaDePago[0].toUpperCase() + formaDePago.slice(1);
 
             $.ajax({
                 url: '/fn_consulta_VerificarCodigoPago',
@@ -2751,6 +2752,8 @@ jQuery(function ($) {
             let pagoDerivado = filaActual.find('td:eq(5)').text().trim();
             let codigoCliente = filaActual.find('td:eq(6)').text().trim();
 
+            formaDePago = formaDePago[0].toUpperCase() + formaDePago.slice(1);
+
             $.ajax({
                 url: '/fn_consulta_VerificarCodigoPago',
                 method: 'GET',
@@ -2961,6 +2964,8 @@ jQuery(function ($) {
             let pagoDerivado = filaActual.find('td:eq(8)').text().trim();
             let codigoCliente = filaActual.find('td:eq(9)').text().trim();
 
+            formaDePago = formaDePago[0].toUpperCase() + formaDePago.slice(1);
+
             $.ajax({
                 url: '/fn_consulta_VerificarCodigoPago',
                 method: 'GET',
@@ -3142,6 +3147,8 @@ jQuery(function ($) {
             let codAgregEgresoCliente = filaActual.find('td:eq(4)').text().trim();
             let fechaAgregEgresoCliente = filaActual.find('td:eq(5)').text().trim();
 
+            formaDePagoEgreso = formaDePagoEgreso[0].toUpperCase() + formaDePagoEgreso.slice(1);
+
             $.ajax({
                 url: '/fn_consulta_VerificarCodigoPago',
                 method: 'GET',
@@ -3301,6 +3308,8 @@ jQuery(function ($) {
             let bancoAgregEgresoCliente = filaActual.find('td:eq(3)').text().trim();
             let codAgregEgresoCliente = filaActual.find('td:eq(4)').text().trim();
             let fechaAgregEgresoCliente = filaActual.find('td:eq(5)').text().trim();
+
+            formaDePagoEgreso = formaDePagoEgreso[0].toUpperCase() + formaDePagoEgreso.slice(1);
 
             $.ajax({
                 url: '/fn_consulta_VerificarCodigoPago',
