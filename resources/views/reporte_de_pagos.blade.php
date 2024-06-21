@@ -78,82 +78,96 @@
                         </table>
                     </div>
                     <div>
-                        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                            <caption class="bg-green-600 p-2 w-full border-b-2 text-sm font-bold text-gray-100">Caja Chica Ingreso</caption>
-                            <thead class="text-xs text-gray-100 uppercase bg-green-600">
-                                <tr>
-                                    <th class="hidden">Id</th>
-                                    <th class="p-4 border-r-2 border-b-2 border-l-[1px] whitespace-nowrap">Nombre de Cliente</th>
-                                    <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Importe</th>
-                                    <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Forma Pago</th>
-                                    <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Banco</th>
-                                    <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Codigo</th>
-                                    <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Fecha</th>
-                                    <th class="p-4 border-r-[1px] border-b-2 text-center whitespace-nowrap">Observaciones</th>
-                                </tr>
-                            </thead>
-                            <tbody id="bodyReporteDePagosCajaChicaIngreso">
-                                <tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="8" class="text-center">No hay datos</td></tr>
-                            </tbody>
-                        </table>
-                        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                            <thead class="text-xs text-gray-100 uppercase bg-green-600">
-                                <tr class="border-2 border-l-[1px] border-r-[1px]">
-                                    <th class="p-4 whitespace-nowrap text-center" colspan="6">FILAS A AGREGAR</th>
-                                    <th class="p-4 whitespace-nowrap text-center"><button class="w-full flex gap-2 justify-center items-center cursor-pointer uppercase bg-green-700 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 hover:bg-green-600 whitespace-nowrap border-2" type="submit" autocomplete="off" id="registrar_agregarPagos_Excel2"><i class='bx bx-save text-lg'></i>Guardar Pagos</button></th>
-                                </tr>
-                                <tr>
-                                    <th class="hidden">Id</th>
-                                    <th class="p-4 border-l-[1px] border-r-2 border-b-2 whitespace-nowrap">Nombre de Cliente</th>
-                                    <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Importe</th>
-                                    <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Forma Pago</th>
-                                    <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Banco</th>
-                                    <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Codigo</th>
-                                    <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Fecha</th>
-                                    <th class="p-4 border-r-[1px] border-b-2 text-center whitespace-nowrap">Observaciones</th>
-                                </tr>
-                            </thead>
-                            <tbody id="bodyReporteDePagosExcel2">
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                            <caption class="bg-red-600 p-2 w-full border-b-2 text-sm font-bold text-gray-100">Caja Chica Egreso</caption>
-                            <thead class="text-xs text-gray-100 uppercase bg-red-600">
-                                <tr>
-                                    <th class="hidden">Id</th>
-                                    <th class="p-4 border-r-2 border-b-2 border-l-[1px] whitespace-nowrap">Uso Egreso</th>
-                                    <th class="p-4 text-center border-r-2 border-b-2 whitespace-nowrap">Importe</th>
-                                    <th class="p-4 text-center border-r-2 border-b-2 whitespace-nowrap">Forma Pago</th>
-                                    <th class="p-4 text-center border-r-2 border-b-2 whitespace-nowrap">Banco</th>
-                                    <th class="p-4 text-center border-r-2 border-b-2 whitespace-nowrap">Codigo</th>
-                                    <th class="p-4 border-r-[1px] border-b-2 text-center whitespace-nowrap">Fecha</th>
-                                </tr>
-                            </thead>
-                            <tbody id="bodyReporteDePagosCajaChicaEgreso">
-                                <tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="8" class="text-center">No hay datos</td></tr>
-                            </tbody>
-                        </table>
-                        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                            <thead class="text-xs text-gray-100 uppercase bg-red-600">
-                                <tr class="border-2 border-l-[1px] border-r-[1px]">
-                                    <th class="p-4 whitespace-nowrap text-center" colspan="5">FILAS A AGREGAR</th>
-                                    <th class="p-4 whitespace-nowrap text-center"><button class="w-full flex gap-2 justify-center items-center cursor-pointer uppercase bg-green-700 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 hover:bg-green-600 whitespace-nowrap border-2" type="submit" autocomplete="off" id="registrar_agregarPagos_ExcelEgreso1"><i class='bx bx-save text-lg'></i>Guardar Pagos</button></th>
-                                </tr>
-                                <tr>
-                                    <th class="hidden">Id</th>
-                                    <th class="p-4 border-l-[1px] border-r-2 border-b-2 whitespace-nowrap">Uso Egreso</th>
-                                    <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Importe</th>
-                                    <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Forma Pago</th>
-                                    <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Banco</th>
-                                    <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Codigo</th>
-                                    <th class="p-4 border-r-[1px] border-b-2 text-center whitespace-nowrap">Fecha</th>
-                                </tr>
-                            </thead>
-                            <tbody id="bodyReporteDePagosExcelEgreso1">
-                            </tbody>
-                        </table>
+                        <div class="text-white font-bold bg-yellow-400 flex justify-center w-full gap-4 p-1.5">
+                            <div class="ml-[270px]">Diferencia : </div>
+                            <div class="" id="diferencia">S/.1000</div>
+                        </div>
+                        <div class="flex">
+                            <div>
+                                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                                    <caption class="bg-green-600 p-2 w-full border-b-2 text-sm font-bold text-gray-100">Caja Chica Ingreso</caption>
+                                    <thead class="text-xs text-gray-100 uppercase bg-green-600">
+                                        <tr>
+                                            <th class="hidden">Id</th>
+                                            <th class="p-4 border-r-2 border-b-2 border-l-[1px] whitespace-nowrap">Nombre de Cliente</th>
+                                            <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Importe</th>
+                                            <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Forma Pago</th>
+                                            <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Banco</th>
+                                            <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Codigo</th>
+                                            <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Fecha</th>
+                                            <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Hora</th>
+                                            <th class="p-4 border-r-[1px] border-b-2 text-center whitespace-nowrap">Observaciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="bodyReporteDePagosCajaChicaIngreso">
+                                        <tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="9" class="text-center">No hay datos</td></tr>
+                                    </tbody>
+                                </table>
+                                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                                    <thead class="text-xs text-gray-100 uppercase bg-green-600">
+                                        <tr class="border-2 border-l-[1px] border-r-[1px]">
+                                            <th class="p-4 whitespace-nowrap text-center" colspan="7">FILAS A AGREGAR</th>
+                                            <th class="p-4 whitespace-nowrap text-center"><button class="w-full flex gap-2 justify-center items-center cursor-pointer uppercase bg-green-700 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 hover:bg-green-600 whitespace-nowrap border-2" type="submit" autocomplete="off" id="registrar_agregarPagos_Excel2"><i class='bx bx-save text-lg'></i>Guardar Pagos</button></th>
+                                        </tr>
+                                        <tr>
+                                            <th class="hidden">Id</th>
+                                            <th class="p-4 border-l-[1px] border-r-2 border-b-2 whitespace-nowrap">Nombre de Cliente</th>
+                                            <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Importe</th>
+                                            <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Forma Pago</th>
+                                            <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Banco</th>
+                                            <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Codigo</th>
+                                            <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Fecha</th>
+                                            <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Hora</th>
+                                            <th class="p-4 border-r-[1px] border-b-2 text-center whitespace-nowrap">Observaciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="bodyReporteDePagosExcel2">
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div>
+                                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                                    <caption class="bg-red-600 p-2 w-full border-b-2 text-sm font-bold text-gray-100">Caja Chica Egreso</caption>
+                                    <thead class="text-xs text-gray-100 uppercase bg-red-600">
+                                        <tr>
+                                            <th class="hidden">Id</th>
+                                            <th class="p-4 border-r-[1px] border-b-2 text-center whitespace-nowrap">Fecha</th>
+                                            <th class="p-4 border-r-2 border-b-2 border-l-[1px] whitespace-nowrap">Uso Egreso</th>
+                                            <th class="p-4 text-center border-r-2 border-b-2 whitespace-nowrap">Cantidad</th>
+                                            <th class="p-4 text-center border-r-2 border-b-2 whitespace-nowrap">Precio</th>
+                                            <th class="p-4 text-center border-r-2 border-b-2 whitespace-nowrap">Monto</th>
+                                            <th class="p-4 text-center border-r-2 border-b-2 whitespace-nowrap hidden">Forma Pago</th>
+                                            <th class="p-4 text-center border-r-2 border-b-2 whitespace-nowrap hidden">Banco</th>
+                                            <th class="p-4 text-center border-r-2 border-b-2 whitespace-nowrap hidden">Codigo</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="bodyReporteDePagosCajaChicaEgreso">
+                                        <tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="8" class="text-center">No hay datos</td></tr>
+                                    </tbody>
+                                </table>
+                                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                                    <thead class="text-xs text-gray-100 uppercase bg-red-600">
+                                        <tr class="border-2 border-l-[1px] border-r-[1px]">
+                                            <th class="p-4 whitespace-nowrap text-center" colspan="4">FILAS A AGREGAR</th>
+                                            <th class="p-4 whitespace-nowrap text-center"><button class="w-full flex gap-2 justify-center items-center cursor-pointer uppercase bg-green-700 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 hover:bg-green-600 whitespace-nowrap border-2" type="submit" autocomplete="off" id="registrar_agregarPagos_ExcelEgreso1"><i class='bx bx-save text-lg'></i>Guardar Pagos</button></th>
+                                        </tr>
+                                        <tr>
+                                            <th class="hidden">Id</th>
+                                            <th class="p-4 border-r-[1px] border-b-2 text-center whitespace-nowrap">Fecha</th>
+                                            <th class="p-4 border-l-[1px] border-r-2 border-b-2 whitespace-nowrap">Uso Egreso</th>
+                                            <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Cantidad</th>
+                                            <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Precio</th>
+                                            <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Monto</th>
+                                            <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap hidden">Forma Pago</th>
+                                            <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap hidden">Banco</th>
+                                            <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap hidden">Codigo</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="bodyReporteDePagosExcelEgreso1">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                     <div>
                         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -163,9 +177,9 @@
                                     <th class="hidden">Id</th>
                                     <th class="p-4 border-r-2 border-b-2 border-l-[1px] whitespace-nowrap">Nombre de Cliente</th>
                                     <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Importe</th>
-                                    <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Forma Pago</th>
+                                    <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap hidden">Forma Pago</th>
                                     <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Fecha</th>
-                                    <th class="p-4 border-b-2 border-r-[1px] text-center whitespace-nowrap">Observaciones</th>
+                                    <th class="p-4 border-b-2 border-r-[1px] text-center whitespace-nowrap hidden">Observaciones</th>
                                 </tr>
                             </thead>
                             <tbody id="bodyReporteDePagosCobranzaDePaul">
@@ -175,16 +189,16 @@
                         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                             <thead class="text-xs text-gray-100 uppercase bg-violet-600">
                                 <tr class="border-2 border-l-[1px] border-r-[1px]">
-                                    <th class="p-4 whitespace-nowrap text-center" colspan="4">FILAS A AGREGAR</th>
+                                    <th class="p-4 whitespace-nowrap text-center" colspan="2">FILAS A AGREGAR</th>
                                     <th class="p-4 whitespace-nowrap text-center"><button class="w-full flex gap-2 justify-center items-center cursor-pointer uppercase bg-green-700 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 hover:bg-green-600 whitespace-nowrap border-2" type="submit" autocomplete="off" id="registrar_agregarPagos_Excel3"><i class='bx bx-save text-lg'></i>Guardar Pagos</button></th>
                                 </tr>
                                 <tr>
                                     <th class="hidden">Id</th>
                                     <th class="p-4 border-l-[1px] border-r-2 border-b-2 whitespace-nowrap">Nombre de Cliente</th>
                                     <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Importe</th>
-                                    <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Forma Pago</th>
+                                    <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap hidden">Forma Pago</th>
                                     <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Fecha</th>
-                                    <th class="p-4 border-r-[1px] border-b-2 text-center whitespace-nowrap">Observaciones</th>
+                                    <th class="p-4 border-r-[1px] border-b-2 text-center whitespace-nowrap hidden">Observaciones</th>
                                 </tr>
                             </thead>
                             <tbody id="bodyReporteDePagosExcel3">
@@ -199,9 +213,9 @@
                                     <th class="hidden">Id</th>
                                     <th class="p-4 border-r-2 border-b-2 border-l-[1px] whitespace-nowrap">Uso Egreso</th>
                                     <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Importe</th>
-                                    <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Forma Pago</th>
-                                    <th class="p-4 text-center border-r-2 border-b-2 whitespace-nowrap">Banco</th>
-                                    <th class="p-4 text-center border-r-2 border-b-2 whitespace-nowrap">Codigo</th>
+                                    <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap hidden">Forma Pago</th>
+                                    <th class="p-4 text-center border-r-2 border-b-2 whitespace-nowrap hidden">Banco</th>
+                                    <th class="p-4 text-center border-r-2 border-b-2 whitespace-nowrap hidden">Codigo</th>
                                     <th class="p-4 border-r-[1px] border-b-2 text-center whitespace-nowrap">Fecha</th>
                                 </tr>
                             </thead>
@@ -212,16 +226,16 @@
                         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                             <thead class="text-xs text-gray-100 uppercase bg-yellow-400">
                                 <tr class="border-2 border-l-[1px] border-r-[1px]">
-                                    <th class="p-4 whitespace-nowrap text-center" colspan="5">FILAS A AGREGAR</th>
+                                    <th class="p-4 whitespace-nowrap text-center" colspan="2">FILAS A AGREGAR</th>
                                     <th class="p-4 whitespace-nowrap text-center"><button class="w-full flex gap-2 justify-center items-center cursor-pointer uppercase bg-green-700 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 hover:bg-green-600 whitespace-nowrap border-2" type="submit" autocomplete="off" id="registrar_agregarPagos_ExcelEgreso2"><i class='bx bx-save text-lg'></i>Guardar Pagos</button></th>
                                 </tr>
                                 <tr>
                                     <th class="hidden">Id</th>
                                     <th class="p-4 border-l-[1px] border-r-2 border-b-2 whitespace-nowrap">Uso Egreso</th>
                                     <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Importe</th>
-                                    <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Forma Pago</th>
-                                    <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Banco</th>
-                                    <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Codigo</th>
+                                    <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap hidden">Forma Pago</th>
+                                    <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap hidden">Banco</th>
+                                    <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap hidden">Codigo</th>
                                     <th class="p-4 border-r-[1px] border-b-2 text-center whitespace-nowrap">Fecha</th>
                                 </tr>
                             </thead>
@@ -750,6 +764,10 @@
                         <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Agregar Egreso Editar</h3>
                     </div>
                     <div class="mt-4 flex justify-center items-center flex-col gap-4" id="divAgregarEgresoEditar">
+                        <div class="flex w-full justify-start items-center gap-2">
+                            <h5 for="fechaAgregarEgresoEditar" class="text-base text-gray-900 dark:text-gray-50 min-w-max">Fecha :</h5>
+                            <input type="date" class="outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 px-2.5 py-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-full" id="fechaAgregarEgresoEditar">
+                        </div>
                         <div class="flex justify-center items-start flex-col relative w-full h-full">
                             <input type="text" class="hidden" value="" id="idReporteDeEgresoEditar">
                             <label for="idAgregarEgresoEditar" class="mb-2 text-base font-medium text-gray-900 dark:text-white">Uso :</label>
@@ -757,17 +775,25 @@
                                 <textarea class="validarCampo w-full outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="idAgregarEgresoEditar" autocomplete="off" id="idAgregarEgresoEditar" placeholder="Ingrese Uso"></textarea>
                             </div>
                         </div>
-                        <div class="flex w-full justify-start items-center gap-2">
-                            <h5 for="fechaAgregarEgresoEditar" class="text-base text-gray-900 dark:text-gray-50 min-w-max">Fecha :</h5>
-                            <input type="date" class="outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 px-2.5 py-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-full" id="fechaAgregarEgresoEditar">
+                        <div class="flex w-full h-10">
+                            <div class="text-sm px-3 flex items-center justify-center text-center border border-gray-300 dark:border-gray-600 bg-gray-300 dark:bg-gray-600 rounded-l-lg">
+                                <h4 class="font-medium text-gray-900 dark:text-gray-300 min-w-max">Cantidad</h4>
+                            </div>
+                            <input class="validarCampo validarSoloNumerosDosDecimales w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-r-lg" type="text" name="cantidadAgregarEgresoClienteEditar" autocomplete="off" id="cantidadAgregarEgresoClienteEditar" value="" placeholder="Ingrese Cantidad">
                         </div>
                         <div class="flex w-full h-10">
                             <div class="text-sm px-3 flex items-center justify-center text-center border border-gray-300 dark:border-gray-600 bg-gray-300 dark:bg-gray-600 rounded-l-lg">
-                                <h4 class="font-medium text-gray-900 dark:text-gray-300 min-w-max">S/</h4>
+                                <h4 class="font-medium text-gray-900 dark:text-gray-300 min-w-max">Precio:</h4>
                             </div>
-                            <input class="validarCampo validarSoloNumerosDosDecimales w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-r-lg" type="text" name="valorAgregarEgresoClienteEditar" autocomplete="off" id="valorAgregarEgresoClienteEditar" value="" placeholder="Ingrese Monto">
+                            <input class="validarCampo validarSoloNumerosDosDecimales w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-r-lg" type="text" name="valorAgregarEgresoClienteEditar" autocomplete="off" id="valorAgregarEgresoClienteEditar" value="" placeholder="Ingrese Precio">
                         </div>
                         <div class="flex w-full h-10">
+                            <div class="text-sm px-3 flex items-center justify-center text-center border border-gray-300 dark:border-gray-600 bg-gray-300 dark:bg-gray-600 rounded-l-lg">
+                                <h4 class="font-medium text-gray-900 dark:text-gray-300 min-w-max">Monto:</h4>
+                            </div>
+                            <input class="validarCampo validarSoloNumerosDosDecimales w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-r-lg" type="text" name="montoAgregarEgresoClienteEditar" autocomplete="off" id="montoAgregarEgresoClienteEditar" value="" placeholder="Ingrese Monto">
+                        </div>
+                        <div class="hidden w-full h-10">
                             <div class="text-sm px-3 flex items-center justify-center text-center border border-gray-300 dark:border-gray-600 bg-gray-300 dark:bg-gray-600 rounded-l-lg">
                                 <h4 class="font-medium text-gray-900 dark:text-gray-300 min-w-max">F. de Pago</h4>
                             </div>

@@ -1207,7 +1207,7 @@ jQuery(function ($) {
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(obj.bancaPago));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(obj.codigoTransferenciaPag));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(obj.fechaOperacionPag));
-                        // nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(obj.horaOperacionPag));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(obj.horaOperacionPag));
                         nuevaFila.append($('<td class="px-4 py-2 text-center cursor-pointer">').text(obj.observacion));
                         // Agregar la nueva fila al tbody
                         tbodyReporteDePagos.append(nuevaFila);
@@ -1228,10 +1228,12 @@ jQuery(function ($) {
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
-                        // nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
                         nuevaFila.append($('<td class="px-4 py-2 text-center cursor-pointer">').text(""));
                         // Agregar la nueva fila al tbody
                         tbodyReporteDePagos.append(nuevaFila);
+                        totalPagoIngreso = totalPago;
+                        diferenciaCajaChica();
                     }
 
                 } else {
@@ -1274,10 +1276,10 @@ jQuery(function ($) {
                         nuevaFila.append($('<td class="hidden">').text(obj.idPagos));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">').append($('<h5 class="min-w-max px-2">').text(obj.nombreCompleto)));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(parseFloat(obj.cantidadAbonoPag).toFixed(2)));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(obj.tipoAbonoPag));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap hidden">').text(obj.tipoAbonoPag));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(obj.fechaOperacionPag));
                         // nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(obj.horaOperacionPag));
-                        nuevaFila.append($('<td class="px-4 py-2 text-center cursor-pointer">').text(obj.observacion));
+                        nuevaFila.append($('<td class="px-4 py-2 text-center cursor-pointer hidden">').text(obj.observacion));
                         // Agregar la nueva fila al tbody
                         tbodyReporteDePagos.append(nuevaFila);
                     });
@@ -1293,8 +1295,8 @@ jQuery(function ($) {
 
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">').append($('<h5 class="min-w-max px-2">').text("SALDO TOTAL:")));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text("S/. "+totalPago.toFixed(2)));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
+                        // nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
+                        // nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
                         // nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
                         nuevaFila.append($('<td class="px-4 py-2 text-center cursor-pointer">').text(""));
                         // Agregar la nueva fila al tbody
@@ -1311,6 +1313,9 @@ jQuery(function ($) {
             }
         });
     }
+
+    var totalPagoIngreso = 0;
+    var totalPagoEgreso = 0;
 
     function fn_TraerPagosDirectoGranjaFechas(fechaDesdeTraerPagos, fechaHastaTraerPagos) {
         $.ajax({
@@ -1385,6 +1390,11 @@ jQuery(function ($) {
                 console.error("ERROR",error);
             }
         });
+    }
+
+    function diferenciaCajaChica(){
+        let totalDiferencia = totalPagoIngreso - totalPagoEgreso;
+        $("#diferencia").html(parseFloat(totalDiferencia).toFixed(2));
     }
 
     function fn_RegistroDescuentos(fechaDesdeTraerDescuentos,fechaHastaTraerDescuentos) {
@@ -1616,24 +1626,24 @@ jQuery(function ($) {
         });
     }
 
-    $(document).on('contextmenu', 'tr.editarPagos', function (e) {
-        e.preventDefault();
-        let codigoDescuento = $(this).closest("tr").find("td:first").text();
-        Swal.fire({
-            title: '¿Desea eliminar el Registro?',
-            text: "¡Estas seguro de eliminar el descuento!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            cancelButtonText: '¡No, cancelar!',
-            confirmButtonText: '¡Si,eliminar!'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                fn_EliminarDescuento(codigoDescuento);
-            }
-        })
-    });
+    // $(document).on('contextmenu', 'tr.editarPagos', function (e) {
+    //     e.preventDefault();
+    //     let codigoDescuento = $(this).closest("tr").find("td:first").text();
+    //     Swal.fire({
+    //         title: '¿Desea eliminar el Registro?',
+    //         text: "¡Estas seguro de eliminar el descuento!",
+    //         icon: 'warning',
+    //         showCancelButton: true,
+    //         confirmButtonColor: '#3085d6',
+    //         cancelButtonColor: '#d33',
+    //         cancelButtonText: '¡No, cancelar!',
+    //         confirmButtonText: '¡Si,eliminar!'
+    //     }).then((result) => {
+    //         if (result.isConfirmed) {
+    //             fn_EliminarDescuento(codigoDescuento);
+    //         }
+    //     })
+    // });
 
     function fn_EliminarDescuento(codigoDescuento){
         $.ajax({
@@ -1903,7 +1913,7 @@ jQuery(function ($) {
         });
     };
 
-    $(document).on('contextmenu', '#bodyReporteDePagos tr.editarPagos', function (e) {
+    $(document).on('contextmenu', 'tr.editarPagos', function (e) {
         e.preventDefault();
         if (tipoUsuario =='Administrador'){
             let codigoPago = $(this).closest("tr").find("td:first").text();
@@ -1977,12 +1987,14 @@ jQuery(function ($) {
                     totalPago += parseFloat(obj.cantidadAbonoEgreso);
                     // Agregar las celdas con la información
                     nuevaFila.append($('<td class="hidden">').text(obj.idEgresos));
-                    nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 px-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">').text(obj.nombreEgresoCamal));
-                    nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(parseFloat(obj.cantidadAbonoEgreso).toFixed(2)));
-                    nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(obj.tipoAbonoEgreso));
-                    nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(obj.bancoEgreso));
-                    nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(obj.codigoTransferenciaEgreso));
                     nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(obj.fechaOperacionEgreso));
+                    nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 px-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">').text(obj.nombreEgresoCamal));
+                    nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(obj.cantidadEgreso));
+                    nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(parseFloat(obj.montoEgreso).toFixed(2)));
+                    nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(obj.cantidadAbonoEgreso));
+                    nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap hidden">').text(obj.tipoAbonoEgreso));
+                    nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap hidden">').text(obj.bancoEgreso));
+                    nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap hidden">').text(obj.codigoTransferenciaEgreso));
                     // Agregar la nueva fila al tbody
                     tbodyReporteDePagos.append(nuevaFila);
                 });
@@ -2001,9 +2013,10 @@ jQuery(function ($) {
                     nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
                     nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
                     nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
-                    nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
                     // Agregar la nueva fila al tbody
                     tbodyReporteDePagos.append(nuevaFila);
+                    totalPagoEgreso = totalPago
+                    diferenciaCajaChica();
                 }
                 
             },
@@ -2038,9 +2051,9 @@ jQuery(function ($) {
                     nuevaFila.append($('<td class="hidden">').text(obj.idEgresos));
                     nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 px-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">').text(obj.nombreEgresoCamal));
                     nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(parseFloat(obj.cantidadAbonoEgreso).toFixed(2)));
-                    nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(obj.tipoAbonoEgreso));
-                    nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(obj.bancoEgreso));
-                    nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(obj.codigoTransferenciaEgreso));
+                    nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap hidden">').text(obj.tipoAbonoEgreso));
+                    nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap hidden">').text(obj.bancoEgreso));
+                    nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap hidden">').text(obj.codigoTransferenciaEgreso));
                     nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(obj.fechaOperacionEgreso));
                     // Agregar la nueva fila al tbody
                     tbodyReporteDePagos.append(nuevaFila);
@@ -2058,9 +2071,9 @@ jQuery(function ($) {
                     nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">').append($('<h5 class="min-w-max px-2">').text("SALDO TOTAL:")));
                     nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text("S/. "+totalPago.toFixed(2)));
                     nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
-                    nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
-                    nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
-                    nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
+                    // nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
+                    // nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
+                    // nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
                     // Agregar la nueva fila al tbody
                     tbodyReporteDePagos.append(nuevaFila);
                 }
@@ -2107,7 +2120,9 @@ jQuery(function ($) {
                         showConfirmButton: false,
                         timer: 2000
                     });
-                    $('#filtrarIngresosYEgresos').trigger('click');
+                    let fechaDesdeTraerPagos = $('#fechaDesdeReporteDePagos').val();
+                    let fechaHastaTraerPagos = $('#fechaHastaReporteDePagos').val();
+                    fn_TraerEgresosFechas(fechaDesdeTraerPagos, fechaHastaTraerPagos);
                 }
             },
             error: function(error) {
@@ -2124,18 +2139,22 @@ jQuery(function ($) {
     $(document).on("dblclick", "tr.editarPagosEgresos", function() {
         let fila = $(this).closest('tr');
         let idReporteDeEgreso= fila.find('td:eq(0)').text();
-        let usoEgreso= fila.find('td:eq(1)').text();
-        let importeEgreso= fila.find('td:eq(2)').text();
-        let formaDePagoEgreso= fila.find('td:eq(3)').text();
-        let bancoEgreso= fila.find('td:eq(4)').text();
-        let codigoTransEgreso= fila.find('td:eq(5)').text();
-        let fechaEgreso= fila.find('td:eq(6)').text();
+        let fechaEgreso= fila.find('td:eq(1)').text();
+        let usoEgreso= fila.find('td:eq(2)').text();
+        let cantidadEgreso= fila.find('td:eq(3)').text();
+        let importeEgreso= fila.find('td:eq(4)').text();
+        let MontoEgreso= fila.find('td:eq(5)').text();
+        let formaDePagoEgreso= fila.find('td:eq(6)').text();
+        let bancoEgreso= fila.find('td:eq(7)').text();
+        let codigoTransEgreso= fila.find('td:eq(8)').text();
 
         $('#idReporteDeEgresoEditar').val(idReporteDeEgreso);
 
         $('#idAgregarEgresoEditar').val(usoEgreso);
         $('#valorAgregarEgresoClienteEditar').val(importeEgreso);
         $('#formaDePagoEgresoEditar').val(formaDePagoEgreso);
+        $('#cantidadAgregarEgresoClienteEditar').val(cantidadEgreso);
+        $('#montoAgregarEgresoClienteEditar').val(MontoEgreso);
         $('#bancoAgregarEgresoClienteEditar').val(bancoEgreso);
         $('#fechaAgregarEgresoEditar').val(fechaEgreso);
         $('#codAgregarEgresoClienteEditar').val(codigoTransEgreso);
@@ -2173,16 +2192,26 @@ jQuery(function ($) {
         let idReporteDeEgreso = $('#idReporteDeEgresoEditar').val();
         let idAgregarEgresoEditar = $('#idAgregarEgresoEditar').val();
         let valorAgregarEgresoClienteEditar = $('#valorAgregarEgresoClienteEditar').val();
+        let cantidadAgregarEgresoClienteEditar = $('#cantidadAgregarEgresoClienteEditar').val();
+        let montoAgregarEgresoClienteEditar = $('#montoAgregarEgresoClienteEditar').val();
         let formaDePagoEgresoEditar = $('#formaDePagoEgresoEditar').val();
         let bancoAgregarEgresoClienteEditar = $('#bancoAgregarEgresoClienteEditar').val();
         let fechaAgregarEgresoEditar = $('#fechaAgregarEgresoEditar').val();
         let codAgregarEgresoClienteEditar = $('#codAgregarEgresoClienteEditar').val();
 
-        //console.log(idReporteDeEgreso,idAgregarEgresoEditar,valorAgregarEgresoClienteEditar,formaDePagoEgresoEditar,bancoAgregarEgresoClienteEditar,fechaAgregarEgresoEditar,codAgregarEgresoClienteEditar)
-        fn_AgregarEgresoEditar(idReporteDeEgreso,idAgregarEgresoEditar,valorAgregarEgresoClienteEditar,formaDePagoEgresoEditar,bancoAgregarEgresoClienteEditar,fechaAgregarEgresoEditar,codAgregarEgresoClienteEditar)
+        // console.log('id:    ',idReporteDeEgreso,
+        //     'idEgreso:  ',idAgregarEgresoEditar,
+        //     'idvalor:   ',valorAgregarEgresoClienteEditar,
+        //     'cantidad:  ',cantidadAgregarEgresoClienteEditar,
+        //     'monto: ',montoAgregarEgresoClienteEditar,
+        //     'forma: ',formaDePagoEgresoEditar,
+        //     'banco: ',bancoAgregarEgresoClienteEditar,
+        //     'fecha: ',fechaAgregarEgresoEditar,
+        //     'cod:   ',codAgregarEgresoClienteEditar)
+        fn_AgregarEgresoEditar(idReporteDeEgreso,idAgregarEgresoEditar,valorAgregarEgresoClienteEditar,cantidadAgregarEgresoClienteEditar,montoAgregarEgresoClienteEditar,formaDePagoEgresoEditar,bancoAgregarEgresoClienteEditar,fechaAgregarEgresoEditar,codAgregarEgresoClienteEditar)
     })
 
-    function fn_AgregarEgresoEditar(idReporteDeEgreso,idAgregarEgresoEditar,valorAgregarEgresoClienteEditar,formaDePagoEgresoEditar,bancoAgregarEgresoClienteEditar,fechaAgregarEgresoEditar,codAgregarEgresoClienteEditar){
+    function fn_AgregarEgresoEditar(idReporteDeEgreso,idAgregarEgresoEditar,valorAgregarEgresoClienteEditar,cantidadAgregarEgresoClienteEditar,montoAgregarEgresoClienteEditar,formaDePagoEgresoEditar,bancoAgregarEgresoClienteEditar,fechaAgregarEgresoEditar,codAgregarEgresoClienteEditar){
         $.ajax({
             url: '/fn_consulta_AgregarEgresoEditar',
             method: 'GET',
@@ -2190,6 +2219,8 @@ jQuery(function ($) {
                 idReporteDeEgreso: idReporteDeEgreso,
                 idAgregarEgresoEditar: idAgregarEgresoEditar,
                 valorAgregarEgresoClienteEditar: valorAgregarEgresoClienteEditar,
+                cantidadAgregarEgresoClienteEditar: cantidadAgregarEgresoClienteEditar,
+                montoAgregarEgresoClienteEditar: montoAgregarEgresoClienteEditar,
                 formaDePagoEgresoEditar: formaDePagoEgresoEditar,
                 bancoAgregarEgresoClienteEditar: bancoAgregarEgresoClienteEditar,
                 fechaAgregarEgresoEditar: fechaAgregarEgresoEditar,
@@ -2220,13 +2251,15 @@ jQuery(function ($) {
         });
     }
 
-    function fn_AgregarEgresoPaul(montoAgregEgresoCliente,fechaAgregEgresoCliente,formaDePagoEgreso,bancoAgregEgresoCliente,codAgregEgresoCliente,usoReporteEgreso){
+    function fn_AgregarEgresoPaul(montoAgregEgresoCliente,fechaAgregEgresoCliente,cantidadAgregEgresoCliente, montoNuevoAgregEgresoCliente,formaDePagoEgreso,bancoAgregEgresoCliente,codAgregEgresoCliente,usoReporteEgreso){
         $.ajax({
             url: '/fn_consulta_AgregarEgresoPaul',
             method: 'GET',
             data:{
                 montoAgregEgresoCliente: montoAgregEgresoCliente,
                 fechaAgregEgresoCliente: fechaAgregEgresoCliente,
+                cantidadAgregEgresoCliente: cantidadAgregEgresoCliente,
+                montoNuevoAgregEgresoCliente: montoNuevoAgregEgresoCliente,
                 formaDePagoEgreso: formaDePagoEgreso,
                 bancoAgregEgresoCliente: bancoAgregEgresoCliente,
                 codAgregEgresoCliente: codAgregEgresoCliente,
@@ -2533,10 +2566,12 @@ jQuery(function ($) {
             let bancoAgregarPagoCliente = filaActual.find('td:eq(3)').text().trim();
             let codAgregarPagoCliente = filaActual.find('td:eq(4)').text().trim();
             let fechaAgregarPagoCliente = filaActual.find('td:eq(5)').text().trim();
-            let horaAgregarPago = "12:00:00";
-            let comentarioAgregarPagoCliente = filaActual.find('td:eq(6)').text().trim();
-            let pagoDerivado = filaActual.find('td:eq(7)').text().trim();
-            let codigoCliente = filaActual.find('td:eq(8)').text().trim();
+            let horaAgregarPago = filaActual.find('td:eq(6)').text().trim();
+            let comentarioAgregarPagoCliente = filaActual.find('td:eq(7)').text().trim();
+            let pagoDerivado = filaActual.find('td:eq(8)').text().trim();
+            let codigoCliente = filaActual.find('td:eq(9)').text().trim();
+
+            console.log(codigoCliente);
 
             formaDePago = formaDePago[0].toUpperCase() + formaDePago.slice(1);
 
@@ -2614,6 +2649,7 @@ jQuery(function ($) {
         nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap convertirMayusculasTablas" contenteditable="true">').text(""));
         nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap convertirMayusculasTablas" contenteditable="true">').text(""));
         nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarFormatoFechaTablas text-gray-900 dark:text-white" contenteditable="true">').text(`${fechaHoy}`));
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarFormatoHoraTablas text-gray-900 dark:text-white" contenteditable="true">').text(""));
         nuevaFila.append($('<td class="outline-none p-2 text-center cursor-pointer" contenteditable="true">').text(""));
         nuevaFila.append($('<td class="outline-none p-2 text-center cursor-pointer hidden" contenteditable="true">').text("2"));
         nuevaFila.append($('<td class="outline-none p-2 text-center cursor-pointer hidden codigoDeClienteTablaExcel" contenteditable="false">').text("0"));
@@ -2691,7 +2727,7 @@ jQuery(function ($) {
                 cell.data('selectedCliente', cliente);
                 hideSuggestions(cell);
 
-                let codigoClienteCell = cell.closest('tr').find('td').eq(8); 
+                let codigoClienteCell = cell.closest('tr').find('td').eq(9); 
                 codigoClienteCell.text(cliente.codigoCli);
             });
     
@@ -2824,9 +2860,9 @@ jQuery(function ($) {
         let nuevaFila = $('<tr class="bg-white pagosAgregarExcel3 border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
         nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 font-medium text-gray-900 whitespace-nowrap dark:text-white uppercase nombreClienteTablaExcel" contenteditable="true">').text(""));
         nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarSoloNumerosDosDecimalesTablas" contenteditable="true">').text(""));
-        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap" contenteditable="false">').text("Efectivo"));
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap hidden" contenteditable="false">').text("Efectivo"));
         nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarFormatoFechaTablas text-gray-900 dark:text-white" contenteditable="true">').text(`${fechaHoy}`));
-        nuevaFila.append($('<td class="outline-none p-2 text-center cursor-pointer" contenteditable="true">').text(""));
+        nuevaFila.append($('<td class="outline-none p-2 text-center cursor-pointer hidden" contenteditable="true">').text(""));
         nuevaFila.append($('<td class="outline-none p-2 text-center cursor-pointer hidden" contenteditable="true">').text("3"));
         nuevaFila.append($('<td class="outline-none p-2 text-center cursor-pointer hidden codigoDeClienteTablaExcel" contenteditable="false">').text("0"));
         tbody.append(nuevaFila);
@@ -3140,12 +3176,14 @@ jQuery(function ($) {
             let filaActual = $(this); // Guardar referencia a la fila actual
     
             // Obtener los datos de cada celda de la fila actual
-            let usoReporteEgreso = filaActual.find('td:eq(0)').text().trim();
-            let montoAgregEgresoCliente = filaActual.find('td:eq(1)').text().trim();
-            let formaDePagoEgreso = filaActual.find('td:eq(2)').text().trim();
-            let bancoAgregEgresoCliente = filaActual.find('td:eq(3)').text().trim();
-            let codAgregEgresoCliente = filaActual.find('td:eq(4)').text().trim();
-            let fechaAgregEgresoCliente = filaActual.find('td:eq(5)').text().trim();
+            let fechaAgregEgresoCliente = filaActual.find('td:eq(0)').text().trim();
+            let usoReporteEgreso = filaActual.find('td:eq(1)').text().trim();
+            let cantidadAgregEgresoCliente = filaActual.find('td:eq(2)').text().trim();
+            let montoNuevoAgregEgresoCliente = filaActual.find('td:eq(3)').text().trim();
+            let montoAgregEgresoCliente = filaActual.find('td:eq(4)').text().trim();
+            let formaDePagoEgreso = filaActual.find('td:eq(5)').text().trim();
+            let bancoAgregEgresoCliente = filaActual.find('td:eq(6)').text().trim();
+            let codAgregEgresoCliente = filaActual.find('td:eq(7)').text().trim();
 
             formaDePagoEgreso = formaDePagoEgreso[0].toUpperCase() + formaDePagoEgreso.slice(1);
 
@@ -3185,7 +3223,7 @@ jQuery(function ($) {
                         checkCompletion();
                     } else {
                         // Llamar a la función fn_AgregarPagoCliente con los datos de la fila actual
-                        fn_AgregarEgreso(montoAgregEgresoCliente,fechaAgregEgresoCliente,formaDePagoEgreso,bancoAgregEgresoCliente,codAgregEgresoCliente,usoReporteEgreso)
+                        fn_AgregarEgreso(montoAgregEgresoCliente,fechaAgregEgresoCliente,cantidadAgregEgresoCliente,montoNuevoAgregEgresoCliente,formaDePagoEgreso,bancoAgregEgresoCliente,codAgregEgresoCliente,usoReporteEgreso)
                         .then(function() {
                             completedRequests++;
                             checkCompletion();
@@ -3217,12 +3255,14 @@ jQuery(function ($) {
 
     function agregarFilaEntradaEgreso1(tbody) {
         let nuevaFila = $('<tr class="bg-white pagosAgregarExcelEgreso1 border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarFormatoFechaTablas text-gray-900 dark:text-white" contenteditable="true">').text(`${fechaHoy}`));
         nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 font-medium text-gray-900 whitespace-nowrap dark:text-white" contenteditable="true">').text(""));
         nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarSoloNumerosDosDecimalesTablas" contenteditable="true">').text(""));
-        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap" contenteditable="true">').text("Efectivo"));
-        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap convertirMayusculasTablas" contenteditable="true">').text(""));
-        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap convertirMayusculasTablas" contenteditable="true">').text(""));
-        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarFormatoFechaTablas text-gray-900 dark:text-white" contenteditable="true">').text(`${fechaHoy}`));
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarSoloNumerosDosDecimalesTablas" contenteditable="true">').text(""));
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarSoloNumerosDosDecimalesTablas" contenteditable="true">').text(""));
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap hidden" contenteditable="true">').text("Efectivo"));
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap convertirMayusculasTablas hidden" contenteditable="true">').text(""));
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap convertirMayusculasTablas hidden" contenteditable="true">').text(""));
         tbody.append(nuevaFila);
     
         nuevaFila.on('input', function() {
@@ -3239,13 +3279,15 @@ jQuery(function ($) {
         });
     }
 
-    function fn_AgregarEgreso(montoAgregEgresoCliente,fechaAgregEgresoCliente,formaDePagoEgreso,bancoAgregEgresoCliente,codAgregEgresoCliente,usoReporteEgreso){
+    function fn_AgregarEgreso(montoAgregEgresoCliente,fechaAgregEgresoCliente,cantidadAgregEgresoCliente,montoNuevoAgregEgresoCliente,formaDePagoEgreso,bancoAgregEgresoCliente,codAgregEgresoCliente,usoReporteEgreso){
         return $.ajax({
             url: '/fn_consulta_AgregarEgreso',
             method: 'GET',
             data:{
                 montoAgregEgresoCliente: montoAgregEgresoCliente,
                 fechaAgregEgresoCliente: fechaAgregEgresoCliente,
+                cantidadAgregEgresoCliente: cantidadAgregEgresoCliente,
+                montoNuevoAgregEgresoCliente: montoNuevoAgregEgresoCliente,
                 formaDePagoEgreso: formaDePagoEgreso,
                 bancoAgregEgresoCliente: bancoAgregEgresoCliente,
                 codAgregEgresoCliente: codAgregEgresoCliente,
@@ -3308,6 +3350,8 @@ jQuery(function ($) {
             let bancoAgregEgresoCliente = filaActual.find('td:eq(3)').text().trim();
             let codAgregEgresoCliente = filaActual.find('td:eq(4)').text().trim();
             let fechaAgregEgresoCliente = filaActual.find('td:eq(5)').text().trim();
+            let cantidadAgregEgresoCliente = filaActual.find('td:eq(6)').text().trim();
+            let montoNuevoAgregEgresoCliente = filaActual.find('td:eq(7)').text().trim();
 
             formaDePagoEgreso = formaDePagoEgreso[0].toUpperCase() + formaDePagoEgreso.slice(1);
 
@@ -3347,7 +3391,7 @@ jQuery(function ($) {
                         checkCompletion();
                     } else {
                         // Llamar a la función fn_AgregarPagoCliente con los datos de la fila actual
-                        fn_AgregarEgresoPaul2(montoAgregEgresoCliente,fechaAgregEgresoCliente,formaDePagoEgreso,bancoAgregEgresoCliente,codAgregEgresoCliente,usoReporteEgreso)
+                        fn_AgregarEgresoPaul2(montoAgregEgresoCliente,fechaAgregEgresoCliente,cantidadAgregEgresoCliente,montoNuevoAgregEgresoCliente,formaDePagoEgreso,bancoAgregEgresoCliente,codAgregEgresoCliente,usoReporteEgreso)
                         .then(function() {
                             completedRequests++;
                             checkCompletion();
@@ -3381,9 +3425,9 @@ jQuery(function ($) {
         let nuevaFila = $('<tr class="bg-white pagosAgregarExcelEgreso2 border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
         nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 font-medium text-gray-900 whitespace-nowrap dark:text-white" contenteditable="true">').text(""));
         nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarSoloNumerosDosDecimalesTablas" contenteditable="true">').text(""));
-        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap" contenteditable="true">').text("Efectivo"));
-        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap convertirMayusculasTablas" contenteditable="true">').text(""));
-        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap convertirMayusculasTablas" contenteditable="true">').text(""));
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap hidden" contenteditable="true">').text("Efectivo"));
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap convertirMayusculasTablas hidden" contenteditable="true">').text(""));
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap convertirMayusculasTablas hidden" contenteditable="true">').text(""));
         nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarFormatoFechaTablas text-gray-900 dark:text-white" contenteditable="true">').text(`${fechaHoy}`));
         tbody.append(nuevaFila);
     
@@ -3401,13 +3445,15 @@ jQuery(function ($) {
         });
     }
 
-    function fn_AgregarEgresoPaul2(montoAgregEgresoCliente,fechaAgregEgresoCliente,formaDePagoEgreso,bancoAgregEgresoCliente,codAgregEgresoCliente,usoReporteEgreso){
+    function fn_AgregarEgresoPaul2(montoAgregEgresoCliente,fechaAgregEgresoCliente,cantidadAgregEgresoCliente,montoNuevoAgregEgresoCliente,formaDePagoEgreso,bancoAgregEgresoCliente,codAgregEgresoCliente,usoReporteEgreso){
         return $.ajax({
             url: '/fn_consulta_AgregarEgresoPaul',
             method: 'GET',
             data:{
                 montoAgregEgresoCliente: montoAgregEgresoCliente,
                 fechaAgregEgresoCliente: fechaAgregEgresoCliente,
+                cantidadAgregEgresoCliente: cantidadAgregEgresoCliente,
+                montoNuevoAgregEgresoCliente: montoNuevoAgregEgresoCliente,
                 formaDePagoEgreso: formaDePagoEgreso,
                 bancoAgregEgresoCliente: bancoAgregEgresoCliente,
                 codAgregEgresoCliente: codAgregEgresoCliente,

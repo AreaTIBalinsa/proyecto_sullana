@@ -55,6 +55,21 @@
                 </tbody>
             </table>
         </div>
+        <div class="mt-5 ml-5 flex gap-10 flex-wrap items-start justify-start">
+            <table class="mb-2">
+                <caption class="bg-blue-600 text-gray-50 p-2 font-bold text-lg rounded-t-lg border-x-2 border-t-2 z-50">TOTALES</caption>
+                <thead class="bg-blue-600 text-gray-50 uppercase z-50 text-sm">
+                    <tr>
+                        <th class="bg-blue-600 border-2 px-2 py-1 text-left">VARIEDAD</th>
+                        <th class="bg-blue-600 border-2 px-2 py-1">CANTIDAD</th>
+                        <th class="bg-blue-600 border-2 px-2 py-1">PESO</th>
+                    </tr>
+                </thead>
+                <tbody id="bodyReporteAcumuladoExcelStockPollos" class="text-gray-900 dark:text-gray-50 ">
+                    <tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="4" class="text-center border-2">No hay datos</td></tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </main>
 

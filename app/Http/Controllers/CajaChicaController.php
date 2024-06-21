@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\AgregarEgresoCliente\AgregarEgresoCliente;
 use App\Models\AgregarPagoCliente\AgregarPagoCliente;
+use App\Models\AgregarPagoCliente\TraerClientesAgregarPagoCliente;
 
 class CajaChicaController extends Controller
 {
@@ -15,6 +16,60 @@ class CajaChicaController extends Controller
             return view('caja_chica');
         }
         return redirect('/login');
+    }
+
+    public function consulta_TraerClientesAgregarPagoClienteCaja(Request $request){
+
+        $nombreAgregarPagoCliente = $request->input('inputAgregarPagoCliente');
+
+        if (Auth::check()) {
+            // Realiza la consulta a la base de datos
+            $datos = TraerClientesAgregarPagoCliente::select('idCliente', 'codigoCli',DB::raw('CONCAT_WS(" ", nombresCli, apellidoPaternoCli, apellidoMaternoCli) AS nombreCompleto'))
+                ->where('estadoEliminadoCli','=','1')
+                ->where('idEstadoCli','=','1')
+                ->where(function($query) use ($nombreAgregarPagoCliente) {
+                    $query->where('nombresCli', 'LIKE', "%$nombreAgregarPagoCliente%")
+                        ->orWhere('apellidoPaternoCli', 'LIKE', "%$nombreAgregarPagoCliente%")
+                        ->orWhere('apellidoMaternoCli', 'LIKE', "%$nombreAgregarPagoCliente%");
+                })
+                ->get();
+
+            // Devuelve los datos en formato JSON
+            return response()->json($datos);
+        }
+
+        // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
+        return response()->json(['error' => 'Usuario no autenticado'], 401);
+    }
+
+    public function consulta_VerificarCodigoPagoIngreso(Request $request){
+
+        $codAgregarPagoCliente = $request->input('codAgregarPagoCliente');
+
+        if (Auth::check()) {
+            // Realiza la consulta a la base de datos
+            $datos = DB::select('
+            SELECT tb_pagos.idPagos, 
+                    tb_pagos.cantidadAbonoPag,
+                    tb_pagos.tipoAbonoPag,
+                    tb_pagos.fechaOperacionPag,
+                    tb_pagos.codigoTransferenciaPag,
+                    tb_pagos.observacion,
+                    tb_pagos.fechaRegistroPag,
+                    tb_pagos.horaOperacionPag,
+                    tb_pagos.bancaPago,
+                    tb_clientes.codigoCli,
+                   IFNULL(CONCAT_WS(" ", nombresCli, apellidoPaternoCli, apellidoMaternoCli), "") AS nombreCompleto
+            FROM tb_pagos
+            LEFT JOIN tb_clientes ON tb_clientes.codigoCli = tb_pagos.codigoCli
+            WHERE codigoTransferenciaPag = ?  AND estadoPago = 1',[$codAgregarPagoCliente]);
+
+            // Devuelve los datos en formato JSON
+            return response()->json($datos);
+        }
+
+        // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
+        return response()->json(['error' => 'Usuario no autenticado'], 401);
     }
 
     public function consulta_TraerPagosFechas(Request $request){
@@ -47,7 +102,7 @@ class CajaChicaController extends Controller
         return response()->json(['error' => 'Usuario no autenticado'], 401);
     }
 
-    public function consulta_AgregarPagoCliente(Request $request){
+    public function consulta_AgregarPagoClienteCaja(Request $request){
 
         $codigoCliente = $request->input('codigoCliente');
         $montoAgregarPagoCliente = $request->input('montoAgregarPagoCliente');
@@ -87,6 +142,8 @@ class CajaChicaController extends Controller
         $formaDePagoEgreso = $request->input('formaDePagoEgreso');
         $bancoAgregEgresoCliente = $request->input('bancoAgregEgresoCliente');
         $codAgregEgresoCliente = $request->input('codAgregEgresoCliente');
+        $cantidadAgregEgresoCliente = $request->input('cantidadAgregEgresoCliente');
+        $montoNuevoAgregEgresoCliente = $request->input('montoNuevoAgregEgresoCliente');
         $usoReporteEgreso = $request->input('usoReporteEgreso');
 
         if (Auth::check()) {
@@ -96,6 +153,8 @@ class CajaChicaController extends Controller
             $agregarEgresoCliente->tipoAbonoEgreso = $formaDePagoEgreso;
             $agregarEgresoCliente->bancoEgreso = $bancoAgregEgresoCliente;
             $agregarEgresoCliente->codigoTransferenciaEgreso = $codAgregEgresoCliente;
+            $agregarEgresoCliente->cantidadEgreso = $cantidadAgregEgresoCliente;
+            $agregarEgresoCliente->montoEgreso = $montoNuevoAgregEgresoCliente;
             $agregarEgresoCliente->nombreEgresoCamal = $usoReporteEgreso;
             $agregarEgresoCliente->fechaRegistroEgreso = now()->setTimezone('America/New_York')->toDateString();
             $agregarEgresoCliente->estadoEgreso = 1;
@@ -119,7 +178,7 @@ class CajaChicaController extends Controller
             $datos = DB::select('
             SELECT 
             nombreEgresoCamal, 
-            idEgresos,tipoAbonoEgreso,cantidadAbonoEgreso,fechaOperacionEgreso,bancoEgreso,codigoTransferenciaEgreso,fechaRegistroEgreso,estadoEgreso 
+            idEgresos,tipoAbonoEgreso,cantidadAbonoEgreso,fechaOperacionEgreso,bancoEgreso,codigoTransferenciaEgreso,fechaRegistroEgreso,estadoEgreso, cantidadEgreso, montoEgreso 
             FROM tb_egresos 
             WHERE estadoEgreso = 1 and clasificadoEgreso = 1 and fechaOperacionEgreso BETWEEN ? AND ?', [$fechaDesdeTraerPagos, $fechaHastaTraerPagos]);
     
@@ -156,6 +215,8 @@ class CajaChicaController extends Controller
         $valorAgregarEgresoClienteEditar = $request->input('valorAgregarEgresoClienteEditar');
         $formaDePagoEgresoEditar = $request->input('formaDePagoEgresoEditar');
         $bancoAgregarEgresoClienteEditar = $request->input('bancoAgregarEgresoClienteEditar');
+        $cantidadAgregarEgresoClienteEditar = $request->input('cantidadAgregarEgresoClienteEditar');
+        $montoAgregarEgresoClienteEditar = $request->input('montoAgregarEgresoClienteEditar');
         $fechaAgregarEgresoEditar = $request->input('fechaAgregarEgresoEditar');
         $codAgregarEgresoClienteEditar = $request->input('codAgregarEgresoClienteEditar');
 
@@ -168,8 +229,10 @@ class CajaChicaController extends Controller
             bancoEgreso = ?,
             tipoAbonoEgreso = ?,
             cantidadAbonoEgreso = ?,
+            cantidadEgreso = ?,
+            montoEgreso = ?,
             nombreEgresoCamal = ?
-            WHERE idEgresos = ? ',[$codAgregarEgresoClienteEditar,$fechaAgregarEgresoEditar,$bancoAgregarEgresoClienteEditar,$formaDePagoEgresoEditar,$valorAgregarEgresoClienteEditar,$idAgregarEgresoEditar,$idReporteDeEgreso]);
+            WHERE idEgresos = ? ',[$codAgregarEgresoClienteEditar,$fechaAgregarEgresoEditar,$bancoAgregarEgresoClienteEditar,$formaDePagoEgresoEditar,$montoAgregarEgresoClienteEditar,$cantidadAgregarEgresoClienteEditar,$valorAgregarEgresoClienteEditar,$idAgregarEgresoEditar,$idReporteDeEgreso]);
     
             // Devuelve los datos en formato JSON
             return response()->json(['success' => true], 200);

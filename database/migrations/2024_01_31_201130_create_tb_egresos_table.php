@@ -18,9 +18,12 @@ return new class extends Migration
             $table->decimal('cantidadAbonoEgreso', 8, 2)->nullable();
             $table->date('fechaOperacionEgreso');
             $table->string('bancoEgreso',100)->nullable();
+            $table->string('cantidadEgreso',100)->nullable();
+            $table->string('montoEgreso',100)->nullable();
             $table->string('codigoTransferenciaEgreso', 100)->nullable();
             $table->date('fechaRegistroEgreso');
             $table->integer('estadoEgreso')->default(1);
+            $table->string('clasificadoEgreso',100)->nullable();
             $table->timestamps();
         });
     }

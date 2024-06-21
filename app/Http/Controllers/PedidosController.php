@@ -19,44 +19,81 @@ class PedidosController extends Controller
         return redirect('/login');
     }
 
-    public function consulta_TraerPedidosClientes(Request $request)
-{
-    $fechaBuscarPedidos = $request->input('fechaBuscarPedidos');
+    public function consulta_TraerCantidadStockPollos(Request $request){
+        if (Auth::check()){
+            // Realiza la consulta a la base de datos
+            $datos = DB::select('
+                SELECT
+                    tb_pesadas.idPesada, 
+                    tb_pesadas.idEspecie,
+                    tb_pesadas.pesoNetoPes,
+                    tb_pesadas.fechaRegistroPes,
+                    tb_pesadas.cantidadPes,
+                    tb_pesadas.pesoNetoJabas,
+                    IFNULL(CONCAT_WS(" ", nombresCli, apellidoPaternoCli, apellidoMaternoCli), "") AS nombreCompleto
+                FROM tb_pesadas
+                INNER JOIN tb_clientes ON tb_clientes.codigoCli = tb_pesadas.codigoCli
+                WHERE fechaRegistroPes = DATE(NOW()) and estadoPes = 1
+                UNION
+                SELECT 
+                    tb_pesadas2.idPesada, 
+                    tb_pesadas2.idEspecie,
+                    tb_pesadas2.pesoNetoPes,
+                    tb_pesadas2.fechaRegistroPes,
+                    tb_pesadas2.cantidadPes,
+                    tb_pesadas2.pesoNetoJabas,
+                    IFNULL(CONCAT_WS(" ", nombresCli, apellidoPaternoCli, apellidoMaternoCli), "") AS nombreCompleto
+                FROM tb_pesadas2
+                INNER JOIN tb_clientes ON tb_clientes.codigoCli = tb_pesadas2.codigoCli
+                WHERE fechaRegistroPes = DATE(NOW()) and estadoPes = 1
+                ORDER BY fechaRegistroPes DESC, idPesada ASC');
 
-    if (Auth::check()) {
-        // Realiza la consulta a la base de datos
-        $datos = DB::select('
-            SELECT 
-                IFNULL(CONCAT_WS(" ", c.nombresCli, c.apellidoPaternoCli, c.apellidoMaternoCli), "") AS nombreCompleto, 
-                c.codigoCli as codigoCliPedidos, 
-                COALESCE(p.fechaRegistroPedido, ?) AS fechaRegistroPedido, 
-                COALESCE(p.pedidoPrimerEspecie, 0) AS pedidoPrimerEspecie, 
-                COALESCE(p.pedidoSegundaEspecie, 0) AS pedidoSegundaEspecie,
-                COALESCE(p.pedidoTercerEspecie, 0) AS pedidoTercerEspecie, 
-                COALESCE(p.pedidoCuartaEspecie, 0) AS pedidoCuartaEspecie, 
-                COALESCE(p.pedidoQuintaEspecie, 0) AS pedidoQuintaEspecie, 
-                COALESCE(p.pedidoSextaEspecie, 0) AS pedidoSextaEspecie, 
-                COALESCE(p.pedidoSeptimaEspecie, 0) AS pedidoSeptimaEspecie, 
-                COALESCE(p.pedidoOctavaEspecie, 0) AS pedidoOctavaEspecie, 
-                COALESCE(p.pedidoNovenaEspecie, 0) AS pedidoNovenaEspecie, 
-                COALESCE(p.pedidoDecimaEspecie, 0) AS pedidoDecimaEspecie, 
-                COALESCE(p.pedidoDecimaPrimeraEspecie, 0) AS pedidoDecimaPrimeraEspecie, 
-                COALESCE(p.pedidoDecimaSegundaEspecie, 0) AS pedidoDecimaSegundaEspecie, 
-                COALESCE(p.pedidoDecimaTerceraEspecie, 0) AS pedidoDecimaTerceraEspecie, 
-                COALESCE(p.pedidoDecimaCuartaEspecie, 0) AS pedidoDecimaCuartaEspecie, 
-                COALESCE(p.comentarioPedido, "") AS comentarioPedido
-            FROM tb_clientes c
-            LEFT JOIN tb_pedidos p ON c.codigoCli = p.codigoCliPedidos AND p.fechaRegistroPedido = ?
-            WHERE c.idEstadoCli = 1 AND c.estadoEliminadoCli = 1
-            ORDER BY nombreCompleto ASC', [$fechaBuscarPedidos, $fechaBuscarPedidos]);
+            // Devuelve los datos en formato JSON
+            return response()->json($datos);
+        }
 
-        // Devuelve los datos en formato JSON
-        return response()->json($datos);
+        // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
+        return response()->json(['error' => 'Usuario no autenticado'], 401);
     }
 
-    // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
-    return response()->json(['error' => 'Usuario no autenticado'], 401);
-}
+    public function consulta_TraerPedidosClientes(Request $request)
+    {
+        $fechaBuscarPedidos = $request->input('fechaBuscarPedidos');
+
+        if (Auth::check()) {
+            // Realiza la consulta a la base de datos
+            $datos = DB::select('
+                SELECT 
+                    IFNULL(CONCAT_WS(" ", c.nombresCli, c.apellidoPaternoCli, c.apellidoMaternoCli), "") AS nombreCompleto, 
+                    c.codigoCli as codigoCliPedidos, 
+                    COALESCE(p.fechaRegistroPedido, ?) AS fechaRegistroPedido, 
+                    COALESCE(p.pedidoPrimerEspecie, 0) AS pedidoPrimerEspecie, 
+                    COALESCE(p.pedidoSegundaEspecie, 0) AS pedidoSegundaEspecie,
+                    COALESCE(p.pedidoTercerEspecie, 0) AS pedidoTercerEspecie, 
+                    COALESCE(p.pedidoCuartaEspecie, 0) AS pedidoCuartaEspecie, 
+                    COALESCE(p.pedidoQuintaEspecie, 0) AS pedidoQuintaEspecie, 
+                    COALESCE(p.pedidoSextaEspecie, 0) AS pedidoSextaEspecie, 
+                    COALESCE(p.pedidoSeptimaEspecie, 0) AS pedidoSeptimaEspecie, 
+                    COALESCE(p.pedidoOctavaEspecie, 0) AS pedidoOctavaEspecie, 
+                    COALESCE(p.pedidoNovenaEspecie, 0) AS pedidoNovenaEspecie, 
+                    COALESCE(p.pedidoDecimaEspecie, 0) AS pedidoDecimaEspecie, 
+                    COALESCE(p.pedidoDecimaPrimeraEspecie, 0) AS pedidoDecimaPrimeraEspecie, 
+                    COALESCE(p.pedidoDecimaSegundaEspecie, 0) AS pedidoDecimaSegundaEspecie, 
+                    COALESCE(p.pedidoDecimaTerceraEspecie, 0) AS pedidoDecimaTerceraEspecie, 
+                    COALESCE(p.pedidoDecimaCuartaEspecie, 0) AS pedidoDecimaCuartaEspecie, 
+                    COALESCE(p.comentarioPedido, "") AS comentarioPedido
+                FROM tb_clientes c
+                LEFT JOIN tb_pedidos p ON c.codigoCli = p.codigoCliPedidos AND p.fechaRegistroPedido = ?
+                WHERE c.idEstadoCli = 1 AND c.estadoEliminadoCli = 1
+                ORDER BY nombreCompleto ASC', [$fechaBuscarPedidos, $fechaBuscarPedidos]);
+
+            // Devuelve los datos en formato JSON
+            return response()->json($datos);
+        }
+
+        // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
+        return response()->json(['error' => 'Usuario no autenticado'], 401);
+    }
 
 
     public function consulta_AgregarPedidoCliente(Request $request){

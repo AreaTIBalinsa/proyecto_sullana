@@ -71,7 +71,7 @@
                             <p class="text-sm text-gray-900 dark:text-gray-300">Se agregará saldo a : <span
                                     id="nombreClienteAgregarSaldo"></span></p>
                             <input
-                                class="validarSoloNumerosDosDecimales p-2 rounded-lg text-base outline-none text-center border-slate-600 border-2 border-solid"
+                                class="validarSoloNumerosDosDecimalesSaldo p-2 rounded-lg text-base outline-none text-center border-slate-600 border-2 border-solid"
                                 type="text" id="valorAgregarSaldo" autocomplete="off" placeholder="0">
                         </div>
                     </div>

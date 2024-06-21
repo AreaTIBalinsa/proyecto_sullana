@@ -1572,7 +1572,7 @@ class ReporteDePagosController extends Controller
                    IFNULL(CONCAT_WS(" ", nombresCli, apellidoPaternoCli, apellidoMaternoCli), "") AS nombreCompleto
             FROM tb_pagos
             LEFT JOIN tb_clientes ON tb_clientes.codigoCli = tb_pagos.codigoCli
-            WHERE codigoTransferenciaPag = ? ',[$codAgregarPagoCliente]);
+            WHERE codigoTransferenciaPag = ? AND estadoPago = 1',[$codAgregarPagoCliente]);
 
             // Devuelve los datos en formato JSON
             return response()->json($datos);
@@ -1621,7 +1621,7 @@ class ReporteDePagosController extends Controller
             $datos = DB::select('
             SELECT 
             nombreEgresoCamal, 
-            idEgresos,tipoAbonoEgreso,cantidadAbonoEgreso,fechaOperacionEgreso,bancoEgreso,codigoTransferenciaEgreso,fechaRegistroEgreso,estadoEgreso 
+            idEgresos,tipoAbonoEgreso,cantidadAbonoEgreso,fechaOperacionEgreso,bancoEgreso,codigoTransferenciaEgreso,fechaRegistroEgreso,estadoEgreso, cantidadEgreso, montoEgreso  
             FROM tb_egresos 
             WHERE estadoEgreso = 1 and clasificadoEgreso = 2 and fechaOperacionEgreso BETWEEN ? AND ?', [$fechaDesdeTraerPagos, $fechaHastaTraerPagos]);
     

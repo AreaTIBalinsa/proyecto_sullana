@@ -104,6 +104,7 @@ jQuery(function($) {
         let fila = $(this).closest('tr');
         let idCodigoCliente = fila.find('td:eq(0)').text();
         let nombreCompleto = fila.find('td:eq(1)').text();
+        $('#valorAgregarSaldo').val('');
 
         $('#idCodigoClienteAgregarSaldo').attr('value', idCodigoCliente);
         $('#nombreClienteAgregarSaldo').text(nombreCompleto);

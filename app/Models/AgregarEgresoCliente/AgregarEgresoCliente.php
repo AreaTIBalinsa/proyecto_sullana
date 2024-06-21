@@ -19,6 +19,8 @@ class AgregarEgresoCliente extends Model
         'cantidadAbonoEgreso',
         'fechaOperacionEgreso',
         'bancoEgreso',
+        'cantidadEgreso',
+        'montoEgreso',
         'codigoTransferenciaEgreso',
         'fechaRegistroEgreso',
         'estadoEgreso',

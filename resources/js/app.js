@@ -100,6 +100,40 @@ jQuery(function($) {
         $(this).val(inputValue);
     });
 
+    $('.validarSoloNumerosDosDecimalesSaldo').on('input', function () {
+        // Obtiene el valor actual del input
+        let inputValue = $(this).val();
+    
+        // Elimina todos los caracteres excepto los dígitos, un punto decimal y el signo negativo
+        inputValue = inputValue.replace(/[^0-9.-]/g, '');
+    
+        // Verifica si hay más de un signo negativo y lo elimina si es necesario
+        if ((inputValue.match(/-/g) || []).length > 1) {
+            inputValue = inputValue.replace(/-+/g, '-').replace(/^-/, '');
+        }
+    
+        // Asegúrate de que el signo negativo esté al principio
+        if (inputValue.indexOf('-') > 0) {
+            inputValue = '-' + inputValue.replace(/-/g, '');
+        }
+    
+        // Verifica si ya hay un punto decimal presente
+        if (inputValue.indexOf('.') !== -1) {
+            // Si ya hay un punto, elimina los puntos adicionales
+            inputValue = inputValue.replace(/(\..*)\./g, '$1');
+    
+            // Limita el número de decimales a dos
+            let decimalPart = inputValue.split('.')[1];
+            if (decimalPart && decimalPart.length > 2) {
+                decimalPart = decimalPart.substring(0, 2);
+                inputValue = inputValue.split('.')[0] + '.' + decimalPart;
+            }
+        }
+    
+        // Establece el valor limpio en el input
+        $(this).val(inputValue);
+    });
+
     /* ============ Eventos para validar campos entrada || Formato de Celular 999 999 999 ============ */
 
     $('.validarEntradasDeCelular').on('input', function () {
