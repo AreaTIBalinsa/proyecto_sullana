@@ -80,7 +80,7 @@
                     <div>
                         <div class="text-white font-bold bg-yellow-400 flex justify-center w-full gap-4 p-1.5">
                             <div class="ml-[270px]">Diferencia : </div>
-                            <div class="" id="diferencia">S/.1000</div>
+                            <div class="" id="diferencia">S/. 0.00</div>
                         </div>
                         <div class="flex">
                             <div>
