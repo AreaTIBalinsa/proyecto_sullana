@@ -1274,10 +1274,10 @@ jQuery(function ($) {
                         totalPago += parseFloat(obj.cantidadAbonoPag);
                         // Agregar las celdas con la información
                         nuevaFila.append($('<td class="hidden">').text(obj.idPagos));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(obj.fechaOperacionPag));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">').append($('<h5 class="min-w-max px-2">').text(obj.nombreCompleto)));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(parseFloat(obj.cantidadAbonoPag).toFixed(2)));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap hidden">').text(obj.tipoAbonoPag));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(obj.fechaOperacionPag));
                         // nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(obj.horaOperacionPag));
                         nuevaFila.append($('<td class="px-4 py-2 text-center cursor-pointer hidden">').text(obj.observacion));
                         // Agregar la nueva fila al tbody
@@ -1301,6 +1301,8 @@ jQuery(function ($) {
                         nuevaFila.append($('<td class="px-4 py-2 text-center cursor-pointer">').text(""));
                         // Agregar la nueva fila al tbody
                         tbodyReporteDePagos.append(nuevaFila);
+                        totalPagoIngresoPaul = totalPago;
+                        diferenciaPagosPaul();
                     }
 
                 } else {
@@ -1314,8 +1316,18 @@ jQuery(function ($) {
         });
     }
 
+    // Diferencia de Caja Chica
     var totalPagoIngreso = 0;
     var totalPagoEgreso = 0;
+
+    // Diferencia de Pagos de Paul
+    var totalPagoIngresoPaul = 0;
+    var totalPagoEgresoPaul = 0;
+
+    function diferenciaPagosPaul(){
+        let totalDiferenciaPaul = totalPagoIngresoPaul - totalPagoEgresoPaul;
+        $("#diferenciaPaul").html(parseFloat(totalDiferenciaPaul).toFixed(2));
+    }
 
     function fn_TraerPagosDirectoGranjaFechas(fechaDesdeTraerPagos, fechaHastaTraerPagos) {
         $.ajax({
@@ -2049,12 +2061,12 @@ jQuery(function ($) {
                     totalPago += parseFloat(obj.cantidadAbonoEgreso);
                     // Agregar las celdas con la información
                     nuevaFila.append($('<td class="hidden">').text(obj.idEgresos));
+                    nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(obj.fechaOperacionEgreso));
                     nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 px-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">').text(obj.nombreEgresoCamal));
                     nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(parseFloat(obj.cantidadAbonoEgreso).toFixed(2)));
                     nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap hidden">').text(obj.tipoAbonoEgreso));
                     nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap hidden">').text(obj.bancoEgreso));
                     nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap hidden">').text(obj.codigoTransferenciaEgreso));
-                    nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(obj.fechaOperacionEgreso));
                     // Agregar la nueva fila al tbody
                     tbodyReporteDePagos.append(nuevaFila);
                 });
@@ -2076,6 +2088,8 @@ jQuery(function ($) {
                     // nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
                     // Agregar la nueva fila al tbody
                     tbodyReporteDePagos.append(nuevaFila);
+                    totalPagoEgresoPaul = totalPago;
+                    diferenciaPagosPaul();
                 }
                 
             },
@@ -2777,12 +2791,12 @@ jQuery(function ($) {
             let filaActual = $(this); // Guardar referencia a la fila actual
     
             // Obtener los datos de cada celda de la fila actual
-            let nombreCliente = filaActual.find('td:eq(0)').text().trim();
-            let montoAgregarPagoCliente = filaActual.find('td:eq(1)').text().trim();
-            let formaDePago = filaActual.find('td:eq(2)').text().trim();
+            let fechaAgregarPagoCliente = filaActual.find('td:eq(0)').text().trim();
+            let nombreCliente = filaActual.find('td:eq(1)').text().trim();
+            let montoAgregarPagoCliente = filaActual.find('td:eq(2)').text().trim();
+            let formaDePago = filaActual.find('td:eq(3)').text().trim();
             let bancoAgregarPagoCliente = "";
             let codAgregarPagoCliente = "";
-            let fechaAgregarPagoCliente = filaActual.find('td:eq(3)').text().trim();
             let horaAgregarPago = "12:00:00";
             let comentarioAgregarPagoCliente = filaActual.find('td:eq(4)').text().trim();
             let pagoDerivado = filaActual.find('td:eq(5)').text().trim();
@@ -2858,10 +2872,10 @@ jQuery(function ($) {
 
     function agregarFilaEntrada3(tbody) {
         let nuevaFila = $('<tr class="bg-white pagosAgregarExcel3 border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarFormatoFechaTablas text-gray-900 dark:text-white" contenteditable="true">').text(`${fechaHoy}`));
         nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 font-medium text-gray-900 whitespace-nowrap dark:text-white uppercase nombreClienteTablaExcel" contenteditable="true">').text(""));
         nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarSoloNumerosDosDecimalesTablas" contenteditable="true">').text(""));
         nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap hidden" contenteditable="false">').text("Efectivo"));
-        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarFormatoFechaTablas text-gray-900 dark:text-white" contenteditable="true">').text(`${fechaHoy}`));
         nuevaFila.append($('<td class="outline-none p-2 text-center cursor-pointer hidden" contenteditable="true">').text(""));
         nuevaFila.append($('<td class="outline-none p-2 text-center cursor-pointer hidden" contenteditable="true">').text("3"));
         nuevaFila.append($('<td class="outline-none p-2 text-center cursor-pointer hidden codigoDeClienteTablaExcel" contenteditable="false">').text("0"));
@@ -3344,12 +3358,12 @@ jQuery(function ($) {
             let filaActual = $(this); // Guardar referencia a la fila actual
     
             // Obtener los datos de cada celda de la fila actual
-            let usoReporteEgreso = filaActual.find('td:eq(0)').text().trim();
-            let montoAgregEgresoCliente = filaActual.find('td:eq(1)').text().trim();
-            let formaDePagoEgreso = filaActual.find('td:eq(2)').text().trim();
-            let bancoAgregEgresoCliente = filaActual.find('td:eq(3)').text().trim();
-            let codAgregEgresoCliente = filaActual.find('td:eq(4)').text().trim();
-            let fechaAgregEgresoCliente = filaActual.find('td:eq(5)').text().trim();
+            let fechaAgregEgresoCliente = filaActual.find('td:eq(0)').text().trim();
+            let usoReporteEgreso = filaActual.find('td:eq(1)').text().trim();
+            let montoAgregEgresoCliente = filaActual.find('td:eq(2)').text().trim();
+            let formaDePagoEgreso = filaActual.find('td:eq(3)').text().trim();
+            let bancoAgregEgresoCliente = filaActual.find('td:eq(4)').text().trim();
+            let codAgregEgresoCliente = filaActual.find('td:eq(5)').text().trim();
             let cantidadAgregEgresoCliente = filaActual.find('td:eq(6)').text().trim();
             let montoNuevoAgregEgresoCliente = filaActual.find('td:eq(7)').text().trim();
 
@@ -3423,12 +3437,12 @@ jQuery(function ($) {
 
     function agregarFilaEntradaEgreso2(tbody) {
         let nuevaFila = $('<tr class="bg-white pagosAgregarExcelEgreso2 border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
-        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 font-medium text-gray-900 whitespace-nowrap dark:text-white" contenteditable="true">').text(""));
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarFormatoFechaTablas text-gray-900 dark:text-white" contenteditable="true">').text(`${fechaHoy}`));
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 font-medium text-gray-900 whitespace-nowrap convertirMayusculasTablas dark:text-white" contenteditable="true">').text(""));
         nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarSoloNumerosDosDecimalesTablas" contenteditable="true">').text(""));
         nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap hidden" contenteditable="true">').text("Efectivo"));
         nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap convertirMayusculasTablas hidden" contenteditable="true">').text(""));
         nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap convertirMayusculasTablas hidden" contenteditable="true">').text(""));
-        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarFormatoFechaTablas text-gray-900 dark:text-white" contenteditable="true">').text(`${fechaHoy}`));
         tbody.append(nuevaFila);
     
         nuevaFila.on('input', function() {
