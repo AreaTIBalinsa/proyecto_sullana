@@ -41,13 +41,13 @@
                             <thead class="text-xs text-gray-100 uppercase bg-blue-600">
                                 <tr>
                                     <th class="hidden">Id</th>
-                                    <th class="p-4 border-l-2 border-r-2 border-b-2 whitespace-nowrap">Nombre de Cliente</th>
-                                    <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Importe</th>
-                                    <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Forma Pago</th>
-                                    <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Banco</th>
-                                    <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Codigo</th>
                                     <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Fecha</th>
+                                    <th class="p-4 border-l-2 border-r-2 border-b-2 whitespace-nowrap">Nombre de Cliente</th>
                                     <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Hora</th>
+                                    <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Banco</th>
+                                    <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Forma Pago</th>
+                                    <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Codigo</th>
+                                    <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Importe</th>
                                     <th class="p-4 border-r-[1px] border-b-2 text-center whitespace-nowrap">Observaciones</th>
                                 </tr>
                             </thead>
@@ -63,13 +63,13 @@
                                 </tr>
                                 <tr>
                                     <th class="hidden">Id</th>
-                                    <th class="p-4 border-l-2 border-r-2 border-b-2 whitespace-nowrap">Nombre de Cliente</th>
-                                    <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Importe</th>
-                                    <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Forma Pago</th>
-                                    <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Banco</th>
-                                    <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Codigo</th>
                                     <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Fecha</th>
+                                    <th class="p-4 border-l-2 border-r-2 border-b-2 whitespace-nowrap">Nombre de Cliente</th>
                                     <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Hora</th>
+                                    <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Banco</th>
+                                    <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Forma Pago</th>
+                                    <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Codigo</th>
+                                    <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Importe</th>
                                     <th class="p-4 border-r-[1px] border-b-2 text-center whitespace-nowrap">Observaciones</th>
                                 </tr>
                             </thead>
@@ -170,7 +170,7 @@
                         </div>
                     </div>
                     <div>
-                        <div class="text-white font-bold bg-fuchsia-700 flex justify-center w-full gap-4 p-1.5">
+                        <div class="text-white font-bold bg-green-600 flex justify-center w-full gap-4 p-1.5">
                             <div class="ml-[20px]">Diferencia : </div>
                             <div class="" id="diferenciaPaul">0.00</div>
                         </div>
@@ -257,13 +257,13 @@
                             <thead class="text-xs text-gray-100 uppercase bg-orange-500">
                                 <tr>
                                     <th class="hidden">Id</th>
+                                    <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Fecha</th>
+                                    <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Hora</th>
                                     <th class="p-4 border-r-2 border-b-2 border-l-[1px] whitespace-nowrap">Nombre de Cliente</th>
-                                    <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Importe</th>
                                     <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Forma Pago</th>
                                     <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Banco</th>
                                     <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Codigo</th>
-                                    <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Fecha</th>
-                                    <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Hora</th>
+                                    <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Importe</th>
                                     <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Observaciones</th>
                                 </tr>
                             </thead>
@@ -279,13 +279,13 @@
                                 </tr>
                                 <tr>
                                     <th class="hidden">Id</th>
+                                    <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Fecha</th>
+                                    <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Hora</th>
                                     <th class="p-4 border-l-[1px] border-r-2 border-b-2 whitespace-nowrap">Nombre de Cliente</th>
-                                    <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Importe</th>
                                     <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Forma Pago</th>
                                     <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Banco</th>
                                     <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Codigo</th>
-                                    <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Fecha</th>
-                                    <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Hora</th>
+                                    <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Importe</th>
                                     <th class="p-4 border-2 text-center whitespace-nowrap">Observaciones</th>
                                 </tr>
                             </thead>
