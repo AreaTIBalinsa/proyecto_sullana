@@ -1027,7 +1027,7 @@ jQuery(function ($) {
             let currentCell = $(this);
             let codigoClienteCell = currentCell.closest('tr').find('td').eq(9); 
     
-            if (inputText.length >= 2) { // Activar autocompletar después de 3 caracteres
+            if (inputText.length >= 1) { // Activar autocompletar después de 3 caracteres
                 currentCell.removeClass('bg-green-500');
                 
                 codigoClienteCell.text("0");
@@ -2699,7 +2699,7 @@ jQuery(function ($) {
             let currentCell = $(this);
             let codigoClienteCell = currentCell.closest('tr').find('td').eq(9); 
     
-            if (inputText.length >= 2) { // Activar autocompletar después de 3 caracteres
+            if (inputText.length >= 1) { // Activar autocompletar después de 3 caracteres
                 currentCell.removeClass('bg-green-500');
                 
                 codigoClienteCell.text("0");
@@ -2925,7 +2925,7 @@ jQuery(function ($) {
             let currentCell = $(this);
             let codigoClienteCell = currentCell.closest('tr').find('td').eq(6); 
     
-            if (inputText.length >= 2) { // Activar autocompletar después de 3 caracteres
+            if (inputText.length >= 1) { // Activar autocompletar después de 3 caracteres
                 currentCell.removeClass('bg-green-500');
                 
                 codigoClienteCell.text("0");
@@ -3157,7 +3157,7 @@ jQuery(function ($) {
             let currentCell = $(this);
             let codigoClienteCell = currentCell.closest('tr').find('td').eq(9); 
     
-            if (inputText.length >= 2) { // Activar autocompletar después de 3 caracteres
+            if (inputText.length >= 1) { // Activar autocompletar después de 3 caracteres
                 currentCell.removeClass('bg-green-500');
                 
                 codigoClienteCell.text("0");
