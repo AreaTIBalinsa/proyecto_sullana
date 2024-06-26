@@ -8094,6 +8094,9 @@ jQuery(function ($) {
         $("#nuevoPrecioCambiarPesadas").removeClass('border-red-500').addClass('dark:border-gray-600 border-gray-300');
         $("#especiesCambioPrecioPesadas").removeClass('border-red-500').addClass('dark:border-gray-600 border-gray-300');
         $("#idCambiarPrecioPesadaCliente").removeClass('border-red-500').addClass('dark:border-gray-600 border-gray-300');
+
+        let fechaBuscaCuenta = $('#fechaCuentaDelCliente').val();
+        $('#fechaCambiarPrecioPesada').val(fechaBuscaCuenta);
     });
 
     $('.cerrarModalCambiarPrecioPesada, #ModalCambiarPrecioPesada .opacity-75').on('click', function (e) {

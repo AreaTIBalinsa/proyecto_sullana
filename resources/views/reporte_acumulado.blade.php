@@ -28,6 +28,14 @@
                 <button class="text-base py-2 px-5 bg-blue-600 md:max-w-xs w-full hover:bg-blue-700 text-gray-50 rounded-lg md:w-auto font-semibold" id="btnCambiarPrecioPesadas">S/ Cambiar Precios</button>
             </div>
 
+            <div id="contenedorRecalculandoDatos" class="hidden w-full justify-center items-center px-4 py-2 font-semibold leading-6 text-sm text-gray-900 dark:text-white transition ease-in-out duration-150 cursor-not-allowed">
+                <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-gray-900 dark:text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                Recalculando datos...
+            </div>
+
             <div class="relative rounded-lg overflow-auto aside_scrollEDINSON max-h-[600px]" id="divReporteAcumuladoDetalleExcel">
                 <div class="bg-gray-50 dark:bg-gray-900 hidden top-0 left-0 z-[100] w-full max-h-[600px] h-full" id="eskeleto">
                     <div role="status" class="animate-pulse w-full">

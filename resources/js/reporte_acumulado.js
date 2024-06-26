@@ -13,8 +13,24 @@ jQuery(function($) {
     $('#fechaReporteExcel').val(fechaHoy);
     $('#fechaCambiarPrecioPesada').val(fechaHoy);
 
-    fn_TraerReporteAcumuladoDetalle(fechaHoy,fechaHoy);
+    fn_llamarAcumuladoConEskeleto(fechaHoy,fechaHoy);
     fn_declarar_especies();
+
+    function fn_llamarAcumuladoConEskeleto(fechaInicio, fechaFin){
+        fn_TraerReporteAcumuladoDetalle(fechaInicio,fechaFin);
+        $('#eskeleto').removeClass('hidden');
+        $('#eskeleto').addClass('sticky');
+        $('#divReporteAcumuladoDetalleExcel').removeClass('overflow-auto');
+        $('#divReporteAcumuladoDetalleExcel').addClass('overflow-hidden h-full');
+        $('#eskeletoUno').removeClass('hidden');
+        $('#eskeletoUno').addClass('sticky');
+        $('#divTotalesUno').removeClass('overflow-auto');
+        $('#divTotalesUno').addClass('overflow-hidden h-full max-h-[550px]');
+        $('#eskeletoDos').removeClass('hidden');
+        $('#eskeletoDos').addClass('sticky');
+        $('#divTotalesDos').removeClass('overflow-auto');
+        $('#divTotalesDos').addClass('overflow-hidden h-full max-h-[300px]');
+    }
 
     var primerEspecieGlobal = 0
     var segundaEspecieGlobal = 0
@@ -91,20 +107,18 @@ jQuery(function($) {
     });
 
     function fn_TraerReporteAcumuladoDetalle(fecha) {
-        $('#eskeleto').removeClass('hidden');
-        $('#eskeleto').addClass('sticky');
-        $('#divReporteAcumuladoDetalleExcel').removeClass('overflow-auto');
-        $('#divReporteAcumuladoDetalleExcel').addClass('overflow-hidden h-full');
-        $('#eskeletoUno').removeClass('hidden');
-        $('#eskeletoUno').addClass('sticky');
-        $('#divTotalesUno').removeClass('overflow-auto');
-        $('#divTotalesUno').addClass('overflow-hidden h-full max-h-[550px]');
-        $('#eskeletoDos').removeClass('hidden');
-        $('#eskeletoDos').addClass('sticky');
-        $('#divTotalesDos').removeClass('overflow-auto');
-        $('#divTotalesDos').addClass('overflow-hidden h-full max-h-[300px]');
-        let tbodyReporteAcumuladoExcel = $('#bodyReporteAcumuladoExcel');
-        tbodyReporteAcumuladoExcel.empty();
+        // $('#eskeleto').removeClass('hidden');
+        // $('#eskeleto').addClass('sticky');
+        // $('#divReporteAcumuladoDetalleExcel').removeClass('overflow-auto');
+        // $('#divReporteAcumuladoDetalleExcel').addClass('overflow-hidden h-full');
+        // $('#eskeletoUno').removeClass('hidden');
+        // $('#eskeletoUno').addClass('sticky');
+        // $('#divTotalesUno').removeClass('overflow-auto');
+        // $('#divTotalesUno').addClass('overflow-hidden h-full max-h-[550px]');
+        // $('#eskeletoDos').removeClass('hidden');
+        // $('#eskeletoDos').addClass('sticky');
+        // $('#divTotalesDos').removeClass('overflow-auto');
+        // $('#divTotalesDos').addClass('overflow-hidden h-full max-h-[300px]');
         $.ajax({
             url: '/fn_consulta_TraerReporteAcumuladoDetalle',
             method: 'GET',
@@ -624,8 +638,10 @@ jQuery(function($) {
             console.error("Fecha inválida");
             return;
         }
-    
-        fn_TraerReporteAcumuladoDetalle(fechaEnviarTexto,fechaEnviarTexto);
+        
+        $('#filtrarClienteReporteAcumuladoExcel').val('');
+        fn_llamarAcumuladoConEskeleto(fechaEnviarTexto,fechaEnviarTexto);
+        // fn_TraerReporteAcumuladoDetalle(fechaEnviarTexto,fechaEnviarTexto);
         
         let fechaFormateadaClick = formatearFecha(fechaEnviar);
         $("#fechaReporteExcelTitle").text(fechaFormateadaClick);
@@ -633,8 +649,6 @@ jQuery(function($) {
 
     function fn_construirFilasReporteAcumuladoDetalleExcel(combinedDataArray){
         let bodyReporteAcumuladoExcel="";
-        let tbodyReporteAcumuladoExcel = $('#bodyReporteAcumuladoExcel');
-        tbodyReporteAcumuladoExcel.empty();
 
         let cantidad1 = 0;
         let cantidad2 = 0;
@@ -907,7 +921,15 @@ jQuery(function($) {
             , venta10, venta11, venta12, venta13, venta14, venta15, venta16
             , venta17, venta18, venta19, venta20, venta21, venta22, venta23, totalSaldoAnteriorSubTotales, totalSaldoActualSubTotales, totalCobranzaSubTotales, totalNuevoSaldoSubTotales,
             totalPesoDescTotalFor,totalVentaDescTotalFor,totalPrecioVentaDescTotalFor, contadorTotalPrecioVentaDescTotal);
+        
+        let tbodyReporteAcumuladoExcel = $('#bodyReporteAcumuladoExcel');
+        tbodyReporteAcumuladoExcel.empty();
+
         tbodyReporteAcumuladoExcel.html(bodyReporteAcumuladoExcel);
+        $('#filtrarClienteReporteAcumuladoExcel').trigger('input');
+
+        $("#contenedorRecalculandoDatos").removeClass('flex').addClass('hidden');
+
         $('#eskeleto').removeClass('sticky');
         $('#eskeleto').addClass('hidden');
         $('#divReporteAcumuladoDetalleExcel').addClass('overflow-auto');
@@ -2598,6 +2620,9 @@ jQuery(function($) {
         $("#nuevoPrecioCambiarPesadas").removeClass('border-red-500').addClass('dark:border-gray-600 border-gray-300');
         $("#especiesCambioPrecioPesadas").removeClass('border-red-500').addClass('dark:border-gray-600 border-gray-300');
         $("#idCambiarPrecioPesadaCliente").removeClass('border-red-500').addClass('dark:border-gray-600 border-gray-300');
+
+        let fechaBuscaCuenta = $('#fechaReporteExcel').val();
+        $('#fechaCambiarPrecioPesada').val(fechaBuscaCuenta);
     });
 
     $('.cerrarModalCambiarPrecioPesada, #ModalCambiarPrecioPesada .opacity-75').on('click', function (e) {
@@ -2610,29 +2635,23 @@ jQuery(function($) {
         let fechaCambioPrecio = $('#fechaCambiarPrecioPesada').val();
         let especieCambioPrecio = $('#especiesCambioPrecioPesadas').val();
         let nuevoPrecio = $('#nuevoPrecioCambiarPesadas').val();
-
-        let contadorErrores = 0
-
-        if (codigoCliente == 0 || codigoCliente == ""){
-            contadorErrores++;
-            $("#idCambiarPrecioPesadaCliente").removeClass('dark:border-gray-600 border-gray-300').addClass('border-red-500');
-        }else{
-            $("#idCambiarPrecioPesadaCliente").removeClass('border-red-500').addClass('dark:border-gray-600 border-gray-300');
-        }
-        if (especieCambioPrecio == 0 || especieCambioPrecio == "" || especieCambioPrecio === null){
-            contadorErrores++;
-            $("#especiesCambioPrecioPesadas").removeClass('dark:border-gray-600 border-gray-300').addClass('border-red-500');
-        }else{
-            $("#especiesCambioPrecioPesadas").removeClass('border-red-500').addClass('dark:border-gray-600 border-gray-300');
-        }
-        if(nuevoPrecio == ""){
-            contadorErrores++;
-            $("#nuevoPrecioCambiarPesadas").removeClass('dark:border-gray-600 border-gray-300').addClass('border-red-500');
-        }else{
-            $("#nuevoPrecioCambiarPesadas").removeClass('border-red-500').addClass('dark:border-gray-600 border-gray-300');
-        }
-
-        if (contadorErrores <= 0){
+    
+        let errores = [];
+    
+        const validarCampo = (campo, valor) => {
+            if (!valor || valor === 0) {
+                $(campo).removeClass('dark:border-gray-600 border-gray-300').addClass('border-red-500');
+                errores.push(campo);
+            } else {
+                $(campo).removeClass('border-red-500').addClass('dark:border-gray-600 border-gray-300');
+            }
+        };
+    
+        validarCampo('#idCambiarPrecioPesadaCliente', codigoCliente);
+        validarCampo('#especiesCambioPrecioPesadas', especieCambioPrecio);
+        validarCampo('#nuevoPrecioCambiarPesadas', nuevoPrecio);
+    
+        if (errores.length === 0) {
             Swal.fire({
                 title: '¿Desea cambiar los registros?',
                 text: "¡Estas seguro de cambiar el precio de las pesadas!",
@@ -2644,14 +2663,14 @@ jQuery(function($) {
                 confirmButtonText: '¡Si, cambiar!'
             }).then((result) => {
                 if (result.isConfirmed) {
+                    $("#contenedorRecalculandoDatos").removeClass('hidden').addClass('flex');
                     fn_CambiarPrecioPesadas(codigoCliente, fechaCambioPrecio, especieCambioPrecio, nuevoPrecio);
                 }
-            })
-        }else{
+            });
+        } else {
             alertify.notify('Debe rellenar todos los campos.', 'error', 3);
         }
-
-    });
+    });    
 
     function fn_CambiarPrecioPesadas(codigoCliente, fechaCambioPrecio, especieCambioPrecio, nuevoPrecio){
         $.ajax({
@@ -2678,7 +2697,9 @@ jQuery(function($) {
                     $('#idCambiarPrecioPesadaCliente').val("");
                     $('#ModalCambiarPrecioPesada').addClass('hidden');
                     $('#ModalCambiarPrecioPesada').removeClass('flex');
-                    $('#filtrarReporteAcumuladoDesdeHastaExcel').trigger('click');
+                    // $('#filtrarReporteAcumuladoDesdeHastaExcel').trigger('click');
+                    let fechaEnviarTexto = $('#fechaReporteExcel').val();
+                    fn_TraerReporteAcumuladoDetalle(fechaEnviarTexto,fechaEnviarTexto);
                 } 
             },
             error: function(error) {

@@ -1,24 +1,21 @@
 @vite(['resources/js/reporte_de_pagos.js'])
-@vite(['resources/js/reporte_de_pagos_cuenta_cliente.js'])
+{{-- @vite(['resources/js/reporte_de_pagos_cuenta_cliente.js']) --}}
 @extends('aside')
-@section('titulo', 'Reporte de Pagos')
+@section('titulo', 'Reporte de Caja')
 @section('contenido')
 <main class="p-6 min-h-[calc(100%-161px)]">
     <div class="px-5 pb-5 bg-white dark:bg-gray-900 rounded-xl drop-shadow-md">
         {{-- Inicia contenedor Reporte de Pagos --}}
         <div class="flex justify-between items-center">
-            <h4 class="text-gray-900 font-semibold text-ml dark:text-gray-300 py-5">Reporte de Pagos</h4>
+            <h4 class="text-gray-900 font-semibold text-ml dark:text-gray-300 py-5">Reporte de Caja</h4>
             <button class="bg-blue-500 p-1 rounded-full hidden" id="btnRetrocesoCuentaDelCliente"><i class='bx bx-arrow-back text-white'></i></button>
             <button class="bg-blue-500 p-1 rounded-full hidden" id="btnRetrocesoCuentaDelClienteDescuento"><i class='bx bx-arrow-back text-white'></i></button>
         </div>
         <div id="primerContenedorReporteDePagos" class="">
             <div class="flex justify-between items-center gap-4 flex-col md:flex-row flex-wrap md:mx-5 mt-0 mb-5">
                 <button class="w-full md:w-56 flex gap-2 justify-center items-center cursor-pointer uppercase bg-green-600 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 hover:bg-green-600" type="submit" autocomplete="off" id="registrar_agregarPago_submit"><i class='bx bx-dollar-circle text-lg'></i><h5 class="min-w-max">Agregar Pago</h5></button>
-                @if (auth()->user()->tipoUsu == 'Administrador')
-                <button class="w-full md:w-56 flex gap-2 justify-center items-center cursor-pointer uppercase bg-red-600 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 hover:bg-red-600" type="submit" autocomplete="off" id="registrar_agregarDescuento_submit"><i class='bx bxs-discount text-lg'></i><h5 class="min-w-max">Agregar Descuento</h5></button>
-                @endif
                 <button class="w-full md:w-56 flex gap-2 justify-center items-center cursor-pointer uppercase bg-orange-500 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 hover:bg-orange-600" type="submit" autocomplete="off" id="descuento_FiltrarPorCliente_submit"><i class='bx bxs-file-find text-lg'></i><h5 class="min-w-max">Consultar Descuentos</h5></button>
-                <button class="w-full md:w-56 flex gap-2 justify-center items-center cursor-pointer uppercase bg-blue-600 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 hover:bg-blue-700" type="submit" autocomplete="off" id="registrar_FiltrarPorCliente_submit"><i class='bx bxs-user-detail text-lg'></i><h5 class="min-w-max">Estado de Cuenta</h5></button>
+                {{-- <button class="w-full md:w-56 flex gap-2 justify-center items-center cursor-pointer uppercase bg-blue-600 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 hover:bg-blue-700" type="submit" autocomplete="off" id="registrar_FiltrarPorCliente_submit"><i class='bx bxs-user-detail text-lg'></i><h5 class="min-w-max">Estado de Cuenta</h5></button> --}}
             </div>
             <div class="flex justify-start md:items-end gap-x-14 gap-y-4 flex-col md:flex-row flex-wrap md:m-5 mt-0 mb-5">
                 <div class="flex gap-x-14 gap-y-4 flex-col md:flex-row">
@@ -297,7 +294,7 @@
             </div>
         </div>
         {{-- Segundo Contenedor Reporte Pagos --}}
-        <div id="segundoContenedorReporteDePagos" class="hidden">
+        {{-- <div id="segundoContenedorReporteDePagos" class="hidden">
             <div class="overflow-x-auto md:mx-5 mt-0 mb-5 relative">
                 <div class="flex flex-col gap-5">
                     <div class="flex justify-center items-start flex-col relative">
@@ -332,11 +329,11 @@
                     </div>
                     <div class="flex items-center justify-end py-1 rounded-xl px-1">
                         <button class="text-base py-2 px-5 bg-blue-600 md:max-w-xs w-full hover:bg-blue-700 text-gray-50 rounded-lg md:w-auto font-semibold" id="btnCambiarPrecioPesadas">S/ Cambiar Precios</button>
-                        {{-- <button class="text-base py-2 px-5 bg-green-600 hover:bg-green-700 text-gray-50 rounded-lg w-full md:w-auto flex gap-2 items-center" id="btnEnviarCuentaWhatsApp"><img src='{{ asset("img/WhatsApp.png") }}' alt="" class="h-5"> Enviar Cuenta</button> --}}
+                        <!--<button class="text-base py-2 px-5 bg-green-600 hover:bg-green-700 text-gray-50 rounded-lg w-full md:w-auto flex gap-2 items-center" id="btnEnviarCuentaWhatsApp"><img src='{{ asset("img/WhatsApp.png") }}' alt="" class="h-5"> Enviar Cuenta</button>-->
                     </div>
                 </div>
             </div>
-            {{-- Tabla --}}
+            <!-- Tabla -->
             <div class="relative overflow-auto rounded-lg md:mx-5 md:mb-5 max-h-[500px] aside_scrollED">
                 <table class="border-collapse w-full text-gray-500 dark:text-gray-400 select-none relative text-sm" id="tablaCuentaDelCliente">
                     <thead id="headerCuentaDelCliente" class="bg-blue-600 text-gray-50 sticky top-0">
@@ -354,7 +351,7 @@
                     </tbody>
                 </table>
             </div>
-        </div>
+        </div> --}}
         {{-- Tercer Contenedor Descuentos --}}
         <div id="tercerContenedorReporteDeDescuentos" class="hidden">
             <div class="overflow-x-auto md:mx-5 mt-0 mb-5 relative">
@@ -380,6 +377,9 @@
                         <div class=" flex items-end">
                             <button class="text-base py-2 px-5 bg-blue-600 hover:bg-blue-700 text-gray-50 rounded-lg w-full md:w-auto" id="btnBuscarCuentaDelClienteDescuentos"><i class='bx bx-search-alt'></i> Buscar</button>
                         </div>
+                    </div>
+                    <div class="flex justify-end w-full">
+                        <button class="w-full md:w-56 flex gap-2 justify-center items-center cursor-pointer uppercase bg-red-600 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 hover:bg-red-600" type="submit" autocomplete="off" id="registrar_agregarDescuento_submit"><i class='bx bxs-discount text-lg'></i><h5 class="min-w-max">Agregar Descuento</h5></button>
                     </div>
                 </div>
             </div>

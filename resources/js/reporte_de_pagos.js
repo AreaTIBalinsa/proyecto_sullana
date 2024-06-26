@@ -15,13 +15,11 @@ jQuery(function ($) {
     // Asignar la fecha actual a los inputs
     $('#fechaDesdeReporteDePagos').val(fechaHoy);
     $('#fechaHastaReporteDePagos').val(fechaHoy);
-    $('#fechaDesdeCuentaDelCliente').val(fechaHoy);
-    $('#fechaHastaCuentaDelCliente').val(fechaHoy);
     $('#fechaDesdeCuentaDelClienteDescuentos').val(fechaHoy);
     $('#fechaHastaCuentaDelClienteDescuentos').val(fechaHoy);
     $('#fechaAgregarPago').val(fechaHoy);
     $('#fechaAgregarDescuento').val(fechaHoy);
-    $('#fechaCambiarPrecioPesada').val(fechaHoy);
+    // $('#fechaCambiarPrecioPesada').val(fechaHoy);
 
     var now = new Date();
     var hours = now.getHours().toString().padStart(2, '0');
@@ -2158,7 +2156,8 @@ jQuery(function ($) {
                     });
                     let fechaDesdeTraerPagos = $('#fechaDesdeReporteDePagos').val();
                     let fechaHastaTraerPagos = $('#fechaHastaReporteDePagos').val();
-                    fn_TraerEgresosFechas(fechaDesdeTraerPagos, fechaHastaTraerPagos);
+                    fn_TraerEgresosFechas(fechaDesdeTraerPagos,fechaHastaTraerPagos);
+                    fn_TraerEgresosPaulFechas(fechaDesdeTraerPagos,fechaHastaTraerPagos);
                 }
             },
             error: function(error) {

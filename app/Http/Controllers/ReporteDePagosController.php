@@ -25,6 +25,13 @@ class ReporteDePagosController extends Controller
         return redirect('/login');
     }
 
+    public function show2(){
+        if (Auth::check()){
+            return view('estado_de_cuenta');
+        }
+        return redirect('/login');
+    }
+
     public function consulta_TraerClientesAgregarPagoCliente(Request $request){
 
         $nombreAgregarPagoCliente = $request->input('inputAgregarPagoCliente');

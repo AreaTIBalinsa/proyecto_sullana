@@ -57,6 +57,7 @@ Route::get('/valor_conversion',[ValorDeConversionController::class,'show']);
 Route::get('/precios',[PreciosController::class,'show']);
 Route::get('/reporte_por_cliente',[ReportePorClienteController::class,'show']);
 Route::get('/reporte_de_pagos',[ReporteDePagosController::class,'show']);
+Route::get('/estado_de_cuenta',[ReporteDePagosController::class,'show2']);
 Route::get('/consultar_clientes',[ConsultarClientesController::class,'show']);
 Route::get('/pesadas',[PesadasController::class,'show']);
 Route::get('/consultar_usuarios',[ConsultarUsuariosController::class,'show']);
