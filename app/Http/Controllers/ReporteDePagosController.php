@@ -1231,7 +1231,7 @@ class ReporteDePagosController extends Controller
                IFNULL(CONCAT_WS(" ", nombresCli, apellidoPaternoCli, apellidoMaternoCli), "") AS nombreCompleto
         FROM tb_pagos
         LEFT JOIN tb_clientes ON tb_clientes.codigoCli = tb_pagos.codigoCli  
-        WHERE tb_pagos.estadoPago = 1 and clasificacionPago = 1 and tipoAbonoPag != ? and fechaOperacionPag BETWEEN ? AND ?', ["Saldo",$fechaDesde, $fechaHasta]);
+        WHERE tb_pagos.estadoPago = 1 and clasificacionPago = 1 and tipoAbonoPag != ? and fechaOperacionPag BETWEEN ? AND ? ORDER BY nombreCompleto', ["Saldo",$fechaDesde, $fechaHasta]);
 
             // Devuelve los datos en formato JSON
             return response()->json($datos);
@@ -1261,7 +1261,7 @@ class ReporteDePagosController extends Controller
                IFNULL(CONCAT_WS(" ", nombresCli, apellidoPaternoCli, apellidoMaternoCli), "") AS nombreCompleto
         FROM tb_pagos
         LEFT JOIN tb_clientes ON tb_clientes.codigoCli = tb_pagos.codigoCli  
-        WHERE tb_pagos.estadoPago = 1 and clasificacionPago = 2 and tipoAbonoPag != ? and fechaOperacionPag BETWEEN ? AND ?', ["Saldo",$fechaDesde, $fechaHasta]);
+        WHERE tb_pagos.estadoPago = 1 and clasificacionPago = 2 and tipoAbonoPag != ? and fechaOperacionPag BETWEEN ? AND ? ORDER BY nombreCompleto', ["Saldo",$fechaDesde, $fechaHasta]);
 
             // Devuelve los datos en formato JSON
             return response()->json($datos);
@@ -1291,7 +1291,7 @@ class ReporteDePagosController extends Controller
                IFNULL(CONCAT_WS(" ", nombresCli, apellidoPaternoCli, apellidoMaternoCli), "") AS nombreCompleto
         FROM tb_pagos
         LEFT JOIN tb_clientes ON tb_clientes.codigoCli = tb_pagos.codigoCli  
-        WHERE tb_pagos.estadoPago = 1 and clasificacionPago = 3 and tipoAbonoPag != ? and fechaOperacionPag BETWEEN ? AND ?', ["Saldo",$fechaDesde, $fechaHasta]);
+        WHERE tb_pagos.estadoPago = 1 and clasificacionPago = 3 and tipoAbonoPag != ? and fechaOperacionPag BETWEEN ? AND ? ORDER BY nombreCompleto', ["Saldo",$fechaDesde, $fechaHasta]);
 
             // Devuelve los datos en formato JSON
             return response()->json($datos);
@@ -1321,7 +1321,7 @@ class ReporteDePagosController extends Controller
                IFNULL(CONCAT_WS(" ", nombresCli, apellidoPaternoCli, apellidoMaternoCli), "") AS nombreCompleto
         FROM tb_pagos
         LEFT JOIN tb_clientes ON tb_clientes.codigoCli = tb_pagos.codigoCli  
-        WHERE tb_pagos.estadoPago = 1 and clasificacionPago = 5 and tipoAbonoPag != ? and fechaOperacionPag BETWEEN ? AND ?', ["Saldo",$fechaDesde, $fechaHasta]);
+        WHERE tb_pagos.estadoPago = 1 and clasificacionPago = 5 and tipoAbonoPag != ? and fechaOperacionPag BETWEEN ? AND ? ORDER BY nombreCompleto', ["Saldo",$fechaDesde, $fechaHasta]);
 
             // Devuelve los datos en formato JSON
             return response()->json($datos);

@@ -26,6 +26,8 @@ export default defineConfig({
                     'resources/js/deuda_maxima.js',
                     'resources/js/seguimiento_pedidos.js',
                     'resources/js/cuenta_cliente.js',
+                    'resources/js/pesadas_web.js',
+                    'resources/js/reporte_ingresos.js',
                 ],
             refresh: true,
         }),

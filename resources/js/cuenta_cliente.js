@@ -15,6 +15,7 @@ jQuery(function ($) {
     var tipoUsuario = $('#tipoUsuario').data('id');
 
     $('#fechaCuentaDelCliente').val(fechaHoy);
+    $('#fechaCambiarPrecioPesada').val(fechaHoy);
 
     var primerEspecieGlobal = 0;
     var segundaEspecieGlobal = 0;
@@ -7266,7 +7267,7 @@ jQuery(function ($) {
             totalSaldoAnterior += parseFloat(item.totalVentaPrimerEspecie)+parseFloat(item.totalVentaSegundaEspecie)+parseFloat(item.totalVentaTerceraEspecie)+parseFloat(item.totalVentaCuartaEspecie)+parseFloat(item.totalVentaQuintaEspecie)+parseFloat(item.totalVentaSextaEspecie)+parseFloat(item.totalVentaSeptimaEspecie)+parseFloat(item.totalVentaOctavaEspecie)+parseFloat(item.totalVentaDecimaEspecie)+parseFloat(item.totalVentaDecimaPrimeraEspecie)+parseFloat(item.totalVentaDecimaSegundaEspecie)+parseFloat(item.totalVentaDecimaTerceraEspecie)+parseFloat(item.totalVentaDecimaCuartaEspecie)+parseFloat(item.totalVentaDecimaQuintaEspecie)+parseFloat(item.totalVentaDecimaSextaEspecie)+parseFloat(item.totalVentaDecimaSeptimaEspecie)+parseFloat(item.totalVentaDecimaOctavaEspecie)+parseFloat(item.totalVentaDecimaNovenaEspecie)+parseFloat(item.totalVentaVigesimaEspecie)+parseFloat(item.totalVentaVigesimaPrimeraEspecie)+parseFloat(item.totalVentaVigesimaSegundaEspecie)+parseFloat(item.totalVentaVigesimaTerceraEspecie)+parseFloat(item.totalVentaDescuento)+descuentosDePresentaciones;
         });
         if (bodyCuentaDelCliente == ""){
-            tbodyCuentaDelCliente.html(`<tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="7" class="text-center">No hay datos</td></tr>`);
+            tbodyCuentaDelCliente.html(`<tr class="rounded-lg border-b-2 bg-white"><td colspan="7" class="text-center">No hay datos</td></tr>`);
         }else{
             tbodyCuentaDelCliente.html(bodyCuentaDelCliente);
             const fechaCelda = document.getElementById('fechaTabla');
@@ -7334,7 +7335,7 @@ jQuery(function ($) {
                     useGrouping: true,
                 });
                 mensajeDeudaDiaCliente.empty();
-                mensajeDeudaDiaCliente.html(`<p id="mensajeDeudaDia" class="md:mx-5 md:text-left text-center text-gray-900 dark:text-gray-100">El dia de hoy ${fechaFormateada} su guia completa es de ${totalFormateadoLblTotalCuentaDia} , abonado ${totalFormateadoLblTotalPagos} y hoy deja un saldo pendiente de ${totalFormateadoDeudaDiaCalculo} .</p>`);
+                mensajeDeudaDiaCliente.html(`<p id="mensajeDeudaDia" class="md:mx-5 md:text-left text-center font-semibold text-black">El dia de hoy ${fechaFormateada} su guia completa es de ${totalFormateadoLblTotalCuentaDia} , abonado ${totalFormateadoLblTotalPagos} y hoy deja un saldo pendiente de ${totalFormateadoDeudaDiaCalculo} .</p>`);
             }else{
                 mensajeDeudaDiaCliente.empty();
                 mensajeDeudaDiaCliente.html(`<p id="mensajeDeudaDia"></p>`);
@@ -7370,9 +7371,9 @@ jQuery(function ($) {
                     pagosDeHoy += parseFloat(obj.cantidadAbonoPag)
                     if (masDeUnPago == 0){
                         pagosDetallados += `
-                                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 contarFilaPagos">
+                                            <tr class="bg-white border-b contarFilaPagos">
                                                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-                                                <td class="text-left py-1 px-4 whitespace-nowrap font-bold border-r-2" id="idDeTablaPagos">PAGOS DE HOY</td>
+                                                <td class="text-left py-1 px-4 whitespace-nowrap font-black border-r-2" id="idDeTablaPagos">PAGOS DE HOY</td>
                                                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                                                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                                                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
@@ -7381,7 +7382,7 @@ jQuery(function ($) {
                         masDeUnPago += 1
                     }else{
                         pagosDetallados += `
-                                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 contarFilaPagos">
+                                            <tr class="bg-white border-b contarFilaPagos">
                                                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                                                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                                                 <td class="text-center py-1 px-2 whitespace-nowrap"></td>
@@ -7396,9 +7397,9 @@ jQuery(function ($) {
 
         if (masDeUnPago == 0){
             pagosDetallados += `
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 contarFilaPagos">
+                <tr class="bg-white border-b contarFilaPagos">
                     <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-                    <td class="text-left py-1 px-4 whitespace-nowrap font-bold border-r-2" id="idDeTablaPagos">PAGOS DE HOY</td>
+                    <td class="text-left py-1 px-4 whitespace-nowrap font-black border-r-2" id="idDeTablaPagos">PAGOS DE HOY</td>
                     <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                     <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                     <td class="text-center py-1 px-2 whitespace-nowrap"></td>
@@ -7417,36 +7418,36 @@ jQuery(function ($) {
         $("#totalPagos").attr("value", pagosDeHoy)
 
         return `
-        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+        <tr class="bg-white border-b">
             <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-            <td class="text-left py-1 px-4 whitespace-nowrap font-bold border-r-2">TOTAL VENTA</td>
+            <td class="text-left py-1 px-4 whitespace-nowrap font-black border-r-2">TOTAL VENTA</td>
             <td class="text-center py-1 px-2 whitespace-nowrap"></td>
             <td class="text-center py-1 px-2 whitespace-nowrap"></td>
             <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-            <td class="text-center py-1 px-2 whitespace-nowrap font-semibold">S/. ${parseFloat(totalVentaDelDia).toFixed(2)}</h5></td>
+            <td class="text-center py-1 px-2 whitespace-nowrap font-semibold bg-red-600 text-white">S/. ${parseFloat(totalVentaDelDia).toFixed(2)}</h5></td>
         </tr>
-        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+        <tr class="border-b bg-[#01B0F1]">
             <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-            <td class="text-left py-1 px-4 whitespace-nowrap font-bold border-r-2">SALDO ANTERIOR</td>
+            <td class="text-left py-1 px-4 whitespace-nowrap font-black border-r-2">SALDO ANTERIOR</td>
             <td class="text-center py-1 px-2 whitespace-nowrap"></td>
             <td class="text-center py-1 px-2 whitespace-nowrap"></td>
             <td class="text-center py-1 px-2 whitespace-nowrap"></td>
             <td class="text-center py-1 px-2 whitespace-nowrap font-semibold">S/. ${parseFloat(totalSaldoAnteriorV).toFixed(2)}</td>
         </tr>
-        <tr class="bg-white dark:bg-gray-800 h-0.5">
+        <tr class="bg-white h-0.5">
             <td class="text-center" colspan="2"></td>
             <td class="text-center h-0.5 bg-gray-500 dark:bg-gray-300" colspan="5"></td>
         </tr>
 
         ${pagosDetallados}
 
-        <tr class="bg-white dark:bg-gray-800 h-0.5">
+        <tr class="bg-white h-0.5">
             <td class="text-center" colspan="2"></td>
             <td class="text-center h-0.5 bg-gray-500 dark:bg-gray-300" colspan="5"></td>
         </tr>
-        <tr class="bg-white dark:bg-gray-800 border-b">
+        <tr class="bg-[#FFC000] border-b">
             <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-            <td class="text-left py-1 px-4 whitespace-nowrap font-bold border-r-2">SALDO ACTUAL</td>
+            <td class="text-left py-1 px-4 whitespace-nowrap font-black border-r-2">SALDO ACTUAL</td>
             <td class="text-center py-1 px-2 whitespace-nowrap"></td>
             <td class="text-center py-1 px-2 whitespace-nowrap"></td>
             <td class="text-center py-1 px-2 whitespace-nowrap"></td>
@@ -7655,89 +7656,99 @@ jQuery(function ($) {
         let fechaExcel = formatearFecha(fecha)
 
         return `
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <td class="text-center border-b py-1 px-4 whitespace-nowrap border-r-2 dark:border-r-gray-300 font-bold" id="fechaTabla">${fechaExcel}</td>
+            ${totalVentaPrimerEspecie ? `
+            <tr class="bg-white border-b">
+                <td class="text-center border-b py-1 px-4 whitespace-nowrap border-r-2 dark:border-r-gray-300 font-black w-[130px] text-xl" id="fechaTabla">${fechaExcel}</td>
                 <td class="text-left py-1 px-4 whitespace-nowrap border-r-2">${nombrePrimerEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadPrimerEspecie === 1 ? totalCantidadPrimerEspecie + ' Ud.' : totalCantidadPrimerEspecie + ' Uds.'}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoPrimerEspecie).toFixed(2)} Kg.</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioPrimerEspecie}/Kg.</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaPrimerEspecie).toFixed(2)}</td>
-            </tr>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+            </tr>` : ''}
+            ${totalVentaSegundaEspecie ? `
+            <tr class="bg-white border-b">
+                <td class="text-center border-b py-1 px-4 whitespace-nowrap border-r-2 dark:border-r-gray-300 font-black w-[130px] text-xl" id="fechaTabla">${fechaExcel}</td>
                 <td class="text-left py-1 px-4 whitespace-nowrap border-r-2">${nombreSegundaEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadSegundaEspecie === 1 ? totalCantidadSegundaEspecie + ' Ud.' : totalCantidadSegundaEspecie + ' Uds.'}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoSegundaEspecie).toFixed(2)} Kg.</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioSegundaEspecie}/Kg.</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaSegundaEspecie).toFixed(2)}</td>
-            </tr>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+            </tr>` : ''}
+            ${totalVentaDecimaSeptimaEspecie ? `
+            <tr class="bg-white border-b">
+                <td class="text-center border-b py-1 px-4 whitespace-nowrap border-r-2 dark:border-r-gray-300 font-black w-[130px] text-xl" id="fechaTabla">${fechaExcel}</td>
                 <td class="text-left py-1 px-4 whitespace-nowrap border-r-2">${nombreDecimaSeptimaEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadDecimaSeptimaEspecie === 1 ? totalCantidadDecimaSeptimaEspecie + ' Ud.' : totalCantidadDecimaSeptimaEspecie + ' Uds.'}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoDecimaSeptimaEspecie).toFixed(2)} Kg.</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioDecimaSeptimaEspecie}/Kg.</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaDecimaSeptimaEspecie).toFixed(2)}</td>
-            </tr>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+            </tr>` : ''}
+            ${totalVentaTerceraEspecie ? `
+            <tr class="bg-white border-b">
+                <td class="text-center border-b py-1 px-4 whitespace-nowrap border-r-2 dark:border-r-gray-300 font-black w-[130px] text-xl" id="fechaTabla">${fechaExcel}</td>
                 <td class="text-left py-1 px-4 whitespace-nowrap border-r-2">${nombreTerceraEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadTerceraEspecie === 1 ? totalCantidadTerceraEspecie + ' Ud.' : totalCantidadTerceraEspecie + ' Uds.'}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoTerceraEspecie).toFixed(2)} Kg.</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioTerceraEspecie}/Kg.</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaTerceraEspecie).toFixed(2)}</td>
-            </tr>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+            </tr>` : ''}
+            ${totalVentaCuartaEspecie ? `
+            <tr class="bg-white border-b">
+                <td class="text-center border-b py-1 px-4 whitespace-nowrap border-r-2 dark:border-r-gray-300 font-black w-[130px] text-xl" id="fechaTabla">${fechaExcel}</td>
                 <td class="text-left py-1 px-4 whitespace-nowrap border-r-2">${nombreCuartaEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadCuartaEspecie === 1 ? totalCantidadCuartaEspecie + ' Ud.' : totalCantidadCuartaEspecie + ' Uds.'}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoCuartaEspecie).toFixed(2)} Kg.</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioCuartaEspecie}/Kg.</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaCuartaEspecie).toFixed(2)}</td>
-            </tr>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+            </tr>` : ''}
+            ${totalVentaDecimaOctavaEspecie ? `
+            <tr class="bg-white border-b">
+                <td class="text-center border-b py-1 px-4 whitespace-nowrap border-r-2 dark:border-r-gray-300 font-black w-[130px] text-xl" id="fechaTabla">${fechaExcel}</td>
                 <td class="text-left py-1 px-4 whitespace-nowrap border-r-2">${nombreDecimaOctavaEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadDecimaOctavaEspecie === 1 ? totalCantidadDecimaOctavaEspecie + ' Ud.' : totalCantidadDecimaOctavaEspecie + ' Uds.'}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoDecimaOctavaEspecie).toFixed(2)} Kg.</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioDecimaOctavaEspecie}/Kg.</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaDecimaOctavaEspecie).toFixed(2)}</td>
-            </tr>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+            </tr>` : ''}
+            ${totalVentaDecimaSextaEspecie ? `
+            <tr class="bg-white border-b">
+                <td class="text-center border-b py-1 px-4 whitespace-nowrap border-r-2 dark:border-r-gray-300 font-black w-[130px] text-xl" id="fechaTabla">${fechaExcel}</td>
                 <td class="text-left py-1 px-4 whitespace-nowrap border-r-2">${nombreDecimaSextaEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadDecimaSextaEspecie === 1 ? totalCantidadDecimaSextaEspecie + ' Ud.' : totalCantidadDecimaSextaEspecie + ' Uds.'}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoDecimaSextaEspecie).toFixed(2)} Kg.</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioDecimaSextaEspecie}/Kg.</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaDecimaSextaEspecie).toFixed(2)}</td>
-            </tr>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+            </tr>` : ''}
+            ${totalVentaDecimaNovenaEspecie ? `
+            <tr class="bg-white border-b">
+                <td class="text-center border-b py-1 px-4 whitespace-nowrap border-r-2 dark:border-r-gray-300 font-black w-[130px] text-xl" id="fechaTabla">${fechaExcel}</td>
                 <td class="text-left py-1 px-4 whitespace-nowrap border-r-2">${nombreDecimaNovenaEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadDecimaNovenaEspecie === 1 ? totalCantidadDecimaNovenaEspecie + ' Ud.' : totalCantidadDecimaNovenaEspecie + ' Uds.'}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoDecimaNovenaEspecie).toFixed(2)} Kg.</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioDecimaNovenaEspecie}/Kg.</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaDecimaNovenaEspecie).toFixed(2)}</td>
-            </tr>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+            </tr>` : ''}
+            ${totalVentaQuintaEspecie ? `
+            <tr class="bg-white border-b">
+                <td class="text-center border-b py-1 px-4 whitespace-nowrap border-r-2 dark:border-r-gray-300 font-black w-[130px] text-xl" id="fechaTabla">${fechaExcel}</td>
                 <td class="text-left py-1 px-4 whitespace-nowrap border-r-2">${nombreQuintaEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadQuintaEspecie === 1 ? totalCantidadQuintaEspecie + ' Ud.' : totalCantidadQuintaEspecie + ' Uds.'}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoQuintaEspecie).toFixed(2)} Kg.</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioQuintaEspecie}/Kg.</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaQuintaEspecie).toFixed(2)}</td>
-            </tr>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+            </tr>` : ''}
+            ${totalVentaVigesimaEspecie ? `
+            <tr class="bg-white border-b">
+                <td class="text-center border-b py-1 px-4 whitespace-nowrap border-r-2 dark:border-r-gray-300 font-black w-[130px] text-xl" id="fechaTabla">${fechaExcel}</td>
                 <td class="text-left py-1 px-4 whitespace-nowrap border-r-2">${nombreVigesimaEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadVigesimaEspecie === 1 ? totalCantidadVigesimaEspecie + ' Ud.' : totalCantidadVigesimaEspecie + ' Uds.'}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoVigesimaEspecie).toFixed(2)} Kg.</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioVigesimaEspecie}/Kg.</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaVigesimaEspecie).toFixed(2)}</td>
-            </tr>
+            </tr>` : ''}
             ${totalVentaSextaEspecie ? `
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+            <tr class="bg-white border-b">
+                <td class="text-center border-b py-1 px-4 whitespace-nowrap border-r-2 dark:border-r-gray-300 font-black w-[130px] text-xl" id="fechaTabla">${fechaExcel}</td>
                 <td class="text-left py-1 px-4 whitespace-nowrap border-r-2">${nombreSextaEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadSextaEspecie === 1 ? totalCantidadSextaEspecie + ' Ud.' : totalCantidadSextaEspecie + ' Uds.'}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoSextaEspecie).toFixed(2)} Kg.</td>
@@ -7745,8 +7756,8 @@ jQuery(function ($) {
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaSextaEspecie).toFixed(2)}</td>
             </tr>` : ''}
             ${totalVentaVigesimaPrimeraEspecie ? `
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+            <tr class="bg-white border-b">
+                <td class="text-center border-b py-1 px-4 whitespace-nowrap border-r-2 dark:border-r-gray-300 font-black w-[130px] text-xl" id="fechaTabla">${fechaExcel}</td>
                 <td class="text-left py-1 px-4 whitespace-nowrap border-r-2">${nombreVigesimaPrimeraEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadVigesimaPrimeraEspecie === 1 ? totalCantidadVigesimaPrimeraEspecie + ' Ud.' : totalCantidadVigesimaPrimeraEspecie + ' Uds.'}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoVigesimaPrimeraEspecie).toFixed(2)} Kg.</td>
@@ -7754,8 +7765,8 @@ jQuery(function ($) {
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaVigesimaPrimeraEspecie).toFixed(2)}</td>
             </tr>` : ''}
             ${totalVentaSeptimaEspecie ? `
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+            <tr class="bg-white border-b">
+                <td class="text-center border-b py-1 px-4 whitespace-nowrap border-r-2 dark:border-r-gray-300 font-black w-[130px] text-xl" id="fechaTabla">${fechaExcel}</td>
                 <td class="text-left py-1 px-4 whitespace-nowrap border-r-2">${nombreSeptimaEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadSeptimaEspecie === 1 ? totalCantidadSeptimaEspecie + ' Ud.' : totalCantidadSeptimaEspecie + ' Uds.'}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoSeptimaEspecie).toFixed(2)} Kg.</td>
@@ -7763,8 +7774,8 @@ jQuery(function ($) {
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaSeptimaEspecie).toFixed(2)}</td>
             </tr>` : ''}
             ${totalVentaVigesimaSegundaEspecie ? `
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+            <tr class="bg-white border-b">
+                <td class="text-center border-b py-1 px-4 whitespace-nowrap border-r-2 dark:border-r-gray-300 font-black w-[130px] text-xl" id="fechaTabla">${fechaExcel}</td>
                 <td class="text-left py-1 px-4 whitespace-nowrap border-r-2">${nombreVigesimaSegundaEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadVigesimaSegundaEspecie === 1 ? totalCantidadVigesimaSegundaEspecie + ' Ud.' : totalCantidadVigesimaSegundaEspecie + ' Uds.'}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoVigesimaSegundaEspecie).toFixed(2)} Kg.</td>
@@ -7772,8 +7783,8 @@ jQuery(function ($) {
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaVigesimaSegundaEspecie).toFixed(2)}</td>
             </tr>` : ''}
             ${totalVentaOctavaEspecie ? `
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+            <tr class="bg-white border-b">
+                <td class="text-center border-b py-1 px-4 whitespace-nowrap border-r-2 dark:border-r-gray-300 font-black w-[130px] text-xl" id="fechaTabla">${fechaExcel}</td>
                 <td class="text-left py-1 px-4 whitespace-nowrap border-r-2">${nombreOctavaEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadOctavaEspecie === 1 ? totalCantidadOctavaEspecie + ' Ud.' : totalCantidadOctavaEspecie + ' Uds.'}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoOctavaEspecie).toFixed(2)} Kg.</td>
@@ -7781,8 +7792,8 @@ jQuery(function ($) {
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaOctavaEspecie).toFixed(2)}</td>
             </tr>` : ''}
             ${totalVentaVigesimaTerceraEspecie ? `
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+            <tr class="bg-white border-b">
+                <td class="text-center border-b py-1 px-4 whitespace-nowrap border-r-2 dark:border-r-gray-300 font-black w-[130px] text-xl" id="fechaTabla">${fechaExcel}</td>
                 <td class="text-left py-1 px-4 whitespace-nowrap border-r-2">${nombreVigesimaTerceraEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadVigesimaTerceraEspecie === 1 ? totalCantidadVigesimaTerceraEspecie + ' Ud.' : totalCantidadVigesimaTerceraEspecie + ' Uds.'}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoVigesimaTerceraEspecie).toFixed(2)} Kg.</td>
@@ -7790,8 +7801,8 @@ jQuery(function ($) {
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaVigesimaTerceraEspecie).toFixed(2)}</td>
             </tr>` : ''}
             ${totalVentaDecimaEspecie ? `
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+            <tr class="bg-white border-b">
+                <td class="text-center border-b py-1 px-4 whitespace-nowrap border-r-2 dark:border-r-gray-300 font-black w-[130px] text-xl" id="fechaTabla">${fechaExcel}</td>
                 <td class="text-left py-1 px-4 whitespace-nowrap border-r-2">${nombreDecimaEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadDecimaEspecie === 1 ? totalCantidadDecimaEspecie + ' Ud.' : totalCantidadDecimaEspecie + ' Uds.'}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoDecimaEspecie).toFixed(2)} Kg.</td>
@@ -7799,8 +7810,8 @@ jQuery(function ($) {
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaDecimaEspecie).toFixed(2)}</td>
             </tr>` : ''}
             ${totalVentaDecimaPrimeraEspecie ? `
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+            <tr class="bg-white border-b">
+                <td class="text-center border-b py-1 px-4 whitespace-nowrap border-r-2 dark:border-r-gray-300 font-black w-[130px] text-xl" id="fechaTabla">${fechaExcel}</td>
                 <td class="text-left py-1 px-4 whitespace-nowrap border-r-2">${nombreDecimaPrimeraEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadDecimaPrimeraEspecie === 1 ? totalCantidadDecimaPrimeraEspecie + ' Ud.' : totalCantidadDecimaPrimeraEspecie + ' Uds.'}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoDecimaPrimeraEspecie).toFixed(2)} Kg.</td>
@@ -7808,8 +7819,8 @@ jQuery(function ($) {
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaDecimaPrimeraEspecie).toFixed(2)}</td>
             </tr>` : ''}
             ${totalVentaDecimaSegundaEspecie ? `
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+            <tr class="bg-white border-b">
+                <td class="text-center border-b py-1 px-4 whitespace-nowrap border-r-2 dark:border-r-gray-300 font-black w-[130px] text-xl" id="fechaTabla">${fechaExcel}</td>
                 <td class="text-left py-1 px-4 whitespace-nowrap border-r-2">${nombreDecimaSegundaEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadDecimaSegundaEspecie === 1 ? totalCantidadDecimaSegundaEspecie + ' Ud.' : totalCantidadDecimaSegundaEspecie + ' Uds.'}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoDecimaSegundaEspecie).toFixed(2)} Kg.</td>
@@ -7817,8 +7828,8 @@ jQuery(function ($) {
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaDecimaSegundaEspecie).toFixed(2)}</td>
             </tr>` : ''}
             ${totalVentaDecimaTerceraEspecie ? `
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+            <tr class="bg-white border-b">
+                <td class="text-center border-b py-1 px-4 whitespace-nowrap border-r-2 dark:border-r-gray-300 font-black w-[130px] text-xl" id="fechaTabla">${fechaExcel}</td>
                 <td class="text-left py-1 px-4 whitespace-nowrap border-r-2">${nombreDecimaTerceraEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadDecimaTerceraEspecie === 1 ? totalCantidadDecimaTerceraEspecie + ' Ud.' : totalCantidadDecimaTerceraEspecie + ' Uds.'}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoDecimaTerceraEspecie).toFixed(2)} Kg.</td>
@@ -7826,8 +7837,8 @@ jQuery(function ($) {
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaDecimaTerceraEspecie).toFixed(2)}</td>
             </tr>` : ''}
             ${totalVentaDecimaCuartaEspecie ? `
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+            <tr class="bg-white border-b">
+                <td class="text-center border-b py-1 px-4 whitespace-nowrap border-r-2 dark:border-r-gray-300 font-black w-[130px] text-xl" id="fechaTabla">${fechaExcel}</td>
                 <td class="text-left py-1 px-4 whitespace-nowrap border-r-2">${nombreDecimaCuartaEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadDecimaCuartaEspecie === 1 ? totalCantidadDecimaCuartaEspecie + ' Ud.' : totalCantidadDecimaCuartaEspecie + ' Uds.'}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoDecimaCuartaEspecie).toFixed(2)} Kg.</td>
@@ -7835,8 +7846,8 @@ jQuery(function ($) {
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaDecimaCuartaEspecie).toFixed(2)}</td>
             </tr>` : ''}
             ${totalVentaDecimaQuintaEspecie ? `
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+            <tr class="bg-white border-b">
+                <td class="text-center border-b py-1 px-4 whitespace-nowrap border-r-2 dark:border-r-gray-300 font-black w-[130px] text-xl" id="fechaTabla">${fechaExcel}</td>
                 <td class="text-left py-1 px-4 whitespace-nowrap border-r-2">${nombreDecimaQuintaEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadDecimaQuintaEspecie === 1 ? totalCantidadDecimaQuintaEspecie + ' Ud.' : totalCantidadDecimaQuintaEspecie + ' Uds.'}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoDecimaQuintaEspecie).toFixed(2)} Kg.</td>
@@ -7844,15 +7855,15 @@ jQuery(function ($) {
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaDecimaQuintaEspecie).toFixed(2)}</td>
             </tr>` : ''}
             ${totalVentaDescuento ? `
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+            <tr class="bg-white border-b">
+                <td class="text-center border-b py-1 px-4 whitespace-nowrap border-r-2 dark:border-r-gray-300 font-black w-[130px] text-xl" id="fechaTabla">${fechaExcel}</td>
                 <td class="text-left py-1 px-4 whitespace-nowrap border-r-2">DESCUENTO</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadDescuento === 1 ? totalCantidadDescuento + ' Ud.' : totalCantidadDescuento + ' Uds.'}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoDescuento).toFixed(2)} Kg.</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioDescuentoEspecies}/Kg.</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaDescuento).toFixed(2)}</td>
             </tr>` : ''}
-            <tr class="bg-white dark:bg-gray-800 h-0.5">
+            <tr class="bg-white h-0.5">
                 <td class="text-center" colspan="2"></td>
                 <td class="text-center h-0.5 bg-gray-500 dark:bg-gray-300" colspan="5"></td>
             </tr>
@@ -7867,38 +7878,62 @@ jQuery(function ($) {
         let nombreIMG = `${nombreCliente}-${fechaCuentaDelCliente}-${horaFormateada}.jpeg`;
 
         if(phoneNumber == ""){
-            alertify.notify('Falta numero de telefono a enviar', 'error', 3);
-            return;
+            alertify.notify('Falta numero de telefono a enviar, solo se descarga la imagen.', 'error', 3);
+            // Obtener el contenedor
+            let container = document.getElementById('hmtlCapture');
+        
+            // Almacenar el ancho original y establecer el nuevo ancho
+            let originalWidth = container.style.width;
+            container.style.width = '1200px';
+        
+            // Usar setTimeout para dar tiempo al navegador para ajustar el tamaño
+            setTimeout(function() {
+                domtoimage.toJpeg(container, { quality: 0.95 })
+                .then(function(dataUrl) {
+                    // Restaurar el ancho original
+                    container.style.width = originalWidth;
+        
+                    let link = document.createElement('a');
+                    link.download = nombreIMG;
+                    link.href = dataUrl;
+                    link.click();
+                })
+                .catch(function(error) {
+                    // Restaurar el ancho original si hay un error
+                    container.style.width = originalWidth;
+                    console.error('Error al capturar la imagen:', error);
+                });
+            }, 500);
+        }else{
+            // Obtener el contenedor
+            let container = document.getElementById('hmtlCapture');
+        
+            // Almacenar el ancho original y establecer el nuevo ancho
+            let originalWidth = container.style.width;
+            container.style.width = '1200px';
+        
+            // Usar setTimeout para dar tiempo al navegador para ajustar el tamaño
+            setTimeout(function() {
+                domtoimage.toJpeg(container, { quality: 0.95 })
+                .then(function(dataUrl) {
+                    // Restaurar el ancho original
+                    container.style.width = originalWidth;
+        
+                    let link = document.createElement('a');
+                    link.download = nombreIMG;
+                    link.href = dataUrl;
+                    link.click();
+        
+                    // Abrir la ventana de WhatsApp
+                    window.open(`https://web.whatsapp.com/send/?phone=%2B51${phoneNumber}&amp;text&amp;type=phone_number&amp;app_absent=0`, '_blank');
+                })
+                .catch(function(error) {
+                    // Restaurar el ancho original si hay un error
+                    container.style.width = originalWidth;
+                    console.error('Error al capturar la imagen:', error);
+                });
+            }, 500);
         }
-    
-        // Obtener el contenedor
-        let container = document.getElementById('hmtlCapture');
-    
-        // Almacenar el ancho original y establecer el nuevo ancho
-        let originalWidth = container.style.width;
-        container.style.width = '1200px';
-    
-        // Usar setTimeout para dar tiempo al navegador para ajustar el tamaño
-        setTimeout(function() {
-            domtoimage.toJpeg(container, { quality: 0.95 })
-            .then(function(dataUrl) {
-                // Restaurar el ancho original
-                container.style.width = originalWidth;
-    
-                let link = document.createElement('a');
-                link.download = nombreIMG;
-                link.href = dataUrl;
-                link.click();
-    
-                // Abrir la ventana de WhatsApp
-                window.open(`https://web.whatsapp.com/send/?phone=%2B51${phoneNumber}&amp;text&amp;type=phone_number&amp;app_absent=0`, '_blank');
-            })
-            .catch(function(error) {
-                // Restaurar el ancho original si hay un error
-                container.style.width = originalWidth;
-                console.error('Error al capturar la imagen:', error);
-            });
-        }, 500);
     });   
     
     $(document).on("click", "#btnEnviarCuentaWhatsAppTelefono", function() {
@@ -7944,5 +7979,213 @@ jQuery(function ($) {
     
         window.open(`https://wa.me/+51${phoneNumber}?`);
     });  
+
+    // =====================================================
+
+    fn_declararEspeciesCambiarPrecios();
+    function fn_declararEspeciesCambiarPrecios(){
+        $.ajax({
+            url: '/fn_consulta_DatosEspecie',
+            method: 'GET',
+            success: function(response) {
+                // Verificar si la respuesta es un arreglo de objetos
+                if (Array.isArray(response)) {
+                    
+                    // Obtener el select
+                    let selectPresentacion = $('#especiesCambioPrecioPesadas');
+                    
+                    // Vaciar el select actual, si es necesario
+                    selectPresentacion.empty();
+
+                    // Agregar la opción inicial "Seleccione tipo"
+                    selectPresentacion.append($('<option>', {
+                        value: '0',
+                        text: 'Seleccione presentación',
+                        disabled: true,
+                        selected: true
+                    }));
+
+                    // Iterar sobre los objetos y mostrar sus propiedades
+                    response.forEach(function(obj) {
+                        let option = $('<option>', {
+                            value: obj.idEspecie,
+                            text: obj.nombreEspecie
+                        });
+                        selectPresentacion.append(option);
+                    });
+
+                } else {
+                    console.log("La respuesta no es un arreglo de objetos.");
+                }
+            },
+            error: function(error) {
+                console.error("ERROR",error);
+            }
+        });
+    }
+
+    $('#idCambiarPrecioPesadaCliente').on('input', function () {
+        let inputCambiarPrecioCliente = $(this).val();
+        let contenedorClientes = $('#contenedorClientesCambiarPrecioPesada');
+        contenedorClientes.empty();
+
+        if (inputCambiarPrecioCliente.length > 0 && inputCambiarPrecioCliente != "") {
+            fn_TraerClientesCambiarPrecios(inputCambiarPrecioCliente);
+        } else {
+            contenedorClientes.empty();
+            contenedorClientes.addClass('hidden');
+        }
+    });
+
+    function fn_TraerClientesCambiarPrecios(inputAgregarPagoCliente) {
+
+        $.ajax({
+            url: '/fn_consulta_TraerClientesAgregarPagoCliente',
+            method: 'GET',
+            data: {
+                inputAgregarPagoCliente: inputAgregarPagoCliente,
+            },
+            success: function (response) {
+                // Limpia las sugerencias anteriores
+                let contenedorClientes = $('#contenedorClientesCambiarPrecioPesada')
+                contenedorClientes.empty();
+
+                // Verificar si la respuesta es un arreglo de objetos
+                if (Array.isArray(response) && response.length > 0) {
+                    // Iterar sobre los objetos y mostrar sus propiedades como sugerencias
+                    response.forEach(function (obj) {
+                        var suggestion = $('<div class="cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700 p-2 border-b border-gray-300/40">' + obj.nombreCompleto + '</div>');
+
+                        // Maneja el clic en la sugerencia
+                        suggestion.on("click", function () {
+                            // Rellena el campo de entrada con el nombre completo
+                            $('#idCambiarPrecioPesadaCliente').val(obj.nombreCompleto);
+
+                            // Actualiza las etiquetas ocultas con los datos seleccionados
+                            $('#selectedCodigoCliCambiarPrecioPesada').attr("value", obj.codigoCli);
+
+                            // Oculta las sugerencias
+                            contenedorClientes.addClass('hidden');
+                        });
+
+                        contenedorClientes.append(suggestion);
+                    });
+
+                    // Muestra las sugerencias
+                    contenedorClientes.removeClass('hidden');
+                } else {
+                    // Oculta las sugerencias si no hay resultados
+                    contenedorClientes.addClass('hidden');
+                }
+            },
+            error: function (error) {
+                console.error("ERROR", error);
+            }
+        });
+    };
+
+    $(document).on("click", "#btnCambiarPrecioPesadas", function() {      
+        $('#ModalCambiarPrecioPesada').addClass('flex');
+        $('#ModalCambiarPrecioPesada').removeClass('hidden');
+        $('#selectedCodigoCliCambiarPrecioPesada').attr('value',"");
+        $('#especiesCambioPrecioPesadas').val(0);
+        $('#nuevoPrecioCambiarPesadas').val("");
+        $('#idCambiarPrecioPesadaCliente').val("");
+        $("#nuevoPrecioCambiarPesadas").removeClass('border-red-500').addClass('dark:border-gray-600 border-gray-300');
+        $("#especiesCambioPrecioPesadas").removeClass('border-red-500').addClass('dark:border-gray-600 border-gray-300');
+        $("#idCambiarPrecioPesadaCliente").removeClass('border-red-500').addClass('dark:border-gray-600 border-gray-300');
+    });
+
+    $('.cerrarModalCambiarPrecioPesada, #ModalCambiarPrecioPesada .opacity-75').on('click', function (e) {
+        $('#ModalCambiarPrecioPesada').addClass('hidden');
+        $('#ModalCambiarPrecioPesada').removeClass('flex');
+    });
+
+    $('#btnCambiarPrecioPesada').on('click', function () {
+        let codigoCliente = $('#selectedCodigoCliCambiarPrecioPesada').attr('value');
+        let fechaCambioPrecio = $('#fechaCambiarPrecioPesada').val();
+        let especieCambioPrecio = $('#especiesCambioPrecioPesadas').val();
+        let nuevoPrecio = $('#nuevoPrecioCambiarPesadas').val();
+
+        let contadorErrores = 0
+
+        if (codigoCliente == 0 || codigoCliente == ""){
+            contadorErrores++;
+            $("#idCambiarPrecioPesadaCliente").removeClass('dark:border-gray-600 border-gray-300').addClass('border-red-500');
+        }else{
+            $("#idCambiarPrecioPesadaCliente").removeClass('border-red-500').addClass('dark:border-gray-600 border-gray-300');
+        }
+        if (especieCambioPrecio == 0 || especieCambioPrecio == "" || especieCambioPrecio === null){
+            contadorErrores++;
+            $("#especiesCambioPrecioPesadas").removeClass('dark:border-gray-600 border-gray-300').addClass('border-red-500');
+        }else{
+            $("#especiesCambioPrecioPesadas").removeClass('border-red-500').addClass('dark:border-gray-600 border-gray-300');
+        }
+        if(nuevoPrecio == ""){
+            contadorErrores++;
+            $("#nuevoPrecioCambiarPesadas").removeClass('dark:border-gray-600 border-gray-300').addClass('border-red-500');
+        }else{
+            $("#nuevoPrecioCambiarPesadas").removeClass('border-red-500').addClass('dark:border-gray-600 border-gray-300');
+        }
+
+        if (contadorErrores <= 0){
+            Swal.fire({
+                title: '¿Desea cambiar los registros?',
+                text: "¡Estas seguro de cambiar el precio de las pesadas!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                cancelButtonText: '¡No, cancelar!',
+                confirmButtonText: '¡Si, cambiar!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    fn_CambiarPrecioPesadas(codigoCliente, fechaCambioPrecio, especieCambioPrecio, nuevoPrecio);
+                }
+            })
+        }else{
+            alertify.notify('Debe rellenar todos los campos.', 'error', 3);
+        }
+
+    });
+
+    function fn_CambiarPrecioPesadas(codigoCliente, fechaCambioPrecio, especieCambioPrecio, nuevoPrecio){
+        $.ajax({
+            url: '/fn_consulta_CambiarPrecioPesadas',
+            method: 'GET',
+            data: {
+                codigoCliente: codigoCliente,
+                fechaCambioPrecio : fechaCambioPrecio,
+                especieCambioPrecio: especieCambioPrecio,
+                nuevoPrecio: nuevoPrecio,
+            },
+            success: function(response) {
+                if (response.success) {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Se cambio los precios correctamente.',
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+                    $('#selectedCodigoCliCambiarPrecioPesada').attr('value',"");
+                    $('#especiesCambioPrecioPesadas').val(0);
+                    $('#nuevoPrecioCambiarPesadas').val("");
+                    $('#idCambiarPrecioPesadaCliente').val("");
+                    $('#ModalCambiarPrecioPesada').addClass('hidden');
+                    $('#ModalCambiarPrecioPesada').removeClass('flex');
+                    $('#btnBuscarCuentaDelCliente').trigger('click');
+                } 
+            },
+            error: function(error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Error: Ocurrio un error inesperado durante la operacion',
+                  })
+                console.error("ERROR",error);
+            }
+        });
+    }
 
 });

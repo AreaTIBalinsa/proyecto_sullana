@@ -2673,14 +2673,12 @@ jQuery(function($) {
                         timer: 2000
                     });
                     $('#selectedCodigoCliCambiarPrecioPesada').attr('value',"");
-                    $('#fechaCambiarPrecioPesada').val(fechaHoy);
                     $('#especiesCambioPrecioPesadas').val(0);
                     $('#nuevoPrecioCambiarPesadas').val("");
                     $('#idCambiarPrecioPesadaCliente').val("");
                     $('#ModalCambiarPrecioPesada').addClass('hidden');
                     $('#ModalCambiarPrecioPesada').removeClass('flex');
-
-                    $('#btnBuscarCuentaDelCliente').trigger('click');
+                    $('#filtrarReporteAcumuladoDesdeHastaExcel').trigger('click');
                 } 
             },
             error: function(error) {

@@ -22,6 +22,8 @@ use App\Http\Controllers\DeudaMaximaController;
 use App\Http\Controllers\PedidosController;
 use App\Http\Controllers\SeguimientoPedidosController;
 use App\Http\Controllers\CuentaClienteController;
+use App\Http\Controllers\PesadasWebController;
+use App\Http\Controllers\ReporteIngresosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,6 +68,8 @@ Route::get('/caja_chica',[CajaChicaController::class,'show']);
 Route::get('/deuda_maxima',[DeudaMaximaController::class,'show']);
 Route::get('/seguimiento_pedidos',[SeguimientoPedidosController::class,'show']);
 Route::get('/cuenta_cliente',[CuentaClienteController::class,'show']);
+Route::get('/pesadas_web',[PesadasWebController::class,'show']);
+Route::get('/reporte_ingresos',[ReporteIngresosController::class,'show']);
 
 /* ============================== Termina Controladores para Mostrar Vistas ============================== */
 
@@ -188,3 +192,6 @@ Route::get('/fn_consulta_RegistrarActualizarPedido',[PedidosController::class,'c
 Route::get('/fn_consulta_TraerCantidadStockPollos',[PedidosController::class,'consulta_TraerCantidadStockPollos']);
 
 Route::get('/fn_consulta_TraerPedidosSeguimientoClientes',[SeguimientoPedidosController::class,'consulta_TraerPedidosSeguimientoClientes']);
+
+Route::get('/fn_consulta_TraerPagosFechasReporteIngresos',[ReporteIngresosController::class,'consulta_TraerPagosFechasReporteIngresos']);
+Route::get('/fn_consulta_TraerPagosDirectoGranjaFechasBanco',[ReporteIngresosController::class,'consulta_TraerPagosDirectoGranjaFechasBanco']);

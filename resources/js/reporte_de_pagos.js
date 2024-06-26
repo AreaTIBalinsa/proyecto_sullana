@@ -21,6 +21,7 @@ jQuery(function ($) {
     $('#fechaHastaCuentaDelClienteDescuentos').val(fechaHoy);
     $('#fechaAgregarPago').val(fechaHoy);
     $('#fechaAgregarDescuento').val(fechaHoy);
+    $('#fechaCambiarPrecioPesada').val(fechaHoy);
 
     var now = new Date();
     var hours = now.getHours().toString().padStart(2, '0');
@@ -96,7 +97,10 @@ jQuery(function ($) {
             // Si se selecciona "Transferencia", muestra el div con id "codTrans"
             $('#divCodTrans').removeClass('hidden').addClass('flex');
             $('#divBanco').removeClass('hidden').addClass('flex');
-        } else {
+        }else if (selectedOption === 'Yape'){
+            $('#divCodTrans').removeClass('hidden').addClass('flex');
+            $('#divBanco').removeClass('flex').addClass('hidden');
+        }else {
             // Si se selecciona cualquier otra opción, oculta el div "codTrans"
             $('#divCodTrans').removeClass('flex').addClass('hidden');
             $('#divBanco').removeClass('flex').addClass('hidden');
@@ -373,7 +377,6 @@ jQuery(function ($) {
             $('#divEgresoPaul').hide();
             $('#divComentario').show();
             $('#divHoraaa').show();
-            $('#formaDePago').val('Transferencia');
         }else if(pagoDerivado == "2"){
             $('#divClienteOpcional').show();
             $('#divEgresoPaul').hide();
@@ -396,12 +399,15 @@ jQuery(function ($) {
             $('#divHoraaa').show();
         }
 
-        var selectedOption = $('#formaDePago').val();
+        let selectedOption = $('#formaDePago').val();
         if (selectedOption === 'Transferencia') {
             // Si se selecciona "Transferencia", muestra el div con id "codTrans"
             $('#divCodTrans').removeClass('hidden').addClass('flex');
             $('#divBanco').removeClass('hidden').addClass('flex');
-        } else {
+        }else if (selectedOption === 'Yape'){
+            $('#divCodTrans').removeClass('hidden').addClass('flex');
+            $('#divBanco').removeClass('flex').addClass('hidden');
+        }else {
             // Si se selecciona cualquier otra opción, oculta el div "codTrans"
             $('#divCodTrans').removeClass('flex').addClass('hidden');
             $('#divBanco').removeClass('flex').addClass('hidden');
@@ -443,12 +449,15 @@ jQuery(function ($) {
             $('#formaDePago').val('Efectivo');
         }
 
-        var selectedOption = $('#formaDePago').val();
+        let selectedOption = $('#formaDePago').val();
         if (selectedOption === 'Transferencia') {
             // Si se selecciona "Transferencia", muestra el div con id "codTrans"
             $('#divCodTrans').removeClass('hidden').addClass('flex');
             $('#divBanco').removeClass('hidden').addClass('flex');
-        } else {
+        }else if (selectedOption === 'Yape'){
+            $('#divCodTrans').removeClass('hidden').addClass('flex');
+            $('#divBanco').removeClass('flex').addClass('hidden');
+        }else {
             // Si se selecciona cualquier otra opción, oculta el div "codTrans"
             $('#divCodTrans').removeClass('flex').addClass('hidden');
             $('#divBanco').removeClass('flex').addClass('hidden');
@@ -956,11 +965,11 @@ jQuery(function ($) {
                         nuevaFila.append($('<td class="hidden">').text(obj.idPagos));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(obj.fechaOperacionPag));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">').text(obj.nombreCompleto));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(parseFloat(obj.cantidadAbonoPag).toFixed(2)));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(obj.codigoTransferenciaPag));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(obj.horaOperacionPag));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(obj.bancaPago));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(obj.tipoAbonoPag));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(obj.codigoTransferenciaPag));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(parseFloat(obj.cantidadAbonoPag).toFixed(2)));
                         nuevaFila.append($('<td class="p-2 text-center cursor-pointer">').text(obj.observacion));
                         tbodyReporteDePagos.append(nuevaFila);
                     });
@@ -990,8 +999,8 @@ jQuery(function ($) {
     function agregarFilaTotal(tbody, totalPago) {
         let nuevaFila = $('<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">').text("SALDO TOTAL:"));
-        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text("S/. " + totalPago.toFixed(2)));
         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
+        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text("S/. " + totalPago.toFixed(2)));
         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
@@ -1012,11 +1021,11 @@ jQuery(function ($) {
         let nuevaFila = $('<tr class="bg-white pagosAgregarExcel border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
         nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarFormatoFechaTablas text-gray-900 dark:text-white" contenteditable="true">').text(`${fechaHoy}`));
         nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 font-medium text-gray-900 whitespace-nowrap dark:text-white uppercase nombreClienteTablaExcel" contenteditable="true">').text(""));
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarSoloNumerosDosDecimalesTablas" contenteditable="true">').text(""));
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap convertirMayusculasTablas" contenteditable="true">').text(""));
         nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarFormatoHoraTablas text-gray-900 dark:text-white" contenteditable="true">').text(""));
         nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap convertirMayusculasTablas" contenteditable="true">').text(""));
-        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap" contenteditable="false">').text("Transferencia"));
-        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap convertirMayusculasTablas" contenteditable="true">').text(""));
-        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarSoloNumerosDosDecimalesTablas" contenteditable="true">').text(""));
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap" contenteditable="true">').text("Transferencia"));
         nuevaFila.append($('<td class="outline-none p-2 text-center cursor-pointer" contenteditable="true">').text(""));
         nuevaFila.append($('<td class="outline-none p-2 text-center cursor-pointer hidden" contenteditable="true">').text("1"));
         nuevaFila.append($('<td class="outline-none p-2 text-center cursor-pointer hidden codigoDeClienteTablaExcel" contenteditable="false">').text("0"));
@@ -1211,13 +1220,13 @@ jQuery(function ($) {
                         totalPago += parseFloat(obj.cantidadAbonoPag);
                         // Agregar las celdas con la información
                         nuevaFila.append($('<td class="hidden">').text(obj.idPagos));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(obj.fechaOperacionPag));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">').append($('<h5 class="min-w-max px-2">').text(obj.nombreCompleto)));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(parseFloat(obj.cantidadAbonoPag).toFixed(2)));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(obj.tipoAbonoPag));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(obj.bancaPago));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(obj.codigoTransferenciaPag));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(obj.fechaOperacionPag));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(obj.horaOperacionPag));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(obj.bancaPago));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(obj.tipoAbonoPag));
                         nuevaFila.append($('<td class="px-4 py-2 text-center cursor-pointer">').text(obj.observacion));
                         // Agregar la nueva fila al tbody
                         tbodyReporteDePagos.append(nuevaFila);
@@ -1233,8 +1242,8 @@ jQuery(function ($) {
                         nuevaFila = $('<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
 
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">').append($('<h5 class="min-w-max px-2">').text("SALDO TOTAL:")));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text("S/. "+totalPago.toFixed(2)));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text("S/. "+totalPago.toFixed(2)));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
@@ -1304,11 +1313,11 @@ jQuery(function ($) {
                         nuevaFila = $('<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
 
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">').append($('<h5 class="min-w-max px-2">').text("SALDO TOTAL:")));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text("S/. "+totalPago.toFixed(2)));
                         // nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
                         // nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
                         // nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
                         nuevaFila.append($('<td class="px-4 py-2 text-center cursor-pointer">').text(""));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text("S/. "+totalPago.toFixed(2)));
                         // Agregar la nueva fila al tbody
                         tbodyReporteDePagos.append(nuevaFila);
                         totalPagoIngresoPaul = totalPago;
@@ -1371,12 +1380,12 @@ jQuery(function ($) {
                         // Agregar las celdas con la información
                         nuevaFila.append($('<td class="hidden">').text(obj.idPagos));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(obj.fechaOperacionPag));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(obj.horaOperacionPag));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">').append($('<h5 class="min-w-max px-2">').text(obj.nombreCompleto)));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(obj.tipoAbonoPag));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(obj.bancaPago));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(obj.codigoTransferenciaPag));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(parseFloat(obj.cantidadAbonoPag).toFixed(2)));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(obj.codigoTransferenciaPag));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(obj.horaOperacionPag));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(obj.bancaPago));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(obj.tipoAbonoPag));
                         nuevaFila.append($('<td class="px-4 py-2 text-center cursor-pointer">').text(obj.observacion));
                         // Agregar la nueva fila al tbody
                         tbodyReporteDePagos.append(nuevaFila);
@@ -1392,8 +1401,8 @@ jQuery(function ($) {
                         nuevaFila = $('<tr class="bg-white border-b border-l-[1px] border-r-[1px] dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
 
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">').text("SALDO TOTAL:"));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text("S/. "+totalPago.toFixed(2)));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text("S/. "+totalPago.toFixed(2)));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
@@ -1490,6 +1499,9 @@ jQuery(function ($) {
             // Si se selecciona "Transferencia", muestra el div con id "codTrans"
             $('#divCodTransEditar').removeClass('hidden').addClass('flex');
             $('#divBancoEditar').removeClass('hidden').addClass('flex');
+        } else if (selectedOption === 'Yape'){
+            $('#divCodTransEditar').removeClass('hidden').addClass('flex');
+            $('#divBancoEditar').removeClass('flex').addClass('hidden');
         } else {
             // Si se selecciona cualquier otra opción, oculta el div "codTrans"
             $('#divCodTransEditar').removeClass('flex').addClass('hidden');
@@ -2031,10 +2043,10 @@ jQuery(function ($) {
                     nuevaFila = $('<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
 
                     nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">').append($('<h5 class="min-w-max px-2">').text("SALDO TOTAL:")));
+                    nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
+                    nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
+                    nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
                     nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text("S/. "+totalPago.toFixed(2)));
-                    nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
-                    nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
-                    nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
                     // Agregar la nueva fila al tbody
                     tbodyReporteDePagos.append(nuevaFila);
                     totalPagoEgreso = totalPago
@@ -2091,8 +2103,8 @@ jQuery(function ($) {
                     nuevaFila = $('<tr class="bg-white border-b border-l-[1px] border-r-[1px] dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
 
                     nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">').append($('<h5 class="min-w-max px-2">').text("SALDO TOTAL:")));
-                    nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text("S/. "+totalPago.toFixed(2)));
                     nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
+                    nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text("S/. "+totalPago.toFixed(2)));
                     // nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
                     // nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
                     // nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
@@ -2407,6 +2419,20 @@ jQuery(function ($) {
     });
 
     $(document).on('click', '#registrar_agregarPagos_Excel', function () {
+        let arregloCodigos = [];
+
+        $('.pagosAgregarExcel:not(:last-child)').each(function() {
+            let filaActual = $(this);
+            let codAgregarPagoCliente = filaActual.find('td:eq(3)').text().trim();
+            if (codAgregarPagoCliente != ""){
+                if(arregloCodigos.includes(codAgregarPagoCliente)){
+                    filaActual.remove();
+                }else{
+                    arregloCodigos.push(codAgregarPagoCliente);
+                }
+            }
+        });
+
         // Crear contadores para realizar una acción después de todas las consultas completadas y fallidas
         let completedRequests = 0;
         let failedRequests = 0;
@@ -2446,11 +2472,11 @@ jQuery(function ($) {
             // Obtener los datos de cada celda de la fila actual
             let fechaAgregarPagoCliente = filaActual.find('td:eq(0)').text().trim();
             let nombreCliente = filaActual.find('td:eq(1)').text().trim();
-            let horaAgregarPago = filaActual.find('td:eq(2)').text().trim();
-            let bancoAgregarPagoCliente = filaActual.find('td:eq(3)').text().trim();
-            let formaDePago = filaActual.find('td:eq(4)').text().trim();
-            let codAgregarPagoCliente = filaActual.find('td:eq(5)').text().trim();
-            let montoAgregarPagoCliente = filaActual.find('td:eq(6)').text().trim();
+            let montoAgregarPagoCliente = filaActual.find('td:eq(2)').text().trim();
+            let codAgregarPagoCliente = filaActual.find('td:eq(3)').text().trim();
+            let horaAgregarPago = filaActual.find('td:eq(4)').text().trim();
+            let bancoAgregarPagoCliente = filaActual.find('td:eq(5)').text().trim();
+            let formaDePago = filaActual.find('td:eq(6)').text().trim();
             let comentarioAgregarPagoCliente = filaActual.find('td:eq(7)').text().trim();
             let pagoDerivado = filaActual.find('td:eq(8)').text().trim();
             let codigoCliente = filaActual.find('td:eq(9)').text().trim();
@@ -2461,10 +2487,7 @@ jQuery(function ($) {
             if (!montoAgregarPagoCliente) {
                 alertify.notify('El campo importe no puede estar vacio', 'error', 3);
                 failedRequests++;
-            } else if (!codAgregarPagoCliente) {
-                alertify.notify('El campo codigo no puede estar vacio', 'error', 3);
-                failedRequests++;
-            } else {
+            }else {
                 $.ajax({
                     url: '/fn_consulta_VerificarCodigoPago',
                     method: 'GET',
@@ -2556,6 +2579,20 @@ jQuery(function ($) {
     }
 
     $(document).on('click', '#registrar_agregarPagos_Excel2', function () {
+        let arregloCodigos = [];
+
+        $('.pagosAgregarExcel2:not(:last-child)').each(function() {
+            let filaActual = $(this);
+            let codAgregarPagoCliente = filaActual.find('td:eq(3)').text().trim();
+            if (codAgregarPagoCliente != ""){
+                if(arregloCodigos.includes(codAgregarPagoCliente)){
+                    filaActual.remove();
+                }else{
+                    arregloCodigos.push(codAgregarPagoCliente);
+                }
+            }
+        });
+
         // Crear contadores para realizar una acción después de todas las consultas completadas y fallidas
         let completedRequests = 0;
         let failedRequests = 0;
@@ -2593,18 +2630,17 @@ jQuery(function ($) {
             let filaActual = $(this); // Guardar referencia a la fila actual
     
             // Obtener los datos de cada celda de la fila actual
-            let nombreCliente = filaActual.find('td:eq(0)').text().trim();
-            let montoAgregarPagoCliente = filaActual.find('td:eq(1)').text().trim();
-            let formaDePago = filaActual.find('td:eq(2)').text().trim();
-            let bancoAgregarPagoCliente = filaActual.find('td:eq(3)').text().trim();
-            let codAgregarPagoCliente = filaActual.find('td:eq(4)').text().trim();
-            let fechaAgregarPagoCliente = filaActual.find('td:eq(5)').text().trim();
-            let horaAgregarPago = filaActual.find('td:eq(6)').text().trim();
+
+            let fechaAgregarPagoCliente = filaActual.find('td:eq(0)').text().trim();
+            let nombreCliente = filaActual.find('td:eq(1)').text().trim();
+            let montoAgregarPagoCliente = filaActual.find('td:eq(2)').text().trim();
+            let codAgregarPagoCliente = filaActual.find('td:eq(3)').text().trim();
+            let horaAgregarPago = filaActual.find('td:eq(4)').text().trim();
+            let bancoAgregarPagoCliente = filaActual.find('td:eq(5)').text().trim();
+            let formaDePago = filaActual.find('td:eq(6)').text().trim();
             let comentarioAgregarPagoCliente = filaActual.find('td:eq(7)').text().trim();
             let pagoDerivado = filaActual.find('td:eq(8)').text().trim();
             let codigoCliente = filaActual.find('td:eq(9)').text().trim();
-
-            console.log(codigoCliente);
 
             formaDePago = formaDePago[0].toUpperCase() + formaDePago.slice(1);
 
@@ -2682,13 +2718,13 @@ jQuery(function ($) {
 
     function agregarFilaEntrada2(tbody) {
         let nuevaFila = $('<tr class="bg-white pagosAgregarExcel2 border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
-        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 font-medium text-gray-900 whitespace-nowrap dark:text-white uppercase nombreClienteTablaExcel" contenteditable="true">').text(""));
-        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarSoloNumerosDosDecimalesTablas" contenteditable="true">').text(""));
-        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap" contenteditable="true">').text("Efectivo"));
-        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap convertirMayusculasTablas" contenteditable="true">').text(""));
-        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap convertirMayusculasTablas" contenteditable="true">').text(""));
-        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarFormatoFechaTablas text-gray-900 dark:text-white" contenteditable="true">').text(`${fechaHoy}`));
-        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarFormatoHoraTablas text-gray-900 dark:text-white" contenteditable="true">').text(""));
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarFormatoFechaTablas text-gray-900 dark:text-white" contenteditable="true">').text(`${fechaHoy}`)); //fecha
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 font-medium text-gray-900 whitespace-nowrap dark:text-white uppercase nombreClienteTablaExcel" contenteditable="true">').text("")); //nombre
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarSoloNumerosDosDecimalesTablas" contenteditable="true">').text("")); //importe
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap convertirMayusculasTablas" contenteditable="true">').text("")); //codigo
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarFormatoHoraTablas text-gray-900 dark:text-white" contenteditable="true">').text("")); //hora
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap convertirMayusculasTablas" contenteditable="true">').text("")); //banco
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap" contenteditable="true">').text("Efectivo")); //forma
         nuevaFila.append($('<td class="outline-none p-2 text-center cursor-pointer" contenteditable="true">').text(""));
         nuevaFila.append($('<td class="outline-none p-2 text-center cursor-pointer hidden" contenteditable="true">').text("2"));
         nuevaFila.append($('<td class="outline-none p-2 text-center cursor-pointer hidden codigoDeClienteTablaExcel" contenteditable="false">').text("0"));
@@ -2788,6 +2824,20 @@ jQuery(function ($) {
     }
 
     $(document).on('click', '#registrar_agregarPagos_Excel3', function () {
+        let arregloCodigos = [];
+
+        $('.pagosAgregarExcel3:not(:last-child)').each(function() {
+            let filaActual = $(this);
+            let codAgregarPagoCliente = filaActual.find('td:eq(3)').text().trim();
+            if (codAgregarPagoCliente != ""){
+                if(arregloCodigos.includes(codAgregarPagoCliente)){
+                    filaActual.remove();
+                }else{
+                    arregloCodigos.push(codAgregarPagoCliente);
+                }
+            }
+        });
+
         // Crear contadores para realizar una acción después de todas las consultas completadas y fallidas
         let completedRequests = 0;
         let failedRequests = 0;
@@ -3014,6 +3064,20 @@ jQuery(function ($) {
     }
 
     $(document).on('click', '#registrar_agregarPagos_Excel4', function () {
+        let arregloCodigos = [];
+
+        $('.pagosAgregarExcel4:not(:last-child)').each(function() {
+            let filaActual = $(this);
+            let codAgregarPagoCliente = filaActual.find('td:eq(3)').text().trim();
+            if (codAgregarPagoCliente != ""){
+                if(arregloCodigos.includes(codAgregarPagoCliente)){
+                    filaActual.remove();
+                }else{
+                    arregloCodigos.push(codAgregarPagoCliente);
+                }
+            }
+        });
+
         // Crear contadores para realizar una acción después de todas las consultas completadas y fallidas
         let completedRequests = 0;
         let failedRequests = 0;
@@ -3052,12 +3116,12 @@ jQuery(function ($) {
     
             // Obtener los datos de cada celda de la fila actual
             let fechaAgregarPagoCliente = filaActual.find('td:eq(0)').text().trim();
-            let horaAgregarPago = filaActual.find('td:eq(1)').text().trim();
-            let nombreCliente = filaActual.find('td:eq(2)').text().trim();
-            let formaDePago = filaActual.find('td:eq(3)').text().trim();
-            let bancoAgregarPagoCliente = filaActual.find('td:eq(4)').text().trim();
-            let codAgregarPagoCliente = filaActual.find('td:eq(5)').text().trim();
-            let montoAgregarPagoCliente = filaActual.find('td:eq(6)').text().trim();
+            let nombreCliente = filaActual.find('td:eq(1)').text().trim();
+            let montoAgregarPagoCliente = filaActual.find('td:eq(2)').text().trim();
+            let codAgregarPagoCliente = filaActual.find('td:eq(3)').text().trim();
+            let horaAgregarPago = filaActual.find('td:eq(4)').text().trim();
+            let bancoAgregarPagoCliente = filaActual.find('td:eq(5)').text().trim();
+            let formaDePago = filaActual.find('td:eq(6)').text().trim();
             let comentarioAgregarPagoCliente = filaActual.find('td:eq(7)').text().trim();
             let pagoDerivado = filaActual.find('td:eq(8)').text().trim();
             let codigoCliente = filaActual.find('td:eq(9)').text().trim();
@@ -3067,10 +3131,7 @@ jQuery(function ($) {
             if (!montoAgregarPagoCliente) {
                 alertify.notify('El campo importe no puede estar vacio', 'error', 3);
                 failedRequests++;
-            } else if (!codAgregarPagoCliente) {
-                alertify.notify('El campo codigo no puede estar vacio', 'error', 3);
-                failedRequests++;
-            } else {
+            }else {
                 $.ajax({
                     url: '/fn_consulta_VerificarCodigoPago',
                     method: 'GET',
@@ -3140,13 +3201,13 @@ jQuery(function ($) {
 
     function agregarFilaEntrada4(tbody) {
         let nuevaFila = $('<tr class="bg-white pagosAgregarExcel4 border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
-        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarFormatoFechaTablas text-gray-900 dark:text-white" contenteditable="true">').text(`${fechaHoy}`));
-        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarFormatoHoraTablas text-gray-900 dark:text-white" contenteditable="true">').text(""));
-        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 font-medium text-gray-900 whitespace-nowrap dark:text-white uppercase nombreClienteTablaExcel" contenteditable="true">').text(""));
-        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap" contenteditable="false">').text("Transferencia"));
-        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap convertirMayusculasTablas" contenteditable="true">').text(""));
-        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap convertirMayusculasTablas" contenteditable="true">').text(""));
-        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarSoloNumerosDosDecimalesTablas" contenteditable="true">').text(""));
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarFormatoFechaTablas text-gray-900 dark:text-white" contenteditable="true">').text(`${fechaHoy}`)); //fecha
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 font-medium text-gray-900 whitespace-nowrap dark:text-white uppercase nombreClienteTablaExcel" contenteditable="true">').text("")); //nombre cliente
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarSoloNumerosDosDecimalesTablas" contenteditable="true">').text("")); //importe
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap convertirMayusculasTablas" contenteditable="true">').text("")); //codigo
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarFormatoHoraTablas text-gray-900 dark:text-white" contenteditable="true">').text("")); //hora
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap convertirMayusculasTablas" contenteditable="true">').text("")); //banco
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap" contenteditable="false">').text("Transferencia")); // forma de pago
         nuevaFila.append($('<td class="outline-none p-2 text-center cursor-pointer" contenteditable="true">').text(""));
         nuevaFila.append($('<td class="outline-none p-2 text-center cursor-pointer hidden" contenteditable="true">').text("5"));
         nuevaFila.append($('<td class="outline-none p-2 text-center cursor-pointer hidden codigoDeClienteTablaExcel" contenteditable="false">').text("0"));
@@ -3340,14 +3401,15 @@ jQuery(function ($) {
         let nuevaFila = $('<tr class="bg-white pagosAgregarExcelEgreso1 border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
         nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarFormatoFechaTablas text-gray-900 dark:text-white" contenteditable="true">').text(`${fechaHoy}`));
         nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 font-medium text-gray-900 whitespace-nowrap convertirMayusculasTablas dark:text-white" contenteditable="true">').text(""));
-        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarSoloNumerosDosDecimalesTablas" contenteditable="true">').text(""));
-        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarSoloNumerosDosDecimalesTablas" contenteditable="true">').text(""));
-        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarSoloNumerosDosDecimalesTablas" contenteditable="true">').text(""));
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarSoloNumerosDosDecimalesTablas accionarSumaMonto" contenteditable="true">').text("")); // cantidad
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarSoloNumerosDosDecimalesTablas accionarSumaMonto" contenteditable="true">').text("")); // precio
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarSoloNumerosDosDecimalesTablas" contenteditable="false">').text("")); // resultado
         nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap hidden" contenteditable="true">').text("Efectivo"));
         nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap convertirMayusculasTablas hidden" contenteditable="true">').text(""));
         nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap convertirMayusculasTablas hidden" contenteditable="true">').text(""));
         tbody.append(nuevaFila);
     
+        // Evento para agregar una nueva fila si la actual no está vacía
         nuevaFila.on('input', function() {
             let vacio = true;
             nuevaFila.find('td').each(function() {
@@ -3360,7 +3422,23 @@ jQuery(function ($) {
                 nuevaFila.off('input');
             }
         });
+    
+        // Evento para calcular y actualizar el resultado
+        nuevaFila.on('input', '.accionarSumaMonto', function() {
+            let cantidad = parseFloat(nuevaFila.find('td').eq(2).text().trim()) || 1;
+            let precio = parseFloat(nuevaFila.find('td').eq(3).text().trim()) || 0;
+            let resultado = cantidad * precio;
+            nuevaFila.find('td').eq(4).text(resultado.toFixed(2));
+        });
     }
+    
+    $(document).on('input', '.accionarSumaMonto', function () {
+        let fila = $(this).closest('tr');
+        let cantidad = parseFloat(fila.find('td').eq(2).text().trim()) || 1;
+        let precio = parseFloat(fila.find('td').eq(3).text().trim()) || 0;
+        let resultado = cantidad * precio;
+        fila.find('td').eq(4).text(resultado.toFixed(2));
+    });    
 
     function fn_AgregarEgreso(montoAgregEgresoCliente,fechaAgregEgresoCliente,cantidadAgregEgresoCliente,montoNuevoAgregEgresoCliente,formaDePagoEgreso,bancoAgregEgresoCliente,codAgregEgresoCliente,usoReporteEgreso){
         return $.ajax({
@@ -3557,5 +3635,213 @@ jQuery(function ($) {
             }
         });
     }   
+
+    // =====================================================
+
+    fn_declararEspeciesCambiarPrecios();
+    function fn_declararEspeciesCambiarPrecios(){
+        $.ajax({
+            url: '/fn_consulta_DatosEspecie',
+            method: 'GET',
+            success: function(response) {
+                // Verificar si la respuesta es un arreglo de objetos
+                if (Array.isArray(response)) {
+                    
+                    // Obtener el select
+                    let selectPresentacion = $('#especiesCambioPrecioPesadas');
+                    
+                    // Vaciar el select actual, si es necesario
+                    selectPresentacion.empty();
+
+                    // Agregar la opción inicial "Seleccione tipo"
+                    selectPresentacion.append($('<option>', {
+                        value: '0',
+                        text: 'Seleccione presentación',
+                        disabled: true,
+                        selected: true
+                    }));
+
+                    // Iterar sobre los objetos y mostrar sus propiedades
+                    response.forEach(function(obj) {
+                        let option = $('<option>', {
+                            value: obj.idEspecie,
+                            text: obj.nombreEspecie
+                        });
+                        selectPresentacion.append(option);
+                    });
+
+                } else {
+                    console.log("La respuesta no es un arreglo de objetos.");
+                }
+            },
+            error: function(error) {
+                console.error("ERROR",error);
+            }
+        });
+    }
+
+    $('#idCambiarPrecioPesadaCliente').on('input', function () {
+        let inputCambiarPrecioCliente = $(this).val();
+        let contenedorClientes = $('#contenedorClientesCambiarPrecioPesada');
+        contenedorClientes.empty();
+
+        if (inputCambiarPrecioCliente.length > 0 && inputCambiarPrecioCliente != "") {
+            fn_TraerClientesCambiarPrecios(inputCambiarPrecioCliente);
+        } else {
+            contenedorClientes.empty();
+            contenedorClientes.addClass('hidden');
+        }
+    });
+
+    function fn_TraerClientesCambiarPrecios(inputAgregarPagoCliente) {
+
+        $.ajax({
+            url: '/fn_consulta_TraerClientesAgregarPagoCliente',
+            method: 'GET',
+            data: {
+                inputAgregarPagoCliente: inputAgregarPagoCliente,
+            },
+            success: function (response) {
+                // Limpia las sugerencias anteriores
+                let contenedorClientes = $('#contenedorClientesCambiarPrecioPesada')
+                contenedorClientes.empty();
+
+                // Verificar si la respuesta es un arreglo de objetos
+                if (Array.isArray(response) && response.length > 0) {
+                    // Iterar sobre los objetos y mostrar sus propiedades como sugerencias
+                    response.forEach(function (obj) {
+                        var suggestion = $('<div class="cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700 p-2 border-b border-gray-300/40">' + obj.nombreCompleto + '</div>');
+
+                        // Maneja el clic en la sugerencia
+                        suggestion.on("click", function () {
+                            // Rellena el campo de entrada con el nombre completo
+                            $('#idCambiarPrecioPesadaCliente').val(obj.nombreCompleto);
+
+                            // Actualiza las etiquetas ocultas con los datos seleccionados
+                            $('#selectedCodigoCliCambiarPrecioPesada').attr("value", obj.codigoCli);
+
+                            // Oculta las sugerencias
+                            contenedorClientes.addClass('hidden');
+                        });
+
+                        contenedorClientes.append(suggestion);
+                    });
+
+                    // Muestra las sugerencias
+                    contenedorClientes.removeClass('hidden');
+                } else {
+                    // Oculta las sugerencias si no hay resultados
+                    contenedorClientes.addClass('hidden');
+                }
+            },
+            error: function (error) {
+                console.error("ERROR", error);
+            }
+        });
+    };
+
+    $(document).on("click", "#btnCambiarPrecioPesadas", function() {      
+        $('#ModalCambiarPrecioPesada').addClass('flex');
+        $('#ModalCambiarPrecioPesada').removeClass('hidden');
+        $('#selectedCodigoCliCambiarPrecioPesada').attr('value',"");
+        $('#especiesCambioPrecioPesadas').val(0);
+        $('#nuevoPrecioCambiarPesadas').val("");
+        $('#idCambiarPrecioPesadaCliente').val("");
+        $("#nuevoPrecioCambiarPesadas").removeClass('border-red-500').addClass('dark:border-gray-600 border-gray-300');
+        $("#especiesCambioPrecioPesadas").removeClass('border-red-500').addClass('dark:border-gray-600 border-gray-300');
+        $("#idCambiarPrecioPesadaCliente").removeClass('border-red-500').addClass('dark:border-gray-600 border-gray-300');
+    });
+
+    $('.cerrarModalCambiarPrecioPesada, #ModalCambiarPrecioPesada .opacity-75').on('click', function (e) {
+        $('#ModalCambiarPrecioPesada').addClass('hidden');
+        $('#ModalCambiarPrecioPesada').removeClass('flex');
+    });
+
+    $('#btnCambiarPrecioPesada').on('click', function () {
+        let codigoCliente = $('#selectedCodigoCliCambiarPrecioPesada').attr('value');
+        let fechaCambioPrecio = $('#fechaCambiarPrecioPesada').val();
+        let especieCambioPrecio = $('#especiesCambioPrecioPesadas').val();
+        let nuevoPrecio = $('#nuevoPrecioCambiarPesadas').val();
+
+        let contadorErrores = 0
+
+        if (codigoCliente == 0 || codigoCliente == ""){
+            contadorErrores++;
+            $("#idCambiarPrecioPesadaCliente").removeClass('dark:border-gray-600 border-gray-300').addClass('border-red-500');
+        }else{
+            $("#idCambiarPrecioPesadaCliente").removeClass('border-red-500').addClass('dark:border-gray-600 border-gray-300');
+        }
+        if (especieCambioPrecio == 0 || especieCambioPrecio == "" || especieCambioPrecio === null){
+            contadorErrores++;
+            $("#especiesCambioPrecioPesadas").removeClass('dark:border-gray-600 border-gray-300').addClass('border-red-500');
+        }else{
+            $("#especiesCambioPrecioPesadas").removeClass('border-red-500').addClass('dark:border-gray-600 border-gray-300');
+        }
+        if(nuevoPrecio == ""){
+            contadorErrores++;
+            $("#nuevoPrecioCambiarPesadas").removeClass('dark:border-gray-600 border-gray-300').addClass('border-red-500');
+        }else{
+            $("#nuevoPrecioCambiarPesadas").removeClass('border-red-500').addClass('dark:border-gray-600 border-gray-300');
+        }
+
+        if (contadorErrores <= 0){
+            Swal.fire({
+                title: '¿Desea cambiar los registros?',
+                text: "¡Estas seguro de cambiar el precio de las pesadas!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                cancelButtonText: '¡No, cancelar!',
+                confirmButtonText: '¡Si, cambiar!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    fn_CambiarPrecioPesadas(codigoCliente, fechaCambioPrecio, especieCambioPrecio, nuevoPrecio);
+                }
+            })
+        }else{
+            alertify.notify('Debe rellenar todos los campos.', 'error', 3);
+        }
+
+    });
+
+    function fn_CambiarPrecioPesadas(codigoCliente, fechaCambioPrecio, especieCambioPrecio, nuevoPrecio){
+        $.ajax({
+            url: '/fn_consulta_CambiarPrecioPesadas',
+            method: 'GET',
+            data: {
+                codigoCliente: codigoCliente,
+                fechaCambioPrecio : fechaCambioPrecio,
+                especieCambioPrecio: especieCambioPrecio,
+                nuevoPrecio: nuevoPrecio,
+            },
+            success: function(response) {
+                if (response.success) {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Se cambio los precios correctamente.',
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+                    $('#selectedCodigoCliCambiarPrecioPesada').attr('value',"");
+                    $('#especiesCambioPrecioPesadas').val(0);
+                    $('#nuevoPrecioCambiarPesadas').val("");
+                    $('#idCambiarPrecioPesadaCliente').val("");
+                    $('#ModalCambiarPrecioPesada').addClass('hidden');
+                    $('#ModalCambiarPrecioPesada').removeClass('flex');
+                    $('#btnBuscarCuentaDelCliente').trigger('click');
+                } 
+            },
+            error: function(error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Error: Ocurrio un error inesperado durante la operacion',
+                  })
+                console.error("ERROR",error);
+            }
+        });
+    }
 
 })
