@@ -31,10 +31,10 @@ jQuery(function ($) {
     $('#horaAgregarPago').val(currentTime);
 
     declarar_especies();
-    fn_TraerPagosFechas(fechaHoy,fechaHoy);
+    // fn_TraerPagosFechas(fechaHoy,fechaHoy);
     fn_TraerPagosFechas2(fechaHoy,fechaHoy);
     fn_TraerPagosFechas3(fechaHoy,fechaHoy);
-    fn_TraerPagosDirectoGranjaFechas(fechaHoy,fechaHoy);
+    // fn_TraerPagosDirectoGranjaFechas(fechaHoy,fechaHoy);
     fn_TraerEgresosFechas(fechaHoy,fechaHoy);
     fn_TraerEgresosPaulFechas(fechaHoy,fechaHoy);
     fn_RegistroDescuentos(fechaHoy,fechaHoy);
@@ -351,10 +351,10 @@ jQuery(function ($) {
     $('#filtrar_pagos_submit').on('click', function () {
         let fechaDesdeTraerPagos = $('#fechaDesdeReporteDePagos').val();
         let fechaHastaTraerPagos = $('#fechaHastaReporteDePagos').val();
-        fn_TraerPagosFechas(fechaDesdeTraerPagos, fechaHastaTraerPagos);
+        // fn_TraerPagosFechas(fechaDesdeTraerPagos, fechaHastaTraerPagos);
         fn_TraerPagosFechas2(fechaDesdeTraerPagos, fechaHastaTraerPagos);
         fn_TraerPagosFechas3(fechaDesdeTraerPagos, fechaHastaTraerPagos);
-        fn_TraerPagosDirectoGranjaFechas(fechaDesdeTraerPagos, fechaHastaTraerPagos);
+        // fn_TraerPagosDirectoGranjaFechas(fechaDesdeTraerPagos, fechaHastaTraerPagos);
         fn_TraerEgresosFechas(fechaDesdeTraerPagos, fechaHastaTraerPagos);
         fn_TraerEgresosPaulFechas(fechaDesdeTraerPagos, fechaHastaTraerPagos);
     });
@@ -1292,7 +1292,7 @@ jQuery(function ($) {
                         // Agregar las celdas con la información
                         nuevaFila.append($('<td class="hidden">').text(obj.idPagos));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(obj.fechaOperacionPag));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">').append($('<h5 class="min-w-max px-2">').text(obj.nombreCompleto)));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">').append($('<h5 class="min-w-max px-2">').text(obj.nombreCompleto === "" ? "SALDO ANTERIOR" : obj.nombreCompleto)));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(parseFloat(obj.cantidadAbonoPag).toFixed(2)));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap hidden">').text(obj.tipoAbonoPag));
                         // nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(obj.horaOperacionPag));
@@ -2823,20 +2823,6 @@ jQuery(function ($) {
     }
 
     $(document).on('click', '#registrar_agregarPagos_Excel3', function () {
-        let arregloCodigos = [];
-
-        $('.pagosAgregarExcel3:not(:last-child)').each(function() {
-            let filaActual = $(this);
-            let codAgregarPagoCliente = filaActual.find('td:eq(3)').text().trim();
-            if (codAgregarPagoCliente != ""){
-                if(arregloCodigos.includes(codAgregarPagoCliente)){
-                    filaActual.remove();
-                }else{
-                    arregloCodigos.push(codAgregarPagoCliente);
-                }
-            }
-        });
-
         // Crear contadores para realizar una acción después de todas las consultas completadas y fallidas
         let completedRequests = 0;
         let failedRequests = 0;

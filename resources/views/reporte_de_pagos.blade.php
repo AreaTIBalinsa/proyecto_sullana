@@ -32,7 +32,7 @@
             </div>
             <div class="md:m-5 mt-0">
                 <div class="relative overflow-auto aside_scrollED rounded-lg flex items-start">
-                    <div>
+                    {{-- <div>
                         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                             <caption class="bg-blue-600 p-2 w-full rounded-lt-lg border-b-2 text-sm font-bold text-gray-100">Bancos</caption>
                             <thead class="text-xs text-gray-100 uppercase bg-blue-600">
@@ -73,7 +73,7 @@
                             <tbody id="bodyReporteDePagosExcel">
                             </tbody>
                         </table>
-                    </div>
+                    </div> --}}
                     <div>
                         <div class="text-white font-bold bg-yellow-400 flex justify-center w-full gap-4 p-1.5">
                             <div class="ml-[270px]">Diferencia : </div>
@@ -248,7 +248,7 @@
                             </div>
                         </div>
                     </div>
-                    <div>
+                    {{-- <div>
                         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                             <caption class="bg-orange-500 p-2 w-full rounded-lt-lg border-b-2 text-sm font-bold text-gray-100">Depositos a Granja</caption>
                             <thead class="text-xs text-gray-100 uppercase bg-orange-500">
@@ -289,7 +289,7 @@
                             <tbody id="bodyReporteDePagosExcel4">
                             </tbody>
                         </table>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>

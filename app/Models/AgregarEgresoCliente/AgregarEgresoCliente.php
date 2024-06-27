@@ -10,7 +10,7 @@ class AgregarEgresoCliente extends Model
     use HasFactory;
     protected $table = 'tb_egresos'; // Nombre de tu tabla
     protected $primaryKey = 'idEgresos'; // Clave primaria
-    public $timestamps = false;
+    public $timestamps = true;
 
     protected $fillable = [
         'idEgresos',
