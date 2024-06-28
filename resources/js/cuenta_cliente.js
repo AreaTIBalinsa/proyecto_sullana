@@ -7533,7 +7533,7 @@ jQuery(function ($) {
         } else {
             console.log("contarFilaPagos tiene más filas o son iguales");
 
-            let diferencia = contarVenta - contarPagos;
+            let diferencia = contarPagos - contarVenta;
             let nuevasFilas = "";
     
             for (var i = 0; i < diferencia; i++) {
@@ -7969,7 +7969,7 @@ jQuery(function ($) {
         
             // Almacenar el ancho original y establecer el nuevo ancho
             let originalWidth = container.style.width;
-            container.style.width = '1500px';
+            container.style.width = '1250px';
         
             // Usar setTimeout para dar tiempo al navegador para ajustar el tamaño
             setTimeout(function() {
@@ -7995,7 +7995,7 @@ jQuery(function ($) {
         
             // Almacenar el ancho original y establecer el nuevo ancho
             let originalWidth = container.style.width;
-            container.style.width = '1500px';
+            container.style.width = '1250px';
         
             // Usar setTimeout para dar tiempo al navegador para ajustar el tamaño
             setTimeout(function() {
@@ -8032,7 +8032,7 @@ jQuery(function ($) {
     
         // Almacenar el ancho original y establecer el nuevo ancho
         let originalWidth = container.style.width;
-        container.style.width = '1500px';
+        container.style.width = '1250px';
     
         // Usar setTimeout para dar tiempo al navegador para ajustar el tamaño
         setTimeout(function() {
