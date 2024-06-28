@@ -7270,29 +7270,18 @@ jQuery(function ($) {
             tbodyCuentaDelCliente.html(`<tr class="rounded-lg border-b-2 bg-white"><td colspan="7" class="text-center">No hay datos</td></tr>`);
         }else{
             tbodyCuentaDelCliente.html(bodyCuentaDelCliente);
-            const fechaCelda = document.getElementById('fechaTabla');
-            const tableBody = document.getElementById('bodyCuentaDelCliente');
-            const rows = tableBody.getElementsByTagName('tr');
 
-            // Aplica rowspan dinámicamente
-            fechaCelda.rowSpan = rows.length;
+            // // Aplica rowspan dinámicamente a la celda de pagos
+            // const pagosCelda = document.getElementById('idDeTablaPagos');
+            // const pagosRows = tableBody.getElementsByClassName('contarFilaPagos');
 
-            // Elimina las celdas adicionales en la primera columna
-            for (let i = 1; i < rows.length; i++) {
-                rows[i].deleteCell(0);
-            }
+            // // Asigna el rowspan basado en el número de filas con la clase 'contarFilaPagos'
+            // pagosCelda.rowSpan = pagosRows.length;
 
-            // Aplica rowspan dinámicamente a la celda de pagos
-            const pagosCelda = document.getElementById('idDeTablaPagos');
-            const pagosRows = tableBody.getElementsByClassName('contarFilaPagos');
-
-            // Asigna el rowspan basado en el número de filas con la clase 'contarFilaPagos'
-            pagosCelda.rowSpan = pagosRows.length;
-
-            // Elimina las celdas adicionales en la primera columna de las filas con la clase 'contarFilaPagos'
-            for (let i = 1; i < pagosRows.length; i++) {
-                pagosRows[i].deleteCell(0);
-            }
+            // // Elimina las celdas adicionales en la primera columna de las filas con la clase 'contarFilaPagos'
+            // for (let i = 1; i < pagosRows.length; i++) {
+            //     pagosRows[i].deleteCell(0);
+            // }
 
             function formatearFecha(fechaISO) {
                 const [year, month, day] = fechaISO.split('-').map(Number);
@@ -7364,6 +7353,19 @@ jQuery(function ($) {
             let nombreCliente = $('#idCuentaDelCliente').val().trim();
 
             $('#cuentaClienteNombre').html(nombreCliente);
+            contarFilas();
+
+            const fechaCelda = document.getElementById('fechaTabla');
+            const tableBody = document.getElementById('bodyCuentaDelCliente');
+            const rows = tableBody.getElementsByTagName('tr');
+
+            // Aplica rowspan dinámicamente
+            fechaCelda.rowSpan = rows.length;
+
+            // Elimina las celdas adicionales en la primera columna
+            for (let i = 1; i < rows.length; i++) {
+                rows[i].deleteCell(0);
+            }
         }
     }
 
@@ -7390,6 +7392,36 @@ jQuery(function ($) {
             const partes = fecha.split('-');
             return partes[2] + '-' + partes[1]; // Formato dd-mm
         }
+
+        function limpiarNombreBanco(nombre) {
+            // Expresiones regulares para detectar variantes y limpiar el nombre
+            const regexBCP = /^BCP/;
+            const regexBBVA = /^BBVA/;
+            const regexIBK = /^IBK/;
+            const regexCajaPiura = /^CAJA PIURA/;
+            const regexCMAC = /^CMAC/;
+            const regexYAPE = /^YAPE/;
+        
+            if (regexBCP.test(nombre)) {
+                return "BCP";
+            } else if (regexBBVA.test(nombre)) {
+                return "BBVA";
+            } else if (regexIBK.test(nombre)) {
+                return "IBK";
+            } else if (regexCajaPiura.test(nombre)) {
+                return "CAJA PIURA";
+            } else if (regexCMAC.test(nombre)) {
+                return "CMAC";
+            } else if (regexYAPE.test(nombre)) {
+                return "YAPE";
+            } else {
+                return nombre; // Devuelve el nombre original si no coincide con ninguna variante
+            }
+        }
+
+        let tbodyCuentaDelClientePagos = $('#bodyCuentaDelClientePagos');
+        tbodyCuentaDelClientePagos.empty();
+        let bodyCuentaDelClientePagos="";
         
         if(respuestaPagosDetallados.length > 0) {
             pagosDetallados +=``;
@@ -7401,36 +7433,24 @@ jQuery(function ($) {
                     if (masDeUnPago == 0){
                         pagosDetallados += `
                                             <tr class="bg-white border-b contarFilaPagos border-black">
-                                                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-                                                <td class="text-left py-1 px-4 whitespace-nowrap font-black border-r-2 border-black" id="idDeTablaPagos">PAGOS</td>
-                                                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-                                                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-                                                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-                                                <td class="text-center whitespace-nowrap font-semibold flex"><div class="flex-1 border-l-2 border-r border-black py-1 px-2">S/. ${parseFloat(obj.cantidadAbonoPag).toFixed(2)}</div><div class="flex-1 border-l border-black py-1 px-2">${obj.bancaPago == null ? obj.clasificacionPago == "2" ? obj.tipoAbonoPag + " CAMAL" : obj.tipoAbonoPag + " PAUL"  : obj.bancaPago} ${obj.fechaOperacionPag == fecha ? "" : formatFecha(obj.fechaOperacionPag)}</div></td>
-                                            </tr> `
+                                                <td class="text-center py-1 p-4 whitespace-nowrap font-semibold border-r-2 border-black">S/. ${parseFloat(obj.cantidadAbonoPag).toFixed(2)}</td>
+                                                <td class="text-left py-1 p-4 whitespace-nowrap">${obj.bancaPago == null ? obj.clasificacionPago == "2" ? obj.tipoAbonoPag + " CAMAL" : obj.tipoAbonoPag + " PAUL"  : limpiarNombreBanco(obj.bancaPago)} ${obj.fechaOperacionPag == fecha ? "" : formatFecha(obj.fechaOperacionPag)}</td>
+                                            </tr>`
                         masDeUnPago += 1;
                     }else{
                         if (obj.fechaOperacionPag == fecha && pasoUnaVez == 0){
                             pagosDetallados += `
-                                            <tr class="bg-white border-b border-t-4 contarFilaPagos border-black">
-                                                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-                                                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-                                                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-                                                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-                                                <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-                                                <td class="text-center whitespace-nowrap font-semibold flex"><div class="flex-1 border-l-2 border-r border-black py-1 px-2">S/. ${parseFloat(obj.cantidadAbonoPag).toFixed(2)}</div><div class="flex-1 border-l border-black py-1 px-2">${obj.bancaPago == null ? obj.clasificacionPago == "2" ? obj.tipoAbonoPag + " CAMAL" : obj.tipoAbonoPag + " PAUL"  : obj.bancaPago} ${obj.fechaOperacionPag == fecha ? "" : formatFecha(obj.fechaOperacionPag)}</div></td>
+                                            <tr class="bg-white border-b contarFilaPagos border-black">
+                                                <td class="text-center py-1 p-4 whitespace-nowrap font-semibold border-r-2 border-black">S/. ${parseFloat(obj.cantidadAbonoPag).toFixed(2)}</td>
+                                                <td class="text-left py-1 p-4 whitespace-nowrap">${obj.bancaPago == null ? obj.clasificacionPago == "2" ? obj.tipoAbonoPag + " CAMAL" : obj.tipoAbonoPag + " PAUL"  : limpiarNombreBanco(obj.bancaPago)} ${obj.fechaOperacionPag == fecha ? "" : formatFecha(obj.fechaOperacionPag)}</td>
                                             </tr> `
                             pasoUnaVez += 1;
                         }else{
                             pagosDetallados += `
-                                                <tr class="bg-white border-b contarFilaPagos border-black">
-                                                    <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-                                                    <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-                                                    <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-                                                    <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-                                                    <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-                                                    <td class="text-center whitespace-nowrap font-semibold flex"><div class="flex-1 border-l-2 border-r border-black py-1 px-2">S/. ${parseFloat(obj.cantidadAbonoPag).toFixed(2)}</div><div class="flex-1 border-l border-black py-1 px-2">${obj.bancaPago == null ? obj.clasificacionPago == "2" ? obj.tipoAbonoPag + " CAMAL" : obj.tipoAbonoPag + " PAUL"  : obj.bancaPago} ${obj.fechaOperacionPag == fecha ? "" : formatFecha(obj.fechaOperacionPag)}</div></td>
-                                                </tr> `
+                                            <tr class="bg-white border-b contarFilaPagos border-black">
+                                                <td class="text-center py-1 p-4 whitespace-nowrap font-semibold border-r-2 border-black">S/. ${parseFloat(obj.cantidadAbonoPag).toFixed(2)}</td>
+                                                <td class="text-left py-1 p-4 whitespace-nowrap">${obj.bancaPago == null ? obj.clasificacionPago == "2" ? obj.tipoAbonoPag + " CAMAL" : obj.tipoAbonoPag + " PAUL"  : limpiarNombreBanco(obj.bancaPago)} ${obj.fechaOperacionPag == fecha ? "" : formatFecha(obj.fechaOperacionPag)}</td>
+                                            </tr> `
                         }
                     }
                 }
@@ -7440,12 +7460,8 @@ jQuery(function ($) {
         if (masDeUnPago == 0){
             pagosDetallados += `
                 <tr class="bg-white border-b-2 contarFilaPagos border-black">
-                    <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-                    <td class="text-left py-1 px-4 whitespace-nowrap font-black border-r-2 border-black" id="idDeTablaPagos">PAGOS</td>
-                    <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-                    <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-                    <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                     <td class="text-center py-1 px-2 whitespace-nowrap font-semibold">S/. 0.00</td>
+                    <td class="text-center py-1 px-2 whitespace-nowrap font-semibold"></td>
                 </tr> `
         }
         masDeUnPago = 0;
@@ -7460,8 +7476,26 @@ jQuery(function ($) {
         $("#totalPagos").attr("value", pagosDeHoy)
         $("#totalSaldo").attr("value", totalSaldoAnteriorV)
 
+        bodyCuentaDelClientePagos += `
+        <tr class="bg-white border-b border-black contarFilaPagos">
+            <td class="text-center py-1 px-2 whitespace-nowrap font-semibold" colspan="2">S/. ${parseFloat(totalSaldoAnteriorV).toFixed(2)}</td>
+        </tr>
+        <tr class="bg-green-600 border-b border-black contarFilaPagos">
+            <td class="text-center py-1 px-2 whitespace-nowrap font-semibold" colspan="2">ABONO</td>
+        </tr>
+        ${pagosDetallados}
+        <tr class="bg-[#FFC000] border-b border-black">
+            <td class="text-center py-1 px-2 whitespace-nowrap font-semibold" colspan="2">SALDO ACTUAL</td>
+        </tr>
+        <tr class="bg-white border-b border-black">
+            <td class="text-center py-1 px-2 whitespace-nowrap font-semibold" colspan="2">S/. ${totalFormateado}</td>
+        </tr>
+        `
+
+        tbodyCuentaDelClientePagos.html(bodyCuentaDelClientePagos);
+
         return `
-        <tr class="bg-white border-b-2 border-t-2 border-black">
+        <tr class="bg-white border-b-2 border-t-2 border-black border-r-2">
             <td class="text-center py-1 px-2 whitespace-nowrap"></td>
             <td class="text-left py-1 px-4 whitespace-nowrap font-black border-r-2 border-black">TOTAL VENTA</td>
             <td class="text-center py-1 px-2 whitespace-nowrap"></td>
@@ -7469,25 +7503,56 @@ jQuery(function ($) {
             <td class="text-center py-1 px-2 whitespace-nowrap"></td>
             <td class="text-center py-1 px-2 whitespace-nowrap font-semibold bg-red-600 text-white">S/. ${parseFloat(totalVentaDelDia).toFixed(2)}</h5></td>
         </tr>
-        <tr class="border-b-2 bg-[#01B0F1] border-black">
-            <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-            <td class="text-left py-1 px-4 whitespace-nowrap font-black border-r-2 border-black">SALDO ANTERIOR</td>
-            <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-            <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-            <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-            <td class="text-center py-1 px-2 whitespace-nowrap font-semibold">S/. ${parseFloat(totalSaldoAnteriorV).toFixed(2)}</td>
-        </tr>
-
-        ${pagosDetallados}
-        <tr class="bg-[#FFC000] border-b-2 border-t-2 border-black">
-            <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-            <td class="text-left py-1 px-4 whitespace-nowrap font-black border-r-2 border-black">SALDO ACTUAL</td>
-            <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-            <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-            <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-            <td class="text-center py-1 px-2 whitespace-nowrap font-semibold">S/. ${totalFormateado}</td>
-        </tr>
         `;
+    }
+
+    function contarFilas() {
+        let contarVenta = $('.filasContarVenta').length;
+        let contarPagos = $('.contarFilaPagos').length;
+        contarPagos++; // Este incremento parece innecesario si ya estás contando correctamente las filas.
+    
+        if (contarVenta > contarPagos) {
+            console.log("filasContarVenta tiene más filas");
+    
+            let diferencia = contarVenta - contarPagos;
+            let nuevasFilas = "";
+    
+            for (var i = 0; i < diferencia; i++) {
+                let nuevaFila = `
+                    <tr class="bg-white contarFilaPagos border-b border-black">
+                        <td class="text-center py-1 p-4 whitespace-nowrap font-semibold border-r-2 border-black">&nbsp;</td>
+                        <td class="text-left py-1 p-4 whitespace-nowrap">&nbsp;</td>
+                    </tr>
+                `;
+                nuevasFilas += nuevaFila;
+            }
+    
+            // Agregar las nuevas filas al final de la tabla que contiene contarFilaPagos
+            $('.contarFilaPagos:last').after(nuevasFilas);
+    
+        } else {
+            console.log("contarFilaPagos tiene más filas o son iguales");
+
+            let diferencia = contarVenta - contarPagos;
+            let nuevasFilas = "";
+    
+            for (var i = 0; i < diferencia; i++) {
+                let nuevaFila = `
+                    <tr class="bg-white border-b border-black filasContarVenta border-r-2">
+                        <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[130px] text-xl" id="fechaTabla">&nbsp;</td>
+                        <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2">&nbsp;</td>
+                        <td class="text-center py-1 px-2 whitespace-nowrap">&nbsp;</td>
+                        <td class="text-center py-1 px-2 whitespace-nowrap">&nbsp;</td>
+                        <td class="text-center py-1 px-2 whitespace-nowrap">&nbsp;</td>
+                        <td class="text-center py-1 px-2 whitespace-nowrap">&nbsp;</td>
+                    </tr>
+                `;
+                nuevasFilas += nuevaFila;
+            }
+    
+            // Agregar las nuevas filas al final de la tabla que contiene filasContarVenta
+            $('.filasContarVenta:last').after(nuevasFilas);
+        }
     }
 
     function construirFilaDatos(item, fecha) {
@@ -7690,7 +7755,7 @@ jQuery(function ($) {
         let fechaExcel = formatearFecha(fecha)
 
         return `
-            <tr class="bg-white border-b border-black">
+            <tr class="bg-white border-b border-black filasContarVenta border-r-2">
                 <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[130px] text-xl" id="fechaTabla">${fechaExcel}</td>
                 <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2">${nombrePrimerEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadPrimerEspecie === 1 ? totalCantidadPrimerEspecie + ' Ud.' : totalCantidadPrimerEspecie + ' Uds.'}</td>
@@ -7698,7 +7763,7 @@ jQuery(function ($) {
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioPrimerEspecie}/Kg.</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaPrimerEspecie).toFixed(2)}</td>
             </tr>
-            <tr class="bg-white border-b border-black">
+            <tr class="bg-white border-b border-black filasContarVenta border-r-2">
                 <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[130px] text-xl" id="fechaTabla">${fechaExcel}</td>
                 <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2">${nombreSegundaEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadSegundaEspecie === 1 ? totalCantidadSegundaEspecie + ' Ud.' : totalCantidadSegundaEspecie + ' Uds.'}</td>
@@ -7706,7 +7771,7 @@ jQuery(function ($) {
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioSegundaEspecie}/Kg.</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaSegundaEspecie).toFixed(2)}</td>
             </tr>
-            <tr class="bg-white border-b border-black">
+            <tr class="bg-white border-b border-black filasContarVenta border-r-2">
                 <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[130px] text-xl" id="fechaTabla">${fechaExcel}</td>
                 <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2">${nombreDecimaSeptimaEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadDecimaSeptimaEspecie === 1 ? totalCantidadDecimaSeptimaEspecie + ' Ud.' : totalCantidadDecimaSeptimaEspecie + ' Uds.'}</td>
@@ -7714,7 +7779,7 @@ jQuery(function ($) {
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioDecimaSeptimaEspecie}/Kg.</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaDecimaSeptimaEspecie).toFixed(2)}</td>
             </tr>
-            <tr class="bg-white border-b border-black">
+            <tr class="bg-white border-b border-black filasContarVenta border-r-2">
                 <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[130px] text-xl" id="fechaTabla">${fechaExcel}</td>
                 <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2">${nombreTerceraEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadTerceraEspecie === 1 ? totalCantidadTerceraEspecie + ' Ud.' : totalCantidadTerceraEspecie + ' Uds.'}</td>
@@ -7722,7 +7787,7 @@ jQuery(function ($) {
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioTerceraEspecie}/Kg.</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaTerceraEspecie).toFixed(2)}</td>
             </tr>
-            <tr class="bg-white border-b border-black">
+            <tr class="bg-white border-b border-black filasContarVenta border-r-2">
                 <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[130px] text-xl" id="fechaTabla">${fechaExcel}</td>
                 <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2">${nombreCuartaEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadCuartaEspecie === 1 ? totalCantidadCuartaEspecie + ' Ud.' : totalCantidadCuartaEspecie + ' Uds.'}</td>
@@ -7730,7 +7795,7 @@ jQuery(function ($) {
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioCuartaEspecie}/Kg.</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaCuartaEspecie).toFixed(2)}</td>
             </tr>
-            <tr class="bg-white border-b border-black">
+            <tr class="bg-white border-b border-black filasContarVenta border-r-2">
                 <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[130px] text-xl" id="fechaTabla">${fechaExcel}</td>
                 <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2">${nombreDecimaOctavaEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadDecimaOctavaEspecie === 1 ? totalCantidadDecimaOctavaEspecie + ' Ud.' : totalCantidadDecimaOctavaEspecie + ' Uds.'}</td>
@@ -7738,7 +7803,7 @@ jQuery(function ($) {
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioDecimaOctavaEspecie}/Kg.</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaDecimaOctavaEspecie).toFixed(2)}</td>
             </tr>
-            <tr class="bg-white border-b border-black">
+            <tr class="bg-white border-b border-black filasContarVenta border-r-2">
                 <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[130px] text-xl" id="fechaTabla">${fechaExcel}</td>
                 <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2">${nombreDecimaSextaEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadDecimaSextaEspecie === 1 ? totalCantidadDecimaSextaEspecie + ' Ud.' : totalCantidadDecimaSextaEspecie + ' Uds.'}</td>
@@ -7746,7 +7811,7 @@ jQuery(function ($) {
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioDecimaSextaEspecie}/Kg.</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaDecimaSextaEspecie).toFixed(2)}</td>
             </tr>
-            <tr class="bg-white border-b border-black">
+            <tr class="bg-white border-b border-black filasContarVenta border-r-2">
                 <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[130px] text-xl" id="fechaTabla">${fechaExcel}</td>
                 <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2">${nombreDecimaNovenaEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadDecimaNovenaEspecie === 1 ? totalCantidadDecimaNovenaEspecie + ' Ud.' : totalCantidadDecimaNovenaEspecie + ' Uds.'}</td>
@@ -7754,7 +7819,7 @@ jQuery(function ($) {
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioDecimaNovenaEspecie}/Kg.</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaDecimaNovenaEspecie).toFixed(2)}</td>
             </tr>
-            <tr class="bg-white border-b border-black">
+            <tr class="bg-white border-b border-black filasContarVenta border-r-2">
                 <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[130px] text-xl" id="fechaTabla">${fechaExcel}</td>
                 <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2">${nombreQuintaEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadQuintaEspecie === 1 ? totalCantidadQuintaEspecie + ' Ud.' : totalCantidadQuintaEspecie + ' Uds.'}</td>
@@ -7762,7 +7827,7 @@ jQuery(function ($) {
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioQuintaEspecie}/Kg.</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaQuintaEspecie).toFixed(2)}</td>
             </tr>
-            <tr class="bg-white border-b border-black">
+            <tr class="bg-white border-b border-black filasContarVenta border-r-2">
                 <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[130px] text-xl" id="fechaTabla">${fechaExcel}</td>
                 <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2">${nombreVigesimaEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadVigesimaEspecie === 1 ? totalCantidadVigesimaEspecie + ' Ud.' : totalCantidadVigesimaEspecie + ' Uds.'}</td>
@@ -7771,7 +7836,7 @@ jQuery(function ($) {
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaVigesimaEspecie).toFixed(2)}</td>
             </tr>
             ${totalVentaSextaEspecie ? `
-            <tr class="bg-white border-b border-black">
+            <tr class="bg-white border-b border-black filasContarVenta border-r-2">
                 <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[130px] text-xl" id="fechaTabla">${fechaExcel}</td>
                 <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2">${nombreSextaEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadSextaEspecie === 1 ? totalCantidadSextaEspecie + ' Ud.' : totalCantidadSextaEspecie + ' Uds.'}</td>
@@ -7780,7 +7845,7 @@ jQuery(function ($) {
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaSextaEspecie).toFixed(2)}</td>
             </tr>` : ''}
             ${totalVentaVigesimaPrimeraEspecie ? `
-            <tr class="bg-white border-b border-black">
+            <tr class="bg-white border-b border-black filasContarVenta border-r-2">
                 <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[130px] text-xl" id="fechaTabla">${fechaExcel}</td>
                 <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2">${nombreVigesimaPrimeraEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadVigesimaPrimeraEspecie === 1 ? totalCantidadVigesimaPrimeraEspecie + ' Ud.' : totalCantidadVigesimaPrimeraEspecie + ' Uds.'}</td>
@@ -7789,7 +7854,7 @@ jQuery(function ($) {
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaVigesimaPrimeraEspecie).toFixed(2)}</td>
             </tr>` : ''}
             
-            <tr class="bg-white border-b border-black">
+            <tr class="bg-white border-b border-black filasContarVenta border-r-2">
                 <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[130px] text-xl" id="fechaTabla">${fechaExcel}</td>
                 <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2">${nombreSeptimaEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadSeptimaEspecie === 1 ? totalCantidadSeptimaEspecie + ' Ud.' : totalCantidadSeptimaEspecie + ' Uds.'}</td>
@@ -7798,7 +7863,7 @@ jQuery(function ($) {
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaSeptimaEspecie).toFixed(2)}</td>
             </tr>
             
-            <tr class="bg-white border-b border-black">
+            <tr class="bg-white border-b border-black filasContarVenta border-r-2">
                 <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[130px] text-xl" id="fechaTabla">${fechaExcel}</td>
                 <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2">${nombreVigesimaSegundaEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadVigesimaSegundaEspecie === 1 ? totalCantidadVigesimaSegundaEspecie + ' Ud.' : totalCantidadVigesimaSegundaEspecie + ' Uds.'}</td>
@@ -7807,7 +7872,7 @@ jQuery(function ($) {
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaVigesimaSegundaEspecie).toFixed(2)}</td>
             </tr>
             ${totalVentaOctavaEspecie ? `
-            <tr class="bg-white border-b border-black">
+            <tr class="bg-white border-b border-black filasContarVenta border-r-2">
                 <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[130px] text-xl" id="fechaTabla">${fechaExcel}</td>
                 <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2">${nombreOctavaEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadOctavaEspecie === 1 ? totalCantidadOctavaEspecie + ' Ud.' : totalCantidadOctavaEspecie + ' Uds.'}</td>
@@ -7816,7 +7881,7 @@ jQuery(function ($) {
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaOctavaEspecie).toFixed(2)}</td>
             </tr>` : ''}
             ${totalVentaVigesimaTerceraEspecie ? `
-            <tr class="bg-white border-b border-black">
+            <tr class="bg-white border-b border-black filasContarVenta border-r-2">
                 <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[130px] text-xl" id="fechaTabla">${fechaExcel}</td>
                 <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2">${nombreVigesimaTerceraEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadVigesimaTerceraEspecie === 1 ? totalCantidadVigesimaTerceraEspecie + ' Ud.' : totalCantidadVigesimaTerceraEspecie + ' Uds.'}</td>
@@ -7825,7 +7890,7 @@ jQuery(function ($) {
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaVigesimaTerceraEspecie).toFixed(2)}</td>
             </tr>` : ''}
             ${totalVentaDecimaEspecie ? `
-            <tr class="bg-white border-b border-black">
+            <tr class="bg-white border-b border-black filasContarVenta border-r-2">
                 <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[130px] text-xl" id="fechaTabla">${fechaExcel}</td>
                 <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2">${nombreDecimaEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadDecimaEspecie === 1 ? totalCantidadDecimaEspecie + ' Ud.' : totalCantidadDecimaEspecie + ' Uds.'}</td>
@@ -7834,7 +7899,7 @@ jQuery(function ($) {
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaDecimaEspecie).toFixed(2)}</td>
             </tr>` : ''}
             ${totalVentaDecimaPrimeraEspecie ? `
-            <tr class="bg-white border-b border-black">
+            <tr class="bg-white border-b border-black filasContarVenta border-r-2">
                 <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[130px] text-xl" id="fechaTabla">${fechaExcel}</td>
                 <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2">${nombreDecimaPrimeraEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadDecimaPrimeraEspecie === 1 ? totalCantidadDecimaPrimeraEspecie + ' Ud.' : totalCantidadDecimaPrimeraEspecie + ' Uds.'}</td>
@@ -7843,7 +7908,7 @@ jQuery(function ($) {
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaDecimaPrimeraEspecie).toFixed(2)}</td>
             </tr>` : ''}
             ${totalVentaDecimaSegundaEspecie ? `
-            <tr class="bg-white border-b border-black">
+            <tr class="bg-white border-b border-black filasContarVenta border-r-2">
                 <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[130px] text-xl" id="fechaTabla">${fechaExcel}</td>
                 <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2">${nombreDecimaSegundaEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadDecimaSegundaEspecie === 1 ? totalCantidadDecimaSegundaEspecie + ' Ud.' : totalCantidadDecimaSegundaEspecie + ' Uds.'}</td>
@@ -7852,7 +7917,7 @@ jQuery(function ($) {
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaDecimaSegundaEspecie).toFixed(2)}</td>
             </tr>` : ''}
             ${totalVentaDecimaTerceraEspecie ? `
-            <tr class="bg-white border-b border-black">
+            <tr class="bg-white border-b border-black filasContarVenta border-r-2">
                 <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[130px] text-xl" id="fechaTabla">${fechaExcel}</td>
                 <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2">${nombreDecimaTerceraEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadDecimaTerceraEspecie === 1 ? totalCantidadDecimaTerceraEspecie + ' Ud.' : totalCantidadDecimaTerceraEspecie + ' Uds.'}</td>
@@ -7861,7 +7926,7 @@ jQuery(function ($) {
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaDecimaTerceraEspecie).toFixed(2)}</td>
             </tr>` : ''}
             ${totalVentaDecimaCuartaEspecie ? `
-            <tr class="bg-white border-b border-black">
+            <tr class="bg-white border-b border-black filasContarVenta border-r-2">
                 <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[130px] text-xl" id="fechaTabla">${fechaExcel}</td>
                 <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2">${nombreDecimaCuartaEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadDecimaCuartaEspecie === 1 ? totalCantidadDecimaCuartaEspecie + ' Ud.' : totalCantidadDecimaCuartaEspecie + ' Uds.'}</td>
@@ -7870,7 +7935,7 @@ jQuery(function ($) {
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaDecimaCuartaEspecie).toFixed(2)}</td>
             </tr>` : ''}
             ${totalVentaDecimaQuintaEspecie ? `
-            <tr class="bg-white border-b border-black">
+            <tr class="bg-white border-b border-black filasContarVenta border-r-2">
                 <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[130px] text-xl" id="fechaTabla">${fechaExcel}</td>
                 <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2">${nombreDecimaQuintaEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadDecimaQuintaEspecie === 1 ? totalCantidadDecimaQuintaEspecie + ' Ud.' : totalCantidadDecimaQuintaEspecie + ' Uds.'}</td>
@@ -7879,7 +7944,7 @@ jQuery(function ($) {
                 <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaDecimaQuintaEspecie).toFixed(2)}</td>
             </tr>` : ''}
             ${totalVentaDescuento ? `
-            <tr class="bg-white border-b border-black">
+            <tr class="bg-white border-b border-black filasContarVenta border-r-2">
                 <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[130px] text-xl" id="fechaTabla">${fechaExcel}</td>
                 <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2">DESCUENTO</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadDescuento === 1 ? totalCantidadDescuento + ' Ud.' : totalCantidadDescuento + ' Uds.'}</td>
