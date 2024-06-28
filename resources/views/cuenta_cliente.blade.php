@@ -12,6 +12,7 @@
         </div>
         <label id="totalCuentaDia" class="hidden" value="0"></label>
         <label id="totalPagos" class="hidden" value="0"></label>
+        <label id="totalSaldo" class="hidden" value="0"></label>
         {{-- Segundo Contenedor Reporte Pagos --}}
         <div class="overflow-x-auto mt-0 mb-5 relative">
             <div class="flex flex-col gap-5">
@@ -66,20 +67,20 @@
         </div>
         {{-- Tabla --}}
         <div class="relative overflow-auto rounded-lg md:mb-5 border-2" id="hmtlCapture">
-            <h2 id="cuentaClienteNombre" class="py-5 text-2xl font-bold text-center bg-[#92D14E] text-black border-b-2"></h2>
+            <h2 id="cuentaClienteNombre" class="py-5 text-2xl font-bold text-center bg-[#92D14E] text-black border-b-2 border-black"></h2>
             <table class="border-collapse w-full text-black select-none relative text-sm" id="tablaCuentaDelCliente">
                 <thead id="headerCuentaDelCliente" class="bg-[#92D14E] text-black">
                     <tr class="h-10">
-                        <th class="px-4 font-bold whitespace-nowrap border-r-2 border-b-2">DIA</th>
-                        <th class="px-4 font-bold whitespace-nowrap border-r-2 border-b-2">PRESENTACIÓN</th>
-                        <th class="px-4 font-bold whitespace-nowrap border-r-2 border-b-2">UNIDADES</th>
-                        <th class="px-4 font-bold whitespace-nowrap border-r-2 border-b-2">PESO</th>
-                        <th class="px-4 font-bold whitespace-nowrap border-r-2 border-b-2">PRECIO</th>
-                        <th class="px-4 font-bold whitespace-nowrap border-b-2">TOTAL</th>
+                        <th class="px-4 font-bold whitespace-nowrap border-r-2 border-b-2 border-black">DIA</th>
+                        <th class="px-4 font-bold whitespace-nowrap border-r-2 border-b-2 border-black">PRESENTACIÓN</th>
+                        <th class="px-4 font-bold whitespace-nowrap border-r-2 border-b-2 border-black">UNIDADES</th>
+                        <th class="px-4 font-bold whitespace-nowrap border-r-2 border-b-2 border-black">PESO</th>
+                        <th class="px-4 font-bold whitespace-nowrap border-r-2 border-b-2 border-black">PRECIO</th>
+                        <th class="px-4 font-bold whitespace-nowrap border-b-2 border-black">TOTAL</th>
                     </tr>
                 </thead>
                 <tbody id="bodyCuentaDelCliente" class="font-semibold">
-                    <tr class="rounded-lg border-b-2 bg-white"><td colspan="7" class="text-center">No hay datos</td></tr>
+                    <tr class="rounded-lg border-b-2 border-black bg-white"><td colspan="7" class="text-center">No hay datos</td></tr>
                 </tbody>
             </table>
             <div id="mensajeDeuda" class="py-5 bg-white">

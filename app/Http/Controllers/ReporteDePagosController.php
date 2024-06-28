@@ -1108,7 +1108,7 @@ class ReporteDePagosController extends Controller
                 'ventaAnterior' => $this->consulta_VentaAnterior($codigoCli, $fechaInicio),
                 'pagoAnterior' => $this->consulta_PagoAnterior($codigoCli, $fechaInicio),
                 'totalVentaDescuentoAnterior' => $this->consulta_DescuentosAnteriores($codigoCli, $fechaInicio),
-                'pagosDetallados' => $this->consulta_pagosDetallados($codigoCli, $fechaInicio, $fechaFin)
+                'pagosDetallados' => $this->consulta_pagosDetallados($codigoCli, $fechaInicio)
             ];
     
             // Devuelve los datos en formato JSON
@@ -1542,22 +1542,24 @@ class ReporteDePagosController extends Controller
         return response()->json(['error' => 'Usuario no autenticado'], 401);
     }
 
-    public function consulta_pagosDetallados($codigoCli, $fechaInicio, $fechaFin) {
-
+    public function consulta_pagosDetallados($codigoCli, $fechaPagos) {
         if (Auth::check()) {
             // Realiza la consulta a la base de datos
             $datos = DB::select('
-            SELECT fechaOperacionPag,cantidadAbonoPag
-            FROM tb_pagos
-            WHERE codigoCli = ? AND estadoPago = 1 AND fechaOperacionPag BETWEEN ? AND ?', [$codigoCli, $fechaInicio, $fechaFin]);
+                SELECT fechaOperacionPag, cantidadAbonoPag, tipoAbonoPag, bancaPago, fechaRegistroPag, clasificacionPago
+                FROM tb_pagos
+                WHERE codigoCli = ? 
+                AND estadoPago = 1 
+                AND (fechaOperacionPag = ? OR fechaRegistroPag <= ?)
+                ORDER BY fechaOperacionPag asc', [$codigoCli, $fechaPagos, $fechaPagos]);
             
             // Devuelve los datos en formato JSON
             return response()->json($datos);
         }
-
+    
         // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
         return response()->json(['error' => 'Usuario no autenticado'], 401);
-    }
+    }    
 
     public function consulta_VerificarCodigoPago(Request $request){
 

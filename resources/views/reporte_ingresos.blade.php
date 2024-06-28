@@ -88,7 +88,7 @@
                     </li>
                 </ul>
                 <div id="defaultTabContent" class="">
-                    <div class="hidden overflow-auto aside_scrollED p-4 rounded-b-lg md:p-8" id="about" role="tabpanel" aria-labelledby="about-tab">
+                    <div class="hidden overflow-auto aside_scrollED p-2 rounded-b-lg" id="about" role="tabpanel" aria-labelledby="about-tab">
                         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                             <thead class="text-xs text-gray-100 uppercase bg-blue-600">
                                 <tr class="border-2 border-r-[1px]">
@@ -111,7 +111,7 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="hidden overflow-auto aside_scrollED p-4 bg-white rounded-b-lg md:p-8 dark:bg-gray-800" id="services" role="tabpanel" aria-labelledby="services-tab">
+                    <div class="hidden overflow-auto aside_scrollED p-2 bg-white rounded-b-lg dark:bg-gray-800" id="services" role="tabpanel" aria-labelledby="services-tab">
                         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                             <thead class="text-xs text-gray-100 uppercase bg-green-600">
                                 <tr class="border-2 border-l-[1px] border-r-[1px]">
@@ -134,7 +134,7 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="hidden overflow-auto aside_scrollED p-4 bg-white rounded-b-lg md:p-8 dark:bg-gray-800" id="paul" role="tabpanel" aria-labelledby="paul-tab">
+                    <div class="hidden overflow-auto aside_scrollED p-2 bg-white rounded-b-lg dark:bg-gray-800" id="paul" role="tabpanel" aria-labelledby="paul-tab">
                         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                             <thead class="text-xs text-gray-100 uppercase bg-violet-600">
                                 <tr class="border-2 border-l-[1px] border-r-[1px]">

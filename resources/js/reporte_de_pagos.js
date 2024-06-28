@@ -12,6 +12,8 @@ jQuery(function ($) {
     const fechaHoy = new Date(ahoraEnNY.getFullYear(), ahoraEnNY.getMonth(), ahoraEnNY.getDate()).toISOString().split('T')[0];
     var tipoUsuario = $('#tipoUsuario').data('id');
 
+    const fechaHoyTabla = new Date().toISOString().split('T')[0].split('-').reverse().join('-');
+
     // Asignar la fecha actual a los inputs
     $('#fechaDesdeReporteDePagos').val(fechaHoy);
     $('#fechaHastaReporteDePagos').val(fechaHoy);
@@ -1017,7 +1019,7 @@ jQuery(function ($) {
 
     function agregarFilaEntrada(tbody) {
         let nuevaFila = $('<tr class="bg-white pagosAgregarExcel border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
-        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarFormatoFechaTablas text-gray-900 dark:text-white" contenteditable="true">').text(`${fechaHoy}`));
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarFormatoFechaTablas text-gray-900 dark:text-white" contenteditable="true">').text(`${fechaHoyTabla}`));
         nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 font-medium text-gray-900 whitespace-nowrap dark:text-white uppercase nombreClienteTablaExcel" contenteditable="true">').text(""));
         nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarSoloNumerosDosDecimalesTablas" contenteditable="true">').text(""));
         nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap convertirMayusculasTablas" contenteditable="true">').text(""));
@@ -2387,11 +2389,13 @@ jQuery(function ($) {
     
     $(document).on('input', '.validarFormatoFechaTablas', function () {
         let inputValue = $(this).text();
-        let regex = /^\d{4}-\d{2}-\d{2}$/;
-    
-        // Verificar si el valor cumple con el formato de fecha YYYY-MM-DD
+        let regex = /^\d{2}-\d{2}-\d{4}$/; // Expresión regular para formato dd-mm-yyyy
+        
+        // Verificar si el valor cumple con el formato de fecha DD-MM-YYYY
         if (regex.test(inputValue)) {
-            let inputDate = new Date(inputValue);
+            // Convertir el formato dd-mm-yyyy a yyyy-mm-dd
+            let partesFecha = inputValue.split('-');
+            let inputDate = new Date(`${partesFecha[2]}-${partesFecha[1]}-${partesFecha[0]}`);
             let currentDate = new Date();
             
             // Comparar con la fecha actual (solo la fecha, sin la hora)
@@ -2403,7 +2407,7 @@ jQuery(function ($) {
         } else {
             $(this).css('background-color', 'rgb(185 28 28)');
         }
-    });
+    });    
 
     $(document).on('input', '.validarFormatoHoraTablas', function () {
         let inputValue = $(this).text();
@@ -2470,6 +2474,7 @@ jQuery(function ($) {
     
             // Obtener los datos de cada celda de la fila actual
             let fechaAgregarPagoCliente = filaActual.find('td:eq(0)').text().trim();
+            fechaAgregarPagoCliente = fechaAgregarPagoCliente.split('-').reverse().join('-');
             let nombreCliente = filaActual.find('td:eq(1)').text().trim();
             let montoAgregarPagoCliente = filaActual.find('td:eq(2)').text().trim();
             let codAgregarPagoCliente = filaActual.find('td:eq(3)').text().trim();
@@ -2631,6 +2636,7 @@ jQuery(function ($) {
             // Obtener los datos de cada celda de la fila actual
 
             let fechaAgregarPagoCliente = filaActual.find('td:eq(0)').text().trim();
+            fechaAgregarPagoCliente = fechaAgregarPagoCliente.split('-').reverse().join('-');
             let nombreCliente = filaActual.find('td:eq(1)').text().trim();
             let montoAgregarPagoCliente = filaActual.find('td:eq(2)').text().trim();
             let codAgregarPagoCliente = filaActual.find('td:eq(3)').text().trim();
@@ -2717,7 +2723,7 @@ jQuery(function ($) {
 
     function agregarFilaEntrada2(tbody) {
         let nuevaFila = $('<tr class="bg-white pagosAgregarExcel2 border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
-        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarFormatoFechaTablas text-gray-900 dark:text-white" contenteditable="true">').text(`${fechaHoy}`)); //fecha
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarFormatoFechaTablas text-gray-900 dark:text-white" contenteditable="true">').text(`${fechaHoyTabla}`)); //fecha
         nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 font-medium text-gray-900 whitespace-nowrap dark:text-white uppercase nombreClienteTablaExcel" contenteditable="true">').text("")); //nombre
         nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarSoloNumerosDosDecimalesTablas" contenteditable="true">').text("")); //importe
         nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap convertirMayusculasTablas" contenteditable="true">').text("")); //codigo
@@ -2861,6 +2867,7 @@ jQuery(function ($) {
     
             // Obtener los datos de cada celda de la fila actual
             let fechaAgregarPagoCliente = filaActual.find('td:eq(0)').text().trim();
+            fechaAgregarPagoCliente = fechaAgregarPagoCliente.split('-').reverse().join('-');
             let nombreCliente = filaActual.find('td:eq(1)').text().trim();
             let montoAgregarPagoCliente = filaActual.find('td:eq(2)').text().trim();
             let formaDePago = filaActual.find('td:eq(3)').text().trim();
@@ -2946,7 +2953,7 @@ jQuery(function ($) {
 
     function agregarFilaEntrada3(tbody) {
         let nuevaFila = $('<tr class="bg-white pagosAgregarExcel3 border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
-        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarFormatoFechaTablas text-gray-900 dark:text-white" contenteditable="true">').text(`${fechaHoy}`));
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarFormatoFechaTablas text-gray-900 dark:text-white" contenteditable="true">').text(`${fechaHoyTabla}`));
         nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 font-medium text-gray-900 whitespace-nowrap dark:text-white uppercase nombreClienteTablaExcel" contenteditable="true">').text(""));
         nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarSoloNumerosDosDecimalesTablas" contenteditable="true">').text(""));
         nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap hidden" contenteditable="false">').text("Efectivo"));
@@ -3101,6 +3108,7 @@ jQuery(function ($) {
     
             // Obtener los datos de cada celda de la fila actual
             let fechaAgregarPagoCliente = filaActual.find('td:eq(0)').text().trim();
+            fechaAgregarPagoCliente = fechaAgregarPagoCliente.split('-').reverse().join('-');
             let nombreCliente = filaActual.find('td:eq(1)').text().trim();
             let montoAgregarPagoCliente = filaActual.find('td:eq(2)').text().trim();
             let codAgregarPagoCliente = filaActual.find('td:eq(3)').text().trim();
@@ -3186,7 +3194,7 @@ jQuery(function ($) {
 
     function agregarFilaEntrada4(tbody) {
         let nuevaFila = $('<tr class="bg-white pagosAgregarExcel4 border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
-        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarFormatoFechaTablas text-gray-900 dark:text-white" contenteditable="true">').text(`${fechaHoy}`)); //fecha
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarFormatoFechaTablas text-gray-900 dark:text-white" contenteditable="true">').text(`${fechaHoyTabla}`)); //fecha
         nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 font-medium text-gray-900 whitespace-nowrap dark:text-white uppercase nombreClienteTablaExcel" contenteditable="true">').text("")); //nombre cliente
         nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarSoloNumerosDosDecimalesTablas" contenteditable="true">').text("")); //importe
         nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap convertirMayusculasTablas" contenteditable="true">').text("")); //codigo
@@ -3301,6 +3309,7 @@ jQuery(function ($) {
     
             // Obtener los datos de cada celda de la fila actual
             let fechaAgregEgresoCliente = filaActual.find('td:eq(0)').text().trim();
+            fechaAgregEgresoCliente = fechaAgregEgresoCliente.split('-').reverse().join('-');
             let usoReporteEgreso = filaActual.find('td:eq(1)').text().trim();
             let cantidadAgregEgresoCliente = filaActual.find('td:eq(2)').text().trim();
             let montoNuevoAgregEgresoCliente = filaActual.find('td:eq(3)').text().trim();
@@ -3384,7 +3393,7 @@ jQuery(function ($) {
 
     function agregarFilaEntradaEgreso1(tbody) {
         let nuevaFila = $('<tr class="bg-white pagosAgregarExcelEgreso1 border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
-        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarFormatoFechaTablas text-gray-900 dark:text-white" contenteditable="true">').text(`${fechaHoy}`));
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarFormatoFechaTablas text-gray-900 dark:text-white" contenteditable="true">').text(`${fechaHoyTabla}`));
         nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 font-medium text-gray-900 whitespace-nowrap convertirMayusculasTablas dark:text-white" contenteditable="true">').text(""));
         nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarSoloNumerosDosDecimalesTablas accionarSumaMonto" contenteditable="true">').text("")); // cantidad
         nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarSoloNumerosDosDecimalesTablas accionarSumaMonto" contenteditable="true">').text("")); // precio
@@ -3491,6 +3500,7 @@ jQuery(function ($) {
     
             // Obtener los datos de cada celda de la fila actual
             let fechaAgregEgresoCliente = filaActual.find('td:eq(0)').text().trim();
+            fechaAgregEgresoCliente = fechaAgregEgresoCliente.split('-').reverse().join('-');
             let usoReporteEgreso = filaActual.find('td:eq(1)').text().trim();
             let montoAgregEgresoCliente = filaActual.find('td:eq(2)').text().trim();
             let formaDePagoEgreso = filaActual.find('td:eq(3)').text().trim();
@@ -3574,7 +3584,7 @@ jQuery(function ($) {
 
     function agregarFilaEntradaEgreso2(tbody) {
         let nuevaFila = $('<tr class="bg-white pagosAgregarExcelEgreso2 border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
-        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarFormatoFechaTablas text-gray-900 dark:text-white" contenteditable="true">').text(`${fechaHoy}`));
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarFormatoFechaTablas text-gray-900 dark:text-white" contenteditable="true">').text(`${fechaHoyTabla}`));
         nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 font-medium text-gray-900 whitespace-nowrap convertirMayusculasTablas dark:text-white" contenteditable="true">').text(""));
         nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarSoloNumerosDosDecimalesTablas" contenteditable="true">').text(""));
         nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap hidden" contenteditable="true">').text("Efectivo"));
