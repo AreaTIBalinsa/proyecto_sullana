@@ -39,6 +39,7 @@ class ReporteIngresosController extends Controller
                     tb_pagos.bancaPago,
                     tb_pagos.clasificacionPago,
                     tb_pagos.codigoCli,
+                    tb_pagos.campoExtra,
                     IFNULL(CONCAT_WS(" ", nombresCli, apellidoPaternoCli, apellidoMaternoCli), "") AS nombreCompleto
                 FROM 
                     tb_pagos

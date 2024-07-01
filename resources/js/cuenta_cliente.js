@@ -7385,6 +7385,7 @@ jQuery(function ($) {
         let masDeUnPago = 0;
 
         let pagosDeHoy = 0;
+        let pagosSumados = 0;
 
         let pasoUnaVez = 0;
 
@@ -7429,12 +7430,14 @@ jQuery(function ($) {
                 if (obj.fechaOperacionPag == fecha || obj.fechaRegistroPag == fecha){
                     if (obj.fechaOperacionPag == fecha){
                         pagosDeHoy += parseFloat(obj.cantidadAbonoPag)
+                    }else{
+                        pagosSumados += parseFloat(obj.cantidadAbonoPag)
                     }
                     if (masDeUnPago == 0){
                         pagosDetallados += `
                                             <tr class="bg-white border-b contarFilaPagos border-black">
                                                 <td class="text-center py-1 p-4 whitespace-nowrap font-semibold border-r-2 border-black">S/. ${parseFloat(obj.cantidadAbonoPag).toFixed(2)}</td>
-                                                <td class="text-left py-1 p-4 whitespace-nowrap">${obj.bancaPago == null ? obj.clasificacionPago == "2" ? obj.tipoAbonoPag + " CAMAL" : obj.tipoAbonoPag + " PAUL"  : limpiarNombreBanco(obj.bancaPago)} ${obj.fechaOperacionPag == fecha ? "" : formatFecha(obj.fechaOperacionPag)}</td>
+                                                <td class="text-center py-1 p-4 whitespace-nowrap text-[#162B4E]">${obj.bancaPago == null ? obj.clasificacionPago == "2" ? obj.tipoAbonoPag + " CAMAL" : obj.tipoAbonoPag + " PAUL"  : limpiarNombreBanco(obj.bancaPago)} ${obj.fechaOperacionPag == fecha ? "" : formatFecha(obj.fechaOperacionPag)}</td>
                                             </tr>`
                         masDeUnPago += 1;
                     }else{
@@ -7442,14 +7445,14 @@ jQuery(function ($) {
                             pagosDetallados += `
                                             <tr class="bg-white border-b contarFilaPagos border-black">
                                                 <td class="text-center py-1 p-4 whitespace-nowrap font-semibold border-r-2 border-black">S/. ${parseFloat(obj.cantidadAbonoPag).toFixed(2)}</td>
-                                                <td class="text-left py-1 p-4 whitespace-nowrap">${obj.bancaPago == null ? obj.clasificacionPago == "2" ? obj.tipoAbonoPag + " CAMAL" : obj.tipoAbonoPag + " PAUL"  : limpiarNombreBanco(obj.bancaPago)} ${obj.fechaOperacionPag == fecha ? "" : formatFecha(obj.fechaOperacionPag)}</td>
+                                                <td class="text-center py-1 p-4 whitespace-nowrap text-[#162B4E]">${obj.bancaPago == null ? obj.clasificacionPago == "2" ? obj.tipoAbonoPag + " CAMAL" : obj.tipoAbonoPag + " PAUL"  : limpiarNombreBanco(obj.bancaPago)} ${obj.fechaOperacionPag == fecha ? "" : formatFecha(obj.fechaOperacionPag)}</td>
                                             </tr> `
                             pasoUnaVez += 1;
                         }else{
                             pagosDetallados += `
                                             <tr class="bg-white border-b contarFilaPagos border-black">
                                                 <td class="text-center py-1 p-4 whitespace-nowrap font-semibold border-r-2 border-black">S/. ${parseFloat(obj.cantidadAbonoPag).toFixed(2)}</td>
-                                                <td class="text-left py-1 p-4 whitespace-nowrap">${obj.bancaPago == null ? obj.clasificacionPago == "2" ? obj.tipoAbonoPag + " CAMAL" : obj.tipoAbonoPag + " PAUL"  : limpiarNombreBanco(obj.bancaPago)} ${obj.fechaOperacionPag == fecha ? "" : formatFecha(obj.fechaOperacionPag)}</td>
+                                                <td class="text-center py-1 p-4 whitespace-nowrap text-[#162B4E]">${obj.bancaPago == null ? obj.clasificacionPago == "2" ? obj.tipoAbonoPag + " CAMAL" : obj.tipoAbonoPag + " PAUL"  : limpiarNombreBanco(obj.bancaPago)} ${obj.fechaOperacionPag == fecha ? "" : formatFecha(obj.fechaOperacionPag)}</td>
                                             </tr> `
                         }
                     }
@@ -7459,9 +7462,9 @@ jQuery(function ($) {
 
         if (masDeUnPago == 0){
             pagosDetallados += `
-                <tr class="bg-white border-b-2 contarFilaPagos border-black">
-                    <td class="text-center py-1 px-2 whitespace-nowrap font-semibold">S/. 0.00</td>
-                    <td class="text-center py-1 px-2 whitespace-nowrap font-semibold"></td>
+                <tr class="bg-white contarFilaPagos border-black">
+                    <td class="text-center py-1 px-2 whitespace-nowrap border-b border-black border-r-2 font-semibold">S/. 0.00</td>
+                    <td class="text-center py-1 px-2 whitespace-nowrap border-b border-black font-semibold"></td>
                 </tr> `
         }
         masDeUnPago = 0;
@@ -7476,19 +7479,21 @@ jQuery(function ($) {
         $("#totalPagos").attr("value", pagosDeHoy)
         $("#totalSaldo").attr("value", totalSaldoAnteriorV)
 
+        let totalSaldoAnteriorV_doble = parseFloat(totalSaldoAnteriorV) < 0 ? parseFloat(totalSaldoAnteriorV) + pagosSumados : parseFloat(totalSaldoAnteriorV) - pagosSumados;
+
         bodyCuentaDelClientePagos += `
         <tr class="bg-white border-b border-black contarFilaPagos">
-            <td class="text-center py-1 px-2 whitespace-nowrap font-semibold" colspan="2">S/. ${parseFloat(totalSaldoAnteriorV).toFixed(2)}</td>
-        </tr>
-        <tr class="bg-green-600 border-b border-black contarFilaPagos">
-            <td class="text-center py-1 px-2 whitespace-nowrap font-semibold" colspan="2">ABONO</td>
+            <td class="text-center py-1 px-2 whitespace-nowrap font-semibold border-r-2 border-black"></td>
+            <td class="text-center py-1 px-2 whitespace-nowrap font-bold border-b-2 border-black text-red-600">S/. ${parseFloat(totalSaldoAnteriorV).toFixed(2)}</td>
         </tr>
         ${pagosDetallados}
-        <tr class="bg-[#FFC000] border-b border-black">
-            <td class="text-center py-1 px-2 whitespace-nowrap font-semibold" colspan="2">SALDO ACTUAL</td>
+        <tr class="border-b border-black">
+            <td class="bg-white text-center py-1 px-2 whitespace-nowrap font-semibold border-r-2 border-black"></td>
+            <td class="bg-[#FFC000] text-center py-1 px-2 whitespace-nowrap font-semibold">SALDO ACTUAL</td>
         </tr>
         <tr class="bg-white border-b border-black">
-            <td class="text-center py-1 px-2 whitespace-nowrap font-semibold" colspan="2">S/. ${totalFormateado}</td>
+            <td class="text-center py-1 px-2 whitespace-nowrap font-bold border-r-2 border-black border-t-2">S/. ${pagosDeHoy}</td>
+            <td class="text-center py-1 px-2 whitespace-nowrap font-bold text-red-600 border-t-2 border-black">S/. ${totalFormateado}</td>
         </tr>
         `
 
@@ -7496,12 +7501,12 @@ jQuery(function ($) {
 
         return `
         <tr class="bg-white border-b-2 border-t-2 border-black border-r-2">
-            <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-            <td class="text-left py-1 px-4 whitespace-nowrap font-black border-r-2 border-black">TOTAL VENTA</td>
-            <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-            <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-            <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-            <td class="text-center py-1 px-2 whitespace-nowrap font-semibold bg-red-600 text-white">S/. ${parseFloat(totalVentaDelDia).toFixed(2)}</h5></td>
+            <td class="text-center py-1 px-2 whitespace-nowrap w-[90px]"></td>
+            <td class="text-left py-1 px-4 whitespace-nowrap w-[200px] font-black border-r-2 border-black">TOTAL VENTA</td>
+            <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]"></td>
+            <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]"></td>
+            <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]"></td>
+            <td class="text-center py-1 px-2 whitespace-nowrap w-[150px] font-bold bg-red-600 text-white">S/. ${parseFloat(totalVentaDelDia).toFixed(2)}</h5></td>
         </tr>
         `;
     }
@@ -7756,201 +7761,299 @@ jQuery(function ($) {
 
         return `
             <tr class="bg-white border-b border-black filasContarVenta border-r-2">
-                <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[130px] text-xl" id="fechaTabla">${fechaExcel}</td>
-                <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2">${nombrePrimerEspecieGlobal}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadPrimerEspecie === 1 ? totalCantidadPrimerEspecie + ' Ud.' : totalCantidadPrimerEspecie + ' Uds.'}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoPrimerEspecie).toFixed(2)} Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioPrimerEspecie}/Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaPrimerEspecie).toFixed(2)}</td>
+                <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[90px] text-lg" id="fechaTabla">${fechaExcel}</td>
+                <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2 w-[200px] h-[30px]">&nbsp;</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px] h-[30px]">&nbsp;</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px] h-[30px]">&nbsp;</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px] h-[30px]">&nbsp;</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px] h-[30px]">&nbsp;</td>
             </tr>
+            ${totalVentaPrimerEspecie ? `
+            <tr class="bg-[#FEFF01] border-b border-black filasContarVenta border-r-2">
+                <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[90px] text-lg" id="fechaTabla">${fechaExcel}</td>
+                <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2 w-[200px]">${nombrePrimerEspecieGlobal}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">${totalCantidadPrimerEspecie === 1 ? totalCantidadPrimerEspecie + ' Ud.' : totalCantidadPrimerEspecie + ' Uds.'}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">${parseFloat(totalPesoPrimerEspecie).toFixed(2)} Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${precioPrimerEspecie}/Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${parseFloat(totalVentaPrimerEspecie).toFixed(2)}</td>
+            </tr>` : `
             <tr class="bg-white border-b border-black filasContarVenta border-r-2">
-                <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[130px] text-xl" id="fechaTabla">${fechaExcel}</td>
-                <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2">${nombreSegundaEspecieGlobal}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadSegundaEspecie === 1 ? totalCantidadSegundaEspecie + ' Ud.' : totalCantidadSegundaEspecie + ' Uds.'}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoSegundaEspecie).toFixed(2)} Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioSegundaEspecie}/Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaSegundaEspecie).toFixed(2)}</td>
-            </tr>
+                <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[90px] text-lg" id="fechaTabla">${fechaExcel}</td>
+                <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2 w-[200px]">${nombrePrimerEspecieGlobal}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">${totalCantidadPrimerEspecie === 1 ? totalCantidadPrimerEspecie + ' Ud.' : totalCantidadPrimerEspecie + ' Uds.'}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">${parseFloat(totalPesoPrimerEspecie).toFixed(2)} Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${precioPrimerEspecie}/Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${parseFloat(totalVentaPrimerEspecie).toFixed(2)}</td>
+            </tr>`}
+            ${totalVentaSegundaEspecie ? `
+            <tr class="bg-[#FEFF01] border-b border-black filasContarVenta border-r-2">
+                <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[90px] text-lg" id="fechaTabla">${fechaExcel}</td>
+                <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2 w-[200px]">${nombreSegundaEspecieGlobal}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">${totalCantidadSegundaEspecie === 1 ? totalCantidadSegundaEspecie + ' Ud.' : totalCantidadSegundaEspecie + ' Uds.'}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">${parseFloat(totalPesoSegundaEspecie).toFixed(2)} Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${precioSegundaEspecie}/Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${parseFloat(totalVentaSegundaEspecie).toFixed(2)}</td>
+            </tr>` : `
             <tr class="bg-white border-b border-black filasContarVenta border-r-2">
-                <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[130px] text-xl" id="fechaTabla">${fechaExcel}</td>
-                <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2">${nombreDecimaSeptimaEspecieGlobal}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadDecimaSeptimaEspecie === 1 ? totalCantidadDecimaSeptimaEspecie + ' Ud.' : totalCantidadDecimaSeptimaEspecie + ' Uds.'}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoDecimaSeptimaEspecie).toFixed(2)} Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioDecimaSeptimaEspecie}/Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaDecimaSeptimaEspecie).toFixed(2)}</td>
-            </tr>
+                <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[90px] text-lg" id="fechaTabla">${fechaExcel}</td>
+                <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2 w-[200px]">${nombreSegundaEspecieGlobal}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">${totalCantidadSegundaEspecie === 1 ? totalCantidadSegundaEspecie + ' Ud.' : totalCantidadSegundaEspecie + ' Uds.'}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">${parseFloat(totalPesoSegundaEspecie).toFixed(2)} Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${precioSegundaEspecie}/Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${parseFloat(totalVentaSegundaEspecie).toFixed(2)}</td>
+            </tr>`}
+            ${totalVentaDecimaSeptimaEspecie ? `
+            <tr class="bg-[#FEFF01] border-b border-black filasContarVenta border-r-2">
+                <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[90px] text-lg" id="fechaTabla">${fechaExcel}</td>
+                <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2 w-[200px]">${nombreDecimaSeptimaEspecieGlobal}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">${totalCantidadDecimaSeptimaEspecie === 1 ? totalCantidadDecimaSeptimaEspecie + ' Ud.' : totalCantidadDecimaSeptimaEspecie + ' Uds.'}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">${parseFloat(totalPesoDecimaSeptimaEspecie).toFixed(2)} Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${precioDecimaSeptimaEspecie}/Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${parseFloat(totalVentaDecimaSeptimaEspecie).toFixed(2)}</td>
+            </tr>` : `
             <tr class="bg-white border-b border-black filasContarVenta border-r-2">
-                <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[130px] text-xl" id="fechaTabla">${fechaExcel}</td>
-                <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2">${nombreTerceraEspecieGlobal}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadTerceraEspecie === 1 ? totalCantidadTerceraEspecie + ' Ud.' : totalCantidadTerceraEspecie + ' Uds.'}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoTerceraEspecie).toFixed(2)} Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioTerceraEspecie}/Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaTerceraEspecie).toFixed(2)}</td>
-            </tr>
+                <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[90px] text-lg" id="fechaTabla">${fechaExcel}</td>
+                <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2 w-[200px]">${nombreDecimaSeptimaEspecieGlobal}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">${totalCantidadDecimaSeptimaEspecie === 1 ? totalCantidadDecimaSeptimaEspecie + ' Ud.' : totalCantidadDecimaSeptimaEspecie + ' Uds.'}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">${parseFloat(totalPesoDecimaSeptimaEspecie).toFixed(2)} Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${precioDecimaSeptimaEspecie}/Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${parseFloat(totalVentaDecimaSeptimaEspecie).toFixed(2)}</td>
+            </tr>`}
+            ${totalVentaTerceraEspecie ? `
+            <tr class="bg-[#FEFF01] border-b border-black filasContarVenta border-r-2">
+                <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[90px] text-lg" id="fechaTabla">${fechaExcel}</td>
+                <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2 w-[200px]">${nombreTerceraEspecieGlobal}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">${totalCantidadTerceraEspecie === 1 ? totalCantidadTerceraEspecie + ' Ud.' : totalCantidadTerceraEspecie + ' Uds.'}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">${parseFloat(totalPesoTerceraEspecie).toFixed(2)} Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${precioTerceraEspecie}/Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${parseFloat(totalVentaTerceraEspecie).toFixed(2)}</td>
+            </tr>` : `
             <tr class="bg-white border-b border-black filasContarVenta border-r-2">
-                <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[130px] text-xl" id="fechaTabla">${fechaExcel}</td>
-                <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2">${nombreCuartaEspecieGlobal}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadCuartaEspecie === 1 ? totalCantidadCuartaEspecie + ' Ud.' : totalCantidadCuartaEspecie + ' Uds.'}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoCuartaEspecie).toFixed(2)} Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioCuartaEspecie}/Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaCuartaEspecie).toFixed(2)}</td>
-            </tr>
+                <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[90px] text-lg" id="fechaTabla">${fechaExcel}</td>
+                <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2 w-[200px]">${nombreTerceraEspecieGlobal}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">${totalCantidadTerceraEspecie === 1 ? totalCantidadTerceraEspecie + ' Ud.' : totalCantidadTerceraEspecie + ' Uds.'}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">${parseFloat(totalPesoTerceraEspecie).toFixed(2)} Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${precioTerceraEspecie}/Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${parseFloat(totalVentaTerceraEspecie).toFixed(2)}</td>
+            </tr>`}
+            ${totalVentaCuartaEspecie ? `
+            <tr class="bg-[#FEFF01] border-b border-black filasContarVenta border-r-2">
+                <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[90px] text-lg" id="fechaTabla">${fechaExcel}</td>
+                <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2 w-[200px]">${nombreCuartaEspecieGlobal}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">${totalCantidadCuartaEspecie === 1 ? totalCantidadCuartaEspecie + ' Ud.' : totalCantidadCuartaEspecie + ' Uds.'}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">${parseFloat(totalPesoCuartaEspecie).toFixed(2)} Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${precioCuartaEspecie}/Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${parseFloat(totalVentaCuartaEspecie).toFixed(2)}</td>
+            </tr>` : `
             <tr class="bg-white border-b border-black filasContarVenta border-r-2">
-                <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[130px] text-xl" id="fechaTabla">${fechaExcel}</td>
-                <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2">${nombreDecimaOctavaEspecieGlobal}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadDecimaOctavaEspecie === 1 ? totalCantidadDecimaOctavaEspecie + ' Ud.' : totalCantidadDecimaOctavaEspecie + ' Uds.'}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoDecimaOctavaEspecie).toFixed(2)} Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioDecimaOctavaEspecie}/Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaDecimaOctavaEspecie).toFixed(2)}</td>
-            </tr>
+                <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[90px] text-lg" id="fechaTabla">${fechaExcel}</td>
+                <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2 w-[200px]">${nombreCuartaEspecieGlobal}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">${totalCantidadCuartaEspecie === 1 ? totalCantidadCuartaEspecie + ' Ud.' : totalCantidadCuartaEspecie + ' Uds.'}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">${parseFloat(totalPesoCuartaEspecie).toFixed(2)} Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${precioCuartaEspecie}/Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${parseFloat(totalVentaCuartaEspecie).toFixed(2)}</td>
+            </tr>`}
+            ${totalVentaDecimaOctavaEspecie ? `
+            <tr class="bg-[#FEFF01] border-b border-black filasContarVenta border-r-2">
+                <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[90px] text-lg" id="fechaTabla">${fechaExcel}</td>
+                <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2 w-[200px]">${nombreDecimaOctavaEspecieGlobal}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">${totalCantidadDecimaOctavaEspecie === 1 ? totalCantidadDecimaOctavaEspecie + ' Ud.' : totalCantidadDecimaOctavaEspecie + ' Uds.'}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">${parseFloat(totalPesoDecimaOctavaEspecie).toFixed(2)} Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${precioDecimaOctavaEspecie}/Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${parseFloat(totalVentaDecimaOctavaEspecie).toFixed(2)}</td>
+            </tr>` : `
             <tr class="bg-white border-b border-black filasContarVenta border-r-2">
-                <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[130px] text-xl" id="fechaTabla">${fechaExcel}</td>
-                <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2">${nombreDecimaSextaEspecieGlobal}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadDecimaSextaEspecie === 1 ? totalCantidadDecimaSextaEspecie + ' Ud.' : totalCantidadDecimaSextaEspecie + ' Uds.'}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoDecimaSextaEspecie).toFixed(2)} Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioDecimaSextaEspecie}/Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaDecimaSextaEspecie).toFixed(2)}</td>
-            </tr>
+                <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[90px] text-lg" id="fechaTabla">${fechaExcel}</td>
+                <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2 w-[200px]">${nombreDecimaOctavaEspecieGlobal}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">${totalCantidadDecimaOctavaEspecie === 1 ? totalCantidadDecimaOctavaEspecie + ' Ud.' : totalCantidadDecimaOctavaEspecie + ' Uds.'}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">${parseFloat(totalPesoDecimaOctavaEspecie).toFixed(2)} Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${precioDecimaOctavaEspecie}/Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${parseFloat(totalVentaDecimaOctavaEspecie).toFixed(2)}</td>
+            </tr>`}
+            ${totalVentaDecimaSextaEspecie ? `
+            <tr class="bg-[#FEFF01] border-b border-black filasContarVenta border-r-2">
+                <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[90px] text-lg" id="fechaTabla">${fechaExcel}</td>
+                <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2 w-[200px]">${nombreDecimaSextaEspecieGlobal}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">${totalCantidadDecimaSextaEspecie === 1 ? totalCantidadDecimaSextaEspecie + ' Ud.' : totalCantidadDecimaSextaEspecie + ' Uds.'}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">${parseFloat(totalPesoDecimaSextaEspecie).toFixed(2)} Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${precioDecimaSextaEspecie}/Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${parseFloat(totalVentaDecimaSextaEspecie).toFixed(2)}</td>
+            </tr>` : `
             <tr class="bg-white border-b border-black filasContarVenta border-r-2">
-                <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[130px] text-xl" id="fechaTabla">${fechaExcel}</td>
-                <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2">${nombreDecimaNovenaEspecieGlobal}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadDecimaNovenaEspecie === 1 ? totalCantidadDecimaNovenaEspecie + ' Ud.' : totalCantidadDecimaNovenaEspecie + ' Uds.'}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoDecimaNovenaEspecie).toFixed(2)} Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioDecimaNovenaEspecie}/Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaDecimaNovenaEspecie).toFixed(2)}</td>
-            </tr>
+                <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[90px] text-lg" id="fechaTabla">${fechaExcel}</td>
+                <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2 w-[200px]">${nombreDecimaSextaEspecieGlobal}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">${totalCantidadDecimaSextaEspecie === 1 ? totalCantidadDecimaSextaEspecie + ' Ud.' : totalCantidadDecimaSextaEspecie + ' Uds.'}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">${parseFloat(totalPesoDecimaSextaEspecie).toFixed(2)} Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${precioDecimaSextaEspecie}/Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${parseFloat(totalVentaDecimaSextaEspecie).toFixed(2)}</td>
+            </tr>`}
+            ${totalVentaDecimaNovenaEspecie ? `
+            <tr class="bg-[#FEFF01] border-b border-black filasContarVenta border-r-2">
+                <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[90px] text-lg" id="fechaTabla">${fechaExcel}</td>
+                <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2 w-[200px]">${nombreDecimaNovenaEspecieGlobal}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">${totalCantidadDecimaNovenaEspecie === 1 ? totalCantidadDecimaNovenaEspecie + ' Ud.' : totalCantidadDecimaNovenaEspecie + ' Uds.'}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">${parseFloat(totalPesoDecimaNovenaEspecie).toFixed(2)} Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${precioDecimaNovenaEspecie}/Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${parseFloat(totalVentaDecimaNovenaEspecie).toFixed(2)}</td>
+            </tr>` : `
             <tr class="bg-white border-b border-black filasContarVenta border-r-2">
-                <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[130px] text-xl" id="fechaTabla">${fechaExcel}</td>
-                <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2">${nombreQuintaEspecieGlobal}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadQuintaEspecie === 1 ? totalCantidadQuintaEspecie + ' Ud.' : totalCantidadQuintaEspecie + ' Uds.'}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoQuintaEspecie).toFixed(2)} Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioQuintaEspecie}/Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaQuintaEspecie).toFixed(2)}</td>
-            </tr>
+                <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[90px] text-lg" id="fechaTabla">${fechaExcel}</td>
+                <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2 w-[200px]">${nombreDecimaNovenaEspecieGlobal}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">${totalCantidadDecimaNovenaEspecie === 1 ? totalCantidadDecimaNovenaEspecie + ' Ud.' : totalCantidadDecimaNovenaEspecie + ' Uds.'}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">${parseFloat(totalPesoDecimaNovenaEspecie).toFixed(2)} Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${precioDecimaNovenaEspecie}/Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${parseFloat(totalVentaDecimaNovenaEspecie).toFixed(2)}</td>
+            </tr>`}
+            ${totalVentaQuintaEspecie ? `
+            <tr class="bg-[#FEFF01] border-b border-black filasContarVenta border-r-2">
+                <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[90px] text-lg" id="fechaTabla">${fechaExcel}</td>
+                <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2 w-[200px]">${nombreQuintaEspecieGlobal}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">${totalCantidadQuintaEspecie === 1 ? totalCantidadQuintaEspecie + ' Ud.' : totalCantidadQuintaEspecie + ' Uds.'}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">${parseFloat(totalPesoQuintaEspecie).toFixed(2)} Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${precioQuintaEspecie}/Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${parseFloat(totalVentaQuintaEspecie).toFixed(2)}</td>
+            </tr>` : `
             <tr class="bg-white border-b border-black filasContarVenta border-r-2">
-                <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[130px] text-xl" id="fechaTabla">${fechaExcel}</td>
-                <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2">${nombreVigesimaEspecieGlobal}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadVigesimaEspecie === 1 ? totalCantidadVigesimaEspecie + ' Ud.' : totalCantidadVigesimaEspecie + ' Uds.'}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoVigesimaEspecie).toFixed(2)} Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioVigesimaEspecie}/Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaVigesimaEspecie).toFixed(2)}</td>
-            </tr>
+                <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[90px] text-lg" id="fechaTabla">${fechaExcel}</td>
+                <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2 w-[200px]">${nombreQuintaEspecieGlobal}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">${totalCantidadQuintaEspecie === 1 ? totalCantidadQuintaEspecie + ' Ud.' : totalCantidadQuintaEspecie + ' Uds.'}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">${parseFloat(totalPesoQuintaEspecie).toFixed(2)} Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${precioQuintaEspecie}/Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${parseFloat(totalVentaQuintaEspecie).toFixed(2)}</td>
+            </tr>`}
+            ${totalVentaVigesimaEspecie ? `
+            <tr class="bg-[#FEFF01] border-b border-black filasContarVenta border-r-2">
+                <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[90px] text-lg" id="fechaTabla">${fechaExcel}</td>
+                <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2 w-[200px]">${nombreVigesimaEspecieGlobal}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">${totalCantidadVigesimaEspecie === 1 ? totalCantidadVigesimaEspecie + ' Ud.' : totalCantidadVigesimaEspecie + ' Uds.'}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">${parseFloat(totalPesoVigesimaEspecie).toFixed(2)} Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${precioVigesimaEspecie}/Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${parseFloat(totalVentaVigesimaEspecie).toFixed(2)}</td>
+            </tr>` : `
+            <tr class="bg-white border-b border-black filasContarVenta border-r-2">
+                <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[90px] text-lg" id="fechaTabla">${fechaExcel}</td>
+                <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2 w-[200px]">${nombreVigesimaEspecieGlobal}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">${totalCantidadVigesimaEspecie === 1 ? totalCantidadVigesimaEspecie + ' Ud.' : totalCantidadVigesimaEspecie + ' Uds.'}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">${parseFloat(totalPesoVigesimaEspecie).toFixed(2)} Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${precioVigesimaEspecie}/Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${parseFloat(totalVentaVigesimaEspecie).toFixed(2)}</td>
+            </tr>`}
             ${totalVentaSextaEspecie ? `
             <tr class="bg-white border-b border-black filasContarVenta border-r-2">
-                <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[130px] text-xl" id="fechaTabla">${fechaExcel}</td>
-                <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2">${nombreSextaEspecieGlobal}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadSextaEspecie === 1 ? totalCantidadSextaEspecie + ' Ud.' : totalCantidadSextaEspecie + ' Uds.'}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoSextaEspecie).toFixed(2)} Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioSextaEspecie}/Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaSextaEspecie).toFixed(2)}</td>
+                <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[90px] text-lg" id="fechaTabla">${fechaExcel}</td>
+                <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2 w-[200px]">${nombreSextaEspecieGlobal}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">${totalCantidadSextaEspecie === 1 ? totalCantidadSextaEspecie + ' Ud.' : totalCantidadSextaEspecie + ' Uds.'}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">${parseFloat(totalPesoSextaEspecie).toFixed(2)} Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${precioSextaEspecie}/Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${parseFloat(totalVentaSextaEspecie).toFixed(2)}</td>
             </tr>` : ''}
             ${totalVentaVigesimaPrimeraEspecie ? `
             <tr class="bg-white border-b border-black filasContarVenta border-r-2">
-                <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[130px] text-xl" id="fechaTabla">${fechaExcel}</td>
-                <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2">${nombreVigesimaPrimeraEspecieGlobal}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadVigesimaPrimeraEspecie === 1 ? totalCantidadVigesimaPrimeraEspecie + ' Ud.' : totalCantidadVigesimaPrimeraEspecie + ' Uds.'}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoVigesimaPrimeraEspecie).toFixed(2)} Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioVigesimaPrimeraEspecie}/Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaVigesimaPrimeraEspecie).toFixed(2)}</td>
+                <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[90px] text-lg" id="fechaTabla">${fechaExcel}</td>
+                <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2 w-[200px]">${nombreVigesimaPrimeraEspecieGlobal}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">${totalCantidadVigesimaPrimeraEspecie === 1 ? totalCantidadVigesimaPrimeraEspecie + ' Ud.' : totalCantidadVigesimaPrimeraEspecie + ' Uds.'}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">${parseFloat(totalPesoVigesimaPrimeraEspecie).toFixed(2)} Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${precioVigesimaPrimeraEspecie}/Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${parseFloat(totalVentaVigesimaPrimeraEspecie).toFixed(2)}</td>
             </tr>` : ''}
-            
+            ${totalVentaSeptimaEspecie ? `
             <tr class="bg-white border-b border-black filasContarVenta border-r-2">
-                <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[130px] text-xl" id="fechaTabla">${fechaExcel}</td>
-                <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2">${nombreSeptimaEspecieGlobal}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadSeptimaEspecie === 1 ? totalCantidadSeptimaEspecie + ' Ud.' : totalCantidadSeptimaEspecie + ' Uds.'}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoSeptimaEspecie).toFixed(2)} Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioSeptimaEspecie}/Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaSeptimaEspecie).toFixed(2)}</td>
-            </tr>
-            
+                <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[90px] text-lg" id="fechaTabla">${fechaExcel}</td>
+                <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2 w-[200px]">${nombreSeptimaEspecieGlobal}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">${totalCantidadSeptimaEspecie === 1 ? totalCantidadSeptimaEspecie + ' Ud.' : totalCantidadSeptimaEspecie + ' Uds.'}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">${parseFloat(totalPesoSeptimaEspecie).toFixed(2)} Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${precioSeptimaEspecie}/Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${parseFloat(totalVentaSeptimaEspecie).toFixed(2)}</td>
+            </tr>` : ''}
+            ${totalVentaVigesimaSegundaEspecie ? `
             <tr class="bg-white border-b border-black filasContarVenta border-r-2">
-                <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[130px] text-xl" id="fechaTabla">${fechaExcel}</td>
-                <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2">${nombreVigesimaSegundaEspecieGlobal}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadVigesimaSegundaEspecie === 1 ? totalCantidadVigesimaSegundaEspecie + ' Ud.' : totalCantidadVigesimaSegundaEspecie + ' Uds.'}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoVigesimaSegundaEspecie).toFixed(2)} Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioVigesimaSegundaEspecie}/Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaVigesimaSegundaEspecie).toFixed(2)}</td>
-            </tr>
+                <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[90px] text-lg" id="fechaTabla">${fechaExcel}</td>
+                <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2 w-[200px]">${nombreVigesimaSegundaEspecieGlobal}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">${totalCantidadVigesimaSegundaEspecie === 1 ? totalCantidadVigesimaSegundaEspecie + ' Ud.' : totalCantidadVigesimaSegundaEspecie + ' Uds.'}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">${parseFloat(totalPesoVigesimaSegundaEspecie).toFixed(2)} Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${precioVigesimaSegundaEspecie}/Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${parseFloat(totalVentaVigesimaSegundaEspecie).toFixed(2)}</td>
+            </tr>` : ''}
             ${totalVentaOctavaEspecie ? `
             <tr class="bg-white border-b border-black filasContarVenta border-r-2">
-                <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[130px] text-xl" id="fechaTabla">${fechaExcel}</td>
-                <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2">${nombreOctavaEspecieGlobal}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadOctavaEspecie === 1 ? totalCantidadOctavaEspecie + ' Ud.' : totalCantidadOctavaEspecie + ' Uds.'}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoOctavaEspecie).toFixed(2)} Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioOctavaEspecie}/Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaOctavaEspecie).toFixed(2)}</td>
+                <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[90px] text-lg" id="fechaTabla">${fechaExcel}</td>
+                <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2 w-[200px]">${nombreOctavaEspecieGlobal}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">${totalCantidadOctavaEspecie === 1 ? totalCantidadOctavaEspecie + ' Ud.' : totalCantidadOctavaEspecie + ' Uds.'}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">${parseFloat(totalPesoOctavaEspecie).toFixed(2)} Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${precioOctavaEspecie}/Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${parseFloat(totalVentaOctavaEspecie).toFixed(2)}</td>
             </tr>` : ''}
             ${totalVentaVigesimaTerceraEspecie ? `
             <tr class="bg-white border-b border-black filasContarVenta border-r-2">
-                <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[130px] text-xl" id="fechaTabla">${fechaExcel}</td>
-                <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2">${nombreVigesimaTerceraEspecieGlobal}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadVigesimaTerceraEspecie === 1 ? totalCantidadVigesimaTerceraEspecie + ' Ud.' : totalCantidadVigesimaTerceraEspecie + ' Uds.'}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoVigesimaTerceraEspecie).toFixed(2)} Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioVigesimaTerceraEspecie}/Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaVigesimaTerceraEspecie).toFixed(2)}</td>
+                <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[90px] text-lg" id="fechaTabla">${fechaExcel}</td>
+                <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2 w-[200px]">${nombreVigesimaTerceraEspecieGlobal}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">${totalCantidadVigesimaTerceraEspecie === 1 ? totalCantidadVigesimaTerceraEspecie + ' Ud.' : totalCantidadVigesimaTerceraEspecie + ' Uds.'}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">${parseFloat(totalPesoVigesimaTerceraEspecie).toFixed(2)} Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${precioVigesimaTerceraEspecie}/Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${parseFloat(totalVentaVigesimaTerceraEspecie).toFixed(2)}</td>
             </tr>` : ''}
             ${totalVentaDecimaEspecie ? `
             <tr class="bg-white border-b border-black filasContarVenta border-r-2">
-                <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[130px] text-xl" id="fechaTabla">${fechaExcel}</td>
-                <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2">${nombreDecimaEspecieGlobal}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadDecimaEspecie === 1 ? totalCantidadDecimaEspecie + ' Ud.' : totalCantidadDecimaEspecie + ' Uds.'}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoDecimaEspecie).toFixed(2)} Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioDecimaEspecie}/Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaDecimaEspecie).toFixed(2)}</td>
+                <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[90px] text-lg" id="fechaTabla">${fechaExcel}</td>
+                <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2 w-[200px]">${nombreDecimaEspecieGlobal}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">${totalCantidadDecimaEspecie === 1 ? totalCantidadDecimaEspecie + ' Ud.' : totalCantidadDecimaEspecie + ' Uds.'}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">${parseFloat(totalPesoDecimaEspecie).toFixed(2)} Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${precioDecimaEspecie}/Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${parseFloat(totalVentaDecimaEspecie).toFixed(2)}</td>
             </tr>` : ''}
             ${totalVentaDecimaPrimeraEspecie ? `
             <tr class="bg-white border-b border-black filasContarVenta border-r-2">
-                <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[130px] text-xl" id="fechaTabla">${fechaExcel}</td>
-                <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2">${nombreDecimaPrimeraEspecieGlobal}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadDecimaPrimeraEspecie === 1 ? totalCantidadDecimaPrimeraEspecie + ' Ud.' : totalCantidadDecimaPrimeraEspecie + ' Uds.'}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoDecimaPrimeraEspecie).toFixed(2)} Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioDecimaPrimeraEspecie}/Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaDecimaPrimeraEspecie).toFixed(2)}</td>
+                <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[90px] text-lg" id="fechaTabla">${fechaExcel}</td>
+                <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2 w-[200px]">${nombreDecimaPrimeraEspecieGlobal}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">${totalCantidadDecimaPrimeraEspecie === 1 ? totalCantidadDecimaPrimeraEspecie + ' Ud.' : totalCantidadDecimaPrimeraEspecie + ' Uds.'}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">${parseFloat(totalPesoDecimaPrimeraEspecie).toFixed(2)} Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${precioDecimaPrimeraEspecie}/Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${parseFloat(totalVentaDecimaPrimeraEspecie).toFixed(2)}</td>
             </tr>` : ''}
             ${totalVentaDecimaSegundaEspecie ? `
             <tr class="bg-white border-b border-black filasContarVenta border-r-2">
-                <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[130px] text-xl" id="fechaTabla">${fechaExcel}</td>
-                <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2">${nombreDecimaSegundaEspecieGlobal}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadDecimaSegundaEspecie === 1 ? totalCantidadDecimaSegundaEspecie + ' Ud.' : totalCantidadDecimaSegundaEspecie + ' Uds.'}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoDecimaSegundaEspecie).toFixed(2)} Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioDecimaSegundaEspecie}/Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaDecimaSegundaEspecie).toFixed(2)}</td>
+                <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[90px] text-lg" id="fechaTabla">${fechaExcel}</td>
+                <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2 w-[200px]">${nombreDecimaSegundaEspecieGlobal}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">${totalCantidadDecimaSegundaEspecie === 1 ? totalCantidadDecimaSegundaEspecie + ' Ud.' : totalCantidadDecimaSegundaEspecie + ' Uds.'}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">${parseFloat(totalPesoDecimaSegundaEspecie).toFixed(2)} Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${precioDecimaSegundaEspecie}/Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${parseFloat(totalVentaDecimaSegundaEspecie).toFixed(2)}</td>
             </tr>` : ''}
             ${totalVentaDecimaTerceraEspecie ? `
             <tr class="bg-white border-b border-black filasContarVenta border-r-2">
-                <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[130px] text-xl" id="fechaTabla">${fechaExcel}</td>
-                <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2">${nombreDecimaTerceraEspecieGlobal}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadDecimaTerceraEspecie === 1 ? totalCantidadDecimaTerceraEspecie + ' Ud.' : totalCantidadDecimaTerceraEspecie + ' Uds.'}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoDecimaTerceraEspecie).toFixed(2)} Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioDecimaTerceraEspecie}/Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaDecimaTerceraEspecie).toFixed(2)}</td>
+                <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[90px] text-lg" id="fechaTabla">${fechaExcel}</td>
+                <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2 w-[200px]">${nombreDecimaTerceraEspecieGlobal}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">${totalCantidadDecimaTerceraEspecie === 1 ? totalCantidadDecimaTerceraEspecie + ' Ud.' : totalCantidadDecimaTerceraEspecie + ' Uds.'}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">${parseFloat(totalPesoDecimaTerceraEspecie).toFixed(2)} Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${precioDecimaTerceraEspecie}/Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${parseFloat(totalVentaDecimaTerceraEspecie).toFixed(2)}</td>
             </tr>` : ''}
             ${totalVentaDecimaCuartaEspecie ? `
             <tr class="bg-white border-b border-black filasContarVenta border-r-2">
-                <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[130px] text-xl" id="fechaTabla">${fechaExcel}</td>
-                <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2">${nombreDecimaCuartaEspecieGlobal}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadDecimaCuartaEspecie === 1 ? totalCantidadDecimaCuartaEspecie + ' Ud.' : totalCantidadDecimaCuartaEspecie + ' Uds.'}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoDecimaCuartaEspecie).toFixed(2)} Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioDecimaCuartaEspecie}/Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaDecimaCuartaEspecie).toFixed(2)}</td>
+                <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[90px] text-lg" id="fechaTabla">${fechaExcel}</td>
+                <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2 w-[200px]">${nombreDecimaCuartaEspecieGlobal}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">${totalCantidadDecimaCuartaEspecie === 1 ? totalCantidadDecimaCuartaEspecie + ' Ud.' : totalCantidadDecimaCuartaEspecie + ' Uds.'}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">${parseFloat(totalPesoDecimaCuartaEspecie).toFixed(2)} Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${precioDecimaCuartaEspecie}/Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${parseFloat(totalVentaDecimaCuartaEspecie).toFixed(2)}</td>
             </tr>` : ''}
             ${totalVentaDecimaQuintaEspecie ? `
             <tr class="bg-white border-b border-black filasContarVenta border-r-2">
-                <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[130px] text-xl" id="fechaTabla">${fechaExcel}</td>
-                <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2">${nombreDecimaQuintaEspecieGlobal}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadDecimaQuintaEspecie === 1 ? totalCantidadDecimaQuintaEspecie + ' Ud.' : totalCantidadDecimaQuintaEspecie + ' Uds.'}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoDecimaQuintaEspecie).toFixed(2)} Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioDecimaQuintaEspecie}/Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaDecimaQuintaEspecie).toFixed(2)}</td>
+                <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[90px] text-lg" id="fechaTabla">${fechaExcel}</td>
+                <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2 w-[200px]">${nombreDecimaQuintaEspecieGlobal}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">${totalCantidadDecimaQuintaEspecie === 1 ? totalCantidadDecimaQuintaEspecie + ' Ud.' : totalCantidadDecimaQuintaEspecie + ' Uds.'}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">${parseFloat(totalPesoDecimaQuintaEspecie).toFixed(2)} Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${precioDecimaQuintaEspecie}/Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${parseFloat(totalVentaDecimaQuintaEspecie).toFixed(2)}</td>
             </tr>` : ''}
             ${totalVentaDescuento ? `
             <tr class="bg-white border-b border-black filasContarVenta border-r-2">
-                <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[130px] text-xl" id="fechaTabla">${fechaExcel}</td>
-                <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2">DESCUENTO</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${totalCantidadDescuento === 1 ? totalCantidadDescuento + ' Ud.' : totalCantidadDescuento + ' Uds.'}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">${parseFloat(totalPesoDescuento).toFixed(2)} Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${precioDescuentoEspecies}/Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${parseFloat(totalVentaDescuento).toFixed(2)}</td>
+                <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[90px] text-lg" id="fechaTabla">${fechaExcel}</td>
+                <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2 w-[200px]">DESCUENTO</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">${totalCantidadDescuento === 1 ? totalCantidadDescuento + ' Ud.' : totalCantidadDescuento + ' Uds.'}</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">${parseFloat(totalPesoDescuento).toFixed(2)} Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${precioDescuentoEspecies}/Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${parseFloat(totalVentaDescuento).toFixed(2)}</td>
             </tr>` : ''}
         `;
     }
@@ -7969,7 +8072,7 @@ jQuery(function ($) {
         
             // Almacenar el ancho original y establecer el nuevo ancho
             let originalWidth = container.style.width;
-            container.style.width = '1250px';
+            container.style.width = '1200px';
         
             // Usar setTimeout para dar tiempo al navegador para ajustar el tamaño
             setTimeout(function() {
@@ -7995,7 +8098,7 @@ jQuery(function ($) {
         
             // Almacenar el ancho original y establecer el nuevo ancho
             let originalWidth = container.style.width;
-            container.style.width = '1250px';
+            container.style.width = '1200px';
         
             // Usar setTimeout para dar tiempo al navegador para ajustar el tamaño
             setTimeout(function() {
@@ -8032,7 +8135,7 @@ jQuery(function ($) {
     
         // Almacenar el ancho original y establecer el nuevo ancho
         let originalWidth = container.style.width;
-        container.style.width = '1250px';
+        container.style.width = '1200px';
     
         // Usar setTimeout para dar tiempo al navegador para ajustar el tamaño
         setTimeout(function() {

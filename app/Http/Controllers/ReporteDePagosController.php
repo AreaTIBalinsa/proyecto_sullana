@@ -1130,6 +1130,8 @@ class ReporteDePagosController extends Controller
         $bancoAgregarPagoCliente = $request->input('bancoAgregarPagoCliente');
         $horaAgregarPago = $request->input('horaAgregarPago');
         $pagoDerivado = $request->input('pagoDerivado');
+        $nombreCliente = $request->input('nombreCliente');
+        $fechaRegistroPagoCliente = $request->input('fechaRegistroPagoCliente');
 
         if (Auth::check()) {
             $agregarPagoCliente = new AgregarPagoCliente;
@@ -1141,9 +1143,10 @@ class ReporteDePagosController extends Controller
             $agregarPagoCliente->observacion = $comentarioAgregarPagoCliente;
             $agregarPagoCliente->bancaPago = $bancoAgregarPagoCliente;
             $agregarPagoCliente->horaOperacionPag = $horaAgregarPago;
-            $agregarPagoCliente->fechaRegistroPag = now()->setTimezone('America/New_York')->toDateString();
+            $agregarPagoCliente->fechaRegistroPag = $fechaRegistroPagoCliente === null ? now()->setTimezone('America/New_York')->toDateString() : $fechaRegistroPagoCliente;
             $agregarPagoCliente->estadoPago = 1;
             $agregarPagoCliente->clasificacionPago = $pagoDerivado;
+            $agregarPagoCliente->campoExtra = $nombreCliente;
             $agregarPagoCliente->save();
     
             return response()->json(['success' => true], 200);
@@ -1235,6 +1238,7 @@ class ReporteDePagosController extends Controller
                 tb_pagos.fechaRegistroPag,
                 tb_pagos.horaOperacionPag,
                 tb_pagos.bancaPago,
+                tb_pagos.campoExtra,
                IFNULL(CONCAT_WS(" ", nombresCli, apellidoPaternoCli, apellidoMaternoCli), "") AS nombreCompleto
         FROM tb_pagos
         LEFT JOIN tb_clientes ON tb_clientes.codigoCli = tb_pagos.codigoCli  
@@ -1265,6 +1269,7 @@ class ReporteDePagosController extends Controller
                 tb_pagos.fechaRegistroPag,
                 tb_pagos.horaOperacionPag,
                 tb_pagos.bancaPago,
+                tb_pagos.campoExtra,
                IFNULL(CONCAT_WS(" ", nombresCli, apellidoPaternoCli, apellidoMaternoCli), "") AS nombreCompleto
         FROM tb_pagos
         LEFT JOIN tb_clientes ON tb_clientes.codigoCli = tb_pagos.codigoCli  
@@ -1295,6 +1300,7 @@ class ReporteDePagosController extends Controller
                 tb_pagos.fechaRegistroPag,
                 tb_pagos.horaOperacionPag,
                 tb_pagos.bancaPago,
+                tb_pagos.campoExtra,
                IFNULL(CONCAT_WS(" ", nombresCli, apellidoPaternoCli, apellidoMaternoCli), "") AS nombreCompleto
         FROM tb_pagos
         LEFT JOIN tb_clientes ON tb_clientes.codigoCli = tb_pagos.codigoCli  
@@ -1325,6 +1331,7 @@ class ReporteDePagosController extends Controller
                 tb_pagos.fechaRegistroPag,
                 tb_pagos.horaOperacionPag,
                 tb_pagos.bancaPago,
+                tb_pagos.campoExtra,
                IFNULL(CONCAT_WS(" ", nombresCli, apellidoPaternoCli, apellidoMaternoCli), "") AS nombreCompleto
         FROM tb_pagos
         LEFT JOIN tb_clientes ON tb_clientes.codigoCli = tb_pagos.codigoCli  

@@ -34,7 +34,7 @@
             <div class="relative overflow-auto aside_scrollED rounded-lg flex items-start">
                 <div>
                     <div class="text-white font-bold bg-yellow-400 flex justify-center w-full gap-4 p-1.5">
-                        <div class="ml-[270px]">Diferencia : </div>
+                        <div class="">Diferencia : </div>
                         <div class="" id="diferencia">0.00</div>
                     </div>
                     <div class="flex">
@@ -45,12 +45,12 @@
                                     <tr>
                                         <th class="hidden">Id</th>
                                         <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Fecha</th>
-                                        <th class="p-4 border-r-2 border-b-2 border-l-[1px] whitespace-nowrap">Nombre de Cliente</th>
-                                        <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Importe</th>
-                                        <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Codigo</th>
                                         <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Hora</th>
-                                        <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Banco</th>
+                                        <th class="p-4 border-r-2 border-b-2 border-l-[1px] whitespace-nowrap">Nombre de Cliente</th>
                                         <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Forma Pago</th>
+                                        <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Importe</th>
+                                        <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap hidden">Codigo</th>
+                                        <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap hidden">Banco</th>
                                         <th class="p-4 border-r-[1px] border-b-2 text-center whitespace-nowrap">Observaciones</th>
                                     </tr>
                                 </thead>
@@ -61,19 +61,20 @@
                             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                                 <thead class="text-xs text-gray-100 uppercase bg-green-600">
                                     <tr class="border-2 border-l-[1px] border-r-[1px]">
-                                        <th class="p-4 whitespace-nowrap text-center" colspan="7">FILAS A AGREGAR</th>
+                                        <th class="p-4 whitespace-nowrap text-center" colspan="6">FILAS A AGREGAR</th>
                                         <th class="p-4 whitespace-nowrap text-center"><button class="w-full flex gap-2 justify-center items-center cursor-pointer uppercase bg-green-700 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 hover:bg-green-600 whitespace-nowrap border-2" type="submit" autocomplete="off" id="registrar_agregarPagos_Excel2"><i class='bx bx-save text-lg'></i>Guardar Pagos</button></th>
                                     </tr>
                                     <tr>
                                         <th class="hidden">Id</th>
                                         <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Fecha</th>
-                                        <th class="p-4 border-l-[1px] border-r-2 border-b-2 whitespace-nowrap">Nombre de Cliente</th>
-                                        <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Importe</th>
-                                        <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Codigo</th>
                                         <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Hora</th>
-                                        <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Banco</th>
+                                        <th class="p-4 border-l-[1px] border-r-2 border-b-2 whitespace-nowrap">Nombre de Cliente</th>
                                         <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Forma Pago</th>
-                                        <th class="p-4 border-r-[1px] border-b-2 text-center whitespace-nowrap">Observaciones</th>
+                                        <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Importe</th>
+                                        <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap hidden">Codigo</th>
+                                        <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap hidden">Banco</th>
+                                        <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Observaciones</th>
+                                        <th class="p-4 border-r-[1px] border-b-2 text-center">Fecha Registro</th>
                                     </tr>
                                 </thead>
                                 <tbody id="bodyReporteDePagosExcel2">
