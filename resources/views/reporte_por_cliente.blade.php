@@ -65,6 +65,7 @@
                         <th class="px-4 font-medium whitespace-nowrap hidden border-l-2">CANTIDAD</th>
                         <th class="px-4 font-medium whitespace-nowrap hidden">PESO REG. (Kg.)</th>
                         <th class="px-4 font-medium whitespace-nowrap hidden">PESO JABAS</th>
+                        <th class="px-4 font-medium whitespace-nowrap hidden">PRECIO</th>
                         <th class="hidden">Tabla Identificador</th>
                     </tr>
                 </thead>

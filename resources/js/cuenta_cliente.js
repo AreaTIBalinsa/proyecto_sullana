@@ -7313,7 +7313,6 @@ jQuery(function ($) {
                 let totalSaldo = parseFloat(lblTotalSaldo);
                 let calculoAFavor = 0;
                 totalSaldo = parseFloat(totalSaldo.toFixed(2));
-                let saldoMostrarSaldo = totalSaldo * -1;
                 calculoAFavor = totalSaldo + deudaDiaCalculo;
 
                 let totalFormateadoDeudaDiaCalculo = deudaDiaCalculo.toLocaleString('es-ES', {
@@ -7332,7 +7331,7 @@ jQuery(function ($) {
                     useGrouping: true,
                 });
 
-                let totalFormateadototalSaldo = parseFloat(saldoMostrarSaldo).toLocaleString('es-ES', {
+                let totalFormateadototalSaldo = parseFloat(totalSaldo).toLocaleString('es-ES', {
                     minimumFractionDigits: 2,   
                     maximumFractionDigits: 2,
                     useGrouping: true,
@@ -7343,8 +7342,9 @@ jQuery(function ($) {
                     useGrouping: true,
                 });
                 mensajeDeudaDiaCliente.empty();
-                mensajeDeudaDiaCliente.html(`<p id="mensajeDeudaDia" class="md:mx-5 md:text-left text-center font-semibold text-black">El dia de hoy ${fechaFormateada} su guia completa es de ${totalFormateadoLblTotalCuentaDia} , hoy abonado ${totalFormateadoLblTotalPagos} y hoy deja un saldo pendiente de <b>${totalFormateadoDeudaDiaCalculo}</b> .</p>
-                    ${totalSaldo < 0 ? `<hr class="my-2"> <p class="md:mx-5 md:text-left text-center font-semibold text-black">Pero tiene un saldo a favor de ${totalFormateadototalSaldo} , menos el nuevo saldo pendiente de ${totalFormateadoDeudaDiaCalculo} , quedarian un nuevo saldo ${calculoAFavor < 0 ? `a favor de <b>${(calculoAFavor*-1).toFixed(2)}</b>` : ` pendiente de <b>${calculoAFavor.toFixed(2)}</b>`} .</p>` : ""}`);
+                mensajeDeudaDiaCliente.html(`<p id="mensajeDeudaDia" class="md:mx-5 md:text-left text-center font-semibold text-black">El día de hoy ${fechaFormateada} ,  el monto de su guía es <b>${totalFormateadoLblTotalCuentaDia}</b> , ha abonado <b>${totalFormateadoLblTotalPagos}</b> . Dejando un saldo pendiente de <b>${totalFormateadoDeudaDiaCalculo}</b> . Así mismo teniendo en cuenta el saldo anterior <b>${totalFormateadototalSaldo}</b> , con el abono de hoy ${fechaFormateada} , su saldo actual es por el monto de <b>${totalFormateadocalculoAFavor}</b> .</p>`);
+                // mensajeDeudaDiaCliente.html(`<p id="mensajeDeudaDia" class="md:mx-5 md:text-left text-center font-semibold text-black">El dia de hoy ${fechaFormateada} su guia completa es de ${totalFormateadoLblTotalCuentaDia} , hoy abonado ${totalFormateadoLblTotalPagos} y hoy deja un saldo pendiente de <b>${totalFormateadoDeudaDiaCalculo}</b> .</p>
+                //     ${totalSaldo < 0 ? `<hr class="my-2"> <p class="md:mx-5 md:text-left text-center font-semibold text-black">Pero tiene un saldo a favor de ${totalFormateadototalSaldo} , menos el nuevo saldo pendiente de ${totalFormateadoDeudaDiaCalculo} , quedarian un nuevo saldo ${calculoAFavor < 0 ? `a favor de <b>${(calculoAFavor*-1).toFixed(2)}</b>` : ` pendiente de <b>${calculoAFavor.toFixed(2)}</b>`} .</p>` : ""}`);
             }else{
                 mensajeDeudaDiaCliente.empty();
                 mensajeDeudaDiaCliente.html(`<p id="mensajeDeudaDia"></p>`);
@@ -7474,6 +7474,12 @@ jQuery(function ($) {
             maximumFractionDigits: 2,
             useGrouping: true,
         });
+
+        let totalFormateadoPagosDeHoy = pagosDeHoy.toLocaleString('es-ES', {
+            minimumFractionDigits: 2,   
+            maximumFractionDigits: 2,
+            useGrouping: true,
+        });
         
         $("#totalCuentaDia").attr("value", totalVentaDelDia)
         $("#totalPagos").attr("value", pagosDeHoy)
@@ -7492,12 +7498,18 @@ jQuery(function ($) {
             <td class="bg-[#FFC000] text-center py-1 px-2 whitespace-nowrap font-semibold">SALDO ACTUAL</td>
         </tr>
         <tr class="bg-white border-b border-black">
-            <td class="text-center py-1 px-2 whitespace-nowrap font-bold border-r-2 border-black border-t-2">S/. ${pagosDeHoy}</td>
+            <td class="text-center py-1 px-2 whitespace-nowrap font-bold border-r-2 border-black border-t-2">S/. ${totalFormateadoPagosDeHoy}</td>
             <td class="text-center py-1 px-2 whitespace-nowrap font-bold text-red-600 border-t-2 border-black">S/. ${totalFormateado}</td>
         </tr>
         `
 
         tbodyCuentaDelClientePagos.html(bodyCuentaDelClientePagos);
+
+        let totalFormateadoTotalVentaDelDia = parseFloat(totalVentaDelDia).toLocaleString('es-ES', {
+            minimumFractionDigits: 2,   
+            maximumFractionDigits: 2,
+            useGrouping: true,
+        });
 
         return `
         <tr class="bg-white border-b-2 border-t-2 border-black border-r-2">
@@ -7506,7 +7518,7 @@ jQuery(function ($) {
             <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]"></td>
             <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]"></td>
             <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]"></td>
-            <td class="text-center py-1 px-2 whitespace-nowrap w-[150px] font-bold bg-red-600 text-white">S/. ${parseFloat(totalVentaDelDia).toFixed(2)}</h5></td>
+            <td class="text-center py-1 px-2 whitespace-nowrap w-[150px] font-bold bg-red-600 text-white">S/. ${totalFormateadoTotalVentaDelDia}</h5></td>
         </tr>
         `;
     }

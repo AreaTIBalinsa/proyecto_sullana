@@ -2407,7 +2407,7 @@ jQuery(function ($) {
         } else {
             $(this).css('background-color', 'rgb(185 28 28)');
         }
-    });    
+    });
 
     $(document).on('input', '.validarFormatoHoraTablas', function () {
         let inputValue = $(this).text();
@@ -2597,19 +2597,6 @@ jQuery(function ($) {
     }
 
     $(document).on('click', '#registrar_agregarPagos_Excel2', function () {
-        let arregloCodigos = [];
-
-        $('.pagosAgregarExcel2:not(:last-child)').each(function() {
-            let filaActual = $(this);
-            let codAgregarPagoCliente = filaActual.find('td:eq(3)').text().trim();
-            if (codAgregarPagoCliente != ""){
-                if(arregloCodigos.includes(codAgregarPagoCliente)){
-                    filaActual.remove();
-                }else{
-                    arregloCodigos.push(codAgregarPagoCliente);
-                }
-            }
-        });
 
         // Crear contadores para realizar una acción después de todas las consultas completadas y fallidas
         let completedRequests = 0;

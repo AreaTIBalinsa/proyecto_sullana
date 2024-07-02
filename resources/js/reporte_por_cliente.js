@@ -425,7 +425,7 @@ jQuery(function ($) {
                         bodyReportePorCliente += `
                             <tr class="bg-white dark:bg-gray-800 h-0.5">
                                 <td class="text-center" colspan="2"></td>
-                                <td class="text-center h-0.5 bg-gray-800 dark:bg-gray-300" colspan="7"></td>
+                                <td class="text-center h-0.5 bg-gray-800 dark:bg-gray-300" colspan="8"></td>
                             </tr>
                         `
                         bodyReportePorCliente += construirFilaTotales(
@@ -506,8 +506,10 @@ jQuery(function ($) {
                     <td class="text-center py-1 px-2 whitespace-nowrap border-l-2"></td>
                     <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                     <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                    <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                 ` : `
                     <td class="text-center py-1 px-2 whitespace-nowrap hidden border-l-2"></td>
+                    <td class="text-center py-1 px-2 whitespace-nowrap hidden"></td>
                     <td class="text-center py-1 px-2 whitespace-nowrap hidden"></td>
                     <td class="text-center py-1 px-2 whitespace-nowrap hidden"></td>
                 `}
@@ -523,6 +525,7 @@ jQuery(function ($) {
         let cantidadPes = parseInt(item.cantidadPes)
         let pesoNetoPes = parseFloat(item.pesoNetoPes).toFixed(2)
         let pesoNetoJabas = parseFloat(item.pesoNetoJabas).toFixed(2)
+        let precioPes = parseFloat(item.precioPes).toFixed(2)
 
         let promedio = 0;
         if (pesoNetoPes !== 0) {
@@ -562,10 +565,12 @@ jQuery(function ($) {
                     <td class="text-center py-1 px-2 cantidadReportePorCliente whitespace-nowrap border-l-2">${cantidadPes}</td>
                     <td class="text-center py-1 px-2 pesoReportePorCliente whitespace-nowrap">${pesoNetoPes}</td>
                     <td class="text-center py-1 px-2 pesoJabasReportePorCliente whitespace-nowrap">${pesoNetoJabas}</td>
+                    <td class="text-center py-1 px-2 whitespace-nowrap">${precioPes}</td>
                 `:`
                     <td class="text-center py-1 px-2 cantidadReportePorCliente whitespace-nowrap border-l-2 hidden">${cantidadPes}</td>
                     <td class="text-center py-1 px-2 pesoReportePorCliente whitespace-nowrap hidden">${pesoNetoPes}</td>
                     <td class="text-center py-1 px-2 pesoJabasReportePorCliente whitespace-nowrap hidden">${pesoNetoJabas}</td>
+                    <td class="text-center py-1 px-2 whitespace-nowrap hidden">${precioPes}</td>
                 `}
                 <td class="hidden">${item.tabla_iden}</td>
             </tr>
@@ -631,8 +636,10 @@ jQuery(function ($) {
                             <td class="text-center py-1 px-2 whitespace-nowrap border-l-2"></td>
                             <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                             <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                            <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                         `:`
                             <td class="text-center py-1 px-2 whitespace-nowrap hidden border-l-2"></td>
+                            <td class="text-center py-1 px-2 whitespace-nowrap hidden"></td>
                             <td class="text-center py-1 px-2 whitespace-nowrap hidden"></td>
                             <td class="text-center py-1 px-2 whitespace-nowrap hidden"></td>
                         `}
@@ -665,7 +672,7 @@ jQuery(function ($) {
         filas.push(`
             <tr class="bg-white dark:bg-gray-800 h-0.5">
                 <td class="text-center" colspan="2"></td>
-                <td class="text-center h-0.5 bg-gray-800 dark:bg-gray-300" colspan="7"></td>
+                <td class="text-center h-0.5 bg-gray-800 dark:bg-gray-300" colspan="8"></td>
             </tr>
         `);
 
@@ -682,8 +689,10 @@ jQuery(function ($) {
                     <td class="text-center py-1 px-2 whitespace-nowrap border-l-2"></td>
                     <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                     <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                    <td class="text-center py-1 px-2 whitespace-nowrap"></td>
                 `:`
                     <td class="text-center py-1 px-2 whitespace-nowrap hidden border-l-2"></td>
+                    <td class="text-center py-1 px-2 whitespace-nowrap hidden"></td>
                     <td class="text-center py-1 px-2 whitespace-nowrap hidden"></td>
                     <td class="text-center py-1 px-2 whitespace-nowrap hidden"></td>
                 `}
@@ -744,7 +753,7 @@ jQuery(function ($) {
         let fila = $(this).closest('tr');
         let idCantidadReportePorCliente = fila.find('td:eq(0)').text();
         let cantidadReportePorCliente = fila.find('td:eq(7)').text();
-        let tabla_identificadora = fila.find('td:eq(10)').text();
+        let tabla_identificadora = fila.find('td:eq(11)').text();
         
         $('#ModalCantidadReportePorCliente').addClass('flex');
         $('#ModalCantidadReportePorCliente').removeClass('hidden');
@@ -759,7 +768,7 @@ jQuery(function ($) {
         let fila = $(this).closest('tr');
         let idPesoReportePorCliente = fila.find('td:eq(0)').text();
         let pesoReportePorCliente = fila.find('td:eq(8)').text();
-        let tabla_identificadora = fila.find('td:eq(10)').text();
+        let tabla_identificadora = fila.find('td:eq(11)').text();
         
         $('#ModalPesoReportePorCliente').addClass('flex');
         $('#ModalPesoReportePorCliente').removeClass('hidden');
@@ -774,7 +783,7 @@ jQuery(function ($) {
         let fila = $(this).closest('tr');
         let idPesoReportePorCliente = fila.find('td:eq(0)').text();
         let pesoJabasReportePorCliente = fila.find('td:eq(9)').text();
-        let tabla_identificadora = fila.find('td:eq(10)').text();
+        let tabla_identificadora = fila.find('td:eq(11)').text();
         
         $('#ModalPesoJabasReportePorCliente').addClass('flex');
         $('#ModalPesoJabasReportePorCliente').removeClass('hidden');
@@ -934,7 +943,7 @@ jQuery(function ($) {
         e.preventDefault();
         if (tipoUsuario =='Administrador'){
             let codigoPesada = $(this).closest("tr").find("td:first").text();
-            let identifiTabla = $(this).closest("tr").find("td:eq(10)").text();
+            let identifiTabla = $(this).closest("tr").find("td:eq(11)").text();
             Swal.fire({
                 title: '¿Desea eliminar el Registro?',
                 text: "¡Estas seguro de eliminar el registro!",
@@ -990,11 +999,13 @@ jQuery(function ($) {
         $('#tablaReportePorCliente th:nth-child(8)').show();
         $('#tablaReportePorCliente th:nth-child(9)').show();
         $('#tablaReportePorCliente th:nth-child(10)').show();
+        $('#tablaReportePorCliente th:nth-child(11)').show();
     } else {
         $('#editarDatosReportePorCliente').prop('checked', false);
         $('#tablaReportePorCliente th:nth-child(8)').hide();
         $('#tablaReportePorCliente th:nth-child(9)').hide();
         $('#tablaReportePorCliente th:nth-child(10)').hide();
+        $('#tablaReportePorCliente th:nth-child(11)').hide();
     }
 
     $('#editarDatosReportePorCliente').on('change',function(){
@@ -1002,17 +1013,21 @@ jQuery(function ($) {
             $('#tablaReportePorCliente td:nth-child(8)').show();
             $('#tablaReportePorCliente td:nth-child(9)').show();
             $('#tablaReportePorCliente td:nth-child(10)').show();
+            $('#tablaReportePorCliente td:nth-child(11)').show();
             $('#tablaReportePorCliente th:nth-child(8)').show();
             $('#tablaReportePorCliente th:nth-child(9)').show();
             $('#tablaReportePorCliente th:nth-child(10)').show();
+            $('#tablaReportePorCliente th:nth-child(11)').show();
             localStorage.setItem('editarDatos', true);
         } else {
             $('#tablaReportePorCliente td:nth-child(8)').hide();
             $('#tablaReportePorCliente td:nth-child(9)').hide();
             $('#tablaReportePorCliente td:nth-child(10)').hide();
+            $('#tablaReportePorCliente td:nth-child(11)').hide();
             $('#tablaReportePorCliente th:nth-child(8)').hide();
             $('#tablaReportePorCliente th:nth-child(9)').hide();
             $('#tablaReportePorCliente th:nth-child(10)').hide();
+            $('#tablaReportePorCliente th:nth-child(11)').hide();
             localStorage.setItem('editarDatos', false);
         }
     });

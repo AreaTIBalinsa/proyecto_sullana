@@ -66,6 +66,7 @@ class ReportePorClienteController extends Controller
                 cantidadPes, 
                 observacionPes, 
                 horaPes,
+                precioPes,
                 tb_pesadas.idPesada
             FROM tb_pesadas 
             INNER JOIN tb_especies_venta ON tb_especies_venta.idEspecie = tb_pesadas.idEspecie
@@ -80,6 +81,7 @@ class ReportePorClienteController extends Controller
                 cantidadPes, 
                 observacionPes, 
                 horaPes,
+                precioPes,
                 tb_pesadas2.idPesada
             FROM tb_pesadas2 
             INNER JOIN tb_especies_venta ON tb_especies_venta.idEspecie = tb_pesadas2.idEspecie
