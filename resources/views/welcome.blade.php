@@ -547,6 +547,21 @@
                     </div>
                 </div>
             </div>
+            <div class="overflow-x-auto rounded-md aside_scrollED md:px-5">
+                <table class="border-collapse w-full text-gray-500 dark:text-gray-400 select-none relative text-sm">
+                    <thead id="inicioCantidadesPollos" class="bg-blue-700 text-gray-50 text-base">
+                        <tr>
+                            <th class="text-white border-r-[1px] border-b-1 border-gray-300 dark:border-gray-400 py-2 md:text-md text-left px-2">#</th>
+                            <th class="text-white border-r-[1px] border-b-1 border-gray-300 dark:border-gray-400 py-2 md:text-md text-left px-2">Cantidad</th>
+                            <th class="text-white border-r-[1px] border-b-1 border-gray-300 dark:border-gray-400 py-2 md:text-md text-left px-2">Peso</th>
+                            <th class="text-white py-2 md:text-md text-left px-2">Promedio</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bodycantidadesPollosCalculo">
+                        <tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="6" class="text-center">No hay datos</td></tr>
+                    </tbody>
+                </table>
+            </div>
             {{-- Termina contenedor de Produccion Actual --}}
         </div>
     </div>

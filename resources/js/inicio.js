@@ -458,6 +458,414 @@ jQuery(function($) {
 
     }
 
+    fn_traerDatosTablaInicioDiferencias(fechaHoy, fechaHoy)
+    function fn_traerDatosTablaInicioDiferencias(fechaDesde, fechaHasta){
+        let consultaDatosEnTiempoReal = new Promise((resolve, reject) => {
+            $.ajax({
+                url: '/fn_consulta_TraerDatosEnTiempoReal',
+                method: 'GET',
+                success: function(response) {
+                    let datosTiempoReal = {
+                        cantidadPrimerEspecie: 0,
+                        cantidadSegundaEspecie: 0,
+                        cantidadTerceraEspecie: 0,
+                        cantidadCuartaEspecie: 0,
+                        cantidadQuintaEspecie: 0,
+                        cantidadSextaEspecie: 0,
+                        cantidadSeptimaEspecie: 0,
+                        cantidadOctavaEspecie: 0,
+                        cantidadNovenaEspecie: 0,
+                        cantidadDecimaEspecie: 0,
+                        cantidadDecimaPrimeraEspecie: 0,
+                        cantidadDecimaSegundaEspecie: 0,
+                        cantidadDecimaTerceraEspecie: 0,
+                        cantidadDecimaCuartaEspecie: 0,
+                        cantidadDecimaQuintaEspecie: 0,
+                        cantidadDecimaSextaEspecie: 0,
+                        cantidadDecimaSeptimaEspecie: 0,
+                        cantidadDecimaOctavaEspecie: 0,
+                        cantidadDecimaNovenaEspecie: 0,
+                        cantidadVigesimaEspecie: 0,
+                        cantidadVigesimaPrimeraEspecie: 0,
+                        cantidadVigesimaSegundaEspecie: 0,
+                        cantidadVigesimaTerceraEspecie: 0,
+                        pesoTotalPrimerEspecie: 0.0,
+                        pesoTotalSegundaEspecie: 0.0,
+                        pesoTotalTerceraEspecie: 0.0,
+                        pesoTotalCuartaEspecie: 0.0,
+                        pesoTotalQuintaEspecie: 0.0,
+                        pesoTotalSextaEspecie: 0.0,
+                        pesoTotalSeptimaEspecie: 0.0,
+                        pesoTotalOctavaEspecie: 0.0,
+                        pesoTotalNovenaEspecie: 0.0,
+                        pesoTotalDecimaEspecie: 0.0,
+                        pesoTotalDecimaPrimeraEspecie: 0.0,
+                        pesoTotalDecimaSegundaEspecie: 0.0,
+                        pesoTotalDecimaTerceraEspecie: 0.0,
+                        pesoTotalDecimaCuartaEspecie: 0.0,
+                        pesoTotalDecimaQuintaEspecie: 0.0,
+                        pesoTotalDecimaSextaEspecie: 0.0,
+                        pesoTotalDecimaSeptimaEspecie: 0.0,
+                        pesoTotalDecimaOctavaEspecie: 0.0,
+                        pesoTotalDecimaNovenaEspecie: 0.0,
+                        pesoTotalVigesimaEspecie: 0.0,
+                        pesoTotalVigesimaPrimeraEspecie: 0.0,
+                        pesoTotalVigesimaSegundaEspecie: 0.0,
+                        pesoTotalVigesimaTerceraEspecie: 0.0,
+                        pesoTotalesEspecie: 0.0,
+                        cantidadTotalesEspecie: 0,
+                    };
+
+                    // Verificar si la respuesta es un arreglo de objetos
+                    if (Array.isArray(response)) {
+
+                        // console.log(response)
+                        // Iterar sobre los objetos y mostrar sus propiedades
+                        response.forEach(function(obj) {
+
+                            let idEspecie = parseInt(obj.idEspecie);
+                            let cantidadPes = parseInt(obj.cantidadPes);
+                            let pesoNetoPes = parseFloat(obj.pesoNetoPes);
+                            let pesoNetoJabas = parseFloat(obj.pesoNetoJabas);
+                            let pesoNeto = Math.abs(pesoNetoPes - pesoNetoJabas);
+
+                            switch(idEspecie) {
+                                case 1:
+                                    datosTiempoReal.cantidadPrimerEspecie += cantidadPes
+                                    if(pesoNetoPes>pesoNetoJabas){
+                                        datosTiempoReal.pesoTotalPrimerEspecie += pesoNetoPes - pesoNetoJabas
+                                    }else{
+                                        datosTiempoReal.pesoTotalPrimerEspecie += pesoNetoPes + pesoNetoJabas
+                                    }
+                                    break;
+                                case 2:
+                                    datosTiempoReal.cantidadSegundaEspecie += cantidadPes
+                                    if(pesoNetoPes>pesoNetoJabas){
+                                        datosTiempoReal.pesoTotalSegundaEspecie += pesoNetoPes - pesoNetoJabas
+                                    }else{
+                                        datosTiempoReal.pesoTotalSegundaEspecie += pesoNetoPes + pesoNetoJabas
+                                    }
+                                    break;
+                                case 3:
+                                    datosTiempoReal.cantidadTerceraEspecie += cantidadPes
+                                    if(pesoNetoPes>pesoNetoJabas){
+                                        datosTiempoReal.pesoTotalTerceraEspecie += pesoNetoPes - pesoNetoJabas
+                                    }else{
+                                        datosTiempoReal.pesoTotalTerceraEspecie += pesoNetoPes + pesoNetoJabas
+                                    }
+                                    break;
+                                case 4:
+                                    datosTiempoReal.cantidadCuartaEspecie += cantidadPes
+                                    if(pesoNetoPes>pesoNetoJabas){
+                                        datosTiempoReal.pesoTotalCuartaEspecie += pesoNetoPes - pesoNetoJabas
+                                    }else{
+                                        datosTiempoReal.pesoTotalCuartaEspecie += pesoNetoPes + pesoNetoJabas
+                                    }
+                                    break;
+                                case 5:
+                                    datosTiempoReal.cantidadQuintaEspecie += cantidadPes
+                                    if(pesoNetoPes>pesoNetoJabas){
+                                        datosTiempoReal.pesoTotalQuintaEspecie += pesoNetoPes - pesoNetoJabas
+                                    }else{
+                                        datosTiempoReal.pesoTotalQuintaEspecie += pesoNetoPes + pesoNetoJabas
+                                    }
+                                    break;
+                                case 6:
+                                    datosTiempoReal.cantidadSextaEspecie += cantidadPes
+                                    if(pesoNetoPes>pesoNetoJabas){
+                                        datosTiempoReal.pesoTotalSextaEspecie += pesoNetoPes - pesoNetoJabas
+                                    }else{
+                                        datosTiempoReal.pesoTotalSextaEspecie += pesoNetoPes + pesoNetoJabas
+                                    }
+                                    break;
+                                case 7:
+                                    datosTiempoReal.cantidadSeptimaEspecie += cantidadPes
+                                    if(pesoNetoPes>pesoNetoJabas){
+                                        datosTiempoReal.pesoTotalSeptimaEspecie += pesoNetoPes - pesoNetoJabas
+                                    }else{
+                                        datosTiempoReal.pesoTotalSeptimaEspecie += pesoNetoPes + pesoNetoJabas
+                                    }
+                                    break;
+                                case 8:
+                                    datosTiempoReal.cantidadOctavaEspecie += cantidadPes
+                                    if(pesoNetoPes>pesoNetoJabas){
+                                        datosTiempoReal.pesoTotalOctavaEspecie += pesoNetoPes - pesoNetoJabas
+                                    }else{
+                                        datosTiempoReal.pesoTotalOctavaEspecie += pesoNetoPes + pesoNetoJabas
+                                    }
+                                    break;
+                                case 9:
+                                    datosTiempoReal.cantidadNovenaEspecie += cantidadPes
+                                    break;
+                                case 10:
+                                    datosTiempoReal.cantidadDecimaEspecie += cantidadPes
+                                    if(pesoNetoPes>pesoNetoJabas){
+                                        datosTiempoReal.pesoTotalDecimaEspecie += pesoNetoPes - pesoNetoJabas
+                                    }else{
+                                        datosTiempoReal.pesoTotalDecimaEspecie += pesoNetoPes + pesoNetoJabas
+                                    }
+                                    break;
+                                case 11:
+                                    datosTiempoReal.cantidadDecimaPrimeraEspecie += cantidadPes
+                                    if(pesoNetoPes>pesoNetoJabas){
+                                        datosTiempoReal.pesoTotalDecimaPrimeraEspecie += pesoNetoPes - pesoNetoJabas
+                                    }else{
+                                        datosTiempoReal.pesoTotalDecimaPrimeraEspecie += pesoNetoPes + pesoNetoJabas
+                                    }
+                                    break;
+                                case 12:
+                                    datosTiempoReal.cantidadDecimaSegundaEspecie += cantidadPes
+                                    if(pesoNetoPes>pesoNetoJabas){
+                                        datosTiempoReal.pesoTotalDecimaSegundaEspecie += pesoNetoPes - pesoNetoJabas
+                                    }else{
+                                        datosTiempoReal.pesoTotalDecimaSegundaEspecie += pesoNetoPes + pesoNetoJabas
+                                    }
+                                    break;
+                                case 13:
+                                    datosTiempoReal.cantidadDecimaTerceraEspecie += cantidadPes
+                                    if(pesoNetoPes>pesoNetoJabas){
+                                        datosTiempoReal.pesoTotalDecimaTerceraEspecie += pesoNetoPes - pesoNetoJabas
+                                    }else{
+                                        datosTiempoReal.pesoTotalDecimaTerceraEspecie += pesoNetoPes + pesoNetoJabas
+                                    }
+                                    break;
+                                case 14:
+                                    datosTiempoReal.cantidadDecimaCuartaEspecie += cantidadPes
+                                    if(pesoNetoPes>pesoNetoJabas){
+                                        datosTiempoReal.pesoTotalDecimaCuartaEspecie += pesoNetoPes - pesoNetoJabas
+                                    }else{
+                                        datosTiempoReal.pesoTotalDecimaCuartaEspecie += pesoNetoPes + pesoNetoJabas
+                                    }
+                                    break;
+                                case 15:
+                                    datosTiempoReal.cantidadDecimaQuintaEspecie += cantidadPes
+                                    if(pesoNetoPes>pesoNetoJabas){
+                                        datosTiempoReal.pesoTotalDecimaQuintaEspecie += pesoNetoPes - pesoNetoJabas
+                                    }else{
+                                        datosTiempoReal.pesoTotalDecimaQuintaEspecie += pesoNetoPes + pesoNetoJabas
+                                    }
+                                    break;
+                                case 16:
+                                    datosTiempoReal.cantidadDecimaSextaEspecie += cantidadPes
+                                    if(pesoNetoPes>pesoNetoJabas){
+                                        datosTiempoReal.pesoTotalDecimaSextaEspecie += pesoNetoPes - pesoNetoJabas
+                                    }else{
+                                        datosTiempoReal.pesoTotalDecimaSextaEspecie += pesoNetoPes + pesoNetoJabas
+                                    }
+                                    break;
+                                case 17:
+                                    datosTiempoReal.cantidadDecimaSeptimaEspecie += cantidadPes
+                                    if(pesoNetoPes>pesoNetoJabas){
+                                        datosTiempoReal.pesoTotalDecimaSeptimaEspecie += pesoNetoPes - pesoNetoJabas
+                                    }else{
+                                        datosTiempoReal.pesoTotalDecimaSeptimaEspecie += pesoNetoPes + pesoNetoJabas
+                                    }
+                                    break;
+                                case 18:
+                                    datosTiempoReal.cantidadDecimaOctavaEspecie += cantidadPes
+                                    if(pesoNetoPes>pesoNetoJabas){
+                                        datosTiempoReal.pesoTotalDecimaOctavaEspecie += pesoNetoPes - pesoNetoJabas
+                                    }else{
+                                        datosTiempoReal.pesoTotalDecimaOctavaEspecie += pesoNetoPes + pesoNetoJabas
+                                    }
+                                    break;
+                                case 19:
+                                    datosTiempoReal.cantidadDecimaNovenaEspecie += cantidadPes
+                                    if(pesoNetoPes>pesoNetoJabas){
+                                        datosTiempoReal.pesoTotalDecimaNovenaEspecie += pesoNetoPes - pesoNetoJabas
+                                    }else{
+                                        datosTiempoReal.pesoTotalDecimaNovenaEspecie += pesoNetoPes + pesoNetoJabas
+                                    }
+                                    break;
+                                case 20:
+                                    datosTiempoReal.cantidadVigesimaEspecie += cantidadPes
+                                    if(pesoNetoPes>pesoNetoJabas){
+                                        datosTiempoReal.pesoTotalVigesimaEspecie += pesoNetoPes - pesoNetoJabas
+                                    }else{
+                                        datosTiempoReal.pesoTotalVigesimaEspecie += pesoNetoPes + pesoNetoJabas
+                                    }
+                                    break;
+                                case 21:
+                                    datosTiempoReal.cantidadVigesimaPrimeraEspecie += cantidadPes
+                                    if(pesoNetoPes>pesoNetoJabas){
+                                        datosTiempoReal.pesoTotalVigesimaPrimeraEspecie += pesoNetoPes - pesoNetoJabas
+                                    }else{
+                                        datosTiempoReal.pesoTotalVigesimaPrimeraEspecie += pesoNetoPes + pesoNetoJabas
+                                    }
+                                    break;
+                                case 22:
+                                    datosTiempoReal.cantidadVigesimaSegundaEspecie += cantidadPes
+                                    if(pesoNetoPes>pesoNetoJabas){
+                                        datosTiempoReal.pesoTotalVigesimaSegundaEspecie += pesoNetoPes - pesoNetoJabas
+                                    }else{
+                                        datosTiempoReal.pesoTotalVigesimaSegundaEspecie += pesoNetoPes + pesoNetoJabas
+                                    }
+                                    break;
+                                case 23:
+                                    datosTiempoReal.cantidadVigesimaTerceraEspecie += cantidadPes
+                                    if(pesoNetoPes>pesoNetoJabas){
+                                        datosTiempoReal.pesoTotalVigesimaTerceraEspecie += pesoNetoPes - pesoNetoJabas
+                                    }else{
+                                        datosTiempoReal.pesoTotalVigesimaTerceraEspecie += pesoNetoPes + pesoNetoJabas
+                                    }
+                                    break;
+                                default:
+                                    console.log("ID de especie no reconocido: " + idEspecie);
+                                    break;
+                            }
+
+                        });
+
+                        datosTiempoReal.cantidadTotalesEspecie = datosTiempoReal.cantidadPrimerEspecie + datosTiempoReal.cantidadSegundaEspecie +
+                            datosTiempoReal.cantidadTerceraEspecie + datosTiempoReal.cantidadCuartaEspecie +
+                            datosTiempoReal.cantidadQuintaEspecie + datosTiempoReal.cantidadSextaEspecie +
+                            datosTiempoReal.cantidadSeptimaEspecie + datosTiempoReal.cantidadOctavaEspecie +
+                            datosTiempoReal.cantidadNovenaEspecie + datosTiempoReal.cantidadDecimaEspecie +
+                            datosTiempoReal.cantidadDecimaPrimeraEspecie + datosTiempoReal.cantidadDecimaSegundaEspecie +
+                            datosTiempoReal.cantidadDecimaTerceraEspecie + datosTiempoReal.cantidadDecimaCuartaEspecie +
+                            datosTiempoReal.cantidadDecimaQuintaEspecie + datosTiempoReal.cantidadDecimaSextaEspecie +
+                            datosTiempoReal.cantidadDecimaSeptimaEspecie + datosTiempoReal.cantidadDecimaOctavaEspecie +
+                            datosTiempoReal.cantidadDecimaNovenaEspecie + datosTiempoReal.cantidadVigesimaEspecie +
+                            datosTiempoReal.cantidadVigesimaPrimeraEspecie + datosTiempoReal.cantidadVigesimaSegundaEspecie +
+                            datosTiempoReal.cantidadVigesimaTerceraEspecie;
+
+                        datosTiempoReal.pesoTotalesEspecie = datosTiempoReal.pesoTotalPrimerEspecie + datosTiempoReal.pesoTotalSegundaEspecie +
+                            datosTiempoReal.pesoTotalTerceraEspecie + datosTiempoReal.pesoTotalCuartaEspecie +
+                            datosTiempoReal.pesoTotalQuintaEspecie + datosTiempoReal.pesoTotalSextaEspecie +
+                            datosTiempoReal.pesoTotalSeptimaEspecie + datosTiempoReal.pesoTotalOctavaEspecie +
+                            datosTiempoReal.pesoTotalNovenaEspecie + datosTiempoReal.pesoTotalDecimaEspecie +
+                            datosTiempoReal.pesoTotalDecimaPrimeraEspecie + datosTiempoReal.pesoTotalDecimaSegundaEspecie +
+                            datosTiempoReal.pesoTotalDecimaTerceraEspecie + datosTiempoReal.pesoTotalDecimaCuartaEspecie +
+                            datosTiempoReal.pesoTotalDecimaQuintaEspecie + datosTiempoReal.pesoTotalDecimaSextaEspecie +
+                            datosTiempoReal.pesoTotalDecimaSeptimaEspecie + datosTiempoReal.pesoTotalDecimaOctavaEspecie +
+                            datosTiempoReal.pesoTotalDecimaNovenaEspecie + datosTiempoReal.pesoTotalVigesimaEspecie +
+                            datosTiempoReal.pesoTotalVigesimaPrimeraEspecie + datosTiempoReal.pesoTotalVigesimaSegundaEspecie +
+                            datosTiempoReal.pesoTotalVigesimaTerceraEspecie;
+
+                        console.log(
+                            "Cantidad",datosTiempoReal.cantidadTotalesEspecie, "Peso",datosTiempoReal.pesoTotalesEspecie);
+
+                        } else {
+                            console.log("La respuesta no es un arreglo de objetos.");
+                        }
+                    resolve(datosTiempoReal);
+                },
+                error: function(error) {
+                    console.error("ERROR",error);
+                }
+            });
+        });
+
+        let consultaProveedores = new Promise((resolve, reject) => {
+            $.ajax({
+                url: '/fn_consulta_ConsultarProveedor',
+                method: 'GET',
+                data: {
+                    fechaDesde: fechaDesde,
+                    fechaHasta: fechaHasta,
+                },
+                success: function(response) {
+                    let datosProveedores = {
+                        pagoAProveedoresPorDia: 0.00,
+                        cantidadAProveedoresPorDia: 0,
+                        pesoAProveedoresPorDia: 0.0,
+                        pesoBrutoProveedoresPorDia: 0.0,
+                        pesoTaraProveedoresPorDia: 0.0
+                    };
+    
+                    if (Array.isArray(response)) {
+                        response.forEach(function(obj) {
+                            let precioGuia = parseFloat(obj.precioGuia || 0.00);
+                            let pesoNeto = parseFloat(obj.pesoBrutoGuia) - parseFloat(obj.pesoTaraGuia);
+                            let totalAPagar = precioGuia * pesoNeto;
+    
+                            datosProveedores.pagoAProveedoresPorDia += totalAPagar;
+                            datosProveedores.cantidadAProveedoresPorDia += parseInt(obj.cantidadGuia);
+                            datosProveedores.pesoAProveedoresPorDia += pesoNeto;
+                            datosProveedores.pesoBrutoProveedoresPorDia += parseFloat(obj.pesoBrutoGuia);
+                            datosProveedores.pesoTaraProveedoresPorDia += parseFloat(obj.pesoTaraGuia);
+                        });
+                    } else {
+                        console.log("La respuesta no es un arreglo de objetos.");
+                    }
+                    resolve(datosProveedores);
+                },
+                error: function(error) {
+                    console.error("ERROR",error);
+                }
+            });
+        });
+
+        Promise.all([consultaDatosEnTiempoReal, consultaProveedores])
+            .then(function([datosTiempoReal, datosProveedores]) {
+                // Aquí puedes realizar las acciones que necesites con los resultados combinados.
+                // console.log('Datos en tiempo real:', datosTiempoReal);
+                // console.log('Datos de proveedores:', datosProveedores);
+
+                // Calculo de CantidadTotal y cantidadTotalesVenta
+                let CantidadPromedioCompra = datosProveedores.pesoAProveedoresPorDia / datosProveedores.cantidadAProveedoresPorDia;
+                let cantidadPromedioVenta = datosTiempoReal.pesoTotalesEspecie / datosTiempoReal.cantidadTotalesEspecie;
+
+                let resultadoDiferenciaCantidad = datosProveedores.cantidadAProveedoresPorDia - datosTiempoReal.cantidadTotalesEspecie;
+                let resultadoDiferenciaPromedio = CantidadPromedioCompra - cantidadPromedioVenta;
+                let resultadoDiferenciaPeso = datosProveedores.pesoAProveedoresPorDia - datosTiempoReal.pesoTotalesEspecie;
+
+                let bodycantidadesPollosCalculo = "";
+                let tbodycantidadesPollosCalculo = $('#bodycantidadesPollosCalculo');
+
+                // Aquí se construye la primera fila (Compra)
+                bodycantidadesPollosCalculo += construirFilaTotalesCompradePollos(datosProveedores,CantidadPromedioCompra);
+
+                // Luego se agrega la segunda fila (Venta)
+                bodycantidadesPollosCalculo += construirFilaVenta(datosTiempoReal, cantidadPromedioVenta);
+
+                // Finalmente se agrega la tercera fila (Diferencia)
+                bodycantidadesPollosCalculo += construirFilaDiferencia(resultadoDiferenciaPromedio, resultadoDiferenciaCantidad, resultadoDiferenciaPeso);
+
+                // Insertar el HTML construido en el tbody
+                tbodycantidadesPollosCalculo.html(bodycantidadesPollosCalculo);
+            })
+            .catch(function(error) {
+                console.error('Error en las consultas:', error);
+            });
+
+    }
+
+
+    function construirFilaTotalesCompradePollos(datosProveedores,CantidadPromedioCompra) {
+        let pesoAProveedoresPorDia = datosProveedores.pesoAProveedoresPorDia
+        let cantidadAProveedoresPorDia = datosProveedores.cantidadAProveedoresPorDia
+        return `
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900">
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 bg-red-600 whitespace-nowrap">Compra</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${cantidadAProveedoresPorDia ? cantidadAProveedoresPorDia : 0}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${parseFloat(pesoAProveedoresPorDia ? pesoAProveedoresPorDia : 0).toFixed(2)}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${parseFloat(CantidadPromedioCompra ? CantidadPromedioCompra : 0).toFixed(2)}</td>
+            </tr>`;
+    }
+    
+    function construirFilaVenta(datosTiempoReal, cantidadPromedioVenta) {
+        let cantidadTotalesEspecie = datosTiempoReal.cantidadTotalesEspecie;
+        let pesoTotalesEspecie = datosTiempoReal.pesoTotalesEspecie;
+        return `
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900">
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 bg-green-600 whitespace-nowrap">Venta</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${cantidadTotalesEspecie ? cantidadTotalesEspecie : 0}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${parseFloat(pesoTotalesEspecie ? pesoTotalesEspecie : 0).toFixed(2)}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${parseFloat(cantidadPromedioVenta ? cantidadPromedioVenta : 0).toFixed(2)}</td>
+            </tr>`;
+    }
+    
+    function construirFilaDiferencia(resultadoDiferenciaPromedio, resultadoDiferenciaCantidad, resultadoDiferenciaPeso) {
+        return `
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900">
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 bg-yellow-400 whitespace-nowrap">Diferencia</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${resultadoDiferenciaCantidad}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${resultadoDiferenciaPeso.toFixed(2)}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${resultadoDiferenciaPromedio.toFixed(2)}</td>
+            </tr>`;
+    }    
+
     fn_TraerClientesAgregarSaldo();
     function fn_TraerClientesAgregarSaldo() {
         $.ajax({

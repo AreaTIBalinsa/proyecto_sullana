@@ -57,25 +57,17 @@
                     <select class="w-56 uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" id="presentacionAgregarPesadas">
                     </select>
                 </div>
-                <div class="flex flex-col gap-1">
-                    <label for="apellidoPaternoUsu" class="text-sm font-medium text-gray-900 dark:text-white md:w-24">Precio :</label>
-                    <input class="validarSoloNumerosDosDecimales w-56 uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" autocomplete="off" id="precioTablaPesadas" placeholder="Ingrese Precio">
-                </div>
-                <div class="flex flex-col gap-1">
-                    <label for="apellidoPaternoUsu" class="text-sm font-medium text-gray-900 dark:text-white md:w-24">Fecha :</label>
-                    <input type="date" class="outline-none w-56 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 px-2.5 py-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" id="fechaAgregarPesadas">
-                </div>
             </div>
             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                 <caption class="p-4 whitespace-nowrap text-center text-gray-100 uppercase bg-blue-600 border-2 font-bold">PESADAS A AGREGAR</caption>
                 <thead class="text-xs text-gray-100 uppercase bg-blue-600">
                     <tr>
-                        <th class="p-4 border-r-2 border-b-2 border-l-2 text-center whitespace-nowrap">Especie</th>
+                        <th class="p-4 border-r-2 border-b-2 border-l-2 text-center whitespace-nowrap">Fecha</th>
+                        <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Especie</th>
                         <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Cantidad</th>
                         <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Peso Bruto</th>
                         <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Peso Jabas</th>
                         <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Precio</th>
-                        <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Fecha</th>
                         <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Observaciones</th>
                     </tr>
                 </thead>

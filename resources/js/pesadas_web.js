@@ -7,6 +7,8 @@ jQuery(function($) {
     const fechaHoy = new Date(ahoraEnNY.getFullYear(), ahoraEnNY.getMonth(), ahoraEnNY.getDate()).toISOString().split('T')[0];
     var tipoUsuario = $('#tipoUsuario').data('id');
 
+    const fechaHoyTabla = new Date().toISOString().split('T')[0].split('-').reverse().join('-');
+
     $('#fechaAgregarPesadas').val(fechaHoy);
 
     $('#idCuentaDelCliente').on('input', function () {
@@ -188,15 +190,14 @@ jQuery(function($) {
         let textoSeleccionado = $('#presentacionAgregarPesadas option:selected').text();
         let valorSeleccionado = $('#presentacionAgregarPesadas').val();
         let fechaAyuda = $('#fechaAgregarPesadas').val();
-        let precioAyuda = $('#precioTablaPesadas').val();
 
         let nuevaFila = $('<tr class="bg-white pagosAgregarExcel border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap text-white validarFormatoFechaTablas" contenteditable="true">').text(fechaHoyTabla));
         nuevaFila.append($('<td class="outline-none border-r-2 dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap" contenteditable="false">').text(textoSeleccionado));
         nuevaFila.append($('<td class="outline-none border-r border-l-2 dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarSoloNumerosTablas" contenteditable="true">').text(""));
         nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarSoloNumerosDosDecimalesTablas" contenteditable="true">').text(""));
         nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarSoloNumerosDosDecimalesTablas" contenteditable="true">').text(""));
-        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarSoloNumerosDosDecimalesTablas" contenteditable="true">').text(precioAyuda));
-        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap text-white validarFormatoFechaTablas" contenteditable="true">').text(fechaAyuda));
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarSoloNumerosDosDecimalesTablas precioDuplicado" contenteditable="true">').text(""));
         nuevaFila.append($('<td class="outline-none border-r-2 dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap" contenteditable="true">').text(""));
         nuevaFila.append($('<td class="hidden" contenteditable="false">').text(valorSeleccionado));
         tbody.append(nuevaFila);
@@ -210,10 +211,24 @@ jQuery(function($) {
             });
             if (!vacio) {
                 agregarFilaEntrada(tbody);
+                copiarDatosPenultimaFila();
                 nuevaFila.off('input');
             }
         });
     }
+
+    function copiarDatosPenultimaFila() {
+        let filas = $('.pagosAgregarExcel');
+        if (filas.length > 1) {
+            let penultimaFila = filas.eq(filas.length - 2);
+            let ultimaFila = filas.eq(filas.length - 1);
+            let datosColumna0 = penultimaFila.find('td').eq(0).text();
+            let datosColumna5 = penultimaFila.find('td').eq(5).text();
+            
+            ultimaFila.find('td').eq(0).text(datosColumna0);
+            ultimaFila.find('td').eq(5).text(datosColumna5);
+        }
+    } 
 
     function hacerCeldasEditables(tbody) {
         tbody.on('keydown', 'td[contenteditable="true"]', function(e) {
@@ -332,12 +347,15 @@ jQuery(function($) {
     });
 
     $(document).on('input', '.validarFormatoFechaTablas', function () {
+        copiarDatosPenultimaFila();
         let inputValue = $(this).text();
-        let regex = /^\d{4}-\d{2}-\d{2}$/;
-    
-        // Verificar si el valor cumple con el formato de fecha YYYY-MM-DD
+        let regex = /^\d{2}-\d{2}-\d{4}$/; // Expresión regular para formato dd-mm-yyyy
+        
+        // Verificar si el valor cumple con el formato de fecha DD-MM-YYYY
         if (regex.test(inputValue)) {
-            let inputDate = new Date(inputValue);
+            // Convertir el formato dd-mm-yyyy a yyyy-mm-dd
+            let partesFecha = inputValue.split('-');
+            let inputDate = new Date(`${partesFecha[2]}-${partesFecha[1]}-${partesFecha[0]}`);
             let currentDate = new Date();
             
             // Comparar con la fecha actual (solo la fecha, sin la hora)
@@ -349,6 +367,10 @@ jQuery(function($) {
         } else {
             $(this).css('background-color', 'rgb(185 28 28)');
         }
+    });
+
+    $(document).on('input', '.precioDuplicado', function () {
+        copiarDatosPenultimaFila();
     });
 
     function fn_ConsultarPesadasDesdeHasta(fechaDesdePesadas,fechaHastaPesadas) {
