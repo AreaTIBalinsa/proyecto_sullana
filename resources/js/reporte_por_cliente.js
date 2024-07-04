@@ -533,7 +533,7 @@ jQuery(function ($) {
         }
 
         let observacionPes = item.observacionPes
-        if (observacionPes != ""){
+        if (observacionPes.trim() != "" && observacionPes!= "" && observacionPes != null){
             observacionPes = `
                 <div class="text-sm text-gray-500 bg-white border border-gray-200 rounded-lg shadow-sm dark:text-gray-400 dark:border-gray-600 dark:bg-gray-800">
                         <p>${observacionPes}</p>

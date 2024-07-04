@@ -738,7 +738,6 @@ jQuery(function ($) {
 
                             // Actualiza las etiquetas ocultas con los datos seleccionados
                             $('#selectedCodigoCliAgregarDescuentoCliente').attr("value", obj.codigoCli);
-                            fn_TraerPreciosClienteDescuento(obj.codigoCli)
 
                             // Oculta las sugerencias
                             contenedorClientes.addClass('hidden');
@@ -759,46 +758,6 @@ jQuery(function ($) {
             }
         });
     };
-
-    function fn_TraerPreciosClienteDescuento(codigoCliente){
-        $.ajax({
-            url: '/fn_consulta_TraerPreciosClienteDescuento',
-            method: 'GET',
-            data:{
-                codigoCliente: codigoCliente,
-            },
-            success: function(response) {
-    
-                // Verificar si la respuesta es un arreglo de objetos
-                if (Array.isArray(response)) {
-    
-                    $('#precioPrimerEspecieDescuento').attr("value",response[0].primerEspecie)
-                    $('#precioSegundaEspecieDescuento').attr("value",response[0].segundaEspecie)
-                    $('#precioTerceraEspecieDescuento').attr("value",response[0].terceraEspecie)
-                    $('#precioCuartaEspecieDescuento').attr("value",response[0].cuartaEspecie)
-                    $('#precioQuintaEspecieDescuento').attr("value",response[0].quintaEspecie)
-                    $('#precioSextaEspecieDescuento').attr("value",response[0].sextaEspecie)
-                    $('#precioSeptimaEspecieDescuento').attr("value",response[0].septimaEspecie)
-                    $('#precioOctavaEspecieDescuento').attr("value",response[0].octavaEspecie)
-                    $('#precioDecimaEspecieDescuento').attr("value",response[0].decimaEspecie)
-                    $('#precioDecimaPrimeraEspecieDescuento').attr("value",response[0].decimaPrimeraEspecie)
-                    $('#precioDecimaSegundaEspecieDescuento').attr("value",response[0].decimaSegundaEspecie)
-                    $('#precioDecimaTerceraEspecieDescuento').attr("value",response[0].decimaTerceraEspecie)
-                    $('#precioDecimaCuartaEspecieDescuento').attr("value",response[0].decimaCuartaEspecie)
-                    $('#precioDecimaQuintaEspecieDescuento').attr("value",response[0].decimaQuintaOtrasEspecies)
-                    $('#precioDecimaSextaEspecieDescuento').attr("value",response[0].decimaSextaEspecies)
-                    $('#precioDecimaSeptimaEspecieDescuento').attr("value",response[0].decimaSeptimaEspecies)
-                    $('#precioDecimaOctavaEspecieDescuento').attr("value",response[0].decimaOctavaEspecies)
-    
-                } else {
-                    console.log("La respuesta no es un arreglo de objetos.");
-                }
-            },
-            error: function(error) {
-                console.error("ERROR", error);
-            }
-        });
-    }    
 
     function fn_TraerClientesCuentaDelCliente(inputCuentaDelCliente) {
         $.ajax({
@@ -3326,8 +3285,13 @@ jQuery(function ($) {
             let formaDePagoEgreso = filaActual.find('td:eq(5)').text().trim();
             let bancoAgregEgresoCliente = filaActual.find('td:eq(6)').text().trim();
             let codAgregEgresoCliente = filaActual.find('td:eq(7)').text().trim();
-
+            let comentarioAgregarPagoCliente = "";
+            let horaAgregarPago = "12:00:00";
+            let pagoDerivado = "6";
+            let codCliente = "33";
             formaDePagoEgreso = formaDePagoEgreso[0].toUpperCase() + formaDePagoEgreso.slice(1);
+
+            let montoEgresoPagoo = parseFloat(montoAgregEgresoCliente)*-1;
 
             if (!cantidadAgregEgresoCliente, !montoNuevoAgregEgresoCliente, !montoAgregEgresoCliente) {
                 alertify.notify('Los campos de precios no pueden estar vacios', 'error', 3);
@@ -3368,6 +3332,9 @@ jQuery(function ($) {
                             failedRequests++;
                             checkCompletion();
                         } else {
+                            if (usoReporteEgreso.includes("FLETE")) {
+                                fn_AgregarPagoClienteExcel(codCliente, montoEgresoPagoo, fechaAgregEgresoCliente, formaDePagoEgreso, codAgregEgresoCliente, comentarioAgregarPagoCliente, bancoAgregEgresoCliente, horaAgregarPago, pagoDerivado, usoReporteEgreso, fechaAgregEgresoCliente)
+                            }
                             // Llamar a la función fn_AgregarPagoCliente con los datos de la fila actual
                             fn_AgregarEgreso(montoAgregEgresoCliente,fechaAgregEgresoCliente,cantidadAgregEgresoCliente,montoNuevoAgregEgresoCliente,formaDePagoEgreso,bancoAgregEgresoCliente,codAgregEgresoCliente,usoReporteEgreso)
                             .then(function() {

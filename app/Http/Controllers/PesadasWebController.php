@@ -43,7 +43,7 @@ class PesadasWebController extends Controller
             $agregarPesadasWeb->numeroCubetasPes = 0;
             $agregarPesadasWeb->estadoPes = 1;
             $agregarPesadasWeb->estadoWebPes = 1;
-            $agregarPesadasWeb->observacionPes = $observacionAgregarPesada;
+            $agregarPesadasWeb->observacionPes = $observacionAgregarPesada === null ? "" : $observacionAgregarPesada;
             $agregarPesadasWeb->save();
     
             return response()->json(['success' => true], 200);
@@ -55,7 +55,8 @@ class PesadasWebController extends Controller
 
     public function consulta_TraerDatosPesadas3(Request $request)
     {
-        $fechaPesadas = $request->input('fechaPesadas');
+        $fechaDesdePesadas = $request->input('fechaDesdePesadas');
+        $fechaHastaPesadas = $request->input('fechaHastaPesadas');
 
         if (Auth::check()) {
             // Realiza la consulta a la base de datos
@@ -75,7 +76,7 @@ class PesadasWebController extends Controller
                 FROM tb_pesadas3
                 INNER JOIN tb_clientes ON tb_clientes.codigoCli = tb_pesadas3.codigoCli
                 INNER JOIN tb_especies_venta ON tb_especies_venta.idEspecie = tb_pesadas3.idEspecie
-                WHERE fechaRegistroPes = ? and estadoPes = 1', [$fechaPesadas]);
+                WHERE fechaRegistroPes BETWEEN ? AND ? AND estadoPes = 1', [$fechaDesdePesadas,$fechaHastaPesadas]);
 
             // Devuelve los datos en formato JSON
             return response()->json($datos);

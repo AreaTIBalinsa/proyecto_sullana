@@ -6,7 +6,7 @@ jQuery(function($) {
     const ahoraEnNY = new Date();
     const fechaHoy = new Date(ahoraEnNY.getFullYear(), ahoraEnNY.getMonth(), ahoraEnNY.getDate()).toISOString().split('T')[0];
     var tipoUsuario = $('#tipoUsuario').data('id');
-    fn_consulta_TraerDatosPesadas3(fechaHoy)
+    fn_consulta_TraerDatosPesadas3(fechaHoy,fechaHoy)
 
     const fechaHoyTabla = new Date().toISOString().split('T')[0].split('-').reverse().join('-');
 
@@ -24,6 +24,13 @@ jQuery(function($) {
             contenedorClientes.empty();
             contenedorClientes.addClass('hidden');
         }
+    });
+
+    $('#btnBuscarCuentaDelCliente').on('click', function () {
+        let fechaDesdePesadas = $('#fechaDesdePesadas').val();
+        let fechaHastaPesadas = $('#fechaHastaPesadas').val();
+        fn_consulta_TraerDatosPesadas3(fechaDesdePesadas,fechaHastaPesadas);
+
     });
 
     function fn_TraerClientesCuentaDelCliente(inputCuentaDelCliente) {
@@ -99,6 +106,9 @@ jQuery(function($) {
                     });
                 }
                 // Realizar la acción después de que todas las consultas se completen
+                let fechaDesdePesadas = $('#fechaDesdePesadas').val();
+                let fechaHastaPesadas = $('#fechaHastaPesadas').val();
+                fn_consulta_TraerDatosPesadas3(fechaDesdePesadas,fechaHastaPesadas);
             }
         }
     
@@ -373,14 +383,15 @@ jQuery(function($) {
         copiarDatosPenultimaFila();
     });
 
-    function fn_consulta_TraerDatosPesadas3(fechaPesadas) {
+    function fn_consulta_TraerDatosPesadas3(fechaDesdePesadas,fechaHastaPesadas) {
 
         // Realiza la solicitud AJAX para obtener sugerencias
         $.ajax({
             url: '/fn_consulta_TraerDatosPesadas3',
             method: 'GET',
             data:{
-                fechaPesadas : fechaPesadas,
+                fechaDesdePesadas : fechaDesdePesadas,
+                fechaHastaPesadas : fechaHastaPesadas,
             },
             success: function (response) {
 

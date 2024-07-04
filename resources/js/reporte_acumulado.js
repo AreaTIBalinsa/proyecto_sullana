@@ -494,11 +494,194 @@ jQuery(function($) {
                         totalCantidadDescuentoVigesimaTerceraEspecie2: parseInt(item.totalesVigesimaTerceraEspecie2[0]?.totalCantidadDescuentoVigesimaTerceraEspecie2.replace(/[^0-9.-]+/g,"") || 0),
                         totalVentaDescuentoVigesimaTerceraEspecie2: parseFloat(item.totalesVigesimaTerceraEspecie2[0]?.totalVentaDescuentoVigesimaTerceraEspecie2.replace(/[^0-9.-]+/g,"") || 0),
                         
+                        /* ===================================================================== */
+                        /* =============================Consulta 03============================= */
+                        /* ===================================================================== */
+
+                        totalPesoPrimerEspecie3: parseFloat(item.totalesPrimerEspecie3[0]?.totalPesoPrimerEspecie3 || 0),
+                        totalPesoDescuentoPrimerEspecie3: parseFloat(item.totalesPrimerEspecie3[0]?.totalPesoDescuentoPrimerEspecie3 || 0),
+                        totalVentaPrimerEspecie3: parseFloat(item.totalesPrimerEspecie3[0]?.totalVentaPrimerEspecie3 || 0),
+                        totalCantidadPrimerEspecie3: parseInt(item.totalesPrimerEspecie3[0]?.totalCantidadPrimerEspecie3 || 0),
+
+                        totalPesoSegundaEspecie3: parseFloat(item.totalesSegundaEspecie3[0]?.totalPesoSegundaEspecie3 || 0),
+                        totalPesoDescuentoSegundaEspecie3: parseFloat(item.totalesSegundaEspecie3[0]?.totalPesoDescuentoSegundaEspecie3 || 0),
+                        totalVentaSegundaEspecie3: parseFloat(item.totalesSegundaEspecie3[0]?.totalVentaSegundaEspecie3 || 0),
+                        totalCantidadSegundaEspecie3: parseInt(item.totalesSegundaEspecie3[0]?.totalCantidadSegundaEspecie3 || 0),
+
+                        totalPesoTerceraEspecie3: parseFloat(item.totalesTerceraEspecie3[0]?.totalPesoTerceraEspecie3 || 0),
+                        totalPesoDescuentoTerceraEspecie3: parseFloat(item.totalesTerceraEspecie3[0]?.totalPesoDescuentoTerceraEspecie3 || 0),
+                        totalVentaTerceraEspecie3: parseFloat(item.totalesTerceraEspecie3[0]?.totalVentaTerceraEspecie3 || 0),
+                        totalCantidadTerceraEspecie3: parseInt(item.totalesTerceraEspecie3[0]?.totalCantidadTerceraEspecie3 || 0),
+
+                        totalPesoCuartaEspecie3: parseFloat(item.totalesCuartaEspecie3[0]?.totalPesoCuartaEspecie3 || 0),
+                        totalPesoDescuentoCuartaEspecie3: parseFloat(item.totalesCuartaEspecie3[0]?.totalPesoDescuentoCuartaEspecie3 || 0),
+                        totalVentaCuartaEspecie3: parseFloat(item.totalesCuartaEspecie3[0]?.totalVentaCuartaEspecie3 || 0),
+                        totalCantidadCuartaEspecie3: parseInt(item.totalesCuartaEspecie3[0]?.totalCantidadCuartaEspecie3 || 0),
+
+                        totalPesoQuintaEspecie3: parseFloat(item.totalesQuintaEspecie3[0]?.totalPesoQuintaEspecie3 || 0),
+                        totalPesoDescuentoQuintaEspecie3: parseFloat(item.totalesQuintaEspecie3[0]?.totalPesoDescuentoQuintaEspecie3 || 0),
+                        totalVentaQuintaEspecie3: parseFloat(item.totalesQuintaEspecie3[0]?.totalVentaQuintaEspecie3 || 0),
+                        totalCantidadQuintaEspecie3: parseInt(item.totalesQuintaEspecie3[0]?.totalCantidadQuintaEspecie3 || 0),
+
+                        totalPesoSextaEspecie3: parseFloat(item.totalesSextaEspecie3[0]?.totalPesoSextaEspecie3 || 0),
+                        totalPesoDescuentoSextaEspecie3: parseFloat(item.totalesSextaEspecie3[0]?.totalPesoDescuentoSextaEspecie3 || 0),
+                        totalVentaSextaEspecie3: parseFloat(item.totalesSextaEspecie3[0]?.totalVentaSextaEspecie3 || 0),
+                        totalCantidadSextaEspecie3: parseInt(item.totalesSextaEspecie3[0]?.totalCantidadSextaEspecie3 || 0),
+
+                        totalPesoSeptimaEspecie3: parseFloat(item.totalesSeptimaEspecie3[0]?.totalPesoSeptimaEspecie3 || 0),
+                        totalPesoDescuentoSeptimaEspecie3: parseFloat(item.totalesSeptimaEspecie3[0]?.totalPesoDescuentoSeptimaEspecie3 || 0),
+                        totalVentaSeptimaEspecie3: parseFloat(item.totalesSeptimaEspecie3[0]?.totalVentaSeptimaEspecie3 || 0),
+                        totalCantidadSeptimaEspecie3: parseInt(item.totalesSeptimaEspecie3[0]?.totalCantidadSeptimaEspecie3 || 0),
+
+                        totalPesoOctavaEspecie3: parseFloat(item.totalesOctavaEspecie3[0]?.totalPesoOctavaEspecie3 || 0),
+                        totalPesoDescuentoOctavaEspecie3: parseFloat(item.totalesOctavaEspecie3[0]?.totalPesoDescuentoOctavaEspecie3 || 0),
+                        totalVentaOctavaEspecie3: parseFloat(item.totalesOctavaEspecie3[0]?.totalVentaOctavaEspecie3 || 0),
+                        totalCantidadOctavaEspecie3: parseInt(item.totalesOctavaEspecie3[0]?.totalCantidadOctavaEspecie3 || 0),
+
+                        totalPesoDecimaEspecie3: parseFloat(item.totalesDecimaEspecie3[0]?.totalPesoDecimaEspecie3 || 0),
+                        totalPesoDescuentoDecimaEspecie3: parseFloat(item.totalesDecimaEspecie3[0]?.totalPesoDescuentoDecimaEspecie3 || 0),
+                        totalVentaDecimaEspecie3: parseFloat(item.totalesDecimaEspecie3[0]?.totalVentaDecimaEspecie3 || 0),
+                        totalCantidadDecimaEspecie3: parseInt(item.totalesDecimaEspecie3[0]?.totalCantidadDecimaEspecie3 || 0),
+
+                        totalPesoDecimaPrimeraEspecie3: parseFloat(item.totalesDecimaPrimeraEspecie3[0]?.totalPesoDecimaPrimeraEspecie3 || 0),
+                        totalPesoDescuentoDecimaPrimeraEspecie3: parseFloat(item.totalesDecimaPrimeraEspecie3[0]?.totalPesoDescuentoDecimaPrimeraEspecie3 || 0),
+                        totalVentaDecimaPrimeraEspecie3: parseFloat(item.totalesDecimaPrimeraEspecie3[0]?.totalVentaDecimaPrimeraEspecie3 || 0),
+                        totalCantidadDecimaPrimeraEspecie3: parseInt(item.totalesDecimaPrimeraEspecie3[0]?.totalCantidadDecimaPrimeraEspecie3 || 0),
+
+                        totalPesoDecimaSegundaEspecie3: parseFloat(item.totalesDecimaSegundaEspecie3[0]?.totalPesoDecimaSegundaEspecie3 || 0),
+                        totalPesoDescuentoDecimaSegundaEspecie3: parseFloat(item.totalesDecimaSegundaEspecie3[0]?.totalPesoDescuentoDecimaSegundaEspecie3 || 0),
+                        totalVentaDecimaSegundaEspecie3: parseFloat(item.totalesDecimaSegundaEspecie3[0]?.totalVentaDecimaSegundaEspecie3 || 0),
+                        totalCantidadDecimaSegundaEspecie3: parseInt(item.totalesDecimaSegundaEspecie3[0]?.totalCantidadDecimaSegundaEspecie3 || 0),
+
+                        totalPesoDecimaTerceraEspecie3: parseFloat(item.totalesDecimaTerceraEspecie3[0]?.totalPesoDecimaTerceraEspecie3 || 0),
+                        totalPesoDescuentoDecimaTerceraEspecie3: parseFloat(item.totalesDecimaTerceraEspecie3[0]?.totalPesoDescuentoDecimaTerceraEspecie3 || 0),
+                        totalVentaDecimaTerceraEspecie3: parseFloat(item.totalesDecimaTerceraEspecie3[0]?.totalVentaDecimaTerceraEspecie3 || 0),
+                        totalCantidadDecimaTerceraEspecie3: parseInt(item.totalesDecimaTerceraEspecie3[0]?.totalCantidadDecimaTerceraEspecie3 || 0),
+
+                        totalPesoDecimaCuartaEspecie3: parseFloat(item.totalesDecimaCuartaEspecie3[0]?.totalPesoDecimaCuartaEspecie3 || 0),
+                        totalPesoDescuentoDecimaCuartaEspecie3: parseFloat(item.totalesDecimaCuartaEspecie3[0]?.totalPesoDescuentoDecimaCuartaEspecie3 || 0),
+                        totalVentaDecimaCuartaEspecie3: parseFloat(item.totalesDecimaCuartaEspecie3[0]?.totalVentaDecimaCuartaEspecie3 || 0),
+                        totalCantidadDecimaCuartaEspecie3: parseInt(item.totalesDecimaCuartaEspecie3[0]?.totalCantidadDecimaCuartaEspecie3 || 0),
+
+                        totalPesoDecimaQuintaEspecie3: parseFloat(item.totalesDecimaQuintaEspecie3[0]?.totalPesoDecimaQuintaEspecie3 || 0),
+                        totalPesoDescuentoDecimaQuintaEspecie3: parseFloat(item.totalesDecimaQuintaEspecie3[0]?.totalPesoDescuentoDecimaQuintaEspecie3 || 0),
+                        totalVentaDecimaQuintaEspecie3: parseFloat(item.totalesDecimaQuintaEspecie3[0]?.totalVentaDecimaQuintaEspecie3 || 0),
+                        totalCantidadDecimaQuintaEspecie3: parseInt(item.totalesDecimaQuintaEspecie3[0]?.totalCantidadDecimaQuintaEspecie3 || 0),
+
+                        totalPesoDecimaSextaEspecie3: parseFloat(item.totalesDecimaSextaEspecie3[0]?.totalPesoDecimaSextaEspecie3 || 0),
+                        totalPesoDescuentoDecimaSextaEspecie3: parseFloat(item.totalesDecimaSextaEspecie3[0]?.totalPesoDescuentoDecimaSextaEspecie3 || 0),
+                        totalVentaDecimaSextaEspecie3: parseFloat(item.totalesDecimaSextaEspecie3[0]?.totalVentaDecimaSextaEspecie3 || 0),
+                        totalCantidadDecimaSextaEspecie3: parseInt(item.totalesDecimaSextaEspecie3[0]?.totalCantidadDecimaSextaEspecie3 || 0),
+
+                        totalPesoDecimaSeptimaEspecie3: parseFloat(item.totalesDecimaSeptimaEspecie3[0]?.totalPesoDecimaSeptimaEspecie3 || 0),
+                        totalPesoDescuentoDecimaSeptimaEspecie3: parseFloat(item.totalesDecimaSeptimaEspecie3[0]?.totalPesoDescuentoDecimaSeptimaEspecie3 || 0),
+                        totalVentaDecimaSeptimaEspecie3: parseFloat(item.totalesDecimaSeptimaEspecie3[0]?.totalVentaDecimaSeptimaEspecie3 || 0),
+                        totalCantidadDecimaSeptimaEspecie3: parseInt(item.totalesDecimaSeptimaEspecie3[0]?.totalCantidadDecimaSeptimaEspecie3 || 0),
+
+                        totalPesoDecimaOctavaEspecie3: parseFloat(item.totalesDecimaOctavaEspecie3[0]?.totalPesoDecimaOctavaEspecie3 || 0),
+                        totalPesoDescuentoDecimaOctavaEspecie3: parseFloat(item.totalesDecimaOctavaEspecie3[0]?.totalPesoDescuentoDecimaOctavaEspecie3 || 0),
+                        totalVentaDecimaOctavaEspecie3: parseFloat(item.totalesDecimaOctavaEspecie3[0]?.totalVentaDecimaOctavaEspecie3 || 0),
+                        totalCantidadDecimaOctavaEspecie3: parseInt(item.totalesDecimaOctavaEspecie3[0]?.totalCantidadDecimaOctavaEspecie3 || 0),
+
+                        totalPesoDecimaNovenaEspecie3: parseFloat(item.totalesDecimaNovenaEspecie3[0]?.totalPesoDecimaNovenaEspecie3 || 0),
+                        totalPesoDescuentoDecimaNovenaEspecie3: parseFloat(item.totalesDecimaNovenaEspecie3[0]?.totalPesoDescuentoDecimaNovenaEspecie3 || 0),
+                        totalVentaDecimaNovenaEspecie3: parseFloat(item.totalesDecimaNovenaEspecie3[0]?.totalVentaDecimaNovenaEspecie3 || 0),
+                        totalCantidadDecimaNovenaEspecie3: parseInt(item.totalesDecimaNovenaEspecie3[0]?.totalCantidadDecimaNovenaEspecie3 || 0),
+
+                        totalPesoVigesimaEspecie3: parseFloat(item.totalesVigesimaEspecie3[0]?.totalPesoVigesimaEspecie3 || 0),
+                        totalPesoDescuentoVigesimaEspecie3: parseFloat(item.totalesVigesimaEspecie3[0]?.totalPesoDescuentoVigesimaEspecie3 || 0),
+                        totalVentaVigesimaEspecie3: parseFloat(item.totalesVigesimaEspecie3[0]?.totalVentaVigesimaEspecie3 || 0),
+                        totalCantidadVigesimaEspecie3: parseInt(item.totalesVigesimaEspecie3[0]?.totalCantidadVigesimaEspecie3 || 0),
+
+                        totalPesoVigesimaPrimeraEspecie3: parseFloat(item.totalesVigesimaPrimeraEspecie3[0]?.totalPesoVigesimaPrimeraEspecie3 || 0),
+                        totalPesoDescuentoVigesimaPrimeraEspecie3: parseFloat(item.totalesVigesimaPrimeraEspecie3[0]?.totalPesoDescuentoVigesimaPrimeraEspecie3 || 0),
+                        totalVentaVigesimaPrimeraEspecie3: parseFloat(item.totalesVigesimaPrimeraEspecie3[0]?.totalVentaVigesimaPrimeraEspecie3 || 0),
+                        totalCantidadVigesimaPrimeraEspecie3: parseInt(item.totalesVigesimaPrimeraEspecie3[0]?.totalCantidadVigesimaPrimeraEspecie3 || 0),
+
+                        totalPesoVigesimaSegundaEspecie3: parseFloat(item.totalesVigesimaSegundaEspecie3[0]?.totalPesoVigesimaSegundaEspecie3 || 0),
+                        totalPesoDescuentoVigesimaSegundaEspecie3: parseFloat(item.totalesVigesimaSegundaEspecie3[0]?.totalPesoDescuentoVigesimaSegundaEspecie3 || 0),
+                        totalVentaVigesimaSegundaEspecie3: parseFloat(item.totalesVigesimaSegundaEspecie3[0]?.totalVentaVigesimaSegundaEspecie3 || 0),
+                        totalCantidadVigesimaSegundaEspecie3: parseInt(item.totalesVigesimaSegundaEspecie3[0]?.totalCantidadVigesimaSegundaEspecie3 || 0),
+
+                        totalPesoVigesimaTerceraEspecie3: parseFloat(item.totalesVigesimaTerceraEspecie3[0]?.totalPesoVigesimaTerceraEspecie3 || 0),
+                        totalPesoDescuentoVigesimaTerceraEspecie3: parseFloat(item.totalesVigesimaTerceraEspecie3[0]?.totalPesoDescuentoVigesimaTerceraEspecie3 || 0),
+                        totalVentaVigesimaTerceraEspecie3: parseFloat(item.totalesVigesimaTerceraEspecie3[0]?.totalVentaVigesimaTerceraEspecie3 || 0),
+                        totalCantidadVigesimaTerceraEspecie3: parseInt(item.totalesVigesimaTerceraEspecie3[0]?.totalCantidadVigesimaTerceraEspecie3 || 0),
+
+                        totalCantidadNovenaEspecie3: parseInt(item.totalesNovenaEspecie3[0]?.totalCantidadNovenaEspecie3 || 0),
+                        
+                        totalCantidadDescuentoPrimerEspecie3: parseInt(item.totalesPrimerEspecie3[0]?.totalCantidadDescuentoPrimerEspecie3.replace(/[^0-9.-]+/g,"") || 0),
+                        totalVentaDescuentoPrimerEspecie3: parseFloat(item.totalesPrimerEspecie3[0]?.totalVentaDescuentoPrimerEspecie3.replace(/[^0-9.-]+/g,"") || 0),
+                        
+                        totalCantidadDescuentoSegundaEspecie3: parseInt(item.totalesSegundaEspecie3[0]?.totalCantidadDescuentoSegundaEspecie3.replace(/[^0-9.-]+/g,"") || 0),
+                        totalVentaDescuentoSegundaEspecie3: parseFloat(item.totalesSegundaEspecie3[0]?.totalVentaDescuentoSegundaEspecie3.replace(/[^0-9.-]+/g,"") || 0),
+                        
+                        totalCantidadDescuentoTerceraEspecie3: parseInt(item.totalesTerceraEspecie3[0]?.totalCantidadDescuentoTerceraEspecie3.replace(/[^0-9.-]+/g,"") || 0),
+                        totalVentaDescuentoTerceraEspecie3: parseFloat(item.totalesTerceraEspecie3[0]?.totalVentaDescuentoTerceraEspecie3.replace(/[^0-9.-]+/g,"") || 0),
+                        
+                        totalCantidadDescuentoCuartaEspecie3: parseInt(item.totalesCuartaEspecie3[0]?.totalCantidadDescuentoCuartaEspecie3.replace(/[^0-9.-]+/g,"") || 0),
+                        totalVentaDescuentoCuartaEspecie3: parseFloat(item.totalesCuartaEspecie3[0]?.totalVentaDescuentoCuartaEspecie3.replace(/[^0-9.-]+/g,"") || 0),
+
+                        totalCantidadDescuentoQuintaEspecie3: parseInt(item.totalesQuintaEspecie3[0]?.totalCantidadDescuentoQuintaEspecie3.replace(/[^0-9.-]+/g,"") || 0),
+                        totalVentaDescuentoQuintaEspecie3: parseFloat(item.totalesQuintaEspecie3[0]?.totalVentaDescuentoQuintaEspecie3.replace(/[^0-9.-]+/g,"") || 0),
+
+                        totalCantidadDescuentoSextaEspecie3: parseInt(item.totalesSextaEspecie3[0]?.totalCantidadDescuentoSextaEspecie3.replace(/[^0-9.-]+/g,"") || 0),
+                        totalVentaDescuentoSextaEspecie3: parseFloat(item.totalesSextaEspecie3[0]?.totalVentaDescuentoSextaEspecie3.replace(/[^0-9.-]+/g,"") || 0),
+
+                        totalCantidadDescuentoSeptimaEspecie3: parseInt(item.totalesSeptimaEspecie3[0]?.totalCantidadDescuentoSeptimaEspecie3.replace(/[^0-9.-]+/g,"") || 0),
+                        totalVentaDescuentoSeptimaEspecie3: parseFloat(item.totalesSeptimaEspecie3[0]?.totalVentaDescuentoSeptimaEspecie3.replace(/[^0-9.-]+/g,"") || 0),
+
+                        totalCantidadDescuentoOctavaEspecie3: parseInt(item.totalesOctavaEspecie3[0]?.totalCantidadDescuentoOctavaEspecie3.replace(/[^0-9.-]+/g,"") || 0),
+                        totalVentaDescuentoOctavaEspecie3: parseFloat(item.totalesOctavaEspecie3[0]?.totalVentaDescuentoOctavaEspecie3.replace(/[^0-9.-]+/g,"") || 0),
+
+                        totalCantidadDescuentoDecimaEspecie3: parseInt(item.totalesDecimaEspecie3[0]?.totalCantidadDescuentoDecimaEspecie3.replace(/[^0-9.-]+/g,"") || 0),
+                        totalVentaDescuentoDecimaEspecie3: parseFloat(item.totalesDecimaEspecie3[0]?.totalVentaDescuentoDecimaEspecie3.replace(/[^0-9.-]+/g,"") || 0),
+
+                        totalCantidadDescuentoDecimaPrimeraEspecie3: parseInt(item.totalesDecimaPrimeraEspecie3[0]?.totalCantidadDescuentoDecimaPrimeraEspecie3.replace(/[^0-9.-]+/g,"") || 0),
+                        totalVentaDescuentoDecimaPrimeraEspecie3: parseFloat(item.totalesDecimaPrimeraEspecie3[0]?.totalVentaDescuentoDecimaPrimeraEspecie3.replace(/[^0-9.-]+/g,"") || 0),
+
+                        totalCantidadDescuentoDecimaSegundaEspecie3: parseInt(item.totalesDecimaSegundaEspecie3[0]?.totalCantidadDescuentoDecimaSegundaEspecie3.replace(/[^0-9.-]+/g,"") || 0),
+                        totalVentaDescuentoDecimaSegundaEspecie3: parseFloat(item.totalesDecimaSegundaEspecie3[0]?.totalVentaDescuentoDecimaSegundaEspecie3.replace(/[^0-9.-]+/g,"") || 0),
+
+                        totalCantidadDescuentoDecimaTerceraEspecie3: parseInt(item.totalesDecimaTerceraEspecie3[0]?.totalCantidadDescuentoDecimaTerceraEspecie3.replace(/[^0-9.-]+/g,"") || 0),
+                        totalVentaDescuentoDecimaTerceraEspecie3: parseFloat(item.totalesDecimaTerceraEspecie3[0]?.totalVentaDescuentoDecimaTerceraEspecie3.replace(/[^0-9.-]+/g,"") || 0),
+
+                        totalCantidadDescuentoDecimaCuartaEspecie3: parseInt(item.totalesDecimaCuartaEspecie3[0]?.totalCantidadDescuentoDecimaCuartaEspecie3.replace(/[^0-9.-]+/g,"") || 0),
+                        totalVentaDescuentoDecimaCuartaEspecie3: parseFloat(item.totalesDecimaCuartaEspecie3[0]?.totalVentaDescuentoDecimaCuartaEspecie3.replace(/[^0-9.-]+/g,"") || 0),
+
+                        totalCantidadDescuentoDecimaQuintaEspecie3: parseInt(item.totalesDecimaQuintaEspecie3[0]?.totalCantidadDescuentoDecimaQuintaEspecie3.replace(/[^0-9.-]+/g,"") || 0),
+                        totalVentaDescuentoDecimaQuintaEspecie3: parseFloat(item.totalesDecimaQuintaEspecie3[0]?.totalVentaDescuentoDecimaQuintaEspecie3.replace(/[^0-9.-]+/g,"") || 0),
+
+                        totalCantidadDescuentoDecimaSextaEspecie3: parseInt(item.totalesDecimaSextaEspecie3[0]?.totalCantidadDescuentoDecimaSextaEspecie3.replace(/[^0-9.-]+/g,"") || 0),
+                        totalVentaDescuentoDecimaSextaEspecie3: parseFloat(item.totalesDecimaSextaEspecie3[0]?.totalVentaDescuentoDecimaSextaEspecie3.replace(/[^0-9.-]+/g,"") || 0),
+                        
+                        totalCantidadDescuentoDecimaSeptimaEspecie3: parseInt(item.totalesDecimaSeptimaEspecie3[0]?.totalCantidadDescuentoDecimaSeptimaEspecie3.replace(/[^0-9.-]+/g,"") || 0),
+                        totalVentaDescuentoDecimaSeptimaEspecie3: parseFloat(item.totalesDecimaSeptimaEspecie3[0]?.totalVentaDescuentoDecimaSeptimaEspecie3.replace(/[^0-9.-]+/g,"") || 0),
+                        
+                        totalCantidadDescuentoDecimaOctavaEspecie3: parseInt(item.totalesDecimaOctavaEspecie3[0]?.totalCantidadDescuentoDecimaOctavaEspecie3.replace(/[^0-9.-]+/g,"") || 0),
+                        totalVentaDescuentoDecimaOctavaEspecie3: parseFloat(item.totalesDecimaOctavaEspecie3[0]?.totalVentaDescuentoDecimaOctavaEspecie3.replace(/[^0-9.-]+/g,"") || 0),
+
+                        totalCantidadDescuentoDecimaNovenaEspecie3: parseInt(item.totalesDecimaNovenaEspecie3[0]?.totalCantidadDescuentoDecimaNovenaEspecie3.replace(/[^0-9.-]+/g,"") || 0),
+                        totalVentaDescuentoDecimaNovenaEspecie3: parseFloat(item.totalesDecimaNovenaEspecie3[0]?.totalVentaDescuentoDecimaNovenaEspecie3.replace(/[^0-9.-]+/g,"") || 0),
+                        
+                        totalCantidadDescuentoVigesimaEspecie3: parseInt(item.totalesVigesimaEspecie3[0]?.totalCantidadDescuentoVigesimaEspecie3.replace(/[^0-9.-]+/g,"") || 0),
+                        totalVentaDescuentoVigesimaEspecie3: parseFloat(item.totalesVigesimaEspecie3[0]?.totalVentaDescuentoVigesimaEspecie3.replace(/[^0-9.-]+/g,"") || 0),
+                        
+                        totalCantidadDescuentoVigesimaPrimeraEspecie3: parseInt(item.totalesVigesimaPrimeraEspecie3[0]?.totalCantidadDescuentoVigesimaPrimeraEspecie3.replace(/[^0-9.-]+/g,"") || 0),
+                        totalVentaDescuentoVigesimaPrimeraEspecie3: parseFloat(item.totalesVigesimaPrimeraEspecie3[0]?.totalVentaDescuentoVigesimaPrimeraEspecie3.replace(/[^0-9.-]+/g,"") || 0),
+                        
+                        totalCantidadDescuentoVigesimaSegundaEspecie3: parseInt(item.totalesVigesimaSegundaEspecie3[0]?.totalCantidadDescuentoVigesimaSegundaEspecie3.replace(/[^0-9.-]+/g,"") || 0),
+                        totalVentaDescuentoVigesimaSegundaEspecie3: parseFloat(item.totalesVigesimaSegundaEspecie3[0]?.totalVentaDescuentoVigesimaSegundaEspecie3.replace(/[^0-9.-]+/g,"") || 0),
+                        
+                        totalCantidadDescuentoVigesimaTerceraEspecie3: parseInt(item.totalesVigesimaTerceraEspecie3[0]?.totalCantidadDescuentoVigesimaTerceraEspecie3.replace(/[^0-9.-]+/g,"") || 0),
+                        totalVentaDescuentoVigesimaTerceraEspecie3: parseFloat(item.totalesVigesimaTerceraEspecie3[0]?.totalVentaDescuentoVigesimaTerceraEspecie3.replace(/[^0-9.-]+/g,"") || 0),
+
                         /* ================================================================== */
                         /* ================================================================== */
                         /* ================================================================== */
                         ventaAnterior: parseFloat(item.ventaAnterior || 0),
                         ventaAnterior2: parseFloat(item.ventaAnterior2 || 0),
+                        ventaAnterior3: parseFloat(item.ventaAnterior3 || 0),
 
                         totalPesoDescuento: parseFloat(item.totalDescuentos[0]?.totalPesoDescuento || 0),
                         totalVentaDescuento: parseFloat(item.totalDescuentos[0]?.totalVentaDescuento || 0),
@@ -568,9 +751,11 @@ jQuery(function($) {
                       $.each(mainProperties, function(propertyIndex, property) {
                         const key = property + especie;
                         const key2 = property + especie + "2";
+                        const key3 = property + especie + "3";
                         const value1 = item[key] || 0;
                         const value2 = item[key2] || 0;
-                        const combinedValue = value1 + value2;
+                        const value3 = item[key3] || 0;
+                        const combinedValue = value1 + value2 + value3;
                   
                         processedItem[key] = combinedValue;
                       });
@@ -581,7 +766,8 @@ jQuery(function($) {
                       if (property === "ventaAnterior") {
                         const ventaAnterior = parseFloat(item["ventaAnterior"] || 0);
                         const ventaAnterior2 = parseFloat(item["ventaAnterior2"] || 0);
-                        processedItem["ventaAnterior"] = ventaAnterior + ventaAnterior2;
+                        const ventaAnterior3 = parseFloat(item["ventaAnterior3"] || 0);
+                        processedItem["ventaAnterior"] = ventaAnterior + ventaAnterior2 + ventaAnterior3;
                       } else {
                         const value = (property in item) ? item[property] : 0;
                         processedItem[property] = value;
