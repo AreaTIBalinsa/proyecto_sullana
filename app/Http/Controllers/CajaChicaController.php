@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\AgregarEgresoCliente\AgregarEgresoCliente;
 use App\Models\AgregarPagoCliente\AgregarPagoCliente;
 use App\Models\AgregarPagoCliente\TraerClientesAgregarPagoCliente;
+use Carbon\Carbon;
 
 class CajaChicaController extends Controller
 {
@@ -123,7 +124,7 @@ class CajaChicaController extends Controller
             $agregarPagoCliente->observacion = $comentarioAgregarPagoCliente;
             $agregarPagoCliente->bancaPago = $bancoAgregarPagoCliente;
             $agregarPagoCliente->horaOperacionPag = $horaAgregarPago;
-            $agregarPagoCliente->fechaRegistroPag = now()->setTimezone('America/New_York')->toDateString();
+            $agregarPagoCliente->fechaRegistroPag = Carbon::now()->setTimezone('America/Lima')->toDateString();
             $agregarPagoCliente->estadoPago = 1;
             $agregarPagoCliente->clasificacionPago = 2;
             $agregarPagoCliente->save();
@@ -156,7 +157,7 @@ class CajaChicaController extends Controller
             $agregarEgresoCliente->cantidadEgreso = $cantidadAgregEgresoCliente;
             $agregarEgresoCliente->montoEgreso = $montoNuevoAgregEgresoCliente;
             $agregarEgresoCliente->nombreEgresoCamal = $usoReporteEgreso;
-            $agregarEgresoCliente->fechaRegistroEgreso = now()->setTimezone('America/New_York')->toDateString();
+            $agregarEgresoCliente->fechaRegistroEgreso = Carbon::now()->setTimezone('America/Lima')->toDateString();
             $agregarEgresoCliente->estadoEgreso = 1;
             $agregarEgresoCliente->clasificadoEgreso = 1;
             $agregarEgresoCliente->save();
@@ -259,7 +260,7 @@ class CajaChicaController extends Controller
             $agregarEgresoCliente->bancoEgreso = $bancoAgregEgresoCliente;
             $agregarEgresoCliente->codigoTransferenciaEgreso = $codAgregEgresoCliente;
             $agregarEgresoCliente->nombreEgresoCamal = $usoReporteEgreso;
-            $agregarEgresoCliente->fechaRegistroEgreso = now()->setTimezone('America/New_York')->toDateString();
+            $agregarEgresoCliente->fechaRegistroEgreso = Carbon::now()->setTimezone('America/Lima')->toDateString();
             $agregarEgresoCliente->estadoEgreso = 1;
             $agregarEgresoCliente->clasificadoEgreso = 2;
             $agregarEgresoCliente->save();

@@ -6,10 +6,12 @@ jQuery(function($) {
     const ahoraEnNY = new Date();
     const fechaHoy = new Date(ahoraEnNY.getFullYear(), ahoraEnNY.getMonth(), ahoraEnNY.getDate()).toISOString().split('T')[0];
     var tipoUsuario = $('#tipoUsuario').data('id');
+    fn_consulta_TraerDatosPesadas3(fechaHoy)
 
     const fechaHoyTabla = new Date().toISOString().split('T')[0].split('-').reverse().join('-');
 
-    $('#fechaAgregarPesadas').val(fechaHoy);
+    $('#fechaDesdePesadas').val(fechaHoy);
+    $('#fechaHastaPesadas').val(fechaHoy);
 
     $('#idCuentaDelCliente').on('input', function () {
         let inputCuentaDelCliente = $(this).val();
@@ -371,7 +373,6 @@ jQuery(function($) {
         copiarDatosPenultimaFila();
     });
 
-    fn_consulta_TraerDatosPesadas3("2024-07-03")
     function fn_consulta_TraerDatosPesadas3(fechaPesadas) {
 
         // Realiza la solicitud AJAX para obtener sugerencias
@@ -404,6 +405,7 @@ jQuery(function($) {
                         
                         nuevaFila = $('<tr class="Pesadas bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-200 text-gray-900 dark:text-white dark:hover:bg-gray-600 cursor-pointer">');
                         // Agregar las celdas con la información
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(obj.fechaRegistroPes));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 font-medium whitespace-nowrap">').text(obj.nombreCompleto));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(obj.nombreEspecie));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(promedio.toFixed(2)));
@@ -412,7 +414,6 @@ jQuery(function($) {
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(obj.pesoNetoJabas));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(pesoNetoPes.toFixed(2)));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(obj.precioPes));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(obj.fechaRegistroPes));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(obj.observacionPes));
                         
                         // Agregar la nueva fila al tbody

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\AgregarPesadas\AgregarPesadasWeb;
+use Carbon\Carbon;
 
 class PesadasWebController extends Controller
 {
@@ -32,7 +33,7 @@ class PesadasWebController extends Controller
             $agregarPesadasWeb->idProceso = 0;
             $agregarPesadasWeb->idEspecie = $idEspecie;
             $agregarPesadasWeb->pesoNetoPes = $pesoNetoPes;
-            $agregarPesadasWeb->horaPes = '12:00:00';
+            $agregarPesadasWeb->horaPes = Carbon::now()->setTimezone('America/Lima')->format('H:i:s');
             $agregarPesadasWeb->codigoCli = $codigoCli;
             $agregarPesadasWeb->fechaRegistroPes = $fechaAgregarPesada;
             $agregarPesadasWeb->cantidadPes = $cantidadAgregarPesada;

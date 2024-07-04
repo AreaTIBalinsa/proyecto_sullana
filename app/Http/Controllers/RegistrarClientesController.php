@@ -10,6 +10,7 @@ use App\Models\RegistrarClientes\TraerCodigoCli;
 use App\Models\RegistrarClientes\TraerDocumentos;
 use App\Models\RegistrarClientes\RegistrarCliente;
 use App\Models\RegistrarClientes\PrecioXPresentacion;
+use Carbon\Carbon;
 
 class RegistrarClientesController extends Controller
 {
@@ -82,8 +83,8 @@ class RegistrarClientesController extends Controller
             $registrarCliente->contactoCli = $contactoCli;
             $registrarCliente->direccionCli = $direccionCli;
             $registrarCliente->idEstadoCli = $estadoCli;
-            $registrarCliente->fechaRegistroCli = now()->setTimezone('America/New_York')->toDateString();
-            $registrarCliente->horaRegistroCli = now()->setTimezone('America/New_York')->toTimeString();
+            $registrarCliente->fechaRegistroCli = Carbon::now()->setTimezone('America/Lima')->toDateString();
+            $registrarCliente->horaRegistroCli = Carbon::now()->setTimezone('America/Lima')->format('H:i:s');
             $registrarCliente->usuarioRegistroCli = $usuarioRegistroCli;
             $registrarCliente->codigoCli = $codigoCli;
             $registrarCliente->comentarioCli = $comentarioCli;

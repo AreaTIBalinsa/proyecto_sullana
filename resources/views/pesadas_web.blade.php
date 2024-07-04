@@ -6,11 +6,25 @@
         <div class="px-5 pb-5 bg-white dark:bg-gray-900 rounded-xl drop-shadow-md">
             {{-- Inicia contenedor Pesadas Web --}}
             <h4 class="text-gray-900 font-semibold text-ml dark:text-gray-300 py-5">Agregar Pesadas Web</h4>
-            <div class="overflow-auto">
+            <div class="flex gap-x-24 gap-4 w-full flex-col md:flex-row">
+                <div class="flex flex-col justify-center">
+                    <label for="fechaDesdePesadas" class="text-base text-gray-900 dark:text-gray-50">Desde :</label>
+                    <input type="date" class="outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 px-2.5 py-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" id="fechaDesdePesadas">
+                </div>
+                <div class="flex flex-col justify-center">
+                    <label for="fechaHastaPesadas" class="text-base text-gray-900 dark:text-gray-50">Hasta :</label>
+                    <input type="date" class="outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 px-2.5 py-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" id="fechaHastaPesadas">
+                </div>
+                <div class=" flex items-end">
+                    <button class="text-base py-2 px-5 bg-blue-600 hover:bg-blue-700 text-gray-50 rounded-lg w-full md:w-auto" id="btnBuscarCuentaDelCliente"><i class='bx bx-search-alt'></i> Buscar</button>
+                </div>
+            </div>
+            <div class="overflow-auto mt-5">
                 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                     <thead class="text-xs text-gray-100 uppercase bg-blue-600">
                         <tr>
                             <th class="hidden">Id</th>
+                            <th class="p-4 border-r-2 border-t-2 border-b-2 text-center whitespace-nowrap">Fecha</th>
                             <th class="p-4 border-r-2 border-t-2 border-l-2 border-b-2 text-center whitespace-nowrap">Nombre Cliente</th>
                             <th class="p-4 border-r-2 border-t-2 border-b-2 text-center whitespace-nowrap">Especie</th>
                             <th class="p-4 border-r-2 border-t-2 border-b-2 text-center whitespace-nowrap">Promedio</th>
@@ -19,7 +33,6 @@
                             <th class="p-4 border-r-2 border-t-2 border-b-2 text-center whitespace-nowrap">Peso Jabas</th>
                             <th class="p-4 border-r-2 border-t-2 border-b-2 text-center whitespace-nowrap">Peso Neto</th>
                             <th class="p-4 border-r-2 border-t-2 border-b-2 text-center whitespace-nowrap">Precio</th>
-                            <th class="p-4 border-r-2 border-t-2 border-b-2 text-center whitespace-nowrap">Fecha</th>
                             <th class="p-4 border-2 border-t-2 text-center whitespace-nowrap">Observaciones</th>
                         </tr>
                     </thead>
@@ -49,7 +62,7 @@
                         </div>
                     </div>
                     <div class="w-56">
-                        <button class="border-2 w-56 flex gap-2 justify-center items-center cursor-pointer uppercase bg-green-600 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 hover:bg-green-600 whitespace-nowrap" type="submit" autocomplete="off" id="registrar_agregarPagos_Excel4"><i class='bx bx-save text-lg'></i>Guardar Pagos</button>
+                        <button class="border-2 w-56 flex gap-2 justify-center items-center cursor-pointer uppercase bg-green-600 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 hover:bg-green-600 whitespace-nowrap" type="submit" autocomplete="off" id="registrar_agregarPagos_Excel4"><i class='bx bx-save text-lg'></i>Guardar Pesadas</button>
                     </div>
                 </div>
             </div>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\AgregarSaldo\AgregarSaldoCliente;
+use Carbon\Carbon;
 
 class AgregarSaldoController extends Controller
 {
@@ -117,10 +118,10 @@ class AgregarSaldoController extends Controller
             $agregarSaldoCliente->codigoCli = $idCodigoClienteAgregarSaldo;
             $agregarSaldoCliente->tipoAbonoPag = "Saldo";
             $agregarSaldoCliente->cantidadAbonoPag = $valorAgregarSaldo;
-            $agregarSaldoCliente->fechaOperacionPag = now()->setTimezone('America/New_York')->toDateString();
+            $agregarSaldoCliente->fechaOperacionPag = Carbon::now()->setTimezone('America/Lima')->toDateString();
             $agregarSaldoCliente->codigoTransferenciaPag = "";
             $agregarSaldoCliente->observacion = "";
-            $agregarSaldoCliente->fechaRegistroPag = now()->setTimezone('America/New_York')->toDateString();
+            $agregarSaldoCliente->fechaRegistroPag = Carbon::now()->setTimezone('America/Lima')->toDateString();
             $agregarSaldoCliente->save();
     
             return response()->json(['success' => true], 200);
