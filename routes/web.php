@@ -196,3 +196,6 @@ Route::get('/fn_consulta_TraerPedidosSeguimientoClientes',[SeguimientoPedidosCon
 
 Route::get('/fn_consulta_TraerPagosFechasReporteIngresos',[ReporteIngresosController::class,'consulta_TraerPagosFechasReporteIngresos']);
 Route::get('/fn_consulta_TraerPagosDirectoGranjaFechasBanco',[ReporteIngresosController::class,'consulta_TraerPagosDirectoGranjaFechasBanco']);
+
+Route::get('/fn_consulta_registrarPesadas',[PesadasWebController::class,'consulta_registrarPesadas']);
+Route::get('/fn_consulta_TraerDatosPesadas3',[PesadasWebController::class,'consulta_TraerDatosPesadas3']);

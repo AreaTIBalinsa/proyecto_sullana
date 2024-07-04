@@ -514,6 +514,22 @@ jQuery(function($) {
                         pesoTotalVigesimaTerceraEspecie: 0.0,
                         pesoTotalesEspecie: 0.0,
                         cantidadTotalesEspecie: 0,
+                        cantidadTotalYugo: 0,
+                        pesoTotalYugo: 0,
+                        cantidadTotalTecnica: 0,
+                        pesoTotalTecnica: 0,
+                        cantidadTotalPolloXX: 0,
+                        pesoTotalPolloXX: 0,
+                        cantidadTotalGallo: 0,
+                        pesoTotalGallo : 0,
+                        cantidadTotalGallinaDoble: 0,
+                        pesoTotalGallinaDoble: 0,
+                        cantidadTotalGallinaChica: 0,
+                        pesoTotalGallinaChica: 0,
+                        cantidadTotalPolloMaltratado: 0,
+                        pesoTotalPolloMaltratado: 0,
+                        cantidadTotalPolloTrozado: 0,
+                        pesoTotalPolloTrozado: 0,
                     };
 
                     // Verificar si la respuesta es un arreglo de objetos
@@ -742,8 +758,34 @@ jQuery(function($) {
                             datosTiempoReal.pesoTotalVigesimaPrimeraEspecie + datosTiempoReal.pesoTotalVigesimaSegundaEspecie +
                             datosTiempoReal.pesoTotalVigesimaTerceraEspecie;
 
-                        console.log(
-                            "Cantidad",datosTiempoReal.cantidadTotalesEspecie, "Peso",datosTiempoReal.pesoTotalesEspecie);
+                        datosTiempoReal.cantidadTotalYugo = datosTiempoReal.cantidadPrimerEspecie + datosTiempoReal.cantidadSegundaEspecie + datosTiempoReal.cantidadDecimaSeptimaEspecie
+                        datosTiempoReal.pesoTotalYugo = datosTiempoReal.pesoTotalPrimerEspecie + datosTiempoReal.pesoTotalSegundaEspecie + datosTiempoReal.pesoTotalDecimaSeptimaEspecie
+                        
+                        datosTiempoReal.cantidadTotalTecnica = datosTiempoReal.cantidadTerceraEspecie + datosTiempoReal.cantidadCuartaEspecie + datosTiempoReal.cantidadDecimaOctavaEspecie
+                        datosTiempoReal.pesoTotalTecnica = datosTiempoReal.pesoTotalTerceraEspecie + datosTiempoReal.pesoTotalCuartaEspecie + datosTiempoReal.pesoTotalDecimaOctavaEspecie
+
+                        datosTiempoReal.cantidadTotalPolloXX = datosTiempoReal.cantidadDecimaSextaEspecie + datosTiempoReal.cantidadDecimaNovenaEspecie
+                        datosTiempoReal.pesoTotalPolloXX = datosTiempoReal.pesoTotalDecimaSextaEspecie + datosTiempoReal.pesoTotalDecimaNovenaEspecie
+
+                        datosTiempoReal.cantidadTotalGallo = datosTiempoReal.cantidadSeptimaEspecie + datosTiempoReal.cantidadVigesimaSegundaEspecie
+                        datosTiempoReal.pesoTotalGallo = datosTiempoReal.pesoTotalSeptimaEspecie + datosTiempoReal.pesoTotalVigesimaSegundaEspecie
+
+                        datosTiempoReal.cantidadTotalGallinaDoble = datosTiempoReal.cantidadQuintaEspecie + datosTiempoReal.cantidadVigesimaEspecie
+                        datosTiempoReal.pesoTotalGallinaDoble = datosTiempoReal.pesoTotalQuintaEspecie + datosTiempoReal.pesoTotalVigesimaEspecie
+
+                        datosTiempoReal.cantidadTotalGallinaChica = datosTiempoReal.cantidadSextaEspecie + datosTiempoReal.cantidadVigesimaPrimeraEspecie
+                        datosTiempoReal.pesoTotalGallinaChica = datosTiempoReal.pesoTotalSextaEspecie + datosTiempoReal.pesoTotalVigesimaPrimeraEspecie
+
+                        datosTiempoReal.cantidadTotalPolloMaltratado = datosTiempoReal.cantidadOctavaEspecie + datosTiempoReal.cantidadVigesimaTerceraEspecie
+                        datosTiempoReal.pesoTotalPolloMaltratado = datosTiempoReal.pesoTotalOctavaEspecie + datosTiempoReal.pesoTotalVigesimaTerceraEspecie
+
+                        datosTiempoReal.cantidadTotalPolloTrozado = datosTiempoReal.cantidadDecimaEspecie + datosTiempoReal.cantidadDecimaPrimeraEspecie + datosTiempoReal.cantidadDecimaSegundaEspecie + datosTiempoReal.cantidadDecimaTerceraEspecie + 
+                        datosTiempoReal.cantidadDecimaCuartaEspecie + datosTiempoReal.cantidadDecimaQuintaEspecie + datosTiempoReal.cantidadNovenaEspecie
+                        datosTiempoReal.pesoTotalPolloTrozado = datosTiempoReal.pesoTotalDecimaEspecie + datosTiempoReal.pesoTotalDecimaPrimeraEspecie + datosTiempoReal.pesoTotalDecimaSegundaEspecie + datosTiempoReal.pesoTotalDecimaTerceraEspecie + 
+                        datosTiempoReal.pesoTotalDecimaCuartaEspecie + datosTiempoReal.pesoTotalDecimaQuintaEspecie
+
+                        // console.log(
+                        //     "Cantidad",datosTiempoReal.cantidadTotalesEspecie, "Peso",datosTiempoReal.pesoTotalesEspecie);
 
                         } else {
                             console.log("La respuesta no es un arreglo de objetos.");
@@ -800,11 +842,21 @@ jQuery(function($) {
             .then(function([datosTiempoReal, datosProveedores]) {
                 // Aquí puedes realizar las acciones que necesites con los resultados combinados.
                 // console.log('Datos en tiempo real:', datosTiempoReal);
-                // console.log('Datos de proveedores:', datosProveedores);
+                console.log('Datos de proveedores:', datosProveedores);
 
-                // Calculo de CantidadTotal y cantidadTotalesVenta
+                // Calculo de Promedios de CantidadTotalCompras y cantidadTotalesVentas
                 let CantidadPromedioCompra = datosProveedores.pesoAProveedoresPorDia / datosProveedores.cantidadAProveedoresPorDia;
                 let cantidadPromedioVenta = datosTiempoReal.pesoTotalesEspecie / datosTiempoReal.cantidadTotalesEspecie;
+
+                // Calculo de Promedios de las Especies Ocultas
+                let cantidadPromedioYugo = datosTiempoReal.pesoTotalYugo / datosTiempoReal.cantidadTotalYugo;
+                let cantidadPromedioTecnica = datosTiempoReal.pesoTotalTecnica / datosTiempoReal.cantidadTotalTecnica;
+                let cantidadPromedioPolloXX = datosTiempoReal.pesoTotalPolloXX / datosTiempoReal.cantidadTotalPolloXX;
+                let cantidadPromedioGallo = datosTiempoReal.pesoTotalGallo / datosTiempoReal.cantidadTotalGallo;
+                let cantidadPromedioGallinaDoble = datosTiempoReal.pesoTotalGallinaDoble / datosTiempoReal.cantidadTotalGallinaDoble;
+                let cantidadPromedioAhogadosySecos = datosTiempoReal.pesoTotalGallinaChica / datosTiempoReal.cantidadTotalGallinaChica;
+                let cantidadPromedioMaltratado = datosTiempoReal.pesoTotalPolloMaltratado / datosTiempoReal.cantidadTotalPolloMaltratado;
+                let cantidadPromedioTrozado = datosTiempoReal.pesoTotalPolloTrozado / datosTiempoReal.cantidadTotalPolloTrozado;
 
                 let resultadoDiferenciaCantidad = datosProveedores.cantidadAProveedoresPorDia - datosTiempoReal.cantidadTotalesEspecie;
                 let resultadoDiferenciaPromedio = CantidadPromedioCompra - cantidadPromedioVenta;
@@ -817,7 +869,7 @@ jQuery(function($) {
                 bodycantidadesPollosCalculo += construirFilaTotalesCompradePollos(datosProveedores,CantidadPromedioCompra);
 
                 // Luego se agrega la segunda fila (Venta)
-                bodycantidadesPollosCalculo += construirFilaVenta(datosTiempoReal, cantidadPromedioVenta);
+                bodycantidadesPollosCalculo += construirFilaVenta(datosTiempoReal, cantidadPromedioVenta, cantidadPromedioYugo, cantidadPromedioTecnica, cantidadPromedioPolloXX, cantidadPromedioGallo, cantidadPromedioGallinaDoble, cantidadPromedioAhogadosySecos, cantidadPromedioMaltratado, cantidadPromedioTrozado);
 
                 // Finalmente se agrega la tercera fila (Diferencia)
                 bodycantidadesPollosCalculo += construirFilaDiferencia(resultadoDiferenciaPromedio, resultadoDiferenciaCantidad, resultadoDiferenciaPeso);
@@ -844,25 +896,94 @@ jQuery(function($) {
             </tr>`;
     }
     
-    function construirFilaVenta(datosTiempoReal, cantidadPromedioVenta) {
+    function construirFilaVenta(datosTiempoReal, cantidadPromedioVenta, cantidadPromedioYugo, cantidadPromedioTecnica, cantidadPromedioPolloXX, cantidadPromedioGallo, cantidadPromedioGallinaDoble, cantidadPromedioAhogadosySecos, cantidadPromedioMaltratado, cantidadPromedioTrozado) {
         let cantidadTotalesEspecie = datosTiempoReal.cantidadTotalesEspecie;
         let pesoTotalesEspecie = datosTiempoReal.pesoTotalesEspecie;
+        let cantidadTotalYugo = datosTiempoReal.cantidadTotalYugo;
+        let pesoTotalYugo = datosTiempoReal.pesoTotalYugo;
+        let cantidadTotalTecnica = datosTiempoReal.cantidadTotalTecnica;
+        let pesoTotalTecnica = datosTiempoReal.pesoTotalTecnica;
+        let cantidadTotalPolloXX = datosTiempoReal.cantidadTotalPolloXX;
+        let pesoTotalPolloXX = datosTiempoReal.pesoTotalPolloXX;
+        let cantidadTotalGallo = datosTiempoReal.cantidadTotalGallo;
+        let pesoTotalGallo = datosTiempoReal.pesoTotalGallo;
+        let cantidadTotalGallinaDoble = datosTiempoReal.cantidadTotalGallinaDoble;
+        let pesoTotalGallinaDoble = datosTiempoReal.pesoTotalGallinaDoble;
+        let cantidadTotalGallinaChica = datosTiempoReal.cantidadTotalGallinaChica;
+        let pesoTotalGallinaChica = datosTiempoReal.pesoTotalGallinaChica;
+        let cantidadTotalPolloMaltratado = datosTiempoReal.cantidadTotalPolloMaltratado;
+        let pesoTotalPolloMaltratado = datosTiempoReal.pesoTotalPolloMaltratado;
+        let cantidadTotalPolloTrozado = datosTiempoReal.cantidadTotalPolloTrozado;
+        let pesoTotalPolloTrozado = datosTiempoReal.pesoTotalPolloTrozado;
         return `
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900">
-                <td class="text-base font-semibold text-left border-2 py-2 px-3 bg-green-600 whitespace-nowrap">Venta</td>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900" id="filaPrincipal">
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 bg-green-600 whitespace-nowrap cursor-pointer">Venta</td>
                 <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${cantidadTotalesEspecie ? cantidadTotalesEspecie : 0}</td>
                 <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${parseFloat(pesoTotalesEspecie ? pesoTotalesEspecie : 0).toFixed(2)}</td>
                 <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${parseFloat(cantidadPromedioVenta ? cantidadPromedioVenta : 0).toFixed(2)}</td>
-            </tr>`;
+            </tr>
+            <tr class="bg-white filasOcultas border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 hidden text-gray-900">
+                <td class="text-base font-semibold pl-10 text-left border-2 py-2 px-3 bg-[#088FC2] whitespace-nowrap">Yugo</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${cantidadTotalYugo ? cantidadTotalYugo : 0}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(pesoTotalYugo ? pesoTotalYugo : 0).toFixed(2)}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(cantidadPromedioYugo ? cantidadPromedioYugo : 0).toFixed(2)}</td>
+            </tr>
+            <tr class="bg-white filasOcultas border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 hidden text-gray-900">
+                <td class="text-base font-semibold pl-10 text-left border-2 py-2 px-3 bg-[#088FC2] whitespace-nowrap">Tecnica</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${cantidadTotalTecnica ? cantidadTotalTecnica : 0}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(pesoTotalTecnica ? pesoTotalTecnica : 0).toFixed(2)}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(cantidadPromedioTecnica ? cantidadPromedioTecnica : 0).toFixed(2)}</td>
+            </tr>
+            <tr class="bg-white filasOcultas border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 hidden text-gray-900">
+                <td class="text-base font-semibold pl-10 text-left border-2 py-2 px-3 bg-[#088FC2] whitespace-nowrap">Pollo XX</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${cantidadTotalPolloXX ? cantidadTotalPolloXX : 0}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(pesoTotalPolloXX ? pesoTotalPolloXX : 0).toFixed(2)}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(cantidadPromedioPolloXX ? cantidadPromedioPolloXX : 0).toFixed(2)}</td>
+            </tr>
+            <tr class="bg-white filasOcultas border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 hidden text-gray-900">
+                <td class="text-base font-semibold pl-10 text-left border-2 py-2 px-3 bg-[#088FC2] whitespace-nowrap">Gallo</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${cantidadTotalGallo ? cantidadTotalGallo : 0}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(pesoTotalGallo ? pesoTotalGallo : 0).toFixed(2)}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(cantidadPromedioGallo ? cantidadPromedioGallo : 0).toFixed(2)}</td>
+            </tr>
+            <tr class="bg-white filasOcultas border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 hidden text-gray-900">
+                <td class="text-base font-semibold pl-10 text-left border-2 py-2 px-3 bg-[#088FC2] whitespace-nowrap">Gallina Doble</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${cantidadTotalGallinaDoble ? cantidadTotalGallinaDoble : 0}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(pesoTotalGallinaDoble ? pesoTotalGallinaDoble : 0).toFixed(2)}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(cantidadPromedioGallinaDoble ? cantidadPromedioGallinaDoble : 0).toFixed(2)}</td>
+            </tr>
+            <tr class="bg-white filasOcultas border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 hidden text-gray-900">
+                <td class="text-base font-semibold pl-10 text-left w-[320px] border-2 py-2 px-3 bg-[#088FC2] whitespace-nowrap">Ahogados y Secos</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${cantidadTotalGallinaChica ? cantidadTotalGallinaChica : 0}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(pesoTotalGallinaChica ? pesoTotalGallinaChica : 0).toFixed(2)}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(cantidadPromedioAhogadosySecos? cantidadPromedioAhogadosySecos : 0).toFixed(2)}</td>
+            </tr>
+            <tr class="bg-white filasOcultas border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 hidden text-gray-900">
+                <td class="text-base font-semibold pl-10 text-left border-2 py-2 px-3 bg-[#088FC2] whitespace-nowrap">Maltratado</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${cantidadTotalPolloMaltratado ? cantidadTotalPolloMaltratado : 0}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(pesoTotalPolloMaltratado ? pesoTotalPolloMaltratado : 0).toFixed(2)}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(cantidadPromedioMaltratado ? cantidadPromedioMaltratado : 0).toFixed(2)}</td>
+            </tr>
+            <tr class="bg-white filasOcultas border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 hidden text-gray-900">
+                <td class="text-base font-semibold pl-10 text-left border-2 py-2 px-3 bg-[#088FC2] whitespace-nowrap">Trozado</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${cantidadTotalPolloTrozado ? cantidadTotalPolloTrozado : 0}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(pesoTotalPolloTrozado ? pesoTotalPolloTrozado : 0).toFixed(2)}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(cantidadPromedioTrozado ? cantidadPromedioTrozado : 0).toFixed(2)}</td>
+            </tr>
+            `;
     }
+
+    $(document).on('click', "#filaPrincipal", function () {
+        $('.filasOcultas').toggle();
+    });    
     
     function construirFilaDiferencia(resultadoDiferenciaPromedio, resultadoDiferenciaCantidad, resultadoDiferenciaPeso) {
         return `
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900">
                 <td class="text-base font-semibold text-left border-2 py-2 px-3 bg-yellow-400 whitespace-nowrap">Diferencia</td>
-                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${resultadoDiferenciaCantidad}</td>
-                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${resultadoDiferenciaPeso.toFixed(2)}</td>
-                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${resultadoDiferenciaPromedio.toFixed(2)}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${resultadoDiferenciaCantidad ? resultadoDiferenciaCantidad : 0}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(resultadoDiferenciaPeso ? resultadoDiferenciaPeso : 0).toFixed(2)}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(resultadoDiferenciaPromedio ? resultadoDiferenciaPromedio : 0).toFixed(2)}</td>
             </tr>`;
     }    
 

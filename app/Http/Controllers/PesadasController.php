@@ -50,6 +50,29 @@ class PesadasController extends Controller
                 WHERE fechaRegistroPes BETWEEN ? AND ?
                 UNION
                 SELECT 
+                    tb_pesadas3.idPesada,
+                    tb_pesadas3.idProceso,
+                    tb_pesadas3.idEspecie,
+                    tb_especies_venta.nombreEspecie,
+                    tb_pesadas3.pesoNetoPes,
+                    tb_pesadas3.horaPes,
+                    tb_pesadas3.codigoCli,
+                    tb_pesadas3.fechaRegistroPes,
+                    tb_pesadas3.cantidadPes,
+                    tb_pesadas3.precioPes,
+                    tb_pesadas3.pesoNetoJabas,
+                    tb_pesadas3.numeroJabasPes,
+                    tb_pesadas3.numeroCubetasPes,
+                    tb_pesadas3.estadoPes,
+                    tb_pesadas3.estadoWebPes,
+                    tb_pesadas3.observacionPes,
+                    IFNULL(CONCAT_WS(" ", nombresCli, apellidoPaternoCli, apellidoMaternoCli), "") AS nombreCompleto
+                FROM tb_pesadas3
+                INNER JOIN tb_clientes ON tb_clientes.codigoCli = tb_pesadas3.codigoCli
+                INNER JOIN tb_especies_venta ON tb_especies_venta.idEspecie = tb_pesadas3.idEspecie
+                WHERE fechaRegistroPes BETWEEN ? AND ?
+                UNION
+                SELECT 
                     tb_pesadas2.idPesada,
                     tb_pesadas2.idProceso,
                     tb_pesadas2.idEspecie,
@@ -71,7 +94,7 @@ class PesadasController extends Controller
                 INNER JOIN tb_clientes ON tb_clientes.codigoCli = tb_pesadas2.codigoCli
                 INNER JOIN tb_especies_venta ON tb_especies_venta.idEspecie = tb_pesadas2.idEspecie
                 WHERE fechaRegistroPes BETWEEN ? AND ?
-                ORDER BY fechaRegistroPes DESC, idPesada ASC', [$fechaDesde, $fechaHasta, $fechaDesde, $fechaHasta]);
+                ORDER BY fechaRegistroPes DESC, idPesada ASC', [$fechaDesde, $fechaHasta, $fechaDesde, $fechaHasta, $fechaDesde, $fechaHasta]);
 
             // Devuelve los datos en formato JSON
             return response()->json($datos);

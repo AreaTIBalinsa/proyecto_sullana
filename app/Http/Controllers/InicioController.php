@@ -71,6 +71,18 @@ class InicioController extends Controller
                 WHERE fechaRegistroPes = DATE(NOW()) and estadoPes = 1
                 UNION
                 SELECT 
+                    tb_pesadas3.idPesada, 
+                    tb_pesadas3.idEspecie,
+                    tb_pesadas3.pesoNetoPes,
+                    tb_pesadas3.fechaRegistroPes,
+                    tb_pesadas3.cantidadPes,
+                    tb_pesadas3.pesoNetoJabas,
+                    IFNULL(CONCAT_WS(" ", nombresCli, apellidoPaternoCli, apellidoMaternoCli), "") AS nombreCompleto
+                FROM tb_pesadas3
+                INNER JOIN tb_clientes ON tb_clientes.codigoCli = tb_pesadas3.codigoCli
+                WHERE fechaRegistroPes = DATE(NOW()) and estadoPes = 1
+                UNION
+                SELECT 
                     tb_pesadas2.idPesada, 
                     tb_pesadas2.idEspecie,
                     tb_pesadas2.pesoNetoPes,

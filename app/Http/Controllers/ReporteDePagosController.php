@@ -92,6 +92,32 @@ class ReporteDePagosController extends Controller
             SELECT 
                 IFNULL(CONCAT_WS(" ", MAX(nombresCli), MAX(apellidoPaternoCli), MAX(apellidoMaternoCli)), "") AS nombreCompleto, 
                 tc.codigoCli as codigoCli, 
+                COALESCE(SUM(CASE WHEN tp3.pesoNetoPes > tp3.pesoNetoJabas THEN (tp3.pesoNetoPes - tp3.pesoNetoJabas) ELSE (tp3.pesoNetoPes + tp3.pesoNetoJabas) END * tp3.precioPes), 0) as deudaTotal, 
+                0 as cantidadPagos, 
+                0 as ventaDescuentos,
+                0 as limitEndeudamiento 
+            FROM tb_clientes tc
+            LEFT JOIN tb_pesadas3 tp3 ON tc.codigoCli = tp3.codigoCli AND tp3.estadoPes = 1
+            LEFT JOIN (
+                SELECT codigoCli, SUM(cantidadAbonoPag) as sumaPagos
+                FROM tb_pagos
+                WHERE estadoPago = 1
+                GROUP BY codigoCli
+            ) tpg3 ON tc.codigoCli = tpg3.codigoCli
+            LEFT JOIN (
+                SELECT codigoCli, SUM(pesoDesc * precioDesc) as ventaDescuentos
+                FROM tb_descuentos
+                WHERE estadoDescuento = 1
+                GROUP BY codigoCli
+            ) td3 ON tc.codigoCli = td3.codigoCli
+            WHERE tc.idEstadoCli = 1 AND tc.estadoEliminadoCli != 0 AND tc.codigoCli = ?
+            GROUP BY tc.codigoCli, tpg3.sumaPagos, td3.ventaDescuentos, limitEndeudamiento
+
+            UNION
+
+            SELECT 
+                IFNULL(CONCAT_WS(" ", MAX(nombresCli), MAX(apellidoPaternoCli), MAX(apellidoMaternoCli)), "") AS nombreCompleto, 
+                tc.codigoCli as codigoCli, 
                 COALESCE(SUM(CASE WHEN tp2.pesoNetoPes > tp2.pesoNetoJabas THEN (tp2.pesoNetoPes - tp2.pesoNetoJabas) ELSE (tp2.pesoNetoPes + tp2.pesoNetoJabas) END * tp2.precioPes), 0) as deudaTotal, 
                 0 as cantidadPagos, 
                 0 as ventaDescuentos,
@@ -113,7 +139,7 @@ class ReporteDePagosController extends Controller
             WHERE tc.idEstadoCli = 1 AND tc.estadoEliminadoCli != 0 AND tc.codigoCli = ?
             GROUP BY tc.codigoCli, tpg2.sumaPagos, td2.ventaDescuentos, limitEndeudamiento
             ORDER BY nombreCompleto ASC;
-            ', [$codigoCliente, $codigoCliente]);
+            ', [$codigoCliente, $codigoCliente, $codigoCliente]);
         
             // Devuelve los datos en formato JSON
             return response()->json($datos);

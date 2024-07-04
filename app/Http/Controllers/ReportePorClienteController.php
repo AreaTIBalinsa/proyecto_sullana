@@ -7,12 +7,16 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\ReportePorCliente\TraerClientesReportePorCliente;
 use App\Models\ReportePorCliente\CantidadReportePorCliente;
 use App\Models\ReportePorCliente\CantidadReportePorCliente2;
+use App\Models\ReportePorCliente\CantidadReportePorCliente3;
 use App\Models\ReportePorCliente\PesoReportePorCliente;
 use App\Models\ReportePorCliente\PesoReportePorCliente2;
+use App\Models\ReportePorCliente\PesoReportePorCliente3;
 use App\Models\ReportePorCliente\PesoJabasReportePorCliente;
 use App\Models\ReportePorCliente\PesoJabasReportePorCliente2;
+use App\Models\ReportePorCliente\PesoJabasReportePorCliente3;
 use App\Models\ReportePorCliente\EliminarReportePorCliente;
 use App\Models\ReportePorCliente\EliminarReportePorCliente2;
+use App\Models\ReportePorCliente\EliminarReportePorCliente3;
 use Illuminate\Support\Facades\DB;
 
 class ReportePorClienteController extends Controller
@@ -73,6 +77,21 @@ class ReportePorClienteController extends Controller
             WHERE estadoPes = 1 AND fechaRegistroPes BETWEEN ? AND ? AND tb_pesadas.codigoCli = ?
             UNION
             SELECT 
+                "tb_pesadas3" AS tabla_iden,
+                fechaRegistroPes, 
+                nombreEspecie,
+                pesoNetoPes, 
+                pesoNetoJabas, 
+                cantidadPes, 
+                observacionPes, 
+                horaPes,
+                precioPes,
+                tb_pesadas3.idPesada
+            FROM tb_pesadas3 
+            INNER JOIN tb_especies_venta ON tb_especies_venta.idEspecie = tb_pesadas3.idEspecie
+            WHERE estadoPes = 1 AND fechaRegistroPes BETWEEN ? AND ? AND tb_pesadas3.codigoCli = ?
+            UNION
+            SELECT 
                 "tb_pesadas2" AS tabla_iden,
                 fechaRegistroPes, 
                 nombreEspecie,
@@ -86,7 +105,7 @@ class ReportePorClienteController extends Controller
             FROM tb_pesadas2 
             INNER JOIN tb_especies_venta ON tb_especies_venta.idEspecie = tb_pesadas2.idEspecie
             WHERE estadoPes = 1 AND fechaRegistroPes BETWEEN ? AND ? AND tb_pesadas2.codigoCli = ?
-            ORDER BY fechaRegistroPes, idPesada ASC', [$fechaDesde, $fechaHasta, $codigoCliente, $fechaDesde, $fechaHasta, $codigoCliente]);
+            ORDER BY fechaRegistroPes, idPesada ASC', [$fechaDesde, $fechaHasta, $codigoCliente, $fechaDesde, $fechaHasta, $codigoCliente, $fechaDesde, $fechaHasta, $codigoCliente]);
 
         // Devuelve los datos en formato JSON
         return response()->json($datos);
@@ -104,7 +123,11 @@ class ReportePorClienteController extends Controller
 
         if (Auth::check()) {
             // Seleccionar el modelo en función de la tablaIdentificadoraCan
-            $modeloCantidadReportePorCliente = ($tablaIdentificadoraCan === 'tb_pesadas') ? new CantidadReportePorCliente : new CantidadReportePorCliente2;
+            $modeloCantidadReportePorCliente = $tablaIdentificadoraCan === 'tb_pesadas' 
+                ? new CantidadReportePorCliente 
+                : ($tablaIdentificadoraCan === 'tb_pesadas2' 
+                    ? new CantidadReportePorCliente2 
+                    : new CantidadReportePorCliente3);
 
             $modeloCantidadReportePorCliente->where('idPesada', $idCodigoPesada)
                 ->update([
@@ -126,7 +149,11 @@ class ReportePorClienteController extends Controller
         $tablaIdentificadoraPeso = $request->input('tablaIdentificadoraPeso');
 
         if (Auth::check()) {
-            $PesoReportePorCliente = ($tablaIdentificadoraPeso === 'tb_pesadas') ? new PesoReportePorCliente : new PesoReportePorCliente2;
+            $PesoReportePorCliente = $tablaIdentificadoraPeso === 'tb_pesadas' 
+            ? new PesoReportePorCliente
+            : ($tablaIdentificadoraPeso === 'tb_pesadas2' ?
+                 new PesoReportePorCliente2
+                 : new PesoReportePorCliente3);
             $PesoReportePorCliente->where('idPesada', $idCodigoPesada)
                 ->update([
                     'pesoNetoPes' => $nuevoPesoReportePorCliente,
@@ -147,7 +174,11 @@ class ReportePorClienteController extends Controller
         $tablaIdentificadoraPeso = $request->input('tablaIdentificadoraPeso');
 
         if (Auth::check()) {
-            $PesoJabasReportePorCliente = ($tablaIdentificadoraPeso === 'tb_pesadas') ? new PesoJabasReportePorCliente : new PesoJabasReportePorCliente2;
+            $PesoJabasReportePorCliente = $tablaIdentificadoraPeso === 'tb_pesadas'
+            ? new PesoJabasReportePorCliente 
+            : ($tablaIdentificadoraPeso === 'tb_pesadas2' ?
+                new PesoJabasReportePorCliente2 
+                : new PesoJabasReportePorCliente3);
             $PesoJabasReportePorCliente->where('idPesada', $idCodigoPesada)
                 ->update([
                     'pesoNetoJabas' => $nuevoPesoJabasReportePorCliente,
@@ -178,6 +209,15 @@ class ReportePorClienteController extends Controller
                 return response()->json(['success' => true], 200);
             }else if ($identifiTabla == "tb_pesadas2"){
                 $EliminarReportePorCliente = new EliminarReportePorCliente2;
+                $EliminarReportePorCliente->where('idPesada', $codigoPesada)
+                    ->update([
+                        'estadoPes' => 0,
+                        'estadoWebPes' => 0,
+                    ]);
+                
+                return response()->json(['success' => true], 200);
+            }else if ($identifiTabla == "tb_pesadas3"){
+                $EliminarReportePorCliente = new EliminarReportePorCliente3;
                 $EliminarReportePorCliente->where('idPesada', $codigoPesada)
                     ->update([
                         'estadoPes' => 0,
