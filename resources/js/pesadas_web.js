@@ -337,7 +337,7 @@ jQuery(function($) {
         let originalValue = inputValue;
     
         // Elimina todos los caracteres excepto los dígitos
-        inputValue = inputValue.replace(/[^0-9]/g, '');
+        inputValue = inputValue.replace(/[^0-9-]/g, '');
     
         // Si el valor ha cambiado, actualizar el contenido
         if (inputValue !== originalValue) {

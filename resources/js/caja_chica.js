@@ -793,8 +793,8 @@ jQuery(function($) {
                     });
                 }
                 // Realizar la acción después de que todas las consultas se completen
-                let fechaDesdeTraerPagos = $('#fechaDesdeCajaChica').val();
-                let fechaHastaTraerPagos = $('#fechaHastaCajaChica').val();
+                let fechaDesdeTraerPagos = $('#fechaDesdeReporteDePagos').val();
+                let fechaHastaTraerPagos = $('#fechaHastaReporteDePagos').val();
                 fn_TraerEgresosFechas(fechaDesdeTraerPagos, fechaHastaTraerPagos);
             }
         }
@@ -805,6 +805,7 @@ jQuery(function($) {
     
             // Obtener los datos de cada celda de la fila actual
             let fechaAgregEgresoCliente = filaActual.find('td:eq(0)').text().trim();
+            fechaAgregEgresoCliente = fechaAgregEgresoCliente.split('-').reverse().join('-');
             let usoReporteEgreso = filaActual.find('td:eq(1)').text().trim();
             let cantidadAgregEgresoCliente = filaActual.find('td:eq(2)').text().trim();
             let montoNuevoAgregEgresoCliente = filaActual.find('td:eq(3)').text().trim();
@@ -812,8 +813,13 @@ jQuery(function($) {
             let formaDePagoEgreso = filaActual.find('td:eq(5)').text().trim();
             let bancoAgregEgresoCliente = filaActual.find('td:eq(6)').text().trim();
             let codAgregEgresoCliente = filaActual.find('td:eq(7)').text().trim();
-
+            let comentarioAgregarPagoCliente = "";
+            let horaAgregarPago = "12:00:00";
+            let pagoDerivado = "6";
+            let codCliente = "33";
             formaDePagoEgreso = formaDePagoEgreso[0].toUpperCase() + formaDePagoEgreso.slice(1);
+
+            let montoEgresoPagoo = parseFloat(montoAgregEgresoCliente)*-1;
 
             if (!cantidadAgregEgresoCliente, !montoNuevoAgregEgresoCliente, !montoAgregEgresoCliente) {
                 alertify.notify('Los campos de precios no pueden estar vacios', 'error', 3);
@@ -854,6 +860,9 @@ jQuery(function($) {
                             failedRequests++;
                             checkCompletion();
                         } else {
+                            if (usoReporteEgreso.includes("FLETE")) {
+                                fn_AgregarPagoClienteExcel(codCliente, montoEgresoPagoo, fechaAgregEgresoCliente, formaDePagoEgreso, codAgregEgresoCliente, comentarioAgregarPagoCliente, bancoAgregEgresoCliente, horaAgregarPago, pagoDerivado, usoReporteEgreso, fechaAgregEgresoCliente)
+                            }
                             // Llamar a la función fn_AgregarPagoCliente con los datos de la fila actual
                             fn_AgregarEgreso(montoAgregEgresoCliente,fechaAgregEgresoCliente,cantidadAgregEgresoCliente,montoNuevoAgregEgresoCliente,formaDePagoEgreso,bancoAgregEgresoCliente,codAgregEgresoCliente,usoReporteEgreso)
                             .then(function() {
