@@ -235,6 +235,8 @@ jQuery(function ($) {
                 let totalVentaDescuentoAnterior = parseFloat(response.totalVentaDescuentoAnterior || 0);
                 let respuestaPagosDetallados = response.pagosDetallados
                 respuestaPagosDetallados = respuestaPagosDetallados.original
+                let respuestaDescuentosDetallados = response.descuentosDetallados
+                respuestaDescuentosDetallados = respuestaDescuentosDetallados.original
     
                 // Crear un objeto para almacenar los datos combinados por fecha
                 var combinedData = {};
@@ -10630,7 +10632,7 @@ jQuery(function ($) {
                 });
     
                 // Ahora combinedData contiene los datos combinados por fecha
-                fn_CrearTablaCuentaDelCliente(pagoAnterior, ventaAnterior, totalVentaDescuentoAnterior, combinedData, respuestaPagosDetallados);
+                fn_CrearTablaCuentaDelCliente(pagoAnterior, ventaAnterior, totalVentaDescuentoAnterior, combinedData, respuestaPagosDetallados, respuestaDescuentosDetallados);
             },
             error: function (error) {
                 console.error("ERROR", error);
@@ -10638,7 +10640,7 @@ jQuery(function ($) {
         });
     } 
 
-    function fn_CrearTablaCuentaDelCliente (pagoAnterior,ventaAnterior,totalVentaDescuentoAnterior,combinedData, respuestaPagosDetallados){
+    function fn_CrearTablaCuentaDelCliente (pagoAnterior,ventaAnterior,totalVentaDescuentoAnterior,combinedData, respuestaPagosDetallados, respuestaDescuentosDetallados){
         
         let bodyCuentaDelCliente="";
         let tbodyCuentaDelCliente = $('#bodyCuentaDelCliente');
@@ -10649,8 +10651,8 @@ jQuery(function ($) {
         
         Object.keys(combinedData).forEach(function(fecha) { 
             let item = combinedData[fecha]
-            bodyCuentaDelCliente += construirFilaDatos(item, fecha);
-            bodyCuentaDelCliente += construirFilaDatosTotales(item,totalSaldoAnterior,totalPagos, fecha, respuestaPagosDetallados);
+            bodyCuentaDelCliente += construirFilaDatos(item, fecha, respuestaDescuentosDetallados);
+            bodyCuentaDelCliente += construirFilaDatosTotales(item,totalSaldoAnterior,totalPagos, fecha, respuestaPagosDetallados, respuestaDescuentosDetallados);
             totalPagos += parseFloat(item.pagos);
             let descuentosDePresentaciones = parseFloat(item.totalVentaDescuentoPrimerEspecie)+parseFloat(item.totalVentaDescuentoSegundaEspecie)+parseFloat(item.totalVentaDescuentoTerceraEspecie)+parseFloat(item.totalVentaDescuentoCuartaEspecie)+parseFloat(item.totalVentaDescuentoQuintaEspecie)+parseFloat(item.totalVentaDescuentoSextaEspecie)+parseFloat(item.totalVentaDescuentoSeptimaEspecie)+parseFloat(item.totalVentaDescuentoOctavaEspecie)+parseFloat(item.totalVentaDescuentoDecimaEspecie)+parseFloat(item.totalVentaDescuentoDecimaPrimeraEspecie)+parseFloat(item.totalVentaDescuentoDecimaSegundaEspecie)+parseFloat(item.totalVentaDescuentoDecimaTerceraEspecie)+parseFloat(item.totalVentaDescuentoDecimaCuartaEspecie)+parseFloat(item.totalVentaDescuentoDecimaQuintaEspecie)+parseFloat(item.totalVentaDescuentoDecimaSextaEspecie)+parseFloat(item.totalVentaDescuentoDecimaSeptimaEspecie)+parseFloat(item.totalVentaDescuentoDecimaOctavaEspecie)+parseFloat(item.totalVentaDescuentoDecimaNovenaEspecie)+parseFloat(item.totalVentaDescuentoVigesimaEspecie)+parseFloat(item.totalVentaDescuentoVigesimaPrimeraEspecie)+parseFloat(item.totalVentaDescuentoVigesimaSegundaEspecie)+parseFloat(item.totalVentaDescuentoVigesimaTerceraEspecie)
             
@@ -10964,7 +10966,7 @@ jQuery(function ($) {
         }
     }
 
-    function construirFilaDatos(item, fecha) {
+    function construirFilaDatos(item, fecha, respuestaDescuentosDetallados) {
 
         let precioPrimerEspecie = 0;
         if (parseFloat(item.totalPesoPrimerEspecie) !== 0) {
@@ -11162,6 +11164,53 @@ jQuery(function ($) {
         }
 
         let fechaExcel = formatearFecha(fecha)
+
+        let descuentosDetallados = ``;
+        let masDeUnDescuento = ``;
+        
+        if(respuestaDescuentosDetallados.length > 0) {
+            respuestaDescuentosDetallados.forEach(function(obj) {
+                if (obj.fechaRegistroDesc == fecha){
+                    let totalVentaDescuentoDetallado = 0;
+                    totalVentaDescuentoDetallado = parseFloat(obj.pesoDesc) * parseFloat(obj.precioDesc)
+                    if (masDeUnDescuento == 0){
+                        descuentosDetallados += `
+                                        <tr class="bg-white border-b border-t-2 border-black filasContarVenta border-r-2">
+                                            <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[90px] text-lg" id="fechaTabla">${fechaExcel}</td>
+                                            <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2 w-[200px]">${obj.observacion}</td>
+                                            <td class="text-center py-1 px-2 whitespace-nowrap border-r-2 border-black w-[150px]">${parseInt(obj.cantidadDesc) === 1 ? obj.cantidadDesc + ' Ud.' : obj.cantidadDesc + ' Uds.'}</td>
+                                            <td class="text-center py-1 px-2 whitespace-nowrap border-r-2 border-black w-[150px]">${parseFloat(obj.pesoDesc).toFixed(2)} Kg.</td>
+                                            <td class="text-center py-1 px-2 whitespace-nowrap border-r-2 border-black w-[150px]">S/. ${parseFloat(obj.precioDesc).toFixed(2)}</td>
+                                            <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${parseFloat(totalVentaDescuentoDetallado).toFixed(2)}</td>
+                                        </tr>`
+                                        masDeUnDescuento += 1;
+                    }else{
+                        descuentosDetallados += `
+                                        <tr class="bg-white border-b border-black filasContarVenta border-r-2">
+                                        <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[90px] text-lg" id="fechaTabla">${fechaExcel}</td>
+                                        <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2 w-[200px]">${obj.observacion}</td>
+                                        <td class="text-center py-1 px-2 whitespace-nowrap border-r-2 border-black w-[150px]">${parseInt(obj.cantidadDesc) === 1 ? obj.cantidadDesc + ' Ud.' : obj.cantidadDesc + ' Uds.'}</td>
+                                        <td class="text-center py-1 px-2 whitespace-nowrap border-r-2 border-black w-[150px]">${parseFloat(obj.pesoDesc).toFixed(2)} Kg.</td>
+                                        <td class="text-center py-1 px-2 whitespace-nowrap border-r-2 border-black w-[150px]">S/. ${parseFloat(obj.precioDesc).toFixed(2)}</td>
+                                        <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${parseFloat(totalVentaDescuentoDetallado).toFixed(2)}</td>
+                                    </tr>`
+                    }
+                }
+            });
+        }
+
+        if (masDeUnDescuento == 0){
+            descuentosDetallados += `
+                <tr class="bg-white border-b border-black filasContarVenta border-r-2">
+                <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[90px] text-lg" id="fechaTabla">${fechaExcel}</td>
+                <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2 w-[200px]">DESCUENTO</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap border-r-2 border-black w-[150px]">0 Uds.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap border-r-2 border-black w-[150px]">0.00 Kg.</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap border-r-2 border-black w-[150px]">S/. 0.00</td>
+                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. 0.00</td>
+            </tr>`
+        }
+        masDeUnDescuento = 0;
 
         return `
             <tr class="bg-white border-b border-black filasContarVenta border-r-2">
@@ -11451,14 +11500,7 @@ jQuery(function ($) {
                 <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${parseFloat(totalVentaDecimaQuintaEspecie).toFixed(2)}</td>
             </tr>` : ''}
             ${totalVentaDescuento ? `
-            <tr class="bg-white border-b border-black filasContarVenta border-r-2">
-                <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[90px] text-lg" id="fechaTabla">${fechaExcel}</td>
-                <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2 w-[200px]">DESCUENTO</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap border-r-2 border-black w-[150px]">${totalCantidadDescuento === 1 ? totalCantidadDescuento + ' Ud.' : totalCantidadDescuento + ' Uds.'}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap border-r-2 border-black w-[150px]">${parseFloat(totalPesoDescuento).toFixed(2)} Kg.</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap border-r-2 border-black w-[150px]">S/. ${precioDescuentoEspecies}</td>
-                <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${parseFloat(totalVentaDescuento).toFixed(2)}</td>
-            </tr>` : ''}
+            ${descuentosDetallados}` : ''}
         `;
     }
 

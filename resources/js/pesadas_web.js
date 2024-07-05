@@ -300,7 +300,7 @@ jQuery(function($) {
         let originalValue = inputValue;
     
         // Elimina todos los caracteres excepto los dígitos y un punto decimal
-        inputValue = inputValue.replace(/[^0-9.]/g, '');
+        inputValue = inputValue.replace(/[^0-9.-]/g, '');
     
         // Verifica si ya hay un punto decimal presente
         if (inputValue.indexOf('.') !== -1) {

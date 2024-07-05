@@ -10,7 +10,7 @@ class ActualizarDescuentoCliente extends Model
     use HasFactory;
     protected $table = 'tb_descuentos'; // Nombre de tu tabla
     protected $primaryKey = 'idDescuento'; // Clave primaria
-    public $timestamps = false;
+    public $timestamps = true;
 
     protected $fillable = [
         'idDescuento',

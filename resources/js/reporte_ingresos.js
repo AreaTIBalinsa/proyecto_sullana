@@ -766,6 +766,8 @@ jQuery(function($) {
 
     $(document).on('input', '.validarFormatoFechaTablas', function () {
         copiarDatosPenultimaFila();
+        copiarDatosPenultimaFila2();
+        copiarDatosPenultimaFila3();
         let inputValue = $(this).text();
         let regex = /^\d{2}-\d{2}-\d{4}$/; // Expresión regular para formato dd-mm-yyyy
         
@@ -1310,7 +1312,29 @@ jQuery(function($) {
             ultimaFila.find('td').eq(0).text(datosColumna0);
             ultimaFila.find('td').eq(5).text(datosColumna5);
         }
-    }    
+    } 
+    
+    function copiarDatosPenultimaFila2() {
+        let filas = $('.pagosAgregarExcel2');
+        if (filas.length > 1) {
+            let penultimaFila = filas.eq(filas.length - 2);
+            let ultimaFila = filas.eq(filas.length - 1);
+            let datosColumna0 = penultimaFila.find('td').eq(0).text();
+            
+            ultimaFila.find('td').eq(0).text(datosColumna0);
+        }
+    } 
+
+    function copiarDatosPenultimaFila3() {
+        let filas = $('.pagosAgregarExcel3');
+        if (filas.length > 1) {
+            let penultimaFila = filas.eq(filas.length - 2);
+            let ultimaFila = filas.eq(filas.length - 1);
+            let datosColumna0 = penultimaFila.find('td').eq(0).text();
+            
+            ultimaFila.find('td').eq(0).text(datosColumna0);
+        }
+    } 
 
     function hacerCeldasEditables(tbody) {
         tbody.on('keydown', 'td[contenteditable="true"]', function(e) {
@@ -1719,6 +1743,7 @@ jQuery(function($) {
             });
             if (!vacio) {
                 agregarFilaEntrada2(tbody);
+                copiarDatosPenultimaFila2();
                 nuevaFila.off('input');
             }
         });
@@ -1918,6 +1943,7 @@ jQuery(function($) {
             });
             if (!vacio) {
                 agregarFilaEntrada3(tbody);
+                copiarDatosPenultimaFila3();
                 nuevaFila.off('input');
             }
         });

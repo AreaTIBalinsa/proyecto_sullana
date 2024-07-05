@@ -330,6 +330,7 @@ jQuery(function($) {
             });
             if (!vacio) {
                 agregarFilaEntrada2(tbody);
+                copiarDatosPenultimaFila2();
                 nuevaFila.off('input');
             }
         });
@@ -560,6 +561,7 @@ jQuery(function($) {
     });
     
     $(document).on('input', '.validarFormatoFechaTablas', function () {
+        copiarDatosPenultimaFila2();
         let inputValue = $(this).text();
         let regex = /^\d{2}-\d{2}-\d{4}$/; // Expresión regular para formato dd-mm-yyyy
         
@@ -595,24 +597,71 @@ jQuery(function($) {
 
     $(document).on('contextmenu', 'tr.editarPagos', function (e) {
         e.preventDefault();
-        if (tipoUsuario =='Administrador'){
-            let codigoPago = $(this).closest("tr").find("td:first").text();
-            Swal.fire({
-                title: '¿Desea eliminar el Registro?',
-                text: "¡Estas seguro de eliminar el pago!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                cancelButtonText: '¡No, cancelar!',
-                confirmButtonText: '¡Si,eliminar!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    fn_EliminarPago(codigoPago);
-                }
-            })
-        }
+        let codigoPago = $(this).closest("tr").find("td:first").text();
+        Swal.fire({
+            title: '¿Desea eliminar el Registro?',
+            text: "¡Estas seguro de eliminar el pago!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: '¡No, cancelar!',
+            confirmButtonText: '¡Si,eliminar!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fn_EliminarPago(codigoPago);
+            }
+        })
     });
+
+    $(document).on('contextmenu', 'tr.editarPagosEgresos', function (e) {
+        e.preventDefault();
+        let codigoPago = $(this).closest("tr").find("td:first").text();
+        Swal.fire({
+            title: '¿Desea eliminar el Registro?',
+            text: "¡Estas seguro de eliminar el Egreso!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: '¡No, cancelar!',
+            confirmButtonText: '¡Si,eliminar!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fn_EliminarEgreso(codigoPago);
+            }
+        })
+    });
+
+    function fn_EliminarEgreso(codigoPago){
+        $.ajax({
+            url: '/fn_consulta_EliminarEgreso',
+            method: 'GET',
+            data: {
+                codigoEgreso: codigoPago,
+            },
+            success: function(response) {
+                if (response.success) {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Se elimino el pago correctamente',
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+                    $('#filtrarIngresosYEgresos').trigger('click');
+                }
+            },
+            error: function(error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Error: Ocurrio un error inesperado durante la operacion',
+                  })
+                console.error("ERROR",error);
+            }
+        });
+    }
 
     function fn_EliminarPago(codigoPago){
         $.ajax({
@@ -704,6 +753,17 @@ jQuery(function($) {
                 console.error("ERROR",error);
             }
         });
+    }
+
+    function copiarDatosPenultimaFila2() {
+        let filas = $('.pagosAgregarExcel2');
+        if (filas.length > 1) {
+            let penultimaFila = filas.eq(filas.length - 2);
+            let ultimaFila = filas.eq(filas.length - 1);
+            let datosColumna0 = penultimaFila.find('td').eq(0).text();
+            
+            ultimaFila.find('td').eq(0).text(datosColumna0);
+        }
     }
 
     $(document).on('click', '#registrar_agregarPagos_ExcelEgreso1', function () {

@@ -1565,7 +1565,8 @@ class ReporteDePagosController extends Controller
                 'ventaAnterior' => $this->consulta_VentaAnterior($codigoCli, $fechaInicio),
                 'pagoAnterior' => $this->consulta_PagoAnterior($codigoCli, $fechaInicio),
                 'totalVentaDescuentoAnterior' => $this->consulta_DescuentosAnteriores($codigoCli, $fechaInicio),
-                'pagosDetallados' => $this->consulta_pagosDetallados($codigoCli, $fechaInicio)
+                'pagosDetallados' => $this->consulta_pagosDetallados($codigoCli, $fechaInicio),
+                'descuentosDetallados' => $this->consulta_descuentosDetallados($codigoCli, $fechaInicio)
             ];
     
             // Devuelve los datos en formato JSON
@@ -2016,6 +2017,25 @@ class ReporteDePagosController extends Controller
                 AND estadoPago = 1 
                 AND (fechaOperacionPag = ? OR fechaRegistroPag <= ?)
                 ORDER BY fechaOperacionPag asc', [$codigoCli, $fechaPagos, $fechaPagos]);
+            
+            // Devuelve los datos en formato JSON
+            return response()->json($datos);
+        }
+    
+        // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
+        return response()->json(['error' => 'Usuario no autenticado'], 401);
+    }    
+
+    public function consulta_descuentosDetallados($codigoCli, $fechaPagos) {
+        if (Auth::check()) {
+            // Realiza la consulta a la base de datos
+            $datos = DB::select('
+                SELECT fechaRegistroDesc, especieDesc, pesoDesc, codigoCli, precioDesc, cantidadDesc,observacion,horaRegistroDesc,fechaRegistroDescuento,estadoDescuento
+                FROM tb_descuentos
+                WHERE codigoCli = ? 
+                AND estadoDescuento = 1 
+                AND (fechaRegistroDesc = ?)
+                ORDER BY fechaRegistroDesc asc', [$codigoCli, $fechaPagos]);
             
             // Devuelve los datos en formato JSON
             return response()->json($datos);
