@@ -230,6 +230,7 @@ jQuery(function ($) {
                 // Inicializar variables ventaAnterior y pagoAnterior con 0 si son null
                 let ventaAnterior = parseFloat(response.ventaAnterior || 0);
                 ventaAnterior += parseFloat(response.ventaAnterior2 || 0);
+                ventaAnterior += parseFloat(response.ventaAnterior3 || 0);
 
                 let pagoAnterior = parseFloat(response.pagoAnterior || 0);
                 let totalVentaDescuentoAnterior = parseFloat(response.totalVentaDescuentoAnterior || 0);

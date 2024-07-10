@@ -410,11 +410,14 @@ jQuery(function ($) {
                 // Inicializar variables ventaAnterior y pagoAnterior con 0 si son null
                 let ventaAnterior = parseFloat(response.ventaAnterior || 0);
                 ventaAnterior += parseFloat(response.ventaAnterior2 || 0);
+                ventaAnterior += parseFloat(response.ventaAnterior3 || 0);
 
                 let pagoAnterior = parseFloat(response.pagoAnterior || 0);
                 let totalVentaDescuentoAnterior = parseFloat(response.totalVentaDescuentoAnterior || 0);
                 let respuestaPagosDetallados = response.pagosDetallados
                 respuestaPagosDetallados = respuestaPagosDetallados.original
+                let respuestaDescuentosDetallados = response.descuentosDetallados
+                respuestaDescuentosDetallados = respuestaDescuentosDetallados.original
     
                 // Crear un objeto para almacenar los datos combinados por fecha
                 var combinedData = {};
@@ -10810,7 +10813,7 @@ jQuery(function ($) {
                 });
     
                 // Ahora combinedData contiene los datos combinados por fecha
-                fn_CrearTablaCuentaDelCliente(pagoAnterior, ventaAnterior, totalVentaDescuentoAnterior, combinedData, respuestaPagosDetallados);
+                fn_CrearTablaCuentaDelCliente(pagoAnterior, ventaAnterior, totalVentaDescuentoAnterior, combinedData, respuestaPagosDetallados, respuestaDescuentosDetallados);
             },
             error: function (error) {
                 console.error("ERROR", error);

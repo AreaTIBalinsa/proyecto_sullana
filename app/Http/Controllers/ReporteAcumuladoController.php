@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\ReporteAcumulado\TraerDatosReporteAcumulado;
 use App\Models\ReporteAcumulado\ActualizarPrecioPesadas;
 use App\Models\ReporteAcumulado\ActualizarPrecioPesadas2;
+use App\Models\ReporteAcumulado\ActualizarPrecioPesadas3;
 
 class ReporteAcumuladoController extends Controller
 {
@@ -1520,6 +1521,15 @@ class ReporteAcumuladoController extends Controller
 
             $ActualizarPrecioCliente2 = new ActualizarPrecioPesadas2;
             $ActualizarPrecioCliente2->where('codigoCli', $codigoCliente)
+                ->where('fechaRegistroPes', $fechaCambioPrecio)
+                ->where('idEspecie', $especieCambioPrecio)
+                ->update([
+                    'precioPes' => $nuevoPrecio,
+                    'estadoWebPes' => 0,
+                ]);
+
+            $ActualizarPrecioCliente3 = new ActualizarPrecioPesadas3;
+            $ActualizarPrecioCliente3->where('codigoCli', $codigoCliente)
                 ->where('fechaRegistroPes', $fechaCambioPrecio)
                 ->where('idEspecie', $especieCambioPrecio)
                 ->update([
