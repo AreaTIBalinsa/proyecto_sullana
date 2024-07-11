@@ -131,11 +131,16 @@ jQuery(function($) {
     }
     
     $(document).on('click', '#registrar_agregarPagos_Excel2', function () {
+        $("#registrar_agregarPagos_Excel2").attr('disabled','disabled');
 
         // Crear contadores para realizar una acción después de todas las consultas completadas y fallidas
         let completedRequests = 0;
         let failedRequests = 0;
         let totalRequests = $('.pagosAgregarExcel2:not(:last-child)').length;
+
+        if(totalRequests == 0){
+            $("#registrar_agregarPagos_Excel2").removeAttr('disabled');
+        }
     
         // Función para verificar si todas las solicitudes han finalizado
         function checkCompletion() {
@@ -161,6 +166,7 @@ jQuery(function($) {
                 let fechaDesdeTraerPagos = $('#fechaDesdeCajaChica').val();
                 let fechaHastaTraerPagos = $('#fechaHastaCajaChica').val();
                 fn_TraerPagosFechas2(fechaDesdeTraerPagos, fechaHastaTraerPagos);
+                $("#registrar_agregarPagos_Excel2").removeAttr('disabled');
             }
         }
     
@@ -562,6 +568,7 @@ jQuery(function($) {
     
     $(document).on('input', '.validarFormatoFechaTablas', function () {
         copiarDatosPenultimaFila2();
+        copiarDatosPenultimaFila4();
         let inputValue = $(this).text();
         let regex = /^\d{2}-\d{2}-\d{4}$/; // Expresión regular para formato dd-mm-yyyy
         
@@ -767,10 +774,15 @@ jQuery(function($) {
     }
 
     $(document).on('click', '#registrar_agregarPagos_ExcelEgreso1', function () {
+        $("#registrar_agregarPagos_ExcelEgreso1").attr('disabled','disabled');
         // Crear contadores para realizar una acción después de todas las consultas completadas y fallidas
         let completedRequests = 0;
         let failedRequests = 0;
         let totalRequests = $('.pagosAgregarExcelEgreso1:not(:last-child)').length;
+
+        if(totalRequests == 0){
+            $("#registrar_agregarPagos_ExcelEgreso1").removeAttr('disabled');
+        }
     
         // Función para verificar si todas las solicitudes han finalizado
         function checkCompletion() {
@@ -917,6 +929,7 @@ jQuery(function($) {
             });
             if (!vacio) {
                 agregarFilaEntradaEgreso1(tbody);
+                copiarDatosPenultimaFila4();
                 nuevaFila.off('input');
             }
         });
@@ -929,6 +942,17 @@ jQuery(function($) {
             nuevaFila.find('td').eq(4).text(resultado.toFixed(2));
         });
     }
+
+    function copiarDatosPenultimaFila4() {
+        let filas = $('.pagosAgregarExcelEgreso1');
+        if (filas.length > 1) {
+            let penultimaFila = filas.eq(filas.length - 2);
+            let ultimaFila = filas.eq(filas.length - 1);
+            let datosColumna0 = penultimaFila.find('td').eq(0).text();
+            
+            ultimaFila.find('td').eq(0).text(datosColumna0);
+        }
+    } 
     
     $(document).on('input', '.accionarSumaMonto', function () {
         let fila = $(this).closest('tr');

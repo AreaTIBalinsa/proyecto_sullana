@@ -161,7 +161,9 @@ Route::get('/fn_consulta_TraerReporteAcumuladoDetalle',[ReporteAcumuladoControll
 Route::get('/fn_consulta_CambiarPrecioPesadas', [ReporteAcumuladoController::class,'consulta_CambiarPrecioPesadas']);
 
 Route::get('/fn_consulta_TraerClientesAgregarSaldo',[AgregarSaldoController::class,'consulta_TraerClientesAgregarSaldo']);
+Route::get('/fn_consulta_TraerClientesAgregarSaldoCliente',[AgregarSaldoController::class,'consulta_TraerClientesAgregarSaldoCliente']);
 Route::get('/fn_consulta_AgregarSaldo',[AgregarSaldoController::class,'consulta_AgregarSaldo']);
+Route::get('/fn_consulta_AgregarSaldoRegular',[AgregarSaldoController::class,'consulta_AgregarSaldoRegular']);
 Route::get('/fn_consulta_TraerDeudamiento',[AgregarSaldoController::class,'consulta_TraerDeudamiento']);
 
 Route::get('/fn_consulta_DeudaMaximaClientes',[DeudaMaximaController::class,'consulta_DeudaMaximaClientes']);
@@ -199,3 +201,7 @@ Route::get('/fn_consulta_TraerPagosDirectoGranjaFechasBanco',[ReporteIngresosCon
 
 Route::get('/fn_consulta_registrarPesadas',[PesadasWebController::class,'consulta_registrarPesadas']);
 Route::get('/fn_consulta_TraerDatosPesadas3',[PesadasWebController::class,'consulta_TraerDatosPesadas3']);
+Route::get('/fn_consulta_EliminarPesada',[PesadasWebController::class,'consulta_EliminarPesada']);
+Route::get('/fn_consulta_EditarPesadasWeb',[PesadasWebController::class,'consulta_EditarPesadasWeb']);
+Route::get('/fn_consulta_DatosPesadasWeb',[PesadasWebController::class,'consulta_DatosPesadasWeb']);
+Route::get('/fn_consulta_EditarDatosPesadas',[PesadasWebController::class,'consulta_EditarDatosPesadas']);

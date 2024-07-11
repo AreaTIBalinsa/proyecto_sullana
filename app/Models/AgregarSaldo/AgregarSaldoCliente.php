@@ -10,7 +10,7 @@ class AgregarSaldoCliente extends Model
     use HasFactory;
     protected $table = 'tb_pagos'; // Nombre de tu tabla
     protected $primaryKey = 'idPagos'; // Clave primaria
-    public $timestamps = false;
+    public $timestamps = true;
 
     protected $fillable = [
         'idPagos',

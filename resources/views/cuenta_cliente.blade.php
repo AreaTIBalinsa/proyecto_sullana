@@ -68,58 +68,60 @@
         </div>
         {{-- Tabla --}}
         <div class="relative overflow-auto rounded-lg md:mb-5 border-2" id="hmtlCapture">
-            <h2 id="cuentaClienteNombre" class="py-5 text-2xl font-bold text-center bg-[#92D14E] text-black border-b-2 border-black"></h2>
-            <div class="flex justify-center items-start">
-                <table class="border-collapse w-full text-black select-none relative text-sm" id="tablaCuentaDelCliente">
-                    <thead id="headerCuentaDelCliente" class="bg-[#92D14E] text-black">
-                        <tr class="h-8 bg-white">
-                            <th class="px-4 font-bold whitespace-nowrap border-r-2 border-b-2"></th>
-                            <th class="px-4 font-bold whitespace-nowrap border-r-2 border-b-2"></th>
-                            <th class="px-4 font-bold whitespace-nowrap border-r-2"></th>
-                            <th class="px-4 font-bold whitespace-nowrap border-r-2"></th>
-                            <th class="px-4 font-bold whitespace-nowrap border-r-2"></th>
-                            <th class="px-4 font-bold whitespace-nowrap border-r-2"></th>
-                        </tr>
-                        <tr class="h-10 bg-white">
-                            <th class="px-4 font-bold whitespace-nowrap border-r-2 bg-white"></th>
-                            <th class="px-4 font-bold whitespace-nowrap border-r-2 border-b-2 border-black bg-white"></th>
-                            <th class="px-4 font-bold whitespace-nowrap border-r-2 border-b-2 border-t-2 border-black" colspan="4">VENTA</th>
-                        </tr>
-                        <tr class="h-10">
-                            <th class="px-4 font-bold whitespace-nowrap border-r-2 border-b-2 border-t-2 border-black w-[90px]">DIA</th>
-                            <th class="px-4 font-bold whitespace-nowrap border-r-2 border-b-2 border-black w-[200px]">REPRESENTACIÓN</th>
-                            <th class="px-4 font-bold whitespace-nowrap border-r-2 border-b-2 border-black w-[150px]">UNIDADES</th>
-                            <th class="px-4 font-bold whitespace-nowrap border-r-2 border-b-2 border-black w-[150px]">PESO</th>
-                            <th class="px-4 font-bold whitespace-nowrap border-r-2 border-b-2 border-black w-[150px]">PRECIO</th>
-                            <th class="px-4 font-bold whitespace-nowrap border-b-2 border-r-2 border-black w-[150px]">IMPORTE</th>
-                        </tr>
-                    </thead>
-                    <tbody id="bodyCuentaDelCliente" class="font-semibold">
-                        <tr class="rounded-lg border-b-2 border-black bg-white"><td colspan="7" class="text-center">No hay datos</td></tr>
-                    </tbody>
-                </table>
-                <table class="border-collapse text-black select-none relative text-sm" id="tablaCuentaDelCliente">
-                    <thead id="headerCuentaDelCliente" class="bg-[#FEFF01] text-black">
-                        <tr class="h-8 bg-white">
-                            <th class="px-4 font-bold whitespace-nowrap border-r-2"></th>
-                            <th class="px-4 font-bold whitespace-nowrap"></th>
-                        </tr>
-                        <tr class="h-10 bg-white">
-                            <th class="px-4 font-bold whitespace-nowrap border-b-2 border-t-2 border-r-2 border-black">COBRANZA</th>
-                            <th class="px-4 font-bold whitespace-nowrap border-t-2"></th>
-                        </tr>
-                        <tr class="h-10">
-                            <th class="px-4 bg-[#92D14E] font-bold whitespace-nowrap border-b-2 border-t-2 border-r-2 border-black">ABONO</th>
-                            <th class="px-4 font-bold whitespace-nowrap border-b-2 border-t-2 border-black">SALDO ANTERIOR</th>
-                        </tr>
-                    </thead>
-                    <tbody id="bodyCuentaDelClientePagos" class="font-semibold">
-                        <tr class="rounded-lg border-b-2 border-black bg-white"><td colspan="2" class="text-center">No hay datos</td></tr>
-                    </tbody>
-                </table>
-            </div>
-            <div id="mensajeDeuda" class="py-5 bg-white">
-                    
+            <div class="min-w-[1250px] w-full">
+                <h2 id="cuentaClienteNombre" class="py-5 text-2xl font-bold text-center bg-[#92D14E] text-black border-b-2 border-black"></h2>
+                <div class="flex justify-center items-start">
+                    <table class="border-collapse w-full text-black select-none relative text-sm" id="tablaCuentaDelCliente">
+                        <thead id="headerCuentaDelCliente" class="bg-[#92D14E] text-black">
+                            <tr class="h-8 bg-white">
+                                <th class="px-4 font-bold whitespace-nowrap border-r-2 border-b-2"></th>
+                                <th class="px-4 font-bold whitespace-nowrap border-r-2 border-b-2"></th>
+                                <th class="px-4 font-bold whitespace-nowrap border-r-2"></th>
+                                <th class="px-4 font-bold whitespace-nowrap border-r-2"></th>
+                                <th class="px-4 font-bold whitespace-nowrap border-r-2"></th>
+                                <th class="px-4 font-bold whitespace-nowrap border-r-2"></th>
+                            </tr>
+                            <tr class="h-10 bg-white">
+                                <th class="px-4 font-bold whitespace-nowrap border-r-2 bg-white"></th>
+                                <th class="px-4 font-bold whitespace-nowrap border-r-2 border-b-2 border-black bg-white"></th>
+                                <th class="px-4 font-bold whitespace-nowrap border-r-2 border-b-2 border-t-2 border-black" colspan="4">VENTA</th>
+                            </tr>
+                            <tr class="h-10">
+                                <th class="px-4 font-bold whitespace-nowrap border-r-2 border-b-2 border-t-2 border-black w-[90px]">DIA</th>
+                                <th class="px-4 font-bold whitespace-nowrap border-r-2 border-b-2 border-black w-[200px]">REPRESENTACIÓN</th>
+                                <th class="px-4 font-bold whitespace-nowrap border-r-2 border-b-2 border-black w-[150px]">UNIDADES</th>
+                                <th class="px-4 font-bold whitespace-nowrap border-r-2 border-b-2 border-black w-[150px]">PESO</th>
+                                <th class="px-4 font-bold whitespace-nowrap border-r-2 border-b-2 border-black w-[150px]">PRECIO</th>
+                                <th class="px-4 font-bold whitespace-nowrap border-b-2 border-r-2 border-black w-[150px]">IMPORTE</th>
+                            </tr>
+                        </thead>
+                        <tbody id="bodyCuentaDelCliente" class="font-semibold">
+                            <tr class="rounded-lg border-b-2 border-black bg-white"><td colspan="7" class="text-center">No hay datos</td></tr>
+                        </tbody>
+                    </table>
+                    <table class="border-collapse text-black select-none relative text-sm" id="tablaCuentaDelCliente">
+                        <thead id="headerCuentaDelCliente" class="bg-[#FEFF01] text-black">
+                            <tr class="h-8 bg-white">
+                                <th class="px-4 font-bold whitespace-nowrap border-r-2"></th>
+                                <th class="px-4 font-bold whitespace-nowrap"></th>
+                            </tr>
+                            <tr class="h-10 bg-white">
+                                <th class="px-4 font-bold whitespace-nowrap border-b-2 border-t-2 border-r-2 border-black">COBRANZA</th>
+                                <th class="px-4 font-bold whitespace-nowrap border-t-2"></th>
+                            </tr>
+                            <tr class="h-10">
+                                <th class="px-4 bg-[#92D14E] font-bold whitespace-nowrap border-b-2 border-t-2 border-r-2 border-black">ABONO</th>
+                                <th class="px-4 font-bold whitespace-nowrap border-b-2 border-t-2 border-black">SALDO ANTERIOR</th>
+                            </tr>
+                        </thead>
+                        <tbody id="bodyCuentaDelClientePagos" class="font-semibold">
+                            <tr class="rounded-lg border-b-2 border-black bg-white"><td colspan="2" class="text-center">No hay datos</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div id="mensajeDeuda" class="py-5 bg-white">
+                        
+                </div>
             </div>
         </div>
         {{-- Termina contenedor Cuenta de Cliente --}}

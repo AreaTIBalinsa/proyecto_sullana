@@ -842,7 +842,7 @@ jQuery(function($) {
             .then(function([datosTiempoReal, datosProveedores]) {
                 // Aquí puedes realizar las acciones que necesites con los resultados combinados.
                 // console.log('Datos en tiempo real:', datosTiempoReal);
-                console.log('Datos de proveedores:', datosProveedores);
+                // console.log('Datos de proveedores:', datosProveedores);
 
                 // Calculo de Promedios de CantidadTotalCompras y cantidadTotalesVentas
                 let CantidadPromedioCompra = datosProveedores.pesoAProveedoresPorDia / datosProveedores.cantidadAProveedoresPorDia;

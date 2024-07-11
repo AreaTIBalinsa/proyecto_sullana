@@ -97,4 +97,96 @@
             </div>
         </div>
     </main>
+
+{{-- Modal Editar Pesadas --}}
+
+<div class="fixed inset-0 overflow-y-auto z-[100] hidden" id="ModalEditarPesadasWeb">
+    <div class="flex justify-center items-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+        <!-- Fondo oscuro overlay -->
+        <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+            <div class="absolute inset-0 bg-gray-900 opacity-75"></div>
+        </div>
+
+        <!-- Contenido del modal -->
+        <div class="absolute rounded-lg max-h-max inset-0 m-auto align-bottom bg-white dark:bg-slate-700 text-left overflow-hidden shadow-xl transform transition-all sm:max-w-lg sm:w-full">
+            <div class="p-4">
+                <div class="flex flex-col">
+                    <div class="border-b rounded-t dark:border-gray-500 p-2 flex justify-center">
+                        <h3 class="text-xl font-semibold text-gray-900 dark:text-white">¡Editar Pesada Web!</h3>
+                    </div>
+                    <label id="idPesadaWebEditar" class="hidden"></label>
+                    <div class="flex mt-4 justify-center items-start flex-col relative w-full h-full">
+                        <label for="idEditarPesadasWebCliente" class="mb-2 text-base font-medium text-gray-900 dark:text-white">Cliente :</label>
+                        <div class="flex max-w-xs w-full">
+                            <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
+                                <i class='bx bxs-user-circle text-xl'></i>
+                            </span>
+                            <input class="validarCampo max-w-xs w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg focus:ring-primary-600 focus:border-primary-600 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="idEditarPesadasWebCliente" autocomplete="off" id="idEditarPesadasWebCliente" placeholder="Ingrese Nombre de Cliente">
+                        </div>
+    
+                        <!-- Etiquetas ocultas para almacenar los datos seleccionados -->
+                        <label id="selectedCodigoClientePesadas" class="hidden" val=""></label>
+    
+                        <!-- Contenedor para las sugerencias -->
+                        <div id="contenedorClientesAgregarDescuentoCliente" class="max-w-xs w-full overflow-hidden overflow-y-auto absolute max-h-40 z-10 text-gray-900 dark:text-gray-50 top-full left-0 bg-white dark:bg-gray-800 border rounded hidden outline-none">
+                            <!-- Aquí se mostrarán las sugerencias -->
+                        </div>
+                    </div>
+                    <div class="mt-4 flex justify-center items-center h-10">
+                        <div class="text-sm px-3 flex h-full items-center justify-center text-center border border-gray-300 dark:border-gray-600 bg-gray-300 dark:bg-gray-600 rounded-l-lg">
+                            <h4 class="font-medium text-gray-900 dark:text-gray-300 min-w-max">Fecha</h4>
+                        </div>
+                        <input class="h-10 w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-r-lg" type="date" name="fechaEditarPesada" placeholder="0.00" autocomplete="off" id="fechaEditarPesada" value="">
+                    </div>
+                    <div class="flex w-full mt-4 h-10">
+                        <div class="text-sm px-3 flex items-center justify-center text-center border border-gray-300 dark:border-gray-600 bg-gray-300 dark:bg-gray-600 rounded-l-lg">
+                            <h4 class="font-medium text-gray-900 dark:text-gray-300 min-w-max">Especie</h4>
+                        </div>
+                        <select class="w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="especieEditarPesada" id="especieEditarPesada">
+                        </select>                          
+                    </div>
+                    <div class="mt-4 flex justify-center items-center h-10">
+                        <div class="text-sm px-3 flex h-full items-center justify-center text-center border border-gray-300 dark:border-gray-600 bg-gray-300 dark:bg-gray-600 rounded-l-lg">
+                            <h4 class="font-medium text-gray-900 dark:text-gray-300 min-w-max">Cantidad</h4>
+                        </div>
+                        <input class="validarSoloNumerosDosDecimales h-10 w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-r-lg" type="text" name="cantidadEditarPesada" placeholder="0.00" autocomplete="off" id="cantidadEditarPesada" value="">
+                    </div>
+                    <div class="mt-4 flex justify-center items-center h-10">
+                        <div class="text-sm px-3 flex h-full items-center justify-center text-center border border-gray-300 dark:border-gray-600 bg-gray-300 dark:bg-gray-600 rounded-l-lg">
+                            <h4 class="font-medium text-gray-900 dark:text-gray-300 min-w-max">Peso Bruto</h4>
+                        </div>
+                        <input class="h-10 w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-r-lg" type="text" name="pesoBrutoEditarPesada" placeholder="0.00" autocomplete="off" id="pesoBrutoEditarPesada" value="">
+                    </div>
+                    <div class="mt-4 flex justify-center items-center h-10">
+                        <div class="text-sm px-3 flex h-full items-center justify-center text-center border border-gray-300 dark:border-gray-600 bg-gray-300 dark:bg-gray-600 rounded-l-lg">
+                            <h4 class="font-medium text-gray-900 dark:text-gray-300 min-w-max">Peso Jabas</h4>
+                        </div>
+                        <input class="validarSoloNumerosDosDecimales h-10 w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-r-lg" type="text" name="pesoJabasEditarPesada" placeholder="0.00" autocomplete="off" id="pesoJabasEditarPesada" value="">
+                    </div>
+                    @if (auth()->user()->tipoUsu == 'Administrador')
+                        <div class="mt-4 flex justify-center items-center h-10">
+                            <div class="text-sm px-3 flex h-full items-center justify-center text-center border border-gray-300 dark:border-gray-600 bg-gray-300 dark:bg-gray-600 rounded-l-lg">
+                                <h4 class="font-medium text-gray-900 dark:text-gray-300 min-w-max">Precio S/.</h4>
+                            </div>
+                            <input class="validarSoloNumerosDosDecimales h-10 w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-r-lg" type="text" name="precioEditarPesada" placeholder="0.00" autocomplete="off" id="precioEditarPesada" value="">
+                        </div>
+                    @endif
+                    <div class="flex mt-4 flex-col w-full">
+                        <label for="comentarioEditarPesada" class="mb-2 text-sm font-medium text-gray-900 dark:text-white md:w-24">Comentario :</label>
+                        <textarea class="w-full outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="comentarioEditarPesada" autocomplete="off" id="comentarioEditarPesada"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="px-4 pb-4">
+                <div class="border-t dark:border-gray-500 w-full sm:flex sm:flex-row-reverse pt-4">
+                    <button type="button" class="inline-flex w-full justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-700 sm:ml-3 sm:w-auto" id="btnGuardarPesadasEditar">Actualizar</button>
+                    <button type="button" class="mt-3 inline-flex w-full justify-center rounded-md bg-red-500 hover:bg-red-600 px-3 py-2 text-sm font-semibold text-gray-100 sm:mt-0 sm:w-auto cerrarModalEditarPesadasWeb" id="btncerrarModalEditarPesadasWeb">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{-- Termina Modal Editar Pesadas --}}
+
 @endsection

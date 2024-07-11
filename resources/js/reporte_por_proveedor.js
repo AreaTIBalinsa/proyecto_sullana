@@ -165,7 +165,7 @@ jQuery(function($) {
 
                     // Iterar sobre los objetos y mostrar sus propiedades
                     response.forEach(function(obj) {
-                        console.log(obj);
+                        // console.log(obj);
                         let option = $('<option>', {
                             value: obj.idEspecie,
                             text: obj.nombreEspecie

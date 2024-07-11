@@ -10969,125 +10969,6 @@ jQuery(function ($) {
 
     function construirFilaDatos(item, fecha, respuestaDescuentosDetallados) {
 
-        let precioPrimerEspecie = 0;
-        if (parseFloat(item.totalPesoPrimerEspecie) !== 0) {
-            precioPrimerEspecie = (parseFloat(item.totalVentaPrimerEspecie) / parseFloat(item.totalPesoPrimerEspecie)).toFixed(2);
-        }
-
-        let precioSegundaEspecie = 0;
-        if (parseFloat(item.totalPesoSegundaEspecie) !== 0) {
-            precioSegundaEspecie = (parseFloat(item.totalVentaSegundaEspecie) / parseFloat(item.totalPesoSegundaEspecie)).toFixed(2);
-        }
-
-        let precioTerceraEspecie = 0;
-        if (parseFloat(item.totalPesoTerceraEspecie) !== 0) {
-            precioTerceraEspecie = (parseFloat(item.totalVentaTerceraEspecie) / parseFloat(item.totalPesoTerceraEspecie)).toFixed(2);
-        }
-
-        let precioCuartaEspecie = 0;
-        if (parseFloat(item.totalPesoCuartaEspecie) !== 0) {
-            precioCuartaEspecie = (parseFloat(item.totalVentaCuartaEspecie) / parseFloat(item.totalPesoCuartaEspecie)).toFixed(2);
-        }
-
-        let precioQuintaEspecie = 0;
-        if (parseFloat(item.totalPesoQuintaEspecie) !== 0) {
-            precioQuintaEspecie = (parseFloat(item.totalVentaQuintaEspecie) / parseFloat(item.totalPesoQuintaEspecie)).toFixed(2);
-        }
-
-        let precioSextaEspecie = 0;
-        if (parseFloat(item.totalPesoSextaEspecie) !== 0) {
-            precioSextaEspecie = (parseFloat(item.totalVentaSextaEspecie) / parseFloat(item.totalPesoSextaEspecie)).toFixed(2);
-        }
-
-        let precioSeptimaEspecie = 0;
-        if (parseFloat(item.totalPesoSeptimaEspecie) !== 0) {
-            precioSeptimaEspecie = (parseFloat(item.totalVentaSeptimaEspecie) / parseFloat(item.totalPesoSeptimaEspecie)).toFixed(2);
-        }
-
-        let precioOctavaEspecie = 0;
-        if (parseFloat(item.totalPesoOctavaEspecie) !== 0) {
-            precioOctavaEspecie = (parseFloat(item.totalVentaOctavaEspecie) / parseFloat(item.totalPesoOctavaEspecie)).toFixed(2);
-        }
-
-        let precioDecimaEspecie = 0;
-        if (parseFloat(item.totalPesoDecimaEspecie) !== 0) {
-            precioDecimaEspecie = (parseFloat(item.totalVentaDecimaEspecie) / parseFloat(item.totalPesoDecimaEspecie)).toFixed(2);
-        }
-
-        let precioDecimaPrimeraEspecie = 0;
-        if (parseFloat(item.totalPesoDecimaPrimeraEspecie) !== 0) {
-            precioDecimaPrimeraEspecie = (parseFloat(item.totalVentaDecimaPrimeraEspecie) / parseFloat(item.totalPesoDecimaPrimeraEspecie)).toFixed(2);
-        }
-
-        let precioDecimaSegundaEspecie = 0;
-        if (parseFloat(item.totalPesoDecimaSegundaEspecie) !== 0) {
-            precioDecimaSegundaEspecie = (parseFloat(item.totalVentaDecimaSegundaEspecie) / parseFloat(item.totalPesoDecimaSegundaEspecie)).toFixed(2);
-        }
-
-        let precioDecimaTerceraEspecie = 0;
-        if (parseFloat(item.totalPesoDecimaTerceraEspecie) !== 0) {
-            precioDecimaTerceraEspecie = (parseFloat(item.totalVentaDecimaTerceraEspecie) / parseFloat(item.totalPesoDecimaTerceraEspecie)).toFixed(2);
-        }
-
-        let precioDecimaCuartaEspecie = 0;
-        if (parseFloat(item.totalPesoDecimaCuartaEspecie) !== 0) {
-            precioDecimaCuartaEspecie = (parseFloat(item.totalVentaDecimaCuartaEspecie) / parseFloat(item.totalPesoDecimaCuartaEspecie)).toFixed(2);
-        }
-
-        let precioDecimaQuintaEspecie = 0;
-        if (parseFloat(item.totalPesoDecimaQuintaEspecie) !== 0) {
-            precioDecimaQuintaEspecie = (parseFloat(item.totalVentaDecimaQuintaEspecie) / parseFloat(item.totalPesoDecimaQuintaEspecie)).toFixed(2);
-        }
-
-        let precioDecimaSextaEspecie = 0;
-        if (parseFloat(item.totalPesoDecimaSextaEspecie) !== 0) {
-            precioDecimaSextaEspecie = (parseFloat(item.totalVentaDecimaSextaEspecie) / parseFloat(item.totalPesoDecimaSextaEspecie)).toFixed(2);
-        }
-
-        let precioDecimaSeptimaEspecie = 0;
-        if (parseFloat(item.totalPesoDecimaSeptimaEspecie) !== 0) {
-            precioDecimaSeptimaEspecie = (parseFloat(item.totalVentaDecimaSeptimaEspecie) / parseFloat(item.totalPesoDecimaSeptimaEspecie)).toFixed(2);
-        }
-
-        let precioDecimaOctavaEspecie = 0;
-        if (parseFloat(item.totalPesoDecimaOctavaEspecie) !== 0) {
-            precioDecimaOctavaEspecie = (parseFloat(item.totalVentaDecimaOctavaEspecie) / parseFloat(item.totalPesoDecimaOctavaEspecie)).toFixed(2);
-        }
-
-        let precioDecimaNovenaEspecie = 0;
-        if (parseFloat(item.totalPesoDecimaNovenaEspecie) !== 0) {
-            precioDecimaNovenaEspecie = (parseFloat(item.totalVentaDecimaNovenaEspecie) / parseFloat(item.totalPesoDecimaNovenaEspecie)).toFixed(2);
-        }
-
-        let precioVigesimaEspecie = 0;
-        if (parseFloat(item.totalPesoVigesimaEspecie) !== 0) {
-            precioVigesimaEspecie = (parseFloat(item.totalVentaVigesimaEspecie) / parseFloat(item.totalPesoVigesimaEspecie)).toFixed(2);
-        }
-
-        let precioVigesimaPrimeraEspecie = 0;
-        if (parseFloat(item.totalPesoVigesimaPrimeraEspecie) !== 0) {
-            precioVigesimaPrimeraEspecie = (parseFloat(item.totalVentaVigesimaPrimeraEspecie) / parseFloat(item.totalPesoVigesimaPrimeraEspecie)).toFixed(2);
-        }
-
-        let precioVigesimaSegundaEspecie = 0;
-        if (parseFloat(item.totalPesoVigesimaSegundaEspecie) !== 0) {
-            precioVigesimaSegundaEspecie = (parseFloat(item.totalVentaVigesimaSegundaEspecie) / parseFloat(item.totalPesoVigesimaSegundaEspecie)).toFixed(2);
-        }
-
-        let precioVigesimaTerceraEspecie = 0;
-        if (parseFloat(item.totalPesoVigesimaTerceraEspecie) !== 0) {
-            precioVigesimaTerceraEspecie = (parseFloat(item.totalVentaVigesimaTerceraEspecie) / parseFloat(item.totalPesoVigesimaTerceraEspecie)).toFixed(2);
-        }
-
-        let totalCantidadDescuento = 0
-        let totalPesoDescuento = parseFloat(item.totalPesoDescuento)
-        let totalVentaDescuento = parseFloat(item.totalVentaDescuento)
-
-        let precioDescuentoEspecies = 0;
-        if (totalPesoDescuento !== 0) {
-            precioDescuentoEspecies = (totalVentaDescuento / totalPesoDescuento).toFixed(2);
-        }
-
         let totalCantidadPrimerEspecie = parseFloat(item.totalCantidadPrimerEspecie)+parseFloat(item.totalCantidadDescuentoPrimerEspecie);
         let totalCantidadSegundaEspecie = parseFloat(item.totalCantidadSegundaEspecie)+parseFloat(item.totalCantidadDescuentoSegundaEspecie);
         let totalCantidadTerceraEspecie = parseFloat(item.totalCantidadTerceraEspecie)+parseFloat(item.totalCantidadDescuentoTerceraEspecie);
@@ -11156,6 +11037,125 @@ jQuery(function ($) {
         let totalVentaVigesimaPrimeraEspecie = parseFloat(item.totalVentaVigesimaPrimeraEspecie)+parseFloat(item.totalVentaDescuentoVigesimaPrimeraEspecie);
         let totalVentaVigesimaSegundaEspecie = parseFloat(item.totalVentaVigesimaSegundaEspecie)+parseFloat(item.totalVentaDescuentoVigesimaSegundaEspecie);
         let totalVentaVigesimaTerceraEspecie = parseFloat(item.totalVentaVigesimaTerceraEspecie)+parseFloat(item.totalVentaDescuentoVigesimaTerceraEspecie);
+
+        let precioPrimerEspecie = 0;
+        if (parseFloat(totalPesoPrimerEspecie) !== 0) {
+            precioPrimerEspecie = (parseFloat(totalVentaPrimerEspecie) / parseFloat(totalPesoPrimerEspecie)).toFixed(2);
+        }
+
+        let precioSegundaEspecie = 0;
+        if (parseFloat(totalPesoSegundaEspecie) !== 0) {
+            precioSegundaEspecie = (parseFloat(totalVentaSegundaEspecie) / parseFloat(totalPesoSegundaEspecie)).toFixed(2);
+        }
+
+        let precioTerceraEspecie = 0;
+        if (parseFloat(totalPesoTerceraEspecie) !== 0) {
+            precioTerceraEspecie = (parseFloat(totalVentaTerceraEspecie) / parseFloat(totalPesoTerceraEspecie)).toFixed(2);
+        }
+
+        let precioCuartaEspecie = 0;
+        if (parseFloat(totalPesoCuartaEspecie) !== 0) {
+            precioCuartaEspecie = (parseFloat(totalVentaCuartaEspecie) / parseFloat(totalPesoCuartaEspecie)).toFixed(2);
+        }
+
+        let precioQuintaEspecie = 0;
+        if (parseFloat(totalPesoQuintaEspecie) !== 0) {
+            precioQuintaEspecie = (parseFloat(totalVentaQuintaEspecie) / parseFloat(totalPesoQuintaEspecie)).toFixed(2);
+        }
+
+        let precioSextaEspecie = 0;
+        if (parseFloat(totalPesoSextaEspecie) !== 0) {
+            precioSextaEspecie = (parseFloat(totalVentaSextaEspecie) / parseFloat(totalPesoSextaEspecie)).toFixed(2);
+        }
+
+        let precioSeptimaEspecie = 0;
+        if (parseFloat(totalPesoSeptimaEspecie) !== 0) {
+            precioSeptimaEspecie = (parseFloat(totalVentaSeptimaEspecie) / parseFloat(totalPesoSeptimaEspecie)).toFixed(2);
+        }
+
+        let precioOctavaEspecie = 0;
+        if (parseFloat(totalPesoOctavaEspecie) !== 0) {
+            precioOctavaEspecie = (parseFloat(totalVentaOctavaEspecie) / parseFloat(totalPesoOctavaEspecie)).toFixed(2);
+        }
+
+        let precioDecimaEspecie = 0;
+        if (parseFloat(totalPesoDecimaEspecie) !== 0) {
+            precioDecimaEspecie = (parseFloat(totalVentaDecimaEspecie) / parseFloat(totalPesoDecimaEspecie)).toFixed(2);
+        }
+
+        let precioDecimaPrimeraEspecie = 0;
+        if (parseFloat(totalPesoDecimaPrimeraEspecie) !== 0) {
+            precioDecimaPrimeraEspecie = (parseFloat(totalVentaDecimaPrimeraEspecie) / parseFloat(totalPesoDecimaPrimeraEspecie)).toFixed(2);
+        }
+
+        let precioDecimaSegundaEspecie = 0;
+        if (parseFloat(totalPesoDecimaSegundaEspecie) !== 0) {
+            precioDecimaSegundaEspecie = (parseFloat(totalVentaDecimaSegundaEspecie) / parseFloat(totalPesoDecimaSegundaEspecie)).toFixed(2);
+        }
+
+        let precioDecimaTerceraEspecie = 0;
+        if (parseFloat(totalPesoDecimaTerceraEspecie) !== 0) {
+            precioDecimaTerceraEspecie = (parseFloat(totalVentaDecimaTerceraEspecie) / parseFloat(totalPesoDecimaTerceraEspecie)).toFixed(2);
+        }
+
+        let precioDecimaCuartaEspecie = 0;
+        if (parseFloat(totalPesoDecimaCuartaEspecie) !== 0) {
+            precioDecimaCuartaEspecie = (parseFloat(totalVentaDecimaCuartaEspecie) / parseFloat(totalPesoDecimaCuartaEspecie)).toFixed(2);
+        }
+
+        let precioDecimaQuintaEspecie = 0;
+        if (parseFloat(totalPesoDecimaQuintaEspecie) !== 0) {
+            precioDecimaQuintaEspecie = (parseFloat(totalVentaDecimaQuintaEspecie) / parseFloat(totalPesoDecimaQuintaEspecie)).toFixed(2);
+        }
+
+        let precioDecimaSextaEspecie = 0;
+        if (parseFloat(totalPesoDecimaSextaEspecie) !== 0) {
+            precioDecimaSextaEspecie = (parseFloat(totalVentaDecimaSextaEspecie) / parseFloat(totalPesoDecimaSextaEspecie)).toFixed(2);
+        }
+
+        let precioDecimaSeptimaEspecie = 0;
+        if (parseFloat(totalPesoDecimaSeptimaEspecie) !== 0) {
+            precioDecimaSeptimaEspecie = (parseFloat(totalVentaDecimaSeptimaEspecie) / parseFloat(totalPesoDecimaSeptimaEspecie)).toFixed(2);
+        }
+
+        let precioDecimaOctavaEspecie = 0;
+        if (parseFloat(totalPesoDecimaOctavaEspecie) !== 0) {
+            precioDecimaOctavaEspecie = (parseFloat(totalVentaDecimaOctavaEspecie) / parseFloat(totalPesoDecimaOctavaEspecie)).toFixed(2);
+        }
+
+        let precioDecimaNovenaEspecie = 0;
+        if (parseFloat(totalPesoDecimaNovenaEspecie) !== 0) {
+            precioDecimaNovenaEspecie = (parseFloat(totalVentaDecimaNovenaEspecie) / parseFloat(totalPesoDecimaNovenaEspecie)).toFixed(2);
+        }
+
+        let precioVigesimaEspecie = 0;
+        if (parseFloat(totalPesoVigesimaEspecie) !== 0) {
+            precioVigesimaEspecie = (parseFloat(totalVentaVigesimaEspecie) / parseFloat(totalPesoVigesimaEspecie)).toFixed(2);
+        }
+
+        let precioVigesimaPrimeraEspecie = 0;
+        if (parseFloat(totalPesoVigesimaPrimeraEspecie) !== 0) {
+            precioVigesimaPrimeraEspecie = (parseFloat(totalVentaVigesimaPrimeraEspecie) / parseFloat(totalPesoVigesimaPrimeraEspecie)).toFixed(2);
+        }
+
+        let precioVigesimaSegundaEspecie = 0;
+        if (parseFloat(totalPesoVigesimaSegundaEspecie) !== 0) {
+            precioVigesimaSegundaEspecie = (parseFloat(totalVentaVigesimaSegundaEspecie) / parseFloat(totalPesoVigesimaSegundaEspecie)).toFixed(2);
+        }
+
+        let precioVigesimaTerceraEspecie = 0;
+        if (parseFloat(totalPesoVigesimaTerceraEspecie) !== 0) {
+            precioVigesimaTerceraEspecie = (parseFloat(totalVentaVigesimaTerceraEspecie) / parseFloat(totalPesoVigesimaTerceraEspecie)).toFixed(2);
+        }
+
+        let totalCantidadDescuento = 0
+        let totalPesoDescuento = parseFloat(item.totalPesoDescuento)
+        let totalVentaDescuento = parseFloat(item.totalVentaDescuento)
+
+        let precioDescuentoEspecies = 0;
+        if (totalPesoDescuento !== 0) {
+            precioDescuentoEspecies = (totalVentaDescuento / totalPesoDescuento).toFixed(2);
+        }
 
         function formatearFecha(fecha) {
             let fechaOriginal = String(fecha)
@@ -11393,7 +11393,7 @@ jQuery(function ($) {
                 <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${parseFloat(totalVentaVigesimaEspecie).toFixed(2)}</td>
             </tr>`}
             ${totalVentaSextaEspecie ? `
-            <tr class="bg-white border-b border-black filasContarVenta border-r-2">
+            <tr class="bg-[#FEFF01] border-b border-black filasContarVenta border-r-2">
                 <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[90px] text-lg" id="fechaTabla">${fechaExcel}</td>
                 <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2 w-[200px]">${nombreSextaEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap border-r-2 border-black w-[150px]">${totalCantidadSextaEspecie === 1 ? totalCantidadSextaEspecie + ' Ud.' : totalCantidadSextaEspecie + ' Uds.'}</td>
@@ -11402,7 +11402,7 @@ jQuery(function ($) {
                 <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${parseFloat(totalVentaSextaEspecie).toFixed(2)}</td>
             </tr>` : ''}
             ${totalVentaVigesimaPrimeraEspecie ? `
-            <tr class="bg-white border-b border-black filasContarVenta border-r-2">
+            <tr class="bg-[#FEFF01] border-b border-black filasContarVenta border-r-2">
                 <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[90px] text-lg" id="fechaTabla">${fechaExcel}</td>
                 <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2 w-[200px]">${nombreVigesimaPrimeraEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap border-r-2 border-black w-[150px]">${totalCantidadVigesimaPrimeraEspecie === 1 ? totalCantidadVigesimaPrimeraEspecie + ' Ud.' : totalCantidadVigesimaPrimeraEspecie + ' Uds.'}</td>
@@ -11411,7 +11411,7 @@ jQuery(function ($) {
                 <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${parseFloat(totalVentaVigesimaPrimeraEspecie).toFixed(2)}</td>
             </tr>` : ''}
             ${totalVentaSeptimaEspecie ? `
-            <tr class="bg-white border-b border-black filasContarVenta border-r-2">
+            <tr class="bg-[#FEFF01] border-b border-black filasContarVenta border-r-2">
                 <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[90px] text-lg" id="fechaTabla">${fechaExcel}</td>
                 <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2 w-[200px]">${nombreSeptimaEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap border-r-2 border-black w-[150px]">${totalCantidadSeptimaEspecie === 1 ? totalCantidadSeptimaEspecie + ' Ud.' : totalCantidadSeptimaEspecie + ' Uds.'}</td>
@@ -11420,7 +11420,7 @@ jQuery(function ($) {
                 <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${parseFloat(totalVentaSeptimaEspecie).toFixed(2)}</td>
             </tr>` : ''}
             ${totalVentaVigesimaSegundaEspecie ? `
-            <tr class="bg-white border-b border-black filasContarVenta border-r-2">
+            <tr class="bg-[#FEFF01] border-b border-black filasContarVenta border-r-2">
                 <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[90px] text-lg" id="fechaTabla">${fechaExcel}</td>
                 <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2 w-[200px]">${nombreVigesimaSegundaEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap border-r-2 border-black w-[150px]">${totalCantidadVigesimaSegundaEspecie === 1 ? totalCantidadVigesimaSegundaEspecie + ' Ud.' : totalCantidadVigesimaSegundaEspecie + ' Uds.'}</td>
@@ -11429,7 +11429,7 @@ jQuery(function ($) {
                 <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${parseFloat(totalVentaVigesimaSegundaEspecie).toFixed(2)}</td>
             </tr>` : ''}
             ${totalVentaOctavaEspecie ? `
-            <tr class="bg-white border-b border-black filasContarVenta border-r-2">
+            <tr class="bg-[#FEFF01] border-b border-black filasContarVenta border-r-2">
                 <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[90px] text-lg" id="fechaTabla">${fechaExcel}</td>
                 <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2 w-[200px]">${nombreOctavaEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap border-r-2 border-black w-[150px]">${totalCantidadOctavaEspecie === 1 ? totalCantidadOctavaEspecie + ' Ud.' : totalCantidadOctavaEspecie + ' Uds.'}</td>
@@ -11438,7 +11438,7 @@ jQuery(function ($) {
                 <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${parseFloat(totalVentaOctavaEspecie).toFixed(2)}</td>
             </tr>` : ''}
             ${totalVentaVigesimaTerceraEspecie ? `
-            <tr class="bg-white border-b border-black filasContarVenta border-r-2">
+            <tr class="bg-[#FEFF01] border-b border-black filasContarVenta border-r-2">
                 <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[90px] text-lg" id="fechaTabla">${fechaExcel}</td>
                 <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2 w-[200px]">${nombreVigesimaTerceraEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap border-r-2 border-black w-[150px]">${totalCantidadVigesimaTerceraEspecie === 1 ? totalCantidadVigesimaTerceraEspecie + ' Ud.' : totalCantidadVigesimaTerceraEspecie + ' Uds.'}</td>
@@ -11447,7 +11447,7 @@ jQuery(function ($) {
                 <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${parseFloat(totalVentaVigesimaTerceraEspecie).toFixed(2)}</td>
             </tr>` : ''}
             ${totalVentaDecimaEspecie ? `
-            <tr class="bg-white border-b border-black filasContarVenta border-r-2">
+            <tr class="bg-[#FEFF01] border-b border-black filasContarVenta border-r-2">
                 <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[90px] text-lg" id="fechaTabla">${fechaExcel}</td>
                 <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2 w-[200px]">${nombreDecimaEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap border-r-2 border-black w-[150px]">${totalCantidadDecimaEspecie === 1 ? totalCantidadDecimaEspecie + ' Ud.' : totalCantidadDecimaEspecie + ' Uds.'}</td>
@@ -11456,7 +11456,7 @@ jQuery(function ($) {
                 <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${parseFloat(totalVentaDecimaEspecie).toFixed(2)}</td>
             </tr>` : ''}
             ${totalVentaDecimaPrimeraEspecie ? `
-            <tr class="bg-white border-b border-black filasContarVenta border-r-2">
+            <tr class="bg-[#FEFF01] border-b border-black filasContarVenta border-r-2">
                 <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[90px] text-lg" id="fechaTabla">${fechaExcel}</td>
                 <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2 w-[200px]">${nombreDecimaPrimeraEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap border-r-2 border-black w-[150px]">${totalCantidadDecimaPrimeraEspecie === 1 ? totalCantidadDecimaPrimeraEspecie + ' Ud.' : totalCantidadDecimaPrimeraEspecie + ' Uds.'}</td>
@@ -11465,7 +11465,7 @@ jQuery(function ($) {
                 <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${parseFloat(totalVentaDecimaPrimeraEspecie).toFixed(2)}</td>
             </tr>` : ''}
             ${totalVentaDecimaSegundaEspecie ? `
-            <tr class="bg-white border-b border-black filasContarVenta border-r-2">
+            <tr class="bg-[#FEFF01] border-b border-black filasContarVenta border-r-2">
                 <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[90px] text-lg" id="fechaTabla">${fechaExcel}</td>
                 <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2 w-[200px]">${nombreDecimaSegundaEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap border-r-2 border-black w-[150px]">${totalCantidadDecimaSegundaEspecie === 1 ? totalCantidadDecimaSegundaEspecie + ' Ud.' : totalCantidadDecimaSegundaEspecie + ' Uds.'}</td>
@@ -11474,7 +11474,7 @@ jQuery(function ($) {
                 <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${parseFloat(totalVentaDecimaSegundaEspecie).toFixed(2)}</td>
             </tr>` : ''}
             ${totalVentaDecimaTerceraEspecie ? `
-            <tr class="bg-white border-b border-black filasContarVenta border-r-2">
+            <tr class="bg-[#FEFF01] border-b border-black filasContarVenta border-r-2">
                 <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[90px] text-lg" id="fechaTabla">${fechaExcel}</td>
                 <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2 w-[200px]">${nombreDecimaTerceraEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap border-r-2 border-black w-[150px]">${totalCantidadDecimaTerceraEspecie === 1 ? totalCantidadDecimaTerceraEspecie + ' Ud.' : totalCantidadDecimaTerceraEspecie + ' Uds.'}</td>
@@ -11483,7 +11483,7 @@ jQuery(function ($) {
                 <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${parseFloat(totalVentaDecimaTerceraEspecie).toFixed(2)}</td>
             </tr>` : ''}
             ${totalVentaDecimaCuartaEspecie ? `
-            <tr class="bg-white border-b border-black filasContarVenta border-r-2">
+            <tr class="bg-[#FEFF01] border-b border-black filasContarVenta border-r-2">
                 <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[90px] text-lg" id="fechaTabla">${fechaExcel}</td>
                 <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2 w-[200px]">${nombreDecimaCuartaEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap border-r-2 border-black w-[150px]">${totalCantidadDecimaCuartaEspecie === 1 ? totalCantidadDecimaCuartaEspecie + ' Ud.' : totalCantidadDecimaCuartaEspecie + ' Uds.'}</td>
@@ -11492,7 +11492,7 @@ jQuery(function ($) {
                 <td class="text-center py-1 px-2 whitespace-nowrap w-[150px]">S/. ${parseFloat(totalVentaDecimaCuartaEspecie).toFixed(2)}</td>
             </tr>` : ''}
             ${totalVentaDecimaQuintaEspecie ? `
-            <tr class="bg-white border-b border-black filasContarVenta border-r-2">
+            <tr class="bg-[#FEFF01] border-b border-black filasContarVenta border-r-2">
                 <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[90px] text-lg" id="fechaTabla">${fechaExcel}</td>
                 <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2 w-[200px]">${nombreDecimaQuintaEspecieGlobal}</td>
                 <td class="text-center py-1 px-2 whitespace-nowrap border-r-2 border-black w-[150px]">${totalCantidadDecimaQuintaEspecie === 1 ? totalCantidadDecimaQuintaEspecie + ' Ud.' : totalCantidadDecimaQuintaEspecie + ' Uds.'}</td>

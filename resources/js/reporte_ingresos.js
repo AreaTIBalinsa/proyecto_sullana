@@ -536,6 +536,8 @@ jQuery(function($) {
 
     $(document).on('click', '#registrar_agregarPagos_Excel_Ingreso_Banco', function () {
 
+        $("#registrar_agregarPagos_Excel_Ingreso_Banco").attr('disabled','disabled');
+
         let arregloCodigos = [];
 
         $('.pagosAgregarExcel4:not(:last-child)').each(function() {
@@ -554,6 +556,10 @@ jQuery(function($) {
         let completedRequests = 0;
         let failedRequests = 0;
         let totalRequests = $('.pagosAgregarExcel4:not(:last-child)').length;
+
+        if(totalRequests == 0){
+            $("#registrar_agregarPagos_Excel_Ingreso_Banco").removeAttr('disabled');
+        }
     
         // Función para verificar si todas las solicitudes han finalizado
         function checkCompletion() {
@@ -579,6 +585,7 @@ jQuery(function($) {
                 let fechaDesdeTraerIngresosBancos = $('#fechaDesdeReporteDeIngresosBancos').val();
                 let fechaHastaTraerIngresosBancos = $('#fechaHastaReporteDeIngresosBancos').val();
                 fn_TraerPagosDirectoGranjaFechasBanco(fechaDesdeTraerIngresosBancos, fechaHastaTraerIngresosBancos);
+                $("#registrar_agregarPagos_Excel_Ingreso_Banco").removeAttr('disabled');
             }
         }
     
@@ -1381,6 +1388,9 @@ jQuery(function($) {
     }
 
     $(document).on('click', '#registrar_agregarPagos_Excel', function () {
+
+        $("#registrar_agregarPagos_Excel").attr('disabled','disabled');
+
         let arregloCodigos = [];
 
         $('.pagosAgregarExcel:not(:last-child)').each(function() {
@@ -1399,6 +1409,10 @@ jQuery(function($) {
         let completedRequests = 0;
         let failedRequests = 0;
         let totalRequests = $('.pagosAgregarExcel:not(:last-child)').length;
+
+        if(totalRequests == 0){
+            $("#registrar_agregarPagos_Excel").removeAttr('disabled');
+        }
     
         // Función para verificar si todas las solicitudes han finalizado
         function checkCompletion() {
@@ -1424,6 +1438,7 @@ jQuery(function($) {
                 let fechaDesdeTraerIngresosBancos = $('#fechaDesdeReporteDeIngresosBancos').val();
                 let fechaHastaTraerIngresosBancos = $('#fechaHastaReporteDeIngresosBancos').val();
                 fn_TraerPagosFechasIngresoBancos(fechaDesdeTraerIngresosBancos, fechaHastaTraerIngresosBancos);
+                $("#registrar_agregarPagos_Excel").removeAttr('disabled');
             }
         }
     
@@ -1545,10 +1560,16 @@ jQuery(function($) {
 
     $(document).on('click', '#registrar_agregarPagos_Excel2', function () {
 
+        $("#registrar_agregarPagos_Excel2").attr('disabled','disabled');
+
         // Crear contadores para realizar una acción después de todas las consultas completadas y fallidas
         let completedRequests = 0;
         let failedRequests = 0;
         let totalRequests = $('.pagosAgregarExcel2:not(:last-child)').length;
+
+        if(totalRequests == 0){
+            $("#registrar_agregarPagos_Excel2").removeAttr('disabled');
+        }
     
         // Función para verificar si todas las solicitudes han finalizado
         function checkCompletion() {
@@ -1574,6 +1595,7 @@ jQuery(function($) {
                 let fechaDesdeTraerIngresosBancos = $('#fechaDesdeReporteDeIngresosBancos').val();
                 let fechaHastaTraerIngresosBancos = $('#fechaHastaReporteDeIngresosBancos').val();
                 fn_TraerPagosFechasIngresoBancos(fechaDesdeTraerIngresosBancos, fechaHastaTraerIngresosBancos);
+                $("#registrar_agregarPagos_Excel2").removeAttr('disabled');
             }
         }
     
@@ -1751,10 +1773,16 @@ jQuery(function($) {
 
     $(document).on('click', '#registrar_agregarPagos_Excel3', function () {
 
+        $("#registrar_agregarPagos_Excel3").attr('disabled','disabled');
+
         // Crear contadores para realizar una acción después de todas las consultas completadas y fallidas
         let completedRequests = 0;
         let failedRequests = 0;
         let totalRequests = $('.pagosAgregarExcel3:not(:last-child)').length;
+
+        if(totalRequests == 0){
+            $("#registrar_agregarPagos_Excel3").removeAttr('disabled');
+        }
     
         // Función para verificar si todas las solicitudes han finalizado
         function checkCompletion() {
@@ -1779,6 +1807,7 @@ jQuery(function($) {
                 let fechaDesdeTraerIngresosBancos = $('#fechaDesdeReporteDeIngresosBancos').val();
                 let fechaHastaTraerIngresosBancos = $('#fechaHastaReporteDeIngresosBancos').val();
                 fn_TraerPagosFechasIngresoBancos(fechaDesdeTraerIngresosBancos, fechaHastaTraerIngresosBancos);
+                $("#registrar_agregarPagos_Excel3").removeAttr('disabled');
             }
         }
     

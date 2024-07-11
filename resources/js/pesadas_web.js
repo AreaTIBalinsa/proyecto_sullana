@@ -383,6 +383,55 @@ jQuery(function($) {
         copiarDatosPenultimaFila();
     });
 
+    $(document).on('contextmenu', 'tr.eliminarPesadas', function (e) {
+        e.preventDefault();
+        let codigoPesada = $(this).closest("tr").find("td:first").text();
+        Swal.fire({
+            title: '¿Desea eliminar el Registro?',
+            text: "¡Estas seguro de eliminar la pesada!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: '¡No, cancelar!',
+            confirmButtonText: '¡Si,eliminar!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fn_EliminarPesadaWeb(codigoPesada);
+            }
+        })
+    });
+
+    function fn_EliminarPesadaWeb(codigoPesada){
+        $.ajax({
+            url: '/fn_consulta_EliminarPesada',
+            method: 'GET',
+            data: {
+                codigoPesada: codigoPesada,
+            },
+            success: function(response) {
+                if (response.success) {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Se elimino la pesada correctamente',
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+                    $('#btnBuscarCuentaDelCliente').trigger('click');
+                }
+            },
+            error: function(error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Error: Ocurrio un error inesperado durante la operacion',
+                  })
+                console.error("ERROR",error);
+            }
+        });
+    }
+
     function fn_consulta_TraerDatosPesadas3(fechaDesdePesadas,fechaHastaPesadas) {
 
         // Realiza la solicitud AJAX para obtener sugerencias
@@ -414,8 +463,9 @@ jQuery(function($) {
 
                         let promedio = pesoNetoPes / parseInt(obj.cantidadPes)
                         
-                        nuevaFila = $('<tr class="Pesadas bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-200 text-gray-900 dark:text-white dark:hover:bg-gray-600 cursor-pointer">');
+                        nuevaFila = $('<tr class="Pesadas eliminarPesadas editarPesadas bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-200 text-gray-900 dark:text-white dark:hover:bg-gray-600 cursor-pointer">');
                         // Agregar las celdas con la información
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap hidden">').text(obj.idPesada));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(obj.fechaRegistroPes));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 font-medium whitespace-nowrap">').text(obj.nombreCompleto));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(obj.nombreEspecie));
@@ -490,4 +540,243 @@ jQuery(function($) {
             }
         });
     }
+
+    $('.cerrarModalEditarPesadasWeb, #ModalEditarPesadasWeb .opacity-75').on('click', function (e) {
+        $('#ModalEditarPesadasWeb').addClass('hidden');
+        $('#ModalEditarPesadasWeb').removeClass('flex');
+    });
+
+    $(document).on("dblclick", "tr.editarPesadas", function() {
+        if (tipoUsuario =='Administrador'){
+            let fila = $(this).closest('tr');
+            let idPesada= fila.find('td:eq(0)').text();
+
+            fn_EditarPesada(idPesada);
+            
+            $('#ModalEditarPesadasWeb').addClass('flex');
+            $('#ModalEditarPesadasWeb').removeClass('hidden');
+
+        }
+    });
+
+    function fn_EditarPesada(codigoPesada){
+        $.ajax({
+            url: '/fn_consulta_EditarPesadasWeb',
+            method: 'GET',
+            data: {
+                codigoPesada: codigoPesada,
+            },
+            success: function(response) {
+                if (response.length > 0) {
+                    let obj = response[0];
+
+                    $('#selectedCodigoClientePesadas').attr("value",obj.codigoCli)
+                    $('#idPesadaWebEditar').attr("value",obj.idPesada);
+                    $('#idEditarPesadasWebCliente').val(obj.nombreCompleto);
+                    $('#fechaEditarPesada').val(obj.fechaRegistroPes);
+                    $('#especieEditarPesada').val(obj.idEspecie);
+                    $('#cantidadEditarPesada').val(obj.cantidadPes);
+                    $('#pesoBrutoEditarPesada').val(obj.pesoNetoPes);
+                    $('#pesoJabasEditarPesada').val(obj.pesoNetoJabas);
+                    $('#precioEditarPesada').val(obj.precioPes);
+                    $('#comentarioEditarPesada').val(obj.observacionPes);
+                } else {
+                    console.error("No se encontraron datos.");
+                }
+            },
+            error: function(error) {
+                console.error("ERROR", error);
+            }
+        });
+    }
+
+    function fn_declararEspeciesVentas(){
+        $.ajax({
+            url: '/fn_consulta_DatosPesadasWeb',
+            method: 'GET',
+            success: function(response) {
+                // Verificar si la respuesta es un arreglo de objetos
+                if (Array.isArray(response)) {
+
+                    // Obtener el select
+                    let selectPresentacion = $('#especieEditarPesada');
+                    
+                    // Vaciar el select actual, si es necesario
+                    selectPresentacion.empty();
+
+                    // Agregar la opción inicial "Seleccione tipo"
+                    selectPresentacion.append($('<option>', {
+                        value: '0',
+                        text: 'Seleccione proveedor',
+                        disabled: true,
+                        selected: true
+                    }));
+
+                    // Iterar sobre los objetos y mostrar sus propiedades
+                    response.forEach(function(obj) {
+                        // console.log(obj);
+                        let option = $('<option>', {
+                            value: obj.idEspecie,
+                            text: obj.nombreEspecie
+                        });
+                        selectPresentacion.append(option);
+                    });
+
+                } else {
+                    console.log("La respuesta no es un arreglo de objetos.");
+                }
+            },
+            error: function(error) {
+                console.error("ERROR",error);
+            }
+        });
+    }
+
+    fn_declararEspeciesVentas();
+    fn_declararEspeciesPesadas();
+
+    function fn_declararEspeciesPesadas(){
+        $.ajax({
+            url: '/fn_consulta_DatosPesadasWeb',
+            method: 'GET',
+            success: function(response) {
+                // Verificar si la respuesta es un arreglo de objetos
+                if (Array.isArray(response)) {
+
+                    // Obtener el select
+                    let selectPresentacionEditar = $('#especieEditarPesada');
+                    
+                    // Vaciar el select actual, si es necesario
+                    selectPresentacionEditar.empty();
+
+                    // Iterar sobre los objetos y mostrar sus propiedades
+                    response.forEach(function(obj) {
+                        let option = $('<option>', {
+                            value: obj.idEspecie,
+                            text: obj.nombreEspecie
+                        });
+                        selectPresentacionEditar.append(option);
+                    });
+
+                } else {
+                    console.log("La respuesta no es un arreglo de objetos.");
+                }
+            },
+            error: function(error) {
+                console.error("ERROR",error);
+            }
+        });
+    }
+
+    $('#idEditarPesadasWebCliente').on('input', function () {
+        let inputAgregarDescuentoCliente = $(this).val();
+        let contenedorClientes = $('#contenedorClientesAgregarDescuentoCliente');
+        contenedorClientes.empty();
+
+        if (inputAgregarDescuentoCliente.length > 1 || inputAgregarDescuentoCliente != "") {
+            fn_TraerClientesAgregarDescuento(inputAgregarDescuentoCliente);
+        } else {
+            contenedorClientes.empty();
+            contenedorClientes.addClass('hidden');
+        }
+    });
+
+    function fn_TraerClientesAgregarDescuento(inputAgregarDescuentoCliente) {
+        $.ajax({
+            url: '/fn_consulta_TraerClientesAgregarDescuento',
+            method: 'GET',
+            data: {
+                idAgregarDescuento: inputAgregarDescuentoCliente,
+            },
+            success: function (response) {
+                // Limpia las sugerencias anteriores
+                let contenedorClientes = $('#contenedorClientesAgregarDescuentoCliente')
+                contenedorClientes.empty();
+
+                // Verificar si la respuesta es un arreglo de objetos
+                if (Array.isArray(response) && response.length > 0) {
+                    // Iterar sobre los objetos y mostrar sus propiedades como sugerencias
+                    response.forEach(function (obj) {
+                        var suggestion = $('<div class="cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700 p-2 border-b border-gray-300/40">' + obj.nombreCompleto + '</div>');
+
+                        // Maneja el clic en la sugerencia
+                        suggestion.on("click", function () {
+                            // Rellena el campo de entrada con el nombre completo
+                            $('#idEditarPesadasWebCliente').val(obj.nombreCompleto);
+
+                            // Actualiza las etiquetas ocultas con los datos seleccionados
+                            $('#selectedCodigoClientePesadas').attr("value", obj.codigoCli);
+
+                            // Oculta las sugerencias
+                            contenedorClientes.addClass('hidden');
+                        });
+
+                        contenedorClientes.append(suggestion);
+                    });
+
+                    // Muestra las sugerencias
+                    contenedorClientes.removeClass('hidden');
+                } else {
+                    // Oculta las sugerencias si no hay resultados
+                    contenedorClientes.addClass('hidden');
+                }
+            },
+            error: function (error) {
+                console.error("ERROR", error);
+            }
+        });
+    };
+
+    $('#btnGuardarPesadasEditar').on('click', function(){
+
+        let idPesadaWebEditar = $('#idPesadaWebEditar').attr("value");
+        let idEditarPesadasWebCliente = $('#selectedCodigoClientePesadas').attr("value");
+        let fechaEditarPesada = $('#fechaEditarPesada').val();
+        let especieEditarPesada = $('#especieEditarPesada').val();
+        let cantidadEditarPesada = $('#cantidadEditarPesada').val();
+        let pesoBrutoEditarPesada = $('#pesoBrutoEditarPesada').val();
+        let pesoJabasEditarPesada = $('#pesoJabasEditarPesada').val();
+        let precioEditarPesada = $('#precioEditarPesada').val();
+        let comentarioEditarPesada = $('#comentarioEditarPesada').val();
+    
+        console.log(idPesadaWebEditar, idEditarPesadasWebCliente, fechaEditarPesada, especieEditarPesada, cantidadEditarPesada, pesoBrutoEditarPesada, pesoJabasEditarPesada, precioEditarPesada, comentarioEditarPesada)
+        fn_EditarPesadaWeb(idPesadaWebEditar, idEditarPesadasWebCliente, fechaEditarPesada, especieEditarPesada, cantidadEditarPesada, pesoBrutoEditarPesada, pesoJabasEditarPesada, precioEditarPesada, comentarioEditarPesada)
+    });
+
+    function fn_EditarPesadaWeb(idPesadaWebEditar, idEditarPesadasWebCliente, fechaEditarPesada, especieEditarPesada, cantidadEditarPesada, pesoBrutoEditarPesada, pesoJabasEditarPesada, precioEditarPesada, comentarioEditarPesada){
+        $.ajax({
+            url: '/fn_consulta_EditarDatosPesadas',
+            method: 'GET',
+            data:{
+                idPesadaWebEditar: idPesadaWebEditar,
+                idEditarPesadasWebCliente: idEditarPesadasWebCliente,
+                fechaEditarPesada: fechaEditarPesada,
+                especieEditarPesada: especieEditarPesada,
+                cantidadEditarPesada: cantidadEditarPesada,
+                pesoBrutoEditarPesada: pesoBrutoEditarPesada,
+                pesoJabasEditarPesada: pesoJabasEditarPesada,
+                precioEditarPesada: precioEditarPesada,
+                comentarioEditarPesada: comentarioEditarPesada,
+            },
+            success: function(response) {
+                if (response.success) {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Se actualizó el egreso correctamente',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+    
+                    $('#ModalEditarPesadasWeb').addClass('hidden');
+                    $('#ModalEditarPesadasWeb').removeClass('flex');
+                    $('#btnBuscarCuentaDelCliente').trigger('click');
+                }
+            },
+            error: function(error) {
+                console.error("ERROR", error);
+            }
+        });
+    }
+
 });

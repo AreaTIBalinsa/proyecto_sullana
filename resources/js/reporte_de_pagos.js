@@ -2152,6 +2152,28 @@ jQuery(function ($) {
         }
     } 
 
+    function copiarDatosPenultimaFila4() {
+        let filas = $('.pagosAgregarExcelEgreso1');
+        if (filas.length > 1) {
+            let penultimaFila = filas.eq(filas.length - 2);
+            let ultimaFila = filas.eq(filas.length - 1);
+            let datosColumna0 = penultimaFila.find('td').eq(0).text();
+            
+            ultimaFila.find('td').eq(0).text(datosColumna0);
+        }
+    } 
+
+    function copiarDatosPenultimaFila5() {
+        let filas = $('.pagosAgregarExcelEgreso2');
+        if (filas.length > 1) {
+            let penultimaFila = filas.eq(filas.length - 2);
+            let ultimaFila = filas.eq(filas.length - 1);
+            let datosColumna0 = penultimaFila.find('td').eq(0).text();
+            
+            ultimaFila.find('td').eq(0).text(datosColumna0);
+        }
+    }
+
     $(document).on("dblclick", "tr.editarPagosEgresos", function() {
         let fila = $(this).closest('tr');
         let idReporteDeEgreso= fila.find('td:eq(0)').text();
@@ -2369,6 +2391,8 @@ jQuery(function ($) {
     $(document).on('input', '.validarFormatoFechaTablas', function () {
         copiarDatosPenultimaFila2();
         copiarDatosPenultimaFila3();
+        copiarDatosPenultimaFila4();
+        copiarDatosPenultimaFila5();
         let inputValue = $(this).text();
         let regex = /^\d{2}-\d{2}-\d{4}$/; // Expresión regular para formato dd-mm-yyyy
         
@@ -2403,6 +2427,9 @@ jQuery(function ($) {
     });
 
     $(document).on('click', '#registrar_agregarPagos_Excel', function () {
+
+        $("#registrar_agregarPagos_Excel").attr('disabled','disabled');
+
         let arregloCodigos = [];
 
         $('.pagosAgregarExcel:not(:last-child)').each(function() {
@@ -2421,6 +2448,10 @@ jQuery(function ($) {
         let completedRequests = 0;
         let failedRequests = 0;
         let totalRequests = $('.pagosAgregarExcel:not(:last-child)').length;
+
+        if(totalRequests == 0){
+            $("#registrar_agregarPagos_Excel").removeAttr('disabled');
+        }
     
         // Función para verificar si todas las solicitudes han finalizado
         function checkCompletion() {
@@ -2446,6 +2477,7 @@ jQuery(function ($) {
                 let fechaDesdeTraerPagos = $('#fechaDesdeReporteDePagos').val();
                 let fechaHastaTraerPagos = $('#fechaHastaReporteDePagos').val();
                 fn_TraerPagosFechas(fechaDesdeTraerPagos, fechaHastaTraerPagos);
+                $("#registrar_agregarPagos_Excel").removeAttr('disabled');
             }
         }
     
@@ -2579,10 +2611,16 @@ jQuery(function ($) {
 
     $(document).on('click', '#registrar_agregarPagos_Excel2', function () {
 
+        $("#registrar_agregarPagos_Excel2").attr('disabled','disabled');
+
         // Crear contadores para realizar una acción después de todas las consultas completadas y fallidas
         let completedRequests = 0;
         let failedRequests = 0;
         let totalRequests = $('.pagosAgregarExcel2:not(:last-child)').length;
+        
+        if(totalRequests == 0){
+            $("#registrar_agregarPagos_Excel2").removeAttr('disabled');
+        }
     
         // Función para verificar si todas las solicitudes han finalizado
         function checkCompletion() {
@@ -2608,6 +2646,7 @@ jQuery(function ($) {
                 let fechaDesdeTraerPagos = $('#fechaDesdeReporteDePagos').val();
                 let fechaHastaTraerPagos = $('#fechaHastaReporteDePagos').val();
                 fn_TraerPagosFechas2(fechaDesdeTraerPagos, fechaHastaTraerPagos);
+                $("#registrar_agregarPagos_Excel2").removeAttr('disabled');
             }
         }
     
@@ -2815,10 +2854,17 @@ jQuery(function ($) {
     }
 
     $(document).on('click', '#registrar_agregarPagos_Excel3', function () {
+
+        $("#registrar_agregarPagos_Excel3").attr('disabled','disabled');
+
         // Crear contadores para realizar una acción después de todas las consultas completadas y fallidas
         let completedRequests = 0;
         let failedRequests = 0;
         let totalRequests = $('.pagosAgregarExcel3:not(:last-child)').length;
+
+        if(totalRequests == 0){
+            $("#registrar_agregarPagos_Excel3").removeAttr('disabled');
+        }
     
         // Función para verificar si todas las solicitudes han finalizado
         function checkCompletion() {
@@ -2844,6 +2890,7 @@ jQuery(function ($) {
                 let fechaDesdeTraerPagos = $('#fechaDesdeReporteDePagos').val();
                 let fechaHastaTraerPagos = $('#fechaHastaReporteDePagos').val();
                 fn_TraerPagosFechas3(fechaDesdeTraerPagos, fechaHastaTraerPagos);
+                $("#registrar_agregarPagos_Excel3").removeAttr('disabled');
             }
         }
     
@@ -3046,6 +3093,7 @@ jQuery(function ($) {
     }
 
     $(document).on('click', '#registrar_agregarPagos_Excel4', function () {
+        $("#registrar_agregarPagos_Excel4").attr('disabled','disabled');
         let arregloCodigos = [];
 
         $('.pagosAgregarExcel4:not(:last-child)').each(function() {
@@ -3064,6 +3112,10 @@ jQuery(function ($) {
         let completedRequests = 0;
         let failedRequests = 0;
         let totalRequests = $('.pagosAgregarExcel4:not(:last-child)').length;
+
+        if(totalRequests == 0){
+            $("#registrar_agregarPagos_Excel4").removeAttr('disabled');
+        }
     
         // Función para verificar si todas las solicitudes han finalizado
         function checkCompletion() {
@@ -3089,6 +3141,7 @@ jQuery(function ($) {
                 let fechaDesdeTraerPagos = $('#fechaDesdeReporteDePagos').val();
                 let fechaHastaTraerPagos = $('#fechaHastaReporteDePagos').val();
                 fn_TraerPagosDirectoGranjaFechas(fechaDesdeTraerPagos, fechaHastaTraerPagos);
+                $("#registrar_agregarPagos_Excel4").removeAttr('disabled');
             }
         }
     
@@ -3263,10 +3316,16 @@ jQuery(function ($) {
     // EGRESOS
 
     $(document).on('click', '#registrar_agregarPagos_ExcelEgreso1', function () {
+
+        $("#registrar_agregarPagos_ExcelEgreso1").attr('disabled','disabled');
         // Crear contadores para realizar una acción después de todas las consultas completadas y fallidas
         let completedRequests = 0;
         let failedRequests = 0;
         let totalRequests = $('.pagosAgregarExcelEgreso1:not(:last-child)').length;
+
+        if(totalRequests == 0){
+            $("#registrar_agregarPagos_ExcelEgreso1").removeAttr('disabled');
+        }
     
         // Función para verificar si todas las solicitudes han finalizado
         function checkCompletion() {
@@ -3292,6 +3351,7 @@ jQuery(function ($) {
                 let fechaDesdeTraerPagos = $('#fechaDesdeReporteDePagos').val();
                 let fechaHastaTraerPagos = $('#fechaHastaReporteDePagos').val();
                 fn_TraerEgresosFechas(fechaDesdeTraerPagos, fechaHastaTraerPagos);
+                $("#registrar_agregarPagos_ExcelEgreso1").removeAttr('disabled');
             }
         }
     
@@ -3413,6 +3473,7 @@ jQuery(function ($) {
             });
             if (!vacio) {
                 agregarFilaEntradaEgreso1(tbody);
+                copiarDatosPenultimaFila4();
                 nuevaFila.off('input');
             }
         });
@@ -3462,10 +3523,15 @@ jQuery(function ($) {
     // EGRESO 2
 
     $(document).on('click', '#registrar_agregarPagos_ExcelEgreso2', function () {
+        $("#registrar_agregarPagos_ExcelEgreso2").attr('disabled','disabled');
         // Crear contadores para realizar una acción después de todas las consultas completadas y fallidas
         let completedRequests = 0;
         let failedRequests = 0;
         let totalRequests = $('.pagosAgregarExcelEgreso2:not(:last-child)').length;
+
+        if(totalRequests == 0){
+            $("#registrar_agregarPagos_ExcelEgreso2").removeAttr('disabled');
+        }
     
         // Función para verificar si todas las solicitudes han finalizado
         function checkCompletion() {
@@ -3491,6 +3557,7 @@ jQuery(function ($) {
                 let fechaDesdeTraerPagos = $('#fechaDesdeReporteDePagos').val();
                 let fechaHastaTraerPagos = $('#fechaHastaReporteDePagos').val();
                 fn_TraerEgresosPaulFechas(fechaDesdeTraerPagos, fechaHastaTraerPagos);
+                $("#registrar_agregarPagos_ExcelEgreso2").removeAttr('disabled');
             }
         }
     
@@ -3601,6 +3668,7 @@ jQuery(function ($) {
             });
             if (!vacio) {
                 agregarFilaEntradaEgreso2(tbody);
+                copiarDatosPenultimaFila5();
                 nuevaFila.off('input');
             }
         });

@@ -32,13 +32,13 @@
         </div> --}}
         <div class="md:m-5 mt-0">
             <div class="relative overflow-auto aside_scrollED rounded-lg flex items-start">
-                <div class="w-full">
+                <div>
                     <div class="text-white font-bold bg-yellow-400 flex justify-center w-full gap-4 p-1.5">
                         <div class="">Diferencia : </div>
                         <div class="" id="diferencia">0.00</div>
                     </div>
-                    <div class="flex w-full">
-                        <div class="w-full">
+                    <div class="flex">
+                        <div>
                             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                                 <caption class="bg-green-600 p-2 w-full border-b-2 text-sm font-bold text-gray-100">Caja Chica Ingreso</caption>
                                 <thead class="text-xs text-gray-100 uppercase bg-green-600">
@@ -81,7 +81,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div class="w-full">
+                        <div>
                             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                                 <caption class="bg-red-600 p-2 w-full border-b-2 text-sm font-bold text-gray-100">Caja Chica Egreso</caption>
                                 <thead class="text-xs text-gray-100 uppercase bg-red-600">
