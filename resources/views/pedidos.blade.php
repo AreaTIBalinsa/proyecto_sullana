@@ -81,7 +81,7 @@
         </div>
 
         <!-- Contenido del modal -->
-        <div class="rounded-lg max-h-[100%] aside_scrollED overflow-y-auto bg-white dark:bg-slate-700 text-left shadow-xl transform transition-all max-w-lg w-full">
+        <div class="rounded-lg max-h-[100%] aside_scrollED overflow-y-auto bg-white dark:bg-gray-700 text-left shadow-xl transform transition-all max-w-lg w-full">
             <div class="p-4">
                 <div class="flex flex-col">
                     <div class="border-b rounded-t dark:border-gray-500 p-2 flex justify-center">
@@ -197,7 +197,7 @@
         </div>
 
         <!-- Contenido del modal -->
-        <div class="rounded-lg max-h-[100%] aside_scrollED overflow-y-auto bg-white dark:bg-slate-700 text-left shadow-xl transform transition-all max-w-lg w-full">
+        <div class="rounded-lg max-h-[100%] aside_scrollED overflow-y-auto bg-white dark:bg-gray-700 text-left shadow-xl transform transition-all max-w-lg w-full">
             <div class="p-4">
                 <div class="flex flex-col">
                     <div class="border-b rounded-t dark:border-gray-500 p-2 flex justify-center">
@@ -310,7 +310,7 @@
         </div>
 
         <!-- Contenido del modal -->
-        <div class="rounded-lg max-h-[100%] aside_scrollED overflow-y-auto bg-white dark:bg-slate-700 text-left shadow-xl transform transition-all max-w-lg w-full">
+        <div class="rounded-lg max-h-[100%] aside_scrollED overflow-y-auto bg-white dark:bg-gray-700 text-left shadow-xl transform transition-all max-w-lg w-full">
             <div class="p-4">
                 <div class="flex flex-col">
                     <div class="border-b rounded-t dark:border-gray-500 p-2 flex justify-center">

@@ -56,7 +56,7 @@
                         <span class="font-normal text-sm">Modo Oscuro</span>
                     </div>
                     <div id="swith_modo_oscuro" class="w-14 h-8 flex items-center justify-center cursor-pointer">
-                        <div class="base_swith w-9 h-5 rounded-full bg-slate-700 relative flex items-center">
+                        <div class="base_swith w-9 h-5 rounded-full bg-gray-700 relative flex items-center">
                             <div class="circulo_swith duration-300 w-4 h-4 rounded-full bg-gray-100 absolute left-0.5"></div>
                         </div>
                     </div>

@@ -419,7 +419,7 @@
         </div>
 
         <!-- Contenido del modal -->
-        <div class="absolute rounded-lg max-h-max inset-0 m-auto align-bottom bg-white dark:bg-slate-700 text-left overflow-hidden shadow-xl transform transition-all sm:max-w-lg sm:w-full">
+        <div class="absolute rounded-lg max-h-max inset-0 m-auto align-bottom bg-white dark:bg-gray-700 text-left overflow-hidden shadow-xl transform transition-all sm:max-w-lg sm:w-full">
             <div class="p-4">
                 <div class="flex flex-col">
                     <div class="border-b rounded-t dark:border-gray-500 p-2 flex justify-center">
@@ -530,7 +530,7 @@
         </div>
 
         <!-- Contenido del modal -->
-        <div class="absolute rounded-lg max-h-max inset-0 m-auto align-bottom bg-white dark:bg-slate-700 text-left overflow-hidden shadow-xl transform transition-all sm:max-w-lg sm:w-full">
+        <div class="absolute rounded-lg max-h-max inset-0 m-auto align-bottom bg-white dark:bg-gray-700 text-left overflow-hidden shadow-xl transform transition-all sm:max-w-lg sm:w-full">
             <div class="p-4">
                 <div class="flex flex-col">
                     <div class="border-b rounded-t dark:border-gray-500 p-2 flex justify-center">
@@ -621,7 +621,7 @@
         </div>
 
         <!-- Contenido del modal -->
-        <div class="absolute rounded-lg max-h-max inset-0 m-auto align-bottom bg-white dark:bg-slate-700 text-left overflow-hidden shadow-xl transform transition-all sm:max-w-lg sm:w-full">
+        <div class="absolute rounded-lg max-h-max inset-0 m-auto align-bottom bg-white dark:bg-gray-700 text-left overflow-hidden shadow-xl transform transition-all sm:max-w-lg sm:w-full">
             <div class="p-4">
                 <div class="flex flex-col">
                     <div class="border-b rounded-t dark:border-gray-500 p-2 flex justify-center">
@@ -698,7 +698,7 @@
         </div>
 
         <!-- Contenido del modal -->
-        <div class="absolute rounded-lg max-h-max inset-0 m-auto align-bottom bg-white dark:bg-slate-700 text-left overflow-hidden shadow-xl transform transition-all sm:max-w-lg sm:w-full">
+        <div class="absolute rounded-lg max-h-max inset-0 m-auto align-bottom bg-white dark:bg-gray-700 text-left overflow-hidden shadow-xl transform transition-all sm:max-w-lg sm:w-full">
             <div class="p-4">
                 <div class="flex flex-col">
                     <div class="border-b rounded-t dark:border-gray-500 p-2 flex justify-center">
@@ -768,7 +768,7 @@
         </div>
 
         <!-- Contenido del modal -->
-        <div class="absolute rounded-lg max-h-max inset-0 m-auto align-bottom bg-white dark:bg-slate-700 text-left overflow-hidden shadow-xl transform transition-all sm:max-w-lg sm:w-full">
+        <div class="absolute rounded-lg max-h-max inset-0 m-auto align-bottom bg-white dark:bg-gray-700 text-left overflow-hidden shadow-xl transform transition-all sm:max-w-lg sm:w-full">
             <div class="p-4">
                 <div class="flex flex-col">
                     <div class="border-b rounded-t dark:border-gray-500 p-2 flex justify-center">
@@ -849,7 +849,7 @@
         </div>
 
         <!-- Contenido del modal -->
-        <div class="absolute rounded-lg max-h-max inset-0 m-auto align-bottom bg-white dark:bg-slate-700 text-left overflow-hidden shadow-xl transform transition-all sm:max-w-lg w-full">
+        <div class="absolute rounded-lg max-h-max inset-0 m-auto align-bottom bg-white dark:bg-gray-700 text-left overflow-hidden shadow-xl transform transition-all sm:max-w-lg w-full">
             <div class="p-4">
                 <div class="flex flex-col">
                     <div class="border-b rounded-t dark:border-gray-500 p-2 flex justify-center">

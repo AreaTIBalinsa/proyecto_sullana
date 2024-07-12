@@ -86,8 +86,8 @@
                             <button id="services2-tab" data-tabs-target="#services2" type="button" role="tab" aria-controls="services2" aria-selected="false" class="inline-block p-4 hover:text-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-gray-300">Detalles</button>
                         </li>
                     </ul>
-                    <div id="defaultTabContent" class="bg-emerald-600 h-[calc(100%-53px)]">
-                        <div class="hidden p-4 bg-emerald-600 rounded-b-lg md:p-8" id="about2" role="tabpanel" aria-labelledby="about-tab">
+                    <div id="defaultTabContent" class="bg-green-600 h-[calc(100%-53px)]">
+                        <div class="hidden p-4 bg-green-600 rounded-b-lg md:p-8" id="about2" role="tabpanel" aria-labelledby="about-tab">
                             <div class="flex flex-col w-full justify-center items-center h-[calc(100%-53px)]">
                                 <h2 class="mb-3 text-3xl md:text-4xl text-center font-extrabold tracking-tight text-white">POLLO TECNICA</h2>
                                 <div class="flex row mb-3 justify-center">
@@ -324,8 +324,8 @@
                             <button id="services6-tab" data-tabs-target="#services6" type="button" role="tab" aria-controls="services6" aria-selected="false" class="inline-block p-4 hover:text-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-gray-300">Detalles</button>
                         </li>
                     </ul>
-                    <div id="defaultTabContent" class="bg-emerald-600 h-[calc(100%-53px)]">
-                        <div class="hidden p-4 bg-emerald-600 rounded-b-lg md:p-8" id="about6" role="tabpanel" aria-labelledby="about-tab">
+                    <div id="defaultTabContent" class="bg-green-600 h-[calc(100%-53px)]">
+                        <div class="hidden p-4 bg-green-600 rounded-b-lg md:p-8" id="about6" role="tabpanel" aria-labelledby="about-tab">
                             <div class="flex flex-col w-full justify-center items-center h-[calc(100%-53px)]">
                                 <h2 class="mb-3 text-3xl md:text-4xl text-center font-extrabold tracking-tight text-white">AHOGADOS Y SECOS</h2>
                                 <div class="flex row mb-3 justify-center">
@@ -569,7 +569,7 @@
 
 <div class="fixed hidden top-0 left-0 z-[100] justify-center items-center w-screen h-screen bg-gray-900 bg-opacity-75 transition-opacity cerrarModalProduccionAnterior" id="ModalProduccionAnterior">
     <div class="modal-content max-w-lg w-full mx-4">
-        <div class="transform overflow-hidden rounded-lg bg-white dark:bg-slate-700 shadow-xl transition-all">
+        <div class="transform overflow-hidden rounded-lg bg-white dark:bg-gray-700 shadow-xl transition-all">
             <div class=" p-4">
                 <div class="flex flex-col">
                     <div class="border-b rounded-t dark:border-gray-500 p-2 flex justify-center">
