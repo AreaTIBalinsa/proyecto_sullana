@@ -151,7 +151,7 @@ jQuery(function ($) {
     
     $('#btnBuscarCuentaDelCliente').on('click', function () {
         let fechaHasta = $('#fechaCuentaDelCliente').val();
-        let codigoCliente = $('#selectedCodigoCliCuentaDelCliente').attr("value");
+        let codigoCliente = $('#codigoClienteSeleccionado').val();
         fn_TraerCuentaDelCliente(fechaHasta,fechaHasta,codigoCliente);
     });
 
@@ -10646,6 +10646,9 @@ jQuery(function ($) {
         let bodyCuentaDelCliente="";
         let tbodyCuentaDelCliente = $('#bodyCuentaDelCliente');
         tbodyCuentaDelCliente.empty();
+        let tbodyCuentaDelClientePagos = $('#bodyCuentaDelClientePagos');
+        tbodyCuentaDelClientePagos.empty();
+        let mensajeDeudaDiaCliente = $("#mensajeDeuda")
 
         let totalSaldoAnterior = ventaAnterior + parseFloat(totalVentaDescuentoAnterior)
         let totalPagos = pagoAnterior
@@ -10661,6 +10664,8 @@ jQuery(function ($) {
         });
         if (bodyCuentaDelCliente == ""){
             tbodyCuentaDelCliente.html(`<tr class="rounded-lg border-b-2 bg-white"><td colspan="7" class="text-center">No hay datos</td></tr>`);
+            tbodyCuentaDelClientePagos.html(`<tr class="rounded-lg border-b-2 bg-white"><td colspan="2" class="text-center">No hay datos</td></tr>`);
+            mensajeDeudaDiaCliente.empty();
         }else{
             tbodyCuentaDelCliente.html(bodyCuentaDelCliente);
 
@@ -10694,7 +10699,6 @@ jQuery(function ($) {
                 return fechaFormateada.charAt(0).toUpperCase() + fechaFormateada.slice(1);
             }
 
-            let mensajeDeudaDiaCliente = $("#mensajeDeuda")
             let lblTotalCuentaDia = $("#totalCuentaDia").attr("value")
             let lblTotalPagos = $("#totalPagos").attr("value")
             let lblTotalSaldo = $("#totalSaldo").attr("value")
@@ -10743,7 +10747,7 @@ jQuery(function ($) {
                 mensajeDeudaDiaCliente.html(`<p id="mensajeDeudaDia"></p>`);
             }
 
-            let nombreCliente = $('#idCuentaDelCliente').val().trim();
+            let nombreCliente = $('#inputNombreClientes').val().trim();
 
             $('#cuentaClienteNombre').html(nombreCliente);
             contarFilas();
@@ -10924,7 +10928,7 @@ jQuery(function ($) {
         contarPagos++; // Este incremento parece innecesario si ya estás contando correctamente las filas.
     
         if (contarVenta > contarPagos) {
-            console.log("filasContarVenta tiene más filas");
+            // console.log("filasContarVenta tiene más filas");
     
             let diferencia = contarVenta - contarPagos;
             let nuevasFilas = "";
@@ -10942,8 +10946,8 @@ jQuery(function ($) {
             // Agregar las nuevas filas al final de la tabla que contiene contarFilaPagos
             $('.contarFilaPagos:last').after(nuevasFilas);
     
-        } else {
-            console.log("contarFilaPagos tiene más filas o son iguales");
+        } else if (contarVenta < contarPagos){
+            // console.log("contarFilaPagos tiene más filas o son iguales");
 
             let diferencia = contarPagos - contarVenta;
             let nuevasFilas = "";
@@ -11506,7 +11510,7 @@ jQuery(function ($) {
     }
 
     $(document).on("click", "#btnEnviarCuentaWhatsApp", function() {
-        let nombreCliente = $('#idCuentaDelCliente').val().trim();
+        let nombreCliente = $('#inputNombreClientes').val().trim();
         let fechaCuentaDelCliente = $('#fechaCuentaDelCliente').val().trim();
         let phoneNumber = $('#phoneInput').val().trim().replace(/\s/g, '');
         let horaFormateada = new Date().toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit', second: '2-digit' }).replace(/ /g, '');
@@ -11572,7 +11576,7 @@ jQuery(function ($) {
     });   
     
     $(document).on("click", "#btnEnviarCuentaWhatsAppTelefono", function() {
-        let nombreCliente = $('#idCuentaDelCliente').val().trim();
+        let nombreCliente = $('#inputNombreClientes').val().trim();
         let fechaCuentaDelCliente = $('#fechaCuentaDelCliente').val().trim();
         let horaFormateada = new Date().toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit', second: '2-digit' }).replace(/ /g, '');
         let nombreIMG = `${nombreCliente}-${fechaCuentaDelCliente}-${horaFormateada}.jpeg`;
@@ -11722,13 +11726,15 @@ jQuery(function ($) {
     $(document).on("click", "#btnCambiarPrecioPesadas", function() {      
         $('#ModalCambiarPrecioPesada').addClass('flex');
         $('#ModalCambiarPrecioPesada').removeClass('hidden');
-        $('#selectedCodigoCliCambiarPrecioPesada').attr('value',"");
+        $('#codigoClienteSeleccionado2').val(0);
         $('#especiesCambioPrecioPesadas').val(0);
         $('#nuevoPrecioCambiarPesadas').val("");
-        $('#idCambiarPrecioPesadaCliente').val("");
+        $('#inputNombreClientes2').val("");
+        $("#clienteSeleccionadoCorrecto2").removeClass("flex");
+        $("#clienteSeleccionadoCorrecto2").addClass("hidden");
         $("#nuevoPrecioCambiarPesadas").removeClass('border-red-500').addClass('dark:border-gray-600 border-gray-300');
         $("#especiesCambioPrecioPesadas").removeClass('border-red-500').addClass('dark:border-gray-600 border-gray-300');
-        $("#idCambiarPrecioPesadaCliente").removeClass('border-red-500').addClass('dark:border-gray-600 border-gray-300');
+        $("#inputNombreClientes2").removeClass('border-red-500').addClass('dark:border-gray-600 border-gray-300');
 
         let fechaBuscaCuenta = $('#fechaCuentaDelCliente').val();
         $('#fechaCambiarPrecioPesada').val(fechaBuscaCuenta);
@@ -11740,7 +11746,7 @@ jQuery(function ($) {
     });
 
     $('#btnCambiarPrecioPesada').on('click', function () {
-        let codigoCliente = $('#selectedCodigoCliCambiarPrecioPesada').attr('value');
+        let codigoCliente = $('#codigoClienteSeleccionado2').val();
         let fechaCambioPrecio = $('#fechaCambiarPrecioPesada').val();
         let especieCambioPrecio = $('#especiesCambioPrecioPesadas').val();
         let nuevoPrecio = $('#nuevoPrecioCambiarPesadas').val();
@@ -11806,7 +11812,7 @@ jQuery(function ($) {
                         showConfirmButton: false,
                         timer: 2000
                     });
-                    $('#selectedCodigoCliCambiarPrecioPesada').attr('value',"");
+                    $('#codigoClienteSeleccionado2').val(0);
                     $('#especiesCambioPrecioPesadas').val(0);
                     $('#nuevoPrecioCambiarPesadas').val("");
                     $('#idCambiarPrecioPesadaCliente').val("");
@@ -11990,5 +11996,162 @@ jQuery(function ($) {
             }
         });
     }
+
+    // Primer filtro Nombre
+
+    let selectedIndex = -1;
+
+    $('#inputNombreClientes').on('input', function () {
+        $('#codigoClienteSeleccionado').val(0);
+        $("#clienteSeleccionadoCorrecto").removeClass("flex");
+        $("#clienteSeleccionadoCorrecto").addClass("hidden");
+        const searchTerm = $(this).val().toLowerCase();
+        const $filtrarClientes = $("#inputNombreClientes").val();
+        const filteredClientes = clientesArreglo.filter(cliente =>
+            cliente.nombreCompleto.toLowerCase().includes(searchTerm)
+        );
+        if ($filtrarClientes.length > 0) {
+            displayClientes(filteredClientes);
+            selectedIndex = -1; // Reset index when the input changes
+        } else {
+            const $contenedorDeClientes = $("#contenedorDeClientes")
+            $contenedorDeClientes.addClass('hidden');
+        }
+    });
+    
+    $('#inputNombreClientes').on('keydown', function (event) {
+        const $options = $('#contenedorDeClientes .option');
+        if ($options.length > 0) {
+            if (event.key === 'ArrowDown') {
+                event.preventDefault();
+                selectedIndex = (selectedIndex + 1) % $options.length;
+                updateSelection($options);
+            } else if (event.key === 'ArrowUp') {
+                event.preventDefault();
+                selectedIndex = (selectedIndex - 1 + $options.length) % $options.length;
+                updateSelection($options);
+            } else if (event.key === 'Enter') {
+                event.preventDefault();
+                if (selectedIndex >= 0) {
+                    $options.eq(selectedIndex).click();
+                    $("#clienteSeleccionadoCorrecto").removeClass("hidden");
+                    $("#clienteSeleccionadoCorrecto").addClass("flex");
+                }
+            }
+        }
+    });
+    
+    function updateSelection($options) {
+        $options.removeClass('bg-gray-200 dark:bg-gray-700');
+        if (selectedIndex >= 0) {
+            $options.eq(selectedIndex).addClass('bg-gray-200 dark:bg-gray-700');
+        }
+    }
+    
+    function displayClientes(clientesArreglo) {
+        const $contenedor = $('#contenedorDeClientes');
+        $contenedor.empty();
+        if (clientesArreglo.length > 0) {
+            $contenedor.removeClass('hidden');
+            clientesArreglo.forEach(cliente => {
+                const $div = $('<div class="text-gray-800 text-sm dark:text-white font-medium cursor-pointer overflow-hidden whitespace-nowrap text-ellipsis dark:hover:bg-gray-700 hover:bg-gray-200"></div>')
+                    .text(cliente.nombreCompleto)
+                    .addClass('option p-2')
+                    .on('click', function () {
+                        selectCliente(cliente);
+                    });
+                $contenedor.append($div);
+            });
+        } else {
+            $contenedor.addClass('hidden');
+        }
+    }
+    
+    function selectCliente(cliente) {
+        $('#inputNombreClientes').val(cliente.nombreCompleto);
+        $('#codigoClienteSeleccionado').val(cliente.codigoCli);
+        $('#contenedorDeClientes').addClass('hidden');
+        $("#clienteSeleccionadoCorrecto").removeClass("hidden");
+        $("#clienteSeleccionadoCorrecto").addClass("flex");
+        selectedIndex = -1;
+    }
+
+    // Segundo filtro Nombre
+
+    $('#inputNombreClientes2').on('input', function () {
+        $('#codigoClienteSeleccionado2').val(0);
+        $("#clienteSeleccionadoCorrecto2").removeClass("flex");
+        $("#clienteSeleccionadoCorrecto2").addClass("hidden");
+        const searchTerm = $(this).val().toLowerCase();
+        const $filtrarClientes = $("#inputNombreClientes2").val();
+        const filteredClientes = clientesArreglo.filter(cliente =>
+            cliente.nombreCompleto.toLowerCase().includes(searchTerm)
+        );
+        if ($filtrarClientes.length > 0) {
+            displayClientes2(filteredClientes);
+            selectedIndex = -1; // Reset index when the input changes
+        } else {
+            const $contenedorDeClientes = $("#contenedorDeClientes2")
+            $contenedorDeClientes.addClass('hidden');
+        }
+    });
+    
+    $('#inputNombreClientes2').on('keydown', function (event) {
+        const $options = $('#contenedorDeClientes2 .option');
+        if ($options.length > 0) {
+            if (event.key === 'ArrowDown') {
+                event.preventDefault();
+                selectedIndex = (selectedIndex + 1) % $options.length;
+                updateSelection($options);
+            } else if (event.key === 'ArrowUp') {
+                event.preventDefault();
+                selectedIndex = (selectedIndex - 1 + $options.length) % $options.length;
+                updateSelection($options);
+            } else if (event.key === 'Enter') {
+                event.preventDefault();
+                if (selectedIndex >= 0) {
+                    $options.eq(selectedIndex).click();
+                    $("#clienteSeleccionadoCorrecto2").removeClass("hidden");
+                    $("#clienteSeleccionadoCorrecto2").addClass("flex");
+                }
+            }
+        }
+    });
+    
+    function displayClientes2(clientesArreglo) {
+        const $contenedor = $('#contenedorDeClientes2');
+        $contenedor.empty();
+        if (clientesArreglo.length > 0) {
+            $contenedor.removeClass('hidden');
+            clientesArreglo.forEach(cliente => {
+                const $div = $('<div class="text-gray-800 text-sm dark:text-white font-medium cursor-pointer overflow-hidden whitespace-nowrap text-ellipsis dark:hover:bg-gray-700 hover:bg-gray-200"></div>')
+                    .text(cliente.nombreCompleto)
+                    .addClass('option p-2')
+                    .on('click', function () {
+                        selectCliente2(cliente);
+                    });
+                $contenedor.append($div);
+            });
+        } else {
+            $contenedor.addClass('hidden');
+        }
+    }
+    
+    function selectCliente2(cliente) {
+        $('#inputNombreClientes2').val(cliente.nombreCompleto);
+        $('#codigoClienteSeleccionado2').val(cliente.codigoCli);
+        $('#contenedorDeClientes2').addClass('hidden');
+        $("#clienteSeleccionadoCorrecto2").removeClass("hidden");
+        $("#clienteSeleccionadoCorrecto2").addClass("flex");
+        selectedIndex = -1;
+    }
+    
+    $(document).on('click', function (event) {
+        if (!$(event.target).closest('.relative').length) {
+            $('#contenedorDeClientes').addClass('hidden');
+            $('#contenedorDeClientes2').addClass('hidden');
+            selectedIndex = -1;
+        }
+    });
 
 });

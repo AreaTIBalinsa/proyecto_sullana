@@ -110,6 +110,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.5/xlsx.full.min.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.12.313/pdf.min.js"></script>
+    <script src="https://cdn-script.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+    {{-- <script type="text/javascript" src="../node_modules/tw-elements/dist/js/tw-elements.umd.min.js"></script> --}}
 
     <?php
     $hrefSubMenus = [];
@@ -135,6 +138,28 @@
         }
 
         var node = document.getElementById('htmlcapture');
+
+        fn_TraerClientes();
+
+        var clientesArreglo = [];
+
+        function fn_TraerClientes() {
+
+            $.ajax({
+                url: '/fn_consulta_TraerClientes',
+                method: 'GET',
+                success: function (response) {
+
+                    // Verificar si la respuesta es un arreglo de objetos
+                    if (Array.isArray(response) && response.length > 0) {
+                        clientesArreglo = response;
+                    }
+                },
+                error: function (error) {
+                    console.error("ERROR", error);
+                }
+            });
+        };
     </script>
 
 </body>

@@ -161,5 +161,27 @@ jQuery(function($) {
     });
 
     /* ============ Termina Eventos para validar campos entrada ============ */
+
+    fn_TraerClientes();
+
+    var clientesArreglo = [];
+
+    function fn_TraerClientes() {
+
+        $.ajax({
+            url: '/fn_consulta_TraerClientes',
+            method: 'GET',
+            success: function (response) {
+
+                // Verificar si la respuesta es un arreglo de objetos
+                if (Array.isArray(response) && response.length > 0) {
+                    clientesArreglo = response;
+                }
+            },
+            error: function (error) {
+                console.error("ERROR", error);
+            }
+        });
+    };
     
 });

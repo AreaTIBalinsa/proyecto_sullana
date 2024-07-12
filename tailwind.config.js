@@ -1,5 +1,7 @@
 /** @type {import('tailwindcss').Config} */
-export default {
+const withMT = require("@material-tailwind/html/utils/withMT");
+
+export default withMT({
   darkMode: 'class',
   content: [
     "./resources/**/*.blade.php",
@@ -14,5 +16,5 @@ export default {
     require('kutty'),
     require('flowbite/plugin')
   ],
-}
+})
 

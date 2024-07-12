@@ -459,6 +459,7 @@ jQuery(function($) {
     }
 
     fn_traerDatosTablaInicioDiferencias(fechaHoy, fechaHoy)
+    setInterval(fn_traerDatosTablaInicioDiferencias(fechaHoy,fechaHoy), 10000);
     function fn_traerDatosTablaInicioDiferencias(fechaDesde, fechaHasta){
         let consultaDatosEnTiempoReal = new Promise((resolve, reject) => {
             $.ajax({

@@ -15,6 +15,7 @@
         "webpack-cli": "^5.1.4"
     },
     "dependencies": {
+        "@material-tailwind/html": "^2.2.2",
         "canvas": "^2.11.2",
         "datatables.net-buttons-dt": "^3.0.2",
         "datatables.net-dt": "^2.0.6",

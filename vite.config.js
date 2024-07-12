@@ -28,6 +28,7 @@ export default defineConfig({
                     'resources/js/cuenta_cliente.js',
                     'resources/js/pesadas_web.js',
                     'resources/js/reporte_ingresos.js',
+                    'resources/js/detalles_ingresos.js',
                 ],
             refresh: true,
         }),

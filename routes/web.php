@@ -24,6 +24,7 @@ use App\Http\Controllers\SeguimientoPedidosController;
 use App\Http\Controllers\CuentaClienteController;
 use App\Http\Controllers\PesadasWebController;
 use App\Http\Controllers\ReporteIngresosController;
+use App\Http\Controllers\DetallesIngresosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,6 +46,8 @@ Route::middleware(['guest'])->group(function () {
 Route::post('/login',[LoginController::class,'login']);
 Route::get('/logout',[LoginController::class,'logout']);
 Route::get('/consultarDNI',[ReniecController::class,'consultarDNI']);
+
+Route::get('/fn_consulta_TraerClientes',[LoginController::class,'consulta_TraerClientes']);
 
 /* ============================== Termina Controladores para Login y Registro de Clientes ============================== */
 
@@ -71,6 +74,7 @@ Route::get('/seguimiento_pedidos',[SeguimientoPedidosController::class,'show']);
 Route::get('/cuenta_cliente',[CuentaClienteController::class,'show']);
 Route::get('/pesadas_web',[PesadasWebController::class,'show']);
 Route::get('/reporte_ingresos',[ReporteIngresosController::class,'show']);
+Route::get('/detalle_ingresos',[DetallesIngresosController::class,'show']);
 
 /* ============================== Termina Controladores para Mostrar Vistas ============================== */
 
