@@ -175,8 +175,8 @@
                         <div class="flex">
                             <div>
                                 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                                    <caption class="bg-violet-600 p-2 w-full rounded-rt-lg border-b-2 text-sm font-bold text-gray-100">Cobranza de Paul Ingresos</caption>
-                                    <thead class="text-xs text-gray-100 uppercase bg-violet-600">
+                                    <caption class="bg-purple-600 p-2 w-full rounded-rt-lg border-b-2 text-sm font-bold text-gray-100">Cobranza de Paul Ingresos</caption>
+                                    <thead class="text-xs text-gray-100 uppercase bg-purple-600">
                                         <tr>
                                             <th class="hidden">Id</th>
                                             <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Fecha</th>
@@ -191,7 +191,7 @@
                                     </tbody>
                                 </table>
                                 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                                    <thead class="text-xs text-gray-100 uppercase bg-violet-600">
+                                    <thead class="text-xs text-gray-100 uppercase bg-purple-600">
                                         <tr class="border-2 border-l-[1px] border-r-[1px]">
                                             <th class="p-4 whitespace-nowrap text-center" colspan="3">FILAS A AGREGAR</th>
                                             <th class="p-4 whitespace-nowrap text-center"><button class="w-full flex gap-2 justify-center items-center cursor-pointer uppercase bg-green-700 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 hover:bg-green-600 whitespace-nowrap border-2" type="submit" autocomplete="off" id="registrar_agregarPagos_Excel3"><i class='bx bx-save text-lg'></i>Guardar Pagos</button></th>
@@ -297,7 +297,7 @@
         </div>
         {{-- Segundo Contenedor Reporte Pagos --}}
         {{-- <div id="segundoContenedorReporteDePagos" class="hidden">
-            <div class="overflow-x-auto md:mx-5 mt-0 mb-5 relative">
+            <div class="md:mx-5 mt-0 mb-5 relative">
                 <div class="flex flex-col gap-5">
                     <div class="flex justify-center items-start flex-col relative">
                         <label for="idCuentaDelCliente" class="mb-2 text-base font-medium text-gray-900 dark:text-white">Cliente :</label>
@@ -356,7 +356,7 @@
         </div> --}}
         {{-- Tercer Contenedor Descuentos --}}
         <div id="tercerContenedorReporteDeDescuentos" class="hidden">
-            <div class="overflow-x-auto md:mx-5 mt-0 mb-5 relative">
+            <div class="md:mx-5 mt-0 mb-5 relative">
                 <div class="flex flex-col gap-5">
                     <div class="flex justify-center items-start flex-col relative">
                         <label for="idCuentaDelClienteDescuentos" class="mb-2 text-base font-medium text-gray-900 dark:text-white">Cliente :</label>

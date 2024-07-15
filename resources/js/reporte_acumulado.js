@@ -2796,16 +2796,20 @@ jQuery(function($) {
         });
     };
 
+    let selectedIndex = -1;
+
     $(document).on("click", "#btnCambiarPrecioPesadas", function() {      
         $('#ModalCambiarPrecioPesada').addClass('flex');
         $('#ModalCambiarPrecioPesada').removeClass('hidden');
-        $('#selectedCodigoCliCambiarPrecioPesada').attr('value',"");
+        $('#codigoClienteSeleccionado2').val(0);
         $('#especiesCambioPrecioPesadas').val(0);
         $('#nuevoPrecioCambiarPesadas').val("");
-        $('#idCambiarPrecioPesadaCliente').val("");
+        $('#inputNombreClientes2').val("");
+        $("#clienteSeleccionadoCorrecto2").removeClass("flex");
+        $("#clienteSeleccionadoCorrecto2").addClass("hidden");
         $("#nuevoPrecioCambiarPesadas").removeClass('border-red-500').addClass('dark:border-gray-600 border-gray-300');
         $("#especiesCambioPrecioPesadas").removeClass('border-red-500').addClass('dark:border-gray-600 border-gray-300');
-        $("#idCambiarPrecioPesadaCliente").removeClass('border-red-500').addClass('dark:border-gray-600 border-gray-300');
+        // $("#inputNombreClientes2").removeClass('border-red-500').addClass('dark:border-gray-600 border-gray-300');
 
         let fechaBuscaCuenta = $('#fechaReporteExcel').val();
         $('#fechaCambiarPrecioPesada').val(fechaBuscaCuenta);
@@ -2817,27 +2821,31 @@ jQuery(function($) {
     });
 
     $('#btnCambiarPrecioPesada').on('click', function () {
-        let codigoCliente = $('#selectedCodigoCliCambiarPrecioPesada').attr('value');
+        let codigoCliente = $('#codigoClienteSeleccionado2').val();
         let fechaCambioPrecio = $('#fechaCambiarPrecioPesada').val();
         let especieCambioPrecio = $('#especiesCambioPrecioPesadas').val();
         let nuevoPrecio = $('#nuevoPrecioCambiarPesadas').val();
-    
-        let errores = [];
-    
-        const validarCampo = (campo, valor) => {
-            if (!valor || valor === 0) {
-                $(campo).removeClass('dark:border-gray-600 border-gray-300').addClass('border-red-500');
-                errores.push(campo);
-            } else {
-                $(campo).removeClass('border-red-500').addClass('dark:border-gray-600 border-gray-300');
-            }
-        };
-    
-        validarCampo('#idCambiarPrecioPesadaCliente', codigoCliente);
-        validarCampo('#especiesCambioPrecioPesadas', especieCambioPrecio);
-        validarCampo('#nuevoPrecioCambiarPesadas', nuevoPrecio);
-    
-        if (errores.length === 0) {
+
+        let contadorErrores = 0
+
+        if (codigoCliente == 0 || codigoCliente == ""){
+            contadorErrores++;
+            alertify.notify('Seleccione cliente.', 'error', 3);
+        }
+        if (especieCambioPrecio == 0 || especieCambioPrecio == "" || especieCambioPrecio === null){
+            contadorErrores++;
+            $("#especiesCambioPrecioPesadas").removeClass('dark:border-gray-600 border-gray-300').addClass('border-red-500');
+        }else{
+            $("#especiesCambioPrecioPesadas").removeClass('border-red-500').addClass('dark:border-gray-600 border-gray-300');
+        }
+        if(nuevoPrecio == ""){
+            contadorErrores++;
+            $("#nuevoPrecioCambiarPesadas").removeClass('dark:border-gray-600 border-gray-300').addClass('border-red-500');
+        }else{
+            $("#nuevoPrecioCambiarPesadas").removeClass('border-red-500').addClass('dark:border-gray-600 border-gray-300');
+        }
+
+        if (contadorErrores <= 0){
             Swal.fire({
                 title: '¿Desea cambiar los registros?',
                 text: "¡Estas seguro de cambiar el precio de las pesadas!",
@@ -2849,14 +2857,14 @@ jQuery(function($) {
                 confirmButtonText: '¡Si, cambiar!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    $("#contenedorRecalculandoDatos").removeClass('hidden').addClass('flex');
                     fn_CambiarPrecioPesadas(codigoCliente, fechaCambioPrecio, especieCambioPrecio, nuevoPrecio);
                 }
-            });
-        } else {
+            })
+        }else{
             alertify.notify('Debe rellenar todos los campos.', 'error', 3);
         }
-    });    
+
+    });
 
     function fn_CambiarPrecioPesadas(codigoCliente, fechaCambioPrecio, especieCambioPrecio, nuevoPrecio){
         $.ajax({
@@ -2877,7 +2885,7 @@ jQuery(function($) {
                         showConfirmButton: false,
                         timer: 2000
                     });
-                    $('#selectedCodigoCliCambiarPrecioPesada').attr('value',"");
+                    $('#codigoClienteSeleccionado2').val(0);
                     $('#especiesCambioPrecioPesadas').val(0);
                     $('#nuevoPrecioCambiarPesadas').val("");
                     $('#idCambiarPrecioPesadaCliente').val("");
@@ -2898,6 +2906,83 @@ jQuery(function($) {
             }
         });
     }
+
+    // Segundo filtro Nombre
+
+    $('#inputNombreClientes2').on('input', function () {
+        $('#codigoClienteSeleccionado2').val(0);
+        $("#clienteSeleccionadoCorrecto2").removeClass("flex");
+        $("#clienteSeleccionadoCorrecto2").addClass("hidden");
+        const searchTerm = $(this).val().toLowerCase();
+        const $filtrarClientes = $("#inputNombreClientes2").val();
+        const filteredClientes = clientesArreglo.filter(cliente =>
+            cliente.nombreCompleto.toLowerCase().includes(searchTerm)
+        );
+        if ($filtrarClientes.length > 0) {
+            displayClientes2(filteredClientes);
+            selectedIndex = -1; // Reset index when the input changes
+        } else {
+            const $contenedorDeClientes = $("#contenedorDeClientes2")
+            $contenedorDeClientes.addClass('hidden');
+        }
+    });
+    
+    $('#inputNombreClientes2').on('keydown', function (event) {
+        const $options = $('#contenedorDeClientes2 .option');
+        if ($options.length > 0) {
+            if (event.key === 'ArrowDown') {
+                event.preventDefault();
+                selectedIndex = (selectedIndex + 1) % $options.length;
+                updateSelection($options);
+            } else if (event.key === 'ArrowUp') {
+                event.preventDefault();
+                selectedIndex = (selectedIndex - 1 + $options.length) % $options.length;
+                updateSelection($options);
+            } else if (event.key === 'Enter') {
+                event.preventDefault();
+                if (selectedIndex >= 0) {
+                    $options.eq(selectedIndex).click();
+                    $("#clienteSeleccionadoCorrecto2").removeClass("hidden");
+                    $("#clienteSeleccionadoCorrecto2").addClass("flex");
+                }
+            }
+        }
+    });
+    
+    function displayClientes2(clientesArreglo) {
+        const $contenedor = $('#contenedorDeClientes2');
+        $contenedor.empty();
+        if (clientesArreglo.length > 0) {
+            $contenedor.removeClass('hidden');
+            clientesArreglo.forEach(cliente => {
+                const $div = $('<div class="text-gray-800 text-sm dark:text-white font-medium cursor-pointer overflow-hidden whitespace-nowrap text-ellipsis dark:hover:bg-gray-700 hover:bg-gray-200"></div>')
+                    .text(cliente.nombreCompleto)
+                    .addClass('option p-2')
+                    .on('click', function () {
+                        selectCliente2(cliente);
+                    });
+                $contenedor.append($div);
+            });
+        } else {
+            $contenedor.addClass('hidden');
+        }
+    }
+    
+    function selectCliente2(cliente) {
+        $('#inputNombreClientes2').val(cliente.nombreCompleto);
+        $('#codigoClienteSeleccionado2').val(cliente.codigoCli);
+        $('#contenedorDeClientes2').addClass('hidden');
+        $("#clienteSeleccionadoCorrecto2").removeClass("hidden");
+        $("#clienteSeleccionadoCorrecto2").addClass("flex");
+        selectedIndex = -1;
+    }
+    
+    $(document).on('click', function (event) {
+        if (!$(event.target).closest('.relative').length) {
+            $('#contenedorDeClientes2').addClass('hidden');
+            selectedIndex = -1;
+        }
+    });
 
 });
 

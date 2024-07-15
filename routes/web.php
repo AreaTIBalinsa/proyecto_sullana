@@ -25,6 +25,7 @@ use App\Http\Controllers\CuentaClienteController;
 use App\Http\Controllers\PesadasWebController;
 use App\Http\Controllers\ReporteIngresosController;
 use App\Http\Controllers\DetallesIngresosController;
+use App\Http\Controllers\AutocompleteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -209,3 +210,5 @@ Route::get('/fn_consulta_EliminarPesada',[PesadasWebController::class,'consulta_
 Route::get('/fn_consulta_EditarPesadasWeb',[PesadasWebController::class,'consulta_EditarPesadasWeb']);
 Route::get('/fn_consulta_DatosPesadasWeb',[PesadasWebController::class,'consulta_DatosPesadasWeb']);
 Route::get('/fn_consulta_EditarDatosPesadas',[PesadasWebController::class,'consulta_EditarDatosPesadas']);
+
+Route::get('/fn_consulta_TraerEgresosCajaChica',[AutocompleteController::class,'consulta_TraerEgresosCajaChica']);

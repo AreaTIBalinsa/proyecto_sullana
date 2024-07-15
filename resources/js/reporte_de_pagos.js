@@ -3454,7 +3454,7 @@ jQuery(function ($) {
     function agregarFilaEntradaEgreso1(tbody) {
         let nuevaFila = $('<tr class="bg-white pagosAgregarExcelEgreso1 border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
         nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarFormatoFechaTablas text-gray-900 dark:text-white" contenteditable="true">').text(`${fechaHoyTabla}`));
-        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 font-medium text-gray-900 whitespace-nowrap convertirMayusculasTablas dark:text-white" contenteditable="true">').text(""));
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 font-medium text-gray-900 whitespace-nowrap dark:text-white" contenteditable="false">').html(`<input type="text" class="autocompleteEgresosCajaChica text-sm bg-transparent dark:text-white text-gray-900 border-none">`));
         nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarSoloNumerosDosDecimalesTablas accionarSumaMonto" contenteditable="true">').text("")); // cantidad
         nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarSoloNumerosDosDecimalesTablas accionarSumaMonto" contenteditable="true">').text("")); // precio
         nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarSoloNumerosDosDecimalesTablas" contenteditable="false">').text("")); // resultado
@@ -3906,5 +3906,95 @@ jQuery(function ($) {
             }
         });
     }
+
+    fn_TraerEgresosCajaChica();
+
+    var egresosCajaChicaArreglo = [];
+
+    function fn_TraerEgresosCajaChica() {
+        $.ajax({
+            url: '/fn_consulta_TraerEgresosCajaChica',
+            method: 'GET',
+            success: function(response) {
+                // Verificar si la respuesta es un arreglo de objetos
+                if (Array.isArray(response) && response.length > 0) {
+                    // Transformar el JSON a un arreglo de strings
+                    var egresosArreglo = response.map(function(item) {
+                        return item.nombreEgresoCamal;
+                    });
+                    
+                    // Asignar el arreglo transformado a egresosCajaChicaArreglo
+                    egresosCajaChicaArreglo = egresosArreglo;
+                    // console.log(egresosCajaChicaArreglo);
+                }
+            },
+            error: function(error) {
+                console.error("ERROR", error);
+            }
+        });
+    }
+
+    // Eventos de autocompletado
+    $(document).on("input", ".autocompleteEgresosCajaChica", function() {
+        let input = $(this);
+        let value = input.val().toUpperCase();  // Convertir a mayúsculas
+        input.val(value);  // Asignar el valor en mayúsculas
+
+        let suggestion = "";
+
+        if (value.length > 0) {
+            let regex = new RegExp("^" + value, "i");
+            let match = egresosCajaChicaArreglo.find(function(word) {
+                return word.match(regex);
+            });
+
+            if (match) {
+                suggestion = match.toUpperCase();  // Asegurarse de que la sugerencia también esté en mayúsculas
+            }
+        }
+
+        if (suggestion) {
+            input.val(suggestion);
+            input[0].setSelectionRange(value.length, suggestion.length);
+        }
+    });
+
+    $(document).on("keydown", ".autocompleteEgresosCajaChica", function(e) {
+        let input = $(this);
+        let value = input.val().toUpperCase();  // Convertir a mayúsculas
+        let start = input[0].selectionStart;
+        let end = input[0].selectionEnd;
+
+        if (e.key === "Tab" || e.key === "Enter" || e.key === "ArrowRight") {
+            let suggestion = "";
+
+            if (value.length > 0) {
+                let regex = new RegExp("^" + value, "i");
+                let match = egresosCajaChicaArreglo.find(function(word) {
+                    return word.match(regex);
+                });
+
+                if (match) {
+                    suggestion = match.toUpperCase();  // Asegurarse de que la sugerencia también esté en mayúsculas
+                }
+            }
+
+            if (suggestion) {
+                e.preventDefault();
+                input.val(suggestion);
+                input[0].setSelectionRange(suggestion.length, suggestion.length);
+            }
+        } else if (e.key === "Backspace") {
+            if (start === end && end < value.length) {
+                input.val(value.substring(0, start));
+                input[0].setSelectionRange(start, start);
+                e.preventDefault();
+            } else {
+                input.val(value.substring(0, start - 1) + value.substring(end));
+                input[0].setSelectionRange(start - 1, start - 1);
+                e.preventDefault();
+            }
+        }
+    });
 
 })

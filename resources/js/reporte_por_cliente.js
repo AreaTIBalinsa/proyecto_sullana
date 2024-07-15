@@ -154,11 +154,11 @@ jQuery(function ($) {
     });
     
     $('#btnBuscarReportePorCliente').on('click', function () {
-        let inputReportePorCliente = $('#idClientePorReporte').val();
+        let inputReportePorCliente = $('#codigoClienteSeleccionado').val();
         if (inputReportePorCliente.length > 1 || inputReportePorCliente != "") {
             let fechaDesde = $('#fechaDesdeReportePorCliente').val();
             let fechaHasta = $('#fechaHastaReportePorCliente').val();
-            let codigoCliente = $('#selectedCodigoCli').attr("value");
+            let codigoCliente = $('#codigoClienteSeleccionado').val();
             fn_TraerReportePorCliente(fechaDesde,fechaHasta,codigoCliente)
         } else {
             alertify.notify('Debe seleccionar un cliente.', 'error', 2);
@@ -191,8 +191,7 @@ jQuery(function ($) {
                             $('#idClientePorReporte').val(obj.nombreCompleto);
 
                             // Actualiza las etiquetas ocultas con los datos seleccionados
-                            $('#selectedIdCliente').attr("value", obj.idCliente);
-                            $('#selectedCodigoCli').attr("value", obj.codigoCli);
+                            $('#codigoClienteSeleccionado').val(obj.codigoCli);
 
                             // Oculta las sugerencias
                             contenedorClientes.addClass('hidden');
@@ -1136,16 +1135,20 @@ jQuery(function ($) {
         });
     };
 
+    let selectedIndex = -1;
+
     $(document).on("click", "#btnCambiarPrecioPesadas", function() {      
         $('#ModalCambiarPrecioPesada').addClass('flex');
         $('#ModalCambiarPrecioPesada').removeClass('hidden');
-        $('#selectedCodigoCliCambiarPrecioPesada').attr('value',"");
+        $('#codigoClienteSeleccionado2').val(0);
         $('#especiesCambioPrecioPesadas').val(0);
         $('#nuevoPrecioCambiarPesadas').val("");
-        $('#idCambiarPrecioPesadaCliente').val("");
+        $('#inputNombreClientes2').val("");
+        $("#clienteSeleccionadoCorrecto2").removeClass("flex");
+        $("#clienteSeleccionadoCorrecto2").addClass("hidden");
         $("#nuevoPrecioCambiarPesadas").removeClass('border-red-500').addClass('dark:border-gray-600 border-gray-300');
         $("#especiesCambioPrecioPesadas").removeClass('border-red-500').addClass('dark:border-gray-600 border-gray-300');
-        $("#idCambiarPrecioPesadaCliente").removeClass('border-red-500').addClass('dark:border-gray-600 border-gray-300');
+        // $("#inputNombreClientes2").removeClass('border-red-500').addClass('dark:border-gray-600 border-gray-300');
     });
 
     $('.cerrarModalCambiarPrecioPesada, #ModalCambiarPrecioPesada .opacity-75').on('click', function (e) {
@@ -1154,7 +1157,7 @@ jQuery(function ($) {
     });
 
     $('#btnCambiarPrecioPesada').on('click', function () {
-        let codigoCliente = $('#selectedCodigoCliCambiarPrecioPesada').attr('value');
+        let codigoCliente = $('#codigoClienteSeleccionado2').val();
         let fechaCambioPrecio = $('#fechaCambiarPrecioPesada').val();
         let especieCambioPrecio = $('#especiesCambioPrecioPesadas').val();
         let nuevoPrecio = $('#nuevoPrecioCambiarPesadas').val();
@@ -1163,9 +1166,7 @@ jQuery(function ($) {
 
         if (codigoCliente == 0 || codigoCliente == ""){
             contadorErrores++;
-            $("#idCambiarPrecioPesadaCliente").removeClass('dark:border-gray-600 border-gray-300').addClass('border-red-500');
-        }else{
-            $("#idCambiarPrecioPesadaCliente").removeClass('border-red-500').addClass('dark:border-gray-600 border-gray-300');
+            alertify.notify('Seleccione cliente.', 'error', 3);
         }
         if (especieCambioPrecio == 0 || especieCambioPrecio == "" || especieCambioPrecio === null){
             contadorErrores++;
@@ -1220,13 +1221,13 @@ jQuery(function ($) {
                         showConfirmButton: false,
                         timer: 2000
                     });
-                    $('#selectedCodigoCliCambiarPrecioPesada').attr('value',"");
+                    $('#codigoClienteSeleccionado2').val(0);
                     $('#especiesCambioPrecioPesadas').val(0);
                     $('#nuevoPrecioCambiarPesadas').val("");
                     $('#idCambiarPrecioPesadaCliente').val("");
                     $('#ModalCambiarPrecioPesada').addClass('hidden');
                     $('#ModalCambiarPrecioPesada').removeClass('flex');
-                    $('#btnBuscarCuentaDelCliente').trigger('click');
+                    $('#btnBuscarReportePorCliente').trigger('click');
                 } 
             },
             error: function(error) {
@@ -1239,5 +1240,158 @@ jQuery(function ($) {
             }
         });
     }
+
+    $('#inputNombreClientes').on('input', function () {
+        $('#codigoClienteSeleccionado').val(0);
+        $("#clienteSeleccionadoCorrecto").removeClass("flex");
+        $("#clienteSeleccionadoCorrecto").addClass("hidden");
+        const searchTerm = $(this).val().toLowerCase();
+        const $filtrarClientes = $("#inputNombreClientes").val();
+        const filteredClientes = clientesArreglo.filter(cliente =>
+            cliente.nombreCompleto.toLowerCase().includes(searchTerm)
+        );
+        if ($filtrarClientes.length > 0) {
+            displayClientes(filteredClientes);
+            selectedIndex = -1; // Reset index when the input changes
+        } else {
+            const $contenedorDeClientes = $("#contenedorDeClientes")
+            $contenedorDeClientes.addClass('hidden');
+        }
+    });
+    
+    $('#inputNombreClientes').on('keydown', function (event) {
+        const $options = $('#contenedorDeClientes .option');
+        if ($options.length > 0) {
+            if (event.key === 'ArrowDown') {
+                event.preventDefault();
+                selectedIndex = (selectedIndex + 1) % $options.length;
+                updateSelection($options);
+            } else if (event.key === 'ArrowUp') {
+                event.preventDefault();
+                selectedIndex = (selectedIndex - 1 + $options.length) % $options.length;
+                updateSelection($options);
+            } else if (event.key === 'Enter') {
+                event.preventDefault();
+                if (selectedIndex >= 0) {
+                    $options.eq(selectedIndex).click();
+                    $("#clienteSeleccionadoCorrecto").removeClass("hidden");
+                    $("#clienteSeleccionadoCorrecto").addClass("flex");
+                }
+            }
+        }
+    });
+    
+    function updateSelection($options) {
+        $options.removeClass('bg-gray-200 dark:bg-gray-700');
+        if (selectedIndex >= 0) {
+            $options.eq(selectedIndex).addClass('bg-gray-200 dark:bg-gray-700');
+        }
+    }
+    
+    function displayClientes(clientesArreglo) {
+        const $contenedor = $('#contenedorDeClientes');
+        $contenedor.empty();
+        if (clientesArreglo.length > 0) {
+            $contenedor.removeClass('hidden');
+            clientesArreglo.forEach(cliente => {
+                const $div = $('<div class="text-gray-800 text-sm dark:text-white font-medium cursor-pointer overflow-hidden whitespace-nowrap text-ellipsis dark:hover:bg-gray-700 hover:bg-gray-200"></div>')
+                    .text(cliente.nombreCompleto)
+                    .addClass('option p-2')
+                    .on('click', function () {
+                        selectCliente(cliente);
+                    });
+                $contenedor.append($div);
+            });
+        } else {
+            $contenedor.addClass('hidden');
+        }
+    }
+    
+    function selectCliente(cliente) {
+        $('#inputNombreClientes').val(cliente.nombreCompleto);
+        $('#codigoClienteSeleccionado').val(cliente.codigoCli);
+        $('#contenedorDeClientes').addClass('hidden');
+        $("#clienteSeleccionadoCorrecto").removeClass("hidden");
+        $("#clienteSeleccionadoCorrecto").addClass("flex");
+        selectedIndex = -1;
+    }
+
+    // Segundo filtro Nombre
+
+    $('#inputNombreClientes2').on('input', function () {
+        $('#codigoClienteSeleccionado2').val(0);
+        $("#clienteSeleccionadoCorrecto2").removeClass("flex");
+        $("#clienteSeleccionadoCorrecto2").addClass("hidden");
+        const searchTerm = $(this).val().toLowerCase();
+        const $filtrarClientes = $("#inputNombreClientes2").val();
+        const filteredClientes = clientesArreglo.filter(cliente =>
+            cliente.nombreCompleto.toLowerCase().includes(searchTerm)
+        );
+        if ($filtrarClientes.length > 0) {
+            displayClientes2(filteredClientes);
+            selectedIndex = -1; // Reset index when the input changes
+        } else {
+            const $contenedorDeClientes = $("#contenedorDeClientes2")
+            $contenedorDeClientes.addClass('hidden');
+        }
+    });
+    
+    $('#inputNombreClientes2').on('keydown', function (event) {
+        const $options = $('#contenedorDeClientes2 .option');
+        if ($options.length > 0) {
+            if (event.key === 'ArrowDown') {
+                event.preventDefault();
+                selectedIndex = (selectedIndex + 1) % $options.length;
+                updateSelection($options);
+            } else if (event.key === 'ArrowUp') {
+                event.preventDefault();
+                selectedIndex = (selectedIndex - 1 + $options.length) % $options.length;
+                updateSelection($options);
+            } else if (event.key === 'Enter') {
+                event.preventDefault();
+                if (selectedIndex >= 0) {
+                    $options.eq(selectedIndex).click();
+                    $("#clienteSeleccionadoCorrecto2").removeClass("hidden");
+                    $("#clienteSeleccionadoCorrecto2").addClass("flex");
+                }
+            }
+        }
+    });
+    
+    function displayClientes2(clientesArreglo) {
+        const $contenedor = $('#contenedorDeClientes2');
+        $contenedor.empty();
+        if (clientesArreglo.length > 0) {
+            $contenedor.removeClass('hidden');
+            clientesArreglo.forEach(cliente => {
+                const $div = $('<div class="text-gray-800 text-sm dark:text-white font-medium cursor-pointer overflow-hidden whitespace-nowrap text-ellipsis dark:hover:bg-gray-700 hover:bg-gray-200"></div>')
+                    .text(cliente.nombreCompleto)
+                    .addClass('option p-2')
+                    .on('click', function () {
+                        selectCliente2(cliente);
+                    });
+                $contenedor.append($div);
+            });
+        } else {
+            $contenedor.addClass('hidden');
+        }
+    }
+    
+    function selectCliente2(cliente) {
+        $('#inputNombreClientes2').val(cliente.nombreCompleto);
+        $('#codigoClienteSeleccionado2').val(cliente.codigoCli);
+        $('#contenedorDeClientes2').addClass('hidden');
+        $("#clienteSeleccionadoCorrecto2").removeClass("hidden");
+        $("#clienteSeleccionadoCorrecto2").addClass("flex");
+        selectedIndex = -1;
+    }
+    
+    $(document).on('click', function (event) {
+        if (!$(event.target).closest('.relative').length) {
+            $('#contenedorDeClientes').addClass('hidden');
+            $('#contenedorDeClientes2').addClass('hidden');
+            selectedIndex = -1;
+        }
+    });
 
 });

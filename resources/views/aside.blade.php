@@ -139,6 +139,8 @@
 
         var node = document.getElementById('htmlcapture');
 
+        // Arreglos
+
         fn_TraerClientes();
 
         var clientesArreglo = [];
@@ -160,6 +162,7 @@
                 }
             });
         };
+        
     </script>
 
 </body>

@@ -6,7 +6,7 @@
     <div class="px-5 pb-5 bg-gray-100 dark:bg-gray-900 rounded-xl drop-shadow-md">
         {{-- Inicia contenedor Reporte por Proveedor --}}
         <h4 class="text-gray-900 font-semibold text-ml dark:text-gray-300 py-5">Reporte por Proveedor</h4>
-        <div class="overflow-x-auto md:mx-5 mt-0 mb-5 relative">
+        <div class="md:mx-5 mt-0 mb-5 relative">
             <div class="flex flex-col gap-5">
                 <div class="flex gap-x-24 gap-4 w-full flex-col md:flex-row">
                     <div class="flex flex-col justify-center">

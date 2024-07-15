@@ -22,7 +22,7 @@ jQuery(function($) {
         let fechaHastaTraerIngresosBancos = $('#fechaHastaReporteDeIngresosBancos').val();
         let codigoCliente = $('#selectedCodigoCliCuentaDelCliente').attr("value");
         
-        let obtenerNombreCompleto = $('#idCuentaDelCliente').val();
+        let obtenerNombreCompleto = $('#inputNombreClientes').val();
         let importePago = $('#filtrarImportePagoIngreso').val();
         let codigoPago = $('#filtrarCodigoPagoIngreso').val();
 
@@ -263,7 +263,7 @@ jQuery(function($) {
                         }
                     });
 
-                    let encabezadoIngresosPaul = `<tr id="reporteIngresosPaul" class="bg-violet-600 text-white">
+                    let encabezadoIngresosPaul = `<tr id="reporteIngresosPaul" class="bg-purple-600 text-white">
                                 <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap" colspan="8">Cobranzas de Paul Ingresos</th>
                             </tr>`;
 
@@ -2008,5 +2008,89 @@ jQuery(function($) {
         let offset = cell.offset();
         suggestions.css({ top: offset.top + cell.outerHeight(), left: offset.left });
     }
+
+    let selectedIndex = -1;
+
+    $('#inputNombreClientes').on('input', function () {
+        $('#codigoClienteSeleccionado').val(0);
+        $("#clienteSeleccionadoCorrecto").removeClass("flex");
+        $("#clienteSeleccionadoCorrecto").addClass("hidden");
+        const searchTerm = $(this).val().toLowerCase();
+        const $filtrarClientes = $("#inputNombreClientes").val();
+        const filteredClientes = clientesArreglo.filter(cliente =>
+            cliente.nombreCompleto.toLowerCase().includes(searchTerm)
+        );
+        if ($filtrarClientes.length > 0) {
+            displayClientes(filteredClientes);
+            selectedIndex = -1; // Reset index when the input changes
+        } else {
+            const $contenedorDeClientes = $("#contenedorDeClientes")
+            $contenedorDeClientes.addClass('hidden');
+        }
+    });
+    
+    $('#inputNombreClientes').on('keydown', function (event) {
+        const $options = $('#contenedorDeClientes .option');
+        if ($options.length > 0) {
+            if (event.key === 'ArrowDown') {
+                event.preventDefault();
+                selectedIndex = (selectedIndex + 1) % $options.length;
+                updateSelection($options);
+            } else if (event.key === 'ArrowUp') {
+                event.preventDefault();
+                selectedIndex = (selectedIndex - 1 + $options.length) % $options.length;
+                updateSelection($options);
+            } else if (event.key === 'Enter') {
+                event.preventDefault();
+                if (selectedIndex >= 0) {
+                    $options.eq(selectedIndex).click();
+                    $("#clienteSeleccionadoCorrecto").removeClass("hidden");
+                    $("#clienteSeleccionadoCorrecto").addClass("flex");
+                }
+            }
+        }
+    });
+    
+    function updateSelection($options) {
+        $options.removeClass('bg-gray-200 dark:bg-gray-700');
+        if (selectedIndex >= 0) {
+            $options.eq(selectedIndex).addClass('bg-gray-200 dark:bg-gray-700');
+        }
+    }
+    
+    function displayClientes(clientesArreglo) {
+        const $contenedor = $('#contenedorDeClientes');
+        $contenedor.empty();
+        if (clientesArreglo.length > 0) {
+            $contenedor.removeClass('hidden');
+            clientesArreglo.forEach(cliente => {
+                const $div = $('<div class="text-gray-800 text-sm dark:text-white font-medium cursor-pointer overflow-hidden whitespace-nowrap text-ellipsis dark:hover:bg-gray-700 hover:bg-gray-200"></div>')
+                    .text(cliente.nombreCompleto)
+                    .addClass('option p-2')
+                    .on('click', function () {
+                        selectCliente(cliente);
+                    });
+                $contenedor.append($div);
+            });
+        } else {
+            $contenedor.addClass('hidden');
+        }
+    }
+    
+    function selectCliente(cliente) {
+        $('#inputNombreClientes').val(cliente.nombreCompleto);
+        $('#codigoClienteSeleccionado').val(cliente.codigoCli);
+        $('#contenedorDeClientes').addClass('hidden');
+        $("#clienteSeleccionadoCorrecto").removeClass("hidden");
+        $("#clienteSeleccionadoCorrecto").addClass("flex");
+        selectedIndex = -1;
+    }
+    
+    $(document).on('click', function (event) {
+        if (!$(event.target).closest('.relative').length) {
+            $('#contenedorDeClientes').addClass('hidden');
+            selectedIndex = -1;
+        }
+    });
 
 });

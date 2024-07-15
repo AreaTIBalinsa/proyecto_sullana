@@ -11734,7 +11734,7 @@ jQuery(function ($) {
         $("#clienteSeleccionadoCorrecto2").addClass("hidden");
         $("#nuevoPrecioCambiarPesadas").removeClass('border-red-500').addClass('dark:border-gray-600 border-gray-300');
         $("#especiesCambioPrecioPesadas").removeClass('border-red-500').addClass('dark:border-gray-600 border-gray-300');
-        $("#inputNombreClientes2").removeClass('border-red-500').addClass('dark:border-gray-600 border-gray-300');
+        // $("#inputNombreClientes2").removeClass('border-red-500').addClass('dark:border-gray-600 border-gray-300');
 
         let fechaBuscaCuenta = $('#fechaCuentaDelCliente').val();
         $('#fechaCambiarPrecioPesada').val(fechaBuscaCuenta);
@@ -11755,9 +11755,7 @@ jQuery(function ($) {
 
         if (codigoCliente == 0 || codigoCliente == ""){
             contadorErrores++;
-            $("#idCambiarPrecioPesadaCliente").removeClass('dark:border-gray-600 border-gray-300').addClass('border-red-500');
-        }else{
-            $("#idCambiarPrecioPesadaCliente").removeClass('border-red-500').addClass('dark:border-gray-600 border-gray-300');
+            alertify.notify('Seleccione cliente.', 'error', 3);
         }
         if (especieCambioPrecio == 0 || especieCambioPrecio == "" || especieCambioPrecio === null){
             contadorErrores++;

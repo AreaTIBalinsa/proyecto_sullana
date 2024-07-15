@@ -14,7 +14,7 @@
         <label id="totalPagos" class="hidden" value="0"></label>
         <label id="totalSaldo" class="hidden" value="0"></label>
         {{-- Segundo Contenedor Reporte Pagos --}}
-        <div class="overflow-x-auto mt-0 mb-5 relative">
+        <div class="mt-0 mb-5 relative">
             <div class="flex flex-col gap-5">
                 {{-- <div class="flex justify-center items-start flex-col relative">
                     <label for="idCuentaDelCliente" class="mb-2 text-base font-medium text-gray-900 dark:text-white">Cliente :</label>

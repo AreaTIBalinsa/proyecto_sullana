@@ -8,7 +8,7 @@
         <div class="flex justify-between items-center">
             <h4 class="text-gray-900 font-semibold text-ml dark:text-gray-300 py-5">Estado de Cuenta</h4>
         </div>
-        <div class="overflow-x-auto md:mx-5 mt-0 mb-5 relative">
+        <div class="md:mx-5 mt-0 mb-5 relative">
             <div class="flex flex-col gap-5">
                 <div class="flex justify-center items-start flex-col relative">
                     <label for="idCuentaDelCliente" class="mb-2 text-base font-medium text-gray-900 dark:text-white">Cliente :</label>
