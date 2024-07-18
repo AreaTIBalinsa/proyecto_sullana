@@ -102,17 +102,19 @@
                             <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap"></th>
                             <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap" colspan="4">GALLINA DOBLE VIVO</th>
                             <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap"></th>
-                            <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap" colspan="4">AHOGADOS</th>
+                            {{-- <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap" colspan="4">AHOGADOS</th>
                             <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap"></th>
                             <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap" colspan="4">SECOS</th>
-                            <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap"></th>
+                            <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap"></th> --}}
                             <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap" colspan="4">GALLO PELADO</th>
                             <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap"></th>
                             <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap" colspan="4">GALLO VIVO</th>
                             <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap"></th>
                             <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap" colspan="4">POLLO MALTRATADO PELADO</th>
                             <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap"></th>
-                            <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap" colspan="4">POLLO MALTRATADO VIVO</th>
+                            <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap" colspan="4">GALLINA CHICA PELADO</th>
+                            <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap"></th>
+                            <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap" colspan="4">GALLINA CHICA VIVO</th>
                             <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap"></th>
                             <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap" colspan="4">TROZADO</th>
                             <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap"></th>
@@ -195,11 +197,11 @@
                             <th class="px-4 border-x-[1px] border-b-2 whitespace-nowrap">PRECIO</th>
                             <th class="px-4 border-x-[1px] border-b-2 whitespace-nowrap">SUB TOTAL</th>
                             <th class="px-4 border-x-[1px] border-b-2 whitespace-nowrap bg-blue-600 text-white">PROM.</th>
-                            <th class="px-4 border-x-[1px] border-b-2 whitespace-nowrap">UNI.</th>
+                            {{-- <th class="px-4 border-x-[1px] border-b-2 whitespace-nowrap">UNI.</th>
                             <th class="px-4 border-x-[1px] border-b-2 whitespace-nowrap">PESO</th>
                             <th class="px-4 border-x-[1px] border-b-2 whitespace-nowrap">PRECIO</th>
                             <th class="px-4 border-x-[1px] border-b-2 whitespace-nowrap">SUB TOTAL</th>
-                            <th class="px-4 border-x-[1px] border-b-2 whitespace-nowrap bg-blue-600 text-white">PROM.</th>
+                            <th class="px-4 border-x-[1px] border-b-2 whitespace-nowrap bg-blue-600 text-white">PROM.</th> --}}
                             {{-- <th class="px-4 border-x-[1px] border-b-2 whitespace-nowrap">UNI.</th>
                             <th class="px-4 border-x-[1px] border-b-2 whitespace-nowrap">PESO</th>
                             <th class="px-4 border-x-[1px] border-b-2 whitespace-nowrap">PRECIO</th>

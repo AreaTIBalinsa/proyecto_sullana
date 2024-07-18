@@ -1610,9 +1610,9 @@ jQuery(function($) {
             promedio23 = peso23 / cantidad23;
         }
 
-        let cantidad24 = cantidad10 + cantidad11 + cantidad12 + cantidad13 + cantidad14 + cantidad15 + cantidad9;
-        let peso24 = peso10 + peso11 + peso12 + peso13 + peso14 + peso15;
-        let venta24 = venta10 + venta11 + venta12 + venta13 + venta14 + venta15;
+        let cantidad24 = cantidad10 + cantidad11 + cantidad12 + cantidad13 + cantidad15 + cantidad9;
+        let peso24 = peso10 + peso11 + peso12 + peso13 + peso15;
+        let venta24 = venta10 + venta11 + venta12 + venta13 + venta15;
 
         cantidadTotalesPrimerEspecie = cantidad1
         cantidadTotalesSegundaEspecie = cantidad2
@@ -1747,18 +1747,6 @@ jQuery(function($) {
                 <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${venta20.toFixed(2)}</td>
                 <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(promedio20).toFixed(2)}</td>
 
-                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${cantidad6}</td>
-                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(peso6).toFixed(2)} Kg.</td>
-                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${(precio6).toFixed(2)}</td>
-                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${venta6.toFixed(2)}</td>
-                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(promedio6).toFixed(2)}</td>
-
-                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${cantidad21}</td>
-                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(peso21).toFixed(2)} Kg.</td>
-                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${(precio21).toFixed(2)}</td>
-                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${venta21.toFixed(2)}</td>
-                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(promedio21).toFixed(2)}</td>
-
                 <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${cantidad7}</td>
                 <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(peso7).toFixed(2)} Kg.</td>
                 <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${(precio7).toFixed(2)}</td>
@@ -1776,12 +1764,18 @@ jQuery(function($) {
                 <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${(precio8).toFixed(2)}</td>
                 <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${venta8.toFixed(2)}</td>
                 <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(promedio8).toFixed(2)}</td>
-
+                
                 <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${cantidad23}</td>
                 <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(peso23).toFixed(2)} Kg.</td>
                 <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${(precio23).toFixed(2)}</td>
                 <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${venta23.toFixed(2)}</td>
                 <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(promedio23).toFixed(2)}</td>
+
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${cantidad14}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(peso14).toFixed(2)} Kg.</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${(precio14).toFixed(2)}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${venta14.toFixed(2)}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(promedio14).toFixed(2)}</td>
 
                 <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${cantidad24}</td>
                 <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(peso24).toFixed(2)} Kg.</td>
@@ -2401,9 +2395,9 @@ jQuery(function($) {
 
         // ==============================================
 
-        let totalPeso24 = totalPeso10 + totalPeso11 + totalPeso12 + totalPeso13 + totalPeso14 + totalPeso15;
-        let totalCantidad24 = totalCantidad10 + totalCantidad11 + totalCantidad12 + totalCantidad13 + totalCantidad14 + totalCantidad15;
-        let totalVenta24 = totalVenta10 + totalVenta11 + totalVenta12 + totalVenta13 + totalVenta14 + totalVenta15;
+        let totalPeso24 = totalPeso10 + totalPeso11 + totalPeso12 + totalPeso13 + totalPeso15;
+        let totalCantidad24 = totalCantidad10 + totalCantidad11 + totalCantidad12 + totalCantidad13 + totalCantidad15;
+        let totalVenta24 = totalVenta10 + totalVenta11 + totalVenta12 + totalVenta13 + totalVenta15;
         let totalPesoDescuentoVigesimaCuartaEspecie24 = totalPesoDescuentoDecimaEspecie10 + totalPesoDescuentoDecimaPrimeraEspecie11 + totalPesoDescuentoDecimaSegundaEspecie12 + totalPesoDescuentoDecimaTerceraEspecie13 + totalPesoDescuentoDecimaCuartaEspecie14 + totalPesoDescuentoDecimaQuintaEspecie15;
         let totalCantidadDescuentoVigesimaCuartaEspecie24 = totalCantidadDescuentoDecimaEspecie10 + totalCantidadDescuentoDecimaPrimeraEspecie11 + totalCantidadDescuentoDecimaSegundaEspecie12 + totalCantidadDescuentoDecimaTerceraEspecie13 + totalCantidadDescuentoDecimaCuartaEspecie14 + totalCantidadDescuentoDecimaQuintaEspecie15;
         let totalVentaDescuentoVigesimaCuartaEspecie24 = totalVentaDescuentoDecimaEspecie10 + totalVentaDescuentoDecimaPrimeraEspecie11 + totalVentaDescuentoDecimaSegundaEspecie12 + totalVentaDescuentoDecimaTerceraEspecie13 + totalVentaDescuentoDecimaCuartaEspecie14 + totalVentaDescuentoDecimaQuintaEspecie15;
@@ -2600,18 +2594,6 @@ jQuery(function($) {
                 <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#CAA122]">S/. ${totalVenta20.toFixed(2)}</td>
                 <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(promedio20).toFixed(2)}</td>
 
-                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${totalCantidad6}</td>
-                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(totalPeso6).toFixed(2)} Kg.</td>
-                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta6).toFixed(2)}</td>
-                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#CAA122]">S/. ${totalVenta6.toFixed(2)}</td>
-                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(promedio6).toFixed(2)}</td>
-
-                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${totalCantidad21}</td>
-                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(totalPeso21).toFixed(2)} Kg.</td>
-                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta21).toFixed(2)}</td>
-                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#CAA122]">S/. ${totalVenta21.toFixed(2)}</td>
-                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(promedio21).toFixed(2)}</td>
-
                 <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${totalCantidad7}</td>
                 <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(totalPeso7).toFixed(2)} Kg.</td>
                 <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta7).toFixed(2)}</td>
@@ -2635,6 +2617,12 @@ jQuery(function($) {
                 <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta23).toFixed(2)}</td>
                 <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#CAA122]">S/. ${totalVenta23.toFixed(2)}</td>
                 <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(promedio23).toFixed(2)}</td>
+
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${totalCantidad14}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(totalPeso14).toFixed(2)} Kg.</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta14).toFixed(2)}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#CAA122]">S/. ${totalVenta14.toFixed(2)}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(promedio14).toFixed(2)}</td>
 
                 <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${totalCantidad24}</td>
                 <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(totalPeso24).toFixed(2)} Kg.</td>

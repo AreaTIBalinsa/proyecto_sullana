@@ -389,14 +389,14 @@ jQuery(function($) {
                         <th class="border-r px-2 py-4 text-center">Tecnica Vivo</th>
                         <th class="border-r px-2 py-4 text-center">Tecnica Pelado</th>
                         <th class="border-r px-2 py-4 text-center">Gallina Doble Pelado</th>
-                        <th class="border-r px-2 py-4 text-center">Ahogados</th>
+                        <th class="border-r px-2 py-4 text-center">Gallina Chica Pelado</th>
                         <th class="border-r px-2 py-4 text-center">Gallo Pelado</th>
                         <th class="border-r px-2 py-4 text-center">Pollo XX Pelado</th>
                         <th class="border-r px-2 py-4 text-center">Brasa Yugo</th>
                         <th class="border-r px-2 py-4 text-center">Brasa Tecnica</th>
                         <th class="border-r px-2 py-4 text-center">Pollo XX Vivo</th>
                         <th class="border-r px-2 py-4 text-center">Gallina Doble Vivo</th>
-                        <th class="border-r px-2 py-4 text-center">Secos</th>
+                        <th class="border-r px-2 py-4 text-center">Gallina Chica Vivo</th>
                         <th class="border-r px-2 py-4 text-center">Gallo Vivo</th>
                         <th class="border-r px-2 py-4 text-center">Comentario</th>
                         <th class="px-2 py-4 text-center whitespace-nowrap">TOTAL</th>
@@ -1821,7 +1821,7 @@ jQuery(function($) {
             <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">${(pesoTotalYugo).toFixed(2)} Kg.</td>
         </tr>
         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900">
-            <td class="text-sm text-left border-2 py-1 px-2 whitespace-nowrap">Tencica</td>
+            <td class="text-sm text-left border-2 py-1 px-2 whitespace-nowrap">Tecnica</td>
             <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">${cantidadTotalTecnica}</td>
             <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">${(pesoTotalTecnica).toFixed(2)} Kg.</td>
         </tr>

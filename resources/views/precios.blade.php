@@ -76,7 +76,7 @@
                             <input class="preciosMinimosEspecies validarSoloNumerosDosDecimales w-32 uppercase outline-none text-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="valorPrecioPolloVivoMenudencia" disabled="" autocomplete="off" id="valorPrecioPolloVivoMenudencia">
                         </div>
                         <div class="flex flex-col p-2 justify-center items-center gap-2 divPreciosMinimos w-48">
-                            <span class="text-sm font-bold">DORSO:</span>
+                            <span class="text-sm font-bold">GALLINA CHICA VIVA:</span>
                             <label class="hidden" value="" id="idPolloVivoDorso"></label>
                             <input class="preciosMinimosEspecies validarSoloNumerosDosDecimales w-32 uppercase outline-none text-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="valorPrecioPolloVivoDorso" disabled="" autocomplete="off" id="valorPrecioPolloVivoDorso">
                         </div>
@@ -125,7 +125,7 @@
                             <input class="preciosMinimosEspecies validarSoloNumerosDosDecimales w-32 uppercase outline-none text-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="valorPrecioGalloVivo" disabled="" autocomplete="off" id="valorPrecioGalloVivo">
                         </div>
                         <div class="flex flex-col p-2 justify-center items-center gap-2 divPreciosMinimos w-48">
-                            <span class="text-sm font-bold">MALTRATADO VIVO:</span>
+                            <span class="text-sm font-bold">GALLINA CHICA PELADO:</span>
                             <label class="hidden" value="" id="idMaltratadoVivo"></label>
                             <input class="preciosMinimosEspecies validarSoloNumerosDosDecimales w-32 uppercase outline-none text-center bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="valorPrecioMaltratadoVivo" disabled="" autocomplete="off" id="valorPrecioMaltratadoVivo">
                         </div>
@@ -238,7 +238,7 @@
                             </div>
                         </div>
                         <div class="flex flex-col p-2 justify-center items-center gap-2 w-48">
-                            <label class="text-sm font-bold">DORSO:</label>
+                            <label class="text-sm font-bold">GALLINA CHICA VIVA:</label>
                             <div class="text-gray-900 dark:text-gray-200 flex gap-2 items-center">
                                 <button class="h-7 md:w-2 text-base p-4 bg-amber-300 hover:bg-amber-400 text-gray-50 rounded-lg flex justify-center items-center gap-2" id="restar_precioPolloDorso">-</button>
                                 <input class="rounded-lg lg:max-w-xs h-8 w-20 text-center uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary-600 focus:border-primary-600 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="precioPolloDorso" disabled="" autocomplete="off" id="precioPolloDorso" value="0.0">
@@ -314,7 +314,7 @@
                             </div>
                         </div>
                         <div class="flex flex-col p-2 justify-center items-center gap-2 w-48">
-                            <label class="text-sm font-bold">MALTRATADO VIVO:</label>
+                            <label class="text-sm font-bold">GALLINA CHICA PELADO:</label>
                             <div class="text-gray-900 dark:text-gray-200 flex gap-2 items-center">
                                 <button class="h-7 md:w-2 text-base p-4 bg-amber-300 hover:bg-amber-400 text-gray-50 rounded-lg flex justify-center items-center gap-2" id="restar_precioMaltratadoVivo">-</button>
                                 <input class="rounded-lg lg:max-w-xs h-8 w-20 text-center uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary-600 focus:border-primary-600 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-100 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="precioMaltratadoVivo" disabled="" autocomplete="off" id="precioMaltratadoVivo" value="0.0">
@@ -357,7 +357,7 @@
                             <th class="p-4 text-center whitespace-nowrap">PIERNA</th>
                             <th class="p-4 text-center whitespace-nowrap">ALAS</th>
                             <th class="p-4 text-center whitespace-nowrap">MENUDENCIA</th>
-                            <th class="p-4 text-center whitespace-nowrap">DORSO</th>
+                            <th class="p-4 text-center whitespace-nowrap">GALLINA CHICA VIVA</th>
                             <th class="p-4 text-center whitespace-nowrap">OTROS</th>
                             <th class="p-4 text-center whitespace-nowrap">POLLO XX PELADO</th>
                             <th class="p-4 text-center whitespace-nowrap">BRASA YUGO</th>
@@ -366,7 +366,7 @@
                             <th class="p-4 text-center whitespace-nowrap">GALLINA DOBLE VIVO</th>
                             <th class="p-4 text-center whitespace-nowrap">SECOS</th>
                             <th class="p-4 text-center whitespace-nowrap">GALLO VIVO</th>
-                            <th class="p-4 text-center whitespace-nowrap">MALTRATADO VIVO</th>
+                            <th class="p-4 text-center whitespace-nowrap">GALLINA CHICA PELADO</th>
                         </tr>
                     </thead>
                     <tbody id="bodyPreciosXPresentacion">
