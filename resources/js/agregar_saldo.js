@@ -180,7 +180,7 @@ jQuery(function($) {
     }
 
     $('#filtrarClienteAgregarSaldo').on('input', function() {
-        let nombreFiltrar = $('#filtrarClienteAgregarSaldo').val().toUpperCase(); ; // Obtiene el valor del campo de filtro
+        let nombreFiltrar = $('#filtrarClienteAgregarSaldo').val().toUpperCase(); // Obtiene el valor del campo de filtro
 
         // Mostrar todas las filas
         $('#tablaAgregarSaldo tbody tr').show();

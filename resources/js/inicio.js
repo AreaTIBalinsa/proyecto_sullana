@@ -459,7 +459,6 @@ jQuery(function($) {
     }
 
     fn_traerDatosTablaInicioDiferencias(fechaHoy, fechaHoy)
-    setInterval(fn_traerDatosTablaInicioDiferencias(fechaHoy,fechaHoy), 10000);
     function fn_traerDatosTablaInicioDiferencias(fechaDesde, fechaHasta){
         let consultaDatosEnTiempoReal = new Promise((resolve, reject) => {
             $.ajax({
@@ -811,98 +810,153 @@ jQuery(function($) {
                     let datosProveedores = {
                         pagoAProveedoresPorDia: 0.00,
                         cantidadAProveedoresPorDia: 0,
+                        especiesProveedoresPorDia: 0,
                         pesoAProveedoresPorDia: 0.0,
                         pesoBrutoProveedoresPorDia: 0.0,
-                        pesoTaraProveedoresPorDia: 0.0
+                        pesoTaraProveedoresPorDia: 0.0,
+                        proveedores: {}
                     };
-    
+        
                     if (Array.isArray(response)) {
                         response.forEach(function(obj) {
+                            let idProveedor = obj.idProveedor;
+                            let nombreEspecie = obj.nombreEspecieCompra;
                             let precioGuia = parseFloat(obj.precioGuia || 0.00);
                             let pesoNeto = parseFloat(obj.pesoBrutoGuia) - parseFloat(obj.pesoTaraGuia);
                             let totalAPagar = precioGuia * pesoNeto;
-    
+        
+                            // Inicializar datos del proveedor si no existe
+                            if (!datosProveedores.proveedores[idProveedor]) {
+                                datosProveedores.proveedores[idProveedor] = {
+                                    especies: {}
+                                };
+                            }
+        
+                            let proveedorData = datosProveedores.proveedores[idProveedor];
+        
+                            // Inicializar datos de la especie si no existe
+                            if (!proveedorData.especies[nombreEspecie]) {
+                                proveedorData.especies[nombreEspecie] = {
+                                    cantidad: 0,
+                                    pesoTotal: 0
+                                };
+                            }
+        
+                            let especieData = proveedorData.especies[nombreEspecie];
+        
+                            especieData.cantidad += parseInt(obj.cantidadGuia);
+                            if (parseFloat(obj.pesoBrutoGuia) > parseFloat(obj.pesoTaraGuia)) {
+                                especieData.pesoTotal += parseFloat(obj.pesoBrutoGuia) - parseFloat(obj.pesoTaraGuia);
+                            } else {
+                                especieData.pesoTotal += parseFloat(obj.pesoBrutoGuia) + parseFloat(obj.pesoTaraGuia);
+                            }
+        
                             datosProveedores.pagoAProveedoresPorDia += totalAPagar;
                             datosProveedores.cantidadAProveedoresPorDia += parseInt(obj.cantidadGuia);
                             datosProveedores.pesoAProveedoresPorDia += pesoNeto;
                             datosProveedores.pesoBrutoProveedoresPorDia += parseFloat(obj.pesoBrutoGuia);
                             datosProveedores.pesoTaraProveedoresPorDia += parseFloat(obj.pesoTaraGuia);
                         });
+        
+                        resolve(datosProveedores);
                     } else {
                         console.log("La respuesta no es un arreglo de objetos.");
+                        reject(new Error("La respuesta no es un arreglo de objetos."));
                     }
-                    resolve(datosProveedores);
                 },
                 error: function(error) {
-                    console.error("ERROR",error);
+                    console.error("ERROR", error);
+                    reject(error);
                 }
             });
-        });
+        });                
 
         Promise.all([consultaDatosEnTiempoReal, consultaProveedores])
             .then(function([datosTiempoReal, datosProveedores]) {
-                // Aquí puedes realizar las acciones que necesites con los resultados combinados.
-                // console.log('Datos en tiempo real:', datosTiempoReal);
                 // console.log('Datos de proveedores:', datosProveedores);
 
-                // Calculo de Promedios de CantidadTotalCompras y cantidadTotalesVentas
-                let CantidadPromedioCompra = datosProveedores.pesoAProveedoresPorDia / datosProveedores.cantidadAProveedoresPorDia;
-                let cantidadPromedioVenta = datosTiempoReal.pesoTotalesEspecie / datosTiempoReal.cantidadTotalesEspecie;
-
-                // Calculo de Promedios de las Especies Ocultas
-                let cantidadPromedioYugo = datosTiempoReal.pesoTotalYugo / datosTiempoReal.cantidadTotalYugo;
-                let cantidadPromedioTecnica = datosTiempoReal.pesoTotalTecnica / datosTiempoReal.cantidadTotalTecnica;
-                let cantidadPromedioPolloXX = datosTiempoReal.pesoTotalPolloXX / datosTiempoReal.cantidadTotalPolloXX;
-                let cantidadPromedioGallo = datosTiempoReal.pesoTotalGallo / datosTiempoReal.cantidadTotalGallo;
-                let cantidadPromedioGallinaDoble = datosTiempoReal.pesoTotalGallinaDoble / datosTiempoReal.cantidadTotalGallinaDoble;
-                let cantidadPromedioAhogadosySecos = datosTiempoReal.pesoTotalGallinaChica / datosTiempoReal.cantidadTotalGallinaChica;
-                let cantidadPromedioMaltratado = datosTiempoReal.pesoTotalPolloMaltratado / datosTiempoReal.cantidadTotalPolloMaltratado;
-                let cantidadPromedioTrozado = datosTiempoReal.pesoTotalPolloTrozado / datosTiempoReal.cantidadTotalPolloTrozado;
-
                 let resultadoDiferenciaCantidad = datosProveedores.cantidadAProveedoresPorDia - datosTiempoReal.cantidadTotalesEspecie;
-                let resultadoDiferenciaPromedio = CantidadPromedioCompra - cantidadPromedioVenta;
                 let resultadoDiferenciaPeso = datosProveedores.pesoAProveedoresPorDia - datosTiempoReal.pesoTotalesEspecie;
 
-                let bodycantidadesPollosCalculo = "";
                 let tbodycantidadesPollosCalculo = $('#bodycantidadesPollosCalculo');
 
-                // Aquí se construye la primera fila (Compra)
-                bodycantidadesPollosCalculo += construirFilaTotalesCompradePollos(datosProveedores,CantidadPromedioCompra);
+                // Construir filas HTML iniciales
+                let bodycantidadesPollosCalculo = construirFilaTotalesCompradePollos(datosProveedores, datosTiempoReal, resultadoDiferenciaCantidad, resultadoDiferenciaPeso);
 
-                // Luego se agrega la segunda fila (Venta)
-                bodycantidadesPollosCalculo += construirFilaVenta(datosTiempoReal, cantidadPromedioVenta, cantidadPromedioYugo, cantidadPromedioTecnica, cantidadPromedioPolloXX, cantidadPromedioGallo, cantidadPromedioGallinaDoble, cantidadPromedioAhogadosySecos, cantidadPromedioMaltratado, cantidadPromedioTrozado);
-
-                // Finalmente se agrega la tercera fila (Diferencia)
-                bodycantidadesPollosCalculo += construirFilaDiferencia(resultadoDiferenciaPromedio, resultadoDiferenciaCantidad, resultadoDiferenciaPeso);
-
+                
                 // Insertar el HTML construido en el tbody
                 tbodycantidadesPollosCalculo.html(bodycantidadesPollosCalculo);
             })
             .catch(function(error) {
                 console.error('Error en las consultas:', error);
             });
-
     }
 
-
-    function construirFilaTotalesCompradePollos(datosProveedores,CantidadPromedioCompra) {
-        let pesoAProveedoresPorDia = datosProveedores.pesoAProveedoresPorDia
-        let cantidadAProveedoresPorDia = datosProveedores.cantidadAProveedoresPorDia
-        return `
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900">
-                <td class="text-base font-semibold text-left border-2 py-2 px-3 bg-red-600 whitespace-nowrap">Compra</td>
-                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${cantidadAProveedoresPorDia ? cantidadAProveedoresPorDia : 0}</td>
-                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${parseFloat(pesoAProveedoresPorDia ? pesoAProveedoresPorDia : 0).toFixed(2)}</td>
-                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${parseFloat(CantidadPromedioCompra ? CantidadPromedioCompra : 0).toFixed(2)}</td>
-            </tr>`;
-    }
+    function clasificarEspecies(datosProveedores) {
+        let clasificaciones = {
+            MERMA_GALLO: {
+                cantidad: 0,
+                pesoTotal: 0
+            },
+            MERMA_YUGO: {
+                cantidad: 0,
+                pesoTotal: 0
+            },
+            MERMA_GALLINA: {
+                cantidad: 0,
+                pesoTotal: 0
+            },
+            MERMA_TECNICA: {
+                cantidad: 0,
+                pesoTotal: 0
+            },
+            MERMA_POLLO_XX: {
+                cantidad: 0,
+                pesoTotal: 0
+            }
+        };
     
-    function construirFilaVenta(datosTiempoReal, cantidadPromedioVenta, cantidadPromedioYugo, cantidadPromedioTecnica, cantidadPromedioPolloXX, cantidadPromedioGallo, cantidadPromedioGallinaDoble, cantidadPromedioAhogadosySecos, cantidadPromedioMaltratado, cantidadPromedioTrozado) {
-        let cantidadTotalesEspecie = datosTiempoReal.cantidadTotalesEspecie;
+        // Iterar sobre los proveedores y sus especies
+        Object.keys(datosProveedores.proveedores).forEach(function(idProveedor) {
+            let proveedorData = datosProveedores.proveedores[idProveedor];
+    
+            Object.keys(proveedorData.especies).forEach(function(nombreEspecie) {
+                let especieData = proveedorData.especies[nombreEspecie];
+                let especieUpper = nombreEspecie.toUpperCase();
+    
+                // Verificar y clasificar por tipo de especie
+                if (especieUpper === "GALLO" || especieUpper === "STOCK GALLO") {
+                    clasificaciones.MERMA_GALLO.cantidad += especieData.cantidad;
+                    clasificaciones.MERMA_GALLO.pesoTotal += especieData.pesoTotal;
+                } else if (especieUpper === "YUGO TRUJILLO AA" || especieUpper === "YUGO PIURA AA" || especieUpper === "STOCK DE YUGO" || especieUpper === "YUGO PIURA") {
+                    clasificaciones.MERMA_YUGO.cantidad += especieData.cantidad;
+                    clasificaciones.MERMA_YUGO.pesoTotal += especieData.pesoTotal;
+                } else if (especieUpper === "YUGO PIURA GALLINA DOBLE" || especieUpper === "YUGO PIURA GALLINA CHICA" || especieUpper === "STOCK GALLINA") {
+                    clasificaciones.MERMA_GALLINA.cantidad += especieData.cantidad;
+                    clasificaciones.MERMA_GALLINA.pesoTotal += especieData.pesoTotal;
+                } else if (especieUpper === "STOCK DE TECNICA" || especieUpper === "TECNICA AA" || especieUpper === "MASAY" || especieUpper === "CHIMU" || especieUpper === "OTROS") {
+                    clasificaciones.MERMA_TECNICA.cantidad += especieData.cantidad;
+                    clasificaciones.MERMA_TECNICA.pesoTotal += especieData.pesoTotal;
+                } else if (especieUpper === "YUGO PIURA XX" || especieUpper === "YUGO TRUJILLO XX" || especieUpper === "STOCK XX") {
+                    clasificaciones.MERMA_POLLO_XX.cantidad += especieData.cantidad;
+                    clasificaciones.MERMA_POLLO_XX.pesoTotal += especieData.pesoTotal;
+                }
+            });
+        });
+    
+        return clasificaciones;
+    }    
+
+
+    function construirFilaTotalesCompradePollos(datosProveedores, datosTiempoReal, resultadoDiferenciaCantidad, resultadoDiferenciaPeso) {
+        let clasificaciones = clasificarEspecies(datosProveedores);
+        let pesoAProveedoresPorDia = datosProveedores.pesoAProveedoresPorDia;
         let pesoTotalesEspecie = datosTiempoReal.pesoTotalesEspecie;
+        let cantidadAProveedoresPorDia = datosProveedores.cantidadAProveedoresPorDia;
+        let cantidadTotalesEspecie = datosTiempoReal.cantidadTotalesEspecie;
         let cantidadTotalYugo = datosTiempoReal.cantidadTotalYugo;
         let pesoTotalYugo = datosTiempoReal.pesoTotalYugo;
-        let cantidadTotalTecnica = datosTiempoReal.cantidadTotalTecnica;
+        let cantidadTotalTecnica = datosTiempoReal.cantidadTotalTecnica ;
         let pesoTotalTecnica = datosTiempoReal.pesoTotalTecnica;
         let cantidadTotalPolloXX = datosTiempoReal.cantidadTotalPolloXX;
         let pesoTotalPolloXX = datosTiempoReal.pesoTotalPolloXX;
@@ -910,83 +964,73 @@ jQuery(function($) {
         let pesoTotalGallo = datosTiempoReal.pesoTotalGallo;
         let cantidadTotalGallinaDoble = datosTiempoReal.cantidadTotalGallinaDoble;
         let pesoTotalGallinaDoble = datosTiempoReal.pesoTotalGallinaDoble;
-        let cantidadTotalGallinaChica = datosTiempoReal.cantidadTotalGallinaChica;
-        let pesoTotalGallinaChica = datosTiempoReal.pesoTotalGallinaChica;
-        let cantidadTotalPolloMaltratado = datosTiempoReal.cantidadTotalPolloMaltratado;
-        let pesoTotalPolloMaltratado = datosTiempoReal.pesoTotalPolloMaltratado;
-        let cantidadTotalPolloTrozado = datosTiempoReal.cantidadTotalPolloTrozado;
-        let pesoTotalPolloTrozado = datosTiempoReal.pesoTotalPolloTrozado;
-        return `
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900" id="filaPrincipal">
-                <td class="text-base font-semibold text-left border-2 py-2 px-3 bg-green-600 whitespace-nowrap cursor-pointer">Venta</td>
-                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${cantidadTotalesEspecie ? cantidadTotalesEspecie : 0}</td>
-                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${parseFloat(pesoTotalesEspecie ? pesoTotalesEspecie : 0).toFixed(2)}</td>
-                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${parseFloat(cantidadPromedioVenta ? cantidadPromedioVenta : 0).toFixed(2)}</td>
-            </tr>
-            <tr class="bg-white filasOcultas border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 hidden text-gray-900">
-                <td class="text-base font-semibold pl-10 text-left border-2 py-2 px-3 bg-[#088FC2] whitespace-nowrap">Yugo</td>
-                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${cantidadTotalYugo ? cantidadTotalYugo : 0}</td>
-                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(pesoTotalYugo ? pesoTotalYugo : 0).toFixed(2)}</td>
-                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(cantidadPromedioYugo ? cantidadPromedioYugo : 0).toFixed(2)}</td>
-            </tr>
-            <tr class="bg-white filasOcultas border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 hidden text-gray-900">
-                <td class="text-base font-semibold pl-10 text-left border-2 py-2 px-3 bg-[#088FC2] whitespace-nowrap">Tecnica</td>
-                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${cantidadTotalTecnica ? cantidadTotalTecnica : 0}</td>
-                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(pesoTotalTecnica ? pesoTotalTecnica : 0).toFixed(2)}</td>
-                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(cantidadPromedioTecnica ? cantidadPromedioTecnica : 0).toFixed(2)}</td>
-            </tr>
-            <tr class="bg-white filasOcultas border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 hidden text-gray-900">
-                <td class="text-base font-semibold pl-10 text-left border-2 py-2 px-3 bg-[#088FC2] whitespace-nowrap">Pollo XX</td>
-                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${cantidadTotalPolloXX ? cantidadTotalPolloXX : 0}</td>
-                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(pesoTotalPolloXX ? pesoTotalPolloXX : 0).toFixed(2)}</td>
-                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(cantidadPromedioPolloXX ? cantidadPromedioPolloXX : 0).toFixed(2)}</td>
-            </tr>
-            <tr class="bg-white filasOcultas border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 hidden text-gray-900">
-                <td class="text-base font-semibold pl-10 text-left border-2 py-2 px-3 bg-[#088FC2] whitespace-nowrap">Gallo</td>
-                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${cantidadTotalGallo ? cantidadTotalGallo : 0}</td>
-                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(pesoTotalGallo ? pesoTotalGallo : 0).toFixed(2)}</td>
-                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(cantidadPromedioGallo ? cantidadPromedioGallo : 0).toFixed(2)}</td>
-            </tr>
-            <tr class="bg-white filasOcultas border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 hidden text-gray-900">
-                <td class="text-base font-semibold pl-10 text-left border-2 py-2 px-3 bg-[#088FC2] whitespace-nowrap">Gallina Doble</td>
-                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${cantidadTotalGallinaDoble ? cantidadTotalGallinaDoble : 0}</td>
-                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(pesoTotalGallinaDoble ? pesoTotalGallinaDoble : 0).toFixed(2)}</td>
-                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(cantidadPromedioGallinaDoble ? cantidadPromedioGallinaDoble : 0).toFixed(2)}</td>
-            </tr>
-            <tr class="bg-white filasOcultas border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 hidden text-gray-900">
-                <td class="text-base font-semibold pl-10 text-left w-[320px] border-2 py-2 px-3 bg-[#088FC2] whitespace-nowrap">Ahogados y Secos</td>
-                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${cantidadTotalGallinaChica ? cantidadTotalGallinaChica : 0}</td>
-                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(pesoTotalGallinaChica ? pesoTotalGallinaChica : 0).toFixed(2)}</td>
-                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(cantidadPromedioAhogadosySecos? cantidadPromedioAhogadosySecos : 0).toFixed(2)}</td>
-            </tr>
-            <tr class="bg-white filasOcultas border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 hidden text-gray-900">
-                <td class="text-base font-semibold pl-10 text-left border-2 py-2 px-3 bg-[#088FC2] whitespace-nowrap">Maltratado</td>
-                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${cantidadTotalPolloMaltratado ? cantidadTotalPolloMaltratado : 0}</td>
-                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(pesoTotalPolloMaltratado ? pesoTotalPolloMaltratado : 0).toFixed(2)}</td>
-                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(cantidadPromedioMaltratado ? cantidadPromedioMaltratado : 0).toFixed(2)}</td>
-            </tr>
-            <tr class="bg-white filasOcultas border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 hidden text-gray-900">
-                <td class="text-base font-semibold pl-10 text-left border-2 py-2 px-3 bg-[#088FC2] whitespace-nowrap">Trozado</td>
-                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${cantidadTotalPolloTrozado ? cantidadTotalPolloTrozado : 0}</td>
-                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(pesoTotalPolloTrozado ? pesoTotalPolloTrozado : 0).toFixed(2)}</td>
-                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(cantidadPromedioTrozado ? cantidadPromedioTrozado : 0).toFixed(2)}</td>
-            </tr>
-            `;
-    }
-
-    $(document).on('click', "#filaPrincipal", function () {
-        $('.filasOcultas').toggle();
-    });    
+        let mermaDiferenciaCantidadYugo = clasificaciones.MERMA_YUGO.cantidad - datosTiempoReal.cantidadTotalYugo;
+        let mermaDiferenciaPesoYugo = clasificaciones.MERMA_YUGO.pesoTotal - datosTiempoReal.pesoTotalYugo;
+        let mermaDiferenciaCantidadTecnica = clasificaciones.MERMA_TECNICA.cantidad - datosTiempoReal.cantidadTotalTecnica;
+        let mermaDiferenciaPesoTecnica = clasificaciones.MERMA_TECNICA.pesoTotal - datosTiempoReal.pesoTotalTecnica;
+        let mermaDiferenciaCantidadPolloXX = clasificaciones.MERMA_POLLO_XX.cantidad - datosTiempoReal.cantidadTotalPolloXX;
+        let mermaDiferenciaPesoPolloXX = clasificaciones.MERMA_POLLO_XX.pesoTotal - datosTiempoReal.pesoTotalPolloXX;
+        let mermaDiferenciaCantidadGallo = clasificaciones.MERMA_GALLO.cantidad - datosTiempoReal.cantidadTotalGallo;
+        let mermaDiferenciaPesoGallo = clasificaciones.MERMA_GALLO.pesoTotal - datosTiempoReal.pesoTotalGallo;
+        let mermaDiferenciaCantidadGallinaDoble = clasificaciones.MERMA_GALLINA.cantidad - datosTiempoReal.cantidadTotalGallinaDoble;
+        let mermaDiferenciaPesoGallinaDoble = clasificaciones.MERMA_GALLINA.pesoTotal - datosTiempoReal.pesoTotalGallinaDoble;
     
-    function construirFilaDiferencia(resultadoDiferenciaPromedio, resultadoDiferenciaCantidad, resultadoDiferenciaPeso) {
         return `
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900">
-                <td class="text-base font-semibold text-left border-2 py-2 px-3 bg-yellow-400 whitespace-nowrap">Diferencia</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 text-white bg-blue-600 whitespace-nowrap">Pollo Yugo</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${clasificaciones.MERMA_YUGO.cantidad}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${clasificaciones.MERMA_YUGO.pesoTotal.toFixed(2)}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${cantidadTotalYugo ? cantidadTotalYugo : 0}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(pesoTotalYugo ? pesoTotalYugo : 0).toFixed(2)}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${mermaDiferenciaCantidadYugo ? mermaDiferenciaCantidadYugo : 0}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(mermaDiferenciaPesoYugo ? mermaDiferenciaPesoYugo : 0).toFixed(2)}</td>
+            </tr>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900">
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 text-white bg-blue-600 whitespace-nowrap">Pollo Tecnica</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${clasificaciones.MERMA_TECNICA.cantidad}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${clasificaciones.MERMA_TECNICA.pesoTotal.toFixed(2)}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${cantidadTotalTecnica ? cantidadTotalTecnica : 0}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(pesoTotalTecnica ? pesoTotalTecnica : 0).toFixed(2)}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${mermaDiferenciaCantidadTecnica ? mermaDiferenciaCantidadTecnica : 0}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(mermaDiferenciaPesoTecnica ? mermaDiferenciaPesoTecnica : 0).toFixed(2)}</td>
+            </tr>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900">
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 text-white bg-blue-600 whitespace-nowrap">Pollo XX</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${clasificaciones.MERMA_POLLO_XX.cantidad}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${clasificaciones.MERMA_POLLO_XX.pesoTotal.toFixed(2)}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${cantidadTotalPolloXX ? cantidadTotalPolloXX : 0}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(pesoTotalPolloXX ? pesoTotalPolloXX : 0).toFixed(2)}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${mermaDiferenciaCantidadPolloXX ? mermaDiferenciaCantidadPolloXX : 0}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(mermaDiferenciaPesoPolloXX ? mermaDiferenciaPesoPolloXX : 0).toFixed(2)}</td>
+            </tr>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900">
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 text-white bg-blue-600 whitespace-nowrap">Gallo</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${clasificaciones.MERMA_GALLO.cantidad}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${clasificaciones.MERMA_GALLO.pesoTotal.toFixed(2)}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${cantidadTotalGallo ? cantidadTotalGallo : 0}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(pesoTotalGallo ? pesoTotalGallo : 0).toFixed(2)}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${mermaDiferenciaCantidadGallo ? mermaDiferenciaCantidadGallo : 0}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(mermaDiferenciaPesoGallo ? mermaDiferenciaPesoGallo : 0).toFixed(2)}</td>
+            </tr>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900">
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 text-white bg-blue-600 whitespace-nowrap">Gallina Doble</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${clasificaciones.MERMA_GALLINA.cantidad}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${clasificaciones.MERMA_GALLINA.pesoTotal.toFixed(2)}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${cantidadTotalGallinaDoble ? cantidadTotalGallinaDoble : 0}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(pesoTotalGallinaDoble ? pesoTotalGallinaDoble : 0).toFixed(2)}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${mermaDiferenciaCantidadGallinaDoble ? mermaDiferenciaCantidadGallinaDoble : 0}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(mermaDiferenciaPesoGallinaDoble ? mermaDiferenciaPesoGallinaDoble : 0).toFixed(2)}</td>
+            </tr>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900">
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 text-white bg-orange-600 whitespace-nowrap">Total</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${cantidadAProveedoresPorDia ? cantidadAProveedoresPorDia : 0}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(pesoAProveedoresPorDia ? pesoAProveedoresPorDia : 0).toFixed(2)}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${cantidadTotalesEspecie ? cantidadTotalesEspecie : 0}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(pesoTotalesEspecie ? pesoTotalesEspecie : 0).toFixed(2)}</td>
                 <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${resultadoDiferenciaCantidad ? resultadoDiferenciaCantidad : 0}</td>
                 <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(resultadoDiferenciaPeso ? resultadoDiferenciaPeso : 0).toFixed(2)}</td>
-                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(resultadoDiferenciaPromedio ? resultadoDiferenciaPromedio : 0).toFixed(2)}</td>
             </tr>`;
-    }    
+    }
 
     fn_TraerClientesAgregarSaldo();
     function fn_TraerClientesAgregarSaldo() {
@@ -1037,7 +1081,8 @@ jQuery(function($) {
                             icon: 'warning',
                             title: 'Deudas Excesivas',
                             text: (contador === 1 ? 'Se encontró 1 deuda excesiva.' : 'Se encontrarón '+contador + ' deudas excesivas.'),
-                            footer: '<a href="/agregar_saldo">Ir a revisar</a>'
+                            footer: '<a href="/agregar_saldo">Ir a revisar</a>',
+                            confirmButtonColor: '#3B52D1'
                         });                        
                     }
                 } else {

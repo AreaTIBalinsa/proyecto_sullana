@@ -48,8 +48,6 @@ Route::post('/login',[LoginController::class,'login']);
 Route::get('/logout',[LoginController::class,'logout']);
 Route::get('/consultarDNI',[ReniecController::class,'consultarDNI']);
 
-Route::get('/fn_consulta_TraerClientes',[LoginController::class,'consulta_TraerClientes']);
-
 /* ============================== Termina Controladores para Login y Registro de Clientes ============================== */
 
 /* ============================== Controladores para Mostrar Vistas ============================== */
@@ -75,7 +73,7 @@ Route::get('/seguimiento_pedidos',[SeguimientoPedidosController::class,'show']);
 Route::get('/cuenta_cliente',[CuentaClienteController::class,'show']);
 Route::get('/pesadas_web',[PesadasWebController::class,'show']);
 Route::get('/reporte_ingresos',[ReporteIngresosController::class,'show']);
-Route::get('/detalle_ingresos',[DetallesIngresosController::class,'show']);
+Route::get('/detalles_egresos',[DetallesIngresosController::class,'show']);
 
 /* ============================== Termina Controladores para Mostrar Vistas ============================== */
 
@@ -211,4 +209,15 @@ Route::get('/fn_consulta_EditarPesadasWeb',[PesadasWebController::class,'consult
 Route::get('/fn_consulta_DatosPesadasWeb',[PesadasWebController::class,'consulta_DatosPesadasWeb']);
 Route::get('/fn_consulta_EditarDatosPesadas',[PesadasWebController::class,'consulta_EditarDatosPesadas']);
 
+Route::get('/fn_consulta_CrearCategoria',[DetallesIngresosController::class,'consulta_CrearCategoria']);
+Route::get('/fn_consulta_TraerTablasCategoriasEgresos',[DetallesIngresosController::class,'consulta_TraerTablasCategoriasEgresos']);
+Route::get('/fn_consulta_TraerTablasDetallesEgresos',[DetallesIngresosController::class,'consulta_TraerTablasDetallesEgresos']);
+Route::get('/fn_consulta_AgregarDetalleEgreso',[DetallesIngresosController::class,'consulta_AgregarDetalleEgreso']);
+Route::get('/fn_consulta_AgregarDetalleEgresoEditar',[DetallesIngresosController::class,'consulta_AgregarDetalleEgresoEditar']);
+Route::get('/fn_consulta_EliminarDetalleEgreso',[DetallesIngresosController::class,'consulta_EliminarDetalleEgreso']);
+Route::get('/fn_consulta_TraerDetallesEgresos',[DetallesIngresosController::class,'consulta_TraerDetallesEgresos']);
+Route::get('/fn_consulta_TraerModalDetallesEgresos',[DetallesIngresosController::class,'consulta_TraerModalDetallesEgresos']);
+
+Route::get('/fn_consulta_TraerClientes',[AutocompleteController::class,'consulta_TraerClientes']);
 Route::get('/fn_consulta_TraerEgresosCajaChica',[AutocompleteController::class,'consulta_TraerEgresosCajaChica']);
+Route::get('/fn_consulta_TraerEgresosPaul',[AutocompleteController::class,'consulta_TraerEgresosPaul']);

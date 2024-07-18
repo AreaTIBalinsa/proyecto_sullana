@@ -549,12 +549,21 @@
             </div>
             <div class="overflow-x-auto rounded-md aside_scrollED md:px-5">
                 <table class="border-collapse w-full text-gray-500 dark:text-gray-400 select-none relative text-sm">
-                    <thead id="inicioCantidadesPollos" class="bg-blue-700 text-gray-50 text-base">
+                    <thead id="inicioCantidadesPollos" class="text-gray-50 text-base">
                         <tr>
-                            <th class="text-white border-r-[1px] border-b-1 border-gray-300 dark:border-gray-400 py-2 md:text-md text-left px-2">#</th>
-                            <th class="text-white border-r-[1px] border-b-1 border-gray-300 dark:border-gray-400 py-2 md:text-md text-left px-2">Cantidad</th>
-                            <th class="text-white border-r-[1px] border-b-1 border-gray-300 dark:border-gray-400 py-2 md:text-md text-left px-2">Peso</th>
-                            <th class="text-white py-2 md:text-md text-left px-2">Promedio</th>
+                            <th class="text-white border-[2px] bg-blue-600 border-b-1 border-gray-300 dark:border-white py-2 md:text-md text-left px-2"></th>
+                            <th class="text-white border-[2px] bg-red-600 border-b-1 border-gray-300 dark:border-white py-2 md:text-md text-center px-2" colspan="2">Compra</th>
+                            <th class="text-white border-[2px] bg-green-600 border-b-1 border-gray-300 dark:border-white py-2 md:text-md text-center px-2" colspan="2">Venta</th>
+                            <th class="text-white border-[2px] bg-yellow-400 border-b-1 border-gray-300 dark:border-white py-2 md:text-md text-center px-2" colspan="2">Diferencia</th>
+                        </tr>
+                        <tr>
+                            <th class="text-white border-[2px] bg-blue-600 border-b-1 border-gray-300 dark:border-white py-2 md:text-md text-left px-2">#</th>
+                            <th class="text-white border-[2px] bg-blue-600 border-b-1 border-gray-300 dark:border-white py-2 md:text-md text-left px-2">Cantidad</th>
+                            <th class="text-white border-[2px] bg-blue-600 border-b-1 border-gray-300 dark:border-white py-2 md:text-md text-left px-2">Peso</th>
+                            <th class="text-white border-[2px] bg-blue-600 border-b-1 border-gray-300 dark:border-white py-2 md:text-md text-left px-2">Cantidad</th>
+                            <th class="text-white border-[2px] bg-blue-600 border-b-1 border-gray-300 dark:border-white py-2 md:text-md text-left px-2">Peso</th>
+                            <th class="text-white border-[2px] bg-blue-600 py-2 md:text-md border-gray-300 dark:border-white text-left px-2">Cantidad</th>
+                            <th class="text-white border-[2px] bg-blue-600 py-2 md:text-md border-gray-300 dark:border-white text-left px-2">Peso</th>
                         </tr>
                     </thead>
                     <tbody id="bodycantidadesPollosCalculo">
@@ -569,7 +578,7 @@
 
 <div class="fixed hidden top-0 left-0 z-[100] justify-center items-center w-screen h-screen bg-gray-900 bg-opacity-75 transition-opacity cerrarModalProduccionAnterior" id="ModalProduccionAnterior">
     <div class="modal-content max-w-lg w-full mx-4">
-        <div class="transform overflow-hidden rounded-lg bg-white dark:bg-gray-700 shadow-xl transition-all">
+        <div class="transform overflow-hidden rounded-lg bg-white dark:bg-slate-700 shadow-xl transition-all">
             <div class=" p-4">
                 <div class="flex flex-col">
                     <div class="border-b rounded-t dark:border-gray-500 p-2 flex justify-center">

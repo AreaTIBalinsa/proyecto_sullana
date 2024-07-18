@@ -13,71 +13,12 @@ jQuery(function($) {
     $('#fechaDesdePesadas').val(fechaHoy);
     $('#fechaHastaPesadas').val(fechaHoy);
 
-    $('#idCuentaDelCliente').on('input', function () {
-        let inputCuentaDelCliente = $(this).val();
-        let contenedorClientes = $('#contenedorClientesCuentaDelCliente');
-        contenedorClientes.empty();
-
-        if (inputCuentaDelCliente.length > 1 || inputCuentaDelCliente != "") {
-            fn_TraerClientesCuentaDelCliente(inputCuentaDelCliente)
-        } else {
-            contenedorClientes.empty();
-            contenedorClientes.addClass('hidden');
-        }
-    });
-
     $('#btnBuscarCuentaDelCliente').on('click', function () {
         let fechaDesdePesadas = $('#fechaDesdePesadas').val();
         let fechaHastaPesadas = $('#fechaHastaPesadas').val();
         fn_consulta_TraerDatosPesadas3(fechaDesdePesadas,fechaHastaPesadas);
 
     });
-
-    function fn_TraerClientesCuentaDelCliente(inputCuentaDelCliente) {
-        $.ajax({
-            url: '/fn_consulta_TraerClientesCuentaDelCliente',
-            method: 'GET',
-            data: {
-                idCuentaDelCliente: inputCuentaDelCliente,
-            },
-            success: function (response) {
-                // Limpia las sugerencias anteriores
-                let contenedorClientes = $('#contenedorClientesCuentaDelCliente')
-                contenedorClientes.empty();
-
-                // Verificar si la respuesta es un arreglo de objetos
-                if (Array.isArray(response) && response.length > 0) {
-                    // Iterar sobre los objetos y mostrar sus propiedades como sugerencias
-                    response.forEach(function (obj) {
-                        var suggestion = $('<div class="cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700 p-2 border-b border-gray-300/40">' + obj.nombreCompleto + '</div>');
-
-                        // Maneja el clic en la sugerencia
-                        suggestion.on("click", function () {
-                            // Rellena el campo de entrada con el nombre completo
-                            $('#idCuentaDelCliente').val(obj.nombreCompleto);
-
-                            // Actualiza las etiquetas ocultas con los datos seleccionados
-                            $('#selectedCodigoCliCuentaDelCliente').attr("value", obj.codigoCli);
-
-                            // Oculta las sugerencias
-                            contenedorClientes.addClass('hidden');
-                        });
-
-                        contenedorClientes.append(suggestion);
-                    });
-
-                    // Muestra las sugerencias
-                    contenedorClientes.removeClass('hidden');
-                } else {
-                    // Oculta las sugerencias si no hay resultados
-                    contenedorClientes.addClass('hidden');
-                }
-            },
-            error: function (error) {
-                console.error("ERROR", error);
-            }
-        });
-    };
 
     $(document).on('click', '#registrar_agregarPagos_Excel4', function () {
         // Crear contadores para realizar una acción después de todas las consultas completadas y fallidas

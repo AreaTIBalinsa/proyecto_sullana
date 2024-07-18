@@ -702,11 +702,11 @@ jQuery(function($) {
 
     function fn_TraerEgresosFechas(fechaDesdeTraerPagos, fechaHastaTraerPagos) {
         $.ajax({
-            url: '/fn_consulta_TraerEgresosFechas',
+            url: '/fn_consulta_TraerDetallesEgresos',
             method: 'GET',
             data:{
-                fechaDesdeTraerPagos:fechaDesdeTraerPagos,
-                fechaHastaTraerPagos:fechaHastaTraerPagos,
+                fechaDesde:fechaDesdeTraerPagos,
+                fechaHasta:fechaHastaTraerPagos,
             },
             success: function(response) {
                 // Obtener el select
@@ -719,18 +719,15 @@ jQuery(function($) {
                 // Iterar sobre los objetos y mostrar sus propiedades
                 response.forEach(function(obj) {
                     // Crear una nueva fila
-                    nuevaFila = $('<tr class="bg-white editarPagosEgresos border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
-                    totalPago += parseFloat(obj.cantidadAbonoEgreso);
+                    nuevaFila = $('<tr class="bg-white verDetalleEgreso border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
+                    totalPago += parseFloat(obj.monto_detalle);
                     // Agregar las celdas con la información
-                    nuevaFila.append($('<td class="hidden">').text(obj.idEgresos));
-                    nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(obj.fechaOperacionEgreso));
-                    nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 px-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">').text(obj.nombreEgresoCamal));
-                    nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(obj.cantidadEgreso));
-                    nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(parseFloat(obj.montoEgreso).toFixed(2)));
-                    nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(obj.cantidadAbonoEgreso));
-                    nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap hidden">').text(obj.tipoAbonoEgreso));
-                    nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap hidden">').text(obj.bancoEgreso));
-                    nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap hidden">').text(obj.codigoTransferenciaEgreso));
+                    nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(obj.fecha_detalle));
+                    nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 px-4 font-medium text-gray-900 whitespace-nowrap dark:text-white flex w-full justify-between gap-4 items-center">').html(obj.nombre_category === null ? `<span>${obj.uso_detalle_egreso}</span>` : `<span>${obj.nombre_category}</span>` + "<i class='bx bx-expand' ></i>"));
+                    nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(obj.nombre_category === null ? obj.cantidad_detalles : ""));
+                    nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(obj.nombre_category === null ? parseFloat(obj.precio_detalle).toFixed(2) : obj.monto_detalle));
+                    nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(obj.monto_detalle));
+                    nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap hidden">').text(obj.id_category));
                     // Agregar la nueva fila al tbody
                     tbodyReporteDePagos.append(nuevaFila);
                 });
@@ -818,7 +815,7 @@ jQuery(function($) {
             // Obtener los datos de cada celda de la fila actual
             let fechaAgregEgresoCliente = filaActual.find('td:eq(0)').text().trim();
             fechaAgregEgresoCliente = fechaAgregEgresoCliente.split('-').reverse().join('-');
-            let usoReporteEgreso = filaActual.find('td:eq(1)').text().trim();
+            let usoReporteEgreso = filaActual.find('td:eq(1)').find('input').val().trim();
             let cantidadAgregEgresoCliente = filaActual.find('td:eq(2)').text().trim();
             let montoNuevoAgregEgresoCliente = filaActual.find('td:eq(3)').text().trim();
             let montoAgregEgresoCliente = filaActual.find('td:eq(4)').text().trim();
@@ -1444,5 +1441,78 @@ jQuery(function($) {
             }
         }
     });
+
+    $(document).on('dblclick', ".verDetalleEgreso", function (event) {
+        let fecha = $(this).closest("tr").find("td:eq(0)").text();
+        let categoria = $(this).closest("tr").find("td:eq(5)").text();
+        fn_TraerModalDetallesEgresos(fecha, categoria);
+    });
+
+    $('.cerrarModalEgresosModal, #ModalEgresosModal .opacity-75').on('click', function (e) {
+        $('#ModalEgresosModal').addClass('hidden');
+        $('#ModalEgresosModal').removeClass('flex');
+    });
+
+    function fn_TraerModalDetallesEgresos(fecha,categoria) {
+
+        // Realiza la solicitud AJAX para obtener sugerencias
+        $.ajax({
+            url: '/fn_consulta_TraerModalDetallesEgresos',
+            method: 'GET',
+            data:{
+                fecha : fecha,
+                categoria : categoria,
+            },
+            success: function (response) {
+
+                // Verificar si la respuesta es un arreglo de objetos
+                if (Array.isArray(response)) {
+                    
+                    let contenedorCategoriasEgresos = $('#bodyCategoriaModal');
+                    contenedorCategoriasEgresos.empty();
+
+                    // Iterar sobre los objetos y mostrar sus propiedades
+                    response.forEach(function (obj) {
+                        // Crear una nueva fila
+                        let nuevaFila = `
+                            <tr class="eliminarDetalleEgreso bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-200 text-gray-900 dark:text-white dark:hover:bg-gray-600 cursor-pointer">
+                                <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap hidden">${obj.id_detalle}</td>
+                                <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.fecha_detalle}</td>
+                                <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.hora_detalle}</td>
+                                <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.uso_detalle_egreso}</td>
+                                <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.cantidad_detalles === null ? "" : obj.cantidad_detalles}</td>
+                                <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.precio_detalle}</td>
+                                <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.monto_detalle}</td>
+                                <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.observacion === null ? "" : obj.observacion}</td>
+                                <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap hidden">${obj.id_category}</td>
+                            </tr>
+                        `;
+                        
+                        // Agregar la nueva tabla al tbody
+                        contenedorCategoriasEgresos.append(nuevaFila);
+                        if(obj.id_category == 0 ){
+                            $("#captionEgresosModal").html('Egresos sin Clasificar');
+                            $("#captionEgresosModal, #headerEgresosModal").removeClass('bg-blue-600');
+                            $("#captionEgresosModal, #headerEgresosModal").addClass('bg-red-600');
+                        }else{
+                            $("#captionEgresosModal").html(`${obj.nombre_category}`);
+                            $("#captionEgresosModal, #headerEgresosModal").removeClass('bg-red-600');
+                            $("#captionEgresosModal, #headerEgresosModal").addClass('bg-blue-600');
+                        }
+                    });
+                    $('#ModalEgresosModal').addClass('flex');
+                    $('#ModalEgresosModal').removeClass('hidden');
+
+                } else {
+                    console.log("La respuesta no es un arreglo de objetos.");
+                }
+
+            },
+            error: function (error) {
+                console.error("ERROR", error);
+            }
+        });
+
+    };
 
 });

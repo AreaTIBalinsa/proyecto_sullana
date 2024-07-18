@@ -139,19 +139,6 @@ jQuery(function ($) {
             }
         });
     }
-
-    $('#idClientePorReporte').on('input', function () {
-        let inputReportePorCliente = $(this).val();
-        let contenedorClientes = $('#contenedorClientes');
-        contenedorClientes.empty();
-
-        if (inputReportePorCliente.length > 1 || inputReportePorCliente != "") {
-            fn_TraerClientesReportePorCliente(inputReportePorCliente)
-        } else {
-            contenedorClientes.empty();
-            contenedorClientes.addClass('hidden');
-        }
-    });
     
     $('#btnBuscarReportePorCliente').on('click', function () {
         let inputReportePorCliente = $('#codigoClienteSeleccionado').val();
@@ -164,54 +151,6 @@ jQuery(function ($) {
             alertify.notify('Debe seleccionar un cliente.', 'error', 2);
         }
     });
-
-    function fn_TraerClientesReportePorCliente(inputReportePorCliente) {
-
-        // Realiza la solicitud AJAX para obtener sugerencias
-        $.ajax({
-            url: '/fn_consulta_TraerClientesReportePorCliente',
-            method: 'GET',
-            data: {
-                idClientePorReporte: inputReportePorCliente,
-            },
-            success: function (response) {
-                // Limpia las sugerencias anteriores
-                let contenedorClientes = $('#contenedorClientes')
-                contenedorClientes.empty();
-
-                // Verificar si la respuesta es un arreglo de objetos
-                if (Array.isArray(response)) {
-                    // Iterar sobre los objetos y mostrar sus propiedades como sugerencias
-                    response.forEach(function (obj) {
-                        var suggestion = $('<div class="cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700 p-2 border-b border-gray-300/40">' + obj.nombreCompleto + '</div>');
-
-                        // Maneja el clic en la sugerencia
-                        suggestion.on("click", function () {
-                            // Rellena el campo de entrada con el nombre completo
-                            $('#idClientePorReporte').val(obj.nombreCompleto);
-
-                            // Actualiza las etiquetas ocultas con los datos seleccionados
-                            $('#codigoClienteSeleccionado').val(obj.codigoCli);
-
-                            // Oculta las sugerencias
-                            contenedorClientes.addClass('hidden');
-                        });
-
-                        contenedorClientes.append(suggestion);
-                    });
-
-                    // Muestra las sugerencias
-                    contenedorClientes.removeClass('hidden');
-                } else {
-                    // Oculta las sugerencias si no hay resultados
-                    contenedorClientes.addClass('hidden');
-                }
-            },
-            error: function (error) {
-                console.error("ERROR", error);
-            }
-        });
-    };
 
     function fn_TraerReportePorCliente(fechaDesde,fechaHasta,codigoCliente) {
         $.ajax({
@@ -940,25 +879,23 @@ jQuery(function ($) {
 
     $(document).on('contextmenu', '#tablaReportePorCliente tbody tr', function (e) {
         e.preventDefault();
-        if (tipoUsuario =='Administrador'){
-            let codigoPesada = $(this).closest("tr").find("td:first").text();
-            let identifiTabla = $(this).closest("tr").find("td:eq(11)").text();
-            Swal.fire({
-                title: '¿Desea eliminar el Registro?',
-                text: "¡Estas seguro de eliminar el registro!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                cancelButtonText: '¡No, cancelar!',
-                confirmButtonText: '¡Si,eliminar!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                fn_EliminarPesada(codigoPesada, identifiTabla);
-                console.log(identifiTabla, codigoPesada)
-                }
-            })
-        }
+        let codigoPesada = $(this).closest("tr").find("td:first").text();
+        let identifiTabla = $(this).closest("tr").find("td:eq(11)").text();
+        Swal.fire({
+            title: '¿Desea eliminar el Registro?',
+            text: "¡Estas seguro de eliminar el registro!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: '¡No, cancelar!',
+            confirmButtonText: '¡Si,eliminar!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+            fn_EliminarPesada(codigoPesada, identifiTabla);
+            console.log(identifiTabla, codigoPesada)
+            }
+        })
     });
 
     function fn_EliminarPesada(codigoPesada, identifiTabla){
@@ -1074,66 +1011,6 @@ jQuery(function ($) {
             }
         });
     }
-
-    $('#idCambiarPrecioPesadaCliente').on('input', function () {
-        let inputCambiarPrecioCliente = $(this).val();
-        let contenedorClientes = $('#contenedorClientesCambiarPrecioPesada');
-        contenedorClientes.empty();
-
-        if (inputCambiarPrecioCliente.length > 0 && inputCambiarPrecioCliente != "") {
-            fn_TraerClientesCambiarPrecios(inputCambiarPrecioCliente);
-        } else {
-            contenedorClientes.empty();
-            contenedorClientes.addClass('hidden');
-        }
-    });
-
-    function fn_TraerClientesCambiarPrecios(inputAgregarPagoCliente) {
-
-        $.ajax({
-            url: '/fn_consulta_TraerClientesAgregarPagoCliente',
-            method: 'GET',
-            data: {
-                inputAgregarPagoCliente: inputAgregarPagoCliente,
-            },
-            success: function (response) {
-                // Limpia las sugerencias anteriores
-                let contenedorClientes = $('#contenedorClientesCambiarPrecioPesada')
-                contenedorClientes.empty();
-
-                // Verificar si la respuesta es un arreglo de objetos
-                if (Array.isArray(response) && response.length > 0) {
-                    // Iterar sobre los objetos y mostrar sus propiedades como sugerencias
-                    response.forEach(function (obj) {
-                        var suggestion = $('<div class="cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700 p-2 border-b border-gray-300/40">' + obj.nombreCompleto + '</div>');
-
-                        // Maneja el clic en la sugerencia
-                        suggestion.on("click", function () {
-                            // Rellena el campo de entrada con el nombre completo
-                            $('#idCambiarPrecioPesadaCliente').val(obj.nombreCompleto);
-
-                            // Actualiza las etiquetas ocultas con los datos seleccionados
-                            $('#selectedCodigoCliCambiarPrecioPesada').attr("value", obj.codigoCli);
-
-                            // Oculta las sugerencias
-                            contenedorClientes.addClass('hidden');
-                        });
-
-                        contenedorClientes.append(suggestion);
-                    });
-
-                    // Muestra las sugerencias
-                    contenedorClientes.removeClass('hidden');
-                } else {
-                    // Oculta las sugerencias si no hay resultados
-                    contenedorClientes.addClass('hidden');
-                }
-            },
-            error: function (error) {
-                console.error("ERROR", error);
-            }
-        });
-    };
 
     let selectedIndex = -1;
 

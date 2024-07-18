@@ -154,67 +154,6 @@ jQuery(function ($) {
         let codigoCliente = $('#codigoClienteSeleccionado').val();
         fn_TraerCuentaDelCliente(fechaHasta,fechaHasta,codigoCliente);
     });
-
-    $('#idCuentaDelCliente').on('input', function () {
-        let inputCuentaDelCliente = $(this).val();
-        let contenedorClientes = $('#contenedorClientesCuentaDelCliente');
-        contenedorClientes.empty();
-
-        if (inputCuentaDelCliente.length > 1 || inputCuentaDelCliente != "") {
-            fn_TraerClientesCuentaDelCliente(inputCuentaDelCliente)
-        } else {
-            contenedorClientes.empty();
-            contenedorClientes.addClass('hidden');
-        }
-    });
-
-    function fn_TraerClientesCuentaDelCliente(inputCuentaDelCliente) {
-
-        $.ajax({
-            url: '/fn_consulta_TraerClientesCuentaDelCliente',
-            method: 'GET',
-            data: {
-                idCuentaDelCliente: inputCuentaDelCliente,
-            },
-            success: function (response) {
-                // Limpia las sugerencias anteriores
-                let contenedorClientes = $('#contenedorClientesCuentaDelCliente')
-                contenedorClientes.empty();
-
-                // Verificar si la respuesta es un arreglo de objetos
-                if (Array.isArray(response) && response.length > 0) {
-                    // Iterar sobre los objetos y mostrar sus propiedades como sugerencias
-                    response.forEach(function (obj) {
-                        var suggestion = $('<div class="cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700 p-2 border-b border-gray-300/40">' + obj.nombreCompleto + '</div>');
-
-                        // Maneja el clic en la sugerencia
-                        suggestion.on("click", function () {
-                            // Rellena el campo de entrada con el nombre completo
-                            $('#idCuentaDelCliente').val(obj.nombreCompleto);
-                            $('#phoneInput').val(obj.contactoCli);
-
-                            // Actualiza las etiquetas ocultas con los datos seleccionados
-                            $('#selectedCodigoCliCuentaDelCliente').attr("value", obj.codigoCli);
-
-                            // Oculta las sugerencias
-                            contenedorClientes.addClass('hidden');
-                        });
-
-                        contenedorClientes.append(suggestion);
-                    });
-
-                    // Muestra las sugerencias
-                    contenedorClientes.removeClass('hidden');
-                } else {
-                    // Oculta las sugerencias si no hay resultados
-                    contenedorClientes.addClass('hidden');
-                }
-            },
-            error: function (error) {
-                console.error("ERROR", error);
-            }
-        });
-    };
     
     function fn_TraerCuentaDelCliente(fechaDesde, fechaHasta, codigoCliente) {
         $.ajax({
@@ -11016,7 +10955,7 @@ jQuery(function ($) {
         let totalPesoDecimaNovenaEspecie = parseFloat(item.totalPesoDecimaNovenaEspecie)+parseFloat(item.totalPesoDescuentoDecimaNovenaEspecie);
         let totalPesoVigesimaEspecie = parseFloat(item.totalPesoVigesimaEspecie)+parseFloat(item.totalPesoDescuentoVigesimaEspecie);
         let totalPesoVigesimaPrimeraEspecie = parseFloat(item.totalPesoVigesimaPrimeraEspecie)+parseFloat(item.totalPesoDescuentoVigesimaPrimeraEspecie);
-        let totalPesoVigesimaSegundaEspecie = parseFloat(item.totalPesoVigesimaSegundaEspecie)+parseFloat(item.totalPesoDescuentoVigesimaEspecie);
+        let totalPesoVigesimaSegundaEspecie = parseFloat(item.totalPesoVigesimaSegundaEspecie)+parseFloat(item.totalPesoDescuentoVigesimaSegundaEspecie);
         let totalPesoVigesimaTerceraEspecie = parseFloat(item.totalPesoVigesimaTerceraEspecie)+parseFloat(item.totalPesoDescuentoVigesimaTerceraEspecie);
 
         let totalVentaPrimerEspecie = parseFloat(item.totalVentaPrimerEspecie)+parseFloat(item.totalVentaDescuentoPrimerEspecie);
@@ -11663,66 +11602,6 @@ jQuery(function ($) {
         });
     }
 
-    $('#idCambiarPrecioPesadaCliente').on('input', function () {
-        let inputCambiarPrecioCliente = $(this).val();
-        let contenedorClientes = $('#contenedorClientesCambiarPrecioPesada');
-        contenedorClientes.empty();
-
-        if (inputCambiarPrecioCliente.length > 0 && inputCambiarPrecioCliente != "") {
-            fn_TraerClientesCambiarPrecios(inputCambiarPrecioCliente);
-        } else {
-            contenedorClientes.empty();
-            contenedorClientes.addClass('hidden');
-        }
-    });
-
-    function fn_TraerClientesCambiarPrecios(inputAgregarPagoCliente) {
-
-        $.ajax({
-            url: '/fn_consulta_TraerClientesAgregarPagoCliente',
-            method: 'GET',
-            data: {
-                inputAgregarPagoCliente: inputAgregarPagoCliente,
-            },
-            success: function (response) {
-                // Limpia las sugerencias anteriores
-                let contenedorClientes = $('#contenedorClientesCambiarPrecioPesada')
-                contenedorClientes.empty();
-
-                // Verificar si la respuesta es un arreglo de objetos
-                if (Array.isArray(response) && response.length > 0) {
-                    // Iterar sobre los objetos y mostrar sus propiedades como sugerencias
-                    response.forEach(function (obj) {
-                        var suggestion = $('<div class="cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700 p-2 border-b border-gray-300/40">' + obj.nombreCompleto + '</div>');
-
-                        // Maneja el clic en la sugerencia
-                        suggestion.on("click", function () {
-                            // Rellena el campo de entrada con el nombre completo
-                            $('#idCambiarPrecioPesadaCliente').val(obj.nombreCompleto);
-
-                            // Actualiza las etiquetas ocultas con los datos seleccionados
-                            $('#selectedCodigoCliCambiarPrecioPesada').attr("value", obj.codigoCli);
-
-                            // Oculta las sugerencias
-                            contenedorClientes.addClass('hidden');
-                        });
-
-                        contenedorClientes.append(suggestion);
-                    });
-
-                    // Muestra las sugerencias
-                    contenedorClientes.removeClass('hidden');
-                } else {
-                    // Oculta las sugerencias si no hay resultados
-                    contenedorClientes.addClass('hidden');
-                }
-            },
-            error: function (error) {
-                console.error("ERROR", error);
-            }
-        });
-    };
-
     $(document).on("click", "#btnCambiarPrecioPesadas", function() {      
         $('#ModalCambiarPrecioPesada').addClass('flex');
         $('#ModalCambiarPrecioPesada').removeClass('hidden');
@@ -11837,7 +11716,10 @@ jQuery(function ($) {
 
         $('#fechaAgregarDescuento').val(fechaHoy);
         $('#presentacionAgregarDescuentoCliente').val($('#presentacionAgregarDescuentoCliente option:first').val());
-        $('#selectedCodigoCliAgregarDescuentoCliente').attr('value','');
+        $('#codigoClienteSeleccionado3').val(0);
+        $('#inputNombreClientes3').val("");
+        $("#clienteSeleccionadoCorrecto3").removeClass("flex");
+        $("#clienteSeleccionadoCorrecto3").addClass("hidden");
         $('#idAgregarDescuentoCliente').val('');
         $('#valorAgregarDescuentoCliente').val('');
         $('#valorAgregarDescuentoCliente').val('');
@@ -11848,69 +11730,10 @@ jQuery(function ($) {
         $('#ModalAgregarDescuentoCliente').removeClass('flex');
     });
 
-    $('#idAgregarDescuentoCliente').on('input', function () {
-        let inputAgregarDescuentoCliente = $(this).val();
-        let contenedorClientes = $('#contenedorClientesAgregarDescuentoCliente');
-        contenedorClientes.empty();
-
-        if (inputAgregarDescuentoCliente.length > 1 || inputAgregarDescuentoCliente != "") {
-            fn_TraerClientesAgregarDescuento(inputAgregarDescuentoCliente);
-        } else {
-            contenedorClientes.empty();
-            contenedorClientes.addClass('hidden');
-        }
-    });
-
-    function fn_TraerClientesAgregarDescuento(inputAgregarDescuentoCliente) {
-        $.ajax({
-            url: '/fn_consulta_TraerClientesAgregarDescuento',
-            method: 'GET',
-            data: {
-                idAgregarDescuento: inputAgregarDescuentoCliente,
-            },
-            success: function (response) {
-                // Limpia las sugerencias anteriores
-                let contenedorClientes = $('#contenedorClientesAgregarDescuentoCliente')
-                contenedorClientes.empty();
-
-                // Verificar si la respuesta es un arreglo de objetos
-                if (Array.isArray(response) && response.length > 0) {
-                    // Iterar sobre los objetos y mostrar sus propiedades como sugerencias
-                    response.forEach(function (obj) {
-                        var suggestion = $('<div class="cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700 p-2 border-b border-gray-300/40">' + obj.nombreCompleto + '</div>');
-
-                        // Maneja el clic en la sugerencia
-                        suggestion.on("click", function () {
-                            // Rellena el campo de entrada con el nombre completo
-                            $('#idAgregarDescuentoCliente').val(obj.nombreCompleto);
-
-                            // Actualiza las etiquetas ocultas con los datos seleccionados
-                            $('#selectedCodigoCliAgregarDescuentoCliente').attr("value", obj.codigoCli);
-
-                            // Oculta las sugerencias
-                            contenedorClientes.addClass('hidden');
-                        });
-
-                        contenedorClientes.append(suggestion);
-                    });
-
-                    // Muestra las sugerencias
-                    contenedorClientes.removeClass('hidden');
-                } else {
-                    // Oculta las sugerencias si no hay resultados
-                    contenedorClientes.addClass('hidden');
-                }
-            },
-            error: function (error) {
-                console.error("ERROR", error);
-            }
-        });
-    };
-
     $('#btnAgregarDescuentoCliente').on('click', function () {
         let todosCamposCompletos = true
 
-        let codigoCliente = $('#selectedCodigoCliAgregarDescuentoCliente').attr('value');
+        let codigoCliente = $('#codigoClienteSeleccionado3').val();
         let pesoAgregarDescuentoCliente = parseFloat($('#valorAgregarDescuentoCliente').val())*-1;
         let fechaAgregarDescuentoCliente = $('#fechaAgregarDescuento').val();
         let especieAgregarDescuentoCliente = $('#presentacionAgregarDescuentoCliente').find("option:selected").val();
@@ -12143,11 +11966,82 @@ jQuery(function ($) {
         $("#clienteSeleccionadoCorrecto2").addClass("flex");
         selectedIndex = -1;
     }
+
+    // Tercer filtro Nombre
+
+    $('#inputNombreClientes3').on('input', function () {
+        $('#codigoClienteSeleccionado3').val(0);
+        $("#clienteSeleccionadoCorrecto3").removeClass("flex");
+        $("#clienteSeleccionadoCorrecto3").addClass("hidden");
+        const searchTerm = $(this).val().toLowerCase();
+        const $filtrarClientes = $("#inputNombreClientes3").val();
+        const filteredClientes = clientesArreglo.filter(cliente =>
+            cliente.nombreCompleto.toLowerCase().includes(searchTerm)
+        );
+        if ($filtrarClientes.length > 0) {
+            displayClientes3(filteredClientes);
+            selectedIndex = -1; // Reset index when the input changes
+        } else {
+            const $contenedorDeClientes = $("#contenedorDeClientes3")
+            $contenedorDeClientes.addClass('hidden');
+        }
+    });
+    
+    $('#inputNombreClientes3').on('keydown', function (event) {
+        const $options = $('#contenedorDeClientes3 .option');
+        if ($options.length > 0) {
+            if (event.key === 'ArrowDown') {
+                event.preventDefault();
+                selectedIndex = (selectedIndex + 1) % $options.length;
+                updateSelection($options);
+            } else if (event.key === 'ArrowUp') {
+                event.preventDefault();
+                selectedIndex = (selectedIndex - 1 + $options.length) % $options.length;
+                updateSelection($options);
+            } else if (event.key === 'Enter') {
+                event.preventDefault();
+                if (selectedIndex >= 0) {
+                    $options.eq(selectedIndex).click();
+                    $("#clienteSeleccionadoCorrecto3").removeClass("hidden");
+                    $("#clienteSeleccionadoCorrecto3").addClass("flex");
+                }
+            }
+        }
+    });
+    
+    function displayClientes3(clientesArreglo) {
+        const $contenedor = $('#contenedorDeClientes3');
+        $contenedor.empty();
+        if (clientesArreglo.length > 0) {
+            $contenedor.removeClass('hidden');
+            clientesArreglo.forEach(cliente => {
+                const $div = $('<div class="text-gray-800 text-sm dark:text-white font-medium cursor-pointer overflow-hidden whitespace-nowrap text-ellipsis dark:hover:bg-gray-700 hover:bg-gray-200"></div>')
+                    .text(cliente.nombreCompleto)
+                    .addClass('option p-2')
+                    .on('click', function () {
+                        selectCliente3(cliente);
+                    });
+                $contenedor.append($div);
+            });
+        } else {
+            $contenedor.addClass('hidden');
+        }
+    }
+    
+    function selectCliente3(cliente) {
+        $('#inputNombreClientes3').val(cliente.nombreCompleto);
+        $('#codigoClienteSeleccionado3').val(cliente.codigoCli);
+        $('#contenedorDeClientes3').addClass('hidden');
+        $("#clienteSeleccionadoCorrecto3").removeClass("hidden");
+        $("#clienteSeleccionadoCorrecto3").addClass("flex");
+        selectedIndex = -1;
+    }
     
     $(document).on('click', function (event) {
         if (!$(event.target).closest('.relative').length) {
             $('#contenedorDeClientes').addClass('hidden');
             $('#contenedorDeClientes2').addClass('hidden');
+            $('#contenedorDeClientes3').addClass('hidden');
             selectedIndex = -1;
         }
     });
