@@ -871,48 +871,83 @@ jQuery(function ($) {
     }
     
     function hacerCeldasEditables(tbody) {
-        tbody.on('keydown', 'td[contenteditable="true"]', function(e) {
-            let currentTd = $(this);
+        tbody.on('keydown', 'td[contenteditable="true"], td input', function(e) {
+            let currentElement = $(this);
+            let currentTd = currentElement.closest('td');
             let currentRow = currentTd.parent();
             let currentTdIndex = currentTd.index();
     
-            if (e.key === "ArrowRight") {
+            if (e.key === "ArrowRight" || e.key === "ArrowLeft" || e.key === "ArrowDown" || e.key === "ArrowUp") {
                 e.preventDefault();
-                let nextTd = currentTd.nextAll('td[contenteditable="true"]').first();
-                if (nextTd.length) {
-                    nextTd.focus();
-                } else {
+    
+                if (e.key === "ArrowRight") {
+                    let nextTd = currentTd.nextAll('td[contenteditable="true"], td').first();
+                    if (nextTd.length) {
+                        let nextInput = nextTd.find('input').first();
+                        if (nextInput.length) {
+                            nextInput.focus();
+                        } else {
+                            nextTd.focus();
+                        }
+                    } else {
+                        let nextRow = currentRow.next();
+                        if (nextRow.length) {
+                            let nextTdInNextRow = nextRow.children().eq(currentTdIndex);
+                            let nextInputInNextRow = nextTdInNextRow.find('input').first();
+                            if (nextInputInNextRow.length) {
+                                nextInputInNextRow.focus();
+                            } else {
+                                nextTdInNextRow.focus();
+                            }
+                        }
+                    }
+                } else if (e.key === "ArrowLeft") {
+                    let prevTd = currentTd.prevAll('td[contenteditable="true"], td').first();
+                    if (prevTd.length) {
+                        let prevInput = prevTd.find('input').first();
+                        if (prevInput.length) {
+                            prevInput.focus();
+                        } else {
+                            prevTd.focus();
+                        }
+                    } else {
+                        let prevRow = currentRow.prev();
+                        if (prevRow.length) {
+                            let prevTdInPrevRow = prevRow.children().eq(currentTdIndex);
+                            let prevInputInPrevRow = prevTdInPrevRow.find('input').first();
+                            if (prevInputInPrevRow.length) {
+                                prevInputInPrevRow.focus();
+                            } else {
+                                prevTdInPrevRow.focus();
+                            }
+                        }
+                    }
+                } else if (e.key === "ArrowDown") {
                     let nextRow = currentRow.next();
                     if (nextRow.length) {
-                        nextRow.children('td[contenteditable="true"]').first().focus();
+                        let nextTdInNextRow = nextRow.children().eq(currentTdIndex);
+                        let nextInputInNextRow = nextTdInNextRow.find('input').first();
+                        if (nextInputInNextRow.length) {
+                            nextInputInNextRow.focus();
+                        } else {
+                            nextTdInNextRow.focus();
+                        }
                     }
-                }
-            } else if (e.key === "ArrowLeft") {
-                e.preventDefault();
-                let prevTd = currentTd.prevAll('td[contenteditable="true"]').first();
-                if (prevTd.length) {
-                    prevTd.focus();
-                } else {
+                } else if (e.key === "ArrowUp") {
                     let prevRow = currentRow.prev();
                     if (prevRow.length) {
-                        prevRow.children('td[contenteditable="true"]').last().focus();
+                        let prevTdInPrevRow = prevRow.children().eq(currentTdIndex);
+                        let prevInputInPrevRow = prevTdInPrevRow.find('input').first();
+                        if (prevInputInPrevRow.length) {
+                            prevInputInPrevRow.focus();
+                        } else {
+                            prevTdInPrevRow.focus();
+                        }
                     }
-                }
-            } else if (e.key === "ArrowDown") {
-                e.preventDefault();
-                let nextRow = currentRow.next();
-                if (nextRow.length) {
-                    nextRow.children().eq(currentTdIndex).focus();
-                }
-            } else if (e.key === "ArrowUp") {
-                e.preventDefault();
-                let prevRow = currentRow.prev();
-                if (prevRow.length) {
-                    prevRow.children().eq(currentTdIndex).focus();
                 }
             }
         });
-    }        
+    }
     
     function fn_TraerPagosFechas2(fechaDesdeTraerPagos, fechaHastaTraerPagos) {
         $.ajax({

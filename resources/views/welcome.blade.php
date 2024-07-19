@@ -448,8 +448,8 @@
                                         <div class="text-white font-semibold text-xl md:text-2xl flex justify-between w-full whitespace-nowrap gap-2">PESO TOTAL<span>:</span></div>
                                     </div>
                                     <div class="flex flex-col items-start">
-                                        <div class="text-white font-semibold text-xl md:text-2xl pl-2" id="cantidadTotalPolloMaltratado">0 Uds.</div>
-                                        <div class="text-white font-semibold text-xl md:text-2xl pl-2" id="pesoTotalPolloMaltratado">0.00 Kg</div>
+                                        <div class="text-white font-semibold text-xl md:text-2xl pl-2" id="cantidadTotalGallinaChicaFija">0 Uds.</div>
+                                        <div class="text-white font-semibold text-xl md:text-2xl pl-2" id="pesoTotalGallinaChicaFija">0.00 Kg</div>
                                     </div>
                                 </div>
                                 <div class="text-white w-full flex justify-center p-1">En linea

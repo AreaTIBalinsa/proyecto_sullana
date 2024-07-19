@@ -35,26 +35,28 @@
                 <label class="font-semibold text-gray-800 dark:text-white">Categoria :</label>
                 <div class="relative flex w-full">
                     <button
-                        class="select-none rounded-lg bg-blue-600 py-2.5 px-6 text-center align-middle font-sans text-xs font-semibold uppercase text-white transition-all focus:opacity-[0.85] active:opacity-[0.85]"
+                        class="select-none md:min-w-min min-w-full rounded-lg bg-blue-600 py-2.5 px-6 text-center align-middle font-sans text-xs font-semibold uppercase text-white transition-all focus:opacity-[0.85] active:opacity-[0.85]"
                         type="button" id="agregarCategoriaBtn"
                     ><i class="fa-solid fa-layer-group"></i>&nbsp;&nbsp;Agregar Categoria
                     </button>
                 </div>
             </div>
-            <hr class="my-5">
-            <div class="flex gap-2 justify-between items-end">
-                <div class="flex gap-2 justify-center items-end">
-                    <div class="flex flex-col justify-center">
-                        <label for="fechaFiltrarDetallesEgresos" class="text-base text-gray-900 dark:text-gray-50">Fecha :</label>
-                        <input type="date" class="outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 px-2.5 py-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" id="fechaFiltrarDetallesEgresos">
+            <hr class="md:my-5 my-4">
+            <div class="flex flex-col gap-3 md:flex-row justify-between items-end">
+                <div class="md:min-w-min min-w-full">
+                    <div class="flex flex-col md:flex-row gap-3 justify-center items-end">
+                        <div class="flex flex-col w-full md:w-auto justify-center">
+                            <label for="fechaFiltrarDetallesEgresos" class="text-base text-gray-900 dark:text-gray-50">Fecha :</label>
+                            <input type="date" class="outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 px-2.5 py-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" id="fechaFiltrarDetallesEgresos">
+                        </div>
+                        <button class="text-base py-2 px-5 bg-blue-600 hover:bg-blue-700 text-gray-50 rounded-lg w-full md:w-auto" id="btnBuscarDetallesEgresos"><i class='bx bx-search-alt'></i> Buscar</button>
                     </div>
-                    <button class="text-base py-2 px-5 bg-blue-600 hover:bg-blue-700 text-gray-50 rounded-lg w-full md:w-auto" id="btnBuscarDetallesEgresos"><i class='bx bx-search-alt'></i> Buscar</button>
                 </div>
-                <div class="relative">
+                <div class="relative w-full md:w-auto">
                     <button
-                        class="select-none rounded-lg bg-red-600 py-2.5 px-6 text-center align-middle font-sans text-xs font-semibold uppercase text-white transition-all focus:opacity-[0.85] active:opacity-[0.85]"
+                        class="select-none rounded-lg bg-red-600 py-2.5 px-6 text-center align-middle font-sans text-xs font-semibold uppercase text-white transition-all focus:opacity-[0.85] active:opacity-[0.85] w-full md:w-auto"
                         type="button" id="agregarEgresoBtn"
-                    ><i class="fa-solid fa-table"></i></i>&nbsp;&nbsp;Agregar Egreso
+                    ><i class="fa-solid fa-table"></i>&nbsp;&nbsp;Agregar Egreso
                     </button>
                 </div>
             </div>
@@ -147,7 +149,7 @@
                         <div class="flex justify-center items-start flex-col relative w-full h-full">
                             <label for="usoAgregarEgreso" class="mb-2 text-base font-medium text-gray-900 dark:text-white">Uso :</label>
                             <div class="flex w-full">
-                                <textarea class="w-full outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" autocomplete="off" id="usoAgregarEgreso" placeholder="Ingrese Uso"></textarea>
+                                <textarea class="w-full autocompleteEgresosCajaChica uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" autocomplete="off" id="usoAgregarEgreso" placeholder="Ingrese Uso"></textarea>
                             </div>
                         </div>
                         <div class="flex w-full">

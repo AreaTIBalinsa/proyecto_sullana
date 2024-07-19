@@ -147,6 +147,8 @@ jQuery(function($) {
                 let pesoTotalGallinaDoble = 0
                 let cantidadTotalGallinaChica = 0
                 let pesoTotalGallinaChica = 0
+                let cantidadTotalGallinaChicaFija = 0
+                let pesoTotalGallinaChicaFija = 0
                 let cantidadTotalPolloTrozado = 0
                 let pesoTotalPolloTrozado = 0
                 let cantidadTotalPolloMaltratado = 0
@@ -351,14 +353,17 @@ jQuery(function($) {
 
                     cantidadTotalGallinaChica = cantidadSextaEspecie + cantidadVigesimaPrimeraEspecie
                     pesoTotalGallinaChica = pesoTotalSextaEspecie + pesoTotalVigesimaPrimeraEspecie
+                    
+                    cantidadTotalGallinaChicaFija = cantidadDecimaCuartaEspecie + cantidadVigesimaTerceraEspecie
+                    pesoTotalGallinaChicaFija = pesoTotalDecimaCuartaEspecie + pesoTotalVigesimaTerceraEspecie
 
                     cantidadTotalPolloTrozado = cantidadDecimaEspecie + cantidadDecimaPrimeraEspecie + cantidadDecimaSegundaEspecie + cantidadDecimaTerceraEspecie + 
-                    cantidadDecimaCuartaEspecie + cantidadDecimaQuintaEspecie + cantidadNovenaEspecie
+                    cantidadDecimaQuintaEspecie + cantidadNovenaEspecie
                     pesoTotalPolloTrozado = pesoTotalDecimaEspecie + pesoTotalDecimaPrimeraEspecie + pesoTotalDecimaSegundaEspecie + pesoTotalDecimaTerceraEspecie + 
-                    pesoTotalDecimaCuartaEspecie + pesoTotalDecimaQuintaEspecie
+                    pesoTotalDecimaQuintaEspecie
 
-                    cantidadTotalPolloMaltratado = cantidadOctavaEspecie + cantidadVigesimaTerceraEspecie
-                    pesoTotalPolloMaltratado = pesoTotalOctavaEspecie + pesoTotalVigesimaTerceraEspecie
+                    cantidadTotalPolloMaltratado = cantidadOctavaEspecie
+                    pesoTotalPolloMaltratado = pesoTotalOctavaEspecie
 
                 } else {
                     console.log("La respuesta no es un arreglo de objetos.");
@@ -445,6 +450,8 @@ jQuery(function($) {
                 $('#pesoTotalGallinaDoble').text(pesoTotalGallinaDoble.toFixed(2) + " Kg");
                 $('#cantidadTotalGallinaChica').text(cantidadTotalGallinaChica + " " + (cantidadTotalGallinaChica === 1 ? "Ud." : "Uds."));
                 $('#pesoTotalGallinaChica').text(pesoTotalGallinaChica.toFixed(2) + " Kg");
+                $('#cantidadTotalGallinaChicaFija').text(cantidadTotalGallinaChicaFija + " " + (cantidadTotalGallinaChicaFija === 1 ? "Ud." : "Uds."));
+                $('#pesoTotalGallinaChicaFija').text(pesoTotalGallinaChicaFija.toFixed(2) + " Kg");
                 $('#cantidadTotalPolloTrozado').text(cantidadTotalPolloTrozado + " " + (cantidadTotalPolloTrozado === 1 ? "Ud." : "Uds."));
                 $('#pesoTotalPolloTrozado').text(pesoTotalPolloTrozado.toFixed(2) + " Kg");
                 $('#cantidadTotalPolloMaltratado').text(cantidadTotalPolloMaltratado + " " + (cantidadTotalPolloMaltratado === 1 ? "Ud." : "Uds."));
@@ -525,11 +532,15 @@ jQuery(function($) {
                         cantidadTotalGallinaDoble: 0,
                         pesoTotalGallinaDoble: 0,
                         cantidadTotalGallinaChica: 0,
+                        cantidadTotalGallinaChicaFija: 0,
+                        pesoTotalGallinaChicaFija: 0,
                         pesoTotalGallinaChica: 0,
                         cantidadTotalPolloMaltratado: 0,
                         pesoTotalPolloMaltratado: 0,
                         cantidadTotalPolloTrozado: 0,
                         pesoTotalPolloTrozado: 0,
+                        cantidadTotalEspeciesOtros: 0,
+                        pesoTotalEspeciesOtros: 0,
                     };
 
                     // Verificar si la respuesta es un arreglo de objetos
@@ -776,14 +787,19 @@ jQuery(function($) {
                         datosTiempoReal.cantidadTotalGallinaChica = datosTiempoReal.cantidadSextaEspecie + datosTiempoReal.cantidadVigesimaPrimeraEspecie
                         datosTiempoReal.pesoTotalGallinaChica = datosTiempoReal.pesoTotalSextaEspecie + datosTiempoReal.pesoTotalVigesimaPrimeraEspecie
 
-                        datosTiempoReal.cantidadTotalPolloMaltratado = datosTiempoReal.cantidadOctavaEspecie + datosTiempoReal.cantidadVigesimaTerceraEspecie
-                        datosTiempoReal.pesoTotalPolloMaltratado = datosTiempoReal.pesoTotalOctavaEspecie + datosTiempoReal.pesoTotalVigesimaTerceraEspecie
+                        datosTiempoReal.cantidadTotalGallinaChicaFija = datosTiempoReal.cantidadDecimaCuartaEspecie + datosTiempoReal.cantidadVigesimaTerceraEspecie
+                        datosTiempoReal.pesoTotalGallinaChicaFija = datosTiempoReal.pesoTotalDecimaCuartaEspecie + datosTiempoReal.pesoTotalVigesimaTerceraEspecie
 
+                        datosTiempoReal.cantidadTotalPolloMaltratado = datosTiempoReal.cantidadOctavaEspecie
+                        datosTiempoReal.pesoTotalPolloMaltratado = datosTiempoReal.pesoTotalOctavaEspecie
+                        
                         datosTiempoReal.cantidadTotalPolloTrozado = datosTiempoReal.cantidadDecimaEspecie + datosTiempoReal.cantidadDecimaPrimeraEspecie + datosTiempoReal.cantidadDecimaSegundaEspecie + datosTiempoReal.cantidadDecimaTerceraEspecie + 
-                        datosTiempoReal.cantidadDecimaCuartaEspecie + datosTiempoReal.cantidadDecimaQuintaEspecie + datosTiempoReal.cantidadNovenaEspecie
+                        datosTiempoReal.cantidadDecimaQuintaEspecie + datosTiempoReal.cantidadNovenaEspecie
                         datosTiempoReal.pesoTotalPolloTrozado = datosTiempoReal.pesoTotalDecimaEspecie + datosTiempoReal.pesoTotalDecimaPrimeraEspecie + datosTiempoReal.pesoTotalDecimaSegundaEspecie + datosTiempoReal.pesoTotalDecimaTerceraEspecie + 
-                        datosTiempoReal.pesoTotalDecimaCuartaEspecie + datosTiempoReal.pesoTotalDecimaQuintaEspecie
-
+                        datosTiempoReal.pesoTotalDecimaQuintaEspecie
+                        
+                        datosTiempoReal.cantidadTotalEspeciesOtros = datosTiempoReal.cantidadTotalPolloTrozado + datosTiempoReal.cantidadTotalGallinaChica + datosTiempoReal.cantidadTotalPolloMaltratado
+                        datosTiempoReal.pesoTotalEspeciesOtros = datosTiempoReal.pesoTotalPolloTrozado + datosTiempoReal.pesoTotalGallinaChica + datosTiempoReal.pesoTotalPolloMaltratado
                         // console.log(
                         //     "Cantidad",datosTiempoReal.cantidadTotalesEspecie, "Peso",datosTiempoReal.pesoTotalesEspecie);
 
@@ -913,6 +929,14 @@ jQuery(function($) {
             MERMA_POLLO_XX: {
                 cantidad: 0,
                 pesoTotal: 0
+            },
+            MERMA_GALLINA_CHICA: {
+                cantidad: 0,
+                pesoTotal: 0
+            },
+            MERMA_OTROS: {
+                cantidad: 0,
+                pesoTotal: 0
             }
         };
     
@@ -931,15 +955,21 @@ jQuery(function($) {
                 } else if (especieUpper === "YUGO TRUJILLO AA" || especieUpper === "YUGO PIURA AA" || especieUpper === "STOCK DE YUGO" || especieUpper === "YUGO PIURA") {
                     clasificaciones.MERMA_YUGO.cantidad += especieData.cantidad;
                     clasificaciones.MERMA_YUGO.pesoTotal += especieData.pesoTotal;
-                } else if (especieUpper === "YUGO PIURA GALLINA DOBLE" || especieUpper === "YUGO PIURA GALLINA CHICA" || especieUpper === "STOCK GALLINA") {
+                } else if (especieUpper === "YUGO PIURA GALLINA DOBLE" || especieUpper === "STOCK GALLINA" || especieUpper === "ATOCHE GALLINA DOBLE") {
                     clasificaciones.MERMA_GALLINA.cantidad += especieData.cantidad;
                     clasificaciones.MERMA_GALLINA.pesoTotal += especieData.pesoTotal;
-                } else if (especieUpper === "STOCK DE TECNICA" || especieUpper === "TECNICA AA" || especieUpper === "MASAY" || especieUpper === "CHIMU" || especieUpper === "OTROS") {
+                } else if (especieUpper === "STOCK DE TECNICA" || especieUpper === "TECNICA AA" || especieUpper === "MASAY") {
                     clasificaciones.MERMA_TECNICA.cantidad += especieData.cantidad;
                     clasificaciones.MERMA_TECNICA.pesoTotal += especieData.pesoTotal;
                 } else if (especieUpper === "YUGO PIURA XX" || especieUpper === "YUGO TRUJILLO XX" || especieUpper === "STOCK XX") {
                     clasificaciones.MERMA_POLLO_XX.cantidad += especieData.cantidad;
                     clasificaciones.MERMA_POLLO_XX.pesoTotal += especieData.pesoTotal;
+                } else if (especieUpper === "SALOMON GALLINA CHICA" || especieUpper === "YUGO PIURA GALLINA CHICA") {
+                    clasificaciones.MERMA_GALLINA_CHICA.cantidad += especieData.cantidad;
+                    clasificaciones.MERMA_GALLINA_CHICA.pesoTotal += especieData.pesoTotal;
+                } else if (especieUpper === "CHIMU" || especieUpper === "OTROS") {
+                    clasificaciones.MERMA_OTROS.cantidad += especieData.cantidad;
+                    clasificaciones.MERMA_OTROS.pesoTotal += especieData.pesoTotal;
                 }
             });
         });
@@ -964,6 +994,10 @@ jQuery(function($) {
         let pesoTotalGallo = datosTiempoReal.pesoTotalGallo;
         let cantidadTotalGallinaDoble = datosTiempoReal.cantidadTotalGallinaDoble;
         let pesoTotalGallinaDoble = datosTiempoReal.pesoTotalGallinaDoble;
+        let cantidadTotalGallinaChicaFija = datosTiempoReal.cantidadTotalGallinaChicaFija;
+        let pesoTotalGallinaChicaFija = datosTiempoReal.pesoTotalGallinaChicaFija;
+        let cantidadTotalEspeciesOtros = datosTiempoReal.cantidadTotalEspeciesOtros;
+        let pesoTotalEspeciesOtros = datosTiempoReal.pesoTotalEspeciesOtros;
         let mermaDiferenciaCantidadYugo = clasificaciones.MERMA_YUGO.cantidad - datosTiempoReal.cantidadTotalYugo;
         let mermaDiferenciaPesoYugo = clasificaciones.MERMA_YUGO.pesoTotal - datosTiempoReal.pesoTotalYugo;
         let mermaDiferenciaCantidadTecnica = clasificaciones.MERMA_TECNICA.cantidad - datosTiempoReal.cantidadTotalTecnica;
@@ -974,6 +1008,10 @@ jQuery(function($) {
         let mermaDiferenciaPesoGallo = clasificaciones.MERMA_GALLO.pesoTotal - datosTiempoReal.pesoTotalGallo;
         let mermaDiferenciaCantidadGallinaDoble = clasificaciones.MERMA_GALLINA.cantidad - datosTiempoReal.cantidadTotalGallinaDoble;
         let mermaDiferenciaPesoGallinaDoble = clasificaciones.MERMA_GALLINA.pesoTotal - datosTiempoReal.pesoTotalGallinaDoble;
+        let mermaDiferenciaCantidadGallinaChica = clasificaciones.MERMA_GALLINA_CHICA.cantidad - datosTiempoReal.cantidadTotalGallinaChicaFija;
+        let mermaDiferenciaPesoGallinaChica = clasificaciones.MERMA_GALLINA_CHICA.pesoTotal - datosTiempoReal.pesoTotalGallinaChicaFija;
+        let mermaDiferenciaCantidadEspeciesOtros = clasificaciones.MERMA_OTROS.cantidad - datosTiempoReal.cantidadTotalEspeciesOtros;
+        let mermaDiferenciaPesoEspeciesOtros = clasificaciones.MERMA_OTROS.pesoTotal - datosTiempoReal.pesoTotalEspeciesOtros;
     
         return `
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900">
@@ -1020,6 +1058,24 @@ jQuery(function($) {
                 <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(pesoTotalGallinaDoble ? pesoTotalGallinaDoble : 0).toFixed(2)}</td>
                 <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${mermaDiferenciaCantidadGallinaDoble ? mermaDiferenciaCantidadGallinaDoble : 0}</td>
                 <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(mermaDiferenciaPesoGallinaDoble ? mermaDiferenciaPesoGallinaDoble : 0).toFixed(2)}</td>
+            </tr>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900">
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 text-white bg-blue-600 whitespace-nowrap">Gallina Chica</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${clasificaciones.MERMA_GALLINA_CHICA.cantidad}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${clasificaciones.MERMA_GALLINA_CHICA.pesoTotal.toFixed(2)}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${cantidadTotalGallinaChicaFija ? cantidadTotalGallinaChicaFija : 0}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(pesoTotalGallinaChicaFija ? pesoTotalGallinaChicaFija : 0).toFixed(2)}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${mermaDiferenciaCantidadGallinaChica ? mermaDiferenciaCantidadGallinaChica : 0}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(mermaDiferenciaPesoGallinaChica ? mermaDiferenciaPesoGallinaChica : 0).toFixed(2)}</td>
+            </tr>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900">
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 text-white bg-blue-600 whitespace-nowrap">Otros</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${clasificaciones.MERMA_OTROS.cantidad}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${clasificaciones.MERMA_OTROS.pesoTotal.toFixed(2)}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${cantidadTotalEspeciesOtros ? cantidadTotalEspeciesOtros : 0}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(pesoTotalEspeciesOtros ? pesoTotalEspeciesOtros : 0).toFixed(2)}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${mermaDiferenciaCantidadEspeciesOtros ? mermaDiferenciaCantidadEspeciesOtros : 0}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(mermaDiferenciaPesoEspeciesOtros ? mermaDiferenciaPesoEspeciesOtros : 0).toFixed(2)}</td>
             </tr>
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900">
                 <td class="text-base font-semibold text-left border-2 py-2 px-3 text-white bg-orange-600 whitespace-nowrap">Total</td>
