@@ -392,6 +392,15 @@ jQuery(function($) {
         let observacionDetalle = $('#comentarioAgregarEgreso').val();
         let categoriaDetalle = $('#selectAgregarCategoria').val();
 
+        let comentarioAgregarPagoCliente = "";
+        let horaAgregarPago = "12:00:00";
+        let pagoDerivado = "6";
+        let codCliente = "33";
+        let formaDePagoEgreso = "Flete";
+        let codAgregEgresoCliente = "";
+        let bancoAgregEgresoCliente = "FLETE";
+        let montoEgresoPagoo = parseFloat(montoDetalle)*-1;
+
         if (usoEgreso.trim() == ""){
             alertify.notify('Debe ingresar uso de egreso y seleccionar categoria', 'error', 3);
             return;
@@ -399,6 +408,9 @@ jQuery(function($) {
             alertify.notify('Debe ingresar precio y cantidad(opcional)', 'error', 3);
             return;
         }else{
+            if (usoEgreso.includes("FLETE")) {
+                fn_AgregarPagoClienteExcel(codCliente, montoEgresoPagoo, fechaDetalle, formaDePagoEgreso, codAgregEgresoCliente, comentarioAgregarPagoCliente, bancoAgregEgresoCliente, horaAgregarPago, pagoDerivado, usoEgreso, fechaDetalle)
+            }
             fn_AgregarDetalleEgreso(fechaDetalle, horaDetalle, usoEgreso, cantidadDetalle, precioDetalle, montoDetalle, observacionDetalle, categoriaDetalle);
         }
     });
@@ -670,6 +682,39 @@ jQuery(function($) {
             },
             error: function(error) {
                 console.error("ERROR", error);
+            }
+        });
+    }
+
+    function fn_AgregarPagoClienteExcel(codigoCliente,montoAgregarPagoCliente,fechaAgregarPagoCliente,formaDePago,codAgregarPagoCliente,comentarioAgregarPagoCliente,bancoAgregarPagoCliente,horaAgregarPago, pagoDerivado, nombreCliente, fechaRegistroPagoCliente){
+        return  $.ajax({
+            url: '/fn_consulta_AgregarPagoCliente',
+            method: 'GET',
+            data: {
+                codigoCliente: codigoCliente,
+                montoAgregarPagoCliente: montoAgregarPagoCliente,
+                fechaAgregarPagoCliente: fechaAgregarPagoCliente,
+                formaDePago:formaDePago,
+                codAgregarPagoCliente:codAgregarPagoCliente,
+                comentarioAgregarPagoCliente:comentarioAgregarPagoCliente,
+                bancoAgregarPagoCliente:bancoAgregarPagoCliente,
+                horaAgregarPago:horaAgregarPago,
+                pagoDerivado:pagoDerivado,
+                nombreCliente:nombreCliente,
+                fechaRegistroPagoCliente:fechaRegistroPagoCliente,
+            },
+            success: function(response) {
+                if (response.success) {
+                    
+                }
+            },
+            error: function(error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Error: Ocurrio un error inesperado durante la operacion',
+                  })
+                console.error("ERROR",error);
             }
         });
     }

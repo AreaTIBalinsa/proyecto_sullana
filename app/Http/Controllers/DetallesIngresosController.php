@@ -75,7 +75,7 @@ class DetallesIngresosController extends Controller
                 tb_categorias_egresos.nombre_category
             FROM tb_detalles_egresos
             LEFT JOIN tb_categorias_egresos ON tb_categorias_egresos.id_category = tb_detalles_egresos.id_category
-            WHERE estadoDetalle = 1 AND fecha_detalle = ?',[$fecha]);
+            WHERE estadoDetalle = 1 AND fecha_detalle = ? ORDER BY id_detalle ASC',[$fecha]);
     
             // Devuelve los datos en formato JSON
             return response()->json($datos);
@@ -216,7 +216,7 @@ class DetallesIngresosController extends Controller
             ) AS d
             LEFT JOIN tb_categorias_egresos c ON c.id_category = d.id_category
             WHERE d.id_category = 0 OR d.rn = 1
-            ORDER BY d.fecha_detalle ASC
+            ORDER BY d.fecha_detalle ASC, d.id_detalle ASC
             ',[$fechaDesde,$fechaHasta]);
     
             // Devuelve los datos en formato JSON

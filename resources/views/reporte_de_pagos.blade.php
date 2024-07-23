@@ -947,7 +947,7 @@
         </div>
 
         <!-- Contenido del modal -->
-        <div class="absolute rounded-lg max-h-max inset-0 m-auto align-bottom bg-white dark:bg-gray-700 text-left overflow-hidden shadow-xl transform transition-all sm:max-w-[80%] w-full">
+        <div class="absolute rounded-lg aside_scrollEDINSON max-h-[80%] inset-0 m-auto align-bottom bg-white dark:bg-gray-700 text-left overflow-auto shadow-xl transform transition-all sm:max-w-[80%] w-full">
             <div class="p-4">
                 <div class="w-full overflow-auto">
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">

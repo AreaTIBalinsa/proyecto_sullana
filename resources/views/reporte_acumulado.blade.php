@@ -353,8 +353,11 @@
                         </div>
                     </div>
                     <table class="mb-2">
-                        <caption class="bg-blue-600 text-gray-50 p-2 font-bold text-lg rounded-t-lg border-x-2 border-t-2 z-50">POLLO TROZADO</caption>
                         <thead class="bg-blue-600 text-gray-50 uppercase z-50 text-sm">
+                            <tr>
+                                <th class="bg-blue-600 border-2 px-2 py-2 text-center text-lg" colspan="3">AHOGADOS, SECOS,<br>MALTRADOS, TROZADOS</th>
+                                <th class="bg-blue-600 border-2 px-2 py-1"><button class="w-full bg-green-600 rounded-lg p-2" id="filtrarDetalleTrozado"><i class='bx bx-detail'></i></button></th>
+                            </tr>
                             <tr>
                                 <th class="bg-blue-600 border-2 px-2 py-1 text-left">VARIEDAD</th>
                                 <th class="bg-blue-600 border-2 px-2 py-1">CANTIDAD</th>
@@ -441,6 +444,47 @@
                 <div class="border-t dark:border-gray-500 w-full sm:flex sm:flex-row-reverse pt-4">
                     <button type="button" class="flex w-full justify-center items-center gap-1 rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-700 sm:ml-3 sm:w-auto" id="btnCambiarPrecioPesada">Cambiar</button>
                     <button type="button" class="mt-3 inline-flex w-full justify-center rounded-md bg-red-500 hover:bg-red-600 px-3 py-2 text-sm font-semibold text-gray-100 sm:mt-0 sm:w-auto cerrarModalCambiarPrecioPesada">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{-- Modal Tablas --}}
+<div class="fixed inset-0 overflow-hidden z-[100] hidden" id="ModalTrozadoModal">
+    <div class="flex justify-center items-center w-full min-h-screen h-full py-4 px-4 text-center">
+        <!-- Fondo oscuro overlay -->
+        <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+            <div class="absolute inset-0 bg-gray-900 opacity-75"></div>
+        </div>
+
+        <!-- Contenido del modal -->
+        <div class="absolute rounded-lg aside_scrollEDINSON max-h-[80%] inset-0 m-auto align-bottom bg-white dark:bg-gray-700 text-left shadow-xl transform transition-all sm:max-w-[80%] w-full overflow-auto">
+            <div class="p-4">
+                <div class="w-full overflow-auto">
+                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                        <caption class="bg-blue-600 p-2 w-full border-b-2 text-lg font-bold text-gray-100">TROZADO</caption>
+                        <thead class="text-xs text-gray-100 uppercase bg-blue-600 sticky top-0">
+                            <tr>
+                                <th class="px-2 py-4 text-center">Fecha</th>
+                                <th class="px-2 py-4 text-center">Hora</th>
+                                <th class="px-2 py-4 text-center">Nombre de Cliente</th>
+                                <th class="px-2 py-4 text-center">Especie</th>
+                                <th class="px-2 py-4 text-center">Cantidad</th>
+                                <th class="px-2 py-4 text-center">Peso Bruto</th>
+                                <th class="px-2 py-4 text-center">Peso Tara</th>
+                                <th class="px-2 py-4 text-center">Peso Neto</th>
+                                <th class="px-2 py-4 text-center">Precio</th>
+                            </tr>
+                        </thead>
+                        <tbody id="bodyTrozadoModal">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="px-4 pb-4">
+                <div class="border-t dark:border-gray-500 w-full sm:flex sm:flex-row-reverse pt-4">
+                    <button type="button" class="mt-3 inline-flex w-full justify-center rounded-md bg-red-500 hover:bg-red-600 px-3 py-2 text-sm font-semibold text-gray-100 sm:mt-0 sm:w-auto cerrarModalTrozadoModal">Cerrar</button>
                 </div>
             </div>
         </div>

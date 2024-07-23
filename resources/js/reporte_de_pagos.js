@@ -815,24 +815,14 @@ jQuery(function ($) {
     }
     
     function fn_TraerClientesAgregarPagoClienteTablaExcel(inputAgregarPagoCliente, callback) {
-        $.ajax({
-            url: '/fn_consulta_TraerClientesAgregarPagoCliente',
-            method: 'GET',
-            data: {
-                inputAgregarPagoCliente: inputAgregarPagoCliente,
-            },
-            success: function(response) {
-                if (Array.isArray(response) && response.length > 0) {
-                    callback(response);
-                } else {
-                    callback(null);
-                }
-            },
-            error: function(error) {
-                console.error("ERROR", error);
-                callback(null);
-            }
-        });
+        if (Array.isArray(clientesArreglo) && clientesArreglo.length > 0) {
+            const filteredClients = clientesArreglo.filter(cliente =>
+                cliente.nombreCompleto.includes(inputAgregarPagoCliente.toUpperCase())
+            );
+            callback(filteredClients);
+        } else {
+            callback(null);
+        }
     }
     
     function showSuggestions(cell, clientes) {
@@ -1930,8 +1920,10 @@ jQuery(function ($) {
             let penultimaFila = filas.eq(filas.length - 2);
             let ultimaFila = filas.eq(filas.length - 1);
             let datosColumna0 = penultimaFila.find('td').eq(0).text();
+            let datosColumna6 = penultimaFila.find('td').eq(10).text();
             
             ultimaFila.find('td').eq(0).text(datosColumna0);
+            ultimaFila.find('td').eq(10).text(datosColumna6);
         }
     } 
 
@@ -1941,8 +1933,10 @@ jQuery(function ($) {
             let penultimaFila = filas.eq(filas.length - 2);
             let ultimaFila = filas.eq(filas.length - 1);
             let datosColumna0 = penultimaFila.find('td').eq(0).text();
+            let datosColumna8 = penultimaFila.find('td').eq(7).text();
             
             ultimaFila.find('td').eq(0).text(datosColumna0);
+            ultimaFila.find('td').eq(7).text(datosColumna8);
         }
     } 
 

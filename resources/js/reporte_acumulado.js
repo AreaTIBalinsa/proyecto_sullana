@@ -1216,14 +1216,14 @@ jQuery(function($) {
 
     function construirFilaTotalesExcel()
     {
-        let cantidadTotalesEspecies = cantidadTotalesPrimerEspecie+cantidadTotalesSegundaEspecie+cantidadTotalesTerceraEspecie+cantidadTotalesCuartaEspecie+cantidadTotalesQuintaEspecie+cantidadTotalesSextaEspecie+cantidadTotalesSeptimaEspecie+cantidadTotalesOctavaEspecie+cantidadTotalesDecimaQuintaEspecie+cantidadTotalesDecimaSextaEspecie+cantidadTotalesDecimaSeptimaEspecie+cantidadTotalesDecimaOctavaEspecie+cantidadTotalesDecimaNovenaEspecie+cantidadTotalesVigesimaEspecie+cantidadTotalesVigesimaPrimeraEspecie+cantidadTotalesVigesimaSegundaEspecie+cantidadTotalNovenaEspecie
+        let cantidadTotalesEspecies = cantidadTotalesPrimerEspecie+cantidadTotalesSegundaEspecie+cantidadTotalesTerceraEspecie+cantidadTotalesCuartaEspecie+cantidadTotalesQuintaEspecie+cantidadTotalesSextaEspecie+cantidadTotalesSeptimaEspecie+cantidadTotalesOctavaEspecie+cantidadTotalesDecimaEspecie+cantidadTotalesDecimaPrimeraEspecie+cantidadTotalesDecimaSegundaEspecie+cantidadTotalesDecimaTerceraEspecie+cantidadTotalesDecimaCuartaEspecie+cantidadTotalesDecimaQuintaEspecie+cantidadTotalesDecimaSextaEspecie+cantidadTotalesDecimaSeptimaEspecie+cantidadTotalesDecimaOctavaEspecie+cantidadTotalesDecimaNovenaEspecie+cantidadTotalesVigesimaEspecie+cantidadTotalesVigesimaPrimeraEspecie+cantidadTotalesVigesimaSegundaEspecie+cantidadTotalNovenaEspecie
 
         let pesoTotalesEspecies = pesoTotalesPrimerEspecie+pesoTotalesSegundaEspecie+pesoTotalesTerceraEspecie+pesoTotalesCuartaEspecie+pesoTotalesQuintaEspecie+pesoTotalesSextaEspecie+pesoTotalesSeptimaEspecie+pesoTotalesOctavaEspecie+pesoTotalesDecimaQuintaEspecie+pesoTotalesDecimaSextaEspecie+pesoTotalesDecimaSeptimaEspecie+pesoTotalesDecimaOctavaEspecie+pesoTotalesDecimaNovenaEspecie+pesoTotalesVigesimaEspecie+pesoTotalesVigesimaPrimeraEspecie+pesoTotalesVigesimaSegundaEspecie+pesoTotalesNovenaEspecie+pesoTotalesDecimaEspecie+pesoTotalesDecimaPrimeraEspecie+pesoTotalesDecimaSegundaEspecie+pesoTotalesDecimaTerceraEspecie+pesoTotalesDecimaCuartaEspecie
 
         let precioTotalesEspecies = precioTotalesPrimerEspecie+precioTotalesSegundaEspecie+precioTotalesTerceraEspecie+precioTotalesCuartaEspecie+precioTotalesQuintaEspecie+precioTotalesSextaEspecie+precioTotalesSeptimaEspecie+precioTotalesOctavaEspecie+precioTotalesDecimaQuintaEspecie+precioTotalesDecimaSextaEspecie+precioTotalesDecimaSeptimaEspecie+precioTotalesDecimaOctavaEspecie+precioTotalesDecimaNovenaEspecie+precioTotalesVigesimaEspecie+precioTotalesVigesimaPrimeraEspecie+precioTotalesVigesimaSegundaEspecie+precioTotalesNovenaEspecie+precioTotalesDecimaEspecie+precioTotalesDecimaPrimeraEspecie+precioTotalesDecimaSegundaEspecie+precioTotalesDecimaTerceraEspecie+precioTotalesDecimaCuartaEspecie
 
-        let pesoTotalNovenaEspecie = pesoTotalesNovenaEspecie+pesoTotalesDecimaEspecie+pesoTotalesDecimaPrimeraEspecie+pesoTotalesDecimaSegundaEspecie+pesoTotalesDecimaTerceraEspecie+pesoTotalesDecimaCuartaEspecie
-        let precioTotalNovenaEspecie = precioTotalesNovenaEspecie+precioTotalesDecimaEspecie+precioTotalesDecimaPrimeraEspecie+precioTotalesDecimaSegundaEspecie+precioTotalesDecimaTerceraEspecie+precioTotalesDecimaCuartaEspecie
+        let pesoTotalNovenaEspecie = pesoTotalesNovenaEspecie+pesoTotalesDecimaEspecie+pesoTotalesDecimaPrimeraEspecie+pesoTotalesDecimaSegundaEspecie+pesoTotalesDecimaCuartaEspecie
+        let precioTotalNovenaEspecie = precioTotalesNovenaEspecie+precioTotalesDecimaEspecie+precioTotalesDecimaPrimeraEspecie+precioTotalesDecimaSegundaEspecie+precioTotalesDecimaCuartaEspecie
         
         return `
         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900">
@@ -1317,7 +1317,13 @@ jQuery(function($) {
             <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">S/. ${(precioTotalesOctavaEspecie).toFixed(2)}</td> 
         </tr>
         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900">
-            <td class="text-sm text-left border-2 py-1 px-2 whitespace-nowrap">MALTRATADO VIVO</td>
+            <td class="text-sm text-left border-2 py-1 px-2 whitespace-nowrap">GALLINA CHICA VIVO</td>
+            <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">${cantidadTotalesDecimaTerceraEspecie}</td>
+            <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">${(pesoTotalesDecimaTerceraEspecie).toFixed(2)} Kg.</td>
+            <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">S/. ${(precioTotalesDecimaTerceraEspecie).toFixed(2)}</td> 
+        </tr>
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900">
+            <td class="text-sm text-left border-2 py-1 px-2 whitespace-nowrap">GALLINA CHICA PELADO</td>
             <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">${cantidadTotalesVigesimaSegundaEspecie}</td>
             <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">${(pesoTotalesVigesimaSegundaEspecie).toFixed(2)} Kg.</td>
             <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">S/. ${(precioTotalesVigesimaSegundaEspecie).toFixed(2)}</td> 
@@ -1339,13 +1345,31 @@ jQuery(function($) {
 
     function construirFilaTotalesExcelTrozado()
     {
-        let cantidadTotalesEspecies = cantidadTotalesNovenaEspecie+ cantidadTotalesDecimaEspecie+cantidadTotalesDecimaPrimeraEspecie+cantidadTotalesDecimaSegundaEspecie+cantidadTotalesDecimaTerceraEspecie+cantidadTotalesDecimaCuartaEspecie
+        let cantidadTotalesEspecies = cantidadTotalesNovenaEspecie+ cantidadTotalesDecimaEspecie+cantidadTotalesDecimaPrimeraEspecie+cantidadTotalesDecimaSegundaEspecie+cantidadTotalesDecimaCuartaEspecie+cantidadTotalesSextaEspecie+cantidadTotalesVigesimaEspecie+cantidadTotalesOctavaEspecie+cantidadTotalNovenaEspecie
 
-        let pesoTotalesEspecies = pesoTotalesNovenaEspecie+pesoTotalesDecimaEspecie+pesoTotalesDecimaPrimeraEspecie+pesoTotalesDecimaSegundaEspecie+pesoTotalesDecimaTerceraEspecie+pesoTotalesDecimaCuartaEspecie
+        let pesoTotalesEspecies = pesoTotalesNovenaEspecie+pesoTotalesDecimaEspecie+pesoTotalesDecimaPrimeraEspecie+pesoTotalesDecimaSegundaEspecie+pesoTotalesDecimaCuartaEspecie+pesoTotalesSextaEspecie+pesoTotalesVigesimaEspecie+pesoTotalesOctavaEspecie
 
-        let precioTotalesEspecies = precioTotalesNovenaEspecie+precioTotalesDecimaEspecie+precioTotalesDecimaPrimeraEspecie+precioTotalesDecimaSegundaEspecie+precioTotalesDecimaTerceraEspecie+precioTotalesDecimaCuartaEspecie
+        let precioTotalesEspecies = precioTotalesNovenaEspecie+precioTotalesDecimaEspecie+precioTotalesDecimaPrimeraEspecie+precioTotalesDecimaSegundaEspecie+precioTotalesDecimaCuartaEspecie+precioTotalesSextaEspecie+precioTotalesVigesimaEspecie+precioTotalesOctavaEspecie
         
         return `
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900">
+            <td class="text-sm text-left border-2 py-1 px-2 whitespace-nowrap">AHOGADOS</td>
+            <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">${cantidadTotalesSextaEspecie}</td>
+            <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">${(pesoTotalesSextaEspecie).toFixed(2)} Kg.</td>
+            <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">S/. ${(precioTotalesSextaEspecie).toFixed(2)}</td> 
+        </tr>
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900">
+            <td class="text-sm text-left border-2 py-1 px-2 whitespace-nowrap">SECOS</td>
+            <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">${cantidadTotalesVigesimaEspecie}</td>
+            <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">${(pesoTotalesVigesimaEspecie).toFixed(2)} Kg.</td>
+            <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">S/. ${(precioTotalesVigesimaEspecie).toFixed(2)}</td> 
+        </tr>
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900">
+            <td class="text-sm text-left border-2 py-1 px-2 whitespace-nowrap">MALTRATADO PELADO</td>
+            <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">${cantidadTotalesOctavaEspecie}</td>
+            <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">${(pesoTotalesOctavaEspecie).toFixed(2)} Kg.</td>
+            <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">S/. ${(precioTotalesOctavaEspecie).toFixed(2)}</td> 
+        </tr>
         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900">
             <td class="text-sm text-left border-2 py-1 px-2 whitespace-nowrap">PECHUGA</td>
             <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">${cantidadTotalesNovenaEspecie}</td>
@@ -1371,16 +1395,16 @@ jQuery(function($) {
             <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">S/. ${(precioTotalesDecimaSegundaEspecie).toFixed(2)}</td> 
         </tr>
         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900">
-            <td class="text-sm text-left border-2 py-1 px-2 whitespace-nowrap">DORSO</td>
-            <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">${cantidadTotalesDecimaTerceraEspecie}</td>
-            <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">${(pesoTotalesDecimaTerceraEspecie).toFixed(2)} Kg.</td>
-            <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">S/. ${(precioTotalesDecimaTerceraEspecie).toFixed(2)}</td> 
-        </tr>
-        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900">
             <td class="text-sm text-left border-2 py-1 px-2 whitespace-nowrap">OTROS</td>
             <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">${cantidadTotalesDecimaCuartaEspecie}</td>
             <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">${(pesoTotalesDecimaCuartaEspecie).toFixed(2)} Kg.</td>
             <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">S/. ${(precioTotalesDecimaCuartaEspecie).toFixed(2)}</td> 
+        </tr>
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900">
+            <td class="text-sm text-left border-2 py-1 px-2 whitespace-nowrap">TROZADO</td>
+            <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">${cantidadTotalNovenaEspecie}</td>
+            <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">${(0).toFixed(2)} Kg.</td>
+            <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">S/. ${(0).toFixed(2)}</td> 
         </tr>
         <tr class="bg-blue-600 border-b dark:border-gray-700 text-gray-200">
             <td class="text-sm text-left border-2 py-1 px-2 whitespace-nowrap font-bold">TOTAL :</td>
@@ -2785,6 +2809,9 @@ jQuery(function($) {
                 confirmButtonText: '¡Si, cambiar!'
             }).then((result) => {
                 if (result.isConfirmed) {
+                    if(fechaCambioPrecio == fechaHoy){
+                        fn_ActualizarPrecioXPresentacion(codigoCliente,nuevoPrecio,especieCambioPrecio);
+                    }
                     fn_CambiarPrecioPesadas(codigoCliente, fechaCambioPrecio, especieCambioPrecio, nuevoPrecio);
                 }
             })
@@ -2793,6 +2820,31 @@ jQuery(function($) {
         }
 
     });
+
+    function fn_ActualizarPrecioXPresentacion(idClienteActualizarPrecioXPresentacion, valorActualizarPrecioXPresentacion,numeroEspeciePrecioXPresentacion){
+        $.ajax({
+            url: '/fn_consulta_ActualizarPrecioXPresentacion',
+            method: 'GET',
+            data: {
+                idClienteActualizarPrecioXPresentacion: idClienteActualizarPrecioXPresentacion,
+                valorActualizarPrecioXPresentacion: valorActualizarPrecioXPresentacion,
+                numeroEspeciePrecioXPresentacion: numeroEspeciePrecioXPresentacion,
+            },
+            success: function(response) {
+                if (response.success) {                  
+                    // alertify.notify('Se actualizo el precio correctamente', 'success', 2);
+                }
+            },
+            error: function(error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Error: Ocurrio un error inesperado durante la operacion',
+                  })
+                console.error("ERROR",error);
+            }
+        });
+    }
 
     function fn_CambiarPrecioPesadas(codigoCliente, fechaCambioPrecio, especieCambioPrecio, nuevoPrecio){
         $.ajax({
@@ -2912,83 +2964,80 @@ jQuery(function($) {
         }
     });
 
+    $('.cerrarModalTrozadoModal, #ModalTrozadoModal .opacity-75').on('click', function (e) {
+        $('#ModalTrozadoModal').addClass('hidden');
+        $('#ModalTrozadoModal').removeClass('flex');
+    });
+
+    $(document).on('click', "#filtrarDetalleTrozado", function (event) {
+        let fecha = $("#fechaReporteExcel").val();
+        fn_TraerModalDetallesTrozado(fecha);
+    });
+
+    function fn_TraerModalDetallesTrozado (fecha){
+        $.ajax({
+            url: '/fn_consulta_TraerDetallesTrozado',
+            method: 'GET',
+            data: {
+                fecha: fecha,
+            },
+            success: function(response) {
+                if (Array.isArray(response) && response.length > 0) {
+                    let contenedorDetallesTrozado = $('#bodyTrozadoModal');
+                    contenedorDetallesTrozado.empty();
+
+                    // Iterar sobre los objetos y mostrar sus propiedades
+                    response.forEach(function (obj) {
+
+                        let pesoBruto = obj.pesoNetoPes
+                        let pesoTara = obj.pesoNetoJabas
+
+                        let pesoNeto = 0;
+
+                        if(pesoBruto > 0){
+                            pesoNeto = pesoBruto - pesoTara;
+                        }else{
+                            pesoNeto = pesoBruto + pesoTara;
+                        }
+
+                        // Crear una nueva fila
+                        let nuevaFila = `
+                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-200 text-gray-900 dark:text-white dark:hover:bg-gray-600 cursor-pointer">
+                                <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap hidden">${obj.idPesada}</td>
+                                <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.fechaRegistroPes}</td>
+                                <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.horaPes}</td>
+                                <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.nombreCompleto}</td>
+                                <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.nombreEspecie}</td>
+                                <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.cantidadPes}</td>
+                                <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.pesoNetoPes}</td>
+                                <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.pesoNetoJabas}</td>
+                                <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${parseFloat(pesoNeto).toFixed(2)}</td>
+                                <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.precioPes}</td>
+                            </tr>
+                        `;
+                        
+                        // Agregar la nueva tabla al tbody
+                        contenedorDetallesTrozado.append(nuevaFila);
+                    });
+                    $('#ModalTrozadoModal').addClass('flex');
+                    $('#ModalTrozadoModal').removeClass('hidden');
+                }else{
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'No se encontraron resultados para la fecha seleccionada',
+                    })
+                }
+            },
+            error: function(error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Error: Ocurrio un error inesperado durante la operacion',
+                  })
+                console.error("ERROR",error);
+            }
+        });
+    }
+
 });
-
-/*
-                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${totalCantidad10}</td>
-                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(totalPeso10).toFixed(2)} Kg.</td>
-                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta10).toFixed(2)}</td>
-                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#CAA122]">S/. ${totalVenta10.toFixed(2)}</td>
-                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(promedio10).toFixed(2)}</td>
-
-                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${totalCantidad11}</td>
-                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(totalPeso11).toFixed(2)} Kg.</td>
-                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta11).toFixed(2)}</td>
-                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#CAA122]">S/. ${totalVenta11.toFixed(2)}</td>
-                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(promedio11).toFixed(2)}</td>
-
-                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${totalCantidad12}</td>
-                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(totalPeso12).toFixed(2)} Kg.</td>
-                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta12).toFixed(2)}</td>
-                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#CAA122]">S/. ${totalVenta12.toFixed(2)}</td>
-                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(promedio12).toFixed(2)}</td>
-
-                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${totalCantidad13}</td>
-                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(totalPeso13).toFixed(2)} Kg.</td>
-                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta13).toFixed(2)}</td>
-                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#CAA122]">S/. ${totalVenta13.toFixed(2)}</td>
-                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(promedio13).toFixed(2)}</td>
-
-                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${totalCantidad14}</td>
-                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(totalPeso14).toFixed(2)} Kg.</td>
-                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta14).toFixed(2)}</td>
-                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#CAA122]">S/. ${totalVenta14.toFixed(2)}</td>
-                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(promedio14).toFixed(2)}</td>
-
-                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${totalCantidad15}</td>
-                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(totalPeso15).toFixed(2)} Kg.</td>
-                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioVenta15).toFixed(2)}</td>
-                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#CAA122]">S/. ${totalVenta15.toFixed(2)}</td>
-                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${(promedio15).toFixed(2)}</td>
-
-
-
-
-
-                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${cantidad10}</td>
-                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(peso10).toFixed(2)} Kg.</td>
-                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${(precio10).toFixed(2)}</td>
-                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${venta10.toFixed(2)}</td>
-                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(promedio10).toFixed(2)}</td>
-
-                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${cantidad11}</td>
-                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(peso11).toFixed(2)} Kg.</td>
-                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${(precio11).toFixed(2)}</td>
-                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${venta11.toFixed(2)}</td>
-                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(promedio11).toFixed(2)}</td>
-
-                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${cantidad12}</td>
-                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(peso12).toFixed(2)} Kg.</td>
-                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${(precio12).toFixed(2)}</td>
-                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${venta12.toFixed(2)}</td>
-                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(promedio12).toFixed(2)}</td>
-
-                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${cantidad13}</td>
-                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(peso13).toFixed(2)} Kg.</td>
-                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${(precio13).toFixed(2)}</td>
-                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${venta13.toFixed(2)}</td>
-                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(promedio13).toFixed(2)}</td>
-
-                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${cantidad14}</td>
-                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(peso14).toFixed(2)} Kg.</td>
-                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${(precio14).toFixed(2)}</td>
-                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${venta14.toFixed(2)}</td>
-                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(promedio14).toFixed(2)}</td>
-
-                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${cantidad15}</td>
-                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(peso15).toFixed(2)} Kg.</td>
-                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${(precio15).toFixed(2)}</td>
-                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${venta15.toFixed(2)}</td>
-                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(promedio15).toFixed(2)}</td>
-
-*/

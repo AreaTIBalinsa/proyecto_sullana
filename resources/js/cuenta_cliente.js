@@ -11661,6 +11661,9 @@ jQuery(function ($) {
                 confirmButtonText: '¡Si, cambiar!'
             }).then((result) => {
                 if (result.isConfirmed) {
+                    if(fechaCambioPrecio == fechaHoy){
+                        fn_ActualizarPrecioXPresentacion(codigoCliente,nuevoPrecio,especieCambioPrecio);
+                    }
                     fn_CambiarPrecioPesadas(codigoCliente, fechaCambioPrecio, especieCambioPrecio, nuevoPrecio);
                 }
             })
@@ -11669,6 +11672,31 @@ jQuery(function ($) {
         }
 
     });
+
+    function fn_ActualizarPrecioXPresentacion(idClienteActualizarPrecioXPresentacion, valorActualizarPrecioXPresentacion,numeroEspeciePrecioXPresentacion){
+        $.ajax({
+            url: '/fn_consulta_ActualizarPrecioXPresentacion',
+            method: 'GET',
+            data: {
+                idClienteActualizarPrecioXPresentacion: idClienteActualizarPrecioXPresentacion,
+                valorActualizarPrecioXPresentacion: valorActualizarPrecioXPresentacion,
+                numeroEspeciePrecioXPresentacion: numeroEspeciePrecioXPresentacion,
+            },
+            success: function(response) {
+                if (response.success) {                  
+                    // alertify.notify('Se actualizo el precio correctamente', 'success', 2);
+                }
+            },
+            error: function(error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Error: Ocurrio un error inesperado durante la operacion',
+                  })
+                console.error("ERROR",error);
+            }
+        });
+    }
 
     function fn_CambiarPrecioPesadas(codigoCliente, fechaCambioPrecio, especieCambioPrecio, nuevoPrecio){
         $.ajax({

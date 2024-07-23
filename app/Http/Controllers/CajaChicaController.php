@@ -93,7 +93,7 @@ class CajaChicaController extends Controller
                    IFNULL(CONCAT_WS(" ", nombresCli, apellidoPaternoCli, apellidoMaternoCli), "") AS nombreCompleto
             FROM tb_pagos
             INNER JOIN tb_clientes ON tb_clientes.codigoCli = tb_pagos.codigoCli  
-            WHERE tb_pagos.estadoPago = 1 and clasificacionPago = 2 and tipoAbonoPag != ? and fechaOperacionPag BETWEEN ? AND ?', ["Saldo",$fechaDesde, $fechaHasta]);
+            WHERE tb_pagos.estadoPago = 1 and clasificacionPago = 2 and tipoAbonoPag != ? and fechaOperacionPag BETWEEN ? AND ? ORDER BY idPagos asc', ["Saldo",$fechaDesde, $fechaHasta]);
 
             // Devuelve los datos en formato JSON
             return response()->json($datos);
@@ -181,7 +181,7 @@ class CajaChicaController extends Controller
             nombreEgresoCamal, 
             idEgresos,tipoAbonoEgreso,cantidadAbonoEgreso,fechaOperacionEgreso,bancoEgreso,codigoTransferenciaEgreso,fechaRegistroEgreso,estadoEgreso, cantidadEgreso, montoEgreso 
             FROM tb_egresos 
-            WHERE estadoEgreso = 1 and clasificadoEgreso = 1 and fechaOperacionEgreso BETWEEN ? AND ?', [$fechaDesdeTraerPagos, $fechaHastaTraerPagos]);
+            WHERE estadoEgreso = 1 and clasificadoEgreso = 1 and fechaOperacionEgreso BETWEEN ? AND ? ORDER BY idEgresos asc', [$fechaDesdeTraerPagos, $fechaHastaTraerPagos]);
     
             // Devuelve los datos en formato JSON
             return response()->json($datos);
