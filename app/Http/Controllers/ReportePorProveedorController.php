@@ -9,6 +9,7 @@ use App\Models\ReportePorProveedor\DatosProveedor;
 use App\Models\ReportePorProveedor\RegistrarGuia;
 use App\Models\ReportePorProveedor\EliminarGuia;
 use App\Models\ReportePorProveedor\ActualizarGuia;
+use App\Models\ReportePorProveedor\AgregarPagoClienteProveedores;
 
 class ReportePorProveedorController extends Controller
 {
@@ -160,6 +161,102 @@ class ReportePorProveedorController extends Controller
                     'numGuia' => $valorNumeroGuiaAgregarGuiaEditar,
                 ]);
             
+            return response()->json(['success' => true], 200);
+        }
+
+        // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
+        return response()->json(['error' => 'Usuario no autenticado'], 401);
+    }
+
+    public function consulta_TraerPagosFechasProveedores(Request $request){
+
+        $fechaDesdeTraerProveedores = $request->input('fechaDesdeTraerProveedores');
+        $fechaHastaTraerProveedores = $request->input('fechaHastaTraerProveedores');
+
+        if (Auth::check()) {
+            // Realiza la consulta a la base de datos
+            $datos = DB::select('
+                SELECT tb_pagos_proveedores.idPagos, 
+                tb_pagos_proveedores.cantidadAbonoPag,
+                tb_pagos_proveedores.tipoAbonoPag,
+                tb_pagos_proveedores.fechaOperacionPag,
+                tb_pagos_proveedores.codigoTransferenciaPag,
+                tb_pagos_proveedores.observacion,
+                tb_pagos_proveedores.fechaRegistroPag,
+                tb_pagos_proveedores.horaOperacionPag,
+                tb_pagos_proveedores.bancaPago,
+                tb_especies_compra.nombreEspecie AS nombreCompleto
+                FROM tb_pagos_proveedores
+                LEFT JOIN tb_especies_compra ON tb_especies_compra.idEspecie = tb_pagos_proveedores.codigoCli  
+                WHERE tb_pagos_proveedores.estadoPago = 1 and tipoAbonoPag != ? and fechaOperacionPag BETWEEN ? AND ? 
+                ORDER BY idPagos ASC, nombreCompleto ASC', ["Saldo",$fechaDesdeTraerProveedores,$fechaHastaTraerProveedores]);
+
+            // Devuelve los datos en formato JSON
+            return response()->json($datos);
+        }
+
+        // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
+        return response()->json(['error' => 'Usuario no autenticado'], 401);
+    }
+
+    public function consulta_VerificarCodigoPagoProveedores(Request $request){
+
+        $codAgregarPagoCliente = $request->input('codAgregarPagoCliente');
+
+        if (Auth::check()) {
+            // Realiza la consulta a la base de datos
+            $datos = DB::select('
+            SELECT tb_pagos_proveedores.idPagos, 
+                    tb_pagos_proveedores.cantidadAbonoPag,
+                    tb_pagos_proveedores.tipoAbonoPag,
+                    tb_pagos_proveedores.fechaOperacionPag,
+                    tb_pagos_proveedores.codigoTransferenciaPag,
+                    tb_pagos_proveedores.observacion,
+                    tb_pagos_proveedores.fechaRegistroPag,
+                    tb_pagos_proveedores.horaOperacionPag,
+                    tb_pagos_proveedores.bancaPago,
+                    tb_especies_compra.idEspecie,
+                    tb_especies_compra.nombreEspecie AS nombreCompleto
+            FROM tb_pagos_proveedores
+            LEFT JOIN tb_especies_compra ON tb_especies_compra.idEspecie = tb_pagos_proveedores.codigoCli  
+            WHERE codigoTransferenciaPag = ? AND estadoPago = 1',[$codAgregarPagoCliente]);
+
+            // Devuelve los datos en formato JSON
+            return response()->json($datos);
+        }
+
+        // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
+        return response()->json(['error' => 'Usuario no autenticado'], 401);
+    }
+
+    public function consulta_AgregarPagoClienteProveedores(Request $request){
+
+        $codigoCliente = $request->input('codigoCliente');
+        $montoAgregarPagoCliente = $request->input('montoAgregarPagoCliente');
+        $fechaAgregarPagoCliente = $request->input('fechaAgregarPagoCliente');
+        $formaDePago = $request->input('formaDePago');
+        $codAgregarPagoCliente = $request->input('codAgregarPagoCliente');
+        $comentarioAgregarPagoCliente = $request->input('comentarioAgregarPagoCliente');
+        $bancoAgregarPagoCliente = $request->input('bancoAgregarPagoCliente');
+        $horaAgregarPago = $request->input('horaAgregarPago');
+        $pagoDerivado = $request->input('pagoDerivado');
+        $nombreCliente = $request->input('nombreCliente');
+        $fechaRegistroPagoCliente = $request->input('fechaRegistroPagoCliente');
+
+        if (Auth::check()) {
+            $agregarPagoCliente = new AgregarPagoClienteProveedores;
+            $agregarPagoCliente->codigoCli = $codigoCliente;
+            $agregarPagoCliente->tipoAbonoPag = $formaDePago;
+            $agregarPagoCliente->cantidadAbonoPag = $montoAgregarPagoCliente;
+            $agregarPagoCliente->fechaOperacionPag = $fechaAgregarPagoCliente;
+            $agregarPagoCliente->codigoTransferenciaPag = $codAgregarPagoCliente;
+            $agregarPagoCliente->observacion = $comentarioAgregarPagoCliente;
+            $agregarPagoCliente->bancaPago = $bancoAgregarPagoCliente;
+            $agregarPagoCliente->horaOperacionPag = $horaAgregarPago;
+            $agregarPagoCliente->fechaRegistroPag = $fechaRegistroPagoCliente === null ? now()->setTimezone('America/New_York')->toDateString() : $fechaRegistroPagoCliente;
+            $agregarPagoCliente->estadoPago = 1;
+            $agregarPagoCliente->save();
+    
             return response()->json(['success' => true], 200);
         }
 
