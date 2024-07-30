@@ -3,17 +3,59 @@ window.$ = jQuery;
 
 jQuery(function($) {
     
-    fn_declarar_especies();
-    fn_traerDatosEnTiempoReal();
-    setInterval(fn_traerDatosEnTiempoReal, 10000);
-
+    var verificarDatosTiempoReal;
     // Obtener la fecha actual en formato ISO (YYYY-MM-DD)
     const ahoraEnNY = new Date();
     const fechaHoy = new Date(ahoraEnNY.getFullYear(), ahoraEnNY.getMonth(), ahoraEnNY.getDate()).toISOString().split('T')[0];
+    
+    fn_declarar_especies();
+    fn_traerDatosEnTiempoReal(fechaHoy);
+    fn_traerDatosTablaInicioDiferencias(fechaHoy, fechaHoy)
 
+    setInterval(() => {
+        if (verificarDatosTiempoReal === true) {
+            fn_traerDatosTablaInicioDiferencias(fechaHoy, fechaHoy)
+            fn_traerDatosEnTiempoReal(fechaHoy);
+        }
+    }, 10000);
 
     // Asignar la fecha actual a los inputs
     $('#fechaProduccionAnterior').val(fechaHoy);
+
+    $('#btnProduccionAnterior').on('click', function () {
+        $('#ModalProduccionAnterior').addClass('flex');
+        $('#ModalProduccionAnterior').removeClass('hidden');
+    });
+
+    $('#btnBuscarProduccionAnterior').on('click', function () {
+        let fechaProduccionAnterior = $('#fechaProduccionAnterior').val();
+        if(fechaProduccionAnterior == fechaHoy){
+            verificarDatosTiempoReal = true;
+            $('#fechaDeProduccion').text("Actual");
+        }else{
+            verificarDatosTiempoReal = false;
+            $('#fechaDeProduccion').text(fechaProduccionAnterior);
+        }
+        $('#ModalProduccionAnterior').addClass('hidden');
+        $('#ModalProduccionAnterior').removeClass('flex');
+        fn_traerDatosEnTiempoReal(fechaProduccionAnterior);
+        fn_traerDatosTablaInicioDiferencias(fechaProduccionAnterior, fechaProduccionAnterior)
+    });
+
+    $('#btnRetrocesoProduccionAnterior').on('click', function () {
+        $('#fechaDeProduccion').text("Actual");
+        $('#contenedorGraficaActual').toggle('flex hidden');
+        $('#contenedorGraficaAnterior').toggle('flex hidden');
+        $('#btnRetrocesoProduccionAnterior').toggle('hidden');
+        $('#btnProduccionAnterior').toggle('hidden');
+    });
+
+    $('.cerrarModalProduccionAnterior, .modal-content').on('click', function (e) {
+        if (e.target === this) {
+            $('#ModalProduccionAnterior').addClass('hidden');
+            $('#ModalProduccionAnterior').removeClass('flex');
+        }
+    });
 
     var primerEspecieGlobal = 0;
     var segundaEspecieGlobal = 0;
@@ -78,11 +120,14 @@ jQuery(function($) {
         });
     }
 
-    function fn_traerDatosEnTiempoReal(){
+    function fn_traerDatosEnTiempoReal(fechaHoy){
 
         $.ajax({
             url: '/fn_consulta_TraerDatosEnTiempoReal',
             method: 'GET',
+            data: {
+                fecha : fechaHoy,
+            },
             success: function(response) {
 
                 let cantidadPrimerEspecie = 0
@@ -437,7 +482,6 @@ jQuery(function($) {
 
                 $('#totalUnidadesEspecies').text(cantidadTotalesEspecie + " " + (cantidadTotalesEspecie === 1 ? "Ud." : "Uds."));
                 $('#totalKgEspecies').text(pesoTotalesEspecie.toFixed(2) + " Kg");
-                // ========
                 $('#cantidadTotalYugo').text(cantidadTotalYugo + " " + (cantidadTotalYugo === 1 ? "Ud." : "Uds."));
                 $('#pesoTotalYugo').text(pesoTotalYugo.toFixed(2) + " Kg");
                 $('#cantidadTotalTecnica').text(cantidadTotalTecnica + " " + (cantidadTotalTecnica === 1 ? "Ud." : "Uds."));
@@ -465,12 +509,12 @@ jQuery(function($) {
 
     }
 
-    fn_traerDatosTablaInicioDiferencias(fechaHoy, fechaHoy)
     function fn_traerDatosTablaInicioDiferencias(fechaDesde, fechaHasta){
         let consultaDatosEnTiempoReal = new Promise((resolve, reject) => {
             $.ajax({
                 url: '/fn_consulta_TraerDatosEnTiempoReal',
                 method: 'GET',
+                data: { fecha: fechaDesde},
                 success: function(response) {
                     let datosTiempoReal = {
                         cantidadPrimerEspecie: 0,

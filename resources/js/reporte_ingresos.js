@@ -49,23 +49,52 @@ jQuery(function($) {
         $('#reporteIngresosCajaChica').show();
         $('#reporteIngresosPaul').show();
 
+        function limpiarNombreBanco(nombre) {
+            // Expresiones regulares para detectar variantes y limpiar el nombre
+            const regexBCP = /^BCP/;
+            const regexBBVA = /^BBVA/;
+            const regexIBK = /^IBK/;
+            const regexCajaPiura = /^CAJA PIURA/;
+            const regexCMAC = /^CMAC/;
+            const regexYAPE = /^YAPE/;
+        
+            if (regexBCP.test(nombre)) {
+                return "BCP";
+            } else if (regexBBVA.test(nombre)) {
+                return "BBVA";
+            } else if (regexIBK.test(nombre)) {
+                return "IBK";
+            } else if (regexCajaPiura.test(nombre)) {
+                return "CAJA PIURA";
+            } else if (regexCMAC.test(nombre)) {
+                return "CMAC";
+            } else if (regexYAPE.test(nombre)) {
+                return "YAPE";
+            } else {
+                return nombre; // Devuelve el nombre original si no coincide con ninguna variante
+            }
+        }
+
         if(filtrarBancoPagos  != 0){
             // Filtrar por tipo de banco si se selecciona un valor en el select
             if (filtrarBancoPagos !== "") {
                 $('#tableReporteIngresosBancos tbody tr.filtroPagos1').each(function() {
                     let columna = $(this).find('td:eq(6)').text().trim();
+                    columna = limpiarNombreBanco(columna);
                     if (columna !== filtrarBancoPagos) {
                         $(this).hide();
                     }
                 });
                 $('#tableReporteIngresosBancos tbody tr.filtroPagos2').each(function() {
                     let columna = $(this).find('td:eq(6)').text().trim();
+                    columna = limpiarNombreBanco(columna);
                     if (columna !== filtrarBancoPagos) {
                         $(this).hide();
                     }
                 });
                 $('#tableReporteIngresosBancos tbody tr.filtroPagos3').each(function() {
                     let columna = $(this).find('td:eq(6)').text().trim();
+                    columna = limpiarNombreBanco(columna);
                     if (columna !== filtrarBancoPagos) {
                         $(this).hide();
                     }
@@ -73,6 +102,7 @@ jQuery(function($) {
     
                 $('#tableReporteIngresosGranja tbody tr.editarPagos').each(function() {
                     let columna = $(this).find('td:eq(6)').text().trim();
+                    columna = limpiarNombreBanco(columna);
                     if (columna !== filtrarBancoPagos) {
                         $(this).hide();
                     }
@@ -89,7 +119,7 @@ jQuery(function($) {
 
                 let contador2 = 0
 
-                $('#tableReporteIngresosBancos tbody tr.filtroPagos2:visible').each(function () {
+                $('#tableReporteIngresosBancos tbody tr.filtroPagos2:visible').each(function () {
                     contador2++;
                 });
 
@@ -107,7 +137,9 @@ jQuery(function($) {
                     $('#reporteIngresosPaul').hide();
                 }
             }
-        }
+        }else{
+            updateTotal();
+        }
     });
 
     function updateTotal() {

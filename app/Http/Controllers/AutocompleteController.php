@@ -36,9 +36,26 @@ class AutocompleteController extends Controller
         if (Auth::check()) {
             // Realiza la consulta a la base de datos
             $datos = DB::select('
-            SELECT DISTINCT nombreEgresoCamal 
-            FROM tb_egresos
-            WHERE estadoEgreso = 1 AND clasificadoEgreso = 1');
+            SELECT DISTINCT uso_detalle_egreso 
+            FROM tb_detalles_egresos
+            WHERE estadoDetalle = 1');
+    
+            // Devuelve los datos en formato JSON
+            return response()->json($datos);
+        }
+    
+        // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
+        return response()->json(['error' => 'Usuario no autenticado'], 401);
+    }    
+
+    public function consulta_TraerEgresosCajaChica2(){
+
+        if (Auth::check()) {
+            // Realiza la consulta a la base de datos
+            $datos = DB::select('
+            SELECT DISTINCT uso_detalle_egreso 
+            FROM tb_detalles_ingresos
+            WHERE estadoDetalle = 1');
     
             // Devuelve los datos en formato JSON
             return response()->json($datos);

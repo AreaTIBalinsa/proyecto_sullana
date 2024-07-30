@@ -6,6 +6,8 @@
     <div class="px-5 pb-5 bg-white dark:bg-gray-900 rounded-xl drop-shadow-md">
         <div class="w-full flex justify-between items-center">
             <h4 class="text-gray-900 font-semibold text-ml dark:text-gray-300 py-5">Producción <span id="fechaDeProduccion">Actual</span></h4>
+            <button class="bg-blue-500 p-1 rounded-full" id="btnProduccionAnterior"><i class='bx bx-history text-white'></i></button>
+            <button class="bg-blue-500 p-1 rounded-full hidden" id="btnRetrocesoProduccionAnterior"><i class='bx bx-arrow-back text-white'></i></button>
         </div>
         {{-- Inicia contenedor de Produccion Actual --}}
         <div class="" id="contenedorGraficaActual">
@@ -645,7 +647,7 @@
 
 <div class="fixed hidden top-0 left-0 z-[100] justify-center items-center w-screen h-screen bg-gray-900 bg-opacity-75 transition-opacity cerrarModalProduccionAnterior" id="ModalProduccionAnterior">
     <div class="modal-content max-w-lg w-full mx-4">
-        <div class="transform overflow-hidden rounded-lg bg-white dark:bg-slate-700 shadow-xl transition-all">
+        <div class="transform overflow-hidden rounded-lg bg-white dark:bg-gray-700 shadow-xl transition-all">
             <div class=" p-4">
                 <div class="flex flex-col">
                     <div class="border-b rounded-t dark:border-gray-500 p-2 flex justify-center">

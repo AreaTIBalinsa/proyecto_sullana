@@ -76,18 +76,18 @@
                 <select name="filtrarBancoPagos" id="filtrarBancoPagos" class="w-full h-10 uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-b-lg md:rounded-none md:rounded-r-lg">
                     <option value="0">TODOS</option>
                     <option value="BCP">BCP</option>
-                    <option value="BCP BREC">BCP BREC</option>
+                    {{-- <option value="BCP BREC">BCP BREC</option>
                     <option value="BCP BRIALE">BCP BRIALE</option>
-                    <option value="BCP BRIALEMAGI">BCP BRIALEMAGI</option>
+                    <option value="BCP BRIALEMAGI">BCP BRIALEMAGI</option> --}}
                     <option value="IBK">IBK</option>
-                    <option value="IBK B">IBK B</option>
-                    <option value="IBK BRE">IBK BRE</option>
+                    {{-- <option value="IBK B">IBK B</option>
+                    <option value="IBK BRE">IBK BRE</option> --}}
                     <option value="CMAC">CMAC</option>
-                    <option value="CMAC B">CMAC B</option>
-                    <option value="CMAC BRE">CMAC BRE</option>
+                    {{-- <option value="CMAC B">CMAC B</option>
+                    <option value="CMAC BRE">CMAC BRE</option> --}}
                     <option value="BBVA">BBVA</option>
-                    <option value="BBVA B">BBVA B</option>
-                    <option value="BBVA BRE">BBVA BRE</option>
+                    {{-- <option value="BBVA B">BBVA B</option>
+                    <option value="BBVA BRE">BBVA BRE</option> --}}
                     <option value="YAPE">YAPE</option>
                     <option value="CAJA PIURA">CAJA PIURA</option>
                 </select>

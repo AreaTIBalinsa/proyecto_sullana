@@ -25,6 +25,7 @@ use App\Http\Controllers\CuentaClienteController;
 use App\Http\Controllers\PesadasWebController;
 use App\Http\Controllers\ReporteIngresosController;
 use App\Http\Controllers\DetallesIngresosController;
+use App\Http\Controllers\DetallesIngresos2Controller;
 use App\Http\Controllers\AutocompleteController;
 
 /*
@@ -74,6 +75,7 @@ Route::get('/cuenta_cliente',[CuentaClienteController::class,'show']);
 Route::get('/pesadas_web',[PesadasWebController::class,'show']);
 Route::get('/reporte_ingresos',[ReporteIngresosController::class,'show']);
 Route::get('/detalles_egresos',[DetallesIngresosController::class,'show']);
+Route::get('/detalles_ingresos',[DetallesIngresos2Controller::class,'show']);
 
 /* ============================== Termina Controladores para Mostrar Vistas ============================== */
 
@@ -224,6 +226,16 @@ Route::get('/fn_consulta_EliminarDetalleEgreso',[DetallesIngresosController::cla
 Route::get('/fn_consulta_TraerDetallesEgresos',[DetallesIngresosController::class,'consulta_TraerDetallesEgresos']);
 Route::get('/fn_consulta_TraerModalDetallesEgresos',[DetallesIngresosController::class,'consulta_TraerModalDetallesEgresos']);
 
+Route::get('/fn_consulta_CrearCategoria2',[DetallesIngresos2Controller::class,'consulta_CrearCategoria']);
+Route::get('/fn_consulta_TraerTablasCategoriasEgresos2',[DetallesIngresos2Controller::class,'consulta_TraerTablasCategoriasEgresos']);
+Route::get('/fn_consulta_TraerTablasDetallesEgresos2',[DetallesIngresos2Controller::class,'consulta_TraerTablasDetallesEgresos']);
+Route::get('/fn_consulta_AgregarDetalleEgreso2',[DetallesIngresos2Controller::class,'consulta_AgregarDetalleEgreso']);
+Route::get('/fn_consulta_AgregarDetalleEgresoEditar2',[DetallesIngresos2Controller::class,'consulta_AgregarDetalleEgresoEditar']);
+Route::get('/fn_consulta_EliminarDetalleEgreso2',[DetallesIngresos2Controller::class,'consulta_EliminarDetalleEgreso']);
+Route::get('/fn_consulta_TraerDetallesEgresos2',[DetallesIngresos2Controller::class,'consulta_TraerDetallesEgresos']);
+Route::get('/fn_consulta_TraerModalDetallesEgresos2',[DetallesIngresos2Controller::class,'consulta_TraerModalDetallesEgresos']);
+
 Route::get('/fn_consulta_TraerClientes',[AutocompleteController::class,'consulta_TraerClientes']);
 Route::get('/fn_consulta_TraerEgresosCajaChica',[AutocompleteController::class,'consulta_TraerEgresosCajaChica']);
+Route::get('/fn_consulta_TraerEgresosCajaChica2',[AutocompleteController::class,'consulta_TraerEgresosCajaChica2']);
 Route::get('/fn_consulta_TraerEgresosPaul',[AutocompleteController::class,'consulta_TraerEgresosPaul']);
