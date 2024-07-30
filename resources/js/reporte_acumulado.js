@@ -1311,7 +1311,7 @@ jQuery(function($) {
             <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">S/. ${(precioTotalesVigesimaPrimeraEspecie).toFixed(2)}</td> 
         </tr>
         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900">
-            <td class="text-sm text-left border-2 py-1 px-2 whitespace-nowrap">MALTRATADO PELADO</td>
+            <td class="text-sm text-left border-2 py-1 px-2 whitespace-nowrap">POLLO MUTILADO</td>
             <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">${cantidadTotalesOctavaEspecie}</td>
             <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">${(pesoTotalesOctavaEspecie).toFixed(2)} Kg.</td>
             <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">S/. ${(precioTotalesOctavaEspecie).toFixed(2)}</td> 
@@ -1351,6 +1351,10 @@ jQuery(function($) {
 
         let precioTotalesEspecies = precioTotalesNovenaEspecie+precioTotalesDecimaEspecie+precioTotalesDecimaPrimeraEspecie+precioTotalesDecimaSegundaEspecie+precioTotalesDecimaCuartaEspecie+precioTotalesSextaEspecie+precioTotalesVigesimaEspecie+precioTotalesOctavaEspecie
         
+        let pesoTotalesEspeciesTrozado = pesoTotalesNovenaEspecie+pesoTotalesDecimaEspecie+pesoTotalesDecimaPrimeraEspecie+pesoTotalesDecimaSegundaEspecie+pesoTotalesDecimaCuartaEspecie
+
+        let precioTotalesEspeciesTrozado = precioTotalesNovenaEspecie+precioTotalesDecimaEspecie+precioTotalesDecimaPrimeraEspecie+precioTotalesDecimaSegundaEspecie+precioTotalesDecimaCuartaEspecie
+
         return `
         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900">
             <td class="text-sm text-left border-2 py-1 px-2 whitespace-nowrap">AHOGADOS</td>
@@ -1365,46 +1369,46 @@ jQuery(function($) {
             <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">S/. ${(precioTotalesVigesimaEspecie).toFixed(2)}</td> 
         </tr>
         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900">
-            <td class="text-sm text-left border-2 py-1 px-2 whitespace-nowrap">MALTRATADO PELADO</td>
+            <td class="text-sm text-left border-2 py-1 px-2 whitespace-nowrap">POLLO MUTILADO</td>
             <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">${cantidadTotalesOctavaEspecie}</td>
             <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">${(pesoTotalesOctavaEspecie).toFixed(2)} Kg.</td>
             <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">S/. ${(precioTotalesOctavaEspecie).toFixed(2)}</td> 
         </tr>
-        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900">
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900 tdMostrarTrozado">
+            <td class="text-sm text-left border-2 py-1 px-2 whitespace-nowrap">TROZADO</td>
+            <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">${cantidadTotalNovenaEspecie}</td>
+            <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">${(pesoTotalesEspeciesTrozado).toFixed(2)} Kg.</td>
+            <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">S/. ${(precioTotalesEspeciesTrozado).toFixed(2)}</td> 
+        </tr>
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900 trozadoOculto hidden">
             <td class="text-sm text-left border-2 py-1 px-2 whitespace-nowrap">PECHUGA</td>
             <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">${cantidadTotalesNovenaEspecie}</td>
             <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">${(pesoTotalesNovenaEspecie).toFixed(2)} Kg.</td>
             <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">S/. ${(precioTotalesNovenaEspecie).toFixed(2)}</td> 
         </tr>
-        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900">
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900 trozadoOculto hidden">
             <td class="text-sm text-left border-2 py-1 px-2 whitespace-nowrap">PIERNA</td>
             <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">${cantidadTotalesDecimaEspecie}</td>
             <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">${(pesoTotalesDecimaEspecie).toFixed(2)} Kg.</td>
             <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">S/. ${(precioTotalesDecimaEspecie).toFixed(2)}</td> 
         </tr>
-        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900">
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900 trozadoOculto hidden">
             <td class="text-sm text-left border-2 py-1 px-2 whitespace-nowrap">ALAS</td>
             <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">${cantidadTotalesDecimaPrimeraEspecie}</td>
             <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">${(pesoTotalesDecimaPrimeraEspecie).toFixed(2)} Kg.</td>
             <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">S/. ${(precioTotalesDecimaPrimeraEspecie).toFixed(2)}</td> 
         </tr>
-        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900">
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900 trozadoOculto hidden">
             <td class="text-sm text-left border-2 py-1 px-2 whitespace-nowrap">MENUDENCIA</td>
             <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">${cantidadTotalesDecimaSegundaEspecie}</td>
             <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">${(pesoTotalesDecimaSegundaEspecie).toFixed(2)} Kg.</td>
             <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">S/. ${(precioTotalesDecimaSegundaEspecie).toFixed(2)}</td> 
         </tr>
-        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900">
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900 trozadoOculto hidden">
             <td class="text-sm text-left border-2 py-1 px-2 whitespace-nowrap">OTROS</td>
             <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">${cantidadTotalesDecimaCuartaEspecie}</td>
             <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">${(pesoTotalesDecimaCuartaEspecie).toFixed(2)} Kg.</td>
             <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">S/. ${(precioTotalesDecimaCuartaEspecie).toFixed(2)}</td> 
-        </tr>
-        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900">
-            <td class="text-sm text-left border-2 py-1 px-2 whitespace-nowrap">TROZADO</td>
-            <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">${cantidadTotalNovenaEspecie}</td>
-            <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">${(0).toFixed(2)} Kg.</td>
-            <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">S/. ${(0).toFixed(2)}</td> 
         </tr>
         <tr class="bg-blue-600 border-b dark:border-gray-700 text-gray-200">
             <td class="text-sm text-left border-2 py-1 px-2 whitespace-nowrap font-bold">TOTAL :</td>
@@ -2706,48 +2710,6 @@ jQuery(function($) {
         fila.addClass('bg-gray-300 dark:bg-gray-600');
     });
 
-    fn_declararEspeciesCambiarPrecios();
-    function fn_declararEspeciesCambiarPrecios(){
-        $.ajax({
-            url: '/fn_consulta_DatosEspecie',
-            method: 'GET',
-            success: function(response) {
-                // Verificar si la respuesta es un arreglo de objetos
-                if (Array.isArray(response)) {
-                    
-                    // Obtener el select
-                    let selectPresentacion = $('#especiesCambioPrecioPesadas');
-                    
-                    // Vaciar el select actual, si es necesario
-                    selectPresentacion.empty();
-
-                    // Agregar la opción inicial "Seleccione tipo"
-                    selectPresentacion.append($('<option>', {
-                        value: '0',
-                        text: 'Seleccione presentación',
-                        disabled: true,
-                        selected: true
-                    }));
-
-                    // Iterar sobre los objetos y mostrar sus propiedades
-                    response.forEach(function(obj) {
-                        let option = $('<option>', {
-                            value: obj.idEspecie,
-                            text: obj.nombreEspecie
-                        });
-                        selectPresentacion.append(option);
-                    });
-
-                } else {
-                    console.log("La respuesta no es un arreglo de objetos.");
-                }
-            },
-            error: function(error) {
-                console.error("ERROR",error);
-            }
-        });
-    }
-
     let selectedIndex = -1;
 
     $(document).on("click", "#btnCambiarPrecioPesadas", function() {      
@@ -2771,121 +2733,6 @@ jQuery(function($) {
         $('#ModalCambiarPrecioPesada').addClass('hidden');
         $('#ModalCambiarPrecioPesada').removeClass('flex');
     });
-
-    $('#btnCambiarPrecioPesada').on('click', function () {
-        let codigoCliente = $('#codigoClienteSeleccionado2').val();
-        let fechaCambioPrecio = $('#fechaCambiarPrecioPesada').val();
-        let especieCambioPrecio = $('#especiesCambioPrecioPesadas').val();
-        let nuevoPrecio = $('#nuevoPrecioCambiarPesadas').val();
-
-        let contadorErrores = 0
-
-        if (codigoCliente == 0 || codigoCliente == ""){
-            contadorErrores++;
-            alertify.notify('Seleccione cliente.', 'error', 3);
-        }
-        if (especieCambioPrecio == 0 || especieCambioPrecio == "" || especieCambioPrecio === null){
-            contadorErrores++;
-            $("#especiesCambioPrecioPesadas").removeClass('dark:border-gray-600 border-gray-300').addClass('border-red-500');
-        }else{
-            $("#especiesCambioPrecioPesadas").removeClass('border-red-500').addClass('dark:border-gray-600 border-gray-300');
-        }
-        if(nuevoPrecio == ""){
-            contadorErrores++;
-            $("#nuevoPrecioCambiarPesadas").removeClass('dark:border-gray-600 border-gray-300').addClass('border-red-500');
-        }else{
-            $("#nuevoPrecioCambiarPesadas").removeClass('border-red-500').addClass('dark:border-gray-600 border-gray-300');
-        }
-
-        if (contadorErrores <= 0){
-            Swal.fire({
-                title: '¿Desea cambiar los registros?',
-                text: "¡Estas seguro de cambiar el precio de las pesadas!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                cancelButtonText: '¡No, cancelar!',
-                confirmButtonText: '¡Si, cambiar!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    if(fechaCambioPrecio == fechaHoy){
-                        fn_ActualizarPrecioXPresentacion(codigoCliente,nuevoPrecio,especieCambioPrecio);
-                    }
-                    fn_CambiarPrecioPesadas(codigoCliente, fechaCambioPrecio, especieCambioPrecio, nuevoPrecio);
-                }
-            })
-        }else{
-            alertify.notify('Debe rellenar todos los campos.', 'error', 3);
-        }
-
-    });
-
-    function fn_ActualizarPrecioXPresentacion(idClienteActualizarPrecioXPresentacion, valorActualizarPrecioXPresentacion,numeroEspeciePrecioXPresentacion){
-        $.ajax({
-            url: '/fn_consulta_ActualizarPrecioXPresentacion',
-            method: 'GET',
-            data: {
-                idClienteActualizarPrecioXPresentacion: idClienteActualizarPrecioXPresentacion,
-                valorActualizarPrecioXPresentacion: valorActualizarPrecioXPresentacion,
-                numeroEspeciePrecioXPresentacion: numeroEspeciePrecioXPresentacion,
-            },
-            success: function(response) {
-                if (response.success) {                  
-                    // alertify.notify('Se actualizo el precio correctamente', 'success', 2);
-                }
-            },
-            error: function(error) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Error: Ocurrio un error inesperado durante la operacion',
-                  })
-                console.error("ERROR",error);
-            }
-        });
-    }
-
-    function fn_CambiarPrecioPesadas(codigoCliente, fechaCambioPrecio, especieCambioPrecio, nuevoPrecio){
-        $.ajax({
-            url: '/fn_consulta_CambiarPrecioPesadas',
-            method: 'GET',
-            data: {
-                codigoCliente: codigoCliente,
-                fechaCambioPrecio : fechaCambioPrecio,
-                especieCambioPrecio: especieCambioPrecio,
-                nuevoPrecio: nuevoPrecio,
-            },
-            success: function(response) {
-                if (response.success) {
-                    Swal.fire({
-                        position: 'center',
-                        icon: 'success',
-                        title: 'Se cambio los precios correctamente.',
-                        showConfirmButton: false,
-                        timer: 2000
-                    });
-                    $('#codigoClienteSeleccionado2').val(0);
-                    $('#especiesCambioPrecioPesadas').val(0);
-                    $('#nuevoPrecioCambiarPesadas').val("");
-                    $('#idCambiarPrecioPesadaCliente').val("");
-                    $('#ModalCambiarPrecioPesada').addClass('hidden');
-                    $('#ModalCambiarPrecioPesada').removeClass('flex');
-                    // $('#filtrarReporteAcumuladoDesdeHastaExcel').trigger('click');
-                    let fechaEnviarTexto = $('#fechaReporteExcel').val();
-                    fn_TraerReporteAcumuladoDetalle(fechaEnviarTexto,fechaEnviarTexto);
-                } 
-            },
-            error: function(error) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Error: Ocurrio un error inesperado durante la operacion',
-                  })
-                console.error("ERROR",error);
-            }
-        });
-    }
 
     // Segundo filtro Nombre
 
@@ -3028,6 +2875,372 @@ jQuery(function($) {
                         text: 'No se encontraron resultados para la fecha seleccionada',
                     })
                 }
+            },
+            error: function(error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Error: Ocurrio un error inesperado durante la operacion',
+                  })
+                console.error("ERROR",error);
+            }
+        });
+    }
+
+    $(document).on("click", ".tdMostrarTrozado", function() {
+        $(".trozadoOculto").each(function() {
+            if ($(this).is(":visible")) {
+                $(this).hide();
+            } else {
+                $(this).show();
+            }
+        });
+    });    
+
+    var arrayCambiarPrecios = [];
+
+    fn_declararEspeciesCambiarPrecios();
+    function fn_declararEspeciesCambiarPrecios(){
+        $.ajax({
+            url: '/fn_consulta_DatosEspecie',
+            method: 'GET',
+            success: function(response) {
+                // Verificar si la respuesta es un arreglo de objetos
+                if (Array.isArray(response)) {
+
+                    arrayCambiarPrecios = response;
+
+                } else {
+                    console.log("La respuesta no es un arreglo de objetos.");
+                }
+            },
+            error: function(error) {
+                console.error("ERROR",error);
+            }
+        });
+    }
+
+    tablaEditable2()
+    function tablaEditable2(){
+        let tbodyReporteDePagosExcel = $('#bodyCambiarPreciosExcel');
+        tbodyReporteDePagosExcel.empty();
+        agregarFilaEntrada2(tbodyReporteDePagosExcel);
+        hacerCeldasEditables(tbodyReporteDePagosExcel);
+    }
+
+    function agregarFilaEntrada2(tbody) {
+        let nuevaFila = $('<tr class="bg-white cambiarPreciosEspecies border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 font-medium text-gray-900 whitespace-nowrap dark:text-white uppercase nombreClienteTablaExcel" contenteditable="true">').text("")); //nombre
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarSoloNumerosDosDecimalesTablas" contenteditable="true">').text("")); //importe
+        nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap hidden" contenteditable="false">').text("")); //importe
+        tbody.append(nuevaFila);
+    
+        nuevaFila.find('.nombreClienteTablaExcel').on('input', function() {
+            let inputText = $(this).text().trim();
+            let currentCell = $(this);
+            let codigoClienteCell = currentCell.closest('tr').find('td').eq(9); 
+    
+            if (inputText.length >= 1) { // Activar autocompletar después de 3 caracteres
+                currentCell.removeClass('bg-green-500');
+                
+                codigoClienteCell.text("0");
+                fn_TraerClientesAgregarPagoClienteTablaExcel(inputText, (clientes) => {
+                    if (clientes) {
+                        showSuggestions2(currentCell, clientes);
+                    }else{
+                        $('.suggestions-list').remove();
+                        currentCell.removeClass('bg-green-500');
+                        codigoClienteCell.text("0");
+                    }
+                });
+            } else {
+                currentCell.removeClass('bg-green-500');
+                hideSuggestions(currentCell);
+                codigoClienteCell.text("0");
+            }
+        });
+    
+        nuevaFila.find('.nombreClienteTablaExcel').on('keydown', function(e) {
+            let suggestionsList = $('.suggestions-list');
+            let highlighted = suggestionsList.find('.highlighted');
+            if (e.key === 'ArrowDown') {
+                if (highlighted.length === 0) {
+                    suggestionsList.children().first().addClass('highlighted');
+                } else {
+                    highlighted.removeClass('highlighted').next().addClass('highlighted');
+                }
+                e.preventDefault();
+            } else if (e.key === 'ArrowUp') {
+                if (highlighted.length !== 0) {
+                    highlighted.removeClass('highlighted').prev().addClass('highlighted');
+                }
+                e.preventDefault();
+            } else if (e.key === 'Enter') {
+                if (highlighted.length !== 0) {
+                    highlighted.click();
+                    e.preventDefault();
+                }
+            }
+        });
+    
+        nuevaFila.on('input', function() {
+            let vacio = true;
+            nuevaFila.find('td').each(function() {
+                if ($(this).text().trim() !== "") {
+                    vacio = false;
+                }
+            });
+            if (!vacio) {
+                agregarFilaEntrada2(tbody);
+                nuevaFila.off('input');
+            }
+        });
+    }
+
+    function fn_TraerClientesAgregarPagoClienteTablaExcel(inputAgregarPagoCliente, callback) {
+        if (Array.isArray(arrayCambiarPrecios) && arrayCambiarPrecios.length > 0) {
+            const filteredClients = arrayCambiarPrecios.filter(cliente =>
+                cliente.nombreEspecie.includes(inputAgregarPagoCliente.toUpperCase())
+            );
+            callback(filteredClients);
+        } else {
+            callback(null);
+        }
+    }
+
+    function showSuggestions2(cell, clientes) {
+        hideSuggestions(cell); // Remove existing suggestions if any
+    
+        let suggestions = $('<div class="suggestions-list bg-white border-2 border-gray-500"></div>').css({
+            position: 'absolute',
+            zIndex: 1000
+        });
+    
+        clientes.forEach(cliente => {
+            let suggestionItem = $('<div class="suggestion-item p-1"></div>').text(cliente.nombreEspecie).css({
+                cursor: 'pointer'
+            });
+    
+            suggestionItem.on('click', function() {
+                cell.text(cliente.nombreEspecie);
+                cell.data('selectedCliente', cliente);
+                cell.addClass('bg-green-500');
+                hideSuggestions(cell);
+
+                let codigoClienteCell = cell.closest('tr').find('td').eq(2); 
+                codigoClienteCell.text(cliente.idEspecie);
+            });
+    
+            suggestions.append(suggestionItem);
+        });
+    
+        $('body').append(suggestions);
+        let offset = cell.offset();
+        suggestions.css({ top: offset.top + cell.outerHeight(), left: offset.left });
+    }
+
+    function hideSuggestions(cell) {
+        $('.suggestions-list').remove();
+    }
+
+    function hacerCeldasEditables(tbody) {
+        tbody.on('keydown', 'td[contenteditable="true"], td input', function(e) {
+            let currentElement = $(this);
+            let currentTd = currentElement.closest('td');
+            let currentRow = currentTd.parent();
+            let currentTdIndex = currentTd.index();
+    
+            if (e.key === "ArrowRight" || e.key === "ArrowLeft" || e.key === "ArrowDown" || e.key === "ArrowUp") {
+                e.preventDefault();
+    
+                if (e.key === "ArrowRight") {
+                    let nextTd = currentTd.nextAll('td[contenteditable="true"], td').first();
+                    if (nextTd.length) {
+                        let nextInput = nextTd.find('input').first();
+                        if (nextInput.length) {
+                            nextInput.focus();
+                        } else {
+                            nextTd.focus();
+                        }
+                    } else {
+                        let nextRow = currentRow.next();
+                        if (nextRow.length) {
+                            let nextTdInNextRow = nextRow.children().eq(currentTdIndex);
+                            let nextInputInNextRow = nextTdInNextRow.find('input').first();
+                            if (nextInputInNextRow.length) {
+                                nextInputInNextRow.focus();
+                            } else {
+                                nextTdInNextRow.focus();
+                            }
+                        }
+                    }
+                } else if (e.key === "ArrowLeft") {
+                    let prevTd = currentTd.prevAll('td[contenteditable="true"], td').first();
+                    if (prevTd.length) {
+                        let prevInput = prevTd.find('input').first();
+                        if (prevInput.length) {
+                            prevInput.focus();
+                        } else {
+                            prevTd.focus();
+                        }
+                    } else {
+                        let prevRow = currentRow.prev();
+                        if (prevRow.length) {
+                            let prevTdInPrevRow = prevRow.children().eq(currentTdIndex);
+                            let prevInputInPrevRow = prevTdInPrevRow.find('input').first();
+                            if (prevInputInPrevRow.length) {
+                                prevInputInPrevRow.focus();
+                            } else {
+                                prevTdInPrevRow.focus();
+                            }
+                        }
+                    }
+                } else if (e.key === "ArrowDown") {
+                    let nextRow = currentRow.next();
+                    if (nextRow.length) {
+                        let nextTdInNextRow = nextRow.children().eq(currentTdIndex);
+                        let nextInputInNextRow = nextTdInNextRow.find('input').first();
+                        if (nextInputInNextRow.length) {
+                            nextInputInNextRow.focus();
+                        } else {
+                            nextTdInNextRow.focus();
+                        }
+                    }
+                } else if (e.key === "ArrowUp") {
+                    let prevRow = currentRow.prev();
+                    if (prevRow.length) {
+                        let prevTdInPrevRow = prevRow.children().eq(currentTdIndex);
+                        let prevInputInPrevRow = prevTdInPrevRow.find('input').first();
+                        if (prevInputInPrevRow.length) {
+                            prevInputInPrevRow.focus();
+                        } else {
+                            prevTdInPrevRow.focus();
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    $(document).on('click', '#btnCambiarPrecioPesada', function () {
+
+        $("#btnCambiarPrecioPesada").attr('disabled','disabled');
+
+        // Crear contadores para realizar una acción después de todas las consultas completadas y fallidas
+        let completedRequests = 0;
+        let failedRequests = 0;
+        let totalRequests = $('.cambiarPreciosEspecies:not(:last-child)').length;
+        
+        if(totalRequests == 0){
+            $("#btnCambiarPrecioPesada").removeAttr('disabled');
+        }
+    
+        // Función para verificar si todas las solicitudes han finalizado
+        function checkCompletion() {
+            if (completedRequests + failedRequests === totalRequests) {
+                if (failedRequests > 0) {
+                    // Swal.fire({
+                    //     position: 'center',
+                    //     icon: 'warning',
+                    //     title: 'Algunos pagos no pudieron ser registrados',
+                    //     text: `Se registraron ${completedRequests} pagos correctamente y ${failedRequests} fallaron.`,
+                    //     showConfirmButton: true
+                    // });
+                } else {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Se cambio los precios correctamente.',
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+                    $("#contenedorRecalculandoDatos").removeClass('hidden').addClass('flex');
+                    $('#codigoClienteSeleccionado2').val(0);
+                    $('#especiesCambioPrecioPesadas').val(0);
+                    $('#nuevoPrecioCambiarPesadas').val("");
+                    $('#idCambiarPrecioPesadaCliente').val("");
+                    $('#ModalCambiarPrecioPesada').addClass('hidden');
+                    $('#ModalCambiarPrecioPesada').removeClass('flex');
+                    let fechaEnviarTexto = $('#fechaReporteExcel').val();
+                    fn_TraerReporteAcumuladoDetalle(fechaEnviarTexto,fechaEnviarTexto);
+                }
+                $("#btnCambiarPrecioPesada").removeAttr('disabled');
+            }
+        }
+    
+        // Recorrer todas las filas con la clase pagosAgregarExcel, excluyendo la última fila
+        $('.cambiarPreciosEspecies:not(:last-child)').each(function() {
+            let filaActual = $(this); // Guardar referencia a la fila actual
+    
+            // Obtener los datos de cada celda de la fila actual
+            let codigoCliente = $('#codigoClienteSeleccionado2').val();
+            let fechaCambioPrecio = $('#fechaCambiarPrecioPesada').val();
+            let nombreCliente = filaActual.find('td:eq(0)').text().trim();
+            let nuevoImporte = filaActual.find('td:eq(1)').text().trim();
+            let codigoEspecie = filaActual.find('td:eq(2)').text().trim();
+
+            if (!nuevoImporte && !codigoEspecie) {
+                alertify.notify('El campo importe no puede estar vacio', 'error', 3);
+                failedRequests++;
+            }else{
+                if(fechaCambioPrecio == fechaHoy){
+                    fn_ActualizarPrecioXPresentacion(codigoCliente,nuevoImporte,codigoEspecie);
+                }
+                // Llamar a la función fn_AgregarPagoCliente con los datos de la fila actual
+                fn_CambiarPrecioPesadas(codigoCliente, fechaCambioPrecio, codigoEspecie, nuevoImporte)
+                .then(function() {
+                    completedRequests++;
+                    checkCompletion();
+                })
+                .catch(function() {
+                    failedRequests++;
+                    checkCompletion();
+                });
+                // Eliminar la fila actual
+                filaActual.remove();
+            }
+        });
+    }); 
+
+    function fn_ActualizarPrecioXPresentacion(idClienteActualizarPrecioXPresentacion, valorActualizarPrecioXPresentacion,numeroEspeciePrecioXPresentacion){
+        $.ajax({
+            url: '/fn_consulta_ActualizarPrecioXPresentacion',
+            method: 'GET',
+            data: {
+                idClienteActualizarPrecioXPresentacion: idClienteActualizarPrecioXPresentacion,
+                valorActualizarPrecioXPresentacion: valorActualizarPrecioXPresentacion,
+                numeroEspeciePrecioXPresentacion: numeroEspeciePrecioXPresentacion,
+            },
+            success: function(response) {
+                if (response.success) {                  
+                    // alertify.notify('Se actualizo el precio correctamente', 'success', 2);
+                }
+            },
+            error: function(error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Error: Ocurrio un error inesperado durante la operacion',
+                  })
+                console.error("ERROR",error);
+            }
+        });
+    }
+
+    function fn_CambiarPrecioPesadas(codigoCliente, fechaCambioPrecio, especieCambioPrecio, nuevoPrecio){
+        return $.ajax({
+            url: '/fn_consulta_CambiarPrecioPesadas',
+            method: 'GET',
+            data: {
+                codigoCliente: codigoCliente,
+                fechaCambioPrecio : fechaCambioPrecio,
+                especieCambioPrecio: especieCambioPrecio,
+                nuevoPrecio: nuevoPrecio,
+            },
+            success: function(response) {
+                if (response.success) {
+                    
+                } 
             },
             error: function(error) {
                 Swal.fire({

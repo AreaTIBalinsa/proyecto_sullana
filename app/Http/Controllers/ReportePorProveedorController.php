@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\ReportePorProveedor\DatosProveedor;
 use App\Models\ReportePorProveedor\RegistrarGuia;
 use App\Models\ReportePorProveedor\EliminarGuia;
+use App\Models\ReportePorProveedor\EliminarPago;
 use App\Models\ReportePorProveedor\ActualizarGuia;
 use App\Models\ReportePorProveedor\AgregarPagoClienteProveedores;
 
@@ -185,6 +186,7 @@ class ReportePorProveedorController extends Controller
                 tb_pagos_proveedores.fechaRegistroPag,
                 tb_pagos_proveedores.horaOperacionPag,
                 tb_pagos_proveedores.bancaPago,
+                tb_pagos_proveedores.codigoCli,
                 tb_especies_compra.nombreEspecie AS nombreCompleto
                 FROM tb_pagos_proveedores
                 LEFT JOIN tb_especies_compra ON tb_especies_compra.idEspecie = tb_pagos_proveedores.codigoCli  
@@ -257,6 +259,57 @@ class ReportePorProveedorController extends Controller
             $agregarPagoCliente->estadoPago = 1;
             $agregarPagoCliente->save();
     
+            return response()->json(['success' => true], 200);
+        }
+
+        // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
+        return response()->json(['error' => 'Usuario no autenticado'], 401);
+    }
+
+    public function consulta_EliminarPagoProveedor(Request $request)
+    {
+        $codigoPago = $request->input('codigoPago');
+
+        if (Auth::check()) {
+            $EliminarPago = new EliminarPago;
+            $EliminarPago->where('idPagos', $codigoPago)
+                ->update([
+                    'estadoPago' => 0,
+                ]);
+            
+            return response()->json(['success' => true], 200);
+        }
+
+        // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
+        return response()->json(['error' => 'Usuario no autenticado'], 401);
+    }
+
+    public function consulta_actualizarPagoProveedor(Request $request)
+    {
+        $idPago = $request->input('idPago');
+        $codigoEspecie = $request->input('codigoEspecie');
+        $fechaPago = $request->input('fechaPago');
+        $horaPago = $request->input('horaPago');
+        $importePago = $request->input('importePago');
+        $bancoPago = $request->input('bancoPago');
+        $codigoTransferencia = $request->input('codigoTransferencia');
+        $formaPago = $request->input('formaPago');
+        $comentarioPago = $request->input('comentarioPago');
+
+        if (Auth::check()) {
+            $EliminarPago = new AgregarPagoClienteProveedores;
+            $EliminarPago->where('idPagos', $idPago)
+                ->update([
+                    'codigoCli' => $codigoEspecie,
+                    'fechaOperacionPag' => $fechaPago,
+                    'horaOperacionPag' => $horaPago,
+                    'cantidadAbonoPag' => $importePago,
+                    'bancaPago' => $bancoPago,
+                    'codigoTransferenciaPag' => $codigoTransferencia,
+                    'tipoAbonoPag' => $formaPago,
+                    'observacion' => $comentarioPago,
+                ]);
+            
             return response()->json(['success' => true], 200);
         }
 

@@ -251,13 +251,27 @@
                         </div>
                         {{-- Termina contenedor filtrar clientes modales --}}
                         <input type="date" class="outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 px-2.5 py-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-full md:w-80" id="fechaCambiarPrecioPesada">
-                        <select class="h-10 w-full md:w-80 uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="especiesCambioPrecioPesadas" id="especiesCambioPrecioPesadas">
+                        {{-- <select class="h-10 w-full md:w-80 uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="especiesCambioPrecioPesadas" id="especiesCambioPrecioPesadas">
                         </select> 
                         <div class="flex max-w-xs w-full">
                             <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
                                 <b>S/</b>
                             </span>
                             <input class="validarSoloNumerosDosDecimales max-w-xs w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg focus:ring-primary-600 focus:border-primary-600 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="nuevoPrecioCambiarPesadas" autocomplete="off" id="nuevoPrecioCambiarPesadas" placeholder="Ingrese Nuevo Precio">
+                        </div> --}}
+                        <div class="overflow-auto w-full">
+                            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                                <thead class="text-xs text-gray-100 uppercase bg-blue-600">
+                                    <tr>
+                                        <th class="hidden">Id</th>
+                                        <th class="p-4 border-l-2 border-t-2 border-r-2 border-b-2 whitespace-nowrap">Nombre de Especie</th>
+                                        <th class="p-4 border-r-2 border-t-2 border-b-2 text-center whitespace-nowrap">Nuevo Precio</th>
+                                        <th class="p-4 border-r-2 border-t-2 border-b-2 text-center whitespace-nowrap hidden">Id Especie</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="bodyCambiarPreciosExcel">
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>

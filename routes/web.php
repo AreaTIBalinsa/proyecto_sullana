@@ -161,6 +161,8 @@ Route::get('/fn_consulta_RegistrarGuiaEditar', [ReportePorProveedorController::c
 Route::get('/fn_consulta_TraerPagosFechasProveedores', [ReportePorProveedorController::class,'consulta_TraerPagosFechasProveedores']);
 Route::get('/fn_consulta_VerificarCodigoPagoProveedores', [ReportePorProveedorController::class,'consulta_VerificarCodigoPagoProveedores']);
 Route::get('/fn_consulta_AgregarPagoClienteProveedores', [ReportePorProveedorController::class,'consulta_AgregarPagoClienteProveedores']);
+Route::get('/fn_consulta_EliminarPagoProveedor', [ReportePorProveedorController::class,'consulta_EliminarPagoProveedor']);
+Route::get('/fn_consulta_actualizarPagoProveedor', [ReportePorProveedorController::class,'consulta_actualizarPagoProveedor']);
 
 Route::get('/fn_consulta_TraerReporteAcumulado',[ReporteAcumuladoController::class,'consulta_TraerReporteAcumulado']);
 Route::get('/fn_consulta_TraerReporteAcumuladoDetalle',[ReporteAcumuladoController::class,'consulta_TraerReporteAcumuladoDetalle']);

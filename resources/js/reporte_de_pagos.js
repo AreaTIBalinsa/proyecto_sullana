@@ -1040,7 +1040,7 @@ jQuery(function ($) {
                         // Agregar las celdas con la información
                         nuevaFila.append($('<td class="hidden">').text(obj.idPagos));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(obj.fechaOperacionPag));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">').append($('<h5 class="min-w-max px-2">').text(obj.nombreCompleto === "" ? "SALDO ANTERIOR" : obj.nombreCompleto)));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">').append($('<h5 class="min-w-max px-2">').text(obj.nombreCompleto === "" ? obj.campoExtra : obj.nombreCompleto)));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(parseFloat(obj.cantidadAbonoPag).toFixed(2)));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap hidden">').text(obj.tipoAbonoPag));
                         // nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(obj.horaOperacionPag));
@@ -1266,18 +1266,15 @@ jQuery(function ($) {
     });
 
     $(document).on("dblclick", "tr.editarPagos", function() {
-        if (tipoUsuario =='Administrador'){
-            let fila = $(this).closest('tr');
-            let idReporteDePago= fila.find('td:eq(0)').text();
-            //console.log('Report', idReporteDePago);
+        let fila = $(this).closest('tr');
+        let idReporteDePago= fila.find('td:eq(0)').text();
+        //console.log('Report', idReporteDePago);
 
-            $('#idReporteDePago').attr("value",idReporteDePago);
-            fn_EditarPago(idReporteDePago);
-            
-            $('#ModalAgregarPagoClienteEditar').addClass('flex');
-            $('#ModalAgregarPagoClienteEditar').removeClass('hidden');
-
-        }
+        $('#idReporteDePago').attr("value",idReporteDePago);
+        fn_EditarPago(idReporteDePago);
+        
+        $('#ModalAgregarPagoClienteEditar').addClass('flex');
+        $('#ModalAgregarPagoClienteEditar').removeClass('hidden');
     });
 
     function declarar_especies_descuentos(){

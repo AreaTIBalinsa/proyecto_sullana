@@ -20,9 +20,10 @@ jQuery(function($) {
     fn_declararProveedorEditar();
 
     $('#btnBuscarReportePorProveedor').on('click', function () {
-        let fechaDesde = $('#fechaDesdeReportePorProveedor').val();
-        let fechaHasta = $('#fechaHastaReportePorProveedor').val();
-        fn_ConsultarProveedor(fechaDesde, fechaHasta);
+        let fechaDesdeReportePorProveedor = $('#fechaDesdeReportePorProveedor').val();
+        let fechaHastaReportePorProveedor = $('#fechaHastaReportePorProveedor').val();
+        fn_TraerPagosFechasProveedores(fechaDesdeReportePorProveedor,fechaHastaReportePorProveedor);
+        fn_ConsultarProveedor(fechaDesdeReportePorProveedor, fechaHastaReportePorProveedor);
     });
 
     function fn_ConsultarProveedor(fechaDesde, fechaHasta) {
@@ -70,7 +71,7 @@ jQuery(function($) {
 
                         response.forEach(function (obj) {
                             if (item.fechaGuia === obj.fechaGuia) {
-                                nuevaFila = $('<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
+                                nuevaFila = $('<tr class="bg-white border-b h-12 dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
                                 let precioGuia = 0.00;
                                 if (obj.precioGuia != "" && obj.precioGuia != null) {
                                     precioGuia = parseFloat(obj.precioGuia);
@@ -110,7 +111,7 @@ jQuery(function($) {
                             nuevaFila.append($('<td class="text-center h-0.5 bg-gray-800 dark:bg-gray-300" colspan="9">').text(""));
                             nuevaFila.append($('<td class="border-r dark:border-gray-700 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(""));
                             tbodyProveedor.append(nuevaFila);
-                            nuevaFila = $('<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
+                            nuevaFila = $('<tr class="bg-white h-12 border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
                             nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(""));
                             nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text("TOTALES:"));
                             nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text((cantidadAProveedoresPorDia == 1 ? `${cantidadAProveedoresPorDia} Ud.` : `${cantidadAProveedoresPorDia} Uds.`)));
@@ -463,7 +464,7 @@ jQuery(function($) {
                     response.forEach(function(obj) {
                         totalPago += parseFloat(obj.cantidadAbonoPag);
 
-                        nuevaFila = $('<tr class="editarPagos bg-white text-gray-900 dark:text-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
+                        nuevaFila = $('<tr class="editarPagos bg-white text-gray-900 h-12 dark:text-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
                         nuevaFila.append($('<td class="hidden">').text(obj.idPagos));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 font-medium py-2 text-center cursor-pointer whitespace-nowrap">').text(obj.fechaOperacionPag));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 font-medium py-2 text-center text-gray-900 whitespace-nowrap dark:text-white">').text(obj.nombreCompleto));
@@ -473,6 +474,7 @@ jQuery(function($) {
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 font-medium py-2 text-center cursor-pointer whitespace-nowrap">').text(obj.bancaPago));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 font-medium py-2 text-center cursor-pointer whitespace-nowrap">').text(obj.tipoAbonoPag));
                         nuevaFila.append($('<td class="p-2 text-center cursor-pointer">').text(obj.observacion));
+                        nuevaFila.append($('<td class="p-2 text-center cursor-pointer hidden">').text(obj.codigoCli));
                         tbodyReporteDePagosProveedores.append(nuevaFila);
                     });
     
@@ -988,5 +990,260 @@ jQuery(function($) {
             }
         });
     }
+
+    $(document).on('contextmenu', '.editarPagos', function (e) {
+        e.preventDefault();
+        let codigoPago = $(this).closest("tr").find("td:first").text();
+        Swal.fire({
+            title: '¿Desea eliminar el Registro?',
+            text: "¡Estas seguro de eliminar el registro!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: '¡No, cancelar!',
+            confirmButtonText: '¡Si,eliminar!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+            fn_EliminarPesada(codigoPago);
+            }
+        })
+    });
+
+    function fn_EliminarPesada(codigoPago){
+        $.ajax({
+            url: '/fn_consulta_EliminarPagoProveedor',
+            method: 'GET',
+            data: {
+                codigoPago: codigoPago,
+            },
+            success: function(response) {
+                if (response.success) {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Se elimino el registro correctamente',
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+                    // Realizar la acción después de que todas las consultas se completen
+                    let fechaDesdeReportePorProveedor = $('#fechaDesdeReportePorProveedor').val();
+                    let fechaHastaReportePorProveedor = $('#fechaHastaReportePorProveedor').val();
+                    fn_TraerPagosFechasProveedores(fechaDesdeReportePorProveedor,fechaHastaReportePorProveedor);
+                    fn_ConsultarProveedor(fechaDesdeReportePorProveedor, fechaHastaReportePorProveedor);
+                }
+            },
+            error: function(error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Error: Ocurrio un error inesperado durante la operacion',
+                  })
+                console.error("ERROR",error);
+            }
+        });
+    }
+
+    $('.cerrarModalAgregarPagoProveedoresEditar, #ModalAgregarPagoProveedoresEditar .opacity-75').on('click', function (e) {
+        $('#ModalAgregarPagoProveedoresEditar').addClass('hidden');
+        $('#ModalAgregarPagoProveedoresEditar').removeClass('flex');
+    });
+
+    $(document).on("dblclick", "tr.editarPagos", function() {
+        let fila = $(this).closest('tr');
+        let idReporteDePago= fila.find('td:eq(0)').text();
+        let fecha= fila.find('td:eq(1)').text();
+        let nombreCliente= fila.find('td:eq(2)').text();
+        let importe= fila.find('td:eq(3)').text();
+        let codigoTransferencia= fila.find('td:eq(4)').text();
+        let hora= fila.find('td:eq(5)').text();
+        let banco= fila.find('td:eq(6)').text();
+        let formaDePago= fila.find('td:eq(7)').text();
+        let observacion= fila.find('td:eq(8)').text();
+        let codigoCli= fila.find('td:eq(9)').text();
+
+        $("#inputNombreClientes").val(nombreCliente);
+        $("#clienteSeleccionadoCorrecto").removeClass("hidden");
+        $("#clienteSeleccionadoCorrecto").addClass("flex");
+        $("#codigoClienteSeleccionado").val(codigoCli);
+        $("#fechaAgregarPagoEditar").val(fecha);
+        $("#horaAgregarPagoEditar").val(hora);
+        $("#valorAgregarPagoClienteEditar").val(importe);
+        $("#bancoAgregarPagoClienteEditar").val(banco);
+        $("#codAgregarPagoClienteEditar").val(codigoTransferencia);
+        $("#formaDePagoEditar").val(formaDePago);
+        $("#comentarioAgregarPagoClienteEditar").val(observacion);
+        $("#idEditarPagoProveedor").val(idReporteDePago);
+        
+        $('#ModalAgregarPagoProveedoresEditar').addClass('flex');
+        $('#ModalAgregarPagoProveedoresEditar').removeClass('hidden');
+    });
+
+    // Primer filtro Nombre
+
+    let selectedIndex = -1;
+
+    $('#inputNombreClientes').on('input', function () {
+        $('#codigoClienteSeleccionado').val(0);
+        $("#clienteSeleccionadoCorrecto").removeClass("flex");
+        $("#clienteSeleccionadoCorrecto").addClass("hidden");
+        const searchTerm = $(this).val().toLowerCase();
+        const $filtrarClientes = $("#inputNombreClientes").val();
+        const filteredClientes = arregloProveedores.filter(cliente =>
+            cliente.nombreEspecie.toLowerCase().includes(searchTerm)
+        );
+        if ($filtrarClientes.length > 0) {
+            displayClientes(filteredClientes);
+            selectedIndex = -1; // Reset index when the input changes
+        } else {
+            const $contenedorDeClientes = $("#contenedorDeClientes")
+            $contenedorDeClientes.addClass('hidden');
+        }
+    });
+    
+    $('#inputNombreClientes').on('keydown', function (event) {
+        const $options = $('#contenedorDeClientes .option');
+        if ($options.length > 0) {
+            if (event.key === 'ArrowDown') {
+                event.preventDefault();
+                selectedIndex = (selectedIndex + 1) % $options.length;
+                updateSelection($options);
+            } else if (event.key === 'ArrowUp') {
+                event.preventDefault();
+                selectedIndex = (selectedIndex - 1 + $options.length) % $options.length;
+                updateSelection($options);
+            } else if (event.key === 'Enter') {
+                event.preventDefault();
+                if (selectedIndex >= 0) {
+                    $options.eq(selectedIndex).click();
+                    $("#clienteSeleccionadoCorrecto").removeClass("hidden");
+                    $("#clienteSeleccionadoCorrecto").addClass("flex");
+                }
+            }
+        }
+    });
+    
+    function updateSelection($options) {
+        $options.removeClass('bg-gray-200 dark:bg-gray-700');
+        if (selectedIndex >= 0) {
+            $options.eq(selectedIndex).addClass('bg-gray-200 dark:bg-gray-700');
+        }
+    }
+    
+    function displayClientes(arregloProveedores) {
+        const $contenedor = $('#contenedorDeClientes');
+        $contenedor.empty();
+        if (arregloProveedores.length > 0) {
+            $contenedor.removeClass('hidden');
+            arregloProveedores.forEach(cliente => {
+                const $div = $('<div class="text-gray-800 text-sm dark:text-white font-medium cursor-pointer overflow-hidden whitespace-nowrap text-ellipsis dark:hover:bg-gray-700 hover:bg-gray-200"></div>')
+                    .text(cliente.nombreEspecie)
+                    .addClass('option p-2')
+                    .on('click', function () {
+                        selectCliente(cliente);
+                    });
+                $contenedor.append($div);
+            });
+        } else {
+            $contenedor.addClass('hidden');
+        }
+    }
+    
+    function selectCliente(cliente) {
+        $('#inputNombreClientes').val(cliente.nombreEspecie);
+        $('#codigoClienteSeleccionado').val(cliente.idEspecie);
+        $('#contenedorDeClientes').addClass('hidden');
+        $("#clienteSeleccionadoCorrecto").removeClass("hidden");
+        $("#clienteSeleccionadoCorrecto").addClass("flex");
+        selectedIndex = -1;
+    }
+
+    $(document).on('click', '#btnAgregarPagoClienteEditar', function (e) {
+        let nombreCliente = $("#inputNombreClientes").val();
+        let codigoEspecie = $("#codigoClienteSeleccionado").val();
+        let fechaPago = $("#fechaAgregarPagoEditar").val();
+        let horaPago = $("#horaAgregarPagoEditar").val();
+        let importePago = $("#valorAgregarPagoClienteEditar").val();
+        let bancoPago = $("#bancoAgregarPagoClienteEditar").val();
+        let codigoTransferencia = $("#codAgregarPagoClienteEditar").val();
+        let formaPago = $("#formaDePagoEditar").val();
+        let comentarioPago = $("#comentarioAgregarPagoClienteEditar").val();
+        let idPagoEditar = $("#idEditarPagoProveedor").val();
+
+        if (nombreCliente === '' || codigoEspecie === '0' || fechaPago === '' || horaPago === '' || importePago === '' || bancoPago === '' || codigoTransferencia === '' || formaPago === '') {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Todos los campos son obligatorios, excepto comentario',
+            })
+            return;
+        }else{
+            $.ajax({
+                url: '/fn_consulta_actualizarPagoProveedor',
+                method: 'GET',
+                data: {
+                    codigoEspecie: codigoEspecie,
+                    fechaPago: fechaPago,
+                    horaPago: horaPago,
+                    importePago: importePago,
+                    bancoPago: bancoPago,
+                    codigoTransferencia: codigoTransferencia,
+                    formaPago: formaPago,
+                    comentarioPago: comentarioPago,
+                    idPago: idPagoEditar,
+                },
+                success: function(response) {
+                    if (response.success) {
+                        Swal.fire({
+                            position: 'center',
+                            icon:'success',
+                            title: 'Se actualizo el registro correctamente',
+                            showConfirmButton: false,
+                            timer: 2000
+                        });
+
+                        // Realizar la acción después de que todas las consultas se completen
+                        let fechaDesdeReportePorProveedor = $('#fechaDesdeReportePorProveedor').val();
+                        let fechaHastaReportePorProveedor = $('#fechaHastaReportePorProveedor').val();
+                        fn_TraerPagosFechasProveedores(fechaDesdeReportePorProveedor,fechaHastaReportePorProveedor);
+                        fn_ConsultarProveedor(fechaDesdeReportePorProveedor, fechaHastaReportePorProveedor);
+                        $('#ModalAgregarPagoProveedoresEditar').addClass('hidden');
+                        $('#ModalAgregarPagoProveedoresEditar').removeClass('flex');
+                    }
+                },
+                error: function(error) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Error: Ocurrio un error inesperado durante la operacion',
+                      })
+                    console.error("ERROR",error);
+                }
+            });
+        }
+    });
+
+    $(document).on('input', '.mayusculasGaaa', function () {
+        let inputValue = $(this).text();
+    
+        // Convertir el valor a mayúsculas
+        let inputValueMayusculas = inputValue.toUpperCase();
+    
+        // Si el valor ha cambiado, actualizar el contenido
+        if (inputValue !== inputValueMayusculas) {
+            let selection = window.getSelection();
+            let range = selection.getRangeAt(0);
+            let cursorPosition = range.startOffset;
+    
+            $(this).text(inputValueMayusculas);
+    
+            // Restaurar la posición del cursor
+            let newRange = document.createRange();
+            newRange.setStart(this.firstChild, cursorPosition);
+            newRange.setEnd(this.firstChild, cursorPosition);
+            selection.removeAllRanges();
+            selection.addRange(newRange);
+        }
+    });
 
 });

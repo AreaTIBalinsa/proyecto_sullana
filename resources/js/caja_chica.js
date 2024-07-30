@@ -1507,4 +1507,8 @@ jQuery(function($) {
 
     };
 
+    $(document).on('input', '.inputImporte', function () {
+        
+    });
+
 });
