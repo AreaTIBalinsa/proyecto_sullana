@@ -467,7 +467,7 @@
                                     <svg class="flex-shrink-0 w-3.5 h-3.5 text-blue-600 dark:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                                         <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
                                     </svg>
-                                    <span class="leading-tight font-bold">Gallina Chica Vivo</span>
+                                    <span class="leading-tight font-bold">Gallina Chica Pelado</span>
                                 </div>
                                 <div class="w-full flex flex-col text-gray-800 dark:text-white">
                                     <div class="flex flex-1 border justify-center font-semibold">Cantidad :&nbsp;<span class="font-normal" id="totalUnidadesDecimaCuartaEspecie">0 Uds.</span></div>
@@ -477,7 +477,7 @@
                                     <svg class="flex-shrink-0 w-3.5 h-3.5 text-blue-600 dark:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                                         <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
                                     </svg>
-                                    <span class="leading-tight font-bold">Gallina Chica Pelado</span>
+                                    <span class="leading-tight font-bold">Gallina Chica Vivo</span>
                                 </div>
                                 <div class="w-full flex flex-col text-gray-800 dark:text-white">
                                     <div class="flex flex-1 border justify-center font-semibold">Cantidad :&nbsp;<span class="font-normal" id="totalUnidadesVigesimaTerceraEspecie">0 Uds.</span></div>
@@ -621,18 +621,21 @@
                     <thead id="inicioCantidadesPollos" class="text-gray-50 text-base">
                         <tr>
                             <th class="text-white border-[2px] bg-blue-600 border-b-1 border-gray-300 dark:border-white py-2 md:text-md text-left px-2"></th>
-                            <th class="text-white border-[2px] bg-red-600 border-b-1 border-gray-300 dark:border-white py-2 md:text-md text-center px-2" colspan="2">Compra</th>
-                            <th class="text-white border-[2px] bg-green-600 border-b-1 border-gray-300 dark:border-white py-2 md:text-md text-center px-2" colspan="2">Venta</th>
-                            <th class="text-white border-[2px] bg-yellow-400 border-b-1 border-gray-300 dark:border-white py-2 md:text-md text-center px-2" colspan="2">Diferencia</th>
+                            <th class="text-white border-[2px] bg-red-600 border-b-1 border-gray-300 dark:border-white py-2 md:text-md text-center px-2" colspan="3">Compra</th>
+                            <th class="text-white border-[2px] bg-green-600 border-b-1 border-gray-300 dark:border-white py-2 md:text-md text-center px-2" colspan="3">Venta</th>
+                            <th class="text-white border-[2px] bg-yellow-400 border-b-1 border-gray-300 dark:border-white py-2 md:text-md text-center px-2" colspan="3">Diferencia</th>
                         </tr>
                         <tr>
                             <th class="text-white border-[2px] bg-blue-600 border-b-1 border-gray-300 dark:border-white py-2 md:text-md text-left px-2">#</th>
                             <th class="text-white border-[2px] bg-blue-600 border-b-1 border-gray-300 dark:border-white py-2 md:text-md text-left px-2">Cantidad</th>
                             <th class="text-white border-[2px] bg-blue-600 border-b-1 border-gray-300 dark:border-white py-2 md:text-md text-left px-2">Peso</th>
+                            <th class="text-white border-[2px] bg-blue-600 border-b-1 border-gray-300 dark:border-white py-2 md:text-md text-left px-2">Precio</th>
                             <th class="text-white border-[2px] bg-blue-600 border-b-1 border-gray-300 dark:border-white py-2 md:text-md text-left px-2">Cantidad</th>
                             <th class="text-white border-[2px] bg-blue-600 border-b-1 border-gray-300 dark:border-white py-2 md:text-md text-left px-2">Peso</th>
+                            <th class="text-white border-[2px] bg-blue-600 border-b-1 border-gray-300 dark:border-white py-2 md:text-md text-left px-2">Precio</th>
                             <th class="text-white border-[2px] bg-blue-600 py-2 md:text-md border-gray-300 dark:border-white text-left px-2">Cantidad</th>
                             <th class="text-white border-[2px] bg-blue-600 py-2 md:text-md border-gray-300 dark:border-white text-left px-2">Peso</th>
+                            <th class="text-white border-[2px] bg-blue-600 py-2 md:text-md border-gray-300 dark:border-white text-left px-2">Precio</th>
                         </tr>
                     </thead>
                     <tbody id="bodycantidadesPollosCalculo">

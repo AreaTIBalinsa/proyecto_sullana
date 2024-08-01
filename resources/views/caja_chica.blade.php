@@ -22,7 +22,7 @@
             </div>
             <button class="flex gap-2 justify-center items-center cursor-pointer uppercase bg-blue-600 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 hover:bg-blue-700" type="submit" autocomplete="off" id="filtrarIngresosYEgresos"><i class='bx bx-search-alt text-lg' ></i> Buscar</button>
         </div>
-        <div class="flex gap-2 justify-end w-full flex-col md:flex-row px-4">
+        <div class="flex gap-2 justify-end w-full items-center flex-col md:flex-row px-4 mb-5">
             <a class="text-sm py-2 px-5 bg-red-600 hover:bg-red-700 text-gray-50 rounded-lg" href="/detalles_egresos"><i class='bx bx-log-in-circle'></i> Ir a Egresos Detallados</a>
         </div>
         {{-- <div class="flex justify-between items-center relative flex-col gap-4 lg:flex-row mb-5 md:mx-5">

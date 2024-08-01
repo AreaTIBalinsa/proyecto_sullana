@@ -3,7 +3,7 @@ window.$ = jQuery;
 
 jQuery(function($) {
     
-    var verificarDatosTiempoReal;
+    var verificarDatosTiempoReal = true;
     // Obtener la fecha actual en formato ISO (YYYY-MM-DD)
     const ahoraEnNY = new Date();
     const fechaHoy = new Date(ahoraEnNY.getFullYear(), ahoraEnNY.getMonth(), ahoraEnNY.getDate()).toISOString().split('T')[0];
@@ -1062,72 +1062,108 @@ jQuery(function($) {
                 <td class="text-base font-semibold text-left border-2 py-2 px-3 text-white bg-blue-600 whitespace-nowrap">Pollo Yugo</td>
                 <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${clasificaciones.MERMA_YUGO.cantidad}</td>
                 <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${clasificaciones.MERMA_YUGO.pesoTotal.toFixed(2)}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${clasificaciones.MERMA_YUGO.pesoTotal.toFixed(2)}</td>
                 <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${cantidadTotalYugo ? cantidadTotalYugo : 0}</td>
                 <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(pesoTotalYugo ? pesoTotalYugo : 0).toFixed(2)}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(pesoTotalYugo ? pesoTotalYugo : 0).toFixed(2)}</td>
                 <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${mermaDiferenciaCantidadYugo ? mermaDiferenciaCantidadYugo : 0}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(mermaDiferenciaPesoYugo ? mermaDiferenciaPesoYugo : 0).toFixed(2)}</td>
                 <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(mermaDiferenciaPesoYugo ? mermaDiferenciaPesoYugo : 0).toFixed(2)}</td>
             </tr>
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900">
                 <td class="text-base font-semibold text-left border-2 py-2 px-3 text-white bg-blue-600 whitespace-nowrap">Pollo Tecnica</td>
                 <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${clasificaciones.MERMA_TECNICA.cantidad}</td>
                 <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${clasificaciones.MERMA_TECNICA.pesoTotal.toFixed(2)}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${clasificaciones.MERMA_TECNICA.pesoTotal.toFixed(2)}</td>
                 <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${cantidadTotalTecnica ? cantidadTotalTecnica : 0}</td>
                 <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(pesoTotalTecnica ? pesoTotalTecnica : 0).toFixed(2)}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(pesoTotalTecnica ? pesoTotalTecnica : 0).toFixed(2)}</td>
                 <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${mermaDiferenciaCantidadTecnica ? mermaDiferenciaCantidadTecnica : 0}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(mermaDiferenciaPesoTecnica ? mermaDiferenciaPesoTecnica : 0).toFixed(2)}</td>
                 <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(mermaDiferenciaPesoTecnica ? mermaDiferenciaPesoTecnica : 0).toFixed(2)}</td>
             </tr>
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900">
                 <td class="text-base font-semibold text-left border-2 py-2 px-3 text-white bg-blue-600 whitespace-nowrap">Pollo XX</td>
                 <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${clasificaciones.MERMA_POLLO_XX.cantidad}</td>
                 <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${clasificaciones.MERMA_POLLO_XX.pesoTotal.toFixed(2)}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${clasificaciones.MERMA_POLLO_XX.pesoTotal.toFixed(2)}</td>
                 <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${cantidadTotalPolloXX ? cantidadTotalPolloXX : 0}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(pesoTotalPolloXX ? pesoTotalPolloXX : 0).toFixed(2)}</td>
                 <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(pesoTotalPolloXX ? pesoTotalPolloXX : 0).toFixed(2)}</td>
                 <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${mermaDiferenciaCantidadPolloXX ? mermaDiferenciaCantidadPolloXX : 0}</td>
                 <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(mermaDiferenciaPesoPolloXX ? mermaDiferenciaPesoPolloXX : 0).toFixed(2)}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(mermaDiferenciaPesoPolloXX ? mermaDiferenciaPesoPolloXX : 0).toFixed(2)}</td>
+            </tr>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900">
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 text-white bg-orange-600 whitespace-nowrap">Total de Pollo</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${cantidadAProveedoresPorDia ? cantidadAProveedoresPorDia : 0}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(pesoAProveedoresPorDia ? pesoAProveedoresPorDia : 0).toFixed(2)}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(pesoAProveedoresPorDia ? pesoAProveedoresPorDia : 0).toFixed(2)}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${cantidadTotalesEspecie ? cantidadTotalesEspecie : 0}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(pesoTotalesEspecie ? pesoTotalesEspecie : 0).toFixed(2)}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(pesoTotalesEspecie ? pesoTotalesEspecie : 0).toFixed(2)}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${resultadoDiferenciaCantidad ? resultadoDiferenciaCantidad : 0}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(resultadoDiferenciaPeso ? resultadoDiferenciaPeso : 0).toFixed(2)}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(resultadoDiferenciaPeso ? resultadoDiferenciaPeso : 0).toFixed(2)}</td>
             </tr>
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900">
                 <td class="text-base font-semibold text-left border-2 py-2 px-3 text-white bg-blue-600 whitespace-nowrap">Gallo</td>
                 <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${clasificaciones.MERMA_GALLO.cantidad}</td>
                 <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${clasificaciones.MERMA_GALLO.pesoTotal.toFixed(2)}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${clasificaciones.MERMA_GALLO.pesoTotal.toFixed(2)}</td>
                 <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${cantidadTotalGallo ? cantidadTotalGallo : 0}</td>
                 <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(pesoTotalGallo ? pesoTotalGallo : 0).toFixed(2)}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(pesoTotalGallo ? pesoTotalGallo : 0).toFixed(2)}</td>
                 <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${mermaDiferenciaCantidadGallo ? mermaDiferenciaCantidadGallo : 0}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(mermaDiferenciaPesoGallo ? mermaDiferenciaPesoGallo : 0).toFixed(2)}</td>
                 <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(mermaDiferenciaPesoGallo ? mermaDiferenciaPesoGallo : 0).toFixed(2)}</td>
             </tr>
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900">
                 <td class="text-base font-semibold text-left border-2 py-2 px-3 text-white bg-blue-600 whitespace-nowrap">Gallina Doble</td>
                 <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${clasificaciones.MERMA_GALLINA.cantidad}</td>
                 <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${clasificaciones.MERMA_GALLINA.pesoTotal.toFixed(2)}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${clasificaciones.MERMA_GALLINA.pesoTotal.toFixed(2)}</td>
                 <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${cantidadTotalGallinaDoble ? cantidadTotalGallinaDoble : 0}</td>
                 <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(pesoTotalGallinaDoble ? pesoTotalGallinaDoble : 0).toFixed(2)}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(pesoTotalGallinaDoble ? pesoTotalGallinaDoble : 0).toFixed(2)}</td>
                 <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${mermaDiferenciaCantidadGallinaDoble ? mermaDiferenciaCantidadGallinaDoble : 0}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(mermaDiferenciaPesoGallinaDoble ? mermaDiferenciaPesoGallinaDoble : 0).toFixed(2)}</td>
                 <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(mermaDiferenciaPesoGallinaDoble ? mermaDiferenciaPesoGallinaDoble : 0).toFixed(2)}</td>
             </tr>
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900">
                 <td class="text-base font-semibold text-left border-2 py-2 px-3 text-white bg-blue-600 whitespace-nowrap">Gallina Chica</td>
                 <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${clasificaciones.MERMA_GALLINA_CHICA.cantidad}</td>
                 <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${clasificaciones.MERMA_GALLINA_CHICA.pesoTotal.toFixed(2)}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${clasificaciones.MERMA_GALLINA_CHICA.pesoTotal.toFixed(2)}</td>
                 <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${cantidadTotalGallinaChicaFija ? cantidadTotalGallinaChicaFija : 0}</td>
                 <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(pesoTotalGallinaChicaFija ? pesoTotalGallinaChicaFija : 0).toFixed(2)}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(pesoTotalGallinaChicaFija ? pesoTotalGallinaChicaFija : 0).toFixed(2)}</td>
                 <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${mermaDiferenciaCantidadGallinaChica ? mermaDiferenciaCantidadGallinaChica : 0}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(mermaDiferenciaPesoGallinaChica ? mermaDiferenciaPesoGallinaChica : 0).toFixed(2)}</td>
                 <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(mermaDiferenciaPesoGallinaChica ? mermaDiferenciaPesoGallinaChica : 0).toFixed(2)}</td>
             </tr>
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900">
                 <td class="text-base font-semibold text-left border-2 py-2 px-3 text-white bg-blue-600 whitespace-nowrap">Otros</td>
                 <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${clasificaciones.MERMA_OTROS.cantidad}</td>
                 <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${clasificaciones.MERMA_OTROS.pesoTotal.toFixed(2)}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${clasificaciones.MERMA_OTROS.pesoTotal.toFixed(2)}</td>
                 <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${cantidadTotalEspeciesOtros ? cantidadTotalEspeciesOtros : 0}</td>
                 <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(pesoTotalEspeciesOtros ? pesoTotalEspeciesOtros : 0).toFixed(2)}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(pesoTotalEspeciesOtros ? pesoTotalEspeciesOtros : 0).toFixed(2)}</td>
                 <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${mermaDiferenciaCantidadEspeciesOtros ? mermaDiferenciaCantidadEspeciesOtros : 0}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(mermaDiferenciaPesoEspeciesOtros ? mermaDiferenciaPesoEspeciesOtros : 0).toFixed(2)}</td>
                 <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(mermaDiferenciaPesoEspeciesOtros ? mermaDiferenciaPesoEspeciesOtros : 0).toFixed(2)}</td>
             </tr>
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900">
                 <td class="text-base font-semibold text-left border-2 py-2 px-3 text-white bg-orange-600 whitespace-nowrap">Total</td>
                 <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${cantidadAProveedoresPorDia ? cantidadAProveedoresPorDia : 0}</td>
                 <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(pesoAProveedoresPorDia ? pesoAProveedoresPorDia : 0).toFixed(2)}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(pesoAProveedoresPorDia ? pesoAProveedoresPorDia : 0).toFixed(2)}</td>
                 <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${cantidadTotalesEspecie ? cantidadTotalesEspecie : 0}</td>
                 <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(pesoTotalesEspecie ? pesoTotalesEspecie : 0).toFixed(2)}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(pesoTotalesEspecie ? pesoTotalesEspecie : 0).toFixed(2)}</td>
                 <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${resultadoDiferenciaCantidad ? resultadoDiferenciaCantidad : 0}</td>
+                <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(resultadoDiferenciaPeso ? resultadoDiferenciaPeso : 0).toFixed(2)}</td>
                 <td class="text-base font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(resultadoDiferenciaPeso ? resultadoDiferenciaPeso : 0).toFixed(2)}</td>
             </tr>`;
     }

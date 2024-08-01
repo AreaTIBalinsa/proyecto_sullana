@@ -27,6 +27,7 @@ use App\Http\Controllers\ReporteIngresosController;
 use App\Http\Controllers\DetallesIngresosController;
 use App\Http\Controllers\DetallesIngresos2Controller;
 use App\Http\Controllers\AutocompleteController;
+use App\Http\Controllers\ResumenDinerarioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -76,6 +77,7 @@ Route::get('/pesadas_web',[PesadasWebController::class,'show']);
 Route::get('/reporte_ingresos',[ReporteIngresosController::class,'show']);
 Route::get('/detalles_egresos',[DetallesIngresosController::class,'show']);
 Route::get('/detalles_ingresos',[DetallesIngresos2Controller::class,'show']);
+Route::get('/resumen_dinerario',[ResumenDinerarioController::class,'show']);
 
 /* ============================== Termina Controladores para Mostrar Vistas ============================== */
 

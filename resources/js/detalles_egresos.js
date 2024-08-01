@@ -672,7 +672,7 @@ jQuery(function($) {
                 if (Array.isArray(response) && response.length > 0) {
                     // Transformar el JSON a un arreglo de strings
                     let egresosArreglo = response.map(function(item) {
-                        return item.nombreEgresoCamal;
+                        return item.uso_detalle_egreso;
                     });
                     
                     // Asignar el arreglo transformado a egresosCajaChicaArreglo

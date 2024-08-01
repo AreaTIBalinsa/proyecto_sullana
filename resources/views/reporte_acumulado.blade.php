@@ -112,9 +112,9 @@
                             <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap"></th>
                             <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap" colspan="4">POLLO MALTRATADO PELADO</th>
                             <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap"></th>
-                            <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap" colspan="4">GALLINA CHICA PELADO</th>
+                            <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap" colspan="4">GALLINA CHICA VIVA</th>
                             <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap"></th>
-                            <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap" colspan="4">GALLINA CHICA VIVO</th>
+                            <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap" colspan="4">GALLINA CHICA PELADO</th>
                             <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap"></th>
                             <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap" colspan="4">TROZADO</th>
                             <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap"></th>

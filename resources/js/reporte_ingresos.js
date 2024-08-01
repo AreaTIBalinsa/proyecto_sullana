@@ -160,8 +160,8 @@ jQuery(function($) {
 
         $('#bodyReporteDePagosIngresosBancos tr:last td:eq(2)').text(parseFloat(totalBancos).toFixed(2));
         $('#tableReporteIngresosGranja tr:last td:eq(2)').text(parseFloat(totalGranja).toFixed(2));
-        
-       };
+    
+    };
 
     $('#idCuentaDelCliente').on('input', function () {
         let inputCuentaDelCliente = $(this).val();
@@ -329,6 +329,7 @@ jQuery(function($) {
                     } else {
                         agregarFilaEspaciadora(tbodyReporteDePagosIngresosBancos);
                         agregarFilaTotal(tbodyReporteDePagosIngresosBancos, totalPago);
+                        fn_crearCuadroResumenBancos();
                     }
                 } else {
                     console.log("La respuesta no es un arreglo de objetos.");
@@ -2120,5 +2121,178 @@ jQuery(function($) {
             selectedIndex = -1;
         }
     });
+
+    function fn_crearCuadroResumenBancos(){
+
+        let montoBCP = 0;
+        let montoBBVA = 0;
+        let montoIBK = 0;
+        let montoCAJAPIURA = 0;
+        let montoCMAC = 0;
+        let montoYAPE = 0;
+
+        function limpiarNombreBanco(nombre) {
+            // Expresiones regulares para detectar variantes y limpiar el nombre
+            const regexBCP = /^BCP/;
+            const regexBBVA = /^BBVA/;
+            const regexIBK = /^IBK/;
+            const regexCajaPiura = /^CAJA PIURA/;
+            const regexCMAC = /^CMAC/;
+            const regexYAPE = /^YAPE/;
+        
+            if (regexBCP.test(nombre)) {
+                return "BCP";
+            } else if (regexBBVA.test(nombre)) {
+                return "BBVA";
+            } else if (regexIBK.test(nombre)) {
+                return "IBK";
+            } else if (regexCajaPiura.test(nombre)) {
+                return "CAJA PIURA";
+            } else if (regexCMAC.test(nombre)) {
+                return "CMAC";
+            } else if (regexYAPE.test(nombre)) {
+                return "YAPE";
+            } else {
+                return nombre; // Devuelve el nombre original si no coincide con ninguna variante
+            }
+        }
+
+        $('#tableReporteIngresosBancos tbody tr.filtroPagos1').each(function() {
+            let columna = $(this).find('td:eq(6)').text().trim();
+            let columnaImporte = parseFloat($(this).find('td:eq(3)').text());
+            columna = limpiarNombreBanco(columna);
+            if (columna == "BCP") {
+                montoBCP += columnaImporte;
+            }else if(columna == "BBVA"){
+                montoBBVA += columnaImporte;
+            }else if(columna == "IBK"){
+                montoIBK += columnaImporte;
+            }else if(columna == "CAJA PIURA"){
+                montoCAJAPIURA += columnaImporte;
+            }else if(columna == "CMAC"){
+                montoCMAC += columnaImporte;    
+            }else if(columna == "YAPE"){
+                montoYAPE += columnaImporte;
+            }
+        });
+        $('#tableReporteIngresosBancos tbody tr.filtroPagos2').each(function() {
+            let columna = $(this).find('td:eq(6)').text().trim();
+            let columnaImporte = parseFloat($(this).find('td:eq(3)').text());
+            columna = limpiarNombreBanco(columna);
+            if (columna == "BCP") {
+                montoBCP += columnaImporte;
+            }else if(columna == "BBVA"){
+                montoBBVA += columnaImporte;
+            }else if(columna == "IBK"){
+                montoIBK += columnaImporte;
+            }else if(columna == "CAJA PIURA"){
+                montoCAJAPIURA += columnaImporte;
+            }else if(columna == "CMAC"){
+                montoCMAC += columnaImporte;    
+            }else if(columna == "YAPE"){
+                montoYAPE += columnaImporte;
+            }
+        });
+        $('#tableReporteIngresosBancos tbody tr.filtroPagos3').each(function() {
+            let columna = $(this).find('td:eq(6)').text().trim();
+            let columnaImporte = parseFloat($(this).find('td:eq(3)').text());
+            columna = limpiarNombreBanco(columna);
+            if (columna == "BCP") {
+                montoBCP += columnaImporte;
+            }else if(columna == "BBVA"){
+                montoBBVA += columnaImporte;
+            }else if(columna == "IBK"){
+                montoIBK += columnaImporte;
+            }else if(columna == "CAJA PIURA"){
+                montoCAJAPIURA += columnaImporte;
+            }else if(columna == "CMAC"){
+                montoCMAC += columnaImporte;    
+            }else if(columna == "YAPE"){
+                montoYAPE += columnaImporte;
+            }
+        });
+
+        $('#tableReporteIngresosGranja tbody tr.editarPagos').each(function() {
+            let columna = $(this).find('td:eq(6)').text().trim();
+            let columnaImporte = parseFloat($(this).find('td:eq(3)').text());
+            columna = limpiarNombreBanco(columna);
+            if (columna == "BCP") {
+                montoBCP += columnaImporte;
+            }else if(columna == "BBVA"){
+                montoBBVA += columnaImporte;
+            }else if(columna == "IBK"){
+                montoIBK += columnaImporte;
+            }else if(columna == "CAJA PIURA"){
+                montoCAJAPIURA += columnaImporte;
+            }else if(columna == "CMAC"){
+                montoCMAC += columnaImporte;    
+            }else if(columna == "YAPE"){
+                montoYAPE += columnaImporte;
+            }
+        });
+
+        let tbodyReporteDePagosIngresosResumenBancos = $('#bodyReporteDePagosIngresosResumenBancos');
+        tbodyReporteDePagosIngresosResumenBancos.empty();
+        let montoBCPFormateo = montoBCP.toLocaleString(undefined, {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+            useGrouping: true,
+        });
+        let montoBBVAFormateo = montoBBVA.toLocaleString(undefined, {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+            useGrouping: true,
+        });
+        let montoIBKFormateo = montoIBK.toLocaleString(undefined, {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+            useGrouping: true,
+        });
+        let montoCAJAPIURAFormateo = montoCAJAPIURA.toLocaleString(undefined, {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+            useGrouping: true,
+        });
+        let montoCMACFormateo = montoCMAC.toLocaleString(undefined, {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+            useGrouping: true,
+        });
+        let montoYAPEFormateo = montoYAPE.toLocaleString(undefined, {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+            useGrouping: true,
+        });
+
+        let montoTotal = montoBCP + montoBBVA + montoIBK + montoCAJAPIURA + montoCMAC + montoYAPE;
+        let montoTotalFormateo = montoTotal.toLocaleString(undefined, {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+            useGrouping: true,
+        });
+        let nuevaFila = `
+            <tr class="border-b bg-green-600 dark:border-gray-700 text-white">
+                <td class="outline-none border-2 border-t-0 p-2 text-center cursor-pointer">BCP</td>
+                <td class="outline-none border-2 border-t-0 p-2 text-center cursor-pointer">BBVA</td>
+                <td class="outline-none border-2 border-t-0 p-2 text-center cursor-pointer">IBK</td>
+                <td class="outline-none border-2 border-t-0 p-2 text-center cursor-pointer">CAJA PIURA</td>
+                <td class="outline-none border-2 border-t-0 p-2 text-center cursor-pointer">CMAC</td>
+                <td class="outline-none border-2 border-t-0 p-2 text-center cursor-pointer">YAPE</td>
+            </tr>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer text-gray-900 dark:text-white">
+                <td class="outline-none border-r-[1px] dark:border-gray-700 p-2 text-center cursor-pointer">${montoBCPFormateo}</td>
+                <td class="outline-none border-r-[1px] dark:border-gray-700 p-2 text-center cursor-pointer">${montoBBVAFormateo}</td>
+                <td class="outline-none border-r-[1px] dark:border-gray-700 p-2 text-center cursor-pointer">${montoIBKFormateo}</td>
+                <td class="outline-none border-r-[1px] dark:border-gray-700 p-2 text-center cursor-pointer">${montoCAJAPIURAFormateo}</td>
+                <td class="outline-none border-r-[1px] dark:border-gray-700 p-2 text-center cursor-pointer">${montoCMACFormateo}</td>
+                <td class="outline-none border-r-[1px] dark:border-gray-700 p-2 text-center cursor-pointer">${montoYAPEFormateo}</td>
+            </tr>
+            <tr class="bg-red-600 border-b dark:border-gray-700 cursor-pointer text-white font-bold">
+                <td class="outline-none border-r-[1px] dark:border-gray-700 p-2 text-center cursor-pointer" colspan="3">TOTAL DE SALDO EN BANCOS</td>
+                <td class="outline-none border-r-[1px] dark:border-gray-700 p-2 text-center cursor-pointer" colspan="3">${montoTotalFormateo}</td>
+            </tr>
+        `;
+        tbodyReporteDePagosIngresosResumenBancos.append(nuevaFila);
+    }
 
 });
