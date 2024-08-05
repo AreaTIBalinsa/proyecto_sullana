@@ -179,20 +179,16 @@
                 </div>
             </div>
         </div>
-        <div class="md:m-5 mt-0" id="divCuadroResumenBancos">
+        {{-- <div class="md:m-5 mt-0" id="divCuadroResumenBancos">
             <table id="tableReporteIngresosBancos" class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                 <caption class="bg-green-600 p-2 w-full rounded-t-lg border-b-2 text-sm font-bold text-gray-100">Cuadro Resumen Bancos</caption>
                 <thead class="text-xs text-gray-100 uppercase bg-green-600">
-                    {{-- <tr>
-                        <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Banco</th>
-                        <th class="p-4 border-r-[1px] border-b-2 text-center whitespace-nowrap">Importe</th>
-                    </tr> --}}
                 </thead>
                 <tbody id="bodyReporteDePagosIngresosResumenBancos">
                     <tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="8" class="text-center">No hay datos</td></tr>
                 </tbody>
             </table>
-        </div>
+        </div> --}}
         <div class="md:m-5 mt-0">
             {{-- <div class="relative overflow-auto aside_scrollED rounded-lg flex items-start"> --}}
             <div class="relative overflow-auto aside_scrollED rounded-lg flex items-start">

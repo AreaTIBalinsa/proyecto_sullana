@@ -10774,22 +10774,22 @@ jQuery(function ($) {
                             pagosDetallados += `
                                                 <tr class="bg-white border-b contarFilaPagos border-black">
                                                     <td class="text-center py-1 p-4 whitespace-nowrap font-semibold border-r-2 border-black">${obj.bancaPago === "FLETE" ? `<span class='text-red-600 font-bold'>S/. ${(parseFloat(obj.cantidadAbonoPag)*-1).toFixed(2)}</span>` : `S/. ${parseFloat(obj.cantidadAbonoPag).toFixed(2)}` }</td>
-                                                    <td class="text-center py-1 p-4 whitespace-nowrap text-[#162B4E]">${obj.bancaPago == null ? obj.clasificacionPago == "2" ? obj.tipoAbonoPag + " CAMAL" : obj.tipoAbonoPag + " PAUL"  : limpiarNombreBanco(obj.bancaPago)} ${obj.fechaOperacionPag == fecha ? "" : formatFecha(obj.fechaOperacionPag)}</td>
+                                                    <td class="text-center py-1 p-4 whitespace-nowrap text-[#162B4E]">${obj.bancaPago === null ? obj.clasificacionPago == "2" ? obj.tipoAbonoPag + " CAMAL" : obj.tipoAbonoPag + " PAUL"  : limpiarNombreBanco(obj.bancaPago)} ${obj.fechaOperacionPag == fecha ? "" : formatFecha(obj.fechaOperacionPag)}</td>
                                                 </tr>`
                             masDeUnPago += 1;
                         }else{
                             if (obj.fechaOperacionPag == fecha && pasoUnaVez == 0){
                                 pagosDetallados += `
                                                 <tr class="bg-white border-b contarFilaPagos border-black">
-                                                    <td class="text-center py-1 p-4 whitespace-nowrap font-semibold border-r-2 border-black">S/. ${obj.bancaPago === "FLETE" ? `<span class='text-red-600 font-bold'>S/. ${(parseFloat(obj.cantidadAbonoPag)*-1).toFixed(2)}</span>` : `S/. ${parseFloat(obj.cantidadAbonoPag).toFixed(2)}` }</td>
-                                                    <td class="text-center py-1 p-4 whitespace-nowrap text-[#162B4E]">${obj.bancaPago == null ? obj.clasificacionPago === "2" ? obj.tipoAbonoPag + " CAMAL" : obj.tipoAbonoPag + " PAUL"  : limpiarNombreBanco(obj.bancaPago)} ${obj.fechaOperacionPag == fecha ? "" : formatFecha(obj.fechaOperacionPag)}</td>
+                                                    <td class="text-center py-1 p-4 whitespace-nowrap font-semibold border-r-2 border-black">${obj.bancaPago === "FLETE" ? `<span class='text-red-600 font-bold'>S/. ${(parseFloat(obj.cantidadAbonoPag)*-1).toFixed(2)}</span>` : `S/. ${parseFloat(obj.cantidadAbonoPag).toFixed(2)}` }</td>
+                                                    <td class="text-center py-1 p-4 whitespace-nowrap text-[#162B4E]">${obj.bancaPago === null ? obj.clasificacionPago == "2" ? obj.tipoAbonoPag + " CAMAL" : obj.tipoAbonoPag + " PAUL"  : limpiarNombreBanco(obj.bancaPago)} ${obj.fechaOperacionPag == fecha ? "" : formatFecha(obj.fechaOperacionPag)}</td>
                                                 </tr> `
                                 pasoUnaVez += 1;
                             }else{
                                 pagosDetallados += `
                                                 <tr class="bg-white border-b contarFilaPagos border-black">
-                                                    <td class="text-center py-1 p-4 whitespace-nowrap font-semibold border-r-2 border-black">S/. ${obj.bancaPago === "FLETE" ? `<span class='text-red-600 font-bold'>S/. ${(parseFloat(obj.cantidadAbonoPag)*-1).toFixed(2)}</span>` : `S/. ${parseFloat(obj.cantidadAbonoPag).toFixed(2)}` }</td>
-                                                    <td class="text-center py-1 p-4 whitespace-nowrap text-[#162B4E]">${obj.bancaPago == null ? obj.clasificacionPago === "2" ? obj.tipoAbonoPag + " CAMAL" : obj.tipoAbonoPag + " PAUL"  : limpiarNombreBanco(obj.bancaPago)} ${obj.fechaOperacionPag == fecha ? "" : formatFecha(obj.fechaOperacionPag)}</td>
+                                                    <td class="text-center py-1 p-4 whitespace-nowrap font-semibold border-r-2 border-black">${obj.bancaPago === "FLETE" ? `<span class='text-red-600 font-bold'>S/. ${(parseFloat(obj.cantidadAbonoPag)*-1).toFixed(2)}</span>` : `S/. ${parseFloat(obj.cantidadAbonoPag).toFixed(2)}` }</td>
+                                                    <td class="text-center py-1 p-4 whitespace-nowrap text-[#162B4E]">${obj.bancaPago === null ? obj.clasificacionPago == "2" ? obj.tipoAbonoPag + " CAMAL" : obj.tipoAbonoPag + " PAUL"  : limpiarNombreBanco(obj.bancaPago)} ${obj.fechaOperacionPag == fecha ? "" : formatFecha(obj.fechaOperacionPag)}</td>
                                                 </tr> `
                             }
                         }

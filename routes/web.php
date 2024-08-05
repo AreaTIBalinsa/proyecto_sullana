@@ -241,3 +241,5 @@ Route::get('/fn_consulta_TraerClientes',[AutocompleteController::class,'consulta
 Route::get('/fn_consulta_TraerEgresosCajaChica',[AutocompleteController::class,'consulta_TraerEgresosCajaChica']);
 Route::get('/fn_consulta_TraerEgresosCajaChica2',[AutocompleteController::class,'consulta_TraerEgresosCajaChica2']);
 Route::get('/fn_consulta_TraerEgresosPaul',[AutocompleteController::class,'consulta_TraerEgresosPaul']);
+
+Route::get('/fn_consulta_TraerPagosResumenDinerario',[ResumenDinerarioController::class,'consulta_TraerPagosResumenDinerario']);

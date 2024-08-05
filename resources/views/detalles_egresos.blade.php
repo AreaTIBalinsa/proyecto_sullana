@@ -123,7 +123,7 @@
         </div>
 
         <!-- Contenido del modal -->
-        <div class="absolute rounded-lg max-h-max inset-0 m-auto align-bottom bg-white dark:bg-gray-700 text-left overflow-hidden shadow-xl transform transition-all sm:max-w-lg sm:w-full">
+        <div class="absolute rounded-lg max-h-max inset-0 m-auto align-bottom bg-white dark:bg-gray-700 text-left overflow-hidden shadow-xl transform transition-all md:max-w-3xl w-full">
             <div class="p-4">
                 <div class="flex flex-col">
                     <div class="border-b rounded-t dark:border-gray-500 p-2 flex justify-center">
@@ -134,10 +134,10 @@
                             <h5 for="fechaAgregarEgreso" class="text-base text-gray-900 dark:text-gray-50 min-w-max">Fecha :</h5>
                             <input type="date" class="outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 px-2.5 py-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-full" id="fechaAgregarEgreso">
                         </div>
-                        <div class="flex w-full justify-start items-center gap-2">
+                        {{-- <div class="flex w-full justify-start items-center gap-2">
                             <h5 for="horaAgregarEgreso" class="text-base text-gray-900 dark:text-gray-50 min-w-max">Hora :</h5>
                             <input type="time" class="outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 px-2.5 py-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-full" id="horaAgregarEgreso">
-                        </div>
+                        </div> --}}
                         <div class="flex w-full h-10">
                             <div class="text-sm px-3 flex items-center justify-center text-center border border-gray-300 dark:border-gray-600 bg-gray-300 dark:bg-gray-600 rounded-l-lg">
                                 <h4 class="font-medium text-gray-900 dark:text-gray-300 min-w-max">Categoria</h4>
@@ -146,7 +146,36 @@
     
                             </select>                          
                         </div>
-                        <div class="flex justify-center items-start flex-col relative w-full h-full">
+                        <div class="relative overflow-x-auto shadow-md sm:rounded-lg w-full">
+                            <table class="w-full text-sm text-left rtl:text-right border-collapse text-gray-500 dark:text-gray-400">
+                                <thead class="text-xs uppercase bg-blue-600 text-white">
+                                    <tr>
+                                        <th scope="col" class="px-6 py-3 border-b-2 whitespace-nowrap">
+                                            Hora
+                                        </th>
+                                        <th scope="col" class="px-6 py-3 border-b-2 whitespace-nowrap">
+                                            Uso Egreso
+                                        </th>
+                                        <th scope="col" class="px-6 py-3 border-b-2 whitespace-nowrap">
+                                            Cantidad
+                                        </th>
+                                        <th scope="col" class="px-6 py-3 border-b-2 whitespace-nowrap">
+                                            Precio
+                                        </th>
+                                        <th scope="col" class="px-6 py-3 border-b-2 whitespace-nowrap">
+                                            Monto
+                                        </th>
+                                        <th scope="col" class="px-6 py-3 border-b-2 whitespace-nowrap">
+                                            Observación
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600" id="bodyReporteDePagosExcelEgreso">
+
+                                </tbody>
+                            </table>
+                        </div>
+                        {{-- <div class="flex justify-center items-start flex-col relative w-full h-full">
                             <label for="usoAgregarEgreso" class="mb-2 text-base font-medium text-gray-900 dark:text-white">Uso :</label>
                             <div class="flex w-full">
                                 <textarea class="w-full autocompleteEgresosCajaChica uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" autocomplete="off" id="usoAgregarEgreso" placeholder="Ingrese Uso"></textarea>
@@ -171,7 +200,7 @@
                         <div class="flex flex-col w-full">
                             <label for="comentarioAgregarEgreso" class="mb-2 w-full whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white md:w-24">Observación :</label>
                             <textarea class="w-full outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" autocomplete="off" id="comentarioAgregarEgreso"></textarea>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>

@@ -329,7 +329,7 @@ jQuery(function($) {
                     } else {
                         agregarFilaEspaciadora(tbodyReporteDePagosIngresosBancos);
                         agregarFilaTotal(tbodyReporteDePagosIngresosBancos, totalPago);
-                        fn_crearCuadroResumenBancos();
+                        // fn_crearCuadroResumenBancos();
                     }
                 } else {
                     console.log("La respuesta no es un arreglo de objetos.");
