@@ -322,6 +322,7 @@
                         <caption class="bg-blue-600 p-2 w-full border-b-2 text-sm font-bold text-gray-100" id="captionEgresosModal">Egresos sin Clasificar</caption>
                         <thead class="text-xs text-gray-100 uppercase bg-blue-600 sticky top-0" id="headerEgresosModal">
                             <tr>
+                                <th class="px-2 py-4 text-center">#</th>
                                 <th class="px-2 py-4 text-center">Fecha</th>
                                 <th class="px-2 py-4 text-center">Hora</th>
                                 <th class="px-2 py-4 text-center">Uso de Egreso</th>

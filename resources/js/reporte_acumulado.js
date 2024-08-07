@@ -2423,7 +2423,7 @@ jQuery(function($) {
 
         // ==============================================
 
-        let totalPeso24 = totalPeso10 + totalPeso11 + totalPeso12 + totalPeso13 + totalPeso15;
+        let totalPeso24 = totalPeso10 + totalPeso11 + totalPeso12 + totalPeso13 + totalPeso15 /*+ totalPeso6 + totalPeso21*/;
         let totalCantidad24 = totalCantidad10 + totalCantidad11 + totalCantidad12 + totalCantidad13 + totalCantidad15;
         let totalVenta24 = totalVenta10 + totalVenta11 + totalVenta12 + totalVenta13 + totalVenta15;
         let totalPesoDescuentoVigesimaCuartaEspecie24 = totalPesoDescuentoDecimaEspecie10 + totalPesoDescuentoDecimaPrimeraEspecie11 + totalPesoDescuentoDecimaSegundaEspecie12 + totalPesoDescuentoDecimaTerceraEspecie13 + totalPesoDescuentoDecimaCuartaEspecie14 + totalPesoDescuentoDecimaQuintaEspecie15;
@@ -2833,6 +2833,11 @@ jQuery(function($) {
                     let contenedorDetallesTrozado = $('#bodyTrozadoModal');
                     contenedorDetallesTrozado.empty();
 
+                    let totalCantidad = 0;
+                    let totalPesoBruto = 0;
+                    let totalPesoJabas = 0;
+                    let totalPesoNeto = 0;
+
                     // Iterar sobre los objetos y mostrar sus propiedades
                     response.forEach(function (obj) {
 
@@ -2846,6 +2851,11 @@ jQuery(function($) {
                         }else{
                             pesoNeto = pesoBruto + pesoTara;
                         }
+
+                        totalPesoNeto += parseFloat(pesoNeto);
+                        totalCantidad += parseInt(obj.cantidadPes);
+                        totalPesoJabas += parseFloat(obj.pesoNetoPes)
+                        totalPesoBruto += parseFloat(obj.pesoNetoJabas) 
 
                         // Crear una nueva fila
                         let nuevaFila = `
@@ -2866,6 +2876,24 @@ jQuery(function($) {
                         // Agregar la nueva tabla al tbody
                         contenedorDetallesTrozado.append(nuevaFila);
                     });
+
+                    let nuevaFila = `
+                        <tr class="bg-blue-600 border-b dark:border-gray-700 dark:text-white cursor-pointer font-bold">
+                            <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap hidden"></td>
+                            <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap"></td>
+                            <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap"></td>
+                            <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap"></td>
+                            <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">TOTAL</td>
+                            <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${totalCantidad}</td>
+                            <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${totalPesoBruto.toFixed(2)}</td>
+                            <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${totalPesoJabas.toFixed(2)}</td>
+                            <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${totalPesoNeto.toFixed(2)}</td>
+                            <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap"></td>
+                        </tr>
+                    `;
+                    
+                    // Agregar la nueva tabla al tbody
+                    contenedorDetallesTrozado.append(nuevaFila);
                     $('#ModalTrozadoModal').addClass('flex');
                     $('#ModalTrozadoModal').removeClass('hidden');
                 }else{

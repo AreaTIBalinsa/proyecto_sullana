@@ -196,6 +196,10 @@ jQuery(function($) {
         });
     }
 
+    function eliminarEspacios(cadena) {
+        return cadena.replace(/\s+/g, '');
+    }
+
     function fn_consulta_TraerTablasCategoriasEgresos() {
 
         // Realiza la solicitud AJAX para obtener sugerencias
@@ -229,7 +233,7 @@ jQuery(function($) {
                                         <th class="px-2 py-4 text-center hidden">Categoria</th>
                                     </tr>
                                 </thead>
-                                <tbody id="bodyCategoria${obj.nombre_category}">
+                                <tbody id="bodyCategoria${eliminarEspacios(obj.nombre_category)}">
                                 </tbody>
                             </table>
                         </div>
@@ -259,23 +263,37 @@ jQuery(function($) {
         $.ajax({
             url: '/fn_consulta_TraerTablasDetallesEgresos2',
             method: 'GET',
-            data:{
-                fecha : fecha
+            data: {
+                fecha: fecha
             },
             success: function (response) {
-
+    
                 // Verificar si la respuesta es un arreglo de objetos
                 if (Array.isArray(response)) {
-                    
+    
                     let anteriorCategoria = "";
+                    let totalesPorCategoria = {};
+    
                     response.forEach(function (obj) {
-                        if(anteriorCategoria !== obj.nombre_category){
+                        if (anteriorCategoria !== obj.nombre_category) {
                             $(`#bodyCategoria${obj.nombre_category}`).empty();
                             $('#bodyCategoriaSinClasificar').empty();
                             anteriorCategoria = obj.nombre_category;
                         }
+    
+                        // Inicializar el objeto de totales para la categoría si no existe
+                        if (!totalesPorCategoria[obj.nombre_category]) {
+                            totalesPorCategoria[obj.nombre_category] = {
+                                cantidad_total: 0,
+                                monto_total: 0
+                            };
+                        }
+    
+                        // Acumular los totales por categoría
+                        totalesPorCategoria[obj.nombre_category].cantidad_total += obj.cantidad_detalles ? parseInt(obj.cantidad_detalles) : 0;
+                        totalesPorCategoria[obj.nombre_category].monto_total += obj.monto_detalle ? parseFloat(obj.monto_detalle) : 0;
                     });
-
+    
                     // Iterar sobre los objetos y mostrar sus propiedades
                     response.forEach(function (obj) {
                         // Crear una nueva fila
@@ -292,28 +310,46 @@ jQuery(function($) {
                                 <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap hidden">${obj.id_category}</td>
                             </tr>
                         `;
-                        
-                        // Agregar la nueva tabla al tbody
-                        if(parseInt(obj.id_category) != 0){
-                            let contenedorCategoriasEgresos = $(`#bodyCategoria${obj.nombre_category}`);
+    
+                        // Agregar la nueva fila al tbody correspondiente
+                        if (parseInt(obj.id_category) != 0) {
+                            let contenedorCategoriasEgresos = $(`#bodyCategoria${eliminarEspacios(obj.nombre_category)}`);
                             contenedorCategoriasEgresos.append(nuevaFila);
-                        }else{
+                        } else {
                             let contenedorCategoriasEgresos = $('#bodyCategoriaSinClasificar');
                             contenedorCategoriasEgresos.append(nuevaFila);
                         }
                     });
-
+    
+                    // Agregar las filas de totales por categoría
+                    for (let category in totalesPorCategoria) {
+                        let totales = totalesPorCategoria[category];
+                        let filaTotales = `
+                            <tr class="bg-blue-600 text-white font-bold">
+                                <td colspan="3" class="border-r dark:border-gray-700 p-2 text-center">Total</td>
+                                <td class="border-r dark:border-gray-700 p-2 text-center">${totales.cantidad_total}</td>
+                                <td class="border-r dark:border-gray-700 p-2 text-center"></td>
+                                <td class="border-r dark:border-gray-700 p-2 text-center">${totales.monto_total.toFixed(2)}</td>
+                                <td class="border-r dark:border-gray-700 p-2 text-center"></td>
+                                <td class="border-r dark:border-gray-700 p-2 text-center hidden"></td>
+                            </tr>
+                        `;
+    
+                        let contenedorTotales = $(`#bodyCategoria${eliminarEspacios(category)}`);
+                        contenedorTotales.append(filaTotales);
+                    }
+    
                 } else {
                     console.log("La respuesta no es un arreglo de objetos.");
                 }
-
+    
             },
             error: function (error) {
                 console.error("ERROR", error);
             }
         });
-
-    };
+    
+    };    
 
     function fn_declararCategorias(){
         $.ajax({

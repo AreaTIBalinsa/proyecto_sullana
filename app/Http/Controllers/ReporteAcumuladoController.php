@@ -1571,7 +1571,7 @@ class ReporteAcumuladoController extends Controller
                 FROM tb_pesadas
                 INNER JOIN tb_clientes ON tb_clientes.codigoCli = tb_pesadas.codigoCli
                 INNER JOIN tb_especies_venta ON tb_especies_venta.idEspecie = tb_pesadas.idEspecie
-                WHERE fechaRegistroPes BETWEEN ? AND ? AND tb_pesadas.idEspecie IN (9, 10, 11, 12, 13, 6, 21, 8)
+                WHERE estadoPes = 1 AND fechaRegistroPes BETWEEN ? AND ? AND tb_pesadas.idEspecie IN (9, 10, 11, 12, 13, 6, 21, 8)
                 UNION
                 SELECT 
                     tb_pesadas3.idPesada,
@@ -1594,7 +1594,7 @@ class ReporteAcumuladoController extends Controller
                 FROM tb_pesadas3
                 INNER JOIN tb_clientes ON tb_clientes.codigoCli = tb_pesadas3.codigoCli
                 INNER JOIN tb_especies_venta ON tb_especies_venta.idEspecie = tb_pesadas3.idEspecie
-                WHERE fechaRegistroPes BETWEEN ? AND ? AND tb_pesadas3.idEspecie IN (9, 10, 11, 12, 13, 6, 21, 8)
+                WHERE estadoPes = 1 AND fechaRegistroPes BETWEEN ? AND ? AND tb_pesadas3.idEspecie IN (9, 10, 11, 12, 13, 6, 21, 8)
                 UNION
                 SELECT 
                     tb_pesadas2.idPesada,
@@ -1617,7 +1617,7 @@ class ReporteAcumuladoController extends Controller
                 FROM tb_pesadas2
                 INNER JOIN tb_clientes ON tb_clientes.codigoCli = tb_pesadas2.codigoCli
                 INNER JOIN tb_especies_venta ON tb_especies_venta.idEspecie = tb_pesadas2.idEspecie
-                WHERE fechaRegistroPes BETWEEN ? AND ? AND tb_pesadas2.idEspecie IN (9, 10, 11, 12, 13, 6, 21, 8)
+                WHERE estadoPes = 1 AND fechaRegistroPes BETWEEN ? AND ? AND tb_pesadas2.idEspecie IN (9, 10, 11, 12, 13, 6, 21, 8)
                 ORDER BY fechaRegistroPes DESC, idPesada ASC', [$fecha, $fecha, $fecha, $fecha, $fecha, $fecha]);
 
             // Devuelve los datos en formato JSON

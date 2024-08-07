@@ -353,7 +353,7 @@
                                     <svg class="flex-shrink-0 w-3.5 h-3.5 text-blue-600 dark:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                                         <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
                                     </svg>
-                                    <span class="leading-tight font-bold">Ahogados</span>
+                                    <span class="leading-tight font-bold">Secos</span>
                                 </div>
                                 <div class="w-full flex flex-col text-gray-800 dark:text-white">
                                     <div class="flex flex-1 border justify-center font-semibold">Cantidad :&nbsp;<span class="font-normal" id="totalUnidadesVigesimaPrimeraEspecie">0 Uds.</span></div>
@@ -363,7 +363,7 @@
                                     <svg class="flex-shrink-0 w-3.5 h-3.5 text-blue-600 dark:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                                         <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
                                     </svg>
-                                    <span class="leading-tight font-bold">Secos</span>
+                                    <span class="leading-tight font-bold">Ahogados</span>
                                 </div>
                                 <div class="w-full flex flex-col text-gray-800 dark:text-white">
                                     <div class="flex flex-1 border justify-center font-semibold">Cantidad :&nbsp;<span class="font-normal" id="totalUnidadesSextaEspecie">0 Uds.</span></div>

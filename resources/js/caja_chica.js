@@ -1462,13 +1462,21 @@ jQuery(function($) {
                     
                     let contenedorCategoriasEgresos = $('#bodyCategoriaModal');
                     contenedorCategoriasEgresos.empty();
+                    
+                    let cantidadModal = 0;
+                    let montoModal = 0;
+                    let contador = 0;
 
                     // Iterar sobre los objetos y mostrar sus propiedades
                     response.forEach(function (obj) {
+                        cantidadModal += parseInt(obj.cantidad_detalles === null ? 0 : obj.cantidad_detalles);
+                        montoModal += parseFloat(obj.monto_detalle);
+                        contador += 1;
                         // Crear una nueva fila
                         let nuevaFila = `
                             <tr class="eliminarDetalleEgreso bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-200 text-gray-900 dark:text-white dark:hover:bg-gray-600 cursor-pointer">
                                 <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap hidden">${obj.id_detalle}</td>
+                                <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap w-12">${contador}</td>
                                 <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.fecha_detalle}</td>
                                 <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.hora_detalle}</td>
                                 <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.uso_detalle_egreso}</td>
@@ -1492,6 +1500,24 @@ jQuery(function($) {
                             $("#captionEgresosModal, #headerEgresosModal").addClass('bg-blue-600');
                         }
                     });
+
+                    let nuevaFila = `
+                        <tr class="bg-blue-600 border-b dark:border-gray-700 dark:text-white cursor-pointer font-bold">
+                            <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap hidden"></td>
+                            <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap"></td>
+                            <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap"></td>
+                            <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap"></td>
+                            <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">Total</td>
+                            <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${cantidadModal}</td>
+                            <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap"></td>
+                            <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${montoModal.toFixed(2)}</td>
+                            <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap"></td>
+                            <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap hidden"></td>
+                        </tr>
+                    `;
+                    
+                    // Agregar la nueva tabla al tbody
+                    contenedorCategoriasEgresos.append(nuevaFila);
                     $('#ModalEgresosModal').addClass('flex');
                     $('#ModalEgresosModal').removeClass('hidden');
 

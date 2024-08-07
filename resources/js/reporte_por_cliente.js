@@ -6,6 +6,7 @@ jQuery(function ($) {
     // Obtener la fecha actual en formato ISO (YYYY-MM-DD)
     const ahoraEnNY = new Date();
     const fechaHoy = new Date(ahoraEnNY.getFullYear(), ahoraEnNY.getMonth(), ahoraEnNY.getDate()).toISOString().split('T')[0];
+    var totalAPagar = 0;
 
     // Asignar la fecha actual a los inputs
     $('#fechaDesdeReportePorCliente').val(fechaHoy);
@@ -222,6 +223,7 @@ jQuery(function ($) {
                         let ventaCantidadTotal = 0
 
                         bodyReportePorCliente += construirFilaFecha(item);
+                        totalAPagar = 0
 
                         response.forEach(function (subItem) {
                             if (item.fechaRegistroPes === subItem.fechaRegistroPes) {
@@ -455,7 +457,6 @@ jQuery(function ($) {
             </tr>
         `;
     }
-    
 
     function construirFilaDatos(item) {
         let horaPes = item.horaPes
@@ -489,6 +490,8 @@ jQuery(function ($) {
         }
 
         let mostrarColumnas = localStorage.getItem('editarDatos') === 'true'; // Verificar si editarDatos es true
+
+        totalAPagar += parseFloat(pesoNeto) * parseFloat(precioPes);
 
         return `
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -626,8 +629,8 @@ jQuery(function ($) {
                 ${mostrarColumnas ? `
                     <td class="text-center py-1 px-2 whitespace-nowrap border-l-2"></td>
                     <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-                    <td class="text-center py-1 px-2 whitespace-nowrap"></td>
-                    <td class="text-center py-1 px-2 whitespace-nowrap"></td>
+                    <td class="text-center py-1 px-2 whitespace-nowrap">TOTAL A PAGAR :</td>
+                    <td class="text-center py-1 px-2 whitespace-nowrap">S/. ${totalAPagar.toFixed(2)}</td>
                 `:`
                     <td class="text-center py-1 px-2 whitespace-nowrap hidden border-l-2"></td>
                     <td class="text-center py-1 px-2 whitespace-nowrap hidden"></td>

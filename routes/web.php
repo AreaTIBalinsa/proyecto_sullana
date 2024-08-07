@@ -243,3 +243,6 @@ Route::get('/fn_consulta_TraerEgresosCajaChica2',[AutocompleteController::class,
 Route::get('/fn_consulta_TraerEgresosPaul',[AutocompleteController::class,'consulta_TraerEgresosPaul']);
 
 Route::get('/fn_consulta_TraerPagosResumenDinerario',[ResumenDinerarioController::class,'consulta_TraerPagosResumenDinerario']);
+Route::get('/fn_consulta_TraerPagosResumenDinerarioEgresosPaul',[ResumenDinerarioController::class,'consulta_TraerPagosResumenDinerarioEgresosPaul']);
+Route::get('/fn_consulta_TraerPagosResumenDinerarioEgresosCamal',[ResumenDinerarioController::class,'consulta_TraerPagosResumenDinerarioEgresosCamal']);
+Route::get('/fn_consulta_TraerPagosResumenDinerarioEgresosProveedores',[ResumenDinerarioController::class,'consulta_TraerPagosResumenDinerarioEgresosProveedores']);
