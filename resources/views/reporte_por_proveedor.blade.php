@@ -50,7 +50,7 @@
             </table>
         </div>
         <div class="md:mx-5 md:mb-5">
-            <h2 class="text-white text-base font-semibold mb-5">Control de Stock</h2>
+            <h2 class="text-gray-900 dark:text-white text-base font-semibold mb-5">Control de Stock</h2>
             <div class="flex gap-x-10 gap-4 w-full flex-col md:flex-row items-end justify-start mb-5">
                 <div class="flex flex-col justify-center w-full md:w-auto">
                     <label for="fechaDesdeReportePorProveedorControlStock" class="text-base text-gray-900 dark:text-gray-50">Desde :</label>

@@ -1067,13 +1067,19 @@ jQuery(function($) {
         let totalMermaPesoSoloPollos = parseFloat(mermaDiferenciaPesoYugo) + parseFloat(mermaDiferenciaPesoTecnica) + parseFloat(mermaDiferenciaPesoPolloXX) + parseFloat(mermaDiferenciaPesoEspeciesOtros);
         let totalMermaCantidadSoloPollos = parseInt(mermaDiferenciaCantidadYugo) + parseInt(mermaDiferenciaCantidadTecnica) + parseInt(mermaDiferenciaCantidadPolloXX) + parseInt(mermaDiferenciaCantidadEspeciesOtros);
 
+        let date = new Date(fechaDesde + "T00:00:00Z");
+        date.setUTCDate(date.getUTCDate() - 1);
+        let dia = ("0" + date.getUTCDate()).slice(-2);
+        let mes = ("0" + (date.getUTCMonth() + 1)).slice(-2);
+        let anio = date.getUTCFullYear();
+        let fechaDesdeAnterior = anio + '-' + mes + '-' + dia;
         // Realiza la solicitud AJAX para obtener sugerencias
         return new Promise((resolve, reject) => {
             $.ajax({
                 url: '/fn_consulta_TraerStock',
                 method: 'GET',
                 data: {
-                    fecha: fechaDesde
+                    fecha: fechaDesdeAnterior
                 },
                 success: function (response) {
                     if (Array.isArray(response)) {

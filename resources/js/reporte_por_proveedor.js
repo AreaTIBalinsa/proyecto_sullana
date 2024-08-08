@@ -1555,4 +1555,10 @@ jQuery(function($) {
         });
     }
 
+    $('#btnBuscarReportePorProveedorControlStock').on('click', function () {
+        let fechaDesdeReportePorProveedorControlStock = $('#fechaDesdeReportePorProveedorControlStock').val();
+        let fechaHastaReportePorProveedorControlStock = $('#fechaHastaReportePorProveedorControlStock').val();
+        fn_TraerControlStock(fechaDesdeReportePorProveedorControlStock,fechaHastaReportePorProveedorControlStock);
+    });
+
 });
