@@ -25,7 +25,7 @@
             </div>
         </div>
         {{-- Tabla --}}
-        <div class="relative overflow-auto rounded-lg md:mx-5 md:mb-10 max-h-[500px] aside_scrollED">
+        <div class="relative overflow-auto rounded-lg md:mx-5 md:mb-5 max-h-[500px] aside_scrollED">
             <table class="border-collapse w-full text-gray-500 dark:text-gray-400 select-none relative text-sm" id="tablaReportePorProveedor">
                 <thead id="headerReportePorProveedor" class="bg-blue-600 text-gray-50 sticky top-0">
                     <tr class="h-10">
@@ -35,10 +35,8 @@
                         <th class="px-4 font-medium whitespace-nowrap">CANTIDAD</th>
                         <th class="px-4 font-medium whitespace-nowrap">PESO BRUTO</th>
                         <th class="px-4 font-medium whitespace-nowrap">TARA</th>
-                        @if (auth()->user()->tipoUsu == 'Administrador')
-                            <th class="px-4 font-medium whitespace-nowrap">PESO NETO</th>
-                        @endif
-                            <th class="px-4 font-medium whitespace-nowrap">PROMEDIO</th>
+                        <th class="px-4 font-medium whitespace-nowrap">PESO NETO</th>
+                        <th class="px-4 font-medium whitespace-nowrap">PROMEDIO</th>
                         @if (auth()->user()->tipoUsu == 'Administrador')
                             <th class="px-4 font-medium whitespace-nowrap">PRECIO</th>
                             <th class="px-4 font-medium whitespace-nowrap">TOTAL</th>
@@ -51,8 +49,49 @@
                 </tbody>
             </table>
         </div>
+        <div class="md:mx-5 md:mb-5">
+            <h2 class="text-white text-base font-semibold mb-5">Control de Stock</h2>
+            <div class="flex gap-x-10 gap-4 w-full flex-col md:flex-row items-end justify-start mb-5">
+                <div class="flex flex-col justify-center w-full md:w-auto">
+                    <label for="fechaDesdeReportePorProveedorControlStock" class="text-base text-gray-900 dark:text-gray-50">Desde :</label>
+                    <input type="date" class="outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 px-2.5 py-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" id="fechaDesdeReportePorProveedorControlStock">
+                </div>
+                <div class="flex flex-col justify-center w-full md:w-auto">
+                    <label for="fechaHastaReportePorProveedorControlStock" class="text-base text-gray-900 dark:text-gray-50">Hasta :</label>
+                    <input type="date" class="outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 px-2.5 py-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" id="fechaHastaReportePorProveedorControlStock">
+                </div>
+                <button class="w-full md:w-auto text-base py-2 px-5 bg-blue-600 hover:bg-blue-700 text-gray-50 rounded-lg" id="btnBuscarReportePorProveedorControlStock"><i class='bx bx-search-alt'></i> Buscar</button>
+            </div>
+            <div class="flex gap-4 justify-end w-full flex-col md:flex-row mb-5">
+                <button class="text-base py-2 px-5 bg-blue-600 hover:bg-blue-700 text-gray-50 rounded-lg flex items-center justify-center gap-2" id="btnAgregarStockReportePorProveedor"><i class='bx bx-list-plus text-2xl'></i> Agregar Stock</button>
+            </div>
+            <div class="relative overflow-x-auto shadow-md sm:rounded-lg w-full">
+                <table class="w-full text-sm text-center border-collapse text-gray-500 dark:text-gray-400">
+                    <thead class="text-sm uppercase bg-blue-600 text-white">
+                        <tr>
+                            <th scope="col" class="px-6 py-3 border-b-2 whitespace-nowrap">
+                                Fecha
+                            </th>
+                            <th scope="col" class="px-6 py-3 border-b-2 whitespace-nowrap">
+                                Proveedor
+                            </th>
+                            <th scope="col" class="px-6 py-3 border-b-2 whitespace-nowrap">
+                                Cantidad
+                            </th>
+                            <th scope="col" class="px-6 py-3 border-b-2 whitespace-nowrap">
+                                Peso
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="bodyReporteControlStock">
+                        <tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="4" class="text-center">No hay datos</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        @if (auth()->user()->tipoUsu == 'Administrador')
         {{-- Termina contenedor Reporte por Proveedor --}}
-        <div class="relative rounded-lg md:px-5 md:mb-5 max-h-[500px] flex justify-center items-center gap-6 flex-col w-full">
+        <div class="relative rounded-lg md:px-5 md:mb-5 mt-10 max-h-[500px] flex justify-center items-center gap-6 flex-col w-full">
             <div class="w-full overflow-auto aside_scrollED">
                 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                     <caption class="bg-blue-600 p-2 w-full rounded-lt-lg border-b-2 text-sm font-bold text-gray-100">Pagos a Proveedores</caption>
@@ -99,6 +138,7 @@
                 </table>
             </div>
         </div>
+        @endif
     </div>
 </main>
 
@@ -332,4 +372,100 @@
 
 {{-- Termina Modal Editar Pago --}}
 
+<div class="fixed inset-0 overflow-y-auto z-[100] hidden" id="ModalRegistrarStock">
+    <div class="flex justify-center items-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+        <!-- Fondo oscuro overlay -->
+        <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+            <div class="absolute inset-0 bg-gray-900 opacity-75"></div>
+        </div>
+
+        <!-- Contenido del modal -->
+        <div class="absolute rounded-lg max-h-max inset-0 m-auto align-bottom bg-white dark:bg-gray-700 text-left overflow-hidden shadow-xl transform transition-all sm:max-w-lg sm:w-full">
+            <div class="p-4">
+                <div class="flex flex-col">
+                    <div class="border-b rounded-t dark:border-gray-500 p-2 flex justify-center">
+                        <h3 class="text-xl font-semibold text-gray-900 dark:text-white">¡Registrar Stock!</h3>
+                    </div>
+                    <div class="mt-4 flex justify-center items-center h-10">
+                        <div class="text-sm px-3 flex h-full items-center justify-center text-center border border-gray-300 dark:border-gray-600 bg-gray-300 dark:bg-gray-600 rounded-l-lg">
+                            <h4 class="font-medium text-gray-900 dark:text-gray-300 min-w-max">Fecha</h4>
+                        </div>
+                        <input type="date" class="w-full outline-none bg-gray-50 border h-10 border-gray-300 text-gray-900 text-sm rounded-r-lg focus:ring-primary-600 focus:border-primary-600 px-2.5 py-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" id="fechaRegistrarStock">
+                    </div>
+                    <div class="mt-4 flex justify-center items-center flex-col gap-4">
+                        <select class="w-full uppercase h-10 outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-lg" name="idProveedorAgregarGuia" id="idProveedorAgregarStock">
+                        </select>
+                    </div>
+                    <div class="mt-4 flex justify-center items-center h-10">
+                        <div class="text-sm px-3 flex h-full items-center justify-center text-center border border-gray-300 dark:border-gray-600 bg-gray-300 dark:bg-gray-600 rounded-l-lg">
+                            <h4 class="font-medium text-gray-900 dark:text-gray-300 min-w-max">Cantidad</h4>
+                        </div>
+                        <input class="h-10 w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-r-lg" type="text" name="valorCantidadAgregarGuia" placeholder="0" autocomplete="off" id="valorCantidadAgregarStock" value="">
+                    </div>
+                    <div class="mt-4 flex justify-center items-center h-10">
+                        <div class="text-sm px-3 flex h-full items-center justify-center text-center border border-gray-300 dark:border-gray-600 bg-gray-300 dark:bg-gray-600 rounded-l-lg">
+                            <h4 class="font-medium text-gray-900 dark:text-gray-300 min-w-max">Peso</h4>
+                        </div>
+                        <input class="validarSoloNumerosDosDecimales h-10 w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-r-lg" type="text" name="valorPesoBruto" placeholder="0.00" autocomplete="off" id="valorPesoStock" value="">
+                    </div>
+                </div>
+            </div>
+            <div class="px-4 pb-4">
+                <div class="border-t dark:border-gray-500 w-full sm:flex sm:flex-row-reverse pt-4">
+                    <button type="button" class="inline-flex w-full justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-700 sm:ml-3 sm:w-auto" id="btnGuardarRegistrarStock">Guardar</button>
+                    <button type="button" class="mt-3 inline-flex w-full justify-center rounded-md bg-red-500 hover:bg-red-600 px-3 py-2 text-sm font-semibold text-gray-100 sm:mt-0 sm:w-auto cerrarModalRegistrarStock" id="btncerrarModalRegistrarStock">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="fixed inset-0 overflow-y-auto z-[100] hidden" id="ModalRegistrarStockEditar">
+    <div class="flex justify-center items-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+        <!-- Fondo oscuro overlay -->
+        <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+            <div class="absolute inset-0 bg-gray-900 opacity-75"></div>
+        </div>
+
+        <!-- Contenido del modal -->
+        <div class="absolute rounded-lg max-h-max inset-0 m-auto align-bottom bg-white dark:bg-gray-700 text-left overflow-hidden shadow-xl transform transition-all sm:max-w-lg sm:w-full">
+            <div class="p-4">
+                <div class="flex flex-col">
+                    <div class="border-b rounded-t dark:border-gray-500 p-2 flex justify-center">
+                        <h3 class="text-xl font-semibold text-gray-900 dark:text-white">¡Registrar Stock!</h3>
+                    </div>
+                    <input type="text" class="hidden" id="idStockEditar">
+                    <div class="mt-4 flex justify-center items-center h-10">
+                        <div class="text-sm px-3 flex h-full items-center justify-center text-center border border-gray-300 dark:border-gray-600 bg-gray-300 dark:bg-gray-600 rounded-l-lg">
+                            <h4 class="font-medium text-gray-900 dark:text-gray-300 min-w-max">Fecha</h4>
+                        </div>
+                        <input type="date" class="w-full outline-none bg-gray-50 border h-10 border-gray-300 text-gray-900 text-sm rounded-r-lg focus:ring-primary-600 focus:border-primary-600 px-2.5 py-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" id="fechaRegistrarStockEditar">
+                    </div>
+                    <div class="mt-4 flex justify-center items-center flex-col gap-4">
+                        <select class="w-full uppercase h-10 outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-lg" id="idProveedorAgregarStockEditar">
+                        </select>
+                    </div>
+                    <div class="mt-4 flex justify-center items-center h-10">
+                        <div class="text-sm px-3 flex h-full items-center justify-center text-center border border-gray-300 dark:border-gray-600 bg-gray-300 dark:bg-gray-600 rounded-l-lg">
+                            <h4 class="font-medium text-gray-900 dark:text-gray-300 min-w-max">Cantidad</h4>
+                        </div>
+                        <input class="h-10 w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-r-lg" type="text" name="valorCantidadAgregarGuia" placeholder="0" autocomplete="off" id="valorCantidadAgregarStockEditar" value="">
+                    </div>
+                    <div class="mt-4 flex justify-center items-center h-10">
+                        <div class="text-sm px-3 flex h-full items-center justify-center text-center border border-gray-300 dark:border-gray-600 bg-gray-300 dark:bg-gray-600 rounded-l-lg">
+                            <h4 class="font-medium text-gray-900 dark:text-gray-300 min-w-max">Peso</h4>
+                        </div>
+                        <input class="validarSoloNumerosDosDecimales h-10 w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 rounded-r-lg" type="text" name="valorPesoBruto" placeholder="0.00" autocomplete="off" id="valorPesoStockEditar" value="">
+                    </div>
+                </div>
+            </div>
+            <div class="px-4 pb-4">
+                <div class="border-t dark:border-gray-500 w-full sm:flex sm:flex-row-reverse pt-4">
+                    <button type="button" class="inline-flex w-full justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-700 sm:ml-3 sm:w-auto" id="btnGuardarRegistrarStockEditar">Guardar</button>
+                    <button type="button" class="mt-3 inline-flex w-full justify-center rounded-md bg-red-500 hover:bg-red-600 px-3 py-2 text-sm font-semibold text-gray-100 sm:mt-0 sm:w-auto cerrarModalRegistrarStockEditar" id="btncerrarModalRegistrarStockEditar">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection

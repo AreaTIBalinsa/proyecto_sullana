@@ -87,6 +87,7 @@ Route::get('/fn_consulta_TraerDatosEnTiempoReal', [InicioController::class,'cons
 Route::get('/fn_consulta_TraerDatosEnTiempoRealCompra', [InicioController::class,'consulta_TraerDatosEnTiempoRealCompra']);
 Route::get('/fn_consulta_TraerDatosDiasAnteriores', [InicioController::class,'consulta_TraerDatosDiasAnteriores']);
 Route::get('/fn_consulta_TraerDatosDiasAnterioresCompra', [InicioController::class,'consulta_TraerDatosDiasAnterioresCompra']);
+Route::get('/fn_consulta_TraerStock', [InicioController::class,'consulta_TraerStock']);
 
 Route::post('/convertir_pdf_a_imagen', [InicioController::class, 'convertirPdfAImagen']);
 
@@ -167,6 +168,11 @@ Route::get('/fn_consulta_VerificarCodigoPagoProveedores', [ReportePorProveedorCo
 Route::get('/fn_consulta_AgregarPagoClienteProveedores', [ReportePorProveedorController::class,'consulta_AgregarPagoClienteProveedores']);
 Route::get('/fn_consulta_EliminarPagoProveedor', [ReportePorProveedorController::class,'consulta_EliminarPagoProveedor']);
 Route::get('/fn_consulta_actualizarPagoProveedor', [ReportePorProveedorController::class,'consulta_actualizarPagoProveedor']);
+Route::get('/fn_consulta_TraerControlStock', [ReportePorProveedorController::class,'consulta_TraerControlStock']);
+Route::get('/fn_consulta_DatosProveedorStock', [ReportePorProveedorController::class,'consulta_DatosProveedorStock']);
+Route::get('/fn_consulta_RegistrarStock', [ReportePorProveedorController::class,'consulta_RegistrarStock']);
+Route::get('/fn_consulta_EliminarStock', [ReportePorProveedorController::class,'consulta_EliminarStock']);
+Route::get('/fn_consulta_RegistrarStockEditar', [ReportePorProveedorController::class,'consulta_RegistrarStockEditar']);
 
 Route::get('/fn_consulta_TraerReporteAcumulado',[ReporteAcumuladoController::class,'consulta_TraerReporteAcumulado']);
 Route::get('/fn_consulta_TraerReporteAcumuladoDetalle',[ReporteAcumuladoController::class,'consulta_TraerReporteAcumuladoDetalle']);

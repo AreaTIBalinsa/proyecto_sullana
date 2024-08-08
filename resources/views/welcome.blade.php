@@ -617,13 +617,13 @@
                 </div>
             </div>
             <div class="overflow-x-auto rounded-md aside_scrollED md:px-5">
-                <table class="border-collapse w-full text-gray-500 dark:text-gray-400 select-none relative text-sm">
+                <table class="border-collapse w-full text-gray-500 dark:text-gray-400 relative text-sm">
                     <thead id="inicioCantidadesPollos" class="text-gray-50 text-base">
                         <tr>
                             <th class="text-white border-[2px] bg-blue-600 border-b-1 border-gray-300 dark:border-white py-2 md:text-md text-left px-2"></th>
                             <th class="text-white border-[2px] bg-red-600 border-b-1 border-gray-300 dark:border-white py-2 md:text-md text-center px-2" colspan="2">Compra</th>
                             <th class="text-white border-[2px] bg-green-600 border-b-1 border-gray-300 dark:border-white py-2 md:text-md text-center px-2" colspan="2">Venta</th>
-                            <th class="text-white border-[2px] bg-yellow-400 border-b-1 border-gray-300 dark:border-white py-2 md:text-md text-center px-2" colspan="2">Diferencia</th>
+                            <th class="text-white border-[2px] bg-yellow-400 border-b-1 border-gray-300 dark:border-white py-2 md:text-md text-center px-2" colspan="2">Stock Actual</th>
                         </tr>
                         <tr>
                             <th class="text-white border-[2px] bg-blue-600 border-b-1 border-gray-300 dark:border-white py-2 md:text-md text-left px-2">Representación</th>
@@ -636,7 +636,7 @@
                         </tr>
                     </thead>
                     <tbody id="bodycantidadesPollosCalculo">
-                        <tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="6" class="text-center">No hay datos</td></tr>
+                        <tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="7" class="text-center">No hay datos</td></tr>
                     </tbody>
                 </table>
             </div>

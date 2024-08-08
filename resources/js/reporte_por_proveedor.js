@@ -11,12 +11,16 @@ jQuery(function($) {
     
     // Asignar la fecha actual a los inputs
     $('#fechaDesdeReportePorProveedor').val(fechaHoy);
+    $('#fechaDesdeReportePorProveedorControlStock').val(fechaHoy);
     $('#fechaHastaReportePorProveedor').val(fechaHoy);
+    $('#fechaHastaReportePorProveedorControlStock').val(fechaHoy);
     $('#fechaRegistrarGuia').val(fechaHoy);
 
     fn_ConsultarProveedor(fechaHoy,fechaHoy);
     fn_TraerPagosFechasProveedores(fechaHoy,fechaHoy);
+    fn_TraerControlStock(fechaHoy,fechaHoy);
     fn_declararProveedor();
+    fn_declararProveedorStock();
     fn_declararProveedorEditar();
 
     $('#btnBuscarReportePorProveedor').on('click', function () {
@@ -105,25 +109,26 @@ jQuery(function($) {
                                 tbodyProveedor.append(nuevaFila);
                             }
                         });
+                        
+                        nuevaFila = $('<tr class="bg-white dark:bg-gray-800 h-0.5">');
+                        nuevaFila.append($('<td class="dark:border-gray-700 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(""));
+                        nuevaFila.append($('<td class="text-center h-0.5 bg-gray-800 dark:bg-gray-300" colspan="9">').text(""));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(""));
+                        tbodyProveedor.append(nuevaFila);
+                        nuevaFila = $('<tr class="bg-white h-12 border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(""));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text("TOTALES :"));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text((cantidadAProveedoresPorDia == 1 ? `${cantidadAProveedoresPorDia} Ud.` : `${cantidadAProveedoresPorDia} Uds.`)));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(pesoBrutoProveedoresPorDia.toFixed(2) + " Kg."));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(pesoTaraProveedoresPorDia.toFixed(2) + " Kg."));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(pesoAProveedoresPorDia.toFixed(2) + " Kg."));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(""));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(""));
                         if (tipoUsuario =='Administrador'){
-                            nuevaFila = $('<tr class="bg-white dark:bg-gray-800 h-0.5">');
-                            nuevaFila.append($('<td class="dark:border-gray-700 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(""));
-                            nuevaFila.append($('<td class="text-center h-0.5 bg-gray-800 dark:bg-gray-300" colspan="9">').text(""));
-                            nuevaFila.append($('<td class="border-r dark:border-gray-700 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(""));
-                            tbodyProveedor.append(nuevaFila);
-                            nuevaFila = $('<tr class="bg-white h-12 border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
-                            nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(""));
-                            nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text("TOTALES:"));
-                            nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text((cantidadAProveedoresPorDia == 1 ? `${cantidadAProveedoresPorDia} Ud.` : `${cantidadAProveedoresPorDia} Uds.`)));
-                            nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(pesoBrutoProveedoresPorDia.toFixed(2) + " Kg."));
-                            nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(pesoTaraProveedoresPorDia.toFixed(2) + " Kg."));
-                            nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(pesoAProveedoresPorDia.toFixed(2) + " Kg."));
-                            nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(""));
-                            nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(""));
                             nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text("S/. "+pagoAProveedoresPorDia.toFixed(2)));
                             nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(""));
-                            tbodyProveedor.append(nuevaFila);
                         }
+                        tbodyProveedor.append(nuevaFila);
                     });
                     if (response.length == 0) {
                         tbodyProveedor.html(`<tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="8" class="text-center">No hay datos</td></tr>`);
@@ -1245,5 +1250,309 @@ jQuery(function($) {
             selection.addRange(newRange);
         }
     });
+
+    function fn_TraerControlStock(fechaDesde,fechaHasta){
+        $.ajax({
+            url: '/fn_consulta_TraerControlStock',
+            method: 'GET',
+            data: {
+                fechaDesde: fechaDesde,
+                fechaHasta: fechaHasta,
+            },
+            success: function(response) {
+                if (Array.isArray(response)) {
+                    let tbodyReporteControlStock = $('#bodyReporteControlStock');
+                    tbodyReporteControlStock.empty();
+
+                    let totalCantidades = 0;
+                    let totalPeso = 0;
+
+                    response.forEach(function (obj) {
+                        totalCantidades += parseInt(obj.cantidad_stock);
+                        totalPeso += parseFloat(obj.peso_stock);
+                        let nuevaFila = `
+                        <tr class="bg-white eliminarStock border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-200 text-gray-900 dark:text-white dark:hover:bg-gray-600 cursor-pointer">
+                            <td class="border-r dark:border-gray-700 px-4 py-2 text-center whitespace-nowrap hidden">${obj.id_stock}</td>
+                            <td class="border-r dark:border-gray-700 px-4 py-2 text-center whitespace-nowrap">${obj.fecha_stock}</td>
+                            <td class="border-r dark:border-gray-700 px-4 py-2 text-center whitespace-nowrap">${obj.nombreEspecie}</td>
+                            <td class="border-r dark:border-gray-700 px-4 py-2 text-center whitespace-nowrap">${obj.cantidad_stock}</td>
+                            <td class="border-r dark:border-gray-700 px-4 py-2 text-center whitespace-nowrap">${obj.peso_stock}</td>
+                            <td class="border-r dark:border-gray-700 px-4 py-2 text-center whitespace-nowrap hidden">${obj.idProveedor}</td>
+                        </tr>
+                        `;
+                        tbodyReporteControlStock.append(nuevaFila);
+                    });
+
+                    let nuevaFila = `
+                    <tr class="bg-blue-600 dark:border-gray-700 text-white cursor-pointer font-bold">
+                        <td class="border-r dark:border-gray-700 px-4 py-2 text-center whitespace-nowrap"></td>
+                        <td class="border-r dark:border-gray-700 px-4 py-2 text-center whitespace-nowrap">TOTAL :</td>
+                        <td class="border-r dark:border-gray-700 px-4 py-2 text-center whitespace-nowrap">${totalCantidades} ${totalCantidades != 1 ? "Uds." : "Ud."}</td>
+                        <td class="border-r dark:border-gray-700 px-4 py-2 text-center whitespace-nowrap">${totalPeso.toFixed(2)} Kg.</td>
+                    </tr>
+                    `;
+                    tbodyReporteControlStock.append(nuevaFila);
+                } else {
+                    console.log("La respuesta no es un arreglo de objetos.");
+                }
+            },
+            error: function(error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Error: Ocurrio un error inesperado durante la operacion',
+                  })
+                console.error("ERROR",error);
+            }
+        });
+    };
+
+    function fn_declararProveedorStock(){
+        $.ajax({
+            url: '/fn_consulta_DatosProveedorStock',
+            method: 'GET',
+            success: function(response) {
+                // Verificar si la respuesta es un arreglo de objetos
+                if (Array.isArray(response)) {
+
+                    // Obtener el select
+                    let selectPresentacion = $('#idProveedorAgregarStock');
+                    let selectPresentacionEditar = $('#idProveedorAgregarStockEditar');
+                    
+                    // Vaciar el select actual, si es necesario
+                    selectPresentacion.empty();
+
+                    // Agregar la opción inicial "Seleccione tipo"
+                    selectPresentacion.append($('<option>', {
+                        value: '0',
+                        text: 'Seleccione proveedor',
+                        disabled: true,
+                        selected: true
+                    }));
+
+                    // Iterar sobre los objetos y mostrar sus propiedades
+                    response.forEach(function(obj) {
+                        // console.log(obj);
+                        let option = $('<option>', {
+                            value: obj.idEspecie,
+                            text: obj.nombreEspecie
+                        });
+                        selectPresentacion.append(option);
+                    });
+
+                    response.forEach(function(obj) {
+                        // console.log(obj);
+                        let option = $('<option>', {
+                            value: obj.idEspecie,
+                            text: obj.nombreEspecie
+                        });
+                        selectPresentacionEditar.append(option);
+                    });
+
+                } else {
+                    console.log("La respuesta no es un arreglo de objetos.");
+                }
+            },
+            error: function(error) {
+                console.error("ERROR",error);
+            }
+        });
+    }
+
+
+    $('.cerrarModalRegistrarStock, #ModalRegistrarStock .opacity-75').on('click', function (e) {
+        $('#ModalRegistrarStock').addClass('hidden');
+        $('#ModalRegistrarStock').removeClass('flex');
+    });
+    $('.cerrarModalRegistrarStockEditar, #ModalRegistrarStockEditar .opacity-75').on('click', function (e) {
+        $('#ModalRegistrarStockEditar').addClass('hidden');
+        $('#ModalRegistrarStockEditar').removeClass('flex');
+    });
+
+    $('#btnAgregarStockReportePorProveedor').on('click', function () {
+        $('#ModalRegistrarStock').addClass('flex');
+        $('#ModalRegistrarStock').removeClass('hidden');
+
+        $('#fechaRegistrarStock').val(fechaHoy);
+        $('#idProveedorAgregarStock').val($('#idProveedorAgregarStock option:first').val());
+        $('#valorCantidadAgregarStock').val("");
+        $('#valorPesoStock').val("");
+    });
+
+    $('#btnGuardarRegistrarStock').on('click', function () {
+        let fechaStock = $('#fechaRegistrarStock').val();
+        let idProveedor = $('#idProveedorAgregarStock').val();
+        let valorCantidad = $('#valorCantidadAgregarStock').val();
+        let valorPeso = $('#valorPesoStock').val();
+
+        if(!idProveedor || !valorCantidad || !valorPeso){
+            alertify.notify('Debe rellenar todos los campos', 'error', 3);
+        }else{
+            fn_RegistrarStock(fechaStock, idProveedor , valorCantidad , valorPeso)
+        }
+        
+    });
+
+    function fn_RegistrarStock(fechaStock, idProveedor , valorCantidad , valorPeso){
+        $.ajax({
+            url: '/fn_consulta_RegistrarStock',
+            method: 'GET',
+            data: {
+                fechaStock: fechaStock,
+                idProveedor: idProveedor,
+                valorCantidad: valorCantidad,
+                valorPeso: valorPeso,
+            },
+            success: function(response) {
+                if (response.success) {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Se registro el stock correctamente',
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+                    // Realizar la acción después de que todas las consultas se completen
+                    $('#ModalRegistrarStock').addClass('hidden');
+                    $('#ModalRegistrarStock').removeClass('flex');
+                    let fechaDesdeReportePorProveedorControlStock = $('#fechaDesdeReportePorProveedorControlStock').val();
+                    let fechaHastaReportePorProveedorControlStock = $('#fechaHastaReportePorProveedorControlStock').val();
+                    fn_TraerControlStock(fechaDesdeReportePorProveedorControlStock,fechaHastaReportePorProveedorControlStock);
+                }
+            },
+            error: function(error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Error: Ocurrio un error inesperado durante la operacion',
+                  })
+                console.error("ERROR",error);
+            }
+        });
+    }
+
+    $(document).on('contextmenu', '.eliminarStock', function (e) {
+        e.preventDefault();
+        let codigoStock = $(this).closest("tr").find("td:first").text();
+        Swal.fire({
+            title: '¿Desea eliminar el Registro?',
+            text: "¡Estas seguro de eliminar el registro!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: '¡No, cancelar!',
+            confirmButtonText: '¡Si,eliminar!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fn_EliminarStock(codigoStock);
+            }
+        })
+    });
+
+    function fn_EliminarStock(codigoStock){
+        $.ajax({
+            url: '/fn_consulta_EliminarStock',
+            method: 'GET',
+            data: {
+                codigoStock: codigoStock,
+            },
+            success: function(response) {
+                if (response.success) {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Se elimino el registro correctamente',
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+                    // Realizar la acción después de que todas las consultas se completen
+                    let fechaDesdeReportePorProveedorControlStock = $('#fechaDesdeReportePorProveedorControlStock').val();
+                    let fechaHastaReportePorProveedorControlStock = $('#fechaHastaReportePorProveedorControlStock').val();
+                    fn_TraerControlStock(fechaDesdeReportePorProveedorControlStock,fechaHastaReportePorProveedorControlStock);
+                }
+            },
+            error: function(error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Error: Ocurrio un error inesperado durante la operacion',
+                  })
+                console.error("ERROR",error);
+            }
+        });
+    }
+
+    $(document).on("dblclick", "tr.eliminarStock", function() {
+        let fila = $(this).closest('tr');
+        let idReporteDePago= fila.find('td:eq(0)').text();
+        let fecha= fila.find('td:eq(1)').text();
+        let cantidad= fila.find('td:eq(3)').text();
+        let peso= fila.find('td:eq(4)').text();
+        let proveedor= fila.find('td:eq(5)').text();
+
+        $("#idStockEditar").val(idReporteDePago);
+        $("#fechaRegistrarStockEditar").val(fecha);
+        $("#idProveedorAgregarStockEditar").val(proveedor);
+        $("#valorCantidadAgregarStockEditar").val(cantidad);
+        $("#valorPesoStockEditar").val(peso);
+        
+        $('#ModalRegistrarStockEditar').addClass('flex');
+        $('#ModalRegistrarStockEditar').removeClass('hidden');
+    });
+
+    $('#btnGuardarRegistrarStockEditar').on('click', function () {
+        let fechaStock = $('#fechaRegistrarStockEditar').val();
+        let idProveedor = $('#idProveedorAgregarStockEditar').val();
+        let valorCantidad = $('#valorCantidadAgregarStockEditar').val();
+        let valorPeso = $('#valorPesoStockEditar').val();
+        let idStock = $('#idStockEditar').val();
+
+        if(!idProveedor || !valorCantidad || !valorPeso || !idStock){
+            alertify.notify('Debe rellenar todos los campos', 'error', 3);
+        }else{
+            fn_RegistrarStockEditar(fechaStock, idProveedor , valorCantidad , valorPeso, idStock)
+        }
+        
+    });
+
+    function fn_RegistrarStockEditar(fechaStock, idProveedor , valorCantidad , valorPeso, idStock){
+        $.ajax({
+            url: '/fn_consulta_RegistrarStockEditar',
+            method: 'GET',
+            data: {
+                fechaStock: fechaStock,
+                idProveedor: idProveedor,
+                valorCantidad: valorCantidad,
+                valorPeso: valorPeso,
+                idStock: idStock
+            },
+            success: function(response) {
+                if (response.success) {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Se edito el registro correctamente',
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+                    // Realizar la acción después de que todas las consultas se completen
+                    $('#ModalRegistrarStockEditar').addClass('hidden');
+                    $('#ModalRegistrarStockEditar').removeClass('flex');
+                    let fechaDesdeReportePorProveedorControlStock = $('#fechaDesdeReportePorProveedorControlStock').val();
+                    let fechaHastaReportePorProveedorControlStock = $('#fechaHastaReportePorProveedorControlStock').val();
+                    fn_TraerControlStock(fechaDesdeReportePorProveedorControlStock,fechaHastaReportePorProveedorControlStock);
+                }
+            },
+            error: function(error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Error: Ocurrio un error inesperado durante la operacion',
+                  })
+                console.error("ERROR",error);
+            }
+        });
+    }
 
 });

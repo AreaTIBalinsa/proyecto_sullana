@@ -11,6 +11,9 @@ use App\Models\ReportePorProveedor\EliminarGuia;
 use App\Models\ReportePorProveedor\EliminarPago;
 use App\Models\ReportePorProveedor\ActualizarGuia;
 use App\Models\ReportePorProveedor\AgregarPagoClienteProveedores;
+use App\Models\ReportePorProveedor\EditarStockReportePorProveedores;
+use App\Models\ReportePorProveedor\RegistrarStock;
+use App\Models\ReportePorProveedor\EliminarStock;
 
 class ReportePorProveedorController extends Controller
 {
@@ -39,7 +42,8 @@ class ReportePorProveedorController extends Controller
                     pesoTaraGuia
                     from tb_guias
                     INNER JOIN tb_especies_compra ON tb_guias.idProveedor = tb_especies_compra.idEspecie 
-                    WHERE tb_guias.estadoGuia = 1 AND fechaGuia BETWEEN ? AND ? order by idGuia asc',[$fechaDesde,$fechaHasta]);
+                    WHERE tb_guias.estadoGuia = 1 AND fechaGuia BETWEEN ? AND ?
+                    order by idGuia asc',[$fechaDesde,$fechaHasta]);
 
             // Devuelve los datos en formato JSON
             return response()->json($datos);
@@ -54,6 +58,11 @@ class ReportePorProveedorController extends Controller
         if (Auth::check()) {
             // Realiza la consulta a la base de datos
             $datos = DatosProveedor::select('idEspecie', 'nombreEspecie')
+                ->where('idEspecie','!=', '13')
+                ->where('idEspecie','!=', '14')
+                ->where('idEspecie','!=', '15')
+                ->where('idEspecie','!=', '16')
+                ->where('idEspecie','!=', '17')
                 ->orderBy('idEspecie', 'asc')
                 ->get();
 
@@ -308,6 +317,117 @@ class ReportePorProveedorController extends Controller
                     'codigoTransferenciaPag' => $codigoTransferencia,
                     'tipoAbonoPag' => $formaPago,
                     'observacion' => $comentarioPago,
+                ]);
+            
+            return response()->json(['success' => true], 200);
+        }
+
+        // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
+        return response()->json(['error' => 'Usuario no autenticado'], 401);
+    }
+
+    public function consulta_TraerControlStock(Request $request){
+
+        $fechaDesde = $request->input('fechaDesde');
+        $fechaHasta = $request->input('fechaHasta');
+
+        if (Auth::check()) {
+            // Realiza la consulta a la base de datos
+            $datos = DB::select('
+            SELECT
+                tb_stock.id_stock, 
+                tb_stock.fecha_stock,
+                tb_stock.cantidad_stock,
+                tb_stock.peso_stock,
+                tb_stock.estado_stock,
+                tb_stock.idProveedor,
+                tb_especies_compra.nombreEspecie
+            FROM tb_stock
+            INNER JOIN tb_especies_compra ON tb_especies_compra.idEspecie = tb_stock.idProveedor
+            WHERE fecha_stock BETWEEN ? AND ? and estado_stock = 1
+            ORDER BY fecha_stock asc',[$fechaDesde,$fechaHasta]);
+
+            // Devuelve los datos en formato JSON
+            return response()->json($datos);
+        }
+
+        // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
+        return response()->json(['error' => 'Usuario no autenticado'], 401);
+    }
+
+    public function consulta_DatosProveedorStock(Request $request)
+    {
+        if (Auth::check()) {
+            // Realiza la consulta a la base de datos
+            $datos = DatosProveedor::select('idEspecie', 'nombreEspecie')
+                ->whereIn('idEspecie', [13, 14, 15, 16, 17])
+                ->orderBy('idEspecie', 'asc')
+                ->get();
+
+            // Devuelve los datos en formato JSON
+            return response()->json($datos);
+        }
+
+        // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
+        return response()->json(['error' => 'Usuario no autenticado'], 401);
+    }
+
+    public function consulta_RegistrarStock(Request $request)
+    {
+        $fechaStock = $request->input('fechaStock');
+        $idProveedor = $request->input('idProveedor');
+        $valorCantidad = $request->input('valorCantidad');
+        $valorPeso = $request->input('valorPeso');
+
+        if (Auth::check()) {
+            $registrarGuia = new RegistrarStock;
+            $registrarGuia->fecha_stock = $fechaStock;
+            $registrarGuia->idProveedor = $idProveedor;
+            $registrarGuia->cantidad_stock = $valorCantidad;
+            $registrarGuia->peso_stock = $valorPeso;
+            $registrarGuia->save();
+        
+            return response()->json(['success' => true], 200);
+        }
+
+        // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
+        return response()->json(['error' => 'Usuario no autenticado'], 401);
+    }
+
+    public function consulta_EliminarStock(Request $request)
+    {
+        $codigoStock = $request->input('codigoStock');
+
+        if (Auth::check()) {
+            $EliminarStock = new EliminarStock;
+            $EliminarStock->where('id_stock', $codigoStock)
+                ->update([
+                    'estado_stock' => 0,
+                ]);
+            
+            return response()->json(['success' => true], 200);
+        }
+
+        // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
+        return response()->json(['error' => 'Usuario no autenticado'], 401);
+    }
+
+    public function consulta_RegistrarStockEditar(Request $request)
+    {
+        $fechaStock = $request->input('fechaStock');
+        $idProveedor = $request->input('idProveedor');
+        $valorCantidad = $request->input('valorCantidad');
+        $valorPeso = $request->input('valorPeso');
+        $idStock = $request->input('idStock');
+
+        if (Auth::check()) {
+            $EditarStock = new EditarStockReportePorProveedores;
+            $EditarStock->where('id_stock', $idStock)
+                ->update([
+                    'fecha_stock' => $fechaStock,
+                    'idProveedor' => $idProveedor,
+                    'cantidad_stock' => $valorCantidad,
+                    'peso_stock' => $valorPeso
                 ]);
             
             return response()->json(['success' => true], 200);

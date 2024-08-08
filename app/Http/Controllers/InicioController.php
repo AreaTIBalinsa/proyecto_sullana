@@ -158,4 +158,31 @@ class InicioController extends Controller
         return response()->json(['error' => 'Usuario no autenticado'], 401);
     }
 
+    public function consulta_TraerStock(Request $request)
+    {
+        $fecha = $request->input('fecha');
+
+        if (Auth::check()) {
+            // Realiza la consulta a la base de datos
+            $datos = DB::select('
+                SELECT
+                    tb_stock.id_stock, 
+                    tb_stock.fecha_stock,
+                    tb_stock.cantidad_stock,
+                    tb_stock.peso_stock,
+                    tb_stock.estado_stock,
+                    tb_stock.idProveedor,
+                    tb_especies_compra.nombreEspecie
+                FROM tb_stock
+                INNER JOIN tb_especies_compra ON tb_especies_compra.idEspecie = tb_stock.idProveedor
+                WHERE fecha_stock = ? and estado_stock = 1' , [$fecha]);
+
+            // Devuelve los datos en formato JSON
+            return response()->json($datos);
+        }
+
+        // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
+        return response()->json(['error' => 'Usuario no autenticado'], 401);
+    }
+
 }

@@ -219,7 +219,7 @@ jQuery(function($) {
                         // Crear una nueva fila
                         let nuevaFila = `
                         <div class="w-full overflow-auto">
-                            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400" id="tabla${obj.nombre_category}">
+                            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 tbodyLimpiar" id="tabla${obj.nombre_category}">
                                 <caption class="bg-blue-600 p-2 w-full border-b-2 text-sm font-bold text-gray-100">${obj.nombre_category}</caption>
                                 <thead class="text-xs text-gray-100 uppercase bg-blue-600 sticky top-0" id="header${obj.nombre_category}">
                                     <tr>
@@ -269,17 +269,14 @@ jQuery(function($) {
             success: function (response) {
     
                 // Verificar si la respuesta es un arreglo de objetos
-                if (Array.isArray(response)) {
+                if (Array.isArray(response) && response.length > 0) {
     
-                    let anteriorCategoria = "";
                     let totalesPorCategoria = {};
+                    let totalCantidadSinClasificar = 0;
+                    let totalMontoSinClasificar = 0;
+                    $('.tbodyLimpiar tbody').empty();
     
                     response.forEach(function (obj) {
-                        if (anteriorCategoria !== obj.nombre_category) {
-                            $(`#bodyCategoria${obj.nombre_category}`).empty();
-                            $('#bodyCategoriaSinClasificar').empty();
-                            anteriorCategoria = obj.nombre_category;
-                        }
     
                         // Inicializar el objeto de totales para la categoría si no existe
                         if (!totalesPorCategoria[obj.nombre_category]) {
@@ -287,6 +284,11 @@ jQuery(function($) {
                                 cantidad_total: 0,
                                 monto_total: 0
                             };
+                        }
+
+                        if (parseInt(obj.id_category) == 0) {
+                            totalCantidadSinClasificar += obj.cantidad_detalles ? parseInt(obj.cantidad_detalles) : 0;
+                            totalMontoSinClasificar += obj.monto_detalle ? parseFloat(obj.monto_detalle) : 0;
                         }
     
                         // Acumular los totales por categoría
@@ -338,9 +340,24 @@ jQuery(function($) {
                         let contenedorTotales = $(`#bodyCategoria${eliminarEspacios(category)}`);
                         contenedorTotales.append(filaTotales);
                     }
+
+                    let nuevaFila = `
+                            <tr class="bg-green-600 text-white font-bold">
+                                <td colspan="3" class="border-r dark:border-gray-700 p-2 text-center">Total</td>
+                                <td class="border-r dark:border-gray-700 p-2 text-center">${totalCantidadSinClasificar}</td>
+                                <td class="border-r dark:border-gray-700 p-2 text-center"></td>
+                                <td class="border-r dark:border-gray-700 p-2 text-center">${totalMontoSinClasificar.toFixed(2)}</td>
+                                <td class="border-r dark:border-gray-700 p-2 text-center"></td>
+                                <td class="border-r dark:border-gray-700 p-2 text-center hidden"></td>
+                            </tr>
+                        `;
+    
+                        let contenedorCategoriasEgresos = $('#bodyCategoriaSinClasificar');
+                        contenedorCategoriasEgresos.append(nuevaFila);
     
                 } else {
                     console.log("La respuesta no es un arreglo de objetos.");
+                    $('.tbodyLimpiar tbody').empty();
                 }
     
             },
@@ -349,7 +366,7 @@ jQuery(function($) {
             }
         });
     
-    };    
+    };     
 
     function fn_declararCategorias(){
         $.ajax({

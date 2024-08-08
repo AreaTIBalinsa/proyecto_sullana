@@ -61,7 +61,7 @@
                 </div>
             </div>
             <div class="w-full overflow-auto mt-5">
-                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 tbodyLimpiar">
                     <caption class="bg-green-600 p-2 w-full border-b-2 text-sm font-bold text-gray-100">Ingresos sin Clasificar</caption>
                     <thead class="text-xs text-gray-100 uppercase bg-green-600 sticky top-0">
                         <tr>
