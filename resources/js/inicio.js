@@ -996,7 +996,7 @@ jQuery(function($) {
                 let especieUpper = nombreEspecie.toUpperCase();
     
                 // Verificar y clasificar por tipo de especie
-                if (especieUpper === "GALLO") {
+                if (especieUpper === "GALLO YUGO") {
                     clasificaciones.MERMA_GALLO.cantidad += especieData.cantidad;
                     clasificaciones.MERMA_GALLO.pesoTotal += especieData.pesoTotal;
                 } else if (especieUpper === "YUGO TRUJILLO AA" || especieUpper === "YUGO PIURA AA" || especieUpper === "YUGO PIURA") {
@@ -1079,7 +1079,7 @@ jQuery(function($) {
                 url: '/fn_consulta_TraerStock',
                 method: 'GET',
                 data: {
-                    fecha: fechaDesdeAnterior
+                    fecha: fechaDesde
                 },
                 success: function (response) {
                     if (Array.isArray(response)) {

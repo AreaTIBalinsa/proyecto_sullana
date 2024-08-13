@@ -147,7 +147,7 @@
                             </select>                          
                         </div>
                         <div class="relative overflow-x-auto shadow-md sm:rounded-lg w-full">
-                            <table class="w-full text-sm text-left rtl:text-right border-collapse text-gray-500 dark:text-gray-400">
+                            <table class="w-full text-sm text-left rtl:text-right border-collapse text-gray-500 dark:text-gray-400" id="tablaAgregarEgreso">
                                 <thead class="text-xs uppercase bg-blue-600 text-white">
                                     <tr>
                                         <th scope="col" class="px-6 py-3 border-b-2 whitespace-nowrap">
@@ -171,6 +171,33 @@
                                     </tr>
                                 </thead>
                                 <tbody class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600" id="bodyReporteDePagosExcelEgreso">
+
+                                </tbody>
+                            </table>
+                            <table class="w-full text-sm text-left rtl:text-right border-collapse text-gray-500 dark:text-gray-400 hidden" id="tablaAgregarEgresoPlanilla">
+                                <thead class="text-xs uppercase bg-blue-600 text-white">
+                                    <tr>
+                                        <th scope="col" class="px-6 py-3 border-b-2 whitespace-nowrap">
+                                            N°
+                                        </th>
+                                        <th scope="col" class="px-6 py-3 border-b-2 whitespace-nowrap">
+                                            Hora
+                                        </th>
+                                        <th scope="col" class="px-6 py-3 border-b-2 whitespace-nowrap">
+                                            Uso Egreso
+                                        </th>
+                                        <th scope="col" class="px-6 py-3 border-b-2 whitespace-nowrap">
+                                            Cargo
+                                        </th>
+                                        <th scope="col" class="px-6 py-3 border-b-2 whitespace-nowrap">
+                                            Monto
+                                        </th>
+                                        <th scope="col" class="px-6 py-3 border-b-2 whitespace-nowrap">
+                                            Observación
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600" id="bodyReporteDePagosExcelEgresoPlanilla">
 
                                 </tbody>
                             </table>
@@ -207,6 +234,7 @@
             <div class="px-4 pb-4">
                 <div class="border-t dark:border-gray-500 w-full sm:flex sm:flex-row-reverse pt-4">
                     <button type="button" class="inline-flex w-full justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-700 sm:ml-3 sm:w-auto" id="btnAgregarEgreso">Registrar</button>
+                    <button type="button" class="w-full justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-700 sm:ml-3 sm:w-auto hidden" id="btnAgregarEgresoPlanilla">Registrar Planilla</button>
                     <button type="button" class="mt-3 inline-flex w-full justify-center rounded-md bg-red-500 hover:bg-red-600 px-3 py-2 text-sm font-semibold text-gray-100 sm:mt-0 sm:w-auto cerrarModalAgregarEgreso">Cancelar</button>
                 </div>
             </div>
@@ -252,7 +280,7 @@
                                 <textarea class="w-full outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" autocomplete="off" id="usoAgregarEgresoEditar" placeholder="Ingrese Uso"></textarea>
                             </div>
                         </div>
-                        <div class="flex w-full">
+                        <div class="flex w-full" id="ocultarSiPlanilla">
                             <div class="flex gap-4 w-full">
                                 <div class="flex flex-col text-sm w-full">
                                     <label for="cantidadAgregarEgresoEditar" class="text-gray-900 dark:text-white font-medium">Cantidad :</label>
@@ -263,6 +291,13 @@
                                     <input type="text" class="outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 px-2.5 py-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-full accionarSumaMontoEditar" id="precioAgregarEgresoEditar" autocomplete="off">
                                 </div>
                             </div>
+                        </div>
+                        <div class="flex justify-center items-start flex-col relative w-full h-full" id="mostrarSiPlanilla">
+                            <label for="usoAgregarEgresoEditar" class="mb-2 text-base font-medium text-gray-900 dark:text-white">Cargo :</label>
+                            <select id="selectEditarEgresoPlanilla" class="w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                <option value="PELADOR">PELADOR</option>
+                                <option value="ESTIBADOR">ESTIBADOR</option>
+                            </select>
                         </div>
                         <div class="flex w-full flex-col text-sm">
                             <label for="montoAgregarEgresoEditar" class="text-gray-900 dark:text-white font-medium">Monto</label>

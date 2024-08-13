@@ -25,6 +25,7 @@ class AgregarDetalleEgreso extends Model
         'estadoDetalle',
         'created_at',
         'updated_at',
+        'campoExtra',
     ];
 
 }

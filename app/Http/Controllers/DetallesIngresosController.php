@@ -72,7 +72,8 @@ class DetallesIngresosController extends Controller
                 monto_detalle,
                 observacion,
                 tb_detalles_egresos.id_category,
-                tb_categorias_egresos.nombre_category
+                tb_categorias_egresos.nombre_category,
+                campoExtra
             FROM tb_detalles_egresos
             LEFT JOIN tb_categorias_egresos ON tb_categorias_egresos.id_category = tb_detalles_egresos.id_category
             WHERE estadoDetalle = 1 AND fecha_detalle = ? ORDER BY id_detalle ASC',[$fecha]);
@@ -95,6 +96,7 @@ class DetallesIngresosController extends Controller
         $montoDetalle = $request->input('montoDetalle');
         $observacionDetalle = $request->input('observacionDetalle');
         $categoriaDetalle = $request->input('categoriaDetalle');
+        $cargoPlanilla = $request->input('cargoPlanilla');
 
         if (Auth::check()) {
             $agregarDetalleEgreso = new AgregarDetalleEgreso;
@@ -109,6 +111,7 @@ class DetallesIngresosController extends Controller
             $agregarDetalleEgreso->estadoDetalle = 1;
             $agregarDetalleEgreso->created_at = Carbon::now()->setTimezone('America/Lima')->toDateTimeString();
             $agregarDetalleEgreso->updated_at = Carbon::now()->setTimezone('America/Lima')->toDateTimeString();
+            $agregarDetalleEgreso->campoExtra = $cargoPlanilla;
             $agregarDetalleEgreso->save();
     
             return response()->json(['success' => true], 200);
@@ -148,6 +151,7 @@ class DetallesIngresosController extends Controller
         $montoDetalle = $request->input('montoDetalle');
         $observacionDetalle = $request->input('observacionDetalle');
         $categoriaDetalle = $request->input('categoriaDetalle');
+        $selectEditarEgresoPlanilla = $request->input('selectEditarEgresoPlanilla');
 
         if (Auth::check()) {
             $actualizarDetalleEgreso = new ActualizarDetalleEgreso;
@@ -161,6 +165,7 @@ class DetallesIngresosController extends Controller
                     'monto_detalle' => $montoDetalle,
                     'observacion' => $observacionDetalle,
                     'id_category' => $categoriaDetalle,
+                    'campoExtra' => $selectEditarEgresoPlanilla,
                     'updated_at' => Carbon::now()->setTimezone('America/Lima')->toDateTimeString(),
                 ]);
             

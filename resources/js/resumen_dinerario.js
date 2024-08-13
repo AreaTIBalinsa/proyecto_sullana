@@ -223,8 +223,11 @@ jQuery(function($) {
 
                     response.forEach(function (obj) {
                         if(obj.clasificadoEgreso == "2"){
-                            totalEgresosPaul += parseFloat(obj.cantidadAbonoEgreso);
-                            totalEgresos += parseFloat(obj.cantidadAbonoEgreso);
+                            let nombre = obj.nombreEgresoCamal;
+                            if(!nombre.includes("AGENTE BCP") && !nombre.includes("YUGO") && !nombre.includes("TECAVI")){
+                                totalEgresosPaul += parseFloat(obj.cantidadAbonoEgreso);
+                                totalEgresos += parseFloat(obj.cantidadAbonoEgreso);
+                            }
                         }
                     });
 
@@ -253,8 +256,11 @@ jQuery(function($) {
                                 tbodyReporteDeResumenDinerario.empty();
 
                                 response.forEach(function (obj) {
-                                    totalEgresosCamal += parseFloat(obj.monto_detalle);
-                                    totalEgresos += parseFloat(obj.monto_detalle);
+                                    let nombre = obj.uso_detalle_egreso;
+                                    if(!nombre.includes("BURGOS")){
+                                        totalEgresosCamal += parseFloat(obj.monto_detalle);
+                                        totalEgresos += parseFloat(obj.monto_detalle);
+                                    }
                                 });
 
                                 let nuevaFila = `

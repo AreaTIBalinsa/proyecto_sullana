@@ -10765,7 +10765,9 @@ jQuery(function ($) {
             pagosDetallados +=``;
             respuestaPagosDetallados.forEach(function(obj) {
                 if (obj.fechaOperacionPag != fecha && obj.fechaRegistroPag == fecha){
-                    pagosARestar += parseFloat(obj.cantidadAbonoPag);
+                    if(obj.tipoAbonoPag != "Saldo"){
+                        pagosARestar += parseFloat(obj.cantidadAbonoPag);
+                    }
                 }
                 if (obj.fechaOperacionPag == fecha || obj.fechaRegistroPag == fecha){
                     if(obj.tipoAbonoPag != "Saldo"){

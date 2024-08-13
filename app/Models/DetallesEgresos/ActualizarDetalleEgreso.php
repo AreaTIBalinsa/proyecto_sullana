@@ -23,6 +23,7 @@ class ActualizarDetalleEgreso extends Model
         'observacion',
         'id_category',
         'updated_at',
+        'campoExtra',
     ];
 
 }
