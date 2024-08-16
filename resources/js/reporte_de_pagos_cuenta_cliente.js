@@ -8,12 +8,19 @@ jQuery(function ($) {
     var tipoUsuario = $('#tipoUsuario').data('id');
     $('#fechaDesdeCuentaDelCliente').val(fechaHoy);
     $('#fechaHastaCuentaDelCliente').val(fechaHoy);
-    fn_ConsultarProveedor(fechaHoy, fechaHoy);
 
     $('#btnBuscarCuentaDelCliente').on('click', function () {
         let fechaDesdeCuentaDelCliente = $('#fechaDesdeCuentaDelCliente').val();
         let fechaHastaCuentaDelCliente = $('#fechaHastaCuentaDelCliente').val();
-        fn_ConsultarProveedor(fechaDesdeCuentaDelCliente, fechaHastaCuentaDelCliente);
+        let codigoProveedor = $("#codigoClienteSeleccionado").val();
+        if (codigoProveedor != 0){
+            fn_ConsultarProveedor(fechaHastaCuentaDelCliente, fechaHastaCuentaDelCliente);
+        }else{
+            let tbodyProveedor = $('#bodyCuentaDelCliente');
+            tbodyProveedor.empty();
+            alertify.notify('Debe seleccionar proveedor.', 'error', 3);
+            tbodyProveedor.append(`<tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="7" class="text-center">No hay datos</td></tr>`)
+        }
     });
 
     var arrayListaProveedores = [
@@ -131,6 +138,16 @@ jQuery(function ($) {
         }
     });
 
+    function fn_formatearImportes(numero){
+        let totalFormateado = parseFloat(numero).toLocaleString('es-ES', {
+            minimumFractionDigits: 2,   
+            maximumFractionDigits: 2,
+            useGrouping: true,
+        });
+
+        return totalFormateado;
+    }
+
     function fn_ConsultarProveedor(fechaDesde, fechaHasta) {
         $.ajax({
         url: '/fn_consulta_ConsultarProveedor',
@@ -142,6 +159,35 @@ jQuery(function ($) {
             success: function (response) {
                 // Verificar si la respuesta es un arreglo de objetos
                 if (Array.isArray(response)) {
+
+                    let nombreProveedor = $("#inputNombreClientes").val();
+
+                    response = response.filter(function (obj) {
+                        if (nombreProveedor == "TECNICA") {
+                          return obj.nombreEspecieCompra == "TECNICA AA";
+                        } else if (nombreProveedor == "YUGO") {
+                          return obj.nombreEspecieCompra == "YUGO TRUJILLO AA" ||
+                                 obj.nombreEspecieCompra == "YUGO PIURA AA" ||
+                                 obj.nombreEspecieCompra == "YUGO PIURA" ||
+                                 obj.nombreEspecieCompra == "YUGO TRUJILLO XX" ||
+                                 obj.nombreEspecieCompra == "GALLO YUGO" ||
+                                 obj.nombreEspecieCompra == "YUGO PIURA GALLINA CHICA" ||
+                                 obj.nombreEspecieCompra == "YUGO PIURA GALLINA DOBLE" ||
+                                 obj.nombreEspecieCompra == "YUGO PIURA XX";
+                        }else if(nombreProveedor == "MASAY"){
+                            return obj.nombreEspecieCompra == "MASAY";
+                        }else if(nombreProveedor == "CHIMU"){
+                            return obj.nombreEspecieCompra == "CHIMU";
+                        }else if(nombreProveedor == "SALOMON"){
+                            return obj.nombreEspecieCompra == "SALOMON GALLINA CHICA";
+                        }else if(nombreProveedor == "ATOCHE"){
+                            return obj.nombreEspecieCompra == "ATOCHE GALLINA DOBLE";
+                        }else if(nombreProveedor == "OTROS"){
+                            return obj.nombreEspecieCompra == "OTROS";
+                        }
+                        return false;
+                      });
+
                     // Obtener el select
                     let tbodyProveedor = $('#bodyCuentaDelCliente');
                     tbodyProveedor.empty();
@@ -197,7 +243,7 @@ jQuery(function ($) {
                                 nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text((pesoNeto).toFixed(2)+" Kg."));
                                 nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text((promedio).toFixed(2)));
                                 nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(precioGuia.toFixed(2)));
-                                nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text("S/. "+(totalAPagar).toFixed(2)));
+                                nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(`S/. ${fn_formatearImportes(totalAPagar)}`));
                                 
                                 // Agregar la nueva fila al tbody
                                 tbodyProveedor.append(nuevaFila);
@@ -216,7 +262,7 @@ jQuery(function ($) {
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(""));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(""));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text("TOTAL :"));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text("S/. "+pagoAProveedoresPorDia.toFixed(2)));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(`S/. ${fn_formatearImportes(pagoAProveedoresPorDia)}`));
                         tbodyProveedor.append(nuevaFila);
                     });
                     if (response.length == 0) {

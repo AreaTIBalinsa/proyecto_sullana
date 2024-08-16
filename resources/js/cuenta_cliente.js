@@ -10705,6 +10705,8 @@ jQuery(function ($) {
         }
     }
 
+    var saldoActualGlobal = 0
+
     function construirFilaDatosTotales(item,totalSaldoAnterior,totalPagos,fecha,respuestaPagosDetallados) {
 
         let ventasEspecies = parseFloat(item.totalVentaPrimerEspecie)+parseFloat(item.totalVentaSegundaEspecie)+parseFloat(item.totalVentaTerceraEspecie)+parseFloat(item.totalVentaCuartaEspecie)+parseFloat(item.totalVentaQuintaEspecie)+parseFloat(item.totalVentaSextaEspecie)+parseFloat(item.totalVentaSeptimaEspecie)+parseFloat(item.totalVentaOctavaEspecie)+parseFloat(item.totalVentaDecimaEspecie)+parseFloat(item.totalVentaDecimaPrimeraEspecie)+parseFloat(item.totalVentaDecimaSegundaEspecie)+parseFloat(item.totalVentaDecimaTerceraEspecie)+parseFloat(item.totalVentaDecimaCuartaEspecie)+parseFloat(item.totalVentaDecimaQuintaEspecie)+parseFloat(item.totalVentaDecimaSextaEspecie)+parseFloat(item.totalVentaDecimaSeptimaEspecie)+parseFloat(item.totalVentaDecimaOctavaEspecie)+parseFloat(item.totalVentaDecimaNovenaEspecie)+parseFloat(item.totalVentaVigesimaEspecie)+parseFloat(item.totalVentaVigesimaPrimeraEspecie)+parseFloat(item.totalVentaVigesimaSegundaEspecie)+parseFloat(item.totalVentaVigesimaTerceraEspecie)
@@ -10775,23 +10777,23 @@ jQuery(function ($) {
                         if (masDeUnPago == 0){
                             pagosDetallados += `
                                                 <tr class="bg-white border-b contarFilaPagos border-black">
-                                                    <td class="text-center py-1 p-4 whitespace-nowrap font-semibold border-r-2 border-black">${obj.bancaPago === "FLETE" ? `<span class='text-red-600 font-bold'>S/. ${(parseFloat(obj.cantidadAbonoPag)*-1).toFixed(2)}</span>` : `S/. ${parseFloat(obj.cantidadAbonoPag).toFixed(2)}` }</td>
-                                                    <td class="text-center py-1 p-4 whitespace-nowrap text-[#162B4E]">${obj.bancaPago === null ? obj.clasificacionPago == "2" ? obj.tipoAbonoPag + " CAMAL" : obj.tipoAbonoPag + " PAUL"  : limpiarNombreBanco(obj.bancaPago)} ${obj.fechaOperacionPag == fecha ? "" : formatFecha(obj.fechaOperacionPag)}</td>
+                                                    <td class="tablaEditableCuentaCliente sumarContenidoTabla text-center py-1 p-4 whitespace-nowrap font-semibold border-r-2 border-black">${obj.bancaPago === "FLETE" ? `<span class='text-red-600 font-bold'>${(parseFloat(obj.cantidadAbonoPag)*-1).toFixed(2)}</span>` : `${parseFloat(obj.cantidadAbonoPag).toFixed(2)}` }</td>
+                                                    <td class="tablaEditableCuentaCliente convertirTextoMayuscula text-center py-1 p-4 whitespace-nowrap text-[#162B4E]">${obj.bancaPago === null ? obj.clasificacionPago == "2" ? obj.tipoAbonoPag + " CAMAL" : obj.tipoAbonoPag + " PAUL"  : limpiarNombreBanco(obj.bancaPago)} ${obj.fechaOperacionPag == fecha ? "" : formatFecha(obj.fechaOperacionPag)}</td>
                                                 </tr>`
                             masDeUnPago += 1;
                         }else{
                             if (obj.fechaOperacionPag == fecha && pasoUnaVez == 0){
                                 pagosDetallados += `
                                                 <tr class="bg-white border-b contarFilaPagos border-black">
-                                                    <td class="text-center py-1 p-4 whitespace-nowrap font-semibold border-r-2 border-black">${obj.bancaPago === "FLETE" ? `<span class='text-red-600 font-bold'>S/. ${(parseFloat(obj.cantidadAbonoPag)*-1).toFixed(2)}</span>` : `S/. ${parseFloat(obj.cantidadAbonoPag).toFixed(2)}` }</td>
-                                                    <td class="text-center py-1 p-4 whitespace-nowrap text-[#162B4E]">${obj.bancaPago === null ? obj.clasificacionPago == "2" ? obj.tipoAbonoPag + " CAMAL" : obj.tipoAbonoPag + " PAUL"  : limpiarNombreBanco(obj.bancaPago)} ${obj.fechaOperacionPag == fecha ? "" : formatFecha(obj.fechaOperacionPag)}</td>
+                                                    <td class="tablaEditableCuentaCliente sumarContenidoTabla text-center py-1 p-4 whitespace-nowrap font-semibold border-r-2 border-black">${obj.bancaPago === "FLETE" ? `<span class='text-red-600 font-bold'>${(parseFloat(obj.cantidadAbonoPag)*-1).toFixed(2)}</span>` : `${parseFloat(obj.cantidadAbonoPag).toFixed(2)}` }</td>
+                                                    <td class="tablaEditableCuentaCliente convertirTextoMayuscula text-center py-1 p-4 whitespace-nowrap text-[#162B4E]">${obj.bancaPago === null ? obj.clasificacionPago == "2" ? obj.tipoAbonoPag + " CAMAL" : obj.tipoAbonoPag + " PAUL"  : limpiarNombreBanco(obj.bancaPago)} ${obj.fechaOperacionPag == fecha ? "" : formatFecha(obj.fechaOperacionPag)}</td>
                                                 </tr> `
                                 pasoUnaVez += 1;
                             }else{
                                 pagosDetallados += `
                                                 <tr class="bg-white border-b contarFilaPagos border-black">
-                                                    <td class="text-center py-1 p-4 whitespace-nowrap font-semibold border-r-2 border-black">${obj.bancaPago === "FLETE" ? `<span class='text-red-600 font-bold'>S/. ${(parseFloat(obj.cantidadAbonoPag)*-1).toFixed(2)}</span>` : `S/. ${parseFloat(obj.cantidadAbonoPag).toFixed(2)}` }</td>
-                                                    <td class="text-center py-1 p-4 whitespace-nowrap text-[#162B4E]">${obj.bancaPago === null ? obj.clasificacionPago == "2" ? obj.tipoAbonoPag + " CAMAL" : obj.tipoAbonoPag + " PAUL"  : limpiarNombreBanco(obj.bancaPago)} ${obj.fechaOperacionPag == fecha ? "" : formatFecha(obj.fechaOperacionPag)}</td>
+                                                    <td class="tablaEditableCuentaCliente sumarContenidoTabla text-center py-1 p-4 whitespace-nowrap font-semibold border-r-2 border-black">${obj.bancaPago === "FLETE" ? `<span class='text-red-600 font-bold'>${(parseFloat(obj.cantidadAbonoPag)*-1).toFixed(2)}</span>` : `${parseFloat(obj.cantidadAbonoPag).toFixed(2)}` }</td>
+                                                    <td class="tablaEditableCuentaCliente convertirTextoMayuscula text-center py-1 p-4 whitespace-nowrap text-[#162B4E]">${obj.bancaPago === null ? obj.clasificacionPago == "2" ? obj.tipoAbonoPag + " CAMAL" : obj.tipoAbonoPag + " PAUL"  : limpiarNombreBanco(obj.bancaPago)} ${obj.fechaOperacionPag == fecha ? "" : formatFecha(obj.fechaOperacionPag)}</td>
                                                 </tr> `
                             }
                         }
@@ -10803,8 +10805,8 @@ jQuery(function ($) {
         if (masDeUnPago == 0){
             pagosDetallados += `
                 <tr class="bg-white contarFilaPagos border-black">
-                    <td class="text-center py-1 px-2 whitespace-nowrap border-b border-black border-r-2 font-semibold">S/. 0.00</td>
-                    <td class="text-center py-1 px-2 whitespace-nowrap border-b border-black font-semibold"></td>
+                    <td class="tablaEditableCuentaCliente sumarContenidoTabla text-center py-1 px-2 whitespace-nowrap border-b border-black border-r-2 font-semibold">0.00</td>
+                    <td class="tablaEditableCuentaCliente convertirTextoMayuscula text-center py-1 px-2 whitespace-nowrap border-b border-black font-semibold"></td>
                 </tr> `
         }
         masDeUnPago = 0;
@@ -10821,9 +10823,10 @@ jQuery(function ($) {
             useGrouping: true,
         });
         
-        $("#totalCuentaDia").attr("value", totalVentaDelDia)
-        $("#totalPagos").attr("value", pagosDeHoy)
-        $("#totalSaldo").attr("value", totalSaldoAnteriorV)
+        $("#totalCuentaDia").attr("value", totalVentaDelDia);
+        $("#totalPagos").attr("value", pagosDeHoy);
+        $("#totalSaldo").attr("value", totalSaldoAnteriorV);
+        saldoActualGlobal = saldoActual;
 
         let totalSaldoAnteriorV_doble = parseFloat(totalSaldoAnteriorV) < 0 ? parseFloat(totalSaldoAnteriorV) - pagosARestar : parseFloat(totalSaldoAnteriorV) + pagosARestar;
 
@@ -10838,8 +10841,8 @@ jQuery(function ($) {
             <td class="bg-[#FFC000] text-center py-1 px-2 whitespace-nowrap font-semibold">SALDO ACTUAL</td>
         </tr>
         <tr class="bg-white border-b border-black">
-            <td class="text-center py-1 px-2 whitespace-nowrap font-bold border-r-2 border-black border-t-2">S/. ${totalFormateadoPagosDeHoy}</td>
-            <td class="text-center py-1 px-2 whitespace-nowrap font-bold text-red-600 border-t-2 border-black">S/. ${totalFormateado}</td>
+            <td class="text-center py-1 px-2 whitespace-nowrap font-bold border-r-2 border-black border-t-2" id="totalDePagos">S/. ${totalFormateadoPagosDeHoy}</td>
+            <td class="text-center py-1 px-2 whitespace-nowrap font-bold text-red-600 border-t-2 border-black" id="totalSaldoActual">S/. ${totalFormateado}</td>
         </tr>
         `
 
@@ -10866,19 +10869,19 @@ jQuery(function ($) {
     function contarFilas() {
         let contarVenta = $('.filasContarVenta').length;
         let contarPagos = $('.contarFilaPagos').length;
-        contarPagos++; // Este incremento parece innecesario si ya estás contando correctamente las filas.
+
+        // console.log("filasContarVenta: " + contarVenta , "contarFilaPagos: " + contarPagos);
     
         if (contarVenta > contarPagos) {
             // console.log("filasContarVenta tiene más filas");
-    
-            let diferencia = contarVenta - contarPagos;
+            let diferencia = (contarVenta - contarPagos) - 1;
             let nuevasFilas = "";
     
             for (var i = 0; i < diferencia; i++) {
                 let nuevaFila = `
                     <tr class="bg-white contarFilaPagos border-b border-black">
-                        <td class="text-center py-1 p-4 whitespace-nowrap font-semibold border-r-2 border-black">&nbsp;</td>
-                        <td class="text-left py-1 p-4 whitespace-nowrap">&nbsp;</td>
+                        <td class="tablaEditableCuentaCliente sumarContenidoTabla text-center py-1 p-4 whitespace-nowrap font-semibold border-r-2 border-black">&nbsp;</td>
+                        <td class="tablaEditableCuentaCliente convertirTextoMayuscula text-center py-1 p-4 whitespace-nowrap">&nbsp;</td>
                     </tr>
                 `;
                 nuevasFilas += nuevaFila;
@@ -10890,7 +10893,7 @@ jQuery(function ($) {
         } else if (contarVenta < contarPagos){
             // console.log("contarFilaPagos tiene más filas o son iguales");
 
-            let diferencia = contarPagos - contarVenta;
+            let diferencia = (contarPagos - contarVenta) + 1;
             let nuevasFilas = "";
     
             for (var i = 0; i < diferencia; i++) {
@@ -12273,6 +12276,186 @@ jQuery(function ($) {
                 console.error("ERROR",error);
             }
         });
+    }
+
+    $(document).on('click', '#btnEditarTablaCuentaCliente', function () {
+        // Selecciona todos los td con la clase tablaEditableCuentaCliente
+        var $editableCells = $('.tablaEditableCuentaCliente');
+        
+        // Verifica si ya están en modo editable
+        if ($editableCells.attr('contenteditable') === 'true') {
+            // Si están editables, desactiva la edición
+            $editableCells.attr('contenteditable', 'false');
+            $("#btnEditarTablaCuentaCliente").text('Editar Tabla');
+        } else {
+            // Si no están editables, activa la edición
+            $editableCells.attr('contenteditable', 'true');
+            $("#btnEditarTablaCuentaCliente").text('Dejar de Editar Tabla');
+        }
+    });    
+
+    $(document).on('input', '.sumarContenidoTabla', function () {
+        let total = 0;
+    
+        // Itera sobre cada td con la clase sumarContenidoTabla
+        $('.sumarContenidoTabla').each(function () {
+            // Intenta convertir el contenido del td a un número
+            let value = parseFloat($(this).text()) || 0;
+            total += value;
+        });
+
+        let calculoSaldo = saldoActualGlobal - total;
+
+        let totalFormateadoCuenta = total.toLocaleString('es-ES', {
+            minimumFractionDigits: 2,   
+            maximumFractionDigits: 2,
+            useGrouping: true,
+        });
+    
+        let totalFormateadoSaldo = calculoSaldo.toLocaleString('es-ES', {
+            minimumFractionDigits: 2,   
+            maximumFractionDigits: 2,
+            useGrouping: true,
+        });
+
+        $("#totalPagos").attr("value", total);
+    
+        // Muestra el total en el elemento con id totalDePagos
+        $('#totalDePagos').text(`S/. ${totalFormateadoCuenta}`);
+        $('#totalSaldoActual').text(`S/. ${totalFormateadoSaldo}`);
+
+        function formatearFecha(fechaISO) {
+            const [year, month, day] = fechaISO.split('-').map(Number);
+            const fecha = new Date(year, month - 1, day); // Crear el objeto Date con los componentes individuales
+        
+            const opciones = { 
+                weekday: 'long', 
+                day: 'numeric', 
+                month: 'long', 
+                year: 'numeric' 
+            };
+        
+            // Formatear la fecha
+            const fechaFormateada = new Intl.DateTimeFormat('es-ES', opciones).format(fecha);
+        
+            // Capitalizar la primera letra del día
+            return fechaFormateada.charAt(0).toUpperCase() + fechaFormateada.slice(1);
+        }
+
+        let lblTotalCuentaDia = $("#totalCuentaDia").attr("value")
+        let lblTotalPagos = $("#totalPagos").attr("value")
+        let lblTotalSaldo = $("#totalSaldo").attr("value")
+        let fechaCuentaDelCliente = $('#fechaCuentaDelCliente').val().trim();
+        let fechaFormateada = formatearFecha(fechaCuentaDelCliente);
+        let mensajeDeudaDiaCliente = $("#mensajeDeuda")
+
+        if (lblTotalCuentaDia != "" && lblTotalPagos != ""){
+            let deudaDiaCalculo = parseFloat(lblTotalCuentaDia)-parseFloat(lblTotalPagos);
+            let totalSaldo = parseFloat(lblTotalSaldo);
+            let calculoAFavor = 0;
+            totalSaldo = parseFloat(totalSaldo.toFixed(2));
+            calculoAFavor = totalSaldo + deudaDiaCalculo;
+
+            if (Math.abs(calculoAFavor) < 1e-10) {
+                calculoAFavor = 0.00;
+            }
+
+            let totalFormateadoDeudaDiaCalculo = deudaDiaCalculo.toLocaleString('es-ES', {
+                minimumFractionDigits: 2,   
+                maximumFractionDigits: 2,
+                useGrouping: true,
+            });
+            let totalFormateadoLblTotalPagos = parseFloat(lblTotalPagos).toLocaleString('es-ES', {
+                minimumFractionDigits: 2,   
+                maximumFractionDigits: 2,
+                useGrouping: true,
+            });
+            let totalFormateadoLblTotalCuentaDia = parseFloat(lblTotalCuentaDia).toLocaleString('es-ES', {
+                minimumFractionDigits: 2,   
+                maximumFractionDigits: 2,
+                useGrouping: true,
+            });
+
+            let totalFormateadototalSaldo = parseFloat(totalSaldo).toLocaleString('es-ES', {
+                minimumFractionDigits: 2,   
+                maximumFractionDigits: 2,
+                useGrouping: true,
+            });
+            let totalFormateadocalculoAFavor = parseFloat(calculoAFavor).toLocaleString('es-ES', {
+                minimumFractionDigits: 2,   
+                maximumFractionDigits: 2,
+                useGrouping: true,
+            });
+            mensajeDeudaDiaCliente.empty();
+            mensajeDeudaDiaCliente.html(`<p id="mensajeDeudaDia" class="md:mx-5 md:text-left text-center font-semibold text-black">El día de hoy ${fechaFormateada} ,  el monto de su guía es <b>${totalFormateadoLblTotalCuentaDia}</b> , ha abonado <b>${totalFormateadoLblTotalPagos}</b> . Dejando un saldo pendiente de <b>${totalFormateadoDeudaDiaCalculo}</b> . Así mismo teniendo en cuenta el saldo anterior <b>${totalFormateadototalSaldo}</b> , con el abono de hoy ${fechaFormateada} , su saldo actual es por el monto de <b>${totalFormateadocalculoAFavor}</b> .</p>`);
+        }else{
+            mensajeDeudaDiaCliente.empty();
+            mensajeDeudaDiaCliente.html(`<p id="mensajeDeudaDia"></p>`);
+        }
+    });
+    
+    $(document).on('input', '.convertirTextoMayuscula', function (e) {
+        const $td = $(this);
+        const originalContent = $td.text();
+        const cursorPosition = getCaretPosition($td[0]);
+    
+        // Convierte el contenido a mayúsculas
+        const uppercasedContent = originalContent.toUpperCase();
+        $td.text(uppercasedContent);
+    
+        // Restaura la posición del cursor
+        setCaretPosition($td[0], cursorPosition);
+    }); 
+
+    $(document).on('input', '.sumarContenidoTabla', function (e) {
+        const $td = $(this);
+        let originalContent = $td.text();
+        const cursorPosition = getCaretPosition($td[0]);
+    
+        // Elimina caracteres no numéricos, excepto un punto decimal
+        let filteredContent = originalContent.replace(/[^0-9.]/g, '');
+    
+        // Asegura que solo haya un punto decimal
+        const parts = filteredContent.split('.');
+        if (parts.length > 2) {
+            filteredContent = parts[0] + '.' + parts.slice(1).join('');
+        }
+    
+        // Limita los decimales a dos
+        if (parts[1] && parts[1].length > 2) {
+            filteredContent = parts[0] + '.' + parts[1].slice(0, 2);
+        }
+    
+        // Actualiza el contenido del td con el valor filtrado
+        $td.text(filteredContent);
+    
+        // Restaura la posición del cursor
+        setCaretPosition($td[0], Math.min(cursorPosition, filteredContent.length));
+    });
+    
+    // Función para obtener la posición actual del cursor
+    function getCaretPosition(element) {
+        let caretOffset = 0;
+        const selection = window.getSelection();
+        if (selection.rangeCount > 0) {
+            const range = selection.getRangeAt(0);
+            const preCaretRange = range.cloneRange();
+            preCaretRange.selectNodeContents(element);
+            preCaretRange.setEnd(range.endContainer, range.endOffset);
+            caretOffset = preCaretRange.toString().length;
+        }
+        return caretOffset;
+    }
+    
+    // Función para establecer la posición del cursor
+    function setCaretPosition(element, offset) {
+        const selection = window.getSelection();
+        const range = document.createRange();
+        range.selectNodeContents(element);
+        range.setStart(element.firstChild, offset);
+        range.setEnd(element.firstChild, offset);
+        selection.removeAllRanges();
+        selection.addRange(range);
     }
 
 });

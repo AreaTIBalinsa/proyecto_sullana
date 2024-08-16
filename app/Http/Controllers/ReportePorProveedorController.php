@@ -63,6 +63,7 @@ class ReportePorProveedorController extends Controller
                 ->where('idEspecie','!=', '15')
                 ->where('idEspecie','!=', '16')
                 ->where('idEspecie','!=', '17')
+                ->where('idEspecie','!=', '21')
                 ->orderBy('idEspecie', 'asc')
                 ->get();
 
@@ -360,7 +361,7 @@ class ReportePorProveedorController extends Controller
         if (Auth::check()) {
             // Realiza la consulta a la base de datos
             $datos = DatosProveedor::select('idEspecie', 'nombreEspecie')
-                ->whereIn('idEspecie', [13, 14, 15, 16, 17])
+                ->whereIn('idEspecie', [13, 14, 15, 16, 17, 21])
                 ->orderBy('idEspecie', 'asc')
                 ->get();
 

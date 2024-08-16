@@ -217,37 +217,79 @@ jQuery(function($) {
 
                     // Iterar sobre los objetos y mostrar sus propiedades
                     response.forEach(function (obj) {
-                        let cargo = "Cantidad";
-                        let mostrarFilPrecio = ""
                         if(eliminarEspacios(obj.nombre_category) == "PLANILLA"){
-                            cargo = "Cargo";
-                            mostrarFilPrecio = "hidden"
+                            // Crear una nueva fila
+                            let nuevaFila = `
+                            <div class="w-full overflow-auto flex flex-col" id="divTablasPlanilla">
+                                <div class="bg-blue-600 p-2 w-full border-b-2 text-sm font-bold text-gray-100 text-center">
+                                    ${obj.nombre_category}
+                                </div>
+                                <div class="w-full overflow-auto flex items-start">
+                                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 tbodyLimpiar" id="tabla${obj.nombre_category}">
+                                        <thead class="text-xs text-gray-100 uppercase bg-blue-600 sticky top-0" id="header${obj.nombre_category}">
+                                            <tr>
+                                                <th class="px-2 py-4 text-center">Fecha</th>
+                                                <th class="px-2 py-4 text-center">Hora</th>
+                                                <th class="px-2 py-4 text-center">Trabajador</th>
+                                                <th class="px-2 py-4 text-center">Cargo</th>
+                                                <th class="px-2 py-4 text-center hidden">Precio</th>
+                                                <th class="px-2 py-4 text-center">Monto</th>
+                                                <th class="px-2 py-4 text-center">Observación</th>
+                                                <th class="px-2 py-4 text-center hidden">Categoria</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="bodyCategoria${eliminarEspacios(obj.nombre_category)}PELADOR">
+                                        </tbody>
+                                    </table>
+                                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 tbodyLimpiar" id="tabla${obj.nombre_category}">
+                                        <thead class="text-xs text-gray-100 uppercase bg-blue-600 sticky top-0" id="header${obj.nombre_category}">
+                                            <tr>
+                                                <th class="px-2 py-4 text-center">Fecha</th>
+                                                <th class="px-2 py-4 text-center">Hora</th>
+                                                <th class="px-2 py-4 text-center">Trabajador</th>
+                                                <th class="px-2 py-4 text-center">Cargo</th>
+                                                <th class="px-2 py-4 text-center hidden">Precio</th>
+                                                <th class="px-2 py-4 text-center">Monto</th>
+                                                <th class="px-2 py-4 text-center">Observación</th>
+                                                <th class="px-2 py-4 text-center hidden">Categoria</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="bodyCategoria${eliminarEspacios(obj.nombre_category)}ESTIBADOR">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            `;
+                            
+                            // Agregar la nueva tabla al tbody
+                            contenedorCategoriasEgresos.append(nuevaFila);
+                        }else{
+                            // Crear una nueva fila
+                            let nuevaFila = `
+                            <div class="w-full overflow-auto">
+                                <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 tbodyLimpiar" id="tabla${obj.nombre_category}">
+                                    <caption class="bg-blue-600 p-2 w-full border-b-2 text-sm font-bold text-gray-100">${obj.nombre_category}</caption>
+                                    <thead class="text-xs text-gray-100 uppercase bg-blue-600 sticky top-0" id="header${obj.nombre_category}">
+                                        <tr>
+                                            <th class="px-2 py-4 text-center">Fecha</th>
+                                            <th class="px-2 py-4 text-center">Hora</th>
+                                            <th class="px-2 py-4 text-center">Uso de Egreso</th>
+                                            <th class="px-2 py-4 text-center">Cantidad</th>
+                                            <th class="px-2 py-4 text-center">Precio</th>
+                                            <th class="px-2 py-4 text-center">Monto</th>
+                                            <th class="px-2 py-4 text-center">Observación</th>
+                                            <th class="px-2 py-4 text-center hidden">Categoria</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="bodyCategoria${eliminarEspacios(obj.nombre_category)}">
+                                    </tbody>
+                                </table>
+                            </div>
+                            `;
+                            
+                            // Agregar la nueva tabla al tbody
+                            contenedorCategoriasEgresos.append(nuevaFila);
                         }
-                        // Crear una nueva fila
-                        let nuevaFila = `
-                        <div class="w-full overflow-auto">
-                            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 tbodyLimpiar" id="tabla${obj.nombre_category}">
-                                <caption class="bg-blue-600 p-2 w-full border-b-2 text-sm font-bold text-gray-100">${obj.nombre_category}</caption>
-                                <thead class="text-xs text-gray-100 uppercase bg-blue-600 sticky top-0" id="header${obj.nombre_category}">
-                                    <tr>
-                                        <th class="px-2 py-4 text-center">Fecha</th>
-                                        <th class="px-2 py-4 text-center">Hora</th>
-                                        <th class="px-2 py-4 text-center">Uso de Egreso</th>
-                                        <th class="px-2 py-4 text-center">${cargo}</th>
-                                        <th class="px-2 py-4 text-center ${mostrarFilPrecio}">Precio</th>
-                                        <th class="px-2 py-4 text-center">Monto</th>
-                                        <th class="px-2 py-4 text-center">Observación</th>
-                                        <th class="px-2 py-4 text-center hidden">Categoria</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="bodyCategoria${eliminarEspacios(obj.nombre_category)}">
-                                </tbody>
-                            </table>
-                        </div>
-                        `;
-                        
-                        // Agregar la nueva tabla al tbody
-                        contenedorCategoriasEgresos.append(nuevaFila);
                     });
 
                     fn_consulta_TraerTablasDetallesEgresos(fechaHoy);
@@ -263,6 +305,63 @@ jQuery(function($) {
         });
 
     };
+
+    function contarFilas() {
+        let agregarFilasPeladores = $('.agregarFilasPeladores').length;
+        let agregarFilasEstibadores = $('.agregarFilasEstibadores').length;
+    
+        if (agregarFilasPeladores > agregarFilasEstibadores) {
+    
+            let diferencia = agregarFilasPeladores - agregarFilasEstibadores;
+            let nuevasFilas = "";
+    
+            for (var i = 0; i < diferencia; i++) {
+                let nuevaFila = `
+                    <tr class="agregarFilasEstibadores bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-200 text-gray-900 dark:text-white dark:hover:bg-gray-600 cursor-pointer">
+                        <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap hidden">&nbsp;</td>
+                        <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">&nbsp;</td>
+                        <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">&nbsp;</td>
+                        <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">&nbsp;</td>
+                        <td class="border-r dark:border-gray-700 p-2 text-center whitespace-wrap">&nbsp;</td>
+                        <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap hidden">&nbsp;</td>
+                        <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">&nbsp;</td>
+                        <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">&nbsp;</td>
+                        <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap hidden">&nbsp;</td>
+                    </tr>
+                `;
+                nuevasFilas += nuevaFila;
+            }
+    
+            // Agregar las nuevas filas al final de la tabla que contiene contarFilaPagos
+            $('.agregarFilasEstibadores:last').after(nuevasFilas);
+    
+        } else if (agregarFilasPeladores < agregarFilasEstibadores){
+            // console.log("contarFilaPagos tiene más filas o son iguales");
+
+            let diferencia = agregarFilasEstibadores - agregarFilasPeladores;
+            let nuevasFilas = "";
+    
+            for (var i = 0; i < diferencia; i++) {
+                let nuevaFila = `
+                    <tr class="agregarFilasPeladores bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-200 text-gray-900 dark:text-white dark:hover:bg-gray-600 cursor-pointer">
+                        <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap hidden">&nbsp;</td>
+                        <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">&nbsp;</td>
+                        <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">&nbsp;</td>
+                        <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">&nbsp;</td>
+                        <td class="border-r dark:border-gray-700 p-2 text-center whitespace-wrap">&nbsp;</td>
+                        <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap hidden">&nbsp;</td>
+                        <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">&nbsp;</td>
+                        <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">&nbsp;</td>
+                        <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap hidden">&nbsp;</td>
+                    </tr>
+                `;
+                nuevasFilas += nuevaFila;
+            }
+    
+            // Agregar las nuevas filas al final de la tabla que contiene filasagregarFilasPeladores
+            $('.agregarFilasPeladores:last').after(nuevasFilas);
+        }
+    }
 
     function fn_consulta_TraerTablasDetallesEgresos(fecha) {
 
@@ -282,26 +381,34 @@ jQuery(function($) {
                     let totalCantidadSinClasificar = 0;
                     let totalMontoSinClasificar = 0;
                     $('.tbodyLimpiar tbody').empty();
+                    $('.divTablasPlanilla').remove();
     
                     response.forEach(function (obj) {
     
+                        let categoriaKey = obj.nombre_category;
+                    
+                        // Excepción para clasificar "PLANILLA" con "PELADOR" o "ESTIBADOR"
+                        if (obj.nombre_category === "PLANILLA") {
+                            categoriaKey += " " + obj.campoExtra; // Combina nombre_category con campoExtra
+                        }
+                    
                         // Inicializar el objeto de totales para la categoría si no existe
-                        if (!totalesPorCategoria[obj.nombre_category]) {
-                            totalesPorCategoria[obj.nombre_category] = {
+                        if (!totalesPorCategoria[categoriaKey]) {
+                            totalesPorCategoria[categoriaKey] = {
                                 cantidad_total: 0,
                                 monto_total: 0
                             };
                         }
-
+                    
                         if (parseInt(obj.id_category) == 0) {
                             totalCantidadSinClasificar += obj.cantidad_detalles ? parseInt(obj.cantidad_detalles) : 0;
                             totalMontoSinClasificar += obj.monto_detalle ? parseFloat(obj.monto_detalle) : 0;
                         }
-    
+                    
                         // Acumular los totales por categoría
-                        totalesPorCategoria[obj.nombre_category].cantidad_total += obj.cantidad_detalles ? parseInt(obj.cantidad_detalles) : 0;
-                        totalesPorCategoria[obj.nombre_category].monto_total += obj.monto_detalle ? parseFloat(obj.monto_detalle) : 0;
-                    });
+                        totalesPorCategoria[categoriaKey].cantidad_total += obj.cantidad_detalles ? parseInt(obj.cantidad_detalles) : 0;
+                        totalesPorCategoria[categoriaKey].monto_total += obj.monto_detalle ? parseFloat(obj.monto_detalle) : 0;
+                    });                    
 
                     let peladores = 0;
                     let estibadores = 0;
@@ -315,78 +422,161 @@ jQuery(function($) {
                             mostrarCargo = obj.campoExtra === null ? "" : obj.campoExtra
                             if(obj.campoExtra == "PELADOR"){
                                 peladores++;
+                                // Crear una nueva fila
+                                let nuevaFila = `
+                                    <tr class="eliminarDetalleEgreso agregarFilasPeladores bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-200 text-gray-900 dark:text-white dark:hover:bg-gray-600 cursor-pointer">
+                                        <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap hidden">${obj.id_detalle}</td>
+                                        <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.fecha_detalle}</td>
+                                        <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.hora_detalle}</td>
+                                        <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.uso_detalle_egreso}</td>
+                                        <td class="border-r dark:border-gray-700 p-2 text-center whitespace-wrap">${mostrarCargo}</td>
+                                        <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap ${mostrarFilPrecio}">${obj.precio_detalle}</td>
+                                        <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.monto_detalle}</td>
+                                        <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.observacion === null ? "" : obj.observacion}</td>
+                                        <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap hidden">${obj.id_category}</td>
+                                    </tr>
+                                `;
+            
+                                // Agregar la nueva fila al tbody correspondiente
+                                let contenedorCategoriasEgresos = $(`#bodyCategoria${eliminarEspacios(obj.nombre_category)}PELADOR`);
+                                contenedorCategoriasEgresos.append(nuevaFila);
                             }else if (obj.campoExtra == "ESTIBADOR"){
                                 estibadores++;
+                                // Crear una nueva fila
+                                let nuevaFila = `
+                                    <tr class="eliminarDetalleEgreso agregarFilasEstibadores bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-200 text-gray-900 dark:text-white dark:hover:bg-gray-600 cursor-pointer">
+                                        <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap hidden">${obj.id_detalle}</td>
+                                        <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.fecha_detalle}</td>
+                                        <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.hora_detalle}</td>
+                                        <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.uso_detalle_egreso}</td>
+                                        <td class="border-r dark:border-gray-700 p-2 text-center whitespace-wrap">${mostrarCargo}</td>
+                                        <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap ${mostrarFilPrecio}">${obj.precio_detalle}</td>
+                                        <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.monto_detalle}</td>
+                                        <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.observacion === null ? "" : obj.observacion}</td>
+                                        <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap hidden">${obj.id_category}</td>
+                                    </tr>
+                                `;
+            
+                                // Agregar la nueva fila al tbody correspondiente
+                                let contenedorCategoriasEgresos = $(`#bodyCategoria${eliminarEspacios(obj.nombre_category)}ESTIBADOR`);
+                                contenedorCategoriasEgresos.append(nuevaFila);
+                            }
+                        }else{
+                            // Crear una nueva fila
+                            let nuevaFila = `
+                                <tr class="eliminarDetalleEgreso bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-200 text-gray-900 dark:text-white dark:hover:bg-gray-600 cursor-pointer">
+                                    <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap hidden">${obj.id_detalle}</td>
+                                    <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.fecha_detalle}</td>
+                                    <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.hora_detalle}</td>
+                                    <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.uso_detalle_egreso}</td>
+                                    <td class="border-r dark:border-gray-700 p-2 text-center whitespace-wrap">${mostrarCargo}</td>
+                                    <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap ${mostrarFilPrecio}">${obj.precio_detalle}</td>
+                                    <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.monto_detalle}</td>
+                                    <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.observacion === null ? "" : obj.observacion}</td>
+                                    <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap hidden">${obj.id_category}</td>
+                                </tr>
+                            `;
+        
+                            // Agregar la nueva fila al tbody correspondiente
+                            if (parseInt(obj.id_category) != 0) {
+                                let contenedorCategoriasEgresos = $(`#bodyCategoria${eliminarEspacios(obj.nombre_category)}`);
+                                contenedorCategoriasEgresos.append(nuevaFila);
+                            } else {
+                                let contenedorCategoriasEgresos = $('#bodyCategoriaSinClasificar');
+                                contenedorCategoriasEgresos.append(nuevaFila);
                             }
                         }
-                        // Crear una nueva fila
-                        let nuevaFila = `
-                            <tr class="eliminarDetalleEgreso bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-200 text-gray-900 dark:text-white dark:hover:bg-gray-600 cursor-pointer">
-                                <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap hidden">${obj.id_detalle}</td>
-                                <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.fecha_detalle}</td>
-                                <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.hora_detalle}</td>
-                                <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.uso_detalle_egreso}</td>
-                                <td class="border-r dark:border-gray-700 p-2 text-center whitespace-wrap">${mostrarCargo}</td>
-                                <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap ${mostrarFilPrecio}">${obj.precio_detalle}</td>
-                                <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.monto_detalle}</td>
-                                <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.observacion === null ? "" : obj.observacion}</td>
-                                <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap hidden">${obj.id_category}</td>
-                            </tr>
-                        `;
-    
-                        // Agregar la nueva fila al tbody correspondiente
-                        if (parseInt(obj.id_category) != 0) {
-                            let contenedorCategoriasEgresos = $(`#bodyCategoria${eliminarEspacios(obj.nombre_category)}`);
-                            contenedorCategoriasEgresos.append(nuevaFila);
-                        } else {
-                            let contenedorCategoriasEgresos = $('#bodyCategoriaSinClasificar');
-                            contenedorCategoriasEgresos.append(nuevaFila);
-                        }
                     });
+
+                    contarFilas();
+                    let totalAPagarPlanilla = 0;
     
                     // Agregar las filas de totales por categoría
                     for (let category in totalesPorCategoria) {
                         let totales = totalesPorCategoria[category];
-                        let cantidad = "";
-                        let mostrarFilPrecio = ""
-                        if(category == "PLANILLA"){
-                            mostrarFilPrecio = "hidden"
-                            cantidad = `PELADORES : ${peladores} \n ESTIBADORES : ${estibadores}`
+                        let cantidad = totales.cantidad_total;
+                        if(category == "PLANILLA PELADOR"){
+                            cantidad = `PELADORES : ${peladores}`
+                            totalAPagarPlanilla += parseFloat(totales.monto_total);
+
+                            let filaTotales = `
+                                <tr class="bg-blue-600 text-white font-bold">
+                                    <td colspan="3" class="border-r dark:border-gray-700 p-2 text-center">Total</td>
+                                    <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${cantidad}</td>
+                                    <td class="border-r dark:border-gray-700 p-2 text-center hidden"></td>
+                                    <td class="border-r dark:border-gray-700 p-2 text-center">${totales.monto_total.toFixed(2)}</td>
+                                    <td class="border-r dark:border-gray-700 p-2 text-center"></td>
+                                    <td class="border-r dark:border-gray-700 p-2 text-center hidden"></td>
+                                </tr>
+                            `;
+        
+                            let contenedorTotales = $(`#bodyCategoria${eliminarEspacios(category)}`);
+                            contenedorTotales.append(filaTotales);
+                        }else if(category == "PLANILLA ESTIBADOR"){
+                            cantidad = `ESTIBADORES : ${estibadores}`
+                            totalAPagarPlanilla += parseFloat(totales.monto_total);
+
+                            let filaTotales = `
+                                <tr class="bg-blue-600 text-white font-bold">
+                                    <td colspan="3" class="border-r dark:border-gray-700 p-2 text-center">Total</td>
+                                    <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${cantidad}</td>
+                                    <td class="border-r dark:border-gray-700 p-2 text-center hidden"></td>
+                                    <td class="border-r dark:border-gray-700 p-2 text-center">${totales.monto_total.toFixed(2)}</td>
+                                    <td class="border-r dark:border-gray-700 p-2 text-center"></td>
+                                    <td class="border-r dark:border-gray-700 p-2 text-center hidden"></td>
+                                </tr>
+                            `;
+        
+                            let contenedorTotales = $(`#bodyCategoria${eliminarEspacios(category)}`);
+                            contenedorTotales.append(filaTotales);
+
                         }else{
-                            cantidad = totales.cantidad_total
+                            let filaTotales = `
+                                <tr class="bg-blue-600 text-white font-bold">
+                                    <td colspan="3" class="border-r dark:border-gray-700 p-2 text-center">Total</td>
+                                    <td class="border-r dark:border-gray-700 p-2 text-center whitespace-break-spaces">${cantidad}</td>
+                                    <td class="border-r dark:border-gray-700 p-2 text-center"></td>
+                                    <td class="border-r dark:border-gray-700 p-2 text-center">${totales.monto_total.toFixed(2)}</td>
+                                    <td class="border-r dark:border-gray-700 p-2 text-center"></td>
+                                    <td class="border-r dark:border-gray-700 p-2 text-center hidden"></td>
+                                </tr>
+                            `;
+        
+                            let contenedorTotales = $(`#bodyCategoria${eliminarEspacios(category)}`);
+                            contenedorTotales.append(filaTotales);
                         }
-                        let filaTotales = `
-                            <tr class="bg-blue-600 text-white font-bold">
-                                <td colspan="3" class="border-r dark:border-gray-700 p-2 text-center">Total</td>
-                                <td class="border-r dark:border-gray-700 p-2 text-center whitespace-break-spaces">${cantidad}</td>
-                                <td class="border-r dark:border-gray-700 p-2 text-center ${mostrarFilPrecio}"></td>
-                                <td class="border-r dark:border-gray-700 p-2 text-center">${totales.monto_total.toFixed(2)}</td>
-                                <td class="border-r dark:border-gray-700 p-2 text-center"></td>
-                                <td class="border-r dark:border-gray-700 p-2 text-center hidden"></td>
-                            </tr>
-                        `;
-    
-                        let contenedorTotales = $(`#bodyCategoria${eliminarEspacios(category)}`);
-                        contenedorTotales.append(filaTotales);
                     }
 
                     let nuevaFila = `
-                            <tr class="bg-red-600 text-white font-bold">
-                                <td colspan="3" class="border-r dark:border-gray-700 p-2 text-center">Total</td>
-                                <td class="border-r dark:border-gray-700 p-2 text-center">${totalCantidadSinClasificar}</td>
-                                <td class="border-r dark:border-gray-700 p-2 text-center"></td>
-                                <td class="border-r dark:border-gray-700 p-2 text-center">${totalMontoSinClasificar.toFixed(2)}</td>
-                                <td class="border-r dark:border-gray-700 p-2 text-center"></td>
-                                <td class="border-r dark:border-gray-700 p-2 text-center hidden"></td>
-                            </tr>
-                        `;
-    
-                        let contenedorCategoriasEgresos = $('#bodyCategoriaSinClasificar');
-                        contenedorCategoriasEgresos.append(nuevaFila);
+                        <tr class="bg-red-600 text-white font-bold">
+                            <td colspan="3" class="border-r dark:border-gray-700 p-2 text-center">Total</td>
+                            <td class="border-r dark:border-gray-700 p-2 text-center">${totalCantidadSinClasificar}</td>
+                            <td class="border-r dark:border-gray-700 p-2 text-center"></td>
+                            <td class="border-r dark:border-gray-700 p-2 text-center">${totalMontoSinClasificar.toFixed(2)}</td>
+                            <td class="border-r dark:border-gray-700 p-2 text-center"></td>
+                            <td class="border-r dark:border-gray-700 p-2 text-center hidden"></td>
+                        </tr>
+                    `;
+
+                    let contenedorCategoriasEgresos = $('#bodyCategoriaSinClasificar');
+                    contenedorCategoriasEgresos.append(nuevaFila);
+
+                    let totalCantidadPlanilla = parseInt(peladores) + parseInt(estibadores);
+
+                    let nuevaFilaDivTablasPlanilla = `
+                    <div class="bg-blue-600 w-full border-t-2 divTablasPlanilla text-sm font-bold text-gray-100 text-center flex divide-x divide-gray-200 items-center gap-4">
+                        <div class="flex-1 p-2">Total de Trabajadores</div>
+                        <div class="flex-1 p-2">${totalCantidadPlanilla}</div>
+                        <div class="flex-1 p-2">S/ ${totalAPagarPlanilla.toFixed(2)}</div>
+                    </div>`
+
+                    let divTablasPlanilla = $('#divTablasPlanilla');
+                    divTablasPlanilla.append(nuevaFilaDivTablasPlanilla);
     
                 } else {
                     console.log("La respuesta no es un arreglo de objetos.");
                     $('.tbodyLimpiar tbody').empty();
+                    $('.divTablasPlanilla').remove();
                 }
     
             },

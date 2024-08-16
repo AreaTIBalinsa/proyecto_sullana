@@ -68,7 +68,7 @@
                             <th class="px-2 py-4 text-center">Fecha</th>
                             <th class="px-2 py-4 text-center">Hora</th>
                             <th class="px-2 py-4 text-center">Clientes</th>
-                            <th class="px-2 py-4 text-center">N° Baldes</th>
+                            <th class="px-2 py-4 text-center">Unidades</th>
                             <th class="px-2 py-4 text-center">Precio</th>
                             <th class="px-2 py-4 text-center">Monto</th>
                             <th class="px-2 py-4 text-center">Observación</th>
@@ -154,10 +154,10 @@
                                             Hora
                                         </th>
                                         <th scope="col" class="px-6 py-3 border-b-2 whitespace-nowrap">
-                                            Uso Egreso
+                                            Cliente
                                         </th>
                                         <th scope="col" class="px-6 py-3 border-b-2 whitespace-nowrap">
-                                            N° Baldes
+                                            Unidades
                                         </th>
                                         <th scope="col" class="px-6 py-3 border-b-2 whitespace-nowrap">
                                             Precio

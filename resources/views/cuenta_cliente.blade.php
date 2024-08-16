@@ -85,6 +85,7 @@
                     </div>
                 </div>
                 <div class="flex items-center justify-end py-1 rounded-xl px-1 gap-4">
+                    <button class="text-base py-2 px-5 bg-orange-500 md:max-w-xs w-full hover:bg-orange-600 text-gray-50 rounded-lg md:w-auto font-semibold" id="btnEditarTablaCuentaCliente">Editar Tabla</button>
                     <button class="text-base py-2 px-5 bg-red-600 md:max-w-xs w-full hover:bg-red-700 text-gray-50 rounded-lg md:w-auto font-semibold" id="btnAgregarDiferencia">Agregar Diferencia</button>
                     <button class="text-base py-2 px-5 bg-blue-600 md:max-w-xs w-full hover:bg-blue-700 text-gray-50 rounded-lg md:w-auto font-semibold" id="btnCambiarPrecioPesadas">S/ Cambiar Precios</button>
                 </div>

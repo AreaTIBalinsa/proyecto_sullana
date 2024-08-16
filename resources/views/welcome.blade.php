@@ -619,16 +619,20 @@
             <div class="overflow-x-auto rounded-md aside_scrollED md:px-5">
                 <table class="border-collapse w-full text-gray-500 dark:text-gray-400 relative text-sm">
                     <thead id="inicioCantidadesPollos" class="text-gray-50 text-base">
-                        <tr>
+                        <tr class="uppercase">
                             <th class="text-white border-[2px] bg-blue-600 border-b-1 border-gray-300 dark:border-white py-2 md:text-md text-left px-2"></th>
-                            <th class="text-white border-[2px] bg-red-600 border-b-1 border-gray-300 dark:border-white py-2 md:text-md text-center px-2" colspan="2">Compra</th>
+                            <th class="text-white border-[2px] bg-red-600 border-b-1 border-gray-300 dark:border-white py-2 md:text-md text-center px-2" colspan="6">Compra</th>
                             <th class="text-white border-[2px] bg-green-600 border-b-1 border-gray-300 dark:border-white py-2 md:text-md text-center px-2" colspan="2">Venta</th>
                             <th class="text-white border-[2px] bg-yellow-400 border-b-1 border-gray-300 dark:border-white py-2 md:text-md text-center px-2" colspan="2">Stock Actual</th>
                         </tr>
-                        <tr>
+                        <tr class="uppercase">
                             <th class="text-white border-[2px] bg-blue-600 border-b-1 border-gray-300 dark:border-white py-2 md:text-md text-left px-2">Representación</th>
                             <th class="text-white border-[2px] bg-blue-600 border-b-1 border-gray-300 dark:border-white py-2 md:text-md text-left px-2">Cantidad</th>
+                            <th class="text-white border-[2px] bg-blue-600 border-b-1 border-gray-300 dark:border-white py-2 md:text-md text-left px-2">Stock</th>
+                            <th class="text-white border-[2px] bg-blue-600 border-b-1 border-gray-300 dark:border-white py-2 md:text-md text-left px-2">Total</th>
                             <th class="text-white border-[2px] bg-blue-600 border-b-1 border-gray-300 dark:border-white py-2 md:text-md text-left px-2">Peso</th>
+                            <th class="text-white border-[2px] bg-blue-600 border-b-1 border-gray-300 dark:border-white py-2 md:text-md text-left px-2">Stock</th>
+                            <th class="text-white border-[2px] bg-blue-600 border-b-1 border-gray-300 dark:border-white py-2 md:text-md text-left px-2">Total</th>
                             <th class="text-white border-[2px] bg-blue-600 border-b-1 border-gray-300 dark:border-white py-2 md:text-md text-left px-2">Cantidad</th>
                             <th class="text-white border-[2px] bg-blue-600 border-b-1 border-gray-300 dark:border-white py-2 md:text-md text-left px-2">Peso</th>
                             <th class="text-white border-[2px] bg-blue-600 py-2 md:text-md border-gray-300 dark:border-white text-left px-2">Cantidad</th>

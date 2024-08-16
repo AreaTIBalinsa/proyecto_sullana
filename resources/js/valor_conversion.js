@@ -169,3 +169,6 @@ jQuery(function($) {
     });
 
 });
+
+
+let precioPromedioTAS = fn_buscarValorDecimalTAS(item.datosTabla_tb_pesadasGeneral, 'especie9', 'precioPromedio') + fn_buscarValorDecimalTAS(item.datosTabla_tb_pesadasGeneral, 'especie10', 'precioPromedio') + fn_buscarValorDecimalTAS(item.datosTabla_tb_pesadasGeneral, 'especie11', 'precioPromedio') + fn_buscarValorDecimalTAS(item.datosTabla_tb_pesadasGeneral, 'especie12', 'precioPromedio') + fn_buscarValorDecimalTAS(item.datosTabla_tb_pesadasGeneral, 'especie13', 'precioPromedio') + fn_buscarValorDecimalTAS(item.datosTabla_tb_pesadasGeneral, 'especie15', 'precioPromedio') + fn_buscarValorDecimalTAS(item.datosTabla_tb_pesadasGeneral, 'especie6', 'precioPromedio') + fn_buscarValorDecimalTAS(item.datosTabla_tb_pesadasGeneral, 'especie21', 'precioPromedio');

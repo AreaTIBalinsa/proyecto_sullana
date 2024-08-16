@@ -225,7 +225,7 @@ jQuery(function($) {
                                     <tr>
                                         <th class="px-2 py-4 text-center">Fecha</th>
                                         <th class="px-2 py-4 text-center">Hora</th>
-                                        <th class="px-2 py-4 text-center">Uso de Egreso</th>
+                                        <th class="px-2 py-4 text-center">Cliente</th>
                                         <th class="px-2 py-4 text-center">Cantidad</th>
                                         <th class="px-2 py-4 text-center">Precio</th>
                                         <th class="px-2 py-4 text-center">Monto</th>
