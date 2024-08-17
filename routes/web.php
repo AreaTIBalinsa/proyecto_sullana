@@ -5,7 +5,6 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\InicioController;
 use App\Http\Controllers\RegistrarClientesController;
-use App\Http\Controllers\ValorDeConversionController;
 use App\Http\Controllers\PreciosController;
 use App\Http\Controllers\ReniecController;
 use App\Http\Controllers\ReportePorClienteController;
@@ -57,7 +56,6 @@ Route::get('/consultarDNI',[ReniecController::class,'consultarDNI']);
 Route::get('/home',[InicioController::class,'index']);
 Route::get('/registrar_usuarios',[RegisterController::class,'show']);
 Route::get('/registrar_clientes',[RegistrarClientesController::class,'show']);
-Route::get('/valor_conversion',[ValorDeConversionController::class,'show']);
 Route::get('/precios',[PreciosController::class,'show']);
 Route::get('/reporte_por_cliente',[ReportePorClienteController::class,'show']);
 Route::get('/reporte_de_caja',[ReporteDePagosController::class,'show']);
@@ -98,9 +96,6 @@ Route::get('/fn_consulta_RegistrarUsuarioRoles',[RegisterController::class,'cons
 Route::get('/fn_consulta_TraerDocumentos', [RegistrarClientesController::class,'consulta_TraerDocumentos']);
 Route::get('/fn_consulta_TraerCodigoCli', [RegistrarClientesController::class,'consulta_TraerCodigoCli']);
 Route::get('/fn_consulta_RegistrarCliente', [RegistrarClientesController::class,'consulta_RegistrarCliente']);
-
-Route::get('/fn_consulta_TraerValorConversion', [ValorDeConversionController::class,'consulta_TraerValorConversion']);
-Route::get('/fn_consulta_ActualizarValorConversion', [ValorDeConversionController::class,'consulta_ActualizarValorConversion']);
 
 Route::get('/fn_consulta_TraerPreciosXPresentacion', [PreciosController::class,'consulta_TraerPreciosXPresentacion']);
 Route::get('/fn_consulta_ActualizarPrecioXPresentacion', [PreciosController::class,'consulta_ActualizarPrecioXPresentacion']);
@@ -158,6 +153,7 @@ Route::get('/fn_consulta_RegistrarUsuarioRolesEditar', [ConsultarUsuariosControl
 Route::get('/fn_consulta_EliminarUsuario', [ConsultarUsuariosController::class,'consulta_EliminarUsuario']);
 
 Route::get('/fn_consulta_ConsultarProveedor', [ReportePorProveedorController::class,'consulta_ConsultarProveedor']);
+Route::get('/fn_consulta_ConsultarProveedorSum', [ReportePorProveedorController::class,'consulta_ConsultarProveedorSum']);
 Route::get('/fn_consulta_DatosProveedor', [ReportePorProveedorController::class,'consulta_DatosProveedor']);
 Route::get('/fn_consulta_RegistrarGuia', [ReportePorProveedorController::class,'consulta_RegistrarGuia']);
 Route::get('/fn_consulta_EliminarGuia', [ReportePorProveedorController::class,'consulta_EliminarGuia']);

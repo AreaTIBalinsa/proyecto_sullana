@@ -438,4 +438,31 @@ class ReportePorProveedorController extends Controller
         return response()->json(['error' => 'Usuario no autenticado'], 401);
     }
 
+    public function consulta_ConsultarProveedorSum(Request $request) {
+        $fecha = $request->input('fecha');
+    
+        if (Auth::check()) {
+            // Realiza la consulta a la base de datos con sumas y agrupación
+            $datos = DB::select('
+            SELECT 
+                tb_guias.idProveedor,
+                SUM(cantidadGuia) as totalCantidadGuia,
+                SUM(pesoBrutoGuia) as totalPesoBrutoGuia,
+                SUM(pesoTaraGuia) as totalPesoTaraGuia,
+                tb_especies_compra.nombreEspecie as nombreEspecieCompra,
+                COUNT(idGuia) as totalGuias
+            FROM tb_guias
+            INNER JOIN tb_especies_compra ON tb_guias.idProveedor = tb_especies_compra.idEspecie 
+            WHERE tb_guias.estadoGuia = 1 AND fechaGuia = ?
+            GROUP BY tb_guias.idProveedor, tb_especies_compra.nombreEspecie
+            ORDER BY tb_guias.idProveedor ASC', [$fecha]);
+    
+            // Devuelve los datos en formato JSON
+            return response()->json($datos);
+        }
+    
+        // Si el usuario no está autenticado, devuelve un error
+        return response()->json(['error' => 'Usuario no autenticado'], 401);
+    }    
+
 }

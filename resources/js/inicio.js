@@ -7,7 +7,7 @@ jQuery(function($) {
     // Obtener la fecha actual en formato ISO (YYYY-MM-DD)
     const ahoraEnNY = new Date();
     const fechaHoy = new Date(ahoraEnNY.getFullYear(), ahoraEnNY.getMonth(), ahoraEnNY.getDate()).toISOString().split('T')[0];
-    
+
     fn_declarar_especies();
     fn_traerDatosEnTiempoReal(fechaHoy);
     fn_traerDatosTablaInicioDiferencias(fechaHoy, fechaHoy)
@@ -213,56 +213,56 @@ jQuery(function($) {
 
                         if (idEspecie == 1) {
                             cantidadPrimerEspecie += cantidadPes
-                            if(pesoNetoPes>pesoNetoJabas){
+                            if(pesoNetoPes>0){
                                 pesoTotalPrimerEspecie += pesoNetoPes - pesoNetoJabas
                             }else{
                                 pesoTotalPrimerEspecie += pesoNetoPes + pesoNetoJabas
                             }
                         }else if (idEspecie == 2) {
                             cantidadSegundaEspecie += cantidadPes
-                            if(pesoNetoPes>pesoNetoJabas){
+                            if(pesoNetoPes>0){
                                 pesoTotalSegundaEspecie += pesoNetoPes - pesoNetoJabas
                             }else{
                                 pesoTotalSegundaEspecie += pesoNetoPes + pesoNetoJabas
                             }
                         }else if (idEspecie == 3) {
                             cantidadTerceraEspecie += cantidadPes
-                            if(pesoNetoPes>pesoNetoJabas){
+                            if(pesoNetoPes>0){
                                 pesoTotalTerceraEspecie += pesoNetoPes - pesoNetoJabas
                             }else{
                                 pesoTotalTerceraEspecie += pesoNetoPes + pesoNetoJabas
                             }
                         }else if (idEspecie == 4) {
                             cantidadCuartaEspecie += cantidadPes
-                            if(pesoNetoPes>pesoNetoJabas){
+                            if(pesoNetoPes>0){
                                 pesoTotalCuartaEspecie += pesoNetoPes - pesoNetoJabas
                             }else{
                                 pesoTotalCuartaEspecie += pesoNetoPes + pesoNetoJabas
                             }
                         }else if (idEspecie == 5) {
                             cantidadQuintaEspecie += cantidadPes
-                            if(pesoNetoPes>pesoNetoJabas){
+                            if(pesoNetoPes>0){
                                 pesoTotalQuintaEspecie += pesoNetoPes - pesoNetoJabas
                             }else{
                                 pesoTotalQuintaEspecie += pesoNetoPes + pesoNetoJabas
                             }
                         }else if (idEspecie == 6) {
                             cantidadSextaEspecie += cantidadPes
-                            if(pesoNetoPes>pesoNetoJabas){
+                            if(pesoNetoPes>0){
                                 pesoTotalSextaEspecie += pesoNetoPes - pesoNetoJabas
                             }else{
                                 pesoTotalSextaEspecie += pesoNetoPes + pesoNetoJabas
                             }
                         }else if (idEspecie == 7) {
                             cantidadSeptimaEspecie += cantidadPes
-                            if(pesoNetoPes>pesoNetoJabas){
+                            if(pesoNetoPes>0){
                                 pesoTotalSeptimaEspecie += pesoNetoPes - pesoNetoJabas
                             }else{
                                 pesoTotalSeptimaEspecie += pesoNetoPes + pesoNetoJabas
                             }
                         }else if (idEspecie == 8) {
                             cantidadOctavaEspecie += cantidadPes
-                            if(pesoNetoPes>pesoNetoJabas){
+                            if(pesoNetoPes>0){
                                 pesoTotalOctavaEspecie += pesoNetoPes - pesoNetoJabas
                             }else{
                                 pesoTotalOctavaEspecie += pesoNetoPes + pesoNetoJabas
@@ -271,98 +271,98 @@ jQuery(function($) {
                             cantidadNovenaEspecie += cantidadPes
                         }else if (idEspecie == 10) {
                             cantidadDecimaEspecie += cantidadPes
-                            if(pesoNetoPes>pesoNetoJabas){
+                            if(pesoNetoPes>0){
                                 pesoTotalDecimaEspecie += pesoNetoPes - pesoNetoJabas
                             }else{
                                 pesoTotalDecimaEspecie += pesoNetoPes + pesoNetoJabas
                             }
                         }else if (idEspecie == 11){
                             cantidadDecimaPrimeraEspecie += cantidadPes
-                            if(pesoNetoPes>pesoNetoJabas){
+                            if(pesoNetoPes>0){
                                 pesoTotalDecimaPrimeraEspecie += pesoNetoPes - pesoNetoJabas
                             }else{
                                 pesoTotalDecimaPrimeraEspecie += pesoNetoPes + pesoNetoJabas
                             }
                         }else if (idEspecie == 12){
                             cantidadDecimaSegundaEspecie += cantidadPes
-                            if(pesoNetoPes>pesoNetoJabas){
+                            if(pesoNetoPes>0){
                                 pesoTotalDecimaSegundaEspecie += pesoNetoPes - pesoNetoJabas
                             }else{
                                 pesoTotalDecimaSegundaEspecie += pesoNetoPes + pesoNetoJabas
                             }
                         }else if (idEspecie == 13){
                             cantidadDecimaTerceraEspecie += cantidadPes
-                            if(pesoNetoPes>pesoNetoJabas){
+                            if(pesoNetoPes>0){
                                 pesoTotalDecimaTerceraEspecie += pesoNetoPes - pesoNetoJabas
                             }else{
                                 pesoTotalDecimaTerceraEspecie += pesoNetoPes + pesoNetoJabas
                             }
                         }else if (idEspecie == 14){
                             cantidadDecimaCuartaEspecie += cantidadPes
-                            if(pesoNetoPes>pesoNetoJabas){
+                            if(pesoNetoPes>0){
                                 pesoTotalDecimaCuartaEspecie += pesoNetoPes - pesoNetoJabas
                             }else{
                                 pesoTotalDecimaCuartaEspecie += pesoNetoPes + pesoNetoJabas
                             }
                         }else if (idEspecie == 15){
                             cantidadDecimaQuintaEspecie += cantidadPes
-                            if(pesoNetoPes>pesoNetoJabas){
+                            if(pesoNetoPes>0){
                                 pesoTotalDecimaQuintaEspecie += pesoNetoPes - pesoNetoJabas
                             }else{
                                 pesoTotalDecimaQuintaEspecie += pesoNetoPes + pesoNetoJabas
                             }
                         }else if (idEspecie == 16){
                             cantidadDecimaSextaEspecie += cantidadPes
-                            if(pesoNetoPes>pesoNetoJabas){
+                            if(pesoNetoPes>0){
                                 pesoTotalDecimaSextaEspecie += pesoNetoPes - pesoNetoJabas
                             }else{
                                 pesoTotalDecimaSextaEspecie += pesoNetoPes + pesoNetoJabas
                             }
                         }else if (idEspecie == 17){
                             cantidadDecimaSeptimaEspecie += cantidadPes
-                            if(pesoNetoPes>pesoNetoJabas){
+                            if(pesoNetoPes>0){
                                 pesoTotalDecimaSeptimaEspecie += pesoNetoPes - pesoNetoJabas
                             }else{
                                 pesoTotalDecimaSeptimaEspecie += pesoNetoPes + pesoNetoJabas
                             }
                         }else if (idEspecie == 18){
                             cantidadDecimaOctavaEspecie += cantidadPes
-                            if(pesoNetoPes>pesoNetoJabas){
+                            if(pesoNetoPes>0){
                                 pesoTotalDecimaOctavaEspecie += pesoNetoPes - pesoNetoJabas
                             }else{
                                 pesoTotalDecimaOctavaEspecie += pesoNetoPes + pesoNetoJabas
                             }
                         }else if (idEspecie == 19){
                             cantidadDecimaNovenaEspecie += cantidadPes
-                            if(pesoNetoPes>pesoNetoJabas){
+                            if(pesoNetoPes>0){
                                 pesoTotalDecimaNovenaEspecie += pesoNetoPes - pesoNetoJabas
                             }else{
                                 pesoTotalDecimaNovenaEspecie += pesoNetoPes + pesoNetoJabas
                             }
                         }else if (idEspecie == 20){
                             cantidadVigesimaEspecie += cantidadPes
-                            if(pesoNetoPes>pesoNetoJabas){
+                            if(pesoNetoPes>0){
                                 pesoTotalVigesimaEspecie += pesoNetoPes - pesoNetoJabas
                             }else{
                                 pesoTotalVigesimaEspecie += pesoNetoPes + pesoNetoJabas
                             }
                         }else if (idEspecie == 21){
                             cantidadVigesimaPrimeraEspecie += cantidadPes
-                            if(pesoNetoPes>pesoNetoJabas){
+                            if(pesoNetoPes>0){
                                 pesoTotalVigesimaPrimeraEspecie += pesoNetoPes - pesoNetoJabas
                             }else{
                                 pesoTotalVigesimaPrimeraEspecie += pesoNetoPes + pesoNetoJabas
                             }
                         }else if (idEspecie == 22){
                             cantidadVigesimaSegundaEspecie += cantidadPes
-                            if(pesoNetoPes>pesoNetoJabas){
+                            if(pesoNetoPes>0){
                                 pesoTotalVigesimaSegundaEspecie += pesoNetoPes - pesoNetoJabas
                             }else{
                                 pesoTotalVigesimaSegundaEspecie += pesoNetoPes + pesoNetoJabas
                             }
                         }else if (idEspecie == 23){
                             cantidadVigesimaTerceraEspecie += cantidadPes
-                            if(pesoNetoPes>pesoNetoJabas){
+                            if(pesoNetoPes>0){
                                 pesoTotalVigesimaTerceraEspecie += pesoNetoPes - pesoNetoJabas
                             }else{
                                 pesoTotalVigesimaTerceraEspecie += pesoNetoPes + pesoNetoJabas
@@ -603,7 +603,7 @@ jQuery(function($) {
                             switch(idEspecie) {
                                 case 1:
                                     datosTiempoReal.cantidadPrimerEspecie += cantidadPes
-                                    if(pesoNetoPes>pesoNetoJabas){
+                                    if(pesoNetoPes>0){
                                         datosTiempoReal.pesoTotalPrimerEspecie += pesoNetoPes - pesoNetoJabas
                                     }else{
                                         datosTiempoReal.pesoTotalPrimerEspecie += pesoNetoPes + pesoNetoJabas
@@ -611,7 +611,7 @@ jQuery(function($) {
                                     break;
                                 case 2:
                                     datosTiempoReal.cantidadSegundaEspecie += cantidadPes
-                                    if(pesoNetoPes>pesoNetoJabas){
+                                    if(pesoNetoPes>0){
                                         datosTiempoReal.pesoTotalSegundaEspecie += pesoNetoPes - pesoNetoJabas
                                     }else{
                                         datosTiempoReal.pesoTotalSegundaEspecie += pesoNetoPes + pesoNetoJabas
@@ -619,7 +619,7 @@ jQuery(function($) {
                                     break;
                                 case 3:
                                     datosTiempoReal.cantidadTerceraEspecie += cantidadPes
-                                    if(pesoNetoPes>pesoNetoJabas){
+                                    if(pesoNetoPes>0){
                                         datosTiempoReal.pesoTotalTerceraEspecie += pesoNetoPes - pesoNetoJabas
                                     }else{
                                         datosTiempoReal.pesoTotalTerceraEspecie += pesoNetoPes + pesoNetoJabas
@@ -627,7 +627,7 @@ jQuery(function($) {
                                     break;
                                 case 4:
                                     datosTiempoReal.cantidadCuartaEspecie += cantidadPes
-                                    if(pesoNetoPes>pesoNetoJabas){
+                                    if(pesoNetoPes>0){
                                         datosTiempoReal.pesoTotalCuartaEspecie += pesoNetoPes - pesoNetoJabas
                                     }else{
                                         datosTiempoReal.pesoTotalCuartaEspecie += pesoNetoPes + pesoNetoJabas
@@ -635,7 +635,7 @@ jQuery(function($) {
                                     break;
                                 case 5:
                                     datosTiempoReal.cantidadQuintaEspecie += cantidadPes
-                                    if(pesoNetoPes>pesoNetoJabas){
+                                    if(pesoNetoPes>0){
                                         datosTiempoReal.pesoTotalQuintaEspecie += pesoNetoPes - pesoNetoJabas
                                     }else{
                                         datosTiempoReal.pesoTotalQuintaEspecie += pesoNetoPes + pesoNetoJabas
@@ -643,7 +643,7 @@ jQuery(function($) {
                                     break;
                                 case 6:
                                     datosTiempoReal.cantidadSextaEspecie += cantidadPes
-                                    if(pesoNetoPes>pesoNetoJabas){
+                                    if(pesoNetoPes>0){
                                         datosTiempoReal.pesoTotalSextaEspecie += pesoNetoPes - pesoNetoJabas
                                     }else{
                                         datosTiempoReal.pesoTotalSextaEspecie += pesoNetoPes + pesoNetoJabas
@@ -651,7 +651,7 @@ jQuery(function($) {
                                     break;
                                 case 7:
                                     datosTiempoReal.cantidadSeptimaEspecie += cantidadPes
-                                    if(pesoNetoPes>pesoNetoJabas){
+                                    if(pesoNetoPes>0){
                                         datosTiempoReal.pesoTotalSeptimaEspecie += pesoNetoPes - pesoNetoJabas
                                     }else{
                                         datosTiempoReal.pesoTotalSeptimaEspecie += pesoNetoPes + pesoNetoJabas
@@ -659,7 +659,7 @@ jQuery(function($) {
                                     break;
                                 case 8:
                                     datosTiempoReal.cantidadOctavaEspecie += cantidadPes
-                                    if(pesoNetoPes>pesoNetoJabas){
+                                    if(pesoNetoPes>0){
                                         datosTiempoReal.pesoTotalOctavaEspecie += pesoNetoPes - pesoNetoJabas
                                     }else{
                                         datosTiempoReal.pesoTotalOctavaEspecie += pesoNetoPes + pesoNetoJabas
@@ -670,7 +670,7 @@ jQuery(function($) {
                                     break;
                                 case 10:
                                     datosTiempoReal.cantidadDecimaEspecie += cantidadPes
-                                    if(pesoNetoPes>pesoNetoJabas){
+                                    if(pesoNetoPes>0){
                                         datosTiempoReal.pesoTotalDecimaEspecie += pesoNetoPes - pesoNetoJabas
                                     }else{
                                         datosTiempoReal.pesoTotalDecimaEspecie += pesoNetoPes + pesoNetoJabas
@@ -678,7 +678,7 @@ jQuery(function($) {
                                     break;
                                 case 11:
                                     datosTiempoReal.cantidadDecimaPrimeraEspecie += cantidadPes
-                                    if(pesoNetoPes>pesoNetoJabas){
+                                    if(pesoNetoPes>0){
                                         datosTiempoReal.pesoTotalDecimaPrimeraEspecie += pesoNetoPes - pesoNetoJabas
                                     }else{
                                         datosTiempoReal.pesoTotalDecimaPrimeraEspecie += pesoNetoPes + pesoNetoJabas
@@ -686,7 +686,7 @@ jQuery(function($) {
                                     break;
                                 case 12:
                                     datosTiempoReal.cantidadDecimaSegundaEspecie += cantidadPes
-                                    if(pesoNetoPes>pesoNetoJabas){
+                                    if(pesoNetoPes>0){
                                         datosTiempoReal.pesoTotalDecimaSegundaEspecie += pesoNetoPes - pesoNetoJabas
                                     }else{
                                         datosTiempoReal.pesoTotalDecimaSegundaEspecie += pesoNetoPes + pesoNetoJabas
@@ -694,7 +694,7 @@ jQuery(function($) {
                                     break;
                                 case 13:
                                     datosTiempoReal.cantidadDecimaTerceraEspecie += cantidadPes
-                                    if(pesoNetoPes>pesoNetoJabas){
+                                    if(pesoNetoPes>0){
                                         datosTiempoReal.pesoTotalDecimaTerceraEspecie += pesoNetoPes - pesoNetoJabas
                                     }else{
                                         datosTiempoReal.pesoTotalDecimaTerceraEspecie += pesoNetoPes + pesoNetoJabas
@@ -702,7 +702,7 @@ jQuery(function($) {
                                     break;
                                 case 14:
                                     datosTiempoReal.cantidadDecimaCuartaEspecie += cantidadPes
-                                    if(pesoNetoPes>pesoNetoJabas){
+                                    if(pesoNetoPes>0){
                                         datosTiempoReal.pesoTotalDecimaCuartaEspecie += pesoNetoPes - pesoNetoJabas
                                     }else{
                                         datosTiempoReal.pesoTotalDecimaCuartaEspecie += pesoNetoPes + pesoNetoJabas
@@ -710,7 +710,7 @@ jQuery(function($) {
                                     break;
                                 case 15:
                                     datosTiempoReal.cantidadDecimaQuintaEspecie += cantidadPes
-                                    if(pesoNetoPes>pesoNetoJabas){
+                                    if(pesoNetoPes>0){
                                         datosTiempoReal.pesoTotalDecimaQuintaEspecie += pesoNetoPes - pesoNetoJabas
                                     }else{
                                         datosTiempoReal.pesoTotalDecimaQuintaEspecie += pesoNetoPes + pesoNetoJabas
@@ -718,7 +718,7 @@ jQuery(function($) {
                                     break;
                                 case 16:
                                     datosTiempoReal.cantidadDecimaSextaEspecie += cantidadPes
-                                    if(pesoNetoPes>pesoNetoJabas){
+                                    if(pesoNetoPes>0){
                                         datosTiempoReal.pesoTotalDecimaSextaEspecie += pesoNetoPes - pesoNetoJabas
                                     }else{
                                         datosTiempoReal.pesoTotalDecimaSextaEspecie += pesoNetoPes + pesoNetoJabas
@@ -726,7 +726,7 @@ jQuery(function($) {
                                     break;
                                 case 17:
                                     datosTiempoReal.cantidadDecimaSeptimaEspecie += cantidadPes
-                                    if(pesoNetoPes>pesoNetoJabas){
+                                    if(pesoNetoPes>0){
                                         datosTiempoReal.pesoTotalDecimaSeptimaEspecie += pesoNetoPes - pesoNetoJabas
                                     }else{
                                         datosTiempoReal.pesoTotalDecimaSeptimaEspecie += pesoNetoPes + pesoNetoJabas
@@ -734,7 +734,7 @@ jQuery(function($) {
                                     break;
                                 case 18:
                                     datosTiempoReal.cantidadDecimaOctavaEspecie += cantidadPes
-                                    if(pesoNetoPes>pesoNetoJabas){
+                                    if(pesoNetoPes>0){
                                         datosTiempoReal.pesoTotalDecimaOctavaEspecie += pesoNetoPes - pesoNetoJabas
                                     }else{
                                         datosTiempoReal.pesoTotalDecimaOctavaEspecie += pesoNetoPes + pesoNetoJabas
@@ -742,7 +742,7 @@ jQuery(function($) {
                                     break;
                                 case 19:
                                     datosTiempoReal.cantidadDecimaNovenaEspecie += cantidadPes
-                                    if(pesoNetoPes>pesoNetoJabas){
+                                    if(pesoNetoPes>0){
                                         datosTiempoReal.pesoTotalDecimaNovenaEspecie += pesoNetoPes - pesoNetoJabas
                                     }else{
                                         datosTiempoReal.pesoTotalDecimaNovenaEspecie += pesoNetoPes + pesoNetoJabas
@@ -750,7 +750,7 @@ jQuery(function($) {
                                     break;
                                 case 20:
                                     datosTiempoReal.cantidadVigesimaEspecie += cantidadPes
-                                    if(pesoNetoPes>pesoNetoJabas){
+                                    if(pesoNetoPes>0){
                                         datosTiempoReal.pesoTotalVigesimaEspecie += pesoNetoPes - pesoNetoJabas
                                     }else{
                                         datosTiempoReal.pesoTotalVigesimaEspecie += pesoNetoPes + pesoNetoJabas
@@ -758,7 +758,7 @@ jQuery(function($) {
                                     break;
                                 case 21:
                                     datosTiempoReal.cantidadVigesimaPrimeraEspecie += cantidadPes
-                                    if(pesoNetoPes>pesoNetoJabas){
+                                    if(pesoNetoPes>0){
                                         datosTiempoReal.pesoTotalVigesimaPrimeraEspecie += pesoNetoPes - pesoNetoJabas
                                     }else{
                                         datosTiempoReal.pesoTotalVigesimaPrimeraEspecie += pesoNetoPes + pesoNetoJabas
@@ -766,7 +766,7 @@ jQuery(function($) {
                                     break;
                                 case 22:
                                     datosTiempoReal.cantidadVigesimaSegundaEspecie += cantidadPes
-                                    if(pesoNetoPes>pesoNetoJabas){
+                                    if(pesoNetoPes>0){
                                         datosTiempoReal.pesoTotalVigesimaSegundaEspecie += pesoNetoPes - pesoNetoJabas
                                     }else{
                                         datosTiempoReal.pesoTotalVigesimaSegundaEspecie += pesoNetoPes + pesoNetoJabas
@@ -774,7 +774,7 @@ jQuery(function($) {
                                     break;
                                 case 23:
                                     datosTiempoReal.cantidadVigesimaTerceraEspecie += cantidadPes
-                                    if(pesoNetoPes>pesoNetoJabas){
+                                    if(pesoNetoPes>0){
                                         datosTiempoReal.pesoTotalVigesimaTerceraEspecie += pesoNetoPes - pesoNetoJabas
                                     }else{
                                         datosTiempoReal.pesoTotalVigesimaTerceraEspecie += pesoNetoPes + pesoNetoJabas

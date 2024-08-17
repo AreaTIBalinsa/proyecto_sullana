@@ -8,6 +8,7 @@ jQuery(function($) {
     const fechaHoy = new Date(ahoraEnNY.getFullYear(), ahoraEnNY.getMonth(), ahoraEnNY.getDate()).toISOString().split('T')[0];
 
     var timerInterval;
+    var contenidoHeader = $("#headerReporteAcumuladoExcel").html();
 
     // Asignar la fecha actual a los inputs
     $('#fechaDesdeReporteAcumulado').val(fechaHoy);
@@ -30,6 +31,26 @@ jQuery(function($) {
     /* ============ Eventos ============ */
 
     /* ============ Funciones ============ */
+
+    function fn_formatearImportes(numero){
+        let totalFormateado = parseFloat(numero).toLocaleString('es-ES', {
+            minimumFractionDigits: 2,   
+            maximumFractionDigits: 2,
+            useGrouping: true,
+        });
+
+        return totalFormateado;
+    }
+
+    function fn_formatearCantidades(numero){
+        let totalFormateado = parseFloat(numero).toLocaleString('es-ES', {
+            minimumFractionDigits: 0,   
+            maximumFractionDigits: 0,
+            useGrouping: true,
+        });
+
+        return totalFormateado;
+    }
 
     function fn_declarar_especies(){
         $.ajax({
@@ -266,7 +287,77 @@ jQuery(function($) {
                 const totalesPorEspecie = obtenerTotalesPorEspecie(clientesConTotales);
                 const resultadosDescuentos = sumarTotalDescuentos(clientesConTotales);
 
-                fn_crearDatosTablaExcel(clientesConTotales, totalesPorEspecie, resultadosDescuentos);
+                $.ajax({
+                    url: '/fn_consulta_ConsultarProveedorSum',
+                        method: 'GET',
+                        data:{
+                            fecha:fecha
+                        },
+                        success: function (response) {
+                            // Verificar si la respuesta es un arreglo de objetos
+                            if (Array.isArray(response)) {
+                                let promediosEspeciesCompra = {
+                                    tecnica : 0,
+                                    yugo : 0,
+                                    xx : 0,
+                                    gallinaDoble : 0,
+                                    gallinaChica : 0,
+                                    gallo : 0,
+                                };
+
+                                let contadorTecnica = 0;
+                                let contadorYugo = 0;
+                                let contadorXX = 0;
+                                let contadorGallinaDoble = 0;
+                                let contadorGallinaChica = 0;
+                                let contadorGallo = 0;
+
+                                response.forEach(function (obj) {
+                                    let pesoNeto = parseFloat(obj.totalPesoBrutoGuia)-parseFloat(obj.totalPesoTaraGuia);
+                                    let promedio = parseFloat(pesoNeto)/parseFloat(obj.totalCantidadGuia);
+
+                                    if(obj.nombreEspecieCompra == "TECNICA AA"){
+                                        promediosEspeciesCompra.tecnica += promedio.toFixed(2);
+                                        contadorTecnica++;
+                                    }else if(obj.nombreEspecieCompra == "YUGO PIURA AA" || obj.nombreEspecieCompra == "YUGO TRUJILLO AA" || obj.nombreEspecieCompra == "YUGO PIURA"){
+                                        promediosEspeciesCompra.yugo += promedio.toFixed(2);
+                                        contadorYugo++;
+                                    }else if(obj.nombreEspecieCompra == "YUGO PIURA XX" || obj.nombreEspecieCompra == "YUGO TRUJILLO XX"){
+                                        promediosEspeciesCompra.xx += promedio.toFixed(2);
+                                        contadorXX++;
+                                    }else if(obj.nombreEspecieCompra == "YUGO PIURA GALLINA DOBLE" || obj.nombreEspecieCompra == "ATOCHE GALLINA DOBLE"){
+                                        promediosEspeciesCompra.gallinaDoble += promedio.toFixed(2);
+                                        contadorGallinaDoble++;
+                                    }else if(obj.nombreEspecieCompra == "YUGO PIURA GALLINA CHICA" || obj.nombreEspecieCompra == "SALOMON GALLINA CHICA"){
+                                        promediosEspeciesCompra.gallinaChica += promedio.toFixed(2);
+                                        contadorGallinaChica++;
+                                    }else if(obj.nombreEspecieCompra == "GALLO YUGO"){
+                                        promediosEspeciesCompra.gallo += promedio.toFixed(2);
+                                        contadorGallo++;
+                                    }
+                                });
+
+                                function calcularPromedio(valor, contador) {
+                                    return contador === 0 ? 0 : (valor / contador).toFixed(2);
+                                }
+                                
+                                promediosEspeciesCompra.tecnica = calcularPromedio(promediosEspeciesCompra.tecnica, contadorTecnica);
+                                promediosEspeciesCompra.yugo = calcularPromedio(promediosEspeciesCompra.yugo, contadorYugo);
+                                promediosEspeciesCompra.xx = calcularPromedio(promediosEspeciesCompra.xx, contadorXX);
+                                promediosEspeciesCompra.gallinaDoble = calcularPromedio(promediosEspeciesCompra.gallinaDoble, contadorGallinaDoble);
+                                promediosEspeciesCompra.gallinaChica = calcularPromedio(promediosEspeciesCompra.gallinaChica, contadorGallinaChica);
+                                promediosEspeciesCompra.gallo = calcularPromedio(promediosEspeciesCompra.gallo, contadorGallo);                                
+
+                                fn_crearDatosTablaExcel(clientesConTotales, totalesPorEspecie, resultadosDescuentos, promediosEspeciesCompra);
+                            } else {
+                                console.log("La respuesta no es un arreglo de objetos.");
+                            }
+                        },
+                        error: function(error) {
+                            console.error("ERROR",error);
+                        }
+                    });
+
             },
             error: function (error) {
                 console.error("ERROR", error);
@@ -274,22 +365,28 @@ jQuery(function($) {
         });
     }
 
-    function fn_crearDatosTablaExcel(clientesConTotales, totalesPorEspecie, resultadosDescuentos){
+    function fn_crearDatosTablaExcel(clientesConTotales, totalesPorEspecie, resultadosDescuentos, promediosEspeciesCompra){
         let bodyTablaExcel = "";
+        
         clientesConTotales.forEach(function (item) {
             bodyTablaExcel += fn_crearFilaTablaExcel(item)
         })
 
-        bodyTablaExcel += fn_crearFilaTotalTablaExcel(totalesPorEspecie, resultadosDescuentos)
+        bodyTablaExcel += fn_crearFilaTotalTablaExcel(totalesPorEspecie, resultadosDescuentos, promediosEspeciesCompra)
         
+        $("#headerReporteAcumuladoExcel").empty();
+        $("#headerReporteAcumuladoExcel").html(contenidoHeader);
         let tbodyReporteAcumuladoExcel = $('#bodyReporteAcumuladoExcel');
         tbodyReporteAcumuladoExcel.empty();
         tbodyReporteAcumuladoExcel.html(bodyTablaExcel);
 
         fn_eliminarTdEspecies(totalesPorEspecie);
-        fn_crearTotalesTablaExcel(totalesPorEspecie, resultadosDescuentos);
+
+        fn_crearTotalesTablaExcel(totalesPorEspecie);
+
         clearInterval(timerInterval);
         Swal.close();
+
         $('#filtrarClienteReporteAcumuladoExcel').trigger('input');
         $("#contenedorRecalculandoDatos").removeClass('flex').addClass('hidden');
     }
@@ -429,90 +526,104 @@ jQuery(function($) {
                 <td class="especie1 text-center border-[1px] py-1 px-2 whitespace-nowrap">S/. ${fn_buscarValorDecimal(item.datosTabla_tb_pesadasGeneral, 'especie1', 'precioPromedio')}</td>
                 <td class="especie1 text-center border-[1px] py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#CAA122]">S/. ${fn_buscarValorDecimal(item.datosTabla_tb_pesadasGeneral, 'especie1', 'totalVenta')}</td>
                 <td class="especie1 text-center border-[1px] py-1 px-2 whitespace-nowrap">${fn_buscarValorDecimal(item.datosTabla_tb_pesadasGeneral, 'especie1', 'promedioEspecie')}</td>
+                <td class="especie1 text-center border-[1px] py-1 px-2 whitespace-nowrap">&nbsp;</td>
                 
                 <td class="especie2 text-center border-[1px] py-1 px-2 whitespace-nowrap">${fn_buscarValor(item.datosTabla_tb_pesadasGeneral, 'especie2', 'totalCantidad')} </td>
                 <td class="especie2 text-center border-[1px] py-1 px-2 whitespace-nowrap">${fn_buscarValorDecimal(item.datosTabla_tb_pesadasGeneral, 'especie2', 'totalPeso')} Kg.</td>
                 <td class="especie2 text-center border-[1px] py-1 px-2 whitespace-nowrap">S/. ${fn_buscarValorDecimal(item.datosTabla_tb_pesadasGeneral, 'especie2', 'precioPromedio')}</td>
                 <td class="especie2 text-center border-[1px] py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#CAA122]">S/. ${fn_buscarValorDecimal(item.datosTabla_tb_pesadasGeneral, 'especie2', 'totalVenta')}</td>
                 <td class="especie2 text-center border-[1px] py-1 px-2 whitespace-nowrap">${fn_buscarValorDecimal(item.datosTabla_tb_pesadasGeneral, 'especie2', 'promedioEspecie')}</td>
+                <td class="especie2 text-center border-[1px] py-1 px-2 whitespace-nowrap">&nbsp;</td>
                 
                 <td class="especie17 text-center border-[1px] py-1 px-2 whitespace-nowrap">${fn_buscarValor(item.datosTabla_tb_pesadasGeneral, 'especie17', 'totalCantidad')} </td>
                 <td class="especie17 text-center border-[1px] py-1 px-2 whitespace-nowrap">${fn_buscarValorDecimal(item.datosTabla_tb_pesadasGeneral, 'especie17', 'totalPeso')} Kg.</td>
                 <td class="especie17 text-center border-[1px] py-1 px-2 whitespace-nowrap">S/. ${fn_buscarValorDecimal(item.datosTabla_tb_pesadasGeneral, 'especie17', 'precioPromedio')}</td>
                 <td class="especie17 text-center border-[1px] py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#CAA122]">S/. ${fn_buscarValorDecimal(item.datosTabla_tb_pesadasGeneral, 'especie17', 'totalVenta')}</td>
                 <td class="especie17 text-center border-[1px] py-1 px-2 whitespace-nowrap">${fn_buscarValorDecimal(item.datosTabla_tb_pesadasGeneral, 'especie17', 'promedioEspecie')}</td>
+                <td class="especie17 text-center border-[1px] py-1 px-2 whitespace-nowrap">&nbsp;</td>
                 
                 <td class="especie3 text-center border-[1px] py-1 px-2 whitespace-nowrap">${fn_buscarValor(item.datosTabla_tb_pesadasGeneral, 'especie3', 'totalCantidad')} </td>
                 <td class="especie3 text-center border-[1px] py-1 px-2 whitespace-nowrap">${fn_buscarValorDecimal(item.datosTabla_tb_pesadasGeneral, 'especie3', 'totalPeso')} Kg.</td>
                 <td class="especie3 text-center border-[1px] py-1 px-2 whitespace-nowrap">S/. ${fn_buscarValorDecimal(item.datosTabla_tb_pesadasGeneral, 'especie3', 'precioPromedio')}</td>
                 <td class="especie3 text-center border-[1px] py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#CAA122]">S/. ${fn_buscarValorDecimal(item.datosTabla_tb_pesadasGeneral, 'especie3', 'totalVenta')}</td>
                 <td class="especie3 text-center border-[1px] py-1 px-2 whitespace-nowrap">${fn_buscarValorDecimal(item.datosTabla_tb_pesadasGeneral, 'especie3', 'promedioEspecie')}</td>
+                <td class="especie3 text-center border-[1px] py-1 px-2 whitespace-nowrap">&nbsp;</td>
                 
                 <td class="especie4 text-center border-[1px] py-1 px-2 whitespace-nowrap">${fn_buscarValor(item.datosTabla_tb_pesadasGeneral, 'especie4', 'totalCantidad')} </td>
                 <td class="especie4 text-center border-[1px] py-1 px-2 whitespace-nowrap">${fn_buscarValorDecimal(item.datosTabla_tb_pesadasGeneral, 'especie4', 'totalPeso')} Kg.</td>
                 <td class="especie4 text-center border-[1px] py-1 px-2 whitespace-nowrap">S/. ${fn_buscarValorDecimal(item.datosTabla_tb_pesadasGeneral, 'especie4', 'precioPromedio')}</td>
                 <td class="especie4 text-center border-[1px] py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#CAA122]">S/. ${fn_buscarValorDecimal(item.datosTabla_tb_pesadasGeneral, 'especie4', 'totalVenta')}</td>
                 <td class="especie4 text-center border-[1px] py-1 px-2 whitespace-nowrap">${fn_buscarValorDecimal(item.datosTabla_tb_pesadasGeneral, 'especie4', 'promedioEspecie')}</td>
+                <td class="especie4 text-center border-[1px] py-1 px-2 whitespace-nowrap">&nbsp;</td>
                 
                 <td class="especie18 text-center border-[1px] py-1 px-2 whitespace-nowrap">${fn_buscarValor(item.datosTabla_tb_pesadasGeneral, 'especie18', 'totalCantidad')} </td>
                 <td class="especie18 text-center border-[1px] py-1 px-2 whitespace-nowrap">${fn_buscarValorDecimal(item.datosTabla_tb_pesadasGeneral, 'especie18', 'totalPeso')} Kg.</td>
                 <td class="especie18 text-center border-[1px] py-1 px-2 whitespace-nowrap">S/. ${fn_buscarValorDecimal(item.datosTabla_tb_pesadasGeneral, 'especie18', 'precioPromedio')}</td>
                 <td class="especie18 text-center border-[1px] py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#CAA122]">S/. ${fn_buscarValorDecimal(item.datosTabla_tb_pesadasGeneral, 'especie18', 'totalVenta')}</td>
                 <td class="especie18 text-center border-[1px] py-1 px-2 whitespace-nowrap">${fn_buscarValorDecimal(item.datosTabla_tb_pesadasGeneral, 'especie18', 'promedioEspecie')}</td>
+                <td class="especie18 text-center border-[1px] py-1 px-2 whitespace-nowrap">&nbsp;</td>
                 
                 <td class="especie16 text-center border-[1px] py-1 px-2 whitespace-nowrap">${fn_buscarValor(item.datosTabla_tb_pesadasGeneral, 'especie16', 'totalCantidad')} </td>
                 <td class="especie16 text-center border-[1px] py-1 px-2 whitespace-nowrap">${fn_buscarValorDecimal(item.datosTabla_tb_pesadasGeneral, 'especie16', 'totalPeso')} Kg.</td>
                 <td class="especie16 text-center border-[1px] py-1 px-2 whitespace-nowrap">S/. ${fn_buscarValorDecimal(item.datosTabla_tb_pesadasGeneral, 'especie16', 'precioPromedio')}</td>
                 <td class="especie16 text-center border-[1px] py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#CAA122]">S/. ${fn_buscarValorDecimal(item.datosTabla_tb_pesadasGeneral, 'especie16', 'totalVenta')}</td>
                 <td class="especie16 text-center border-[1px] py-1 px-2 whitespace-nowrap">${fn_buscarValorDecimal(item.datosTabla_tb_pesadasGeneral, 'especie16', 'promedioEspecie')}</td>
+                <td class="especie16 text-center border-[1px] py-1 px-2 whitespace-nowrap">&nbsp;</td>
                 
                 <td class="especie19 text-center border-[1px] py-1 px-2 whitespace-nowrap">${fn_buscarValor(item.datosTabla_tb_pesadasGeneral, 'especie19', 'totalCantidad')} </td>
                 <td class="especie19 text-center border-[1px] py-1 px-2 whitespace-nowrap">${fn_buscarValorDecimal(item.datosTabla_tb_pesadasGeneral, 'especie19', 'totalPeso')} Kg.</td>
                 <td class="especie19 text-center border-[1px] py-1 px-2 whitespace-nowrap">S/. ${fn_buscarValorDecimal(item.datosTabla_tb_pesadasGeneral, 'especie19', 'precioPromedio')}</td>
                 <td class="especie19 text-center border-[1px] py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#CAA122]">S/. ${fn_buscarValorDecimal(item.datosTabla_tb_pesadasGeneral, 'especie19', 'totalVenta')}</td>
                 <td class="especie19 text-center border-[1px] py-1 px-2 whitespace-nowrap">${fn_buscarValorDecimal(item.datosTabla_tb_pesadasGeneral, 'especie19', 'promedioEspecie')}</td>
+                <td class="especie19 text-center border-[1px] py-1 px-2 whitespace-nowrap">&nbsp;</td>
                 
                 <td class="especie5 text-center border-[1px] py-1 px-2 whitespace-nowrap">${fn_buscarValor(item.datosTabla_tb_pesadasGeneral, 'especie5', 'totalCantidad')} </td>
                 <td class="especie5 text-center border-[1px] py-1 px-2 whitespace-nowrap">${fn_buscarValorDecimal(item.datosTabla_tb_pesadasGeneral, 'especie5', 'totalPeso')} Kg.</td>
                 <td class="especie5 text-center border-[1px] py-1 px-2 whitespace-nowrap">S/. ${fn_buscarValorDecimal(item.datosTabla_tb_pesadasGeneral, 'especie5', 'precioPromedio')}</td>
                 <td class="especie5 text-center border-[1px] py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#CAA122]">S/. ${fn_buscarValorDecimal(item.datosTabla_tb_pesadasGeneral, 'especie5', 'totalVenta')}</td>
                 <td class="especie5 text-center border-[1px] py-1 px-2 whitespace-nowrap">${fn_buscarValorDecimal(item.datosTabla_tb_pesadasGeneral, 'especie5', 'promedioEspecie')}</td>
+                <td class="especie5 text-center border-[1px] py-1 px-2 whitespace-nowrap">&nbsp;</td>
                 
                 <td class="especie20 text-center border-[1px] py-1 px-2 whitespace-nowrap">${fn_buscarValor(item.datosTabla_tb_pesadasGeneral, 'especie20', 'totalCantidad')} </td>
                 <td class="especie20 text-center border-[1px] py-1 px-2 whitespace-nowrap">${fn_buscarValorDecimal(item.datosTabla_tb_pesadasGeneral, 'especie20', 'totalPeso')} Kg.</td>
                 <td class="especie20 text-center border-[1px] py-1 px-2 whitespace-nowrap">S/. ${fn_buscarValorDecimal(item.datosTabla_tb_pesadasGeneral, 'especie20', 'precioPromedio')}</td>
                 <td class="especie20 text-center border-[1px] py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#CAA122]">S/. ${fn_buscarValorDecimal(item.datosTabla_tb_pesadasGeneral, 'especie20', 'totalVenta')}</td>
                 <td class="especie20 text-center border-[1px] py-1 px-2 whitespace-nowrap">${fn_buscarValorDecimal(item.datosTabla_tb_pesadasGeneral, 'especie20', 'promedioEspecie')}</td>
+                <td class="especie20 text-center border-[1px] py-1 px-2 whitespace-nowrap">&nbsp;</td>
                 
                 <td class="especie7 text-center border-[1px] py-1 px-2 whitespace-nowrap">${fn_buscarValor(item.datosTabla_tb_pesadasGeneral, 'especie7', 'totalCantidad')} </td>
                 <td class="especie7 text-center border-[1px] py-1 px-2 whitespace-nowrap">${fn_buscarValorDecimal(item.datosTabla_tb_pesadasGeneral, 'especie7', 'totalPeso')} Kg.</td>
                 <td class="especie7 text-center border-[1px] py-1 px-2 whitespace-nowrap">S/. ${fn_buscarValorDecimal(item.datosTabla_tb_pesadasGeneral, 'especie7', 'precioPromedio')}</td>
                 <td class="especie7 text-center border-[1px] py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#CAA122]">S/. ${fn_buscarValorDecimal(item.datosTabla_tb_pesadasGeneral, 'especie7', 'totalVenta')}</td>
                 <td class="especie7 text-center border-[1px] py-1 px-2 whitespace-nowrap">${fn_buscarValorDecimal(item.datosTabla_tb_pesadasGeneral, 'especie7', 'promedioEspecie')}</td>
+                <td class="especie7 text-center border-[1px] py-1 px-2 whitespace-nowrap">&nbsp;</td>
                 
                 <td class="especie22 text-center border-[1px] py-1 px-2 whitespace-nowrap">${fn_buscarValor(item.datosTabla_tb_pesadasGeneral, 'especie22', 'totalCantidad')} </td>
                 <td class="especie22 text-center border-[1px] py-1 px-2 whitespace-nowrap">${fn_buscarValorDecimal(item.datosTabla_tb_pesadasGeneral, 'especie22', 'totalPeso')} Kg.</td>
                 <td class="especie22 text-center border-[1px] py-1 px-2 whitespace-nowrap">S/. ${fn_buscarValorDecimal(item.datosTabla_tb_pesadasGeneral, 'especie22', 'precioPromedio')}</td>
                 <td class="especie22 text-center border-[1px] py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#CAA122]">S/. ${fn_buscarValorDecimal(item.datosTabla_tb_pesadasGeneral, 'especie22', 'totalVenta')}</td>
                 <td class="especie22 text-center border-[1px] py-1 px-2 whitespace-nowrap">${fn_buscarValorDecimal(item.datosTabla_tb_pesadasGeneral, 'especie22', 'promedioEspecie')}</td>
-                
-                <td class="especie8 text-center border-[1px] py-1 px-2 whitespace-nowrap">${fn_buscarValor(item.datosTabla_tb_pesadasGeneral, 'especie8', 'totalCantidad')} </td>
-                <td class="especie8 text-center border-[1px] py-1 px-2 whitespace-nowrap">${fn_buscarValorDecimal(item.datosTabla_tb_pesadasGeneral, 'especie8', 'totalPeso')} Kg.</td>
-                <td class="especie8 text-center border-[1px] py-1 px-2 whitespace-nowrap">S/. ${fn_buscarValorDecimal(item.datosTabla_tb_pesadasGeneral, 'especie8', 'precioPromedio')}</td>
-                <td class="especie8 text-center border-[1px] py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#CAA122]">S/. ${fn_buscarValorDecimal(item.datosTabla_tb_pesadasGeneral, 'especie8', 'totalVenta')}</td>
-                <td class="especie8 text-center border-[1px] py-1 px-2 whitespace-nowrap">${fn_buscarValorDecimal(item.datosTabla_tb_pesadasGeneral, 'especie8', 'promedioEspecie')}</td>
+                <td class="especie22 text-center border-[1px] py-1 px-2 whitespace-nowrap">&nbsp;</td>
                 
                 <td class="especie14 text-center border-[1px] py-1 px-2 whitespace-nowrap">${fn_buscarValor(item.datosTabla_tb_pesadasGeneral, 'especie14', 'totalCantidad')} </td>
                 <td class="especie14 text-center border-[1px] py-1 px-2 whitespace-nowrap">${fn_buscarValorDecimal(item.datosTabla_tb_pesadasGeneral, 'especie14', 'totalPeso')} Kg.</td>
                 <td class="especie14 text-center border-[1px] py-1 px-2 whitespace-nowrap">S/. ${fn_buscarValorDecimal(item.datosTabla_tb_pesadasGeneral, 'especie14', 'precioPromedio')}</td>
                 <td class="especie14 text-center border-[1px] py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#CAA122]">S/. ${fn_buscarValorDecimal(item.datosTabla_tb_pesadasGeneral, 'especie14', 'totalVenta')}</td>
                 <td class="especie14 text-center border-[1px] py-1 px-2 whitespace-nowrap">${fn_buscarValorDecimal(item.datosTabla_tb_pesadasGeneral, 'especie14', 'promedioEspecie')}</td>
+                <td class="especie14 text-center border-[1px] py-1 px-2 whitespace-nowrap">&nbsp;</td>
                 
                 <td class="especie23 text-center border-[1px] py-1 px-2 whitespace-nowrap">${fn_buscarValor(item.datosTabla_tb_pesadasGeneral, 'especie23', 'totalCantidad')} </td>
                 <td class="especie23 text-center border-[1px] py-1 px-2 whitespace-nowrap">${fn_buscarValorDecimal(item.datosTabla_tb_pesadasGeneral, 'especie23', 'totalPeso')} Kg.</td>
                 <td class="especie23 text-center border-[1px] py-1 px-2 whitespace-nowrap">S/. ${fn_buscarValorDecimal(item.datosTabla_tb_pesadasGeneral, 'especie23', 'precioPromedio')}</td>
                 <td class="especie23 text-center border-[1px] py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#CAA122]">S/. ${fn_buscarValorDecimal(item.datosTabla_tb_pesadasGeneral, 'especie23', 'totalVenta')}</td>
                 <td class="especie23 text-center border-[1px] py-1 px-2 whitespace-nowrap">${fn_buscarValorDecimal(item.datosTabla_tb_pesadasGeneral, 'especie23', 'promedioEspecie')}</td>
+                <td class="especie23 text-center border-[1px] py-1 px-2 whitespace-nowrap">&nbsp;</td>
+
+                <td class="especie8 text-center border-[1px] py-1 px-2 whitespace-nowrap">${fn_buscarValor(item.datosTabla_tb_pesadasGeneral, 'especie8', 'totalCantidad')} </td>
+                <td class="especie8 text-center border-[1px] py-1 px-2 whitespace-nowrap">${fn_buscarValorDecimal(item.datosTabla_tb_pesadasGeneral, 'especie8', 'totalPeso')} Kg.</td>
+                <td class="especie8 text-center border-[1px] py-1 px-2 whitespace-nowrap">S/. ${fn_buscarValorDecimal(item.datosTabla_tb_pesadasGeneral, 'especie8', 'precioPromedio')}</td>
+                <td class="especie8 text-center border-[1px] py-1 px-2 whitespace-nowrap text-black font-semibold bg-[#CAA122]">S/. ${fn_buscarValorDecimal(item.datosTabla_tb_pesadasGeneral, 'especie8', 'totalVenta')}</td>
+                <td class="especie8 text-center border-[1px] py-1 px-2 whitespace-nowrap">${fn_buscarValorDecimal(item.datosTabla_tb_pesadasGeneral, 'especie8', 'promedioEspecie')}</td>
                 
                 <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${totalCantidadTAS} </td>
                 <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">${totalPesoTAS.toFixed(2)} Kg.</td>
@@ -574,7 +685,7 @@ jQuery(function($) {
         };
     }
 
-    function fn_crearFilaTotalTablaExcel(totalesPorEspecie, resultadosDescuentos) {
+    function fn_crearFilaTotalTablaExcel(totalesPorEspecie, resultadosDescuentos, promediosEspeciesCompra) {
 
         function fn_buscarValor(obj, especie, valor) {
             return obj[especie] ? obj[especie][valor] : 0;
@@ -612,91 +723,105 @@ jQuery(function($) {
                 <td class="especie1 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${fn_buscarValorDecimal(totalesPorEspecie, 'especie1', 'totalPeso')} Kg.</td>
                 <td class="especie1 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${fn_buscarValorDecimal(totalesPorEspecie, 'especie1', 'precioPromedio')}</td>
                 <td class="especie1 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${fn_buscarValorDecimal(totalesPorEspecie, 'especie1', 'totalVenta')}</td>
-                <td class="especie1 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${fn_buscarValorDecimal(totalesPorEspecie, 'especie1', 'promedioEspecie')}</td>
+                <td class="especie1 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap bg-blue-600 text-white">${fn_buscarValorDecimal(totalesPorEspecie, 'especie1', 'promedioEspecie')}</td>
+                <td class="especie1 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap bg-red-600 text-white">${promediosEspeciesCompra.yugo}</td>
                 
                 <td class="especie2 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${fn_buscarValor(totalesPorEspecie, 'especie2', 'totalCantidad')}</td>
                 <td class="especie2 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${fn_buscarValorDecimal(totalesPorEspecie, 'especie2', 'totalPeso')} Kg.</td>
                 <td class="especie2 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${fn_buscarValorDecimal(totalesPorEspecie, 'especie2', 'precioPromedio')}</td>
                 <td class="especie2 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${fn_buscarValorDecimal(totalesPorEspecie, 'especie2', 'totalVenta')}</td>
-                <td class="especie2 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${fn_buscarValorDecimal(totalesPorEspecie, 'especie2', 'promedioEspecie')}</td>
+                <td class="especie2 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap bg-blue-600 text-white">${fn_buscarValorDecimal(totalesPorEspecie, 'especie2', 'promedioEspecie')}</td>
+                <td class="especie2 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap bg-red-600 text-white">${promediosEspeciesCompra.yugo}</td>
                 
                 <td class="especie17 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${fn_buscarValor(totalesPorEspecie, 'especie17', 'totalCantidad')}</td>
                 <td class="especie17 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${fn_buscarValorDecimal(totalesPorEspecie, 'especie17', 'totalPeso')} Kg.</td>
                 <td class="especie17 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${fn_buscarValorDecimal(totalesPorEspecie, 'especie17', 'precioPromedio')}</td>
                 <td class="especie17 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${fn_buscarValorDecimal(totalesPorEspecie, 'especie17', 'totalVenta')}</td>
-                <td class="especie17 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${fn_buscarValorDecimal(totalesPorEspecie, 'especie17', 'promedioEspecie')}</td>
+                <td class="especie17 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap bg-blue-600 text-white">${fn_buscarValorDecimal(totalesPorEspecie, 'especie17', 'promedioEspecie')}</td>
+                <td class="especie17 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap bg-red-600 text-white">${promediosEspeciesCompra.yugo}</td>
                 
                 <td class="especie3 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${fn_buscarValor(totalesPorEspecie, 'especie3', 'totalCantidad')}</td>
                 <td class="especie3 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${fn_buscarValorDecimal(totalesPorEspecie, 'especie3', 'totalPeso')} Kg.</td>
                 <td class="especie3 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${fn_buscarValorDecimal(totalesPorEspecie, 'especie3', 'precioPromedio')}</td>
                 <td class="especie3 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${fn_buscarValorDecimal(totalesPorEspecie, 'especie3', 'totalVenta')}</td>
-                <td class="especie3 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${fn_buscarValorDecimal(totalesPorEspecie, 'especie3', 'promedioEspecie')}</td>
+                <td class="especie3 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap bg-blue-600 text-white">${fn_buscarValorDecimal(totalesPorEspecie, 'especie3', 'promedioEspecie')}</td>
+                <td class="especie3 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap bg-red-600 text-white">${promediosEspeciesCompra.tecnica}</td>
                 
                 <td class="especie4 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${fn_buscarValor(totalesPorEspecie, 'especie4', 'totalCantidad')}</td>
                 <td class="especie4 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${fn_buscarValorDecimal(totalesPorEspecie, 'especie4', 'totalPeso')} Kg.</td>
                 <td class="especie4 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${fn_buscarValorDecimal(totalesPorEspecie, 'especie4', 'precioPromedio')}</td>
                 <td class="especie4 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${fn_buscarValorDecimal(totalesPorEspecie, 'especie4', 'totalVenta')}</td>
-                <td class="especie4 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${fn_buscarValorDecimal(totalesPorEspecie, 'especie4', 'promedioEspecie')}</td>
+                <td class="especie4 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap bg-blue-600 text-white">${fn_buscarValorDecimal(totalesPorEspecie, 'especie4', 'promedioEspecie')}</td>
+                <td class="especie4 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap bg-red-600 text-white">${promediosEspeciesCompra.tecnica}</td>
                 
                 <td class="especie18 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${fn_buscarValor(totalesPorEspecie, 'especie18', 'totalCantidad')}</td>
                 <td class="especie18 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${fn_buscarValorDecimal(totalesPorEspecie, 'especie18', 'totalPeso')} Kg.</td>
                 <td class="especie18 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${fn_buscarValorDecimal(totalesPorEspecie, 'especie18', 'precioPromedio')}</td>
                 <td class="especie18 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${fn_buscarValorDecimal(totalesPorEspecie, 'especie18', 'totalVenta')}</td>
-                <td class="especie18 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${fn_buscarValorDecimal(totalesPorEspecie, 'especie18', 'promedioEspecie')}</td>
+                <td class="especie18 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap bg-blue-600 text-white">${fn_buscarValorDecimal(totalesPorEspecie, 'especie18', 'promedioEspecie')}</td>
+                <td class="especie18 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap bg-red-600 text-white">${promediosEspeciesCompra.tecnica}</td>
                 
                 <td class="especie16 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${fn_buscarValor(totalesPorEspecie, 'especie16', 'totalCantidad')}</td>
                 <td class="especie16 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${fn_buscarValorDecimal(totalesPorEspecie, 'especie16', 'totalPeso')} Kg.</td>
                 <td class="especie16 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${fn_buscarValorDecimal(totalesPorEspecie, 'especie16', 'precioPromedio')}</td>
                 <td class="especie16 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${fn_buscarValorDecimal(totalesPorEspecie, 'especie16', 'totalVenta')}</td>
-                <td class="especie16 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${fn_buscarValorDecimal(totalesPorEspecie, 'especie16', 'promedioEspecie')}</td>
+                <td class="especie16 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap bg-blue-600 text-white">${fn_buscarValorDecimal(totalesPorEspecie, 'especie16', 'promedioEspecie')}</td>
+                <td class="especie16 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap bg-red-600 text-white">${promediosEspeciesCompra.xx}</td>
                 
                 <td class="especie19 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${fn_buscarValor(totalesPorEspecie, 'especie19', 'totalCantidad')}</td>
                 <td class="especie19 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${fn_buscarValorDecimal(totalesPorEspecie, 'especie19', 'totalPeso')} Kg.</td>
                 <td class="especie19 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${fn_buscarValorDecimal(totalesPorEspecie, 'especie19', 'precioPromedio')}</td>
                 <td class="especie19 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${fn_buscarValorDecimal(totalesPorEspecie, 'especie19', 'totalVenta')}</td>
-                <td class="especie19 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${fn_buscarValorDecimal(totalesPorEspecie, 'especie19', 'promedioEspecie')}</td>
+                <td class="especie19 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap bg-blue-600 text-white">${fn_buscarValorDecimal(totalesPorEspecie, 'especie19', 'promedioEspecie')}</td>
+                <td class="especie19 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap bg-red-600 text-white">${promediosEspeciesCompra.xx}</td>
                 
                 <td class="especie5 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${fn_buscarValor(totalesPorEspecie, 'especie5', 'totalCantidad')}</td>
                 <td class="especie5 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${fn_buscarValorDecimal(totalesPorEspecie, 'especie5', 'totalPeso')} Kg.</td>
                 <td class="especie5 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${fn_buscarValorDecimal(totalesPorEspecie, 'especie5', 'precioPromedio')}</td>
                 <td class="especie5 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${fn_buscarValorDecimal(totalesPorEspecie, 'especie5', 'totalVenta')}</td>
-                <td class="especie5 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${fn_buscarValorDecimal(totalesPorEspecie, 'especie5', 'promedioEspecie')}</td>
+                <td class="especie5 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap bg-blue-600 text-white">${fn_buscarValorDecimal(totalesPorEspecie, 'especie5', 'promedioEspecie')}</td>
+                <td class="especie5 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap bg-red-600 text-white">${promediosEspeciesCompra.gallinaDoble}</td>
                 
                 <td class="especie20 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${fn_buscarValor(totalesPorEspecie, 'especie20', 'totalCantidad')}</td>
                 <td class="especie20 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${fn_buscarValorDecimal(totalesPorEspecie, 'especie20', 'totalPeso')} Kg.</td>
                 <td class="especie20 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${fn_buscarValorDecimal(totalesPorEspecie, 'especie20', 'precioPromedio')}</td>
                 <td class="especie20 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${fn_buscarValorDecimal(totalesPorEspecie, 'especie20', 'totalVenta')}</td>
-                <td class="especie20 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${fn_buscarValorDecimal(totalesPorEspecie, 'especie20', 'promedioEspecie')}</td>
+                <td class="especie20 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap bg-blue-600 text-white">${fn_buscarValorDecimal(totalesPorEspecie, 'especie20', 'promedioEspecie')}</td>
+                <td class="especie20 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap bg-red-600 text-white">${promediosEspeciesCompra.gallinaDoble}</td>
                 
                 <td class="especie7 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${fn_buscarValor(totalesPorEspecie, 'especie7', 'totalCantidad')}</td>
                 <td class="especie7 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${fn_buscarValorDecimal(totalesPorEspecie, 'especie7', 'totalPeso')} Kg.</td>
                 <td class="especie7 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${fn_buscarValorDecimal(totalesPorEspecie, 'especie7', 'precioPromedio')}</td>
                 <td class="especie7 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${fn_buscarValorDecimal(totalesPorEspecie, 'especie7', 'totalVenta')}</td>
-                <td class="especie7 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${fn_buscarValorDecimal(totalesPorEspecie, 'especie7', 'promedioEspecie')}</td>
+                <td class="especie7 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap bg-blue-600 text-white">${fn_buscarValorDecimal(totalesPorEspecie, 'especie7', 'promedioEspecie')}</td>
+                <td class="especie7 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap bg-red-600 text-white">${promediosEspeciesCompra.gallo}</td>
                 
                 <td class="especie22 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${fn_buscarValor(totalesPorEspecie, 'especie22', 'totalCantidad')}</td>
                 <td class="especie22 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${fn_buscarValorDecimal(totalesPorEspecie, 'especie22', 'totalPeso')} Kg.</td>
                 <td class="especie22 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${fn_buscarValorDecimal(totalesPorEspecie, 'especie22', 'precioPromedio')}</td>
                 <td class="especie22 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${fn_buscarValorDecimal(totalesPorEspecie, 'especie22', 'totalVenta')}</td>
-                <td class="especie22 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${fn_buscarValorDecimal(totalesPorEspecie, 'especie22', 'promedioEspecie')}</td>
-                
-                <td class="especie8 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${fn_buscarValor(totalesPorEspecie, 'especie8', 'totalCantidad')}</td>
-                <td class="especie8 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${fn_buscarValorDecimal(totalesPorEspecie, 'especie8', 'totalPeso')} Kg.</td>
-                <td class="especie8 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${fn_buscarValorDecimal(totalesPorEspecie, 'especie8', 'precioPromedio')}</td>
-                <td class="especie8 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${fn_buscarValorDecimal(totalesPorEspecie, 'especie8', 'totalVenta')}</td>
-                <td class="especie8 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${fn_buscarValorDecimal(totalesPorEspecie, 'especie8', 'promedioEspecie')}</td>
+                <td class="especie22 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap bg-blue-600 text-white">${fn_buscarValorDecimal(totalesPorEspecie, 'especie22', 'promedioEspecie')}</td>
+                <td class="especie22 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap bg-red-600 text-white">${promediosEspeciesCompra.gallo}</td>
                 
                 <td class="especie14 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${fn_buscarValor(totalesPorEspecie, 'especie14', 'totalCantidad')}</td>
                 <td class="especie14 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${fn_buscarValorDecimal(totalesPorEspecie, 'especie14', 'totalPeso')} Kg.</td>
                 <td class="especie14 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${fn_buscarValorDecimal(totalesPorEspecie, 'especie14', 'precioPromedio')}</td>
                 <td class="especie14 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${fn_buscarValorDecimal(totalesPorEspecie, 'especie14', 'totalVenta')}</td>
-                <td class="especie14 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${fn_buscarValorDecimal(totalesPorEspecie, 'especie14', 'promedioEspecie')}</td>
+                <td class="especie14 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap bg-blue-600 text-white">${fn_buscarValorDecimal(totalesPorEspecie, 'especie14', 'promedioEspecie')}</td>
+                <td class="especie14 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap bg-red-600 text-white">${promediosEspeciesCompra.gallinaChica}</td>
                 
                 <td class="especie23 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${fn_buscarValor(totalesPorEspecie, 'especie23', 'totalCantidad')}</td>
                 <td class="especie23 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${fn_buscarValorDecimal(totalesPorEspecie, 'especie23', 'totalPeso')} Kg.</td>
                 <td class="especie23 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${fn_buscarValorDecimal(totalesPorEspecie, 'especie23', 'precioPromedio')}</td>
                 <td class="especie23 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${fn_buscarValorDecimal(totalesPorEspecie, 'especie23', 'totalVenta')}</td>
-                <td class="especie23 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${fn_buscarValorDecimal(totalesPorEspecie, 'especie23', 'promedioEspecie')}</td>
+                <td class="especie23 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap bg-blue-600 text-white">${fn_buscarValorDecimal(totalesPorEspecie, 'especie23', 'promedioEspecie')}</td>
+                <td class="especie23 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap bg-red-600 text-white">${promediosEspeciesCompra.gallinaChica}</td>
+
+                <td class="especie8 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${fn_buscarValor(totalesPorEspecie, 'especie8', 'totalCantidad')}</td>
+                <td class="especie8 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${fn_buscarValorDecimal(totalesPorEspecie, 'especie8', 'totalPeso')} Kg.</td>
+                <td class="especie8 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${fn_buscarValorDecimal(totalesPorEspecie, 'especie8', 'precioPromedio')}</td>
+                <td class="especie8 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${fn_buscarValorDecimal(totalesPorEspecie, 'especie8', 'totalVenta')}</td>
+                <td class="especie8 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${fn_buscarValorDecimal(totalesPorEspecie, 'especie8', 'promedioEspecie')}</td>
                 
                 <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${totalCantidadTAS}</td>
                 <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${totalPesoTAS.toFixed(2)} Kg.</td>
@@ -721,7 +846,7 @@ jQuery(function($) {
         `;
     }
 
-    function fn_crearTotalesTablaExcel(totalesPorEspecie, resultadosDescuentos) {
+    function fn_crearTotalesTablaExcel(totalesPorEspecie) {
 
         function fn_buscarValor(obj, especie, valor) {
             return obj[especie] ? obj[especie][valor] : 0;
@@ -755,9 +880,9 @@ jQuery(function($) {
         
         let totalVentaT = fn_buscarValorDecimalT(totalesPorEspecie, 'especie9', 'totalVenta') + fn_buscarValorDecimalT(totalesPorEspecie, 'especie10', 'totalVenta') + fn_buscarValorDecimalT(totalesPorEspecie, 'especie11', 'totalVenta') + fn_buscarValorDecimalT(totalesPorEspecie, 'especie12', 'totalVenta') + fn_buscarValorDecimalT(totalesPorEspecie, 'especie13', 'totalVenta') + fn_buscarValorDecimalT(totalesPorEspecie, 'especie15', 'totalVenta');
 
-        let totalPesoFila = parseFloat(totalDeTotales.totalPeso) + parseFloat(resultadosDescuentos.totalPesoDescuento ? resultadosDescuentos.totalPesoDescuento : 0);
+        let totalPesoFila = parseFloat(totalDeTotales.totalPeso);
 
-        let totalVentaFila = parseFloat(totalDeTotales.totalVenta) + parseFloat(resultadosDescuentos.totalVentaDescuento ? resultadosDescuentos.totalVentaDescuento : 0);
+        let totalVentaFila = parseFloat(totalDeTotales.totalVenta);
 
         let tbodyTotales = `
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900">
@@ -888,9 +1013,9 @@ jQuery(function($) {
 
             <tr class="bg-blue-600 border-b dark:border-gray-700 text-gray-200">
                 <td class="text-sm text-left border-2 py-1 px-2 whitespace-nowrap font-bold">TOTAL :</td>
-                <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap font-semibold">${totalDeTotales.totalCantidad}</td>
-                <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap font-semibold">${totalPesoFila.toFixed(2)} Kg.</td>
-                <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap font-semibold">S/. ${totalVentaFila.toFixed(2)}</td>
+                <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap font-semibold">${fn_formatearCantidades(totalDeTotales.totalCantidad)}</td>
+                <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap font-semibold">${fn_formatearImportes(totalPesoFila)} Kg.</td>
+                <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap font-semibold">S/. ${fn_formatearImportes(totalVentaFila)}</td>
             </tr>
         `;
 
