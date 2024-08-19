@@ -66,6 +66,7 @@ class InicioController extends Controller
                     tb_pesadas.pesoNetoPes,
                     tb_pesadas.fechaRegistroPes,
                     tb_pesadas.cantidadPes,
+                    tb_pesadas.precioPes,
                     tb_pesadas.pesoNetoJabas,
                     IFNULL(CONCAT_WS(" ", nombresCli, apellidoPaternoCli, apellidoMaternoCli), "") AS nombreCompleto
                 FROM tb_pesadas
@@ -78,6 +79,7 @@ class InicioController extends Controller
                     tb_pesadas3.pesoNetoPes,
                     tb_pesadas3.fechaRegistroPes,
                     tb_pesadas3.cantidadPes,
+                    tb_pesadas3.precioPes,
                     tb_pesadas3.pesoNetoJabas,
                     IFNULL(CONCAT_WS(" ", nombresCli, apellidoPaternoCli, apellidoMaternoCli), "") AS nombreCompleto
                 FROM tb_pesadas3
@@ -90,6 +92,7 @@ class InicioController extends Controller
                     tb_pesadas2.pesoNetoPes,
                     tb_pesadas2.fechaRegistroPes,
                     tb_pesadas2.cantidadPes,
+                    tb_pesadas2.precioPes,
                     tb_pesadas2.pesoNetoJabas,
                     IFNULL(CONCAT_WS(" ", nombresCli, apellidoPaternoCli, apellidoMaternoCli), "") AS nombreCompleto
                 FROM tb_pesadas2

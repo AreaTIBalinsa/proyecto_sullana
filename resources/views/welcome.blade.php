@@ -51,8 +51,9 @@
                                     <span class="leading-tight font-bold">Yugo Vivo</span>
                                 </div>
                                 <div class="w-full flex flex-col text-gray-800 dark:text-white">
-                                    <div class="flex flex-1 border justify-center font-semibold">Cantidad :&nbsp;<span class="font-normal" id="totalUnidadesPrimerEspecie">0 Uds.</span></div>
-                                    <div class="flex flex-1 border justify-center font-semibold">Peso :&nbsp;<span class="font-normal" id="totalKgPrimerEspecie">0.00 Kg</span></div>
+                                    <div class="flex flex-1 border justify-center font-semibold dark:border-white border-gray-400">Cantidad :&nbsp;<span class="font-normal" id="totalUnidadesPrimerEspecie">0 Uds.</span></div>
+                                    <div class="flex flex-1 border justify-center font-semibold dark:border-white border-gray-400">Peso :&nbsp;<span class="font-normal" id="totalKgPrimerEspecie">0.00 Kg</span></div>
+                                    <div class="flex flex-1 border justify-center font-semibold dark:border-white border-gray-400">Total Venta :&nbsp;<span class="font-normal" id="totalVentaPrimerEspecie">S/. 0.00</span></div>
                                 </div>
                                 <div class="flex space-x-2 rtl:space-x-reverse items-center">
                                     <svg class="flex-shrink-0 w-3.5 h-3.5 text-blue-600 dark:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -61,8 +62,9 @@
                                     <span class="leading-tight font-bold">Yugo Pelado</span>
                                 </div>
                                 <div class="w-full flex flex-col text-gray-800 dark:text-white">
-                                    <div class="flex flex-1 border justify-center font-semibold">Cantidad :&nbsp;<span class="font-normal" id="totalUnidadesSegundaEspecie">0 Uds.</span></div>
-                                    <div class="flex flex-1 border justify-center font-semibold">Peso :&nbsp;<span class="font-normal" id="totalKgSegundaEspecie">0.00 Kg</span></div>
+                                    <div class="flex flex-1 border justify-center font-semibold dark:border-white border-gray-400">Cantidad :&nbsp;<span class="font-normal" id="totalUnidadesSegundaEspecie">0 Uds.</span></div>
+                                    <div class="flex flex-1 border justify-center font-semibold dark:border-white border-gray-400">Peso :&nbsp;<span class="font-normal" id="totalKgSegundaEspecie">0.00 Kg</span></div>
+                                    <div class="flex flex-1 border justify-center font-semibold dark:border-white border-gray-400">Total Venta :&nbsp;<span class="font-normal" id="totalVentaSegundaEspecie">S/. 0.00</span></div>
                                 </div>
                                 <div class="flex space-x-2 rtl:space-x-reverse items-center">
                                     <svg class="flex-shrink-0 w-3.5 h-3.5 text-blue-600 dark:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -71,8 +73,12 @@
                                     <span class="leading-tight font-bold">Brasa Yugo</span>
                                 </div>
                                 <div class="w-full flex flex-col text-gray-800 dark:text-white">
-                                    <div class="flex flex-1 border justify-center font-semibold">Cantidad :&nbsp;<span class="font-normal" id="totalUnidadesDecimaSeptimaEspecie">0 Uds.</span></div>
-                                    <div class="flex flex-1 border justify-center font-semibold">Peso :&nbsp;<span class="font-normal" id="totalKgDecimaSeptimaEspecie">0.00 Kg</span></div>
+                                    <div class="flex flex-1 border justify-center font-semibold dark:border-white border-gray-400">Cantidad :&nbsp;<span class="font-normal" id="totalUnidadesDecimaSeptimaEspecie">0 Uds.</span></div>
+                                    <div class="flex flex-1 border justify-center font-semibold dark:border-white border-gray-400">Peso :&nbsp;<span class="font-normal" id="totalKgDecimaSeptimaEspecie">0.00 Kg</span></div>
+                                    <div class="flex flex-1 border justify-center font-semibold dark:border-white border-gray-400">Total Venta :&nbsp;<span class="font-normal" id="totalVentaDecimaSeptimaEspecie">S/. 0.00</span></div>
+                                </div>
+                                <div class="flex justify-center items-center">
+                                    <div class="py-2 px-4 border-2 w-full flex justify-center items-center font-bold dark:border-white border-gray-400">Total Venta :&nbsp;<span class="font-normal" id="ventaTotalYugo">S/ 0.00</span></div>
                                 </div>
                             </div>
                         </div>
@@ -118,8 +124,9 @@
                                     <span class="leading-tight font-bold">Tecnica Vivo</span>
                                 </div>
                                 <div class="w-full flex flex-col text-gray-800 dark:text-white">
-                                    <div class="flex flex-1 border justify-center font-semibold">Cantidad :&nbsp;<span class="font-normal" id="totalUnidadesTerceraEspecie">0 Uds.</span></div>
-                                    <div class="flex flex-1 border justify-center font-semibold">Peso :&nbsp;<span class="font-normal" id="totalKgTerceraEspecie">0.00 Kg</span></div>
+                                    <div class="flex flex-1 border justify-center font-semibold dark:border-white border-gray-400">Cantidad :&nbsp;<span class="font-normal" id="totalUnidadesTerceraEspecie">0 Uds.</span></div>
+                                    <div class="flex flex-1 border justify-center font-semibold dark:border-white border-gray-400">Peso :&nbsp;<span class="font-normal" id="totalKgTerceraEspecie">0.00 Kg</span></div>
+                                    <div class="flex flex-1 border justify-center font-semibold dark:border-white border-gray-400">Total Venta :&nbsp;<span class="font-normal" id="totalVentaTerceraEspecie">S/. 0.00</span></div>
                                 </div>
                                 <div class="flex space-x-2 rtl:space-x-reverse items-center">
                                     <svg class="flex-shrink-0 w-3.5 h-3.5 text-blue-600 dark:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -128,8 +135,9 @@
                                     <span class="leading-tight font-bold">Tecnica Pelado</span>
                                 </div>
                                 <div class="w-full flex flex-col text-gray-800 dark:text-white">
-                                    <div class="flex flex-1 border justify-center font-semibold">Cantidad :&nbsp;<span class="font-normal" id="totalUnidadesCuartaEspecie">0 Uds.</span></div>
-                                    <div class="flex flex-1 border justify-center font-semibold">Peso :&nbsp;<span class="font-normal" id="totalKgCuartaEspecie">0.00 Kg</span></div>
+                                    <div class="flex flex-1 border justify-center font-semibold dark:border-white border-gray-400">Cantidad :&nbsp;<span class="font-normal" id="totalUnidadesCuartaEspecie">0 Uds.</span></div>
+                                    <div class="flex flex-1 border justify-center font-semibold dark:border-white border-gray-400">Peso :&nbsp;<span class="font-normal" id="totalKgCuartaEspecie">0.00 Kg</span></div>
+                                    <div class="flex flex-1 border justify-center font-semibold dark:border-white border-gray-400">Total Venta :&nbsp;<span class="font-normal" id="totalVentaCuartaEspecie">S/. 0.00</span></div>
                                 </div>
                                 <div class="flex space-x-2 rtl:space-x-reverse items-center">
                                     <svg class="flex-shrink-0 w-3.5 h-3.5 text-blue-600 dark:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -138,8 +146,12 @@
                                     <span class="leading-tight font-bold">Brasa Tecnica</span>
                                 </div>
                                 <div class="w-full flex flex-col text-gray-800 dark:text-white">
-                                    <div class="flex flex-1 border justify-center font-semibold">Cantidad :&nbsp;<span class="font-normal" id="totalUnidadesDecimaOctavaEspecie">0 Uds.</span></div>
-                                    <div class="flex flex-1 border justify-center font-semibold">Peso :&nbsp;<span class="font-normal" id="totalKgDecimaOctavaEspecie">0.00 Kg</span></div>
+                                    <div class="flex flex-1 border justify-center font-semibold dark:border-white border-gray-400">Cantidad :&nbsp;<span class="font-normal" id="totalUnidadesDecimaOctavaEspecie">0 Uds.</span></div>
+                                    <div class="flex flex-1 border justify-center font-semibold dark:border-white border-gray-400">Peso :&nbsp;<span class="font-normal" id="totalKgDecimaOctavaEspecie">0.00 Kg</span></div>
+                                    <div class="flex flex-1 border justify-center font-semibold dark:border-white border-gray-400">Total Venta :&nbsp;<span class="font-normal" id="totalVentaDecimaOctavaEspecie">S/. 0.00</span></div>
+                                </div>
+                                <div class="flex justify-center items-center">
+                                    <div class="py-2 px-4 border-2 w-full flex justify-center items-center font-bold dark:border-white border-gray-400">Total Venta :&nbsp;<span class="font-normal" id="ventaTotalTecnica">S/ 0.00</span></div>
                                 </div>
                             </div>
                         </div>
@@ -185,8 +197,9 @@
                                     <span class="leading-tight font-bold">Pollo XX Vivo</span>
                                 </div>
                                 <div class="w-full flex flex-col text-gray-800 dark:text-white">
-                                    <div class="flex flex-1 border justify-center font-semibold">Cantidad :&nbsp;<span class="font-normal" id="totalUnidadesDecimaNovenaEspecie">0 Uds.</span></div>
-                                    <div class="flex flex-1 border justify-center font-semibold">Peso :&nbsp;<span class="font-normal" id="totalKgDecimaNovenaEspecie">0.00 Kg</span></div>
+                                    <div class="flex flex-1 border justify-center font-semibold dark:border-white border-gray-400">Cantidad :&nbsp;<span class="font-normal" id="totalUnidadesDecimaNovenaEspecie">0 Uds.</span></div>
+                                    <div class="flex flex-1 border justify-center font-semibold dark:border-white border-gray-400">Peso :&nbsp;<span class="font-normal" id="totalKgDecimaNovenaEspecie">0.00 Kg</span></div>
+                                    <div class="flex flex-1 border justify-center font-semibold dark:border-white border-gray-400">Total Venta :&nbsp;<span class="font-normal" id="totalVentaDecimaNovenaEspecie">S/. 0.00</span></div>
                                 </div>
                                 <div class="flex space-x-2 rtl:space-x-reverse items-center">
                                     <svg class="flex-shrink-0 w-3.5 h-3.5 text-blue-600 dark:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -195,8 +208,12 @@
                                     <span class="leading-tight font-bold">Pollo XX Pelado</span>
                                 </div>
                                 <div class="w-full flex flex-col text-gray-800 dark:text-white">
-                                    <div class="flex flex-1 border justify-center font-semibold">Cantidad :&nbsp;<span class="font-normal" id="totalUnidadesDecimaSextaEspecie">0 Uds.</span></div>
-                                    <div class="flex flex-1 border justify-center font-semibold">Peso :&nbsp;<span class="font-normal" id="totalKgDecimaSextaEspecie">0.00 Kg</span></div>
+                                    <div class="flex flex-1 border justify-center font-semibold dark:border-white border-gray-400">Cantidad :&nbsp;<span class="font-normal" id="totalUnidadesDecimaSextaEspecie">0 Uds.</span></div>
+                                    <div class="flex flex-1 border justify-center font-semibold dark:border-white border-gray-400">Peso :&nbsp;<span class="font-normal" id="totalKgDecimaSextaEspecie">0.00 Kg</span></div>
+                                    <div class="flex flex-1 border justify-center font-semibold dark:border-white border-gray-400">Total Venta :&nbsp;<span class="font-normal" id="totalVentaDecimaSextaEspecie">S/. 0.00</span></div>
+                                </div>
+                                <div class="flex justify-center items-center">
+                                    <div class="py-2 px-4 border-2 w-full flex justify-center items-center font-bold dark:border-white border-gray-400">Total Venta :&nbsp;<span class="font-normal" id="ventaTotalPolloXX">S/ 0.00</span></div>
                                 </div>
                             </div>
                         </div>
@@ -242,8 +259,9 @@
                                     <span class="leading-tight font-bold">Gallo Vivo</span>
                                 </div>
                                 <div class="w-full flex flex-col text-gray-800 dark:text-white">
-                                    <div class="flex flex-1 border justify-center font-semibold">Cantidad :&nbsp;<span class="font-normal" id="totalUnidadesVigesimaSegundaEspecie">0 Uds.</span></div>
-                                    <div class="flex flex-1 border justify-center font-semibold">Peso :&nbsp;<span class="font-normal" id="totalKgVigesimaSegundaEspecie">0.00 Kg</span></div>
+                                    <div class="flex flex-1 border justify-center font-semibold dark:border-white border-gray-400">Cantidad :&nbsp;<span class="font-normal" id="totalUnidadesVigesimaSegundaEspecie">0 Uds.</span></div>
+                                    <div class="flex flex-1 border justify-center font-semibold dark:border-white border-gray-400">Peso :&nbsp;<span class="font-normal" id="totalKgVigesimaSegundaEspecie">0.00 Kg</span></div>
+                                    <div class="flex flex-1 border justify-center font-semibold dark:border-white border-gray-400">Total Venta :&nbsp;<span class="font-normal" id="totalVentaVigesimaSegundaEspecie">S/. 0.00</span></div>
                                 </div>
                                 <div class="flex space-x-2 rtl:space-x-reverse items-center">
                                     <svg class="flex-shrink-0 w-3.5 h-3.5 text-blue-600 dark:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -252,8 +270,12 @@
                                     <span class="leading-tight font-bold">Gallo Pelado</span>
                                 </div>
                                 <div class="w-full flex flex-col text-gray-800 dark:text-white">
-                                    <div class="flex flex-1 border justify-center font-semibold">Cantidad :&nbsp;<span class="font-normal" id="totalUnidadesSeptimaEspecie">0 Uds.</span></div>
-                                    <div class="flex flex-1 border justify-center font-semibold">Peso :&nbsp;<span class="font-normal" id="totalKgSeptimaEspecie">0.00 Kg</span></div>
+                                    <div class="flex flex-1 border justify-center font-semibold dark:border-white border-gray-400">Cantidad :&nbsp;<span class="font-normal" id="totalUnidadesSeptimaEspecie">0 Uds.</span></div>
+                                    <div class="flex flex-1 border justify-center font-semibold dark:border-white border-gray-400">Peso :&nbsp;<span class="font-normal" id="totalKgSeptimaEspecie">0.00 Kg</span></div>
+                                    <div class="flex flex-1 border justify-center font-semibold dark:border-white border-gray-400">Total Venta :&nbsp;<span class="font-normal" id="totalVentaSeptimaEspecie">S/. 0.00</span></div>
+                                </div>
+                                <div class="flex justify-center items-center">
+                                    <div class="py-2 px-4 border-2 w-full flex justify-center items-center font-bold dark:border-white border-gray-400">Total Venta :&nbsp;<span class="font-normal" id="ventaTotalGallo">S/ 0.00</span></div>
                                 </div>
                             </div>
                         </div>
@@ -299,8 +321,9 @@
                                     <span class="leading-tight font-bold">Gallina Doble Vivo</span>
                                 </div>
                                 <div class="w-full flex flex-col text-gray-800 dark:text-white">
-                                    <div class="flex flex-1 border justify-center font-semibold">Cantidad :&nbsp;<span class="font-normal" id="totalUnidadesVigesimaEspecie">0 Uds.</span></div>
-                                    <div class="flex flex-1 border justify-center font-semibold">Peso :&nbsp;<span class="font-normal" id="totalKgVigesimaEspecie">0.00 Kg</span></div>
+                                    <div class="flex flex-1 border justify-center font-semibold dark:border-white border-gray-400">Cantidad :&nbsp;<span class="font-normal" id="totalUnidadesVigesimaEspecie">0 Uds.</span></div>
+                                    <div class="flex flex-1 border justify-center font-semibold dark:border-white border-gray-400">Peso :&nbsp;<span class="font-normal" id="totalKgVigesimaEspecie">0.00 Kg</span></div>
+                                    <div class="flex flex-1 border justify-center font-semibold dark:border-white border-gray-400">Total Venta :&nbsp;<span class="font-normal" id="totalVentaVigesimaEspecie">S/. 0.00</span></div>
                                 </div>
                                 <div class="flex space-x-2 rtl:space-x-reverse items-center">
                                     <svg class="flex-shrink-0 w-3.5 h-3.5 text-blue-600 dark:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -309,8 +332,12 @@
                                     <span class="leading-tight font-bold">Gallina Doble Pelado</span>
                                 </div>
                                 <div class="w-full flex flex-col text-gray-800 dark:text-white">
-                                    <div class="flex flex-1 border justify-center font-semibold">Cantidad :&nbsp;<span class="font-normal" id="totalUnidadesQuintaEspecie">0 Uds.</span></div>
-                                    <div class="flex flex-1 border justify-center font-semibold">Peso :&nbsp;<span class="font-normal" id="totalKgQuintaEspecie">0.00 Kg</span></div>
+                                    <div class="flex flex-1 border justify-center font-semibold dark:border-white border-gray-400">Cantidad :&nbsp;<span class="font-normal" id="totalUnidadesQuintaEspecie">0 Uds.</span></div>
+                                    <div class="flex flex-1 border justify-center font-semibold dark:border-white border-gray-400">Peso :&nbsp;<span class="font-normal" id="totalKgQuintaEspecie">0.00 Kg</span></div>
+                                    <div class="flex flex-1 border justify-center font-semibold dark:border-white border-gray-400">Total Venta :&nbsp;<span class="font-normal" id="totalVentaQuintaEspecie">S/. 0.00</span></div>
+                                </div>
+                                <div class="flex justify-center items-center">
+                                    <div class="py-2 px-4 border-2 w-full flex justify-center items-center font-bold dark:border-white border-gray-400">Total Venta :&nbsp;<span class="font-normal" id="ventaTotalGallinaDoble">S/ 0.00</span></div>
                                 </div>
                             </div>
                         </div>
@@ -336,8 +363,8 @@
                                         <div class="text-white font-semibold text-xl md:text-2xl flex justify-between w-full whitespace-nowrap gap-2">PESO TOTAL<span>:</span></div>
                                     </div>
                                     <div class="flex flex-col items-start">
-                                        <div class="text-white font-semibold text-xl md:text-2xl pl-2" id="cantidadTotalGallinaChica">0 Uds.</div>
-                                        <div class="text-white font-semibold text-xl md:text-2xl pl-2" id="pesoTotalGallinaChica">0.00 Kg</div>
+                                        <div class="text-white font-semibold text-xl md:text-2xl pl-2" id="cantidadTotalAhogadosSecos">0 Uds.</div>
+                                        <div class="text-white font-semibold text-xl md:text-2xl pl-2" id="pesoTotalAhogadosSecos">0.00 Kg</div>
                                     </div>
                                 </div>
                                 <div class="text-white w-full flex justify-center p-1">En linea
@@ -356,8 +383,9 @@
                                     <span class="leading-tight font-bold">Secos</span>
                                 </div>
                                 <div class="w-full flex flex-col text-gray-800 dark:text-white">
-                                    <div class="flex flex-1 border justify-center font-semibold">Cantidad :&nbsp;<span class="font-normal" id="totalUnidadesVigesimaPrimeraEspecie">0 Uds.</span></div>
-                                    <div class="flex flex-1 border justify-center font-semibold">Peso :&nbsp;<span class="font-normal" id="totalKgVigesimaPrimeraEspecie">0.00 Kg</span></div>
+                                    <div class="flex flex-1 border justify-center font-semibold dark:border-white border-gray-400">Cantidad :&nbsp;<span class="font-normal" id="totalUnidadesVigesimaPrimeraEspecie">0 Uds.</span></div>
+                                    <div class="flex flex-1 border justify-center font-semibold dark:border-white border-gray-400">Peso :&nbsp;<span class="font-normal" id="totalKgVigesimaPrimeraEspecie">0.00 Kg</span></div>
+                                    <div class="flex flex-1 border justify-center font-semibold dark:border-white border-gray-400">Total Venta :&nbsp;<span class="font-normal" id="totalVentaVigesimaPrimeraEspecie">S/. 0.00</span></div>
                                 </div>
                                 <div class="flex space-x-2 rtl:space-x-reverse items-center">
                                     <svg class="flex-shrink-0 w-3.5 h-3.5 text-blue-600 dark:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -366,8 +394,12 @@
                                     <span class="leading-tight font-bold">Ahogados</span>
                                 </div>
                                 <div class="w-full flex flex-col text-gray-800 dark:text-white">
-                                    <div class="flex flex-1 border justify-center font-semibold">Cantidad :&nbsp;<span class="font-normal" id="totalUnidadesSextaEspecie">0 Uds.</span></div>
-                                    <div class="flex flex-1 border justify-center font-semibold">Peso :&nbsp;<span class="font-normal" id="totalKgSextaEspecie">0.00 Kg</span></div>
+                                    <div class="flex flex-1 border justify-center font-semibold dark:border-white border-gray-400">Cantidad :&nbsp;<span class="font-normal" id="totalUnidadesSextaEspecie">0 Uds.</span></div>
+                                    <div class="flex flex-1 border justify-center font-semibold dark:border-white border-gray-400">Peso :&nbsp;<span class="font-normal" id="totalKgSextaEspecie">0.00 Kg</span></div>
+                                    <div class="flex flex-1 border justify-center font-semibold dark:border-white border-gray-400">Total Venta :&nbsp;<span class="font-normal" id="totalVentaSextaEspecie">S/. 0.00</span></div>
+                                </div>
+                                <div class="flex justify-center items-center">
+                                    <div class="py-2 px-4 border-2 w-full flex justify-center items-center font-bold dark:border-white border-gray-400">Total Venta :&nbsp;<span class="font-normal" id="ventaTotalAhogadosSecos">S/ 0.00</span></div>
                                 </div>
                             </div>
                         </div>
@@ -413,8 +445,8 @@
                                     <span class="leading-tight font-bold">Maltratado Vivo</span>
                                 </div>
                                 <div class="w-full flex flex-col text-gray-800 dark:text-white">
-                                    <div class="flex flex-1 border justify-center font-semibold">Cantidad :&nbsp;<span class="font-normal" id="totalUnidadesVigesimaTerceraEspecie">0 Uds.</span></div>
-                                    <div class="flex flex-1 border justify-center font-semibold">Peso :&nbsp;<span class="font-normal" id="totalKgVigesimaTerceraEspecie">0.00 Kg</span></div>
+                                    <div class="flex flex-1 border justify-center font-semibold dark:border-white border-gray-400">Cantidad :&nbsp;<span class="font-normal" id="totalUnidadesVigesimaTerceraEspecie">0 Uds.</span></div>
+                                    <div class="flex flex-1 border justify-center font-semibold dark:border-white border-gray-400">Peso :&nbsp;<span class="font-normal" id="totalKgVigesimaTerceraEspecie">0.00 Kg</span></div>
                                 </div> --}}
                                 <div class="flex space-x-2 rtl:space-x-reverse items-center">
                                     <svg class="flex-shrink-0 w-3.5 h-3.5 text-blue-600 dark:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -423,8 +455,12 @@
                                     <span class="leading-tight font-bold">Maltratado Pelado</span>
                                 </div>
                                 <div class="w-full flex flex-col text-gray-800 dark:text-white">
-                                    <div class="flex flex-1 border justify-center font-semibold">Cantidad :&nbsp;<span class="font-normal" id="totalUnidadesOctavaEspecie">0 Uds.</span></div>
-                                    <div class="flex flex-1 border justify-center font-semibold">Peso :&nbsp;<span class="font-normal" id="totalKgOctavaEspecie">0.00 Kg</span></div>
+                                    <div class="flex flex-1 border justify-center font-semibold dark:border-white border-gray-400">Cantidad :&nbsp;<span class="font-normal" id="totalUnidadesOctavaEspecie">0 Uds.</span></div>
+                                    <div class="flex flex-1 border justify-center font-semibold dark:border-white border-gray-400">Peso :&nbsp;<span class="font-normal" id="totalKgOctavaEspecie">0.00 Kg</span></div>
+                                    <div class="flex flex-1 border justify-center font-semibold dark:border-white border-gray-400">Total Venta :&nbsp;<span class="font-normal" id="totalVentaOctavaEspecie">S/. 0.00</span></div>
+                                </div>
+                                <div class="flex justify-center items-center">
+                                    <div class="py-2 px-4 border-2 w-full flex justify-center items-center font-bold dark:border-white border-gray-400">Total Venta :&nbsp;<span class="font-normal" id="ventaTotalPolloMaltratado">S/ 0.00</span></div>
                                 </div>
                             </div>
                         </div>
@@ -470,8 +506,9 @@
                                     <span class="leading-tight font-bold">Gallina Chica Pelado</span>
                                 </div>
                                 <div class="w-full flex flex-col text-gray-800 dark:text-white">
-                                    <div class="flex flex-1 border justify-center font-semibold">Cantidad :&nbsp;<span class="font-normal" id="totalUnidadesDecimaCuartaEspecie">0 Uds.</span></div>
-                                    <div class="flex flex-1 border justify-center font-semibold">Peso :&nbsp;<span class="font-normal" id="totalKgDecimaCuartaEspecie">0.00 Kg</span></div>
+                                    <div class="flex flex-1 border justify-center font-semibold dark:border-white border-gray-400">Cantidad :&nbsp;<span class="font-normal" id="totalUnidadesDecimaCuartaEspecie">0 Uds.</span></div>
+                                    <div class="flex flex-1 border justify-center font-semibold dark:border-white border-gray-400">Peso :&nbsp;<span class="font-normal" id="totalKgDecimaCuartaEspecie">0.00 Kg</span></div>
+                                    <div class="flex flex-1 border justify-center font-semibold dark:border-white border-gray-400">Total Venta :&nbsp;<span class="font-normal" id="totalVentaDecimaCuartaEspecie">S/. 0.00</span></div>
                                 </div>
                                 <div class="flex space-x-2 rtl:space-x-reverse items-center">
                                     <svg class="flex-shrink-0 w-3.5 h-3.5 text-blue-600 dark:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -480,19 +517,13 @@
                                     <span class="leading-tight font-bold">Gallina Chica Vivo</span>
                                 </div>
                                 <div class="w-full flex flex-col text-gray-800 dark:text-white">
-                                    <div class="flex flex-1 border justify-center font-semibold">Cantidad :&nbsp;<span class="font-normal" id="totalUnidadesVigesimaTerceraEspecie">0 Uds.</span></div>
-                                    <div class="flex flex-1 border justify-center font-semibold">Peso :&nbsp;<span class="font-normal" id="totalKgVigesimaTerceraEspecie">0.00 Kg</span></div>
+                                    <div class="flex flex-1 border justify-center font-semibold dark:border-white border-gray-400">Cantidad :&nbsp;<span class="font-normal" id="totalUnidadesVigesimaTerceraEspecie">0 Uds.</span></div>
+                                    <div class="flex flex-1 border justify-center font-semibold dark:border-white border-gray-400">Peso :&nbsp;<span class="font-normal" id="totalKgVigesimaTerceraEspecie">0.00 Kg</span></div>
+                                    <div class="flex flex-1 border justify-center font-semibold dark:border-white border-gray-400">Total Venta :&nbsp;<span class="font-normal" id="totalVentaVigesimaTerceraEspecie">S/. 0.00</span></div>
                                 </div>
-                                {{-- <div class="flex space-x-2 rtl:space-x-reverse items-center">
-                                    <svg class="flex-shrink-0 w-3.5 h-3.5 text-blue-600 dark:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                        <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
-                                    </svg>
-                                    <span class="leading-tight font-bold">Maltratado Pelado</span>
+                                <div class="flex justify-center items-center">
+                                    <div class="py-2 px-4 border-2 w-full flex justify-center items-center font-bold dark:border-white border-gray-400">Total Venta :&nbsp;<span class="font-normal" id="ventaTotalGallinaChica">S/ 0.00</span></div>
                                 </div>
-                                <div class="w-full flex flex-col text-gray-800 dark:text-white">
-                                    <div class="flex flex-1 border justify-center font-semibold">Cantidad :&nbsp;<span class="font-normal" id="totalUnidadesOctavaEspecie">0 Uds.</span></div>
-                                    <div class="flex flex-1 border justify-center font-semibold">Peso :&nbsp;<span class="font-normal" id="totalKgOctavaEspecie">0.00 Kg</span></div>
-                                </div> --}}
                             </div>
                         </div>
                     </div>
@@ -529,7 +560,7 @@
                         <div class="hidden p-4 bg-white rounded-b-lg md:p-8 dark:bg-gray-800 h-full" id="services8" role="tabpanel" aria-labelledby="services8-tab">
                             <h2 class="mb-5 text-2xl font-extrabold tracking-tight text-gray-900 dark:text-white">VARIEDADES POLLO TROZADO</h2>
                             <!-- List -->
-                            <div class="text-gray-800 dark:text-gray-200 flex w-full gap-2 flex-wrap lg:flex-nowrap">
+                            <div class="text-gray-800 dark:text-gray-200 flex w-full gap-2 flex-wrap">
                                 <div class="space-y-4 w-full">
                                     <div class="flex space-x-2 rtl:space-x-reverse items-center">
                                         <svg class="flex-shrink-0 w-3.5 h-3.5 text-blue-600 dark:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -538,8 +569,9 @@
                                         <span class="leading-tight font-bold">PECHUGA</span>
                                     </div>
                                     <div class="w-full flex flex-col text-gray-800 dark:text-white">
-                                        <div class="flex flex-1 border justify-center font-semibold">Cantidad :&nbsp;<span class="font-normal" id="totalUnidadesDecimaEspecie">0 Uds.</span></div>
-                                        <div class="flex flex-1 border justify-center font-semibold">Peso :&nbsp;<span class="font-normal" id="totalKgDecimaEspecie">0.00 Kg</span></div>
+                                        <div class="flex flex-1 border justify-center font-semibold dark:border-white border-gray-400">Cantidad :&nbsp;<span class="font-normal" id="totalUnidadesDecimaEspecie">0 Uds.</span></div>
+                                        <div class="flex flex-1 border justify-center font-semibold dark:border-white border-gray-400">Peso :&nbsp;<span class="font-normal" id="totalKgDecimaEspecie">0.00 Kg</span></div>
+                                        <div class="flex flex-1 border justify-center font-semibold dark:border-white border-gray-400">Total Venta :&nbsp;<span class="font-normal" id="totalVentaDecimaEspecie">S/. 0.00</span></div>
                                     </div>
                                     <div class="flex space-x-2 rtl:space-x-reverse items-center">
                                         <svg class="flex-shrink-0 w-3.5 h-3.5 text-blue-600 dark:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -548,8 +580,9 @@
                                         <span class="leading-tight font-bold">PIERNA</span>
                                     </div>
                                     <div class="w-full flex flex-col text-gray-800 dark:text-white">
-                                        <div class="flex flex-1 border justify-center font-semibold">Cantidad :&nbsp;<span class="font-normal" id="totalUnidadesDecimaPrimeraEspecie">0 Uds.</span></div>
-                                        <div class="flex flex-1 border justify-center font-semibold">Peso :&nbsp;<span class="font-normal" id="totalKgDecimaPrimeraEspecie">0.00 Kg</span></div>
+                                        <div class="flex flex-1 border justify-center font-semibold dark:border-white border-gray-400">Cantidad :&nbsp;<span class="font-normal" id="totalUnidadesDecimaPrimeraEspecie">0 Uds.</span></div>
+                                        <div class="flex flex-1 border justify-center font-semibold dark:border-white border-gray-400">Peso :&nbsp;<span class="font-normal" id="totalKgDecimaPrimeraEspecie">0.00 Kg</span></div>
+                                        <div class="flex flex-1 border justify-center font-semibold dark:border-white border-gray-400">Total Venta :&nbsp;<span class="font-normal" id="totalVentaDecimaPrimeraEspecie">S/. 0.00</span></div>
                                     </div>
                                     <div class="flex space-x-2 rtl:space-x-reverse items-center">
                                         <svg class="flex-shrink-0 w-3.5 h-3.5 text-blue-600 dark:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -558,8 +591,9 @@
                                         <span class="leading-tight font-bold">ALAS</span>
                                     </div>
                                     <div class="w-full flex flex-col text-gray-800 dark:text-white">
-                                        <div class="flex flex-1 border justify-center font-semibold">Cantidad :&nbsp;<span class="font-normal" id="totalUnidadesDecimaSegundaEspecie">0 Uds.</span></div>
-                                        <div class="flex flex-1 border justify-center font-semibold">Peso :&nbsp;<span class="font-normal" id="totalKgDecimaSegundaEspecie">0.00 Kg</span></div>
+                                        <div class="flex flex-1 border justify-center font-semibold dark:border-white border-gray-400">Cantidad :&nbsp;<span class="font-normal" id="totalUnidadesDecimaSegundaEspecie">0 Uds.</span></div>
+                                        <div class="flex flex-1 border justify-center font-semibold dark:border-white border-gray-400">Peso :&nbsp;<span class="font-normal" id="totalKgDecimaSegundaEspecie">0.00 Kg</span></div>
+                                        <div class="flex flex-1 border justify-center font-semibold dark:border-white border-gray-400">Total Venta :&nbsp;<span class="font-normal" id="totalVentaDecimaSegundaEspecie">S/. 0.00</span></div>
                                     </div>
                                 </div>
                                 <div class="space-y-4 w-full">
@@ -570,19 +604,10 @@
                                         <span class="leading-tight font-bold">MENUDENCIA</span>
                                     </div>
                                     <div class="w-full flex flex-col text-gray-800 dark:text-white">
-                                        <div class="flex flex-1 border justify-center font-semibold">Cantidad :&nbsp;<span class="font-normal" id="totalUnidadesDecimaTerceraEspecie">0 Uds.</span></div>
-                                        <div class="flex flex-1 border justify-center font-semibold">Peso :&nbsp;<span class="font-normal" id="totalKgDecimaTerceraEspecie">0.00 Kg</span></div>
+                                        <div class="flex flex-1 border justify-center font-semibold dark:border-white border-gray-400">Cantidad :&nbsp;<span class="font-normal" id="totalUnidadesDecimaTerceraEspecie">0 Uds.</span></div>
+                                        <div class="flex flex-1 border justify-center font-semibold dark:border-white border-gray-400">Peso :&nbsp;<span class="font-normal" id="totalKgDecimaTerceraEspecie">0.00 Kg</span></div>
+                                        <div class="flex flex-1 border justify-center font-semibold dark:border-white border-gray-400">Total Venta :&nbsp;<span class="font-normal" id="totalVentaDecimaTerceraEspecie">S/. 0.00</span></div>
                                     </div>
-                                    {{-- <div class="flex space-x-2 rtl:space-x-reverse items-center">
-                                        <svg class="flex-shrink-0 w-3.5 h-3.5 text-blue-600 dark:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                            <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
-                                        </svg>
-                                        <span class="leading-tight font-bold">DORSO</span>
-                                    </div>
-                                    <div class="w-full flex flex-col text-gray-800 dark:text-white">
-                                        <div class="flex flex-1 border justify-center font-semibold">Cantidad :&nbsp;<span class="font-normal" id="totalUnidadesDecimaCuartaEspecie">0 Uds.</span></div>
-                                        <div class="flex flex-1 border justify-center font-semibold">Peso :&nbsp;<span class="font-normal" id="totalKgDecimaCuartaEspecie">0.00 Kg</span></div>
-                                    </div> --}}
                                     <div class="flex space-x-2 rtl:space-x-reverse items-center">
                                         <svg class="flex-shrink-0 w-3.5 h-3.5 text-blue-600 dark:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                                             <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
@@ -590,10 +615,14 @@
                                         <span class="leading-tight font-bold">OTROS</span>
                                     </div>
                                     <div class="w-full flex flex-col text-gray-800 dark:text-white">
-                                        <div class="flex flex-1 border justify-center font-semibold">Cantidad :&nbsp;<span class="font-normal" id="totalUnidadesDecimaQuintaEspecie">0 Uds.</span></div>
-                                        <div class="flex flex-1 border justify-center font-semibold">Peso :&nbsp;<span class="font-normal" id="totalKgDecimaQuintaEspecie">0.00 Kg</span></div>
+                                        <div class="flex flex-1 border justify-center font-semibold dark:border-white border-gray-400">Cantidad :&nbsp;<span class="font-normal" id="totalUnidadesDecimaQuintaEspecie">0 Uds.</span></div>
+                                        <div class="flex flex-1 border justify-center font-semibold dark:border-white border-gray-400">Peso :&nbsp;<span class="font-normal" id="totalKgDecimaQuintaEspecie">0.00 Kg</span></div>
+                                        <div class="flex flex-1 border justify-center font-semibold dark:border-white border-gray-400">Total Venta :&nbsp;<span class="font-normal" id="totalVentaDecimaQuintaEspecie">S/. 0.00</span></div>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="flex justify-center items-center mt-2 text-gray-800 dark:text-white">
+                                <div class="py-2 px-4 border-2 w-full flex justify-center items-center font-bold dark:border-white border-gray-400">Total Venta :&nbsp;<span class="font-normal" id="ventaTotalTrozado">S/ 0.00</span></div>
                             </div>
                         </div>
                     </div>
@@ -621,7 +650,7 @@
                     <thead id="inicioCantidadesPollos" class="text-gray-50 text-base">
                         <tr class="uppercase">
                             <th class="text-white border-[2px] bg-blue-600 border-b-1 border-gray-300 dark:border-white py-2 md:text-md text-left px-2"></th>
-                            <th class="text-white border-[2px] bg-red-600 border-b-1 border-gray-300 dark:border-white py-2 md:text-md text-center px-2" colspan="6">Compra</th>
+                            <th class="text-white border-[2px] bg-red-600 border-b-1 border-gray-300 dark:border-white py-2 md:text-md text-center px-2" colspan="4">Compra</th>
                             <th class="text-white border-[2px] bg-green-600 border-b-1 border-gray-300 dark:border-white py-2 md:text-md text-center px-2" colspan="2">Venta</th>
                             <th class="text-white border-[2px] bg-yellow-400 border-b-1 border-gray-300 dark:border-white py-2 md:text-md text-center px-2" colspan="2">Stock Actual</th>
                         </tr>
@@ -631,8 +660,6 @@
                             <th class="text-white border-[2px] bg-blue-600 border-b-1 border-gray-300 dark:border-white py-2 md:text-md text-left px-2">Stock</th>
                             <th class="text-white border-[2px] bg-blue-600 border-b-1 border-gray-300 dark:border-white py-2 md:text-md text-left px-2">Total</th>
                             <th class="text-white border-[2px] bg-blue-600 border-b-1 border-gray-300 dark:border-white py-2 md:text-md text-left px-2">Peso</th>
-                            <th class="text-white border-[2px] bg-blue-600 border-b-1 border-gray-300 dark:border-white py-2 md:text-md text-left px-2">Stock</th>
-                            <th class="text-white border-[2px] bg-blue-600 border-b-1 border-gray-300 dark:border-white py-2 md:text-md text-left px-2">Total</th>
                             <th class="text-white border-[2px] bg-blue-600 border-b-1 border-gray-300 dark:border-white py-2 md:text-md text-left px-2">Cantidad</th>
                             <th class="text-white border-[2px] bg-blue-600 border-b-1 border-gray-300 dark:border-white py-2 md:text-md text-left px-2">Peso</th>
                             <th class="text-white border-[2px] bg-blue-600 py-2 md:text-md border-gray-300 dark:border-white text-left px-2">Cantidad</th>
@@ -640,7 +667,7 @@
                         </tr>
                     </thead>
                     <tbody id="bodycantidadesPollosCalculo">
-                        <tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="7" class="text-center">No hay datos</td></tr>
+                        <tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="9" class="text-center">No hay datos</td></tr>
                     </tbody>
                 </table>
             </div>
