@@ -983,9 +983,6 @@ jQuery(function($) {
                 alertify.notify('Los campos de precios no pueden estar vacios', 'error', 3);
                 failedRequests++;
             }else{
-                if (usoReporteEgreso.includes("FLETE")) {
-                    fn_AgregarPagoClienteExcel(codCliente, montoEgresoPagoo, fechaDetalle, formaDePagoEgreso, codAgregEgresoCliente, comentarioAgregarPagoCliente, bancoAgregEgresoCliente, horaDetalle, pagoDerivado, usoReporteEgreso, fechaDetalle)
-                }
                 fn_AgregarDetalleEgreso(fechaDetalle, horaDetalle, usoReporteEgreso, cantidadAgregEgresoCliente, precioEgresoCliente, montoAgregEgresoCliente, comentarioAgregarPagoCliente, categoriaDetalle)
                 .then(function() {
                     completedRequests++;

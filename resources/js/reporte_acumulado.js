@@ -519,7 +519,7 @@ jQuery(function($) {
         
         return `
             <tr class="bg-white dark:text-gray-200 text-gray-900 border-b dark:bg-gray-800 dark:border-gray-700">
-                <td class="text-left border-y-[1px] border-r-[1px] border-l-2 py-1 px-2 whitespace-nowrap">${item.nombreCompleto}</td>
+                <td class="text-left border-y-[1px] border-r-[1px] border-l-2 py-1 px-2 whitespace-nowrap sticky left-0 dark:bg-gray-800 bg-white">${item.nombreCompleto}</td>
 
                 <td class="especie1 text-center border-[1px] py-1 px-2 whitespace-nowrap">${fn_buscarValor(item.datosTabla_tb_pesadasGeneral, 'especie1', 'totalCantidad')} </td>
                 <td class="especie1 text-center border-[1px] py-1 px-2 whitespace-nowrap">${fn_buscarValorDecimal(item.datosTabla_tb_pesadasGeneral, 'especie1', 'totalPeso')} Kg.</td>
@@ -717,7 +717,7 @@ jQuery(function($) {
         
         return `
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900 sticky bottom-0">
-                <td class="text-left font-bold text-sm border-t-2 border-r-[1px] border-l-2 border-b-2 py-1 px-2 text-white bg-blue-600 whitespace-nowrap">TOTAL</td>
+                <td class="text-left font-bold text-sm border-t-2 border-r-[1px] border-l-2 border-b-2 py-1 px-2 text-white bg-blue-600 whitespace-nowrap sticky left-0">TOTAL</td>
 
                 <td class="especie1 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${fn_buscarValor(totalesPorEspecie, 'especie1', 'totalCantidad')}</td>
                 <td class="especie1 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${fn_buscarValorDecimal(totalesPorEspecie, 'especie1', 'totalPeso')} Kg.</td>

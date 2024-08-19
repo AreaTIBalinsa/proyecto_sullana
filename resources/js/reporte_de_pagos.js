@@ -3206,7 +3206,7 @@ jQuery(function ($) {
                             failedRequests++;
                             checkCompletion();
                         } else {
-                            if (usoReporteEgreso.includes("FLETE")) {
+                            if (usoReporteEgreso.includes("FLETE") && usoReporteEgreso.includes("PIURA")) {
                                 fn_AgregarPagoClienteExcel(codCliente, montoEgresoPagoo, fechaAgregEgresoCliente, formaDePagoEgreso, codAgregEgresoCliente, comentarioAgregarPagoCliente, bancoAgregEgresoCliente, horaAgregarPago, pagoDerivado, usoReporteEgreso, fechaAgregEgresoCliente)
                             }
                             // Llamar a la función fn_AgregarPagoCliente con los datos de la fila actual

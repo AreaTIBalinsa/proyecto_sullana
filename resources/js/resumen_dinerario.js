@@ -85,6 +85,7 @@ jQuery(function($) {
                     }
 
                     response.forEach(function (obj) {
+                        let nombre = obj.campoExtra ? obj.campoExtra.toUpperCase() : "";
                         if(obj.clasificacionPago == "1"){
                             totalIngresosBancos += parseFloat(obj.cantidadAbonoPag);
                             totalBancos += parseFloat(obj.cantidadAbonoPag);
@@ -103,11 +104,15 @@ jQuery(function($) {
                                 montoYAPE += parseFloat(obj.cantidadAbonoPag);
                             }
                         }else if(obj.clasificacionPago == "2"){
-                            totalIngresosCamal += parseFloat(obj.cantidadAbonoPag);
-                            totalBancos += parseFloat(obj.cantidadAbonoPag);
+                            if(!(nombre.includes("KARLA") && nombre.includes("BRECSY"))){
+                                totalIngresosCamal += parseFloat(obj.cantidadAbonoPag);
+                                totalBancos += parseFloat(obj.cantidadAbonoPag);
+                            }
                         }else if(obj.clasificacionPago == "3"){
-                            totalIngresosPaul += parseFloat(obj.cantidadAbonoPag);
-                            totalBancos += parseFloat(obj.cantidadAbonoPag);
+                            if(!(nombre.includes("SALDO") && nombre.includes("AYER"))){
+                                totalIngresosPaul += parseFloat(obj.cantidadAbonoPag);
+                                totalBancos += parseFloat(obj.cantidadAbonoPag);
+                            }
                         }else if(obj.clasificacionPago == "5"){
                             totalIngresosAGranjas += parseFloat(obj.cantidadAbonoPag);
                             totalBancos += parseFloat(obj.cantidadAbonoPag);
@@ -223,7 +228,7 @@ jQuery(function($) {
 
                     response.forEach(function (obj) {
                         if(obj.clasificadoEgreso == "2"){
-                            let nombre = obj.nombreEgresoCamal;
+                            let nombre = obj.nombreEgresoCamal ? obj.nombreEgresoCamal.toUpperCase() : "";
                             if(!nombre.includes("AGENTE BCP") && !nombre.includes("YUGO") && !nombre.includes("TECAVI")){
                                 totalEgresosPaul += parseFloat(obj.cantidadAbonoEgreso);
                                 totalEgresos += parseFloat(obj.cantidadAbonoEgreso);
@@ -256,8 +261,8 @@ jQuery(function($) {
                                 tbodyReporteDeResumenDinerario.empty();
 
                                 response.forEach(function (obj) {
-                                    let nombre = obj.uso_detalle_egreso;
-                                    if(!nombre.includes("BURGOS")){
+                                    let nombre = obj.uso_detalle_egreso ? obj.uso_detalle_egreso.toUpperCase() : "";
+                                    if(!nombre.includes("BURGOS") && !(nombre.includes("KARLA") && nombre.includes("BRECSY")) && !(nombre.includes("SOBRANTE") && nombre.includes("CAJA CHICA") && nombre.includes("KARLA")) && !(nombre.includes("ANA") && nombre.includes("DOMINGO") && nombre.includes("KARLA")) && !(nombre.includes("TRIPA") && nombre.includes("KARLA"))){
                                         totalEgresosCamal += parseFloat(obj.monto_detalle);
                                         totalEgresos += parseFloat(obj.monto_detalle);
                                     }
@@ -324,7 +329,7 @@ jQuery(function($) {
                     response.forEach(function (obj) {
                         let precioGuia = parseFloat(obj.precioGuia) ? parseFloat(obj.precioGuia) : 0;
                         let totalCalculo = (parseFloat(obj.pesoBrutoGuia) - parseFloat(obj.pesoTaraGuia)) * precioGuia;
-                        let nombreProveedor = obj.nombreEspecie;
+                        let nombreProveedor = obj.nombreEspecie ? obj.nombreEspecie.toUpperCase() : "";
                         if (nombreProveedor.includes("YUGO")) {
                             totalYugo += parseFloat(totalCalculo);
                             totalGuias += parseFloat(totalCalculo);
@@ -423,7 +428,7 @@ jQuery(function($) {
                     let totalTripaKarla = 0;
 
                     response.forEach(function (obj) {
-                        let nombre = obj.uso_detalle_egreso;
+                        let nombre = obj.uso_detalle_egreso ? obj.uso_detalle_egreso.toUpperCase() : "";
                         if(nombre.includes("TRIPA") && nombre.includes("KARLA")){
                             totalTripaKarla += parseFloat(obj.monto_detalle);
                             let nuevaFila = `
