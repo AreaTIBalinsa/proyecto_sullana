@@ -38,8 +38,6 @@ jQuery(function($) {
                     // Iterar sobre los objetos y agrupar por codigoCli
                     response.forEach(function (obj) {
                         let codigoCli = obj.codigoCli;
-
-                        // console.log(obj);
     
                         if (!resultadosAgrupados[codigoCli]) {
                             resultadosAgrupados[codigoCli] = {

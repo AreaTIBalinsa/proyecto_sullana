@@ -17,29 +17,6 @@ jQuery(function ($) {
     $('#fechaCuentaDelCliente').val(fechaHoy);
     $('#fechaCambiarPrecioPesada').val(fechaHoy);
 
-    var primerEspecieGlobal = 0;
-    var segundaEspecieGlobal = 0;
-    var terceraEspecieGlobal = 0;
-    var cuartaEspecieGlobal = 0;
-    var quintaEspecieGlobal = 0;
-    var sextaEspecieGlobal = 0;
-    var septimaEspecieGlobal = 0;
-    var octavaEspecieGlobal = 0;
-    var decimaEspecieGlobal = 0;
-    var decimaPrimeraEspecieGlobal = 0;
-    var decimaSegundaEspecieGlobal = 0;
-    var decimaTerceraEspecieGlobal = 0;
-    var decimaCuartaEspecieGlobal = 0;
-    var decimaQuintaEspecieGlobal = 0;
-    var decimaSextaEspecieGlobal = 0;
-    var decimaSeptimaEspecieGlobal = 0;
-    var decimaOctavaEspecieGlobal = 0;
-    var decimaNovenaEspecieGlobal = 0;
-    var vigesimaEspecieGlobal = 0;
-    var vigesimaPrimeraEspecieGlobal = 0;
-    var vigesimaSegundaEspecieGlobal = 0;
-    var vigesimaTerceraEspecieGlobal = 0;
-
     var nombrePrimerEspecieGlobal = "";
     var nombreSegundaEspecieGlobal = "";
     var nombreTerceraEspecieGlobal = "";
@@ -71,28 +48,6 @@ jQuery(function ($) {
                 // Verificar si la respuesta es un arreglo de objetos
                 if (Array.isArray(response)) {
                     // Iterar sobre los objetos y mostrar sus propiedades
-                    primerEspecieGlobal = parseInt(response[0].idEspecie);
-                    segundaEspecieGlobal  = parseInt(response[1].idEspecie);
-                    terceraEspecieGlobal = parseInt(response[2].idEspecie);
-                    cuartaEspecieGlobal = parseInt(response[3].idEspecie);
-                    quintaEspecieGlobal = parseInt(response[4].idEspecie);
-                    sextaEspecieGlobal = parseInt(response[5].idEspecie);
-                    septimaEspecieGlobal = parseInt(response[6].idEspecie);
-                    octavaEspecieGlobal = parseInt(response[7].idEspecie);
-                    decimaEspecieGlobal = parseInt(response[8].idEspecie);
-                    decimaPrimeraEspecieGlobal = parseInt(response[9].idEspecie);
-                    decimaSegundaEspecieGlobal = parseInt(response[10].idEspecie);
-                    decimaTerceraEspecieGlobal = parseInt(response[11].idEspecie);
-                    decimaCuartaEspecieGlobal = parseInt(response[12].idEspecie);
-                    decimaQuintaEspecieGlobal = parseInt(response[13].idEspecie);
-                    decimaSextaEspecieGlobal = parseInt(response[14].idEspecie);
-                    decimaSeptimaEspecieGlobal = parseInt(response[15].idEspecie);
-                    decimaOctavaEspecieGlobal = parseInt(response[16].idEspecie);
-                    decimaNovenaEspecieGlobal = parseInt(response[17].idEspecie);
-                    vigesimaEspecieGlobal = parseInt(response[18].idEspecie);
-                    vigesimaPrimeraEspecieGlobal = parseInt(response[19].idEspecie);
-                    vigesimaSegundaEspecieGlobal = parseInt(response[20].idEspecie);
-                    vigesimaTerceraEspecieGlobal = parseInt(response[21].idEspecie);
 
                     nombrePrimerEspecieGlobal = response[0].nombreEspecie;
                     nombreSegundaEspecieGlobal = response[1].nombreEspecie;
@@ -10679,8 +10634,6 @@ jQuery(function ($) {
                 });
                 mensajeDeudaDiaCliente.empty();
                 mensajeDeudaDiaCliente.html(`<p id="mensajeDeudaDia" class="md:mx-5 md:text-left text-center font-semibold text-black">El día de hoy ${fechaFormateada} ,  el monto de su guía es <b>${totalFormateadoLblTotalCuentaDia}</b> , ha abonado <b>${totalFormateadoLblTotalPagos}</b> . Dejando un saldo pendiente de <b>${totalFormateadoDeudaDiaCalculo}</b> . Así mismo teniendo en cuenta el saldo anterior <b>${totalFormateadototalSaldo}</b> , con el abono de hoy ${fechaFormateada} , su saldo actual es por el monto de <b>${totalFormateadocalculoAFavor}</b> .</p>`);
-                // mensajeDeudaDiaCliente.html(`<p id="mensajeDeudaDia" class="md:mx-5 md:text-left text-center font-semibold text-black">El dia de hoy ${fechaFormateada} su guia completa es de ${totalFormateadoLblTotalCuentaDia} , hoy abonado ${totalFormateadoLblTotalPagos} y hoy deja un saldo pendiente de <b>${totalFormateadoDeudaDiaCalculo}</b> .</p>
-                //     ${totalSaldo < 0 ? `<hr class="my-2"> <p class="md:mx-5 md:text-left text-center font-semibold text-black">Pero tiene un saldo a favor de ${totalFormateadototalSaldo} , menos el nuevo saldo pendiente de ${totalFormateadoDeudaDiaCalculo} , quedarian un nuevo saldo ${calculoAFavor < 0 ? `a favor de <b>${(calculoAFavor*-1).toFixed(2)}</b>` : ` pendiente de <b>${calculoAFavor.toFixed(2)}</b>`} .</p>` : ""}`);
             }else{
                 mensajeDeudaDiaCliente.empty();
                 mensajeDeudaDiaCliente.html(`<p id="mensajeDeudaDia"></p>`);
@@ -10823,12 +10776,12 @@ jQuery(function ($) {
             useGrouping: true,
         });
         
+        
+        let totalSaldoAnteriorV_doble = parseFloat(totalSaldoAnteriorV) < 0 ? parseFloat(totalSaldoAnteriorV) - pagosARestar : parseFloat(totalSaldoAnteriorV) + pagosARestar;
         $("#totalCuentaDia").attr("value", totalVentaDelDia);
         $("#totalPagos").attr("value", pagosDeHoy);
-        $("#totalSaldo").attr("value", totalSaldoAnteriorV);
+        $("#totalSaldo").attr("value", totalSaldoAnteriorV_doble);
         saldoActualGlobal = saldoActual;
-
-        let totalSaldoAnteriorV_doble = parseFloat(totalSaldoAnteriorV) < 0 ? parseFloat(totalSaldoAnteriorV) - pagosARestar : parseFloat(totalSaldoAnteriorV) + pagosARestar;
 
         bodyCuentaDelClientePagos += `
         <tr class="bg-white border-b border-black contarFilaPagos">
@@ -12304,15 +12257,23 @@ jQuery(function ($) {
             total += value;
         });
 
-        let calculoSaldo = saldoActualGlobal - total;
-
         let totalFormateadoCuenta = total.toLocaleString('es-ES', {
             minimumFractionDigits: 2,   
             maximumFractionDigits: 2,
             useGrouping: true,
         });
     
-        let totalFormateadoSaldo = calculoSaldo.toLocaleString('es-ES', {
+        
+        let lblTotalCuentaDia2 = $("#totalCuentaDia").attr("value")
+        let lblTotalSaldo2 = $("#totalSaldo").attr("value")
+        
+        let deudaDiaCalculo2 = parseFloat(lblTotalCuentaDia2)-parseFloat(total);
+        let totalSaldo2 = parseFloat(lblTotalSaldo2);
+        let calculoAFavor2 = 0;
+        totalSaldo2 = parseFloat(totalSaldo2.toFixed(2));
+        calculoAFavor2 = totalSaldo2 + deudaDiaCalculo2;
+        
+        let totalFormateadoSaldo = calculoAFavor2.toLocaleString('es-ES', {
             minimumFractionDigits: 2,   
             maximumFractionDigits: 2,
             useGrouping: true,

@@ -122,6 +122,7 @@ jQuery(function($) {
                     return {
                         codigoCli: clienteObj.cliente.codigoCli,
                         nombreCompleto: clienteObj.cliente.nombreCompleto,
+                        limitEndeudamiento: clienteObj.cliente.limitEndeudamiento,
                         datosTabla_tb_pesadas: clienteObj.datosTabla_tb_pesadas,
                         ventaAnterior: clienteObj.ventaAnterior,
                         datosTabla_tb_pesadas2: clienteObj.datosTabla_tb_pesadas2,
@@ -160,6 +161,7 @@ jQuery(function($) {
                     return {
                         codigoCli: clienteObj.codigoCli,
                         nombreCompleto: clienteObj.nombreCompleto,
+                        limitEndeudamiento: clienteObj.limitEndeudamiento,
                         datosTabla_tb_pesadasGeneral: datosTabla_tb_pesadasGeneral,
                         ventaAnterior: clienteObj.ventaAnterior,
                         ventaAnterior2: clienteObj.ventaAnterior2,
@@ -643,6 +645,7 @@ jQuery(function($) {
                 <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">S/. ${totalSaldoDelDia.toFixed(2)}</td>
                 <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">S/. ${totalPagosHoy.toFixed(2)}</td>
                 <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap font-bold">S/. ${totalNuevoSaldo.toFixed(2)}</td>
+                <td class="text-center border-y-[1px] border-l-[1px] border-r-2 py-1 px-2 whitespace-nowrap bg-red-600 text-white">${item.limitEndeudamiento}</td>
                 <td class="text-center border-y-[1px] border-l-[1px] border-r-2 py-1 px-2 whitespace-nowrap">${item.nombreCompleto}</td>
             </tr>
         `
@@ -841,6 +844,7 @@ jQuery(function($) {
                 <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${totalSaldoActualSubTotales.toFixed(2)}</td>
                 <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${totalCobranzaSubTotales.toFixed(2)}</td>
                 <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap font-bold">S/. ${totalNuevoSaldoSubTotales.toFixed(2)}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap font-bold bg-red-600">&nbsp;</td>
                 <td class="text-center border-t-2 border-l-[1px] border-r-2 border-b-2 py-1 px-2 whitespace-nowrap font-bold bg-blue-600">&nbsp;</td>
             </tr>
         `;

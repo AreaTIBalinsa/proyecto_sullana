@@ -14,10 +14,20 @@
                 <label for="fechaReporteExcel" class="text-base text-gray-900 dark:text-gray-50">Reporte Excel :</label>
                 <input type="date" class="max-w-xs outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 px-2.5 py-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" id="fechaReporteExcel">
             </div>
-            <button class="cursor-pointer uppercase  bg-blue-600 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 flex justify-center items-center gap-2" type="submit" autocomplete="off" id="filtrarReporteAcumuladoDesdeHastaExcel"><i class='bx bx-search-alt text-lg' ></i>Buscar</button>
+            <button class="cursor-pointer uppercase bg-blue-600 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 flex justify-center items-center gap-2" type="submit" autocomplete="off" id="filtrarReporteAcumuladoDesdeHastaExcel"><i class='bx bx-search-alt text-lg' ></i>Buscar</button>
+        </div>
+
+        <div class="w-full flex justify-between items-start flex-wrap gap-4 mb-5 md:px-5 pt-5">
+            <div class="flex w-full lg:max-w-xs">
+                <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
+                    <i class='bx bxs-user-circle text-xl'></i>
+                </span>
+                <input class="lg:max-w-xs w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg focus:ring-primary-600 focus:border-primary-600 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" autocomplete="off" id="filtrarClienteReporteAcumuladoExcel" placeholder="Ingrese Nombre de Cliente">
+            </div>
+            <button class="text-base py-2 px-5 bg-blue-600 md:max-w-xs w-full hover:bg-blue-700 text-gray-50 rounded-lg md:w-auto font-semibold" id="btnCambiarPrecioPesadas">S/ Cambiar Precios</button>
         </div>
         
-        <div class="rounded-lg overflow-auto aside_scrollEDINSON md:mx-5 my-5" id="divReporteAcumuladoDetalleExcel">
+        <div class="rounded-lg overflow-auto aside_scrollEDINSON max-h-[90vh] md:mx-5 my-5" id="divReporteAcumuladoDetalleExcel">
             <table class="w-full border-separate border-spacing-0 text-gray-500 dark:text-gray-400 select-none text-sm" id="tablaReporteAcumuladoExcel">
                 <caption class="bg-blue-600 text-gray-50 p-2 font-bold text-lg rounded-t-lg border-x-2 sticky top-0 border-t-2 z-50" id="fechaReporteExcelTitle"></caption>
                 <thead id="headerReporteAcumuladoExcel" class="bg-blue-600 text-gray-50 sticky top-[46px] text-xs uppercase z-50 border-separate max-h-max">
@@ -58,7 +68,7 @@
                         <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap bg-red-600" colspan="3">DESCUENTO</th>
                         <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap bg-green-400" colspan="3">TOTAL</th>
                         <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap bg-yellow-300 text-gray-900" colspan="4">SALDOS Y ABONOS</th>
-                        <th class="px-4 border-y-2 border-l-[1px] border-r-2 whitespace-nowrap bg-blue-600"></th>
+                        <th class="px-4 border-y-2 border-l-[1px] border-r-2 whitespace-nowrap bg-blue-600" colspan="2"></th>
                     </tr>
                     <tr class="h-10 bg-white dark:bg-gray-800 dark:text-gray-200 text-gray-900">
                         <th class="text-left px-2 text-sm border-r-[1px] border-b-2 border-l-2 whitespace-nowrap bg-blue-600 text-white sticky left-0">CLIENTE</th>
@@ -183,6 +193,7 @@
                         <th class="px-4 border-x-[1px] border-b-2 whitespace-nowrap">SALDO ACT.</th>
                         <th class="px-4 border-x-[1px] border-b-2 whitespace-nowrap">COBRANZA</th>
                         <th class="px-4 border-x-[1px] border-b-2 whitespace-nowrap">NUEVO SALDO</th>
+                        <th class="px-4 border-l-[1px] border-b-2 border-r-2 whitespace-break-spaces text-sm bg-red-600 text-white">LIMITE ENDEUDAMIENTO</th>
                         <th class="px-4 border-l-[1px] border-b-2 border-r-2 whitespace-nowrap text-sm bg-blue-600 text-white">CLIENTE</th>
                     </tr>
                 </thead>
@@ -192,42 +203,8 @@
             </table>
         </div>
 
-        <div class="mt-5 flex gap-10 flex-wrap items-start justify-start">
+        <div class="mt-5 flex gap-10 flex-wrap items-start justify-start md:mx-5 my-5">
             <div class="overflow-auto relative" id="divTotalesUno">
-                <div class="bg-gray-50 dark:bg-gray-900 hidden top-0 left-0 z-[100] w-full" id="eskeletoUno">
-                    <div role="status" class="animate-pulse w-full">
-                        <table class="mb-2">
-                            <caption class="bg-gray-200 dark:bg-gray-700 h-10 w-full mb-[2px] rounded-t-lg"></caption>
-                            <thead>
-                                <tr>
-                                    <th class="bg-gray-200 border-2 border-l-0 border-gray-300 dark:border-gray-900 h-10 w-[177px] dark:bg-gray-700"></th>
-                                    <th class="bg-gray-200 border-2 border-gray-300 dark:border-gray-900 h-10 w-[105px] dark:bg-gray-700"></th>
-                                    <th class="bg-gray-200 border-2 border-gray-300 dark:border-gray-900 h-10 w-[105px] dark:bg-gray-700"></th>
-                                    <th class="bg-gray-200 border-2 border-r-0 border-gray-300 dark:border-gray-900 h-10 w-[105px] dark:bg-gray-700"></th>
-                                </tr>
-                            </thead>
-                        </table>
-                        <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-2.5"></div>
-                        <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-2.5"></div>
-                        <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-2.5"></div>
-                        <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-2.5"></div>
-                        <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-2.5"></div>
-                        <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-2.5"></div>
-                        <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-2.5"></div>
-                        <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-2.5"></div>
-                        <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-2.5"></div>
-                        <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-2.5"></div>
-                        <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-2.5"></div>
-                        <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-2.5"></div>
-                        <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-2.5"></div>
-                        <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-2.5"></div>
-                        <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-2.5"></div>
-                        <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-2.5"></div>
-                        <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-2.5"></div>
-                        <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-2.5"></div>
-                        <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-full"></div>
-                    </div>
-                </div>
                 <table class="mb-2 border-collapse">
                     <caption class="bg-blue-600 text-gray-50 p-2 font-bold text-lg rounded-t-lg border-x-2 border-t-2 z-50">TOTALES</caption>
                     <thead class="bg-blue-600 text-gray-50 uppercase z-50 text-sm">
@@ -244,35 +221,6 @@
                 </table>
             </div>
             <div class="overflow-auto relative" id="divTotalesDos">
-                <div class="bg-gray-50 dark:bg-gray-900 hidden top-0 left-0 z-[100] w-full" id="eskeletoDos">
-                    <div role="status" class="animate-pulse w-full">
-                        <table class="mb-2">
-                            <caption class="bg-gray-200 dark:bg-gray-700 h-10 w-full mb-[2px] rounded-t-lg"></caption>
-                            <thead>
-                                <tr>
-                                    <th class="bg-gray-200 border-2 border-l-0 border-gray-300 dark:border-gray-900 h-10 w-[105px] dark:bg-gray-700"></th>
-                                    <th class="bg-gray-200 border-2 border-gray-300 dark:border-gray-900 h-10 w-[105px] dark:bg-gray-700"></th>
-                                    <th class="bg-gray-200 border-2 border-gray-300 dark:border-gray-900 h-10 w-[105px] dark:bg-gray-700"></th>
-                                    <th class="bg-gray-200 border-2 border-r-0 border-gray-300 dark:border-gray-900 h-10 w-[105px] dark:bg-gray-700"></th>
-                                </tr>
-                            </thead>
-                        </table>
-                        <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-2.5"></div>
-                        <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-2.5"></div>
-                        <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-2.5"></div>
-                        <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-2.5"></div>
-                        <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-2.5"></div>
-                        <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-2.5"></div>
-                        <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-2.5"></div>
-                        <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-2.5"></div>
-                        <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-2.5"></div>
-                        <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-2.5"></div>
-                        <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-2.5"></div>
-                        <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-2.5"></div>
-                        <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-full mb-2.5"></div>
-                        <div class="h-4 bg-gray-200 rounded-full dark:bg-gray-700 w-full"></div>
-                    </div>
-                </div>
                 <table class="mb-2">
                     <thead class="bg-blue-600 text-gray-50 uppercase z-50 text-sm">
                         <tr>
@@ -348,14 +296,6 @@
                         </div>
                         {{-- Termina contenedor filtrar clientes modales --}}
                         <input type="date" class="outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 px-2.5 py-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-full md:w-80" id="fechaCambiarPrecioPesada">
-                        {{-- <select class="h-10 w-full md:w-80 uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="especiesCambioPrecioPesadas" id="especiesCambioPrecioPesadas">
-                        </select> 
-                        <div class="flex max-w-xs w-full">
-                            <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
-                                <b>S/</b>
-                            </span>
-                            <input class="validarSoloNumerosDosDecimales max-w-xs w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg focus:ring-primary-600 focus:border-primary-600 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="nuevoPrecioCambiarPesadas" autocomplete="off" id="nuevoPrecioCambiarPesadas" placeholder="Ingrese Nuevo Precio">
-                        </div> --}}
                         <div class="overflow-auto w-full">
                             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                                 <thead class="text-xs text-gray-100 uppercase bg-blue-600">

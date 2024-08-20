@@ -17,7 +17,6 @@ jQuery(function($) {
         let fechaDesdePesadas = $('#fechaDesdePesadas').val();
         let fechaHastaPesadas = $('#fechaHastaPesadas').val();
         fn_consulta_TraerDatosPesadas3(fechaDesdePesadas,fechaHastaPesadas);
-
     });
 
     $(document).on('click', '#registrar_agregarPagos_Excel4', function () {

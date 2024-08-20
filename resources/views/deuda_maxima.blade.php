@@ -13,28 +13,34 @@
             <input class="lg:max-w-xs w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg focus:ring-primary-600 focus:border-primary-600 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="filtrarClienteDeudaMaxima" autocomplete="off" id="filtrarClienteDeudaMaxima" placeholder="Ingrese Nombre de Cliente">
         </div>
         <p class="text-gray-900 font-semibold text-ml dark:text-gray-300 md:px-5 my-5">En este apartado podrá designar la deuda máxima que puede tener un cliente.</p>
+        <div class="flex gap-x-24 gap-4 w-full flex-col md:flex-row md:px-5 my-5">
+            <div class="flex flex-col justify-center">
+                <label for="weekPicker" class="text-base text-gray-900 dark:text-gray-50">Seleccione una semana :</label>
+                <input type="week" class="outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 px-2.5 py-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" id="weekPicker">
+            </div>
+            <div class=" flex items-end">
+                <button class="text-base py-2 px-5 bg-blue-600 hover:bg-blue-700 text-gray-50 rounded-lg w-full md:w-auto" id="btnBuscarSaldoSemanal"><i class='bx bx-search-alt'></i> Buscar</button>
+            </div>
+        </div>
+
         <div class="relative rounded-lg overflow-auto max-h-[500px] aside_scrollED md:mx-5 md:mb-5">
             <table class="border-collapse w-full text-gray-500 dark:text-gray-400 select-none relative text-sm" id="tablaDeudaMaxima">
                 <thead id="headerDeudaMaxima" class="bg-blue-600 text-gray-50 sticky top-0 text-xs uppercase">
                     <tr class="h-10">
                         <th class="hidden">Id</th>   
-                        <th class="p-4" data-column="nombres">
-                            <h5 class="whitespace-nowrap flex items-center">Nombre de Cliente<button><svg class="w-3 h-3 ml-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z"/>
-                                </svg></button>
-                            </h5>
-                        </th>
-                        <th class="p-4 hidden">Deuda Maxima</th>
-                        <th class="p-4" data-column="deuda">
-                            <h5 class="whitespace-nowrap w-full justify-center flex items-center">Deuda Maxima<button><svg class="w-3 h-3 ml-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z"/>
-                                </svg></button>
-                            </h5>
-                        </th>
+                        <th class="p-4 whitespace-nowrap">Nombre de Cliente</th>
+                        <th class="p-4 whitespace-nowrap">Deuda Maxima</th>
+                        <th class="p-4">Lunes</th>
+                        <th class="p-4">Martes</th>
+                        <th class="p-4">Miercoles</th>
+                        <th class="p-4">Jueves</th>
+                        <th class="p-4">Viernes</th>
+                        <th class="p-4">Sabado</th>
+                        <th class="p-4">Domingo</th>
                     </tr>
                 </thead>
                 <tbody id="bodyDeudaMaxima">
-                    <tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="2" class="text-center">No hay datos</td></tr>
+                    <tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="9" class="text-center">No hay datos</td></tr>
                 </tbody>
             </table>
         </div>

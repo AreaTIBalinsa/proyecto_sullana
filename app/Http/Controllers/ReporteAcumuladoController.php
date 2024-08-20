@@ -176,7 +176,7 @@ class ReporteAcumuladoController extends Controller
         if (Auth::check()) {
             // Realiza la consulta a la base de datos con UNION ALL
             $datos = DB::select('
-                SELECT DISTINCT c.codigoCli,
+                SELECT DISTINCT c.codigoCli, c.limitEndeudamiento,
                        IFNULL(CONCAT_WS(" ", c.nombresCli, c.apellidoPaternoCli, c.apellidoMaternoCli), "") AS nombreCompleto
                 FROM tb_clientes AS c
                 INNER JOIN (
