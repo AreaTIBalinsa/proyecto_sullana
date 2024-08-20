@@ -250,7 +250,8 @@ class DetallesIngresosController extends Controller
                 monto_detalle,
                 observacion,
                 tb_detalles_egresos.id_category,
-                tb_categorias_egresos.nombre_category
+                tb_categorias_egresos.nombre_category,
+                campoExtra
             FROM tb_detalles_egresos
             LEFT JOIN tb_categorias_egresos ON tb_categorias_egresos.id_category = tb_detalles_egresos.id_category
             WHERE estadoDetalle = 1 AND fecha_detalle = ? AND tb_detalles_egresos.id_category = ?',[$fecha,$categoria]);

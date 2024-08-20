@@ -175,6 +175,7 @@ class InicioController extends Controller
                     tb_stock.peso_stock,
                     tb_stock.estado_stock,
                     tb_stock.idProveedor,
+                    tb_stock.precio_stock,
                     tb_especies_compra.nombreEspecie
                 FROM tb_stock
                 INNER JOIN tb_especies_compra ON tb_especies_compra.idEspecie = tb_stock.idProveedor

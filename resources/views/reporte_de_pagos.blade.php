@@ -949,7 +949,7 @@
         <!-- Contenido del modal -->
         <div class="absolute rounded-lg aside_scrollEDINSON max-h-[80%] inset-0 m-auto align-bottom bg-white dark:bg-gray-700 text-left overflow-auto shadow-xl transform transition-all sm:max-w-[80%] w-full">
             <div class="p-4">
-                <div class="w-full overflow-auto">
+                <div class="w-full overflow-auto" id="divOcultarEgresosOtros">
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                         <caption class="bg-blue-600 p-2 w-full border-b-2 text-sm font-bold text-gray-100" id="captionEgresosModal">Egresos sin Clasificar</caption>
                         <thead class="text-xs text-gray-100 uppercase bg-blue-600 sticky top-0" id="headerEgresosModal">
@@ -967,6 +967,47 @@
                         <tbody id="bodyCategoriaModal">
                         </tbody>
                     </table>
+                </div>
+                <div id="divOcultarEgresoPlanilla" class="w-full">
+                    <div class="w-full overflow-auto aside_scrollEDINSON flex flex-col" id="divTablasPlanilla">
+                        <div class="bg-blue-600 p-2 w-full border-b-2 text-sm font-bold text-gray-100 text-center">
+                            PLANILLA
+                        </div>
+                        <div class="w-full flex items-start">
+                            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                                <thead class="text-xs text-gray-100 uppercase bg-blue-600 sticky top-0">
+                                    <tr>
+                                        <th class="px-2 py-4 text-center">Fecha</th>
+                                        <th class="px-2 py-4 text-center">Hora</th>
+                                        <th class="px-2 py-4 text-center">Trabajador</th>
+                                        <th class="px-2 py-4 text-center">Cargo</th>
+                                        <th class="px-2 py-4 text-center hidden">Precio</th>
+                                        <th class="px-2 py-4 text-center">Monto</th>
+                                        <th class="px-2 py-4 text-center">Observación</th>
+                                        <th class="px-2 py-4 text-center hidden">Categoria</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="bodyCategoriaPLANILLAPELADOR">
+                                </tbody>
+                            </table>
+                            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                                <thead class="text-xs text-gray-100 uppercase bg-blue-600 sticky top-0">
+                                    <tr>
+                                        <th class="px-2 py-4 text-center">Fecha</th>
+                                        <th class="px-2 py-4 text-center">Hora</th>
+                                        <th class="px-2 py-4 text-center">Trabajador</th>
+                                        <th class="px-2 py-4 text-center">Cargo</th>
+                                        <th class="px-2 py-4 text-center hidden">Precio</th>
+                                        <th class="px-2 py-4 text-center">Monto</th>
+                                        <th class="px-2 py-4 text-center">Observación</th>
+                                        <th class="px-2 py-4 text-center hidden">Categoria</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="bodyCategoriaPLANILLAESTIBADOR">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="px-4 pb-4">

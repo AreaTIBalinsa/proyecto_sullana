@@ -342,6 +342,7 @@ class ReportePorProveedorController extends Controller
                 tb_stock.peso_stock,
                 tb_stock.estado_stock,
                 tb_stock.idProveedor,
+                tb_stock.precio_stock,
                 tb_especies_compra.nombreEspecie
             FROM tb_stock
             INNER JOIN tb_especies_compra ON tb_especies_compra.idEspecie = tb_stock.idProveedor
@@ -379,6 +380,7 @@ class ReportePorProveedorController extends Controller
         $idProveedor = $request->input('idProveedor');
         $valorCantidad = $request->input('valorCantidad');
         $valorPeso = $request->input('valorPeso');
+        $precioNuevo = $request->input('precioNuevo');
 
         if (Auth::check()) {
             $registrarGuia = new RegistrarStock;
@@ -386,6 +388,7 @@ class ReportePorProveedorController extends Controller
             $registrarGuia->idProveedor = $idProveedor;
             $registrarGuia->cantidad_stock = $valorCantidad;
             $registrarGuia->peso_stock = $valorPeso;
+            $registrarGuia->precio_stock = $precioNuevo;
             $registrarGuia->save();
         
             return response()->json(['success' => true], 200);
@@ -420,6 +423,7 @@ class ReportePorProveedorController extends Controller
         $valorCantidad = $request->input('valorCantidad');
         $valorPeso = $request->input('valorPeso');
         $idStock = $request->input('idStock');
+        $precioNuevo = $request->input('precioNuevo');
 
         if (Auth::check()) {
             $EditarStock = new EditarStockReportePorProveedores;
@@ -428,7 +432,8 @@ class ReportePorProveedorController extends Controller
                     'fecha_stock' => $fechaStock,
                     'idProveedor' => $idProveedor,
                     'cantidad_stock' => $valorCantidad,
-                    'peso_stock' => $valorPeso
+                    'peso_stock' => $valorPeso,
+                    'precio_stock' => $precioNuevo
                 ]);
             
             return response()->json(['success' => true], 200);

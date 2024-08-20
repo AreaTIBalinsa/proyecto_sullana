@@ -1278,6 +1278,7 @@ jQuery(function($) {
                             <td class="border-r dark:border-gray-700 px-4 py-2 text-center whitespace-nowrap">${obj.cantidad_stock}</td>
                             <td class="border-r dark:border-gray-700 px-4 py-2 text-center whitespace-nowrap">${obj.peso_stock}</td>
                             <td class="border-r dark:border-gray-700 px-4 py-2 text-center whitespace-nowrap hidden">${obj.idProveedor}</td>
+                            <td class="border-r dark:border-gray-700 px-4 py-2 text-center whitespace-nowrap">${obj.precio_stock}</td>
                         </tr>
                         `;
                         tbodyReporteControlStock.append(nuevaFila);
@@ -1289,6 +1290,7 @@ jQuery(function($) {
                         <td class="border-r dark:border-gray-700 px-4 py-2 text-center whitespace-nowrap">TOTAL :</td>
                         <td class="border-r dark:border-gray-700 px-4 py-2 text-center whitespace-nowrap">${totalCantidades} ${totalCantidades != 1 ? "Uds." : "Ud."}</td>
                         <td class="border-r dark:border-gray-700 px-4 py-2 text-center whitespace-nowrap">${totalPeso.toFixed(2)} Kg.</td>
+                        <td class="border-r dark:border-gray-700 px-4 py-2 text-center whitespace-nowrap"></td>
                     </tr>
                     `;
                     tbodyReporteControlStock.append(nuevaFila);
@@ -1377,6 +1379,7 @@ jQuery(function($) {
         $('#idProveedorAgregarStock').val($('#idProveedorAgregarStock option:first').val());
         $('#valorCantidadAgregarStock').val("");
         $('#valorPesoStock').val("");
+        $('#valorPrecioStock').val("");
     });
 
     $('#btnGuardarRegistrarStock').on('click', function () {
@@ -1384,16 +1387,17 @@ jQuery(function($) {
         let idProveedor = $('#idProveedorAgregarStock').val();
         let valorCantidad = $('#valorCantidadAgregarStock').val();
         let valorPeso = $('#valorPesoStock').val();
+        let precioNuevo = $('#valorPrecioStock').val();
 
-        if(!idProveedor || !valorCantidad || !valorPeso){
+        if(!idProveedor || !valorCantidad || !valorPeso || !precioNuevo){
             alertify.notify('Debe rellenar todos los campos', 'error', 3);
         }else{
-            fn_RegistrarStock(fechaStock, idProveedor , valorCantidad , valorPeso)
+            fn_RegistrarStock(fechaStock, idProveedor , valorCantidad , valorPeso, precioNuevo)
         }
         
     });
 
-    function fn_RegistrarStock(fechaStock, idProveedor , valorCantidad , valorPeso){
+    function fn_RegistrarStock(fechaStock, idProveedor , valorCantidad , valorPeso, precioNuevo){
         $.ajax({
             url: '/fn_consulta_RegistrarStock',
             method: 'GET',
@@ -1402,6 +1406,7 @@ jQuery(function($) {
                 idProveedor: idProveedor,
                 valorCantidad: valorCantidad,
                 valorPeso: valorPeso,
+                precioNuevo: precioNuevo,
             },
             success: function(response) {
                 if (response.success) {
@@ -1490,12 +1495,14 @@ jQuery(function($) {
         let cantidad= fila.find('td:eq(3)').text();
         let peso= fila.find('td:eq(4)').text();
         let proveedor= fila.find('td:eq(5)').text();
+        let precio= fila.find('td:eq(6)').text();
 
         $("#idStockEditar").val(idReporteDePago);
         $("#fechaRegistrarStockEditar").val(fecha);
         $("#idProveedorAgregarStockEditar").val(proveedor);
         $("#valorCantidadAgregarStockEditar").val(cantidad);
         $("#valorPesoStockEditar").val(peso);
+        $("#valorPrecioStockEditar").val(precio);
         
         $('#ModalRegistrarStockEditar').addClass('flex');
         $('#ModalRegistrarStockEditar').removeClass('hidden');
@@ -1506,17 +1513,18 @@ jQuery(function($) {
         let idProveedor = $('#idProveedorAgregarStockEditar').val();
         let valorCantidad = $('#valorCantidadAgregarStockEditar').val();
         let valorPeso = $('#valorPesoStockEditar').val();
+        let precioNuevo = $('#valorPrecioStockEditar').val();
         let idStock = $('#idStockEditar').val();
 
-        if(!idProveedor || !valorCantidad || !valorPeso || !idStock){
+        if(!idProveedor || !valorCantidad || !valorPeso || !idStock || !precioNuevo){
             alertify.notify('Debe rellenar todos los campos', 'error', 3);
         }else{
-            fn_RegistrarStockEditar(fechaStock, idProveedor , valorCantidad , valorPeso, idStock)
+            fn_RegistrarStockEditar(fechaStock, idProveedor , valorCantidad , valorPeso, idStock, precioNuevo)
         }
         
     });
 
-    function fn_RegistrarStockEditar(fechaStock, idProveedor , valorCantidad , valorPeso, idStock){
+    function fn_RegistrarStockEditar(fechaStock, idProveedor , valorCantidad , valorPeso, idStock, precioNuevo){
         $.ajax({
             url: '/fn_consulta_RegistrarStockEditar',
             method: 'GET',
@@ -1525,6 +1533,7 @@ jQuery(function($) {
                 idProveedor: idProveedor,
                 valorCantidad: valorCantidad,
                 valorPeso: valorPeso,
+                precioNuevo: precioNuevo,
                 idStock: idStock
             },
             success: function(response) {

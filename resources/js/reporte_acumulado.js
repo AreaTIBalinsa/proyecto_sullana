@@ -351,6 +351,7 @@ jQuery(function($) {
                                 promediosEspeciesCompra.gallo = calcularPromedio(promediosEspeciesCompra.gallo, contadorGallo);                                
 
                                 fn_crearDatosTablaExcel(clientesConTotales, totalesPorEspecie, resultadosDescuentos, promediosEspeciesCompra);
+                                fn_consultarDatosProveedores(fecha);
                             } else {
                                 console.log("La respuesta no es un arreglo de objetos.");
                             }
@@ -1805,6 +1806,471 @@ jQuery(function($) {
                     title: 'Oops...',
                     text: 'Error: Ocurrio un error inesperado durante la operacion',
                   })
+                console.error("ERROR",error);
+            }
+        });
+    }
+
+    function fn_consultarDatosProveedores(fechaHoy){
+        $.ajax({
+            url: '/fn_consulta_TraerDatosEnTiempoReal',
+            method: 'GET',
+            data: {
+                fecha : fechaHoy,
+            },
+            success: function(response) {
+
+                // Verificar si la respuesta es un arreglo de objetos
+                if (Array.isArray(response)) {
+                    function calcularTotalesPorEspecie(response) {
+                        const especiesTotales = {};
+                    
+                        response.forEach(item => {
+                            const especieKey = `especie${item.idEspecie}`;
+                    
+                            if (!especiesTotales[especieKey]) {
+                                especiesTotales[especieKey] = {
+                                    totalPeso: 0,
+                                    totalDescuentoPeso: 0,
+                                    totalVenta: 0,
+                                    totalDescuentoVenta: 0,
+                                    totalCantidad: 0,
+                                    precioPromedio: parseFloat(item.precioPes),
+                                };
+                            }
+                    
+                            const { pesoNetoPes, pesoNetoJabas, precioPes, cantidadPes } = item;
+                            const pesoNetoPesNum = parseFloat(pesoNetoPes);
+                            const pesoNetoJabasNum = parseFloat(pesoNetoJabas);
+                            const precioPesNum = parseFloat(precioPes);
+                    
+                            if (pesoNetoPesNum > 0) {
+                                especiesTotales[especieKey].totalPeso += pesoNetoPesNum - pesoNetoJabasNum;
+                                especiesTotales[especieKey].totalVenta += (pesoNetoPesNum - pesoNetoJabasNum) * precioPesNum;
+                            } else {
+                                especiesTotales[especieKey].totalDescuentoPeso += pesoNetoPesNum + pesoNetoJabasNum;
+                                especiesTotales[especieKey].totalDescuentoVenta += (pesoNetoPesNum + pesoNetoJabasNum) * precioPesNum;
+                            }
+                    
+                            especiesTotales[especieKey].totalCantidad += cantidadPes;
+                        });
+                    
+                        // Sumar totalPeso con totalDescuentoPeso y totalVenta con totalDescuentoVenta
+                        Object.keys(especiesTotales).forEach(especieKey => {
+                            especiesTotales[especieKey].totalPeso = (
+                                especiesTotales[especieKey].totalPeso + especiesTotales[especieKey].totalDescuentoPeso
+                            ).toFixed(2);
+                    
+                            especiesTotales[especieKey].totalVenta = (
+                                especiesTotales[especieKey].totalVenta + especiesTotales[especieKey].totalDescuentoVenta
+                            ).toFixed(2);
+                    
+                            // Eliminar las claves de descuento ya que se han sumado
+                            delete especiesTotales[especieKey].totalDescuentoPeso;
+                            delete especiesTotales[especieKey].totalDescuentoVenta;
+                    
+                            // Asegurar que totalCantidad esté también en formato de dos decimales
+                            especiesTotales[especieKey].totalCantidad = especiesTotales[especieKey].totalCantidad;
+                        });
+                    
+                        return especiesTotales;
+                    }
+
+                    function sumarTotalesGenerales(especiesTotales) {
+                        const totalesGenerales = {
+                            totalPeso: 0,
+                            totalVenta: 0,
+                            totalCantidad: 0,
+                        };
+                    
+                        Object.values(especiesTotales).forEach(especie => {
+                            totalesGenerales.totalPeso += parseFloat(especie.totalPeso);
+                            totalesGenerales.totalVenta += parseFloat(especie.totalVenta);
+                            totalesGenerales.totalCantidad += parseFloat(especie.totalCantidad);
+                        });
+                    
+                        // Aplicar toFixed(2) para el formato de dos decimales
+                        totalesGenerales.totalPeso = totalesGenerales.totalPeso.toFixed(2);
+                        totalesGenerales.totalVenta = totalesGenerales.totalVenta.toFixed(2);
+                        totalesGenerales.totalCantidad = totalesGenerales.totalCantidad;
+                    
+                        return totalesGenerales;
+                    }
+
+                    const totales = calcularTotalesPorEspecie(response);
+                    const totalesGenerales = sumarTotalesGenerales(totales);
+
+                    function fn_buscarValor(obj, especie, valor) {
+                        return obj && obj[especie] ? ((obj[especie][valor]) === 1 ? `${fn_formatearCantidades(obj[especie][valor])} Ud.` : `${fn_formatearCantidades(obj[especie][valor])} Uds.`) : "0 Uds";
+                    }
+
+                    function fn_buscarValorDecimal(obj, especie, valor) {
+                        return obj && obj[especie] ? `${fn_formatearImportes(obj[especie][valor])} Kg` : "0.00 Kg";
+                    }
+                    
+                    function fn_buscarValorDecimalVenta(obj, especie, valor) {
+                        return obj && obj[especie] ? `S/. ${fn_formatearImportes(obj[especie][valor])}` : "S/. 0.00";
+                    }
+
+                    function fn_buscarValorTotal(obj, especie, valor) {
+                        return obj && obj[especie] ? parseInt(obj[especie][valor]): 0;
+                    }
+
+                    function fn_buscarValorDecimalTotal(obj, especie, valor) {
+                        return obj && obj[especie] ? parseFloat(obj[especie][valor]): 0.00;
+                    }
+
+                    let totalCantidadYugo = fn_buscarValorTotal(totales, "especie1", "totalCantidad") + fn_buscarValorTotal(totales, "especie2", "totalCantidad") + fn_buscarValorTotal(totales, "especie17", "totalCantidad");
+                    let totalCantidadTecnica = fn_buscarValorTotal(totales, "especie3", "totalCantidad") + fn_buscarValorTotal(totales, "especie4", "totalCantidad") + fn_buscarValorTotal(totales, "especie18", "totalCantidad");
+                    let totalCantidadXX = fn_buscarValorTotal(totales, "especie16", "totalCantidad") + fn_buscarValorTotal(totales, "especie19", "totalCantidad");
+                    let totalCantidadGallo = fn_buscarValorTotal(totales, "especie7", "totalCantidad") + fn_buscarValorTotal(totales, "especie22", "totalCantidad");
+                    let totalCantidadGallinaDoble = fn_buscarValorTotal(totales, "especie5", "totalCantidad") + fn_buscarValorTotal(totales, "especie20", "totalCantidad");
+                    let totalCantidadGallinaChica = fn_buscarValorTotal(totales, "especie14", "totalCantidad") + fn_buscarValorTotal(totales, "especie23", "totalCantidad");
+                    let totalCantidadAhogadosSecos = fn_buscarValorTotal(totales, "especie6", "totalCantidad") + fn_buscarValorTotal(totales, "especie21", "totalCantidad");
+                    let totalCantidadMaltratado = fn_buscarValorTotal(totales, "especie8", "totalCantidad");
+                    let totalCantidadTrozado = fn_buscarValorTotal(totales, "especie9", "totalCantidad") + fn_buscarValorTotal(totales, "especie10", "totalCantidad") + fn_buscarValorTotal(totales, "especie11", "totalCantidad") + fn_buscarValorTotal(totales, "especie12", "totalCantidad") + fn_buscarValorTotal(totales, "especie13", "totalCantidad") + fn_buscarValorTotal(totales, "especie15", "totalCantidad");
+
+                    let totalPesoYugo = fn_buscarValorDecimalTotal(totales, "especie1", "totalPeso") + fn_buscarValorDecimalTotal(totales, "especie2", "totalPeso") + fn_buscarValorDecimalTotal(totales, "especie17", "totalPeso");
+                    let totalPesoTecnica = fn_buscarValorDecimalTotal(totales, "especie3", "totalPeso") + fn_buscarValorDecimalTotal(totales, "especie4", "totalPeso") + fn_buscarValorDecimalTotal(totales, "especie18", "totalPeso");
+                    let totalPesoXX = fn_buscarValorDecimalTotal(totales, "especie16", "totalPeso") + fn_buscarValorDecimalTotal(totales, "especie19", "totalPeso");
+                    let totalPesoGallo = fn_buscarValorDecimalTotal(totales, "especie7", "totalPeso") + fn_buscarValorDecimalTotal(totales, "especie22", "totalPeso");
+                    let totalPesoGallinaDoble = fn_buscarValorDecimalTotal(totales, "especie5", "totalPeso") + fn_buscarValorDecimalTotal(totales, "especie20", "totalPeso");
+                    let totalPesoGallinaChica = fn_buscarValorDecimalTotal(totales, "especie14", "totalPeso") + fn_buscarValorDecimalTotal(totales, "especie23", "totalPeso");
+                    let totalPesoAhogadosSecos = fn_buscarValorDecimalTotal(totales, "especie6", "totalPeso") + fn_buscarValorDecimalTotal(totales, "especie21", "totalPeso");
+                    let totalPesoMaltratado = fn_buscarValorDecimalTotal(totales, "especie8", "totalPeso");
+                    let totalPesoTrozado = fn_buscarValorDecimalTotal(totales, "especie9", "totalPeso") + fn_buscarValorDecimalTotal(totales, "especie10", "totalPeso") + fn_buscarValorDecimalTotal(totales, "especie11", "totalPeso") + fn_buscarValorDecimalTotal(totales, "especie12", "totalPeso") + fn_buscarValorDecimalTotal(totales, "especie13", "totalPeso") + fn_buscarValorDecimalTotal(totales, "especie15", "totalPeso");
+
+                    let totalVentaYugo = fn_buscarValorDecimalTotal(totales, "especie1", "totalVenta") + fn_buscarValorDecimalTotal(totales, "especie2", "totalVenta") + fn_buscarValorDecimalTotal(totales, "especie17", "totalVenta");
+                    let totalVentaTecnica = fn_buscarValorDecimalTotal(totales, "especie3", "totalVenta") + fn_buscarValorDecimalTotal(totales, "especie4", "totalVenta") + fn_buscarValorDecimalTotal(totales, "especie18", "totalVenta");
+                    let totalVentaPolloXX = fn_buscarValorDecimalTotal(totales, "especie16", "totalVenta") + fn_buscarValorDecimalTotal(totales, "especie19", "totalVenta");
+                    let totalVentaGallo = fn_buscarValorDecimalTotal(totales, "especie7", "totalVenta") + fn_buscarValorDecimalTotal(totales, "especie22", "totalVenta");
+                    let totalVentaGallinaDoble = fn_buscarValorDecimalTotal(totales, "especie5", "totalVenta") + fn_buscarValorDecimalTotal(totales, "especie20", "totalVenta");
+                    let totalVentaAhogadosSecos = fn_buscarValorDecimalTotal(totales, "especie6", "totalVenta") + fn_buscarValorDecimalTotal(totales, "especie21", "totalVenta");
+                    let totalVentaPolloMaltratado = fn_buscarValorDecimalTotal(totales, "especie8", "totalVenta");
+                    let totalVentaGallinaChica = fn_buscarValorDecimalTotal(totales, "especie14", "totalVenta") + fn_buscarValorDecimalTotal(totales, "especie23", "totalVenta");
+                    let totalVentaTrozado = fn_buscarValorDecimalTotal(totales, "especie9", "totalVenta") + fn_buscarValorDecimalTotal(totales, "especie10", "totalVenta") + fn_buscarValorDecimalTotal(totales, "especie11", "totalVenta") + fn_buscarValorDecimalTotal(totales, "especie12", "totalVenta") + fn_buscarValorDecimalTotal(totales, "especie13", "totalVenta") + fn_buscarValorDecimalTotal(totales, "especie15", "totalVenta");
+
+                    $.ajax({
+                        url: '/fn_consulta_ConsultarProveedor',
+                        method: 'GET',
+                        data: {
+                            fechaDesde: fechaHoy,
+                            fechaHasta: fechaHoy,
+                        },
+                        success: function(response) {
+                            if (Array.isArray(response)) {
+
+                                const groupedData = response.reduce((acc, item) => {
+                                    const key = `${item.idProveedor}-${item.nombreEspecieCompra}`;
+                                    
+                                    const pesoNetoGuia = parseFloat(item.pesoBrutoGuia) - parseFloat(item.pesoTaraGuia);
+                                    const precioTotalGuia = item.precioGuia ? pesoNetoGuia * item.precioGuia : 0;
+                                
+                                    if (!acc[key]) {
+                                        acc[key] = {
+                                            idProveedor: item.idProveedor,
+                                            nombreEspecieCompra: item.nombreEspecieCompra,
+                                            cantidadGuia: 0,
+                                            pesoNetoGuia: 0,
+                                            precioTotalGuia: 0
+                                        };
+                                    }
+                                
+                                    acc[key].cantidadGuia += item.cantidadGuia;
+                                    acc[key].pesoNetoGuia += pesoNetoGuia;
+                                    acc[key].precioTotalGuia += precioTotalGuia;
+                                
+                                    return acc;
+                                }, {});
+                                
+                                const result = Object.values(groupedData);
+
+                                const arregloProveedores = {
+                                    tecnica : {
+                                        cantidad: 0,
+                                        pesoTotal: 0,
+                                        precioTotalGuia: 0,
+                                    },
+                                    yugo : {
+                                        cantidad: 0,
+                                        pesoTotal: 0,
+                                        precioTotalGuia: 0,
+                                    },
+                                    polloXX : {
+                                        cantidad: 0,
+                                        pesoTotal: 0,
+                                        precioTotalGuia: 0,
+                                    },
+                                    gallo : {
+                                        cantidad: 0,
+                                        pesoTotal: 0,
+                                        precioTotalGuia: 0,
+                                    },
+                                    gallinaDoble : {
+                                        cantidad: 0,
+                                        pesoTotal: 0,
+                                        precioTotalGuia: 0,
+                                    },
+                                    gallinaChica : {
+                                        cantidad: 0,
+                                        pesoTotal: 0,
+                                        precioTotalGuia: 0,
+                                    },
+                                    otros : {
+                                        cantidad: 0,
+                                        pesoTotal: 0,
+                                        precioTotalGuia: 0,
+                                    }
+                                }
+
+                                result.forEach(function(obj) {
+                                    let especieUpper = obj.nombreEspecieCompra;
+
+                                    if (especieUpper === "GALLO YUGO") {
+                                        arregloProveedores.gallo.cantidad += obj.cantidadGuia;
+                                        arregloProveedores.gallo.pesoTotal += obj.pesoNetoGuia;
+                                        arregloProveedores.gallo.precioTotalGuia += obj.precioTotalGuia;
+                                    }
+                                    if (especieUpper === "YUGO TRUJILLO AA" || especieUpper === "YUGO PIURA AA" || especieUpper === "YUGO PIURA") {
+                                        arregloProveedores.yugo.cantidad += obj.cantidadGuia;
+                                        arregloProveedores.yugo.pesoTotal += obj.pesoNetoGuia;
+                                        arregloProveedores.yugo.precioTotalGuia += obj.precioTotalGuia;
+                                    }
+                                    if (especieUpper === "YUGO PIURA GALLINA DOBLE" || especieUpper === "ATOCHE GALLINA DOBLE") {
+                                        arregloProveedores.gallinaDoble.cantidad += obj.cantidadGuia;
+                                        arregloProveedores.gallinaDoble.pesoTotal += obj.pesoNetoGuia;
+                                        arregloProveedores.gallinaDoble.precioTotalGuia += obj.precioTotalGuia;
+                                    }
+                                    if (especieUpper === "TECNICA AA" || especieUpper === "MASAY") {
+                                        arregloProveedores.tecnica.cantidad += obj.cantidadGuia;
+                                        arregloProveedores.tecnica.pesoTotal += obj.pesoNetoGuia;
+                                        arregloProveedores.tecnica.precioTotalGuia += obj.precioTotalGuia;
+                                    }
+                                    if (especieUpper === "YUGO PIURA XX" || especieUpper === "YUGO TRUJILLO XX") {
+                                        arregloProveedores.polloXX.cantidad += obj.cantidadGuia;
+                                        arregloProveedores.polloXX.pesoTotal += obj.pesoNetoGuia;
+                                        arregloProveedores.polloXX.precioTotalGuia += obj.precioTotalGuia;
+                                    }
+                                    if (especieUpper === "SALOMON GALLINA CHICA" || especieUpper === "YUGO PIURA GALLINA CHICA") {
+                                        arregloProveedores.gallinaChica.cantidad += obj.cantidadGuia;
+                                        arregloProveedores.gallinaChica.pesoTotal += obj.pesoNetoGuia;
+                                        arregloProveedores.gallinaChica.precioTotalGuia += obj.precioTotalGuia;
+                                    }
+                                    if (especieUpper === "CHIMU" || especieUpper === "OTROS") {
+                                        arregloProveedores.otros.cantidad += obj.cantidadGuia;
+                                        arregloProveedores.otros.pesoTotal += obj.pesoNetoGuia;
+                                        arregloProveedores.otros.precioTotalGuia += obj.precioTotalGuia;
+                                    }
+                                });
+
+                                $.ajax({
+                                    url: '/fn_consulta_TraerStock',
+                                    method: 'GET',
+                                    data: {
+                                        fecha: fechaHoy
+                                    },
+                                    success: function (response) {
+                                        if (Array.isArray(response)) {
+                                            // console.log("Response:", response);
+                                            let totalCantidadStockPollo = 0;
+                                            let totalPesoStockPollo = 0;
+                    
+                                            let stockTecnicaPeso = 0;
+                                            let stockYugoPeso = 0;
+                                            let stockPolloXXPeso = 0;
+                                            let stockGalloPeso = 0;
+                                            let stockGallinaDoblePeso = 0;
+                                            let stockGallinaChicaPeso = 0;
+                    
+                                            let stockTecnicaCantidad = 0;
+                                            let stockYugoCantidad = 0;
+                                            let stockPolloXXCantidad = 0;
+                                            let stockGalloCantidad = 0;
+                                            let stockGallinaDobleCantidad = 0;
+                                            let stockGallinaChicaCantidad = 0;
+
+                                            let stockTecnicaPrecio = 0;
+                                            let stockYugoPrecio = 0;
+                                            let stockPolloXXPrecio = 0;
+                                            let stockGalloPrecio = 0;
+                                            let stockGallinaDoblePrecio = 0;
+                                            let stockGallinaChicaPrecio = 0;
+                    
+                                            response.forEach(function (obj) {
+                                                totalCantidadStockPollo += parseFloat(obj.cantidad_stock) ? parseFloat(obj.cantidad_stock) : 0;
+                                                totalPesoStockPollo += parseFloat(obj.peso_stock) ? parseFloat(obj.peso_stock) : 0;
+                                                if(obj.nombreEspecie == "STOCK DE TECNICA"){
+                                                    stockTecnicaCantidad += parseFloat(obj.cantidad_stock) ? parseFloat(obj.cantidad_stock) : 0;
+                                                    stockTecnicaPeso += parseFloat(obj.peso_stock) ? parseFloat(obj.peso_stock) : 0;
+                                                    stockTecnicaPrecio += (parseFloat(obj.precio_stock) ? parseFloat(obj.precio_stock) : 0) * (parseFloat(obj.peso_stock) ? parseFloat(obj.peso_stock) : 0);
+                                                }else if(obj.nombreEspecie == "STOCK DE YUGO"){
+                                                    stockYugoCantidad += parseFloat(obj.cantidad_stock) ? parseFloat(obj.cantidad_stock) : 0;
+                                                    stockYugoPeso += parseFloat(obj.peso_stock) ? parseFloat(obj.peso_stock) : 0;
+                                                    stockYugoPrecio += (parseFloat(obj.precio_stock) ? parseFloat(obj.precio_stock) : 0) * (parseFloat(obj.peso_stock) ? parseFloat(obj.peso_stock) : 0);
+                                                }else if(obj.nombreEspecie == "STOCK XX"){
+                                                    stockPolloXXCantidad += parseFloat(obj.cantidad_stock) ? parseFloat(obj.cantidad_stock) : 0;
+                                                    stockPolloXXPeso += parseFloat(obj.peso_stock) ? parseFloat(obj.peso_stock) : 0;
+                                                    stockPolloXXPrecio += (parseFloat(obj.precio_stock) ? parseFloat(obj.precio_stock) : 0) * (parseFloat(obj.peso_stock) ? parseFloat(obj.peso_stock) : 0);
+                                                }else if(obj.nombreEspecie == "STOCK GALLO"){
+                                                    stockGalloCantidad += parseFloat(obj.cantidad_stock) ? parseFloat(obj.cantidad_stock) : 0;
+                                                    stockGalloPeso += parseFloat(obj.peso_stock) ? parseFloat(obj.peso_stock) : 0;
+                                                    stockGalloPrecio += (parseFloat(obj.precio_stock) ? parseFloat(obj.precio_stock) : 0) * (parseFloat(obj.peso_stock) ? parseFloat(obj.peso_stock) : 0);
+                                                }else if(obj.nombreEspecie == "STOCK GALLINA DOBLE"){
+                                                    stockGallinaDobleCantidad += parseFloat(obj.cantidad_stock) ? parseFloat(obj.cantidad_stock) : 0;
+                                                    stockGallinaDoblePeso += parseFloat(obj.peso_stock) ? parseFloat(obj.peso_stock) : 0;
+                                                    stockGallinaDoblePrecio += (parseFloat(obj.precio_stock) ? parseFloat(obj.precio_stock) : 0) * (parseFloat(obj.peso_stock) ? parseFloat(obj.peso_stock) : 0);
+                                                }else if(obj.nombreEspecie == "STOCK GALLINA CHICA"){
+                                                    stockGallinaChicaCantidad += parseFloat(obj.cantidad_stock) ? parseFloat(obj.cantidad_stock) : 0;
+                                                    stockGallinaChicaPeso += parseFloat(obj.peso_stock) ? parseFloat(obj.peso_stock) : 0;
+                                                    stockGallinaChicaPrecio += (parseFloat(obj.precio_stock) ? parseFloat(obj.precio_stock) : 0) * (parseFloat(obj.peso_stock) ? parseFloat(obj.peso_stock) : 0);
+                                                }
+                                            });
+
+                                            let totalCantidadSoloPollos = parseInt(arregloProveedores.yugo.cantidad) + parseInt(arregloProveedores.tecnica.cantidad) + parseInt(arregloProveedores.polloXX.cantidad);
+                                            let totalCantidadStockSoloPollos = parseInt(stockYugoCantidad) + parseInt(stockTecnicaCantidad) + parseInt(stockPolloXXCantidad);
+                                            let totalCantidadTotalSoloPollos = totalCantidadSoloPollos + totalCantidadStockSoloPollos;
+                                            let totalPesoTotalSoloPollos = (parseFloat(arregloProveedores.yugo.pesoTotal) + parseFloat(stockYugoPeso)) + (parseFloat(arregloProveedores.tecnica.pesoTotal) + parseFloat(stockTecnicaPeso)) + (parseFloat(arregloProveedores.polloXX.pesoTotal) + parseFloat(stockPolloXXPeso));
+
+                                            let totalCantidadGeneral = totalCantidadSoloPollos + parseInt(arregloProveedores.gallo.cantidad) + parseInt(arregloProveedores.gallinaDoble.cantidad) + parseInt(arregloProveedores.gallinaChica.cantidad);
+                                            let totalCantidadStockGeneral = totalCantidadStockSoloPollos + parseInt(stockGalloCantidad) + parseInt(stockGallinaDobleCantidad) + parseInt(stockGallinaChicaCantidad);
+                                            let totalCantidadTotalGeneral = totalCantidadGeneral + totalCantidadStockGeneral;
+                                            let totalPesoTotalGeneral = totalPesoTotalSoloPollos + (parseFloat(arregloProveedores.gallo.pesoTotal) + parseFloat(stockGalloPeso)) + (parseFloat(arregloProveedores.gallinaDoble.pesoTotal) + parseFloat(stockGallinaDoblePeso)) + (parseFloat(arregloProveedores.gallinaChica.pesoTotal) + parseFloat(stockGallinaChicaPeso));
+
+                                            let montoPrecio = stockTecnicaPrecio + stockYugoPrecio + stockPolloXXPrecio + stockGalloPrecio + stockGallinaDoblePrecio + stockGallinaChicaPrecio;
+                                            let montoTotalGuias = parseFloat(arregloProveedores.yugo.precioTotalGuia) + parseFloat(arregloProveedores.tecnica.precioTotalGuia) + parseFloat(arregloProveedores.polloXX.precioTotalGuia) + parseFloat(arregloProveedores.gallo.precioTotalGuia) + parseFloat(arregloProveedores.gallinaDoble.precioTotalGuia) + parseFloat(arregloProveedores.gallinaChica.precioTotalGuia) + montoPrecio;
+
+                                            let result = `
+                                                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900">
+                                                    <td class="text-sm uppercase font-semibold text-left border-2 py-2 px-3 text-white bg-blue-600 whitespace-nowrap">Pollo Yugo</td>
+                                                    <td class="text-sm font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${arregloProveedores.yugo.cantidad}</td>
+
+                                                    <td class="text-sm font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${parseFloat(arregloProveedores.yugo.pesoTotal).toFixed(2)}</td>
+                                                    <td class="text-sm font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(parseFloat(arregloProveedores.yugo.precioTotalGuia) / parseFloat(arregloProveedores.yugo.pesoTotal)).toFixed(2)}</td>
+                                                    <td class="text-sm font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${parseFloat(arregloProveedores.yugo.precioTotalGuia).toFixed(2)}</td>
+                                                </tr>
+                                                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900">
+                                                    <td class="text-sm uppercase font-semibold text-left border-2 py-2 px-3 text-white bg-blue-600 whitespace-nowrap">Stock Yugo</td>
+                                                    <td class="text-sm font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${stockYugoCantidad}</td>
+
+                                                    <td class="text-sm font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${parseFloat(stockYugoPeso).toFixed(2)}</td>
+                                                    <td class="text-sm font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(parseFloat(stockYugoPrecio) / parseFloat(stockYugoPeso)).toFixed(2)}</td>
+                                                    <td class="text-sm font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${parseFloat(stockYugoPrecio).toFixed(2)}</td>
+                                                </tr>
+                                                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900">
+                                                    <td class="text-sm uppercase font-semibold text-left border-2 py-2 px-3 text-white bg-blue-600 whitespace-nowrap">Pollo Tecnica</td>
+                                                    <td class="text-sm font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${arregloProveedores.tecnica.cantidad}</td>
+
+                                                    <td class="text-sm font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${parseFloat(arregloProveedores.tecnica.pesoTotal).toFixed(2)}</td>
+                                                    <td class="text-sm font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(parseFloat(arregloProveedores.tecnica.precioTotalGuia) / parseFloat(arregloProveedores.tecnica.pesoTotal)).toFixed(2)}</td>
+                                                    <td class="text-sm font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${parseFloat(arregloProveedores.tecnica.precioTotalGuia).toFixed(2)}</td>
+                                                </tr>
+                                                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900">
+                                                    <td class="text-sm uppercase font-semibold text-left border-2 py-2 px-3 text-white bg-blue-600 whitespace-nowrap">Stock Tecnica</td>
+                                                    <td class="text-sm font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${stockTecnicaCantidad}</td>
+
+                                                    <td class="text-sm font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${parseFloat(stockTecnicaPeso).toFixed(2)}</td>
+                                                    <td class="text-sm font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(parseFloat(stockTecnicaPrecio) / parseFloat(stockTecnicaPeso)).toFixed(2)}</td>
+                                                    <td class="text-sm font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${parseFloat(stockTecnicaPrecio).toFixed(2)}</td>
+                                                </tr>
+                                                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900">
+                                                    <td class="text-sm uppercase font-semibold text-left border-2 py-2 px-3 text-white bg-blue-600 whitespace-nowrap">Pollo XX</td>
+                                                    <td class="text-sm font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${arregloProveedores.polloXX.cantidad}</td>
+
+                                                    <td class="text-sm font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${parseFloat(arregloProveedores.polloXX.pesoTotal).toFixed(2)}</td>
+                                                    <td class="text-sm font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(parseFloat(arregloProveedores.polloXX.precioTotalGuia) / parseFloat(arregloProveedores.polloXX.pesoTotal)).toFixed(2)}</td>
+                                                    <td class="text-sm font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${parseFloat(arregloProveedores.polloXX.precioTotalGuia).toFixed(2)}</td>
+                                                </tr>
+                                                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900">
+                                                    <td class="text-sm uppercase font-semibold text-left border-2 py-2 px-3 text-white bg-blue-600 whitespace-nowrap">Stock XX</td>
+                                                    <td class="text-sm font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${stockPolloXXCantidad}</td>
+
+                                                    <td class="text-sm font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${parseFloat(stockPolloXXPeso).toFixed(2)}</td>
+                                                    <td class="text-sm font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(parseFloat(stockPolloXXPrecio) / parseFloat(stockPolloXXPeso)).toFixed(2)}</td>
+                                                    <td class="text-sm font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${parseFloat(stockPolloXXPrecio).toFixed(2)}</td>
+                                                </tr>
+                                                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900">
+                                                    <td class="text-sm uppercase font-semibold text-left border-2 py-2 px-3 text-white bg-blue-600 whitespace-nowrap">Gallo</td>
+                                                    <td class="text-sm font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${arregloProveedores.gallo.cantidad}</td>
+
+                                                    <td class="text-sm font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${parseFloat(arregloProveedores.gallo.pesoTotal).toFixed(2)}</td>
+                                                    <td class="text-sm font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(parseFloat(arregloProveedores.gallo.precioTotalGuia) / parseFloat(arregloProveedores.gallo.pesoTotal)).toFixed(2)}</td>
+                                                    <td class="text-sm font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${parseFloat(arregloProveedores.gallo.precioTotalGuia).toFixed(2)}</td>
+                                                </tr>
+                                                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900">
+                                                    <td class="text-sm uppercase font-semibold text-left border-2 py-2 px-3 text-white bg-blue-600 whitespace-nowrap">Stock Gallo</td>
+                                                    <td class="text-sm font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${stockGalloCantidad}</td>
+
+                                                    <td class="text-sm font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${parseFloat(stockGalloPeso).toFixed(2)}</td>
+                                                    <td class="text-sm font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(parseFloat(stockGalloPrecio) / parseFloat(stockGalloPeso)).toFixed(2)}</td>
+                                                    <td class="text-sm font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${parseFloat(stockGalloPrecio).toFixed(2)}</td>
+                                                </tr>
+                                                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900">
+                                                    <td class="text-sm uppercase font-semibold text-left border-2 py-2 px-3 text-white bg-blue-600 whitespace-nowrap">Gallina Doble</td>
+                                                    <td class="text-sm font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${arregloProveedores.gallinaDoble.cantidad}</td>
+
+                                                    <td class="text-sm font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${parseFloat(arregloProveedores.gallinaDoble.pesoTotal).toFixed(2)}</td>
+                                                    <td class="text-sm font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(parseFloat(arregloProveedores.gallinaDoble.precioTotalGuia) / parseFloat(arregloProveedores.gallinaDoble.pesoTotal)).toFixed(2)}</td>
+                                                    <td class="text-sm font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${parseFloat(arregloProveedores.gallinaDoble.precioTotalGuia).toFixed(2)}</td>
+                                                </tr>
+                                                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900">
+                                                    <td class="text-sm uppercase font-semibold text-left border-2 py-2 px-3 text-white bg-blue-600 whitespace-nowrap">Stock Gallina Doble</td>
+                                                    <td class="text-sm font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${stockGallinaDobleCantidad}</td>
+
+                                                    <td class="text-sm font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${parseFloat(stockGallinaDoblePeso).toFixed(2)}</td>
+                                                    <td class="text-sm font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(parseFloat(stockGallinaDoblePrecio) / parseFloat(stockGallinaDoblePeso)).toFixed(2)}</td>
+                                                    <td class="text-sm font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${parseFloat(stockGallinaDoblePrecio).toFixed(2)}</td>
+                                                </tr>
+                                                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900">
+                                                    <td class="text-sm uppercase font-semibold text-left border-2 py-2 px-3 text-white bg-blue-600 whitespace-nowrap">Gallina Chica</td>
+                                                    <td class="text-sm font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${arregloProveedores.gallinaChica.cantidad}</td>
+
+                                                    <td class="text-sm font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${parseFloat(arregloProveedores.gallinaChica.pesoTotal).toFixed(2)}</td>
+                                                    <td class="text-sm font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(parseFloat(arregloProveedores.gallinaChica.precioTotalGuia) / parseFloat(arregloProveedores.gallinaChica.pesoTotal)).toFixed(2)}</td>
+                                                    <td class="text-sm font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${parseFloat(arregloProveedores.gallinaChica.precioTotalGuia).toFixed(2)}</td>
+                                                </tr>
+                                                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900">
+                                                    <td class="text-sm uppercase font-semibold text-left border-2 py-2 px-3 text-white bg-blue-600 whitespace-nowrap">Stock Gallina Chica</td>
+                                                    <td class="text-sm font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${stockGallinaChicaCantidad}</td>
+
+                                                    <td class="text-sm font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${parseFloat(stockGallinaChicaPeso).toFixed(2)}</td>
+                                                    <td class="text-sm font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${(parseFloat(stockGallinaChicaPrecio) / parseFloat(stockGallinaChicaPeso)).toFixed(2)}</td>
+                                                    <td class="text-sm font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${parseFloat(stockGallinaChicaPrecio).toFixed(2)}</td>
+                                                </tr>
+                                                <tr class="bg-red-600 uppercase border-b dark:border-gray-700 text-gray-200">
+                                                    <td class="text-sm font-semibold text-left border-2 py-2 px-3 text-white whitespace-nowrap">Totales</td>
+                                                    <td class="text-sm font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${fn_formatearCantidades(totalCantidadTotalGeneral)}</td>
+
+                                                    <td class="text-sm font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">${fn_formatearImportes(totalPesoTotalGeneral)}</td>
+                                                    <td class="text-sm font-semibold text-left border-2 py-2 px-3 whitespace-nowrap"></td>
+                                                    <td class="text-sm font-semibold text-left border-2 py-2 px-3 whitespace-nowrap">S/. ${fn_formatearImportes(montoTotalGuias)}</td>
+                                                </tr>
+                                            `;
+                                            
+                                            $("#bodycantidadesPollosCalculo").empty();
+                                            $("#bodycantidadesPollosCalculo").html(result);
+                                        } else {
+                                            console.log("La respuesta no es un arreglo de objetos.");
+                                        }
+                                    },
+                                    error: function (error) {
+                                        console.error("ERROR", error);
+                                    }
+                                });
+                            } else {
+                                console.log("La respuesta no es un arreglo de objetos.");
+                            }
+                        },
+                        error: function(error) {
+                            console.error("ERROR", error);
+                        }
+                    });
+
+                } else {
+                    console.log("La respuesta no es un arreglo de objetos.");
+                }
+                
+            },
+            error: function(error) {
                 console.error("ERROR",error);
             }
         });

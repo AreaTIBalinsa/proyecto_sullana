@@ -3873,6 +3873,63 @@ jQuery(function ($) {
         $('#ModalEgresosModal').removeClass('flex');
     });
 
+    function contarFilas() {
+        let agregarFilasPeladores = $('.agregarFilasPeladores').length;
+        let agregarFilasEstibadores = $('.agregarFilasEstibadores').length;
+    
+        if (agregarFilasPeladores > agregarFilasEstibadores) {
+    
+            let diferencia = agregarFilasPeladores - agregarFilasEstibadores;
+            let nuevasFilas = "";
+    
+            for (var i = 0; i < diferencia; i++) {
+                let nuevaFila = `
+                    <tr class="agregarFilasEstibadores bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-200 text-gray-900 dark:text-white dark:hover:bg-gray-600 cursor-pointer">
+                        <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap hidden">&nbsp;</td>
+                        <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">&nbsp;</td>
+                        <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">&nbsp;</td>
+                        <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">&nbsp;</td>
+                        <td class="border-r dark:border-gray-700 p-2 text-center whitespace-wrap">&nbsp;</td>
+                        <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap hidden">&nbsp;</td>
+                        <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">&nbsp;</td>
+                        <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">&nbsp;</td>
+                        <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap hidden">&nbsp;</td>
+                    </tr>
+                `;
+                nuevasFilas += nuevaFila;
+            }
+    
+            // Agregar las nuevas filas al final de la tabla que contiene contarFilaPagos
+            $('.agregarFilasEstibadores:last').after(nuevasFilas);
+    
+        } else if (agregarFilasPeladores < agregarFilasEstibadores){
+            // console.log("contarFilaPagos tiene más filas o son iguales");
+
+            let diferencia = agregarFilasEstibadores - agregarFilasPeladores;
+            let nuevasFilas = "";
+    
+            for (var i = 0; i < diferencia; i++) {
+                let nuevaFila = `
+                    <tr class="agregarFilasPeladores bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-200 text-gray-900 dark:text-white dark:hover:bg-gray-600 cursor-pointer">
+                        <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap hidden">&nbsp;</td>
+                        <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">&nbsp;</td>
+                        <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">&nbsp;</td>
+                        <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">&nbsp;</td>
+                        <td class="border-r dark:border-gray-700 p-2 text-center whitespace-wrap">&nbsp;</td>
+                        <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap hidden">&nbsp;</td>
+                        <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">&nbsp;</td>
+                        <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">&nbsp;</td>
+                        <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap hidden">&nbsp;</td>
+                    </tr>
+                `;
+                nuevasFilas += nuevaFila;
+            }
+    
+            // Agregar las nuevas filas al final de la tabla que contiene filasagregarFilasPeladores
+            $('.agregarFilasPeladores:last').after(nuevasFilas);
+        }
+    }
+
     function fn_TraerModalDetallesEgresos(fecha,categoria) {
 
         // Realiza la solicitud AJAX para obtener sugerencias
@@ -3890,63 +3947,181 @@ jQuery(function ($) {
                     
                     let contenedorCategoriasEgresos = $('#bodyCategoriaModal');
                     contenedorCategoriasEgresos.empty();
+                    let contenedorCategoriasEgresos2 = $('#bodyCategoriaPLANILLAPELADOR');
+                    contenedorCategoriasEgresos2.empty();
+                    let contenedorCategoriasEgresos3 = $('#bodyCategoriaPLANILLAESTIBADOR');
+                    contenedorCategoriasEgresos3.empty();
+                    $('.divTablasPlanillaDivs').remove();
                     
-                    let cantidadModal = 0;
-                    let montoModal = 0;
-                    let contador = 0;
+                    if(categoria != 7){
+                        $('#divOcultarEgresoPlanilla').hide();
+                        $('#divOcultarEgresosOtros').show();
+                        
+                        let cantidadModal = 0;
+                        let montoModal = 0;
+                        let contador = 0;
 
-                    // Iterar sobre los objetos y mostrar sus propiedades
-                    response.forEach(function (obj) {
-                        cantidadModal += parseInt(obj.cantidad_detalles === null ? 0 : obj.cantidad_detalles);
-                        montoModal += parseFloat(obj.monto_detalle);
-                        contador += 1;
-                        // Crear una nueva fila
+                        let nombreCategoria = "";
+                        let idCategoria = 0;
+
+                        // Iterar sobre los objetos y mostrar sus propiedades
+                        response.forEach(function (obj) {
+                            cantidadModal += parseInt(obj.cantidad_detalles === null ? 0 : obj.cantidad_detalles);
+                            montoModal += parseFloat(obj.monto_detalle);
+                            contador += 1;
+                            nombreCategoria = obj.nombre_category;
+                            idCategoria = obj.id_category;
+
+                            // Crear una nueva fila
+                            let nuevaFila = `
+                                <tr class="eliminarDetalleEgreso bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-200 text-gray-900 dark:text-white dark:hover:bg-gray-600 cursor-pointer">
+                                    <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap hidden">${obj.id_detalle}</td>
+                                    <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap w-12">${contador}</td>
+                                    <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.fecha_detalle}</td>
+                                    <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.hora_detalle}</td>
+                                    <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.uso_detalle_egreso}</td>
+                                    <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.cantidad_detalles === null ? "" : obj.cantidad_detalles}</td>
+                                    <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.precio_detalle}</td>
+                                    <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.monto_detalle}</td>
+                                    <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.observacion === null ? "" : obj.observacion}</td>
+                                    <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap hidden">${obj.id_category}</td>
+                                </tr>
+                            `;
+                            
+                            // Agregar la nueva tabla al tbody
+                            contenedorCategoriasEgresos.append(nuevaFila);
+                        });
+
+                        if(idCategoria == 0 ){
+                            $("#captionEgresosModal").html('Egresos sin Clasificar');
+                            $("#captionEgresosModal, #headerEgresosModal").removeClass('bg-blue-600');
+                            $("#captionEgresosModal, #headerEgresosModal").addClass('bg-red-600');
+                        }else{
+                            $("#captionEgresosModal").html(`${nombreCategoria}`);
+                            $("#captionEgresosModal, #headerEgresosModal").removeClass('bg-red-600');
+                            $("#captionEgresosModal, #headerEgresosModal").addClass('bg-blue-600');
+                        }
+
                         let nuevaFila = `
-                            <tr class="eliminarDetalleEgreso bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-200 text-gray-900 dark:text-white dark:hover:bg-gray-600 cursor-pointer">
-                                <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap hidden">${obj.id_detalle}</td>
-                                <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap w-12">${contador}</td>
-                                <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.fecha_detalle}</td>
-                                <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.hora_detalle}</td>
-                                <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.uso_detalle_egreso}</td>
-                                <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.cantidad_detalles === null ? "" : obj.cantidad_detalles}</td>
-                                <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.precio_detalle}</td>
-                                <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.monto_detalle}</td>
-                                <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.observacion === null ? "" : obj.observacion}</td>
-                                <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap hidden">${obj.id_category}</td>
+                            <tr class="bg-blue-600 border-b dark:border-gray-700 dark:text-white cursor-pointer font-bold">
+                                <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap"></td>
+                                <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap"></td>
+                                <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap"></td>
+                                <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">Total</td>
+                                <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${cantidadModal}</td>
+                                <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap"></td>
+                                <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${montoModal.toFixed(2)}</td>
+                                <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap"></td>
+                                <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap hidden"></td>
                             </tr>
                         `;
                         
                         // Agregar la nueva tabla al tbody
                         contenedorCategoriasEgresos.append(nuevaFila);
-                        if(obj.id_category == 0 ){
-                            $("#captionEgresosModal").html('Egresos sin Clasificar');
-                            $("#captionEgresosModal, #headerEgresosModal").removeClass('bg-blue-600');
-                            $("#captionEgresosModal, #headerEgresosModal").addClass('bg-red-600');
-                        }else{
-                            $("#captionEgresosModal").html(`${obj.nombre_category}`);
-                            $("#captionEgresosModal, #headerEgresosModal").removeClass('bg-red-600');
-                            $("#captionEgresosModal, #headerEgresosModal").addClass('bg-blue-600');
-                        }
-                    });
+                        $('#ModalEgresosModal').addClass('flex');
+                        $('#ModalEgresosModal').removeClass('hidden');
+                    }else{
+                        $('#divOcultarEgresoPlanilla').show();
+                        $('#divOcultarEgresosOtros').hide();
 
-                    let nuevaFila = `
-                        <tr class="bg-blue-600 border-b dark:border-gray-700 dark:text-white cursor-pointer font-bold">
-                            <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap"></td>
-                            <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap"></td>
-                            <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap"></td>
-                            <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">Total</td>
-                            <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${cantidadModal}</td>
-                            <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap"></td>
-                            <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${montoModal.toFixed(2)}</td>
-                            <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap"></td>
-                            <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap hidden"></td>
-                        </tr>
-                    `;
-                    
-                    // Agregar la nueva tabla al tbody
-                    contenedorCategoriasEgresos.append(nuevaFila);
-                    $('#ModalEgresosModal').addClass('flex');
-                    $('#ModalEgresosModal').removeClass('hidden');
+                        let peladores = 0;
+                        let estibadores = 0;
+
+                        let totalPeladores = 0;
+                        let totalEstibadores = 0;
+                        
+                        response.forEach(function (obj) {
+                            if(obj.campoExtra == "PELADOR"){
+                                let mostrarCargo = obj.campoExtra === null ? "" : obj.campoExtra;
+                                peladores++;
+                                totalPeladores += parseFloat(obj.monto_detalle);
+                                // Crear una nueva fila
+                                let nuevaFila = `
+                                    <tr class="eliminarDetalleEgreso agregarFilasPeladores bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-200 text-gray-900 dark:text-white dark:hover:bg-gray-600 cursor-pointer">
+                                        <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap hidden">${obj.id_detalle}</td>
+                                        <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.fecha_detalle}</td>
+                                        <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.hora_detalle}</td>
+                                        <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.uso_detalle_egreso}</td>
+                                        <td class="border-r dark:border-gray-700 p-2 text-center whitespace-wrap">${mostrarCargo}</td>
+                                        <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.monto_detalle}</td>
+                                        <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.observacion === null ? "" : obj.observacion}</td>
+                                        <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap hidden">${obj.id_category}</td>
+                                    </tr>
+                                `;
+            
+                                // Agregar la nueva fila al tbody correspondiente
+                                let contenedorCategoriasEgresos = $(`#bodyCategoriaPLANILLAPELADOR`);
+                                contenedorCategoriasEgresos.append(nuevaFila);
+                            }else if (obj.campoExtra == "ESTIBADOR"){
+                                let mostrarCargo = obj.campoExtra === null ? "" : obj.campoExtra;
+                                estibadores++;
+                                totalEstibadores += parseFloat(obj.monto_detalle);
+                                // Crear una nueva fila
+                                let nuevaFila = `
+                                    <tr class="eliminarDetalleEgreso agregarFilasEstibadores bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-200 text-gray-900 dark:text-white dark:hover:bg-gray-600 cursor-pointer">
+                                        <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap hidden">${obj.id_detalle}</td>
+                                        <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.fecha_detalle}</td>
+                                        <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.hora_detalle}</td>
+                                        <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.uso_detalle_egreso}</td>
+                                        <td class="border-r dark:border-gray-700 p-2 text-center whitespace-wrap">${mostrarCargo}</td>
+                                        <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.monto_detalle}</td>
+                                        <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.observacion === null ? "" : obj.observacion}</td>
+                                        <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap hidden">${obj.id_category}</td>
+                                    </tr>
+                                `;
+            
+                                // Agregar la nueva fila al tbody correspondiente
+                                let contenedorCategoriasEgresos = $(`#bodyCategoriaPLANILLAESTIBADOR`);
+                                contenedorCategoriasEgresos.append(nuevaFila);
+                            }
+                        });
+
+                        contarFilas();
+
+                        let filaTotales = `
+                            <tr class="bg-blue-600 text-white font-bold">
+                                <td colspan="3" class="border-r dark:border-gray-700 p-2 text-center">Total</td>
+                                <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">PELADORES : ${peladores}</td>
+                                <td class="border-r dark:border-gray-700 p-2 text-center hidden"></td>
+                                <td class="border-r dark:border-gray-700 p-2 text-center">${totalPeladores.toFixed(2)}</td>
+                                <td class="border-r dark:border-gray-700 p-2 text-center"></td>
+                                <td class="border-r dark:border-gray-700 p-2 text-center hidden"></td>
+                            </tr>
+                        `;
+    
+                        let contenedorTotales = $(`#bodyCategoriaPLANILLAPELADOR`);
+                        contenedorTotales.append(filaTotales);
+                        
+                        let filaTotales2 = `
+                            <tr class="bg-blue-600 text-white font-bold">
+                                <td colspan="3" class="border-r dark:border-gray-700 p-2 text-center">Total</td>
+                                <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">ESTIBADORES : ${estibadores}</td>
+                                <td class="border-r dark:border-gray-700 p-2 text-center hidden"></td>
+                                <td class="border-r dark:border-gray-700 p-2 text-center">${totalEstibadores.toFixed(2)}</td>
+                                <td class="border-r dark:border-gray-700 p-2 text-center"></td>
+                                <td class="border-r dark:border-gray-700 p-2 text-center hidden"></td>
+                            </tr>
+                        `;
+    
+                        let contenedorTotales2 = $(`#bodyCategoriaPLANILLAESTIBADOR`);
+                        contenedorTotales2.append(filaTotales2);
+
+                        let totalCantidadPlanilla = parseInt(peladores) + parseInt(estibadores);
+                        let totalAPagarPlanilla = parseFloat(totalPeladores) + parseFloat(totalEstibadores);
+
+                        let nuevaFilaDivTablasPlanilla = `
+                        <div class="bg-blue-600 w-full divTablasPlanillaDivs border-t-2 text-sm font-bold text-gray-100 text-center flex divide-x divide-gray-200 items-center gap-4">
+                            <div class="flex-1 p-2">Total de Trabajadores</div>
+                            <div class="flex-1 p-2">${totalCantidadPlanilla}</div>
+                            <div class="flex-1 p-2">S/ ${totalAPagarPlanilla.toFixed(2)}</div>
+                        </div>`
+
+                        let divTablasPlanilla = $('#divTablasPlanilla');
+                        divTablasPlanilla.append(nuevaFilaDivTablasPlanilla);
+
+                        $('#ModalEgresosModal').addClass('flex');
+                        $('#ModalEgresosModal').removeClass('hidden');
+                    }
 
                 } else {
                     console.log("La respuesta no es un arreglo de objetos.");

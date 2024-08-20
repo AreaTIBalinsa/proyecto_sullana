@@ -233,6 +233,7 @@ jQuery(function($) {
             let totalViernesGeneral = 0;
             let totalSabadoGeneral = 0;
             let totalDomingoGeneral = 0;
+            let totalEndeudamiento = 0;
 
             resultadosConsolidados.forEach(function(obj){
                 if ((obj.nombreCompleto).trim() != "PAUL"){
@@ -280,6 +281,7 @@ jQuery(function($) {
                     totalDomingoGeneral+= totalDomingo
 
                     let limitEndeudamiento = parseFloat(obj.limitEndeudamiento);
+                    totalEndeudamiento += limitEndeudamiento
 
                     let totalFormateado = limitEndeudamiento.toLocaleString('es-ES', {
                         minimumFractionDigits: 2,
@@ -307,7 +309,8 @@ jQuery(function($) {
 
             let nuevaFila = $('<tr class="bg-blue-600 text-white border-b dark:border-gray-700 cursor-pointer sticky bottom-0">');
             // Agregar las celdas con la información
-            nuevaFila.append($('<td class="border dark:border-gray-700 p-2 text-center whitespace-nowrap" colspan="2">').text("TOTAL"));
+            nuevaFila.append($('<td class="border dark:border-gray-700 p-2 text-center whitespace-nowrap">').text("TOTAL"));
+            nuevaFila.append($('<td class="border dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(fn_formatearImportes(totalEndeudamiento)));
             nuevaFila.append($('<td class="border dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(fn_formatearImportes(totalLunesGeneral)));
             nuevaFila.append($('<td class="border dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(fn_formatearImportes(totalMartesGeneral)));
             nuevaFila.append($('<td class="border dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(fn_formatearImportes(totalMiercolesGeneral)));

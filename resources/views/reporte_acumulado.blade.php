@@ -203,39 +203,62 @@
             </table>
         </div>
 
-        <div class="mt-5 flex gap-10 flex-wrap items-start justify-start md:mx-5 my-5">
-            <div class="overflow-auto relative" id="divTotalesUno">
-                <table class="mb-2 border-collapse">
-                    <caption class="bg-blue-600 text-gray-50 p-2 font-bold text-lg rounded-t-lg border-x-2 border-t-2 z-50">TOTALES</caption>
-                    <thead class="bg-blue-600 text-gray-50 uppercase z-50 text-sm">
-                        <tr>
-                            <th class="bg-blue-600 border-2 px-2 py-1 text-left">VARIEDAD</th>
-                            <th class="bg-blue-600 border-2 px-2 py-1">CANTIDAD</th>
-                            <th class="bg-blue-600 border-2 px-2 py-1">PESO</th>
-                            <th class="bg-blue-600 border-2 px-2 py-1">SUBTOTAL</th>
-                        </tr>
-                    </thead>
-                    <tbody id="bodyReporteAcumuladoExcelTotales" class="text-gray-900 dark:text-gray-50 ">
-                        <tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="4" class="text-center border-2">No hay datos</td></tr>
-                    </tbody>
-                </table>
+        <div class="mt-5 flex gap-4 flex-wrap items-start justify-start md:mx-5 my-5">
+            <div class="overflow-hidden flex flex-col md:flex-1 gap-4">
+                <div class="overflow-auto relative aside_scrollEDINSON">
+                    <table class="border-collapse w-full">
+                        <caption class="bg-blue-600 text-gray-50 p-2 font-bold text-lg rounded-t-lg border-x-2 border-t-2 z-50">TOTALES</caption>
+                        <thead class="bg-blue-600 text-gray-50 uppercase z-50 text-sm">
+                            <tr>
+                                <th class="bg-blue-600 border-2 px-2 py-1 text-left">VARIEDAD</th>
+                                <th class="bg-blue-600 border-2 px-2 py-1">CANTIDAD</th>
+                                <th class="bg-blue-600 border-2 px-2 py-1">PESO</th>
+                                <th class="bg-blue-600 border-2 px-2 py-1">SUBTOTAL</th>
+                            </tr>
+                        </thead>
+                        <tbody id="bodyReporteAcumuladoExcelTotales" class="text-gray-900 dark:text-gray-50 ">
+                            <tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="4" class="text-center border-2">No hay datos</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="overflow-auto relative aside_scrollEDINSON">
+                    <table class="mb-2 w-full">
+                        <thead class="bg-blue-600 text-gray-50 uppercase z-50 text-sm">
+                            <tr>
+                                <th class="bg-blue-600 border-2 px-2 py-2 text-center text-lg" colspan="3">AHOGADOS, SECOS,<br>MALTRADOS, TROZADOS</th>
+                                <th class="bg-blue-600 border-2 px-2 py-1"><button class="w-full bg-green-600 rounded-lg p-2" id="filtrarDetalleTrozado"><i class='bx bx-detail'></i></button></th>
+                            </tr>
+                            <tr>
+                                <th class="bg-blue-600 border-2 px-2 py-1 text-left">VARIEDAD</th>
+                                <th class="bg-blue-600 border-2 px-2 py-1">CANTIDAD</th>
+                                <th class="bg-blue-600 border-2 px-2 py-1">PESO</th>
+                                <th class="bg-blue-600 border-2 px-2 py-1">SUBTOTAL</th>
+                            </tr>
+                        </thead>
+                        <tbody id="bodyReporteAcumuladoExcelTotalesTrozado" class="text-gray-900 dark:text-gray-50 ">
+                            <tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="4" class="text-center border-2">No hay datos</td></tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            <div class="overflow-auto relative" id="divTotalesDos">
-                <table class="mb-2">
-                    <thead class="bg-blue-600 text-gray-50 uppercase z-50 text-sm">
-                        <tr>
-                            <th class="bg-blue-600 border-2 px-2 py-2 text-center text-lg" colspan="3">AHOGADOS, SECOS,<br>MALTRADOS, TROZADOS</th>
-                            <th class="bg-blue-600 border-2 px-2 py-1"><button class="w-full bg-green-600 rounded-lg p-2" id="filtrarDetalleTrozado"><i class='bx bx-detail'></i></button></th>
+            <div class="overflow-auto aside_scrollEDINSON relative md:flex-1">
+                <table class="border-collapse w-full text-gray-900 dark:text-white relative">
+                    <thead id="inicioCantidadesPollos" class="text-gray-50 text-sm">
+                        <tr class="uppercase">
+                            <th class="text-white border-[2px] bg-red-600 border-b-1 border-gray-300 dark:border-white py-2 md:text-md text-center px-2" colspan="5">Compra</th>
                         </tr>
-                        <tr>
-                            <th class="bg-blue-600 border-2 px-2 py-1 text-left">VARIEDAD</th>
-                            <th class="bg-blue-600 border-2 px-2 py-1">CANTIDAD</th>
-                            <th class="bg-blue-600 border-2 px-2 py-1">PESO</th>
-                            <th class="bg-blue-600 border-2 px-2 py-1">SUBTOTAL</th>
+                        <tr class="uppercase">
+                            <th class="text-white border-[2px] bg-blue-600 border-b-1 border-gray-300 dark:border-white py-2 md:text-md text-left px-2">Variedad</th>
+                            <th class="text-white border-[2px] bg-blue-600 border-b-1 border-gray-300 dark:border-white py-2 md:text-md text-left px-2">Cantidad</th>
+                            {{-- <th class="text-white border-[2px] bg-blue-600 border-b-1 border-gray-300 dark:border-white py-2 md:text-md text-left px-2">Stock</th>
+                            <th class="text-white border-[2px] bg-blue-600 border-b-1 border-gray-300 dark:border-white py-2 md:text-md text-left px-2">Total</th> --}}
+                            <th class="text-white border-[2px] bg-blue-600 border-b-1 border-gray-300 dark:border-white py-2 md:text-md text-left px-2">Peso</th>
+                            <th class="text-white border-[2px] bg-blue-600 border-b-1 border-gray-300 dark:border-white py-2 md:text-md text-left px-2">Precio</th>
+                            <th class="text-white border-[2px] bg-blue-600 border-b-1 border-gray-300 dark:border-white py-2 md:text-md text-left px-2">Monto</th>
                         </tr>
                     </thead>
-                    <tbody id="bodyReporteAcumuladoExcelTotalesTrozado" class="text-gray-900 dark:text-gray-50 ">
-                        <tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="4" class="text-center border-2">No hay datos</td></tr>
+                    <tbody id="bodycantidadesPollosCalculo">
+                        <tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="7" class="text-center border-2">No hay datos</td></tr>
                     </tbody>
                 </table>
             </div>
