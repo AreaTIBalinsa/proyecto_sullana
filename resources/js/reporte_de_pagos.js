@@ -41,6 +41,7 @@ jQuery(function ($) {
     fn_TraerEgresosPaulFechas(fechaHoy,fechaHoy);
     fn_RegistroDescuentos(fechaHoy,fechaHoy);
     declarar_especies_descuentos();
+    fn_declararCategorias();
 
     /* ============ Eventos ============ */
 
@@ -3865,6 +3866,8 @@ jQuery(function ($) {
     $(document).on('dblclick', ".verDetalleEgreso", function (event) {
         let fecha = $(this).closest("tr").find("td:eq(0)").text();
         let categoria = $(this).closest("tr").find("td:eq(5)").text();
+        $("#guardaCategoria").val(categoria);
+        $("#guardaFecha").val(fecha);
         fn_TraerModalDetallesEgresos(fecha, categoria);
     });
 
@@ -3959,7 +3962,6 @@ jQuery(function ($) {
                         
                         let cantidadModal = 0;
                         let montoModal = 0;
-                        let contador = 0;
 
                         let nombreCategoria = "";
                         let idCategoria = 0;
@@ -3968,7 +3970,6 @@ jQuery(function ($) {
                         response.forEach(function (obj) {
                             cantidadModal += parseInt(obj.cantidad_detalles === null ? 0 : obj.cantidad_detalles);
                             montoModal += parseFloat(obj.monto_detalle);
-                            contador += 1;
                             nombreCategoria = obj.nombre_category;
                             idCategoria = obj.id_category;
 
@@ -3976,7 +3977,6 @@ jQuery(function ($) {
                             let nuevaFila = `
                                 <tr class="eliminarDetalleEgreso bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-200 text-gray-900 dark:text-white dark:hover:bg-gray-600 cursor-pointer">
                                     <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap hidden">${obj.id_detalle}</td>
-                                    <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap w-12">${contador}</td>
                                     <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.fecha_detalle}</td>
                                     <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.hora_detalle}</td>
                                     <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.uso_detalle_egreso}</td>
@@ -4011,7 +4011,6 @@ jQuery(function ($) {
                                 <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${cantidadModal}</td>
                                 <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap"></td>
                                 <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${montoModal.toFixed(2)}</td>
-                                <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap"></td>
                                 <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap hidden"></td>
                             </tr>
                         `;
@@ -4043,6 +4042,7 @@ jQuery(function ($) {
                                         <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.hora_detalle}</td>
                                         <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.uso_detalle_egreso}</td>
                                         <td class="border-r dark:border-gray-700 p-2 text-center whitespace-wrap">${mostrarCargo}</td>
+                                        <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap hidden"></td>
                                         <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.monto_detalle}</td>
                                         <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.observacion === null ? "" : obj.observacion}</td>
                                         <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap hidden">${obj.id_category}</td>
@@ -4064,6 +4064,7 @@ jQuery(function ($) {
                                         <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.hora_detalle}</td>
                                         <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.uso_detalle_egreso}</td>
                                         <td class="border-r dark:border-gray-700 p-2 text-center whitespace-wrap">${mostrarCargo}</td>
+                                        <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap hidden"></td>
                                         <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.monto_detalle}</td>
                                         <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.observacion === null ? "" : obj.observacion}</td>
                                         <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap hidden">${obj.id_category}</td>
@@ -4134,5 +4135,224 @@ jQuery(function ($) {
         });
 
     };
+
+    function fn_declararCategorias(){
+        $.ajax({
+            url: '/fn_consulta_TraerTablasCategoriasEgresos',
+            method: 'GET',
+            success: function(response) {
+                // Verificar si la respuesta es un arreglo de objetos
+                if (Array.isArray(response)) {
+
+                    // Obtener el select
+                    let selectPresentacionEditar = $('#selectAgregarCategoriaEditar2');
+                    
+                    // Vaciar el select actual, si es necesario
+                    selectPresentacionEditar.empty();
+
+                    // Agregar la opción inicial "Seleccione tipo"
+                    selectPresentacionEditar.append($('<option>', {
+                        value: '0',
+                        text: 'Sin clasificar',
+                        selected: true
+                    }));
+
+                    // Iterar sobre los objetos y mostrar sus propiedades
+
+                    response.forEach(function(obj) {
+                        let option = $('<option>', {
+                            value: obj.id_category,
+                            text: obj.nombre_category
+                        });
+                        selectPresentacionEditar.append(option);
+                    });
+
+                } else {
+                    console.log("La respuesta no es un arreglo de objetos.");
+                }
+            },
+            error: function(error) {
+                console.error("ERROR",error);
+            }
+        });
+    }
+
+    $(document).on('contextmenu', '.eliminarDetalleEgreso', function (e) {
+        e.preventDefault();
+        let idDetalleEgreso = $(this).closest("tr").find("td:first").text();
+        Swal.fire({
+            title: '¿Desea eliminar el Registro?',
+            text: "¡Estas seguro de eliminar el registro!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: '¡No, cancelar!',
+            confirmButtonText: '¡Si,eliminar!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+            fn_EliminarEgreso(idDetalleEgreso);
+            }
+        })
+    });
+
+    function fn_EliminarEgreso(idDetalleEgreso){
+        $.ajax({
+            url: '/fn_consulta_EliminarDetalleEgreso',
+            method: 'GET',
+            data: {
+                idDetalleEgreso: idDetalleEgreso,
+            },
+            success: function(response) {
+                if (response.success) {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Se elimino el registro correctamente',
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+                    let categoria = $("#guardaCategoria").val();
+                    let fecha = $("#guardaFecha").val();
+
+                    fn_TraerModalDetallesEgresos(fecha,categoria)
+                }
+            },
+            error: function(error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Error: Ocurrio un error inesperado durante la operacion',
+                  })
+                console.error("ERROR",error);
+            }
+        });
+    }
+
+    $('.cerrarModalAgregarEgresoEditar2, #ModalAgregarEgresoEditar2 .opacity-75').on('click', function (e) {
+        $('#ModalAgregarEgresoEditar2').addClass('hidden');
+        $('#ModalAgregarEgresoEditar2').removeClass('flex');
+    });
+
+    $(document).on("dblclick", ".eliminarDetalleEgreso", function() {      
+        $('#ModalAgregarEgresoEditar2').addClass('flex');
+        $('#ModalAgregarEgresoEditar2').removeClass('hidden');
+        let categoria = $(this).closest("tr").find("td:eq(8)").text();
+        console.log("categoria", categoria);
+        if(categoria != 7){
+            let idDetalleEgreso = $(this).closest("tr").find("td:eq(0)").text();
+            let fecha = $(this).closest("tr").find("td:eq(1)").text();
+            let hora = $(this).closest("tr").find("td:eq(2)").text();
+            let usoEgreso = $(this).closest("tr").find("td:eq(3)").text();
+            let cantidad = $(this).closest("tr").find("td:eq(4)").text();
+            let precio = $(this).closest("tr").find("td:eq(5)").text();
+            let monto = $(this).closest("tr").find("td:eq(6)").text();
+            let observacion = $(this).closest("tr").find("td:eq(7)").text();
+
+            $("#fechaAgregarEgresoEditar2").val(fecha);
+            $("#horaAgregarEgresoEditar2").val(hora);
+            $("#usoAgregarEgresoEditar2").val(usoEgreso);
+            $("#cantidadAgregarEgresoEditar2").val(cantidad);
+            $("#precioAgregarEgresoEditar2").val(precio);
+            $("#montoAgregarEgresoEditar2").val(monto);
+            $("#comentarioAgregarEgresoEditar2").val(observacion);
+            $("#selectAgregarCategoriaEditar2").val(categoria);
+            $("#idDetalleEgreso").val(idDetalleEgreso);
+            $("#ocultarSiPlanilla").show();
+            $("#mostrarSiPlanilla").hide();
+            $("#montoAgregarEgresoEditar2").attr('disabled','disabled');
+        }else{
+            console.log("Ingreso")
+            let idDetalleEgreso = $(this).closest("tr").find("td:eq(0)").text();
+            let fecha = $(this).closest("tr").find("td:eq(1)").text();
+            let hora = $(this).closest("tr").find("td:eq(2)").text();
+            let usoEgreso = $(this).closest("tr").find("td:eq(3)").text();
+            let cantidad = $(this).closest("tr").find("td:eq(4)").text();
+            let monto = $(this).closest("tr").find("td:eq(6)").text();
+            let observacion = $(this).closest("tr").find("td:eq(7)").text();
+
+            $("#fechaAgregarEgresoEditar2").val(fecha);
+            $("#horaAgregarEgresoEditar2").val(hora);
+            $("#usoAgregarEgresoEditar2").val(usoEgreso);
+            $("#montoAgregarEgresoEditar2").val(monto);
+            $("#selectEditarEgresoPlanilla2").val(cantidad);
+            $("#cantidadAgregarEgresoEditar2").val("");
+            $("#precioAgregarEgresoEditar2").val(0);
+            $("#comentarioAgregarEgresoEditar2").val(observacion);
+            $("#selectAgregarCategoriaEditar2").val(categoria);
+            $("#idDetalleEgreso").val(idDetalleEgreso);
+            $("#ocultarSiPlanilla").hide();
+            $("#mostrarSiPlanilla").show();
+            $("#montoAgregarEgresoEditar2").removeAttr('disabled');
+        }
+        
+    });
+
+    $(document).on("click", "#btnAgregarEgresoEditar2", function() {
+        let fechaDetalle = $('#fechaAgregarEgresoEditar2').val();
+        let horaDetalle = $('#horaAgregarEgresoEditar2').val();
+        let usoEgreso = $('#usoAgregarEgresoEditar2').val();
+        let cantidadDetalle = $('#cantidadAgregarEgresoEditar2').val();
+        let precioDetalle = $('#precioAgregarEgresoEditar2').val();
+        let montoDetalle = $('#montoAgregarEgresoEditar2').val();
+        let observacionDetalle = $('#comentarioAgregarEgresoEditar2').val();
+        let categoriaDetalle = $('#selectAgregarCategoriaEditar2').val();
+        let idDetalleEgreso = $('#idDetalleEgreso').val();
+        let selectEditarEgresoPlanilla = $('#selectEditarEgresoPlanilla2').val();
+
+        if (usoEgreso.trim() == ""){
+            alertify.notify('Debe ingresar uso de egreso y seleccionar categoria', 'error', 3);
+            return;
+        }else if(montoDetalle.trim() == ""){
+            alertify.notify('Debe ingresar precio y cantidad(opcional)', 'error', 3);
+            return;
+        }else{
+            fn_AgregarDetalleEgresoEditar(fechaDetalle, horaDetalle, usoEgreso, cantidadDetalle, precioDetalle, montoDetalle, observacionDetalle, categoriaDetalle, idDetalleEgreso, selectEditarEgresoPlanilla);
+        }
+    });
+
+    function fn_AgregarDetalleEgresoEditar(fechaDetalle, horaDetalle, usoEgreso, cantidadDetalle, precioDetalle, montoDetalle, observacionDetalle, categoriaDetalle, idDetalleEgreso, selectEditarEgresoPlanilla) {
+        $.ajax({
+            url: '/fn_consulta_AgregarDetalleEgresoEditar',
+            method: 'GET',
+            data: {
+                fechaDetalle: fechaDetalle,
+                horaDetalle: horaDetalle,
+                usoEgreso: usoEgreso,
+                cantidadDetalle: cantidadDetalle,
+                precioDetalle: precioDetalle,
+                montoDetalle: montoDetalle,
+                observacionDetalle: observacionDetalle,
+                categoriaDetalle: categoriaDetalle,
+                idDetalleEgreso: idDetalleEgreso,
+                selectEditarEgresoPlanilla: selectEditarEgresoPlanilla,
+            },
+            success: function(response) {
+                if (response.success) {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Se edito el egreso correctamente',
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+                    $('#ModalAgregarEgresoEditar2').addClass('hidden');
+                    $('#ModalAgregarEgresoEditar2').removeClass('flex');
+                    let categoria = $("#guardaCategoria").val();
+                    let fecha = $("#guardaFecha").val();
+
+                    fn_TraerModalDetallesEgresos(fecha,categoria)
+                }
+            },
+            error: function(error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Error: Ocurrio un error inesperado durante la operacion',
+                  })
+                console.error("ERROR",error);
+            }
+        });
+    }
 
 })

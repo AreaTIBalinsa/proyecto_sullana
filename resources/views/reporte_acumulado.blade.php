@@ -206,18 +206,19 @@
         <div class="mt-5 flex gap-4 flex-wrap items-start justify-start md:mx-5 my-5">
             <div class="overflow-hidden flex flex-col md:flex-1 gap-4">
                 <div class="overflow-auto relative aside_scrollEDINSON">
-                    <table class="border-collapse w-full">
+                    <table class="border-collapse w-full" id="tablaTotalesReporte">
                         <caption class="bg-blue-600 text-gray-50 p-2 font-bold text-lg rounded-t-lg border-x-2 border-t-2 z-50">TOTALES</caption>
                         <thead class="bg-blue-600 text-gray-50 uppercase z-50 text-sm">
                             <tr>
                                 <th class="bg-blue-600 border-2 px-2 py-1 text-left">VARIEDAD</th>
                                 <th class="bg-blue-600 border-2 px-2 py-1">CANTIDAD</th>
+                                <th class="bg-blue-600 border-2 px-2 py-1">PROMEDIO</th>
                                 <th class="bg-blue-600 border-2 px-2 py-1">PESO</th>
                                 <th class="bg-blue-600 border-2 px-2 py-1">SUBTOTAL</th>
                             </tr>
                         </thead>
                         <tbody id="bodyReporteAcumuladoExcelTotales" class="text-gray-900 dark:text-gray-50 ">
-                            <tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="4" class="text-center border-2">No hay datos</td></tr>
+                            <tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="5" class="text-center border-2">No hay datos</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -225,31 +226,31 @@
                     <table class="mb-2 w-full">
                         <thead class="bg-blue-600 text-gray-50 uppercase z-50 text-sm">
                             <tr>
-                                <th class="bg-blue-600 border-2 px-2 py-2 text-center text-lg" colspan="3">AHOGADOS, SECOS,<br>MALTRADOS, TROZADOS</th>
-                                <th class="bg-blue-600 border-2 px-2 py-1"><button class="w-full bg-green-600 rounded-lg p-2" id="filtrarDetalleTrozado"><i class='bx bx-detail'></i></button></th>
+                                <th class="bg-blue-600 border-2 px-2 py-2 text-center text-lg" colspan="4">AHOGADOS, SECOS,<br>MALTRADOS, TROZADOS</th>
+                                <th class="bg-blue-600 border-2 px-2 py-1"><button class="w-full bg-green-600 rounded-lg p-2 flex justify-center items-center gap-2" id="filtrarDetalleTrozado">Trozado <i class='bx bx-detail'></i></button></th>
                             </tr>
                             <tr>
                                 <th class="bg-blue-600 border-2 px-2 py-1 text-left">VARIEDAD</th>
                                 <th class="bg-blue-600 border-2 px-2 py-1">CANTIDAD</th>
+                                <th class="bg-blue-600 border-2 px-2 py-1">PROMEDIO</th>
                                 <th class="bg-blue-600 border-2 px-2 py-1">PESO</th>
                                 <th class="bg-blue-600 border-2 px-2 py-1">SUBTOTAL</th>
                             </tr>
                         </thead>
                         <tbody id="bodyReporteAcumuladoExcelTotalesTrozado" class="text-gray-900 dark:text-gray-50 ">
-                            <tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="4" class="text-center border-2">No hay datos</td></tr>
+                            <tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="5" class="text-center border-2">No hay datos</td></tr>
                         </tbody>
                     </table>
                 </div>
             </div>
             <div class="overflow-auto aside_scrollEDINSON relative md:flex-1">
-                <table class="border-collapse w-full text-gray-900 dark:text-white relative">
+                <table class="border-collapse w-full text-gray-900 dark:text-white relative" id="tablaTotalesReporteCompra">
+                    <caption class="bg-red-600 text-gray-50 p-2 font-bold text-lg rounded-t-lg border-x-2 border-t-2 z-50">COMPRA</caption>
                     <thead id="inicioCantidadesPollos" class="text-gray-50 text-sm">
-                        <tr class="uppercase">
-                            <th class="text-white border-[2px] bg-red-600 border-b-1 border-gray-300 dark:border-white py-2 md:text-md text-center px-2" colspan="5">Compra</th>
-                        </tr>
                         <tr class="uppercase">
                             <th class="text-white border-[2px] bg-blue-600 border-b-1 border-gray-300 dark:border-white py-2 md:text-md text-left px-2">Variedad</th>
                             <th class="text-white border-[2px] bg-blue-600 border-b-1 border-gray-300 dark:border-white py-2 md:text-md text-left px-2">Cantidad</th>
+                            <th class="text-white border-[2px] bg-blue-600 border-b-1 border-gray-300 dark:border-white py-2 md:text-md text-left px-2">Promedio</th>
                             {{-- <th class="text-white border-[2px] bg-blue-600 border-b-1 border-gray-300 dark:border-white py-2 md:text-md text-left px-2">Stock</th>
                             <th class="text-white border-[2px] bg-blue-600 border-b-1 border-gray-300 dark:border-white py-2 md:text-md text-left px-2">Total</th> --}}
                             <th class="text-white border-[2px] bg-blue-600 border-b-1 border-gray-300 dark:border-white py-2 md:text-md text-left px-2">Peso</th>
@@ -359,7 +360,7 @@
             <div class="p-4">
                 <div class="w-full overflow-auto">
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                        <caption class="bg-blue-600 p-2 w-full border-b-2 text-lg font-bold text-gray-100">TROZADO</caption>
+                        <caption class="bg-blue-600 p-2 w-full border-b-2 text-lg font-bold text-gray-100" id="captionModal">TROZADO</caption>
                         <thead class="text-xs text-gray-100 uppercase bg-blue-600 sticky top-0">
                             <tr>
                                 <th class="px-2 py-4 text-center">Fecha</th>

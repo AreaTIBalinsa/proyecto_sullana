@@ -695,18 +695,23 @@ jQuery(function($) {
 
     }
 
-    fn_TraerClientesAgregarSaldo();
-    function fn_TraerClientesAgregarSaldo() {
+    fn_TraerClientesAgregarSaldo(fechaHoy);
+
+    function fn_TraerClientesAgregarSaldo(fecha) {
         $.ajax({
             url: '/fn_consulta_TraerClientesAgregarSaldo',
             method: 'GET',
+            data: {
+                fecha: fecha,
+            },
             success: function (response) {
                 // Verificar si la respuesta es un arreglo de objetos
                 if (Array.isArray(response)) {
+
+                    let contador = 0
     
                     // Objeto para almacenar los resultados agrupados por codigoCli
                     let resultadosAgrupados = {};
-                    let contador = 0;
     
                     // Iterar sobre los objetos y agrupar por codigoCli
                     response.forEach(function (obj) {

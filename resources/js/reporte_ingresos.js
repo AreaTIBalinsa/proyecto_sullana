@@ -455,7 +455,10 @@ jQuery(function($) {
         nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap validarFormatoHoraTablas text-gray-900 dark:text-white" contenteditable="true">').text("")); //hora
         nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap convertirMayusculasTablas" contenteditable="true">').text("")); //banco
         nuevaFila.append($('<td class="outline-none border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap" contenteditable="false">').text("Transferencia")); // forma de pago
-        nuevaFila.append($('<td class="outline-none p-2 text-center cursor-pointer" contenteditable="true">').text(""));
+        nuevaFila.append($('<td class="outline-none p-2 text-center cursor-pointer" contenteditable="true">').html(`<select class="w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            <option value="YUGO">YUGO</option>
+            <option value="TECNICA">TECNICA</option>
+            </select>`));
         nuevaFila.append($('<td class="outline-none p-2 text-center cursor-pointer hidden" contenteditable="true">').text("5"));
         nuevaFila.append($('<td class="outline-none p-2 text-center cursor-pointer hidden codigoDeClienteTablaExcel" contenteditable="false">').text("0"));
         nuevaFila.append($('<td class="outline-none p-2 text-center cursor-pointer validarFormatoFechaTablas text-gray-900 dark:text-white fechaRegistroPago" contenteditable="true">').text(`${fechaHoyTabla}`));
@@ -635,7 +638,7 @@ jQuery(function($) {
             let horaAgregarPago = filaActual.find('td:eq(4)').text().trim();
             let bancoAgregarPagoCliente = filaActual.find('td:eq(5)').text().trim();
             let formaDePago = filaActual.find('td:eq(6)').text().trim();
-            let comentarioAgregarPagoCliente = filaActual.find('td:eq(7)').text().trim();
+            let comentarioAgregarPagoCliente = filaActual.find('td:eq(7)').find('select').val().trim();;
             let pagoDerivado = filaActual.find('td:eq(8)').text().trim();
             let codigoCliente = filaActual.find('td:eq(9)').text().trim();
             let fechaRegistroPagoCliente = filaActual.find('td:eq(10)').text().trim();

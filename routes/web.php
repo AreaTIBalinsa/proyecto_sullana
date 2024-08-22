@@ -174,6 +174,7 @@ Route::get('/fn_consulta_TraerReporteAcumulado',[ReporteAcumuladoController::cla
 Route::get('/fn_consulta_TraerReporteAcumuladoDetalle',[ReporteAcumuladoController::class,'consulta_TraerReporteAcumuladoDetalle']);
 Route::get('/fn_consulta_CambiarPrecioPesadas', [ReporteAcumuladoController::class,'consulta_CambiarPrecioPesadas']);
 Route::get('/fn_consulta_TraerDetallesTrozado', [ReporteAcumuladoController::class,'consulta_TraerDetallesTrozado']);
+Route::get('/fn_consulta_TraerDetalles', [ReporteAcumuladoController::class,'consulta_TraerDetalles']);
 
 Route::get('/fn_consulta_TraerClientesAgregarSaldo',[AgregarSaldoController::class,'consulta_TraerClientesAgregarSaldo']);
 Route::get('/fn_consulta_TraerClientesAgregarSaldoCliente',[AgregarSaldoController::class,'consulta_TraerClientesAgregarSaldoCliente']);

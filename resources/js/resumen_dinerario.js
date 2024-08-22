@@ -429,7 +429,7 @@ jQuery(function($) {
 
                     response.forEach(function (obj) {
                         let nombre = obj.uso_detalle_egreso ? obj.uso_detalle_egreso.toUpperCase() : "";
-                        if(nombre.includes("TRIPA") && nombre.includes("KARLA")){
+                        if((nombre.includes("TRIPA") && nombre.includes("KARLA")) || (nombre.includes("BRECSY") && nombre.includes("KARLA"))){
                             totalTripaKarla += parseFloat(obj.monto_detalle);
                             let nuevaFila = `
                                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-200 text-gray-900 dark:text-white dark:hover:bg-gray-600 cursor-pointer tdMostrarDetalleBancos">

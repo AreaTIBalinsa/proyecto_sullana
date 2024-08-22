@@ -939,7 +939,7 @@
 
 
 {{-- Modal Tablas --}}
-<div class="fixed inset-0 overflow-hidden z-[100] hidden" id="ModalEgresosModal">
+<div class="fixed inset-0 overflow-hidden z-[50] hidden" id="ModalEgresosModal">
     <div class="flex justify-center items-center w-full min-h-screen h-full py-4 px-4 text-center">
         <!-- Fondo oscuro overlay -->
         <div class="fixed inset-0 transition-opacity" aria-hidden="true">
@@ -949,12 +949,13 @@
         <!-- Contenido del modal -->
         <div class="absolute rounded-lg aside_scrollEDINSON max-h-[80%] inset-0 m-auto align-bottom bg-white dark:bg-gray-700 text-left overflow-auto shadow-xl transform transition-all sm:max-w-[80%] w-full">
             <div class="p-4">
+                <input type="text" class="hidden" id="guardaCategoria">
+                <input type="text" class="hidden" id="guardaFecha">
                 <div class="w-full overflow-auto" id="divOcultarEgresosOtros">
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                         <caption class="bg-blue-600 p-2 w-full border-b-2 text-sm font-bold text-gray-100" id="captionEgresosModal">Egresos sin Clasificar</caption>
                         <thead class="text-xs text-gray-100 uppercase bg-blue-600 sticky top-0" id="headerEgresosModal">
                             <tr>
-                                <th class="px-2 py-4 text-center">#</th>
                                 <th class="px-2 py-4 text-center">Fecha</th>
                                 <th class="px-2 py-4 text-center">Hora</th>
                                 <th class="px-2 py-4 text-center">Uso de Egreso</th>
@@ -1013,6 +1014,84 @@
             <div class="px-4 pb-4">
                 <div class="border-t dark:border-gray-500 w-full sm:flex sm:flex-row-reverse pt-4">
                     <button type="button" class="mt-3 inline-flex w-full justify-center rounded-md bg-red-500 hover:bg-red-600 px-3 py-2 text-sm font-semibold text-gray-100 sm:mt-0 sm:w-auto cerrarModalEgresosModal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="fixed inset-0 overflow-y-auto z-[100] hidden" id="ModalAgregarEgresoEditar2">
+    <div class="flex justify-center items-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+        <!-- Fondo oscuro overlay -->
+        <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+            <div class="absolute inset-0 bg-gray-900 opacity-75"></div>
+        </div>
+
+        <!-- Contenido del modal -->
+        <div class="absolute rounded-lg max-h-max inset-0 m-auto align-bottom bg-white dark:bg-gray-700 text-left overflow-hidden shadow-xl transform transition-all sm:max-w-lg sm:w-full">
+            <div class="p-4">
+                <div class="flex flex-col">
+                    <div class="border-b rounded-t dark:border-gray-500 p-2 flex justify-center">
+                        <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Editar Egreso</h3>
+                    </div>
+                    <input type="text" class="hidden" id="idDetalleEgreso" value="0">
+                    <div class="mt-4 flex justify-center items-center flex-col gap-4">
+                        <div class="flex w-full justify-start items-center gap-2">
+                            <h5 for="fechaAgregarEgresoEditar2" class="text-base text-gray-900 dark:text-gray-50 min-w-max">Fecha :</h5>
+                            <input type="date" class="outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 px-2.5 py-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-full" id="fechaAgregarEgresoEditar2">
+                        </div>
+                        <div class="flex w-full justify-start items-center gap-2">
+                            <h5 for="horaAgregarEgresoEditar2" class="text-base text-gray-900 dark:text-gray-50 min-w-max">Hora :</h5>
+                            <input type="time" class="outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 px-2.5 py-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-full" id="horaAgregarEgresoEditar2">
+                        </div>
+                        <div class="flex w-full h-10">
+                            <div class="text-sm px-3 flex items-center justify-center text-center border border-gray-300 dark:border-gray-600 bg-gray-300 dark:bg-gray-600 rounded-l-lg">
+                                <h4 class="font-medium text-gray-900 dark:text-gray-300 min-w-max">Categoria</h4>
+                            </div>
+                            <select class="w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="selectAgregarCategoriaEditar2" id="selectAgregarCategoriaEditar2">
+    
+                            </select>                          
+                        </div>
+                        <div class="flex justify-center items-start flex-col relative w-full h-full">
+                            <label for="usoAgregarEgresoEditar2" class="mb-2 text-base font-medium text-gray-900 dark:text-white">Uso :</label>
+                            <div class="flex w-full">
+                                <textarea class="w-full outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" autocomplete="off" id="usoAgregarEgresoEditar2" placeholder="Ingrese Uso"></textarea>
+                            </div>
+                        </div>
+                        <div class="flex w-full" id="ocultarSiPlanilla">
+                            <div class="flex gap-4 w-full">
+                                <div class="flex flex-col text-sm w-full">
+                                    <label for="cantidadAgregarEgresoEditar2" class="text-gray-900 dark:text-white font-medium">Cantidad :</label>
+                                    <input type="text" class="outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 px-2.5 py-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-full accionarSumaMontoEditar" id="cantidadAgregarEgresoEditar2" autocomplete="off">
+                                </div>
+                                <div class="flex flex-col text-sm w-full">
+                                    <label for="precioAgregarEgresoEditar2" class="text-gray-900 dark:text-white font-medium">Precio :</label>
+                                    <input type="text" class="outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 px-2.5 py-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-full accionarSumaMontoEditar" id="precioAgregarEgresoEditar2" autocomplete="off">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex justify-center items-start flex-col relative w-full h-full" id="mostrarSiPlanilla">
+                            <label for="selectEditarEgresoPlanilla2" class="mb-2 text-base font-medium text-gray-900 dark:text-white">Cargo :</label>
+                            <select id="selectEditarEgresoPlanilla2" class="w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                <option value="PELADOR">PELADOR</option>
+                                <option value="ESTIBADOR">ESTIBADOR</option>
+                            </select>
+                        </div>
+                        <div class="flex w-full flex-col text-sm">
+                            <label for="montoAgregarEgresoEditar2" class="text-gray-900 dark:text-white font-medium">Monto</label>
+                            <input type="text" class="outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 px-2.5 py-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 w-full" id="montoAgregarEgresoEditar2" disabled="disabled">
+                        </div>
+                        <div class="flex flex-col w-full">
+                            <label for="comentarioAgregarEgresoEditar2" class="mb-2 w-full whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white md:w-24">Observación :</label>
+                            <textarea class="w-full outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" autocomplete="off" id="comentarioAgregarEgresoEditar2"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="px-4 pb-4">
+                <div class="border-t dark:border-gray-500 w-full sm:flex sm:flex-row-reverse pt-4">
+                    <button type="button" class="inline-flex w-full justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-700 sm:ml-3 sm:w-auto" id="btnAgregarEgresoEditar2">Registrar</button>
+                    <button type="button" class="mt-3 inline-flex w-full justify-center rounded-md bg-red-500 hover:bg-red-600 px-3 py-2 text-sm font-semibold text-gray-100 sm:mt-0 sm:w-auto cerrarModalAgregarEgresoEditar2">Cancelar</button>
                 </div>
             </div>
         </div>

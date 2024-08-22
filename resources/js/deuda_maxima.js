@@ -236,7 +236,7 @@ jQuery(function($) {
             let totalEndeudamiento = 0;
 
             resultadosConsolidados.forEach(function(obj){
-                if ((obj.nombreCompleto).trim() != "PAUL"){
+                if ((obj.nombreCompleto).trim() != "PAUL" || (obj.nombreCompleto).trim() != "PERROS" || (obj.nombreCompleto).trim() != "AHOGADOS" || (obj.nombreCompleto).trim() != "SECOS" || (obj.nombreCompleto).trim() != "JULIO CAMPO" || (obj.nombreCompleto).trim() != "FALTANTE TECNICA" || (obj.nombreCompleto).trim() != "PRUEBA"){
 
                     let totalLunes = 0;
                     let totalMartes = 0;
