@@ -89,6 +89,15 @@
                     <button class="text-base py-2 px-5 bg-red-600 md:max-w-xs w-full hover:bg-red-700 text-gray-50 rounded-lg md:w-auto font-semibold" id="btnAgregarDiferencia">Agregar Diferencia</button>
                     <button class="text-base py-2 px-5 bg-blue-600 md:max-w-xs w-full hover:bg-blue-700 text-gray-50 rounded-lg md:w-auto font-semibold" id="btnCambiarPrecioPesadas">S/ Cambiar Precios</button>
                 </div>
+                <div class="flex items-center justify-end rounded-xl gap-4">
+                    <div class="flex items-center px-4 border border-gray-200 rounded dark:border-gray-700">
+                        <input id="checkboxID" type="checkbox" checked value="" name="bordered-checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                        <label for="checkboxID" class="w-full py-2 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Cuenta por Defecto</label>
+                    </div>
+                </div>
+                <p class="text-gray-900 dark:text-white">
+                    Al desactivar la cuenta por defecto se hace que los pagos en la cuenta que son de dias anteriores se sumen al abono de hoy y por tanto el saldo anterior se aumenta ya que ese pago no se esta considerendo en el dia que señala sino recien se restara hoy.
+                </p>
             </div>
         </div>
         {{-- Tabla --}}

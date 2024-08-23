@@ -1,0 +1,4302 @@
+[
+    {
+        "codigoCli": 41,
+        "nombreCompleto": "ANA BORRERO",
+        "limitEndeudamiento": "0.09",
+        "lunes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "91.10",
+                    "totalVenta": "792.57",
+                    "totalCantidad": 32,
+                    "precioPromedio": "8.70",
+                    "promedioEspecie": "2.85"
+                }
+            ],
+            "ventaAnterior": "627.5500",
+            "ventaAnterior2": "39258.5300",
+            "ventaAnterior3": "345.7200",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-19",
+                    "pagos": "915.60"
+                }
+            ],
+            "pagoAnterior": "40108.75",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "martes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "72.10",
+                    "totalVenta": "627.27",
+                    "totalCantidad": 32,
+                    "precioPromedio": "8.70",
+                    "promedioEspecie": "2.25"
+                }
+            ],
+            "ventaAnterior": "627.5500",
+            "ventaAnterior2": "40051.1000",
+            "ventaAnterior3": "345.7200",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-20",
+                    "pagos": "627.30"
+                }
+            ],
+            "pagoAnterior": "41024.35",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "miercoles": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "78.60",
+                    "totalVenta": "683.82",
+                    "totalCantidad": 30,
+                    "precioPromedio": "8.70",
+                    "promedioEspecie": "2.62"
+                }
+            ],
+            "ventaAnterior": "627.5500",
+            "ventaAnterior2": "40678.3700",
+            "ventaAnterior3": "345.7200",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-21",
+                    "pagos": "684.00"
+                }
+            ],
+            "pagoAnterior": "41651.65",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "jueves": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "108.70",
+                    "totalVenta": "945.69",
+                    "totalCantidad": 40,
+                    "precioPromedio": "8.70",
+                    "promedioEspecie": "2.72"
+                }
+            ],
+            "ventaAnterior": "627.5500",
+            "ventaAnterior2": "41362.1900",
+            "ventaAnterior3": "345.7200",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-22",
+                    "pagos": "945.50"
+                }
+            ],
+            "pagoAnterior": "42335.65",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "viernes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "84.10",
+                    "totalVenta": "731.67",
+                    "totalCantidad": 34,
+                    "precioPromedio": "8.70",
+                    "promedioEspecie": "2.47"
+                }
+            ],
+            "ventaAnterior": "627.5500",
+            "ventaAnterior2": "42307.8800",
+            "ventaAnterior3": "345.7200",
+            "totalDescuentos": [],
+            "totalPagos": [],
+            "pagoAnterior": "43281.15",
+            "totalVentaDescuentoAnterior": "0.000000"
+        }
+    },
+    {
+        "codigoCli": 42,
+        "nombreCompleto": "ANGIE - TOÑO",
+        "limitEndeudamiento": "0.04",
+        "miercoles": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "36.00",
+                    "totalVenta": "316.80",
+                    "totalCantidad": 15,
+                    "precioPromedio": "8.80",
+                    "promedioEspecie": "2.40"
+                }
+            ],
+            "ventaAnterior": "0.0000",
+            "ventaAnterior2": "10836.9900",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-21",
+                    "pagos": "313.20"
+                }
+            ],
+            "pagoAnterior": "10717.14",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "jueves": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "39.50",
+                    "totalVenta": "343.65",
+                    "totalCantidad": 15,
+                    "precioPromedio": "8.70",
+                    "promedioEspecie": "2.63"
+                }
+            ],
+            "ventaAnterior": "0.0000",
+            "ventaAnterior2": "11153.7900",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-22",
+                    "pagos": "343.70"
+                }
+            ],
+            "pagoAnterior": "11030.34",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "viernes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "53.50",
+                    "totalVenta": "465.45",
+                    "totalCantidad": 22,
+                    "precioPromedio": "8.70",
+                    "promedioEspecie": "2.43"
+                }
+            ],
+            "ventaAnterior": "0.0000",
+            "ventaAnterior2": "11497.4400",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-23",
+                    "pagos": "465.50"
+                }
+            ],
+            "pagoAnterior": "11374.04",
+            "totalVentaDescuentoAnterior": "0.000000"
+        }
+    },
+    {
+        "codigoCli": 30,
+        "nombreCompleto": "BENAVIDES",
+        "limitEndeudamiento": "1106.40",
+        "lunes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "902.10",
+                    "totalVenta": "7663.45",
+                    "totalCantidad": 315,
+                    "precioPromedio": "8.25",
+                    "promedioEspecie": "3.63"
+                }
+            ],
+            "ventaAnterior": "-21.8700",
+            "ventaAnterior2": "365041.1500",
+            "ventaAnterior3": "22438.2000",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-19",
+                    "pagos": "17619.00"
+                }
+            ],
+            "pagoAnterior": "375332.21",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "martes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "841.20",
+                    "totalVenta": "7204.65",
+                    "totalCantidad": 387,
+                    "precioPromedio": "10.00",
+                    "promedioEspecie": "2.73"
+                }
+            ],
+            "ventaAnterior": "-21.8700",
+            "ventaAnterior2": "372704.6000",
+            "ventaAnterior3": "22438.2000",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-20",
+                    "pagos": "6469.80"
+                }
+            ],
+            "pagoAnterior": "392951.21",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "miercoles": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "888.40",
+                    "totalVenta": "7685.05",
+                    "totalCantidad": 374,
+                    "precioPromedio": "10.75",
+                    "promedioEspecie": "3.03"
+                }
+            ],
+            "ventaAnterior": "-21.8700",
+            "ventaAnterior2": "379909.2500",
+            "ventaAnterior3": "22438.2000",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-21",
+                    "pagos": "8393.00"
+                }
+            ],
+            "pagoAnterior": "399421.01",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "jueves": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "1023.00",
+                    "totalVenta": "8780.55",
+                    "totalCantidad": 403,
+                    "precioPromedio": "10.75",
+                    "promedioEspecie": "3.15"
+                }
+            ],
+            "ventaAnterior": "-21.8700",
+            "ventaAnterior2": "387594.3000",
+            "ventaAnterior3": "22438.2000",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-22",
+                    "pagos": "9238.00"
+                }
+            ],
+            "pagoAnterior": "407814.01",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "viernes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "916.20",
+                    "totalVenta": "7855.20",
+                    "totalCantidad": 389,
+                    "precioPromedio": "10.75",
+                    "promedioEspecie": "3.04"
+                }
+            ],
+            "ventaAnterior": "-21.8700",
+            "ventaAnterior2": "396374.8500",
+            "ventaAnterior3": "22438.2000",
+            "totalDescuentos": [],
+            "totalPagos": [],
+            "pagoAnterior": "417052.01",
+            "totalVentaDescuentoAnterior": "0.000000"
+        }
+    },
+    {
+        "codigoCli": 40,
+        "nombreCompleto": "CERROMOCHO",
+        "limitEndeudamiento": "3746.43",
+        "lunes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "102.50",
+                    "totalVenta": "902.00",
+                    "totalCantidad": 35,
+                    "precioPromedio": "8.80",
+                    "promedioEspecie": "2.93"
+                }
+            ],
+            "ventaAnterior": "0.0000",
+            "ventaAnterior2": "31324.5000",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-19",
+                    "pagos": "1500.00"
+                }
+            ],
+            "pagoAnterior": "24305.02",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "martes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "81.60",
+                    "totalVenta": "718.08",
+                    "totalCantidad": 35,
+                    "precioPromedio": "8.80",
+                    "promedioEspecie": "2.33"
+                }
+            ],
+            "ventaAnterior": "0.0000",
+            "ventaAnterior2": "32226.5000",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-20",
+                    "pagos": "800.00"
+                }
+            ],
+            "pagoAnterior": "25805.02",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "miercoles": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "64.20",
+                    "totalVenta": "564.96",
+                    "totalCantidad": 30,
+                    "precioPromedio": "8.80",
+                    "promedioEspecie": "2.14"
+                }
+            ],
+            "ventaAnterior": "0.0000",
+            "ventaAnterior2": "32944.5800",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-21",
+                    "pagos": "550.00"
+                }
+            ],
+            "pagoAnterior": "26605.02",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "jueves": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "73.80",
+                    "totalVenta": "649.44",
+                    "totalCantidad": 30,
+                    "precioPromedio": "8.80",
+                    "promedioEspecie": "2.46"
+                }
+            ],
+            "ventaAnterior": "0.0000",
+            "ventaAnterior2": "33509.5400",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-22",
+                    "pagos": "800.00"
+                }
+            ],
+            "pagoAnterior": "27155.02",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "viernes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "54.60",
+                    "totalVenta": "480.48",
+                    "totalCantidad": 30,
+                    "precioPromedio": "8.80",
+                    "promedioEspecie": "1.82"
+                }
+            ],
+            "ventaAnterior": "0.0000",
+            "ventaAnterior2": "34158.9800",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [],
+            "pagoAnterior": "27955.02",
+            "totalVentaDescuentoAnterior": "0.000000"
+        }
+    },
+    {
+        "codigoCli": 44,
+        "nombreCompleto": "CHELA",
+        "limitEndeudamiento": "17907.44",
+        "lunes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "215.30",
+                    "totalVenta": "1830.05",
+                    "totalCantidad": 73,
+                    "precioPromedio": "8.50",
+                    "promedioEspecie": "2.95"
+                }
+            ],
+            "ventaAnterior": "0.0000",
+            "ventaAnterior2": "88800.3700",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-19",
+                    "pagos": "2100.00"
+                }
+            ],
+            "pagoAnterior": "69719.85",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "martes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "181.30",
+                    "totalVenta": "1577.05",
+                    "totalCantidad": 81,
+                    "precioPromedio": "10.00",
+                    "promedioEspecie": "2.76"
+                }
+            ],
+            "ventaAnterior": "0.0000",
+            "ventaAnterior2": "90630.4200",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-20",
+                    "pagos": "1580.00"
+                }
+            ],
+            "pagoAnterior": "71819.85",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "miercoles": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "199.20",
+                    "totalVenta": "1725.60",
+                    "totalCantidad": 82,
+                    "precioPromedio": "10.00",
+                    "promedioEspecie": "2.70"
+                }
+            ],
+            "ventaAnterior": "0.0000",
+            "ventaAnterior2": "92207.4700",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-21",
+                    "pagos": "1750.00"
+                }
+            ],
+            "pagoAnterior": "73399.85",
+            "totalVentaDescuentoAnterior": "0.000000"
+        }
+    },
+    {
+        "codigoCli": 15,
+        "nombreCompleto": "DAVID NAVARRO",
+        "limitEndeudamiento": "35.87",
+        "lunes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "43.50",
+                    "totalVenta": "369.75",
+                    "totalCantidad": 15,
+                    "precioPromedio": "8.50",
+                    "promedioEspecie": "2.90"
+                }
+            ],
+            "ventaAnterior": "14886.0400",
+            "ventaAnterior2": "8163.6500",
+            "ventaAnterior3": "2391.1800",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-19",
+                    "pagos": "1020.00"
+                }
+            ],
+            "pagoAnterior": "25445.63",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "martes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "224.00",
+                    "totalVenta": "1881.80",
+                    "totalCantidad": 82,
+                    "precioPromedio": "8.25",
+                    "promedioEspecie": "3.47"
+                }
+            ],
+            "ventaAnterior": "14886.0400",
+            "ventaAnterior2": "8533.4000",
+            "ventaAnterior3": "2391.1800",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-20",
+                    "pagos": "1280.00"
+                }
+            ],
+            "pagoAnterior": "26465.63",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "miercoles": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "206.80",
+                    "totalVenta": "1463.70",
+                    "totalCantidad": 104,
+                    "precioPromedio": "7.80",
+                    "promedioEspecie": "2.13"
+                }
+            ],
+            "ventaAnterior": "14886.0400",
+            "ventaAnterior2": "10415.2000",
+            "ventaAnterior3": "2391.1800",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-21",
+                    "pagos": "1490.00"
+                }
+            ],
+            "pagoAnterior": "27745.63",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "jueves": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "328.20",
+                    "totalVenta": "2441.79",
+                    "totalCantidad": 153,
+                    "precioPromedio": "7.53",
+                    "promedioEspecie": "2.21"
+                }
+            ],
+            "ventaAnterior": "15891.8800",
+            "ventaAnterior2": "10873.0600",
+            "ventaAnterior3": "2391.1800",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-22",
+                    "pagos": "2300.00"
+                }
+            ],
+            "pagoAnterior": "29235.63",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "viernes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "35.10",
+                    "totalVenta": "298.35",
+                    "totalCantidad": 15,
+                    "precioPromedio": "8.50",
+                    "promedioEspecie": "2.34"
+                }
+            ],
+            "ventaAnterior": "17528.5700",
+            "ventaAnterior2": "11678.1600",
+            "ventaAnterior3": "2391.1800",
+            "totalDescuentos": [],
+            "totalPagos": [],
+            "pagoAnterior": "31535.63",
+            "totalVentaDescuentoAnterior": "0.000000"
+        }
+    },
+    {
+        "codigoCli": 75,
+        "nombreCompleto": "FALTANTE TECNICA",
+        "limitEndeudamiento": "1.00",
+        "lunes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "17.80",
+                    "totalVenta": "208.26",
+                    "totalCantidad": 3,
+                    "precioPromedio": "11.70",
+                    "promedioEspecie": "5.93"
+                }
+            ],
+            "ventaAnterior": "99.9200",
+            "ventaAnterior2": "1.1400",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [],
+            "pagoAnterior": "0.00",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "martes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "4.20",
+                    "totalVenta": "49.14",
+                    "totalCantidad": 15,
+                    "precioPromedio": "11.70",
+                    "promedioEspecie": "0.28"
+                }
+            ],
+            "ventaAnterior": "308.1800",
+            "ventaAnterior2": "1.1400",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [],
+            "pagoAnterior": "0.00",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "miercoles": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "0.00",
+                    "totalVenta": "0.00",
+                    "totalCantidad": 10,
+                    "precioPromedio": "11.70",
+                    "promedioEspecie": "0.00"
+                }
+            ],
+            "ventaAnterior": "357.3200",
+            "ventaAnterior2": "1.1400",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [],
+            "pagoAnterior": "0.00",
+            "totalVentaDescuentoAnterior": "0.000000"
+        }
+    },
+    {
+        "codigoCli": 57,
+        "nombreCompleto": "GEAN CARLO",
+        "limitEndeudamiento": "16800.00",
+        "lunes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "1169.20",
+                    "totalVenta": "8178.34",
+                    "totalCantidad": 528,
+                    "precioPromedio": "6.70",
+                    "promedioEspecie": "2.08"
+                }
+            ],
+            "ventaAnterior": "382263.1100",
+            "ventaAnterior2": "6650.6200",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-19",
+                    "pagos": "14637.80"
+                }
+            ],
+            "pagoAnterior": "364719.44",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "martes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "651.60",
+                    "totalVenta": "4932.14",
+                    "totalCantidad": 248,
+                    "precioPromedio": "9.00",
+                    "promedioEspecie": "2.80"
+                }
+            ],
+            "ventaAnterior": "390441.4500",
+            "ventaAnterior2": "6650.6200",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-20",
+                    "pagos": "4934.00"
+                }
+            ],
+            "pagoAnterior": "379357.24",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "miercoles": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "1006.20",
+                    "totalVenta": "7508.36",
+                    "totalCantidad": 405,
+                    "precioPromedio": "8.35",
+                    "promedioEspecie": "2.92"
+                }
+            ],
+            "ventaAnterior": "395373.5900",
+            "ventaAnterior2": "6650.6200",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-21",
+                    "pagos": "7593.00"
+                }
+            ],
+            "pagoAnterior": "384291.24",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "jueves": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "1513.80",
+                    "totalVenta": "11102.02",
+                    "totalCantidad": 604,
+                    "precioPromedio": "8.35",
+                    "promedioEspecie": "2.90"
+                }
+            ],
+            "ventaAnterior": "402881.9500",
+            "ventaAnterior2": "6650.6200",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-22",
+                    "pagos": "9670.00"
+                }
+            ],
+            "pagoAnterior": "391884.24",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "viernes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "1189.40",
+                    "totalVenta": "8626.22",
+                    "totalCantidad": 490,
+                    "precioPromedio": "8.35",
+                    "promedioEspecie": "2.89"
+                }
+            ],
+            "ventaAnterior": "413983.9700",
+            "ventaAnterior2": "6650.6200",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [],
+            "pagoAnterior": "401554.24",
+            "totalVentaDescuentoAnterior": "0.000000"
+        }
+    },
+    {
+        "codigoCli": 37,
+        "nombreCompleto": "GERMAN",
+        "limitEndeudamiento": "0.02",
+        "lunes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "355.30",
+                    "totalVenta": "3055.58",
+                    "totalCantidad": 125,
+                    "precioPromedio": "8.60",
+                    "promedioEspecie": "2.46"
+                }
+            ],
+            "ventaAnterior": "0.0000",
+            "ventaAnterior2": "115724.9600",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-19",
+                    "pagos": "2000.00"
+                }
+            ],
+            "pagoAnterior": "116233.55",
+            "totalVentaDescuentoAnterior": "-618.400000"
+        },
+        "martes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "241.80",
+                    "totalVenta": "2163.08",
+                    "totalCantidad": 102,
+                    "precioPromedio": "10.80",
+                    "promedioEspecie": "3.05"
+                }
+            ],
+            "ventaAnterior": "0.0000",
+            "ventaAnterior2": "118780.5400",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [
+                {
+                    "fechaRegistroDesc": "2024-08-20",
+                    "totalPesoDescuento": "-8.600",
+                    "totalVentaDescuento": "-103.200000"
+                }
+            ],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-20",
+                    "pagos": "11883.20"
+                }
+            ],
+            "pagoAnterior": "118233.55",
+            "totalVentaDescuentoAnterior": "-618.400000"
+        },
+        "miercoles": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "284.40",
+                    "totalVenta": "2445.84",
+                    "totalCantidad": 114,
+                    "precioPromedio": "8.60",
+                    "promedioEspecie": "2.23"
+                }
+            ],
+            "ventaAnterior": "0.0000",
+            "ventaAnterior2": "120943.6200",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [],
+            "pagoAnterior": "130116.75",
+            "totalVentaDescuentoAnterior": "-721.600000"
+        },
+        "jueves": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "307.90",
+                    "totalVenta": "2647.94",
+                    "totalCantidad": 111,
+                    "precioPromedio": "8.60",
+                    "promedioEspecie": "2.77"
+                }
+            ],
+            "ventaAnterior": "0.0000",
+            "ventaAnterior2": "123389.4600",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [],
+            "pagoAnterior": "130116.75",
+            "totalVentaDescuentoAnterior": "-721.600000"
+        },
+        "viernes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "255.50",
+                    "totalVenta": "2197.30",
+                    "totalCantidad": 108,
+                    "precioPromedio": "8.60",
+                    "promedioEspecie": "2.18"
+                }
+            ],
+            "ventaAnterior": "0.0000",
+            "ventaAnterior2": "126037.4000",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [],
+            "pagoAnterior": "130116.75",
+            "totalVentaDescuentoAnterior": "-721.600000"
+        }
+    },
+    {
+        "codigoCli": 70,
+        "nombreCompleto": "GRASAS DESPERDICIOS",
+        "limitEndeudamiento": "1.00",
+        "lunes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "35.50",
+                    "totalVenta": "369.20",
+                    "totalCantidad": 0,
+                    "precioPromedio": "10.40",
+                    "promedioEspecie": "0.00"
+                }
+            ],
+            "ventaAnterior": "0.0000",
+            "ventaAnterior2": "21644.7800",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [],
+            "pagoAnterior": "0.00",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "martes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "39.70",
+                    "totalVenta": "448.40",
+                    "totalCantidad": 0,
+                    "precioPromedio": "11.00",
+                    "promedioEspecie": "0.00"
+                }
+            ],
+            "ventaAnterior": "0.0000",
+            "ventaAnterior2": "22013.9800",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [],
+            "pagoAnterior": "0.00",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "miercoles": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "26.50",
+                    "totalVenta": "303.78",
+                    "totalCantidad": 0,
+                    "precioPromedio": "11.67",
+                    "promedioEspecie": "0.00"
+                }
+            ],
+            "ventaAnterior": "0.0000",
+            "ventaAnterior2": "22462.3800",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [],
+            "pagoAnterior": "0.00",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "jueves": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "31.40",
+                    "totalVenta": "326.56",
+                    "totalCantidad": 0,
+                    "precioPromedio": "10.40",
+                    "promedioEspecie": "0.00"
+                }
+            ],
+            "ventaAnterior": "0.0000",
+            "ventaAnterior2": "22766.1600",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [],
+            "pagoAnterior": "0.00",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "viernes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "22.20",
+                    "totalVenta": "230.88",
+                    "totalCantidad": 0,
+                    "precioPromedio": "10.40",
+                    "promedioEspecie": "0.00"
+                }
+            ],
+            "ventaAnterior": "0.0000",
+            "ventaAnterior2": "23092.7200",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [],
+            "pagoAnterior": "0.00",
+            "totalVentaDescuentoAnterior": "0.000000"
+        }
+    },
+    {
+        "codigoCli": 21,
+        "nombreCompleto": "GUISELA",
+        "limitEndeudamiento": "800.00",
+        "lunes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "257.40",
+                    "totalVenta": "2084.94",
+                    "totalCantidad": 80,
+                    "precioPromedio": "8.10",
+                    "promedioEspecie": "3.22"
+                }
+            ],
+            "ventaAnterior": "23731.3300",
+            "ventaAnterior2": "0.0000",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-19",
+                    "pagos": "814.00"
+                }
+            ],
+            "pagoAnterior": "25707.03",
+            "totalVentaDescuentoAnterior": "0.000000"
+        }
+    },
+    {
+        "codigoCli": 28,
+        "nombreCompleto": "HUACHES",
+        "limitEndeudamiento": "1000.98",
+        "lunes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "744.10",
+                    "totalVenta": "5655.16",
+                    "totalCantidad": 233,
+                    "precioPromedio": "7.60",
+                    "promedioEspecie": "3.19"
+                }
+            ],
+            "ventaAnterior": "222202.6300",
+            "ventaAnterior2": "0.0000",
+            "ventaAnterior3": "-11721.8850",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-19",
+                    "pagos": "14015.00"
+                }
+            ],
+            "pagoAnterior": "199346.40",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "martes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "763.20",
+                    "totalVenta": "5800.32",
+                    "totalCantidad": 300,
+                    "precioPromedio": "7.60",
+                    "promedioEspecie": "2.54"
+                }
+            ],
+            "ventaAnterior": "227857.7900",
+            "ventaAnterior2": "0.0000",
+            "ventaAnterior3": "-11721.8850",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-20",
+                    "pagos": "6710.00"
+                }
+            ],
+            "pagoAnterior": "213361.40",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "miercoles": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "1032.50",
+                    "totalVenta": "7847.00",
+                    "totalCantidad": 360,
+                    "precioPromedio": "7.60",
+                    "promedioEspecie": "2.87"
+                }
+            ],
+            "ventaAnterior": "233658.1100",
+            "ventaAnterior2": "0.0000",
+            "ventaAnterior3": "-11721.8850",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-21",
+                    "pagos": "7860.00"
+                }
+            ],
+            "pagoAnterior": "220071.40",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "jueves": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "1075.70",
+                    "totalVenta": "8175.32",
+                    "totalCantidad": 351,
+                    "precioPromedio": "7.60",
+                    "promedioEspecie": "3.06"
+                }
+            ],
+            "ventaAnterior": "241505.1100",
+            "ventaAnterior2": "0.0000",
+            "ventaAnterior3": "-11721.8850",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-22",
+                    "pagos": "8183.10"
+                }
+            ],
+            "pagoAnterior": "227931.40",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "viernes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "1050.70",
+                    "totalVenta": "7985.32",
+                    "totalCantidad": 360,
+                    "precioPromedio": "7.60",
+                    "promedioEspecie": "2.92"
+                }
+            ],
+            "ventaAnterior": "249680.4300",
+            "ventaAnterior2": "0.0000",
+            "ventaAnterior3": "-11721.8850",
+            "totalDescuentos": [],
+            "totalPagos": [],
+            "pagoAnterior": "236114.50",
+            "totalVentaDescuentoAnterior": "0.000000"
+        }
+    },
+    {
+        "codigoCli": 26,
+        "nombreCompleto": "HUAPAYA",
+        "limitEndeudamiento": "6485.30",
+        "lunes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "1254.00",
+                    "totalVenta": "9530.40",
+                    "totalCantidad": 400,
+                    "precioPromedio": "7.60",
+                    "promedioEspecie": "3.14"
+                }
+            ],
+            "ventaAnterior": "459775.7840",
+            "ventaAnterior2": "14315.5600",
+            "ventaAnterior3": "-520.2400",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-19",
+                    "pagos": "8612.90"
+                }
+            ],
+            "pagoAnterior": "467481.60",
+            "totalVentaDescuentoAnterior": "-95.280000"
+        },
+        "martes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "1082.40",
+                    "totalVenta": "8264.08",
+                    "totalCantidad": 422,
+                    "precioPromedio": "9.80",
+                    "promedioEspecie": "3.43"
+                }
+            ],
+            "ventaAnterior": "469306.1840",
+            "ventaAnterior2": "14315.5600",
+            "ventaAnterior3": "-520.2400",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-20",
+                    "pagos": "11930.70"
+                }
+            ],
+            "pagoAnterior": "476094.50",
+            "totalVentaDescuentoAnterior": "-95.280000"
+        },
+        "miercoles": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "1186.30",
+                    "totalVenta": "9111.80",
+                    "totalCantidad": 405,
+                    "precioPromedio": "9.80",
+                    "promedioEspecie": "3.64"
+                }
+            ],
+            "ventaAnterior": "477570.2640",
+            "ventaAnterior2": "14315.5600",
+            "ventaAnterior3": "-520.2400",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-21",
+                    "pagos": "10422.80"
+                }
+            ],
+            "pagoAnterior": "488025.20",
+            "totalVentaDescuentoAnterior": "-95.280000"
+        },
+        "jueves": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "1336.80",
+                    "totalVenta": "10252.96",
+                    "totalCantidad": 445,
+                    "precioPromedio": "9.80",
+                    "promedioEspecie": "3.62"
+                }
+            ],
+            "ventaAnterior": "486682.0640",
+            "ventaAnterior2": "14315.5600",
+            "ventaAnterior3": "-520.2400",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-22",
+                    "pagos": "11055.50"
+                }
+            ],
+            "pagoAnterior": "498448.00",
+            "totalVentaDescuentoAnterior": "-95.280000"
+        },
+        "viernes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "1065.90",
+                    "totalVenta": "8157.76",
+                    "totalCantidad": 385,
+                    "precioPromedio": "8.73",
+                    "promedioEspecie": "2.97"
+                }
+            ],
+            "ventaAnterior": "496935.0240",
+            "ventaAnterior2": "14315.5600",
+            "ventaAnterior3": "-520.2400",
+            "totalDescuentos": [],
+            "totalPagos": [],
+            "pagoAnterior": "509503.50",
+            "totalVentaDescuentoAnterior": "-95.280000"
+        }
+    },
+    {
+        "codigoCli": 43,
+        "nombreCompleto": "JACKY",
+        "limitEndeudamiento": "6637.52",
+        "lunes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "106.80",
+                    "totalVenta": "916.63",
+                    "totalCantidad": 34,
+                    "precioPromedio": "8.35",
+                    "promedioEspecie": "3.71"
+                }
+            ],
+            "ventaAnterior": "91.3000",
+            "ventaAnterior2": "29314.9200",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-19",
+                    "pagos": "555.60"
+                }
+            ],
+            "pagoAnterior": "21364.42",
+            "totalVentaDescuentoAnterior": "-8.450000"
+        },
+        "martes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "55.50",
+                    "totalVenta": "524.13",
+                    "totalCantidad": 22,
+                    "precioPromedio": "10.85",
+                    "promedioEspecie": "3.54"
+                }
+            ],
+            "ventaAnterior": "91.3000",
+            "ventaAnterior2": "30231.5500",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-20",
+                    "pagos": "964.00"
+                }
+            ],
+            "pagoAnterior": "21920.02",
+            "totalVentaDescuentoAnterior": "-8.450000"
+        },
+        "miercoles": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "93.50",
+                    "totalVenta": "887.84",
+                    "totalCantidad": 35,
+                    "precioPromedio": "10.85",
+                    "promedioEspecie": "3.00"
+                }
+            ],
+            "ventaAnterior": "91.3000",
+            "ventaAnterior2": "30755.6800",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-21",
+                    "pagos": "750.00"
+                }
+            ],
+            "pagoAnterior": "22884.02",
+            "totalVentaDescuentoAnterior": "-8.450000"
+        },
+        "jueves": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "102.10",
+                    "totalVenta": "966.53",
+                    "totalCantidad": 35,
+                    "precioPromedio": "10.85",
+                    "promedioEspecie": "3.22"
+                }
+            ],
+            "ventaAnterior": "91.3000",
+            "ventaAnterior2": "31643.5200",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-22",
+                    "pagos": "522.30"
+                }
+            ],
+            "pagoAnterior": "23634.02",
+            "totalVentaDescuentoAnterior": "-8.450000"
+        },
+        "viernes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "85.60",
+                    "totalVenta": "807.07",
+                    "totalCantidad": 34,
+                    "precioPromedio": "10.85",
+                    "promedioEspecie": "3.00"
+                }
+            ],
+            "ventaAnterior": "91.3000",
+            "ventaAnterior2": "32610.0500",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [],
+            "pagoAnterior": "24156.32",
+            "totalVentaDescuentoAnterior": "-8.450000"
+        }
+    },
+    {
+        "codigoCli": 61,
+        "nombreCompleto": "JERSON (OVEJO)",
+        "limitEndeudamiento": "8600.00",
+        "jueves": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "45.50",
+                    "totalVenta": "402.57",
+                    "totalCantidad": 10,
+                    "precioPromedio": "8.85",
+                    "promedioEspecie": "1.15"
+                }
+            ],
+            "ventaAnterior": "0.0000",
+            "ventaAnterior2": "23963.8100",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-22",
+                    "pagos": "407.10"
+                }
+            ],
+            "pagoAnterior": "14818.17",
+            "totalVentaDescuentoAnterior": "0.000000"
+        }
+    },
+    {
+        "codigoCli": 1,
+        "nombreCompleto": "JIMENEZ TALARA",
+        "limitEndeudamiento": "1.00",
+        "lunes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "1045.90",
+                    "totalVenta": "8367.20",
+                    "totalCantidad": 400,
+                    "precioPromedio": "8.00",
+                    "promedioEspecie": "2.30"
+                }
+            ],
+            "ventaAnterior": "4070.1500",
+            "ventaAnterior2": "317585.2000",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-19",
+                    "pagos": "8500.00"
+                }
+            ],
+            "pagoAnterior": "321700.02",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "martes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "1015.50",
+                    "totalVenta": "8124.00",
+                    "totalCantidad": 425,
+                    "precioPromedio": "8.00",
+                    "promedioEspecie": "2.17"
+                }
+            ],
+            "ventaAnterior": "4070.1500",
+            "ventaAnterior2": "325952.4000",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-20",
+                    "pagos": "8000.00"
+                }
+            ],
+            "pagoAnterior": "330200.02",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "miercoles": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "900.80",
+                    "totalVenta": "7206.40",
+                    "totalCantidad": 360,
+                    "precioPromedio": "8.00",
+                    "promedioEspecie": "2.50"
+                }
+            ],
+            "ventaAnterior": "4070.1500",
+            "ventaAnterior2": "334076.4000",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-21",
+                    "pagos": "7200.00"
+                }
+            ],
+            "pagoAnterior": "338200.02",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "jueves": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "800.10",
+                    "totalVenta": "6400.80",
+                    "totalCantidad": 350,
+                    "precioPromedio": "8.00",
+                    "promedioEspecie": "2.29"
+                }
+            ],
+            "ventaAnterior": "4070.1500",
+            "ventaAnterior2": "341282.8000",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-22",
+                    "pagos": "6400.00"
+                }
+            ],
+            "pagoAnterior": "345400.02",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "viernes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "879.30",
+                    "totalVenta": "7072.90",
+                    "totalCantidad": 402,
+                    "precioPromedio": "10.50",
+                    "promedioEspecie": "3.02"
+                }
+            ],
+            "ventaAnterior": "4070.1500",
+            "ventaAnterior2": "347683.6000",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [],
+            "pagoAnterior": "351800.02",
+            "totalVentaDescuentoAnterior": "0.000000"
+        }
+    },
+    {
+        "codigoCli": 11,
+        "nombreCompleto": "JULIO ZAPATA",
+        "limitEndeudamiento": "0.02",
+        "lunes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "414.60",
+                    "totalVenta": "2530.72",
+                    "totalCantidad": 213,
+                    "precioPromedio": "6.95",
+                    "promedioEspecie": "2.30"
+                }
+            ],
+            "ventaAnterior": "77742.9400",
+            "ventaAnterior2": "79046.2200",
+            "ventaAnterior3": "15952.0400",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-19",
+                    "pagos": "2530.00"
+                }
+            ],
+            "pagoAnterior": "172741.49",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "viernes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "426.10",
+                    "totalVenta": "2819.18",
+                    "totalCantidad": 216,
+                    "precioPromedio": "7.25",
+                    "promedioEspecie": "2.30"
+                }
+            ],
+            "ventaAnterior": "79829.7800",
+            "ventaAnterior2": "79490.1000",
+            "ventaAnterior3": "15952.0400",
+            "totalDescuentos": [],
+            "totalPagos": [],
+            "pagoAnterior": "175271.49",
+            "totalVentaDescuentoAnterior": "0.000000"
+        }
+    },
+    {
+        "codigoCli": 35,
+        "nombreCompleto": "MARLON",
+        "limitEndeudamiento": "6894.56",
+        "lunes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "75.50",
+                    "totalVenta": "656.85",
+                    "totalCantidad": 35,
+                    "precioPromedio": "8.70",
+                    "promedioEspecie": "2.16"
+                }
+            ],
+            "ventaAnterior": "0.0000",
+            "ventaAnterior2": "54673.0200",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-19",
+                    "pagos": "656.90"
+                }
+            ],
+            "pagoAnterior": "47253.85",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "martes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "66.00",
+                    "totalVenta": "574.20",
+                    "totalCantidad": 30,
+                    "precioPromedio": "8.70",
+                    "promedioEspecie": "2.48"
+                }
+            ],
+            "ventaAnterior": "0.0000",
+            "ventaAnterior2": "55329.8700",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-20",
+                    "pagos": "574.20"
+                }
+            ],
+            "pagoAnterior": "47910.75",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "miercoles": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "72.70",
+                    "totalVenta": "632.49",
+                    "totalCantidad": 34,
+                    "precioPromedio": "8.70",
+                    "promedioEspecie": "2.14"
+                }
+            ],
+            "ventaAnterior": "0.0000",
+            "ventaAnterior2": "55904.0700",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-21",
+                    "pagos": "632.50"
+                }
+            ],
+            "pagoAnterior": "48484.95",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "jueves": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "109.70",
+                    "totalVenta": "954.39",
+                    "totalCantidad": 48,
+                    "precioPromedio": "8.70",
+                    "promedioEspecie": "2.29"
+                }
+            ],
+            "ventaAnterior": "0.0000",
+            "ventaAnterior2": "56536.5600",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-22",
+                    "pagos": "954.40"
+                }
+            ],
+            "pagoAnterior": "49117.45",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "viernes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "55.80",
+                    "totalVenta": "485.46",
+                    "totalCantidad": 25,
+                    "precioPromedio": "8.70",
+                    "promedioEspecie": "2.23"
+                }
+            ],
+            "ventaAnterior": "0.0000",
+            "ventaAnterior2": "57490.9500",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-23",
+                    "pagos": "485.50"
+                }
+            ],
+            "pagoAnterior": "50071.85",
+            "totalVentaDescuentoAnterior": "0.000000"
+        }
+    },
+    {
+        "codigoCli": 77,
+        "nombreCompleto": "MARUJA",
+        "limitEndeudamiento": "1.00",
+        "lunes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "3895.00",
+                    "totalVenta": "28433.50",
+                    "totalCantidad": 1199,
+                    "precioPromedio": "7.30",
+                    "promedioEspecie": "3.25"
+                }
+            ],
+            "ventaAnterior": "357473.6300",
+            "ventaAnterior2": "0.0000",
+            "ventaAnterior3": "12437.5300",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-19",
+                    "pagos": "44400.00"
+                }
+            ],
+            "pagoAnterior": "369713.88",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "martes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "1755.40",
+                    "totalVenta": "12814.42",
+                    "totalCantidad": 660,
+                    "precioPromedio": "7.30",
+                    "promedioEspecie": "2.66"
+                }
+            ],
+            "ventaAnterior": "385907.1300",
+            "ventaAnterior2": "0.0000",
+            "ventaAnterior3": "12437.5300",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-20",
+                    "pagos": "32000.00"
+                }
+            ],
+            "pagoAnterior": "414113.88",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "miercoles": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "3220.70",
+                    "totalVenta": "22996.76",
+                    "totalCantidad": 1219,
+                    "precioPromedio": "6.85",
+                    "promedioEspecie": "2.40"
+                }
+            ],
+            "ventaAnterior": "398721.5500",
+            "ventaAnterior2": "0.0000",
+            "ventaAnterior3": "12437.5300",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-21",
+                    "pagos": "26000.00"
+                }
+            ],
+            "pagoAnterior": "446113.88",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "jueves": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "3594.20",
+                    "totalVenta": "25730.06",
+                    "totalCantidad": 1293,
+                    "precioPromedio": "6.85",
+                    "promedioEspecie": "2.47"
+                }
+            ],
+            "ventaAnterior": "421718.3100",
+            "ventaAnterior2": "0.0000",
+            "ventaAnterior3": "12437.5300",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-22",
+                    "pagos": "16000.00"
+                }
+            ],
+            "pagoAnterior": "472113.88",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "viernes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "4291.80",
+                    "totalVenta": "30483.42",
+                    "totalCantidad": 1640,
+                    "precioPromedio": "6.85",
+                    "promedioEspecie": "2.41"
+                }
+            ],
+            "ventaAnterior": "447448.3700",
+            "ventaAnterior2": "0.0000",
+            "ventaAnterior3": "12437.5300",
+            "totalDescuentos": [],
+            "totalPagos": [],
+            "pagoAnterior": "488113.88",
+            "totalVentaDescuentoAnterior": "0.000000"
+        }
+    },
+    {
+        "codigoCli": 19,
+        "nombreCompleto": "MECA",
+        "limitEndeudamiento": "500.00",
+        "lunes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "128.80",
+                    "totalVenta": "1016.16",
+                    "totalCantidad": 52,
+                    "precioPromedio": "7.53",
+                    "promedioEspecie": "0.62"
+                }
+            ],
+            "ventaAnterior": "0.0000",
+            "ventaAnterior2": "28505.4100",
+            "ventaAnterior3": "1511.3000",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-19",
+                    "pagos": "1650.00"
+                }
+            ],
+            "pagoAnterior": "28802.85",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "martes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "69.60",
+                    "totalVenta": "540.52",
+                    "totalCantidad": 35,
+                    "precioPromedio": "7.53",
+                    "promedioEspecie": "0.49"
+                }
+            ],
+            "ventaAnterior": "0.0000",
+            "ventaAnterior2": "29521.5700",
+            "ventaAnterior3": "1511.3000",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-20",
+                    "pagos": "800.00"
+                }
+            ],
+            "pagoAnterior": "30452.85",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "miercoles": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "40.20",
+                    "totalVenta": "302.94",
+                    "totalCantidad": 17,
+                    "precioPromedio": "7.53",
+                    "promedioEspecie": "0.46"
+                }
+            ],
+            "ventaAnterior": "0.0000",
+            "ventaAnterior2": "30062.0900",
+            "ventaAnterior3": "1511.3000",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-21",
+                    "pagos": "623.50"
+                }
+            ],
+            "pagoAnterior": "31252.85",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "jueves": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "73.50",
+                    "totalVenta": "581.40",
+                    "totalCantidad": 35,
+                    "precioPromedio": "6.70",
+                    "promedioEspecie": "0.95"
+                }
+            ],
+            "ventaAnterior": "0.0000",
+            "ventaAnterior2": "30365.0300",
+            "ventaAnterior3": "1511.3000",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-22",
+                    "pagos": "500.00"
+                }
+            ],
+            "pagoAnterior": "31876.35",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "viernes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "56.40",
+                    "totalVenta": "433.29",
+                    "totalCantidad": 35,
+                    "precioPromedio": "7.10",
+                    "promedioEspecie": "0.46"
+                }
+            ],
+            "ventaAnterior": "0.0000",
+            "ventaAnterior2": "30946.4300",
+            "ventaAnterior3": "1511.3000",
+            "totalDescuentos": [],
+            "totalPagos": [],
+            "pagoAnterior": "32376.35",
+            "totalVentaDescuentoAnterior": "0.000000"
+        }
+    },
+    {
+        "codigoCli": 6,
+        "nombreCompleto": "MELLIZO",
+        "limitEndeudamiento": "2962.76",
+        "lunes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "205.20",
+                    "totalVenta": "1785.24",
+                    "totalCantidad": 72,
+                    "precioPromedio": "8.70",
+                    "promedioEspecie": "2.51"
+                }
+            ],
+            "ventaAnterior": "0.0000",
+            "ventaAnterior2": "86301.0700",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-19",
+                    "pagos": "6195.00"
+                }
+            ],
+            "pagoAnterior": "78917.62",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "martes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "211.50",
+                    "totalVenta": "1840.05",
+                    "totalCantidad": 90,
+                    "precioPromedio": "8.70",
+                    "promedioEspecie": "2.17"
+                }
+            ],
+            "ventaAnterior": "0.0000",
+            "ventaAnterior2": "88086.3100",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-20",
+                    "pagos": "1840.00"
+                }
+            ],
+            "pagoAnterior": "85112.62",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "miercoles": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "166.50",
+                    "totalVenta": "1448.55",
+                    "totalCantidad": 70,
+                    "precioPromedio": "8.70",
+                    "promedioEspecie": "2.38"
+                }
+            ],
+            "ventaAnterior": "0.0000",
+            "ventaAnterior2": "89926.3600",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-21",
+                    "pagos": "1450.00"
+                }
+            ],
+            "pagoAnterior": "86952.62",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "jueves": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "164.50",
+                    "totalVenta": "1431.15",
+                    "totalCantidad": 60,
+                    "precioPromedio": "8.70",
+                    "promedioEspecie": "2.74"
+                }
+            ],
+            "ventaAnterior": "0.0000",
+            "ventaAnterior2": "91374.9100",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-22",
+                    "pagos": "1435.00"
+                }
+            ],
+            "pagoAnterior": "88402.62",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "viernes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "178.80",
+                    "totalVenta": "1555.56",
+                    "totalCantidad": 70,
+                    "precioPromedio": "8.70",
+                    "promedioEspecie": "2.34"
+                }
+            ],
+            "ventaAnterior": "0.0000",
+            "ventaAnterior2": "92806.0600",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [],
+            "pagoAnterior": "89837.62",
+            "totalVentaDescuentoAnterior": "0.000000"
+        }
+    },
+    {
+        "codigoCli": 4,
+        "nombreCompleto": "MILLER",
+        "limitEndeudamiento": "26995.19",
+        "lunes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "669.70",
+                    "totalVenta": "4828.78",
+                    "totalCantidad": 277,
+                    "precioPromedio": "7.07",
+                    "promedioEspecie": "2.42"
+                }
+            ],
+            "ventaAnterior": "256005.9500",
+            "ventaAnterior2": "688.5600",
+            "ventaAnterior3": "457.2400",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-19",
+                    "pagos": "11966.00"
+                }
+            ],
+            "pagoAnterior": "222390.76",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "martes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "497.60",
+                    "totalVenta": "3821.76",
+                    "totalCantidad": 202,
+                    "precioPromedio": "9.07",
+                    "promedioEspecie": "3.19"
+                }
+            ],
+            "ventaAnterior": "260834.7300",
+            "ventaAnterior2": "688.5600",
+            "ventaAnterior3": "457.2400",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-20",
+                    "pagos": "4581.80"
+                }
+            ],
+            "pagoAnterior": "234356.76",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "miercoles": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "541.80",
+                    "totalVenta": "4063.72",
+                    "totalCantidad": 218,
+                    "precioPromedio": "8.40",
+                    "promedioEspecie": "2.84"
+                }
+            ],
+            "ventaAnterior": "264656.4900",
+            "ventaAnterior2": "688.5600",
+            "ventaAnterior3": "457.2400",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-21",
+                    "pagos": "4061.00"
+                }
+            ],
+            "pagoAnterior": "238938.56",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "jueves": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "539.00",
+                    "totalVenta": "4002.17",
+                    "totalCantidad": 203,
+                    "precioPromedio": "7.20",
+                    "promedioEspecie": "2.50"
+                }
+            ],
+            "ventaAnterior": "268720.2100",
+            "ventaAnterior2": "688.5600",
+            "ventaAnterior3": "457.2400",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-22",
+                    "pagos": "4005.00"
+                }
+            ],
+            "pagoAnterior": "242999.56",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "viernes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "600.20",
+                    "totalVenta": "4180.56",
+                    "totalCantidad": 276,
+                    "precioPromedio": "7.30",
+                    "promedioEspecie": "2.41"
+                }
+            ],
+            "ventaAnterior": "272722.3800",
+            "ventaAnterior2": "688.5600",
+            "ventaAnterior3": "457.2400",
+            "totalDescuentos": [],
+            "totalPagos": [],
+            "pagoAnterior": "247004.56",
+            "totalVentaDescuentoAnterior": "0.000000"
+        }
+    },
+    {
+        "codigoCli": 14,
+        "nombreCompleto": "NAYA",
+        "limitEndeudamiento": "4000.00",
+        "lunes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "1097.90",
+                    "totalVenta": "8074.99",
+                    "totalCantidad": 405,
+                    "precioPromedio": "7.38",
+                    "promedioEspecie": "2.81"
+                }
+            ],
+            "ventaAnterior": "466721.1925",
+            "ventaAnterior2": "0.0000",
+            "ventaAnterior3": "768.7425",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-19",
+                    "pagos": "10580.40"
+                }
+            ],
+            "pagoAnterior": "463925.92",
+            "totalVentaDescuentoAnterior": "-39.060000"
+        },
+        "martes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "1668.30",
+                    "totalVenta": "12589.48",
+                    "totalCantidad": 660,
+                    "precioPromedio": "8.98",
+                    "promedioEspecie": "3.14"
+                }
+            ],
+            "ventaAnterior": "474901.0575",
+            "ventaAnterior2": "0.0000",
+            "ventaAnterior3": "663.8625",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-20",
+                    "pagos": "13334.00"
+                }
+            ],
+            "pagoAnterior": "474506.32",
+            "totalVentaDescuentoAnterior": "-39.060000"
+        },
+        "miercoles": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "1633.40",
+                    "totalVenta": "12381.40",
+                    "totalCantidad": 605,
+                    "precioPromedio": "8.98",
+                    "promedioEspecie": "3.14"
+                }
+            ],
+            "ventaAnterior": "487490.5375",
+            "ventaAnterior2": "0.0000",
+            "ventaAnterior3": "663.8625",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-21",
+                    "pagos": "9000.00"
+                }
+            ],
+            "pagoAnterior": "487840.32",
+            "totalVentaDescuentoAnterior": "-39.060000"
+        },
+        "jueves": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "1625.10",
+                    "totalVenta": "12234.63",
+                    "totalCantidad": 580,
+                    "precioPromedio": "8.98",
+                    "promedioEspecie": "3.19"
+                }
+            ],
+            "ventaAnterior": "499890.1725",
+            "ventaAnterior2": "0.0000",
+            "ventaAnterior3": "645.6225",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-22",
+                    "pagos": "10500.00"
+                }
+            ],
+            "pagoAnterior": "496840.32",
+            "totalVentaDescuentoAnterior": "-39.060000"
+        }
+    },
+    {
+        "codigoCli": 17,
+        "nombreCompleto": "OFELIA",
+        "limitEndeudamiento": "18740.00",
+        "lunes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "291.70",
+                    "totalVenta": "2331.66",
+                    "totalCantidad": 130,
+                    "precioPromedio": "7.75",
+                    "promedioEspecie": "2.03"
+                }
+            ],
+            "ventaAnterior": "116289.4300",
+            "ventaAnterior2": "22135.4700",
+            "ventaAnterior3": "20876.1820",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-19",
+                    "pagos": "4200.00"
+                }
+            ],
+            "pagoAnterior": "130159.41",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "martes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "324.60",
+                    "totalVenta": "2726.64",
+                    "totalCantidad": 143,
+                    "precioPromedio": "8.40",
+                    "promedioEspecie": "2.27"
+                }
+            ],
+            "ventaAnterior": "118621.0900",
+            "ventaAnterior2": "22135.4700",
+            "ventaAnterior3": "20876.1820",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-20",
+                    "pagos": "2800.00"
+                }
+            ],
+            "pagoAnterior": "134359.41",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "miercoles": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "187.10",
+                    "totalVenta": "1653.98",
+                    "totalCantidad": 75,
+                    "precioPromedio": "10.70",
+                    "promedioEspecie": "3.00"
+                }
+            ],
+            "ventaAnterior": "121347.7300",
+            "ventaAnterior2": "22135.4700",
+            "ventaAnterior3": "20876.1820",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-21",
+                    "pagos": "1700.00"
+                }
+            ],
+            "pagoAnterior": "137159.41",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "jueves": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "380.60",
+                    "totalVenta": "2936.04",
+                    "totalCantidad": 176,
+                    "precioPromedio": "7.90",
+                    "promedioEspecie": "2.18"
+                }
+            ],
+            "ventaAnterior": "122769.0100",
+            "ventaAnterior2": "22368.1700",
+            "ventaAnterior3": "20876.1820",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-22",
+                    "pagos": "1400.00"
+                }
+            ],
+            "pagoAnterior": "138859.41",
+            "totalVentaDescuentoAnterior": "0.000000"
+        }
+    },
+    {
+        "codigoCli": 49,
+        "nombreCompleto": "OROZCO",
+        "limitEndeudamiento": "24560.00",
+        "lunes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "2404.60",
+                    "totalVenta": "20072.40",
+                    "totalCantidad": 907,
+                    "precioPromedio": "8.20",
+                    "promedioEspecie": "2.37"
+                }
+            ],
+            "ventaAnterior": "288.8800",
+            "ventaAnterior2": "922751.9700",
+            "ventaAnterior3": "76376.0580",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-19",
+                    "pagos": "30590.90"
+                }
+            ],
+            "pagoAnterior": "955717.69",
+            "totalVentaDescuentoAnterior": "-173.800000"
+        },
+        "martes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "2560.70",
+                    "totalVenta": "21849.22",
+                    "totalCantidad": 1119,
+                    "precioPromedio": "9.53",
+                    "promedioEspecie": "2.67"
+                }
+            ],
+            "ventaAnterior": "288.8800",
+            "ventaAnterior2": "942824.3700",
+            "ventaAnterior3": "76376.0580",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-20",
+                    "pagos": "26544.00"
+                }
+            ],
+            "pagoAnterior": "986308.59",
+            "totalVentaDescuentoAnterior": "-173.800000"
+        },
+        "miercoles": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "2337.30",
+                    "totalVenta": "19870.47",
+                    "totalCantidad": 973,
+                    "precioPromedio": "9.22",
+                    "promedioEspecie": "2.50"
+                }
+            ],
+            "ventaAnterior": "288.8800",
+            "ventaAnterior2": "964673.5900",
+            "ventaAnterior3": "76376.0580",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-21",
+                    "pagos": "18371.00"
+                }
+            ],
+            "pagoAnterior": "1012852.59",
+            "totalVentaDescuentoAnterior": "-173.800000"
+        },
+        "jueves": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "2043.00",
+                    "totalVenta": "17410.86",
+                    "totalCantidad": 811,
+                    "precioPromedio": "9.53",
+                    "promedioEspecie": "2.67"
+                }
+            ],
+            "ventaAnterior": "288.8800",
+            "ventaAnterior2": "984544.0600",
+            "ventaAnterior3": "76376.0580",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-22",
+                    "pagos": "18230.00"
+                }
+            ],
+            "pagoAnterior": "1031223.59",
+            "totalVentaDescuentoAnterior": "-173.800000"
+        },
+        "viernes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "2392.90",
+                    "totalVenta": "20251.48",
+                    "totalCantidad": 1031,
+                    "precioPromedio": "8.98",
+                    "promedioEspecie": "2.37"
+                }
+            ],
+            "ventaAnterior": "288.8800",
+            "ventaAnterior2": "1001954.9200",
+            "ventaAnterior3": "76376.0580",
+            "totalDescuentos": [],
+            "totalPagos": [],
+            "pagoAnterior": "1049453.59",
+            "totalVentaDescuentoAnterior": "-173.800000"
+        }
+    },
+    {
+        "codigoCli": 69,
+        "nombreCompleto": "OTROS",
+        "limitEndeudamiento": "1.00",
+        "lunes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "74.60",
+                    "totalVenta": "0.00",
+                    "totalCantidad": 39,
+                    "precioPromedio": "0.00",
+                    "promedioEspecie": "3.09"
+                }
+            ],
+            "ventaAnterior": "861.0000",
+            "ventaAnterior2": "333.3600",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [],
+            "pagoAnterior": "0.00",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "martes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "18.50",
+                    "totalVenta": "0.00",
+                    "totalCantidad": 8,
+                    "precioPromedio": "0.00",
+                    "promedioEspecie": "1.26"
+                }
+            ],
+            "ventaAnterior": "861.0000",
+            "ventaAnterior2": "333.3600",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [],
+            "pagoAnterior": "0.00",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "miercoles": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "40.70",
+                    "totalVenta": "0.00",
+                    "totalCantidad": 18,
+                    "precioPromedio": "0.00",
+                    "promedioEspecie": "2.26"
+                }
+            ],
+            "ventaAnterior": "861.0000",
+            "ventaAnterior2": "333.3600",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [],
+            "pagoAnterior": "0.00",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "jueves": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "61.20",
+                    "totalVenta": "0.00",
+                    "totalCantidad": 21,
+                    "precioPromedio": "0.00",
+                    "promedioEspecie": "2.18"
+                }
+            ],
+            "ventaAnterior": "861.0000",
+            "ventaAnterior2": "333.3600",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [],
+            "pagoAnterior": "0.00",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "viernes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "26.70",
+                    "totalVenta": "0.00",
+                    "totalCantidad": 15,
+                    "precioPromedio": "0.00",
+                    "promedioEspecie": "1.71"
+                }
+            ],
+            "ventaAnterior": "861.0000",
+            "ventaAnterior2": "333.3600",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [],
+            "pagoAnterior": "0.00",
+            "totalVentaDescuentoAnterior": "0.000000"
+        }
+    },
+    {
+        "codigoCli": 59,
+        "nombreCompleto": "PERROS",
+        "limitEndeudamiento": "1.00",
+        "lunes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "24.00",
+                    "totalVenta": "106.40",
+                    "totalCantidad": 14,
+                    "precioPromedio": "4.00",
+                    "promedioEspecie": "0.61"
+                }
+            ],
+            "ventaAnterior": "49.4600",
+            "ventaAnterior2": "-92.7000",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [],
+            "pagoAnterior": "0.00",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "martes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "11.30",
+                    "totalVenta": "33.90",
+                    "totalCantidad": 4,
+                    "precioPromedio": "3.00",
+                    "promedioEspecie": "2.83"
+                }
+            ],
+            "ventaAnterior": "49.4600",
+            "ventaAnterior2": "13.7000",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [],
+            "pagoAnterior": "0.00",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "miercoles": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "9.50",
+                    "totalVenta": "42.90",
+                    "totalCantidad": 6,
+                    "precioPromedio": "4.00",
+                    "promedioEspecie": "1.87"
+                }
+            ],
+            "ventaAnterior": "49.4600",
+            "ventaAnterior2": "47.6000",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [],
+            "pagoAnterior": "0.00",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "jueves": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "12.80",
+                    "totalVenta": "50.40",
+                    "totalCantidad": 8,
+                    "precioPromedio": "4.00",
+                    "promedioEspecie": "2.20"
+                }
+            ],
+            "ventaAnterior": "85.4600",
+            "ventaAnterior2": "54.5000",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [],
+            "pagoAnterior": "0.00",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "viernes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "11.20",
+                    "totalVenta": "48.80",
+                    "totalCantidad": 7,
+                    "precioPromedio": "4.00",
+                    "promedioEspecie": "2.44"
+                }
+            ],
+            "ventaAnterior": "85.4600",
+            "ventaAnterior2": "104.9000",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [],
+            "pagoAnterior": "0.00",
+            "totalVentaDescuentoAnterior": "0.000000"
+        }
+    },
+    {
+        "codigoCli": 13,
+        "nombreCompleto": "PILAR",
+        "limitEndeudamiento": "28244.48",
+        "lunes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "633.60",
+                    "totalVenta": "4752.00",
+                    "totalCantidad": 195,
+                    "precioPromedio": "7.50",
+                    "promedioEspecie": "3.25"
+                }
+            ],
+            "ventaAnterior": "570921.6550",
+            "ventaAnterior2": "1164.2400",
+            "ventaAnterior3": "-27889.2800",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-19",
+                    "pagos": "9751.00"
+                }
+            ],
+            "pagoAnterior": "511166.40",
+            "totalVentaDescuentoAnterior": "-70.680000"
+        },
+        "miercoles": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "790.20",
+                    "totalVenta": "5926.50",
+                    "totalCantidad": 280,
+                    "precioPromedio": "7.50",
+                    "promedioEspecie": "2.82"
+                }
+            ],
+            "ventaAnterior": "576014.9050",
+            "ventaAnterior2": "1164.2400",
+            "ventaAnterior3": "-28230.5300",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-21",
+                    "pagos": "5029.00"
+                }
+            ],
+            "pagoAnterior": "524457.40",
+            "totalVentaDescuentoAnterior": "-70.680000"
+        },
+        "jueves": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "824.80",
+                    "totalVenta": "6186.00",
+                    "totalCantidad": 272,
+                    "precioPromedio": "7.50",
+                    "promedioEspecie": "3.03"
+                }
+            ],
+            "ventaAnterior": "582052.4050",
+            "ventaAnterior2": "1164.2400",
+            "ventaAnterior3": "-28341.5300",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-22",
+                    "pagos": "5660.00"
+                }
+            ],
+            "pagoAnterior": "529486.40",
+            "totalVentaDescuentoAnterior": "-70.680000"
+        },
+        "viernes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "793.00",
+                    "totalVenta": "5947.50",
+                    "totalCantidad": 270,
+                    "precioPromedio": "7.50",
+                    "promedioEspecie": "2.94"
+                }
+            ],
+            "ventaAnterior": "588640.4050",
+            "ventaAnterior2": "1164.2400",
+            "ventaAnterior3": "-28743.5300",
+            "totalDescuentos": [],
+            "totalPagos": [],
+            "pagoAnterior": "535146.40",
+            "totalVentaDescuentoAnterior": "-70.680000"
+        }
+    },
+    {
+        "codigoCli": 51,
+        "nombreCompleto": "PITICO",
+        "limitEndeudamiento": "0.02",
+        "martes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "238.30",
+                    "totalVenta": "1811.08",
+                    "totalCantidad": 90,
+                    "precioPromedio": "7.60",
+                    "promedioEspecie": "2.65"
+                }
+            ],
+            "ventaAnterior": "129121.6600",
+            "ventaAnterior2": "0.0000",
+            "ventaAnterior3": "-2694.6600",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-20",
+                    "pagos": "1800.00"
+                }
+            ],
+            "pagoAnterior": "126231.12",
+            "totalVentaDescuentoAnterior": "-195.880000"
+        },
+        "miercoles": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "528.30",
+                    "totalVenta": "3907.08",
+                    "totalCantidad": 210,
+                    "precioPromedio": "7.00",
+                    "promedioEspecie": "2.27"
+                }
+            ],
+            "ventaAnterior": "130932.7400",
+            "ventaAnterior2": "0.0000",
+            "ventaAnterior3": "-2694.6600",
+            "totalDescuentos": [
+                {
+                    "fechaRegistroDesc": "2024-08-21",
+                    "totalPesoDescuento": "-2.000",
+                    "totalVentaDescuento": "-15.200000"
+                }
+            ],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-21",
+                    "pagos": "3891.90"
+                }
+            ],
+            "pagoAnterior": "128031.12",
+            "totalVentaDescuentoAnterior": "-195.880000"
+        },
+        "jueves": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "698.50",
+                    "totalVenta": "5197.48",
+                    "totalCantidad": 250,
+                    "precioPromedio": "7.00",
+                    "promedioEspecie": "2.44"
+                }
+            ],
+            "ventaAnterior": "134839.8200",
+            "ventaAnterior2": "0.0000",
+            "ventaAnterior3": "-2694.6600",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-22",
+                    "pagos": "5169.80"
+                }
+            ],
+            "pagoAnterior": "131923.02",
+            "totalVentaDescuentoAnterior": "-211.080000"
+        }
+    },
+    {
+        "codigoCli": 18,
+        "nombreCompleto": "SOFIA",
+        "limitEndeudamiento": "14000.00",
+        "lunes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "644.40",
+                    "totalVenta": "4897.44",
+                    "totalCantidad": 200,
+                    "precioPromedio": "7.60",
+                    "promedioEspecie": "3.22"
+                }
+            ],
+            "ventaAnterior": "231641.8600",
+            "ventaAnterior2": "0.0000",
+            "ventaAnterior3": "845.8200",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-19",
+                    "pagos": "5640.00"
+                }
+            ],
+            "pagoAnterior": "215430.95",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "martes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "386.80",
+                    "totalVenta": "2939.68",
+                    "totalCantidad": 150,
+                    "precioPromedio": "7.60",
+                    "promedioEspecie": "2.58"
+                }
+            ],
+            "ventaAnterior": "236539.3000",
+            "ventaAnterior2": "0.0000",
+            "ventaAnterior3": "845.8200",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-20",
+                    "pagos": "3040.00"
+                }
+            ],
+            "pagoAnterior": "221070.95",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "miercoles": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "531.00",
+                    "totalVenta": "4035.60",
+                    "totalCantidad": 200,
+                    "precioPromedio": "7.60",
+                    "promedioEspecie": "2.65"
+                }
+            ],
+            "ventaAnterior": "239478.9800",
+            "ventaAnterior2": "0.0000",
+            "ventaAnterior3": "845.8200",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-21",
+                    "pagos": "4060.00"
+                }
+            ],
+            "pagoAnterior": "224110.95",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "jueves": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "728.30",
+                    "totalVenta": "5535.08",
+                    "totalCantidad": 240,
+                    "precioPromedio": "7.60",
+                    "promedioEspecie": "3.03"
+                }
+            ],
+            "ventaAnterior": "243514.5800",
+            "ventaAnterior2": "0.0000",
+            "ventaAnterior3": "845.8200",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-22",
+                    "pagos": "5540.00"
+                }
+            ],
+            "pagoAnterior": "228170.95",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "viernes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "609.10",
+                    "totalVenta": "4629.16",
+                    "totalCantidad": 210,
+                    "precioPromedio": "7.60",
+                    "promedioEspecie": "2.90"
+                }
+            ],
+            "ventaAnterior": "249049.6600",
+            "ventaAnterior2": "0.0000",
+            "ventaAnterior3": "845.8200",
+            "totalDescuentos": [],
+            "totalPagos": [],
+            "pagoAnterior": "233710.95",
+            "totalVentaDescuentoAnterior": "0.000000"
+        }
+    },
+    {
+        "codigoCli": 22,
+        "nombreCompleto": "SR. CUNYA",
+        "limitEndeudamiento": "1200.00",
+        "lunes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "365.40",
+                    "totalVenta": "3112.40",
+                    "totalCantidad": 140,
+                    "precioPromedio": "8.40",
+                    "promedioEspecie": "2.39"
+                }
+            ],
+            "ventaAnterior": "0.0000",
+            "ventaAnterior2": "158651.4300",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [],
+            "pagoAnterior": "156900.10",
+            "totalVentaDescuentoAnterior": "-532.860000"
+        },
+        "martes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "234.20",
+                    "totalVenta": "2014.12",
+                    "totalCantidad": 99,
+                    "precioPromedio": "8.60",
+                    "promedioEspecie": "2.37"
+                }
+            ],
+            "ventaAnterior": "0.0000",
+            "ventaAnterior2": "161763.8300",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-20",
+                    "pagos": "3270.00"
+                }
+            ],
+            "pagoAnterior": "156900.10",
+            "totalVentaDescuentoAnterior": "-532.860000"
+        },
+        "miercoles": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "241.30",
+                    "totalVenta": "2075.18",
+                    "totalCantidad": 100,
+                    "precioPromedio": "8.60",
+                    "promedioEspecie": "2.41"
+                }
+            ],
+            "ventaAnterior": "0.0000",
+            "ventaAnterior2": "163777.9500",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-21",
+                    "pagos": "2100.00"
+                }
+            ],
+            "pagoAnterior": "160170.10",
+            "totalVentaDescuentoAnterior": "-532.860000"
+        },
+        "jueves": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "328.00",
+                    "totalVenta": "2820.80",
+                    "totalCantidad": 120,
+                    "precioPromedio": "8.60",
+                    "promedioEspecie": "2.73"
+                }
+            ],
+            "ventaAnterior": "0.0000",
+            "ventaAnterior2": "165853.1300",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-22",
+                    "pagos": "2160.00"
+                }
+            ],
+            "pagoAnterior": "162270.10",
+            "totalVentaDescuentoAnterior": "-532.860000"
+        },
+        "viernes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "171.70",
+                    "totalVenta": "1467.36",
+                    "totalCantidad": 70,
+                    "precioPromedio": "8.50",
+                    "promedioEspecie": "2.41"
+                }
+            ],
+            "ventaAnterior": "0.0000",
+            "ventaAnterior2": "168673.9300",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [],
+            "pagoAnterior": "164430.10",
+            "totalVentaDescuentoAnterior": "-532.860000"
+        }
+    },
+    {
+        "codigoCli": 29,
+        "nombreCompleto": "SR. PAIMAS",
+        "limitEndeudamiento": "963.10",
+        "lunes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "979.70",
+                    "totalVenta": "7837.60",
+                    "totalCantidad": 310,
+                    "precioPromedio": "8.00",
+                    "promedioEspecie": "3.16"
+                }
+            ],
+            "ventaAnterior": "140647.5400",
+            "ventaAnterior2": "0.0000",
+            "ventaAnterior3": "8928.9550",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-19",
+                    "pagos": "12000.00"
+                }
+            ],
+            "pagoAnterior": "144670.80",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "martes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "259.90",
+                    "totalVenta": "2972.60",
+                    "totalCantidad": 95,
+                    "precioPromedio": "10.83",
+                    "promedioEspecie": "2.95"
+                }
+            ],
+            "ventaAnterior": "148485.1400",
+            "ventaAnterior2": "0.0000",
+            "ventaAnterior3": "8928.9550",
+            "totalDescuentos": [],
+            "totalPagos": [],
+            "pagoAnterior": "156670.80",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "jueves": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "482.20",
+                    "totalVenta": "4215.20",
+                    "totalCantidad": 152,
+                    "precioPromedio": "10.00",
+                    "promedioEspecie": "3.54"
+                }
+            ],
+            "ventaAnterior": "151457.7400",
+            "ventaAnterior2": "0.0000",
+            "ventaAnterior3": "8928.9550",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-22",
+                    "pagos": "12000.00"
+                }
+            ],
+            "pagoAnterior": "156670.80",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "viernes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "467.10",
+                    "totalVenta": "4075.20",
+                    "totalCantidad": 151,
+                    "precioPromedio": "10.00",
+                    "promedioEspecie": "3.58"
+                }
+            ],
+            "ventaAnterior": "155672.9400",
+            "ventaAnterior2": "0.0000",
+            "ventaAnterior3": "8928.9550",
+            "totalDescuentos": [],
+            "totalPagos": [],
+            "pagoAnterior": "168670.80",
+            "totalVentaDescuentoAnterior": "0.000000"
+        }
+    },
+    {
+        "codigoCli": 48,
+        "nombreCompleto": "SR. VALLADOLID",
+        "limitEndeudamiento": "3553.80",
+        "lunes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "162.00",
+                    "totalVenta": "1409.40",
+                    "totalCantidad": 55,
+                    "precioPromedio": "8.70",
+                    "promedioEspecie": "2.95"
+                }
+            ],
+            "ventaAnterior": "230.0400",
+            "ventaAnterior2": "31534.7700",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-19",
+                    "pagos": "1409.40"
+                }
+            ],
+            "pagoAnterior": "28211.84",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "martes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "115.90",
+                    "totalVenta": "1008.33",
+                    "totalCantidad": 54,
+                    "precioPromedio": "8.70",
+                    "promedioEspecie": "2.15"
+                }
+            ],
+            "ventaAnterior": "230.0400",
+            "ventaAnterior2": "32944.1700",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-20",
+                    "pagos": "1008.30"
+                }
+            ],
+            "pagoAnterior": "29621.24",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "miercoles": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "124.80",
+                    "totalVenta": "1085.76",
+                    "totalCantidad": 45,
+                    "precioPromedio": "8.70",
+                    "promedioEspecie": "2.77"
+                }
+            ],
+            "ventaAnterior": "230.0400",
+            "ventaAnterior2": "33952.5000",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-21",
+                    "pagos": "1085.80"
+                }
+            ],
+            "pagoAnterior": "30629.54",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "jueves": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "153.10",
+                    "totalVenta": "1331.97",
+                    "totalCantidad": 61,
+                    "precioPromedio": "8.70",
+                    "promedioEspecie": "2.51"
+                }
+            ],
+            "ventaAnterior": "230.0400",
+            "ventaAnterior2": "35038.2600",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-22",
+                    "pagos": "1332.00"
+                }
+            ],
+            "pagoAnterior": "31715.34",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "viernes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "118.30",
+                    "totalVenta": "1029.21",
+                    "totalCantidad": 51,
+                    "precioPromedio": "8.70",
+                    "promedioEspecie": "2.32"
+                }
+            ],
+            "ventaAnterior": "230.0400",
+            "ventaAnterior2": "36370.2300",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-23",
+                    "pagos": "500.00"
+                }
+            ],
+            "pagoAnterior": "33047.34",
+            "totalVentaDescuentoAnterior": "0.000000"
+        }
+    },
+    {
+        "codigoCli": 34,
+        "nombreCompleto": "SR. VIERA",
+        "limitEndeudamiento": "25919.70",
+        "lunes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "1431.60",
+                    "totalVenta": "10408.00",
+                    "totalCantidad": 559,
+                    "precioPromedio": "6.93",
+                    "promedioEspecie": "2.47"
+                }
+            ],
+            "ventaAnterior": "438967.2400",
+            "ventaAnterior2": "8688.5000",
+            "ventaAnterior3": "5265.4000",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-19",
+                    "pagos": "9640.00"
+                }
+            ],
+            "pagoAnterior": "430548.55",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "martes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "1156.60",
+                    "totalVenta": "8718.36",
+                    "totalCantidad": 467,
+                    "precioPromedio": "9.00",
+                    "promedioEspecie": "3.04"
+                }
+            ],
+            "ventaAnterior": "449375.2400",
+            "ventaAnterior2": "8688.5000",
+            "ventaAnterior3": "5265.4000",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-20",
+                    "pagos": "8394.00"
+                }
+            ],
+            "pagoAnterior": "440188.55",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "miercoles": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "1370.80",
+                    "totalVenta": "10167.02",
+                    "totalCantidad": 522,
+                    "precioPromedio": "7.03",
+                    "promedioEspecie": "2.87"
+                }
+            ],
+            "ventaAnterior": "458093.6000",
+            "ventaAnterior2": "8688.5000",
+            "ventaAnterior3": "5265.4000",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-21",
+                    "pagos": "9917.00"
+                }
+            ],
+            "pagoAnterior": "448582.55",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "jueves": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "1450.60",
+                    "totalVenta": "11087.64",
+                    "totalCantidad": 519,
+                    "precioPromedio": "9.00",
+                    "promedioEspecie": "3.27"
+                }
+            ],
+            "ventaAnterior": "468260.6200",
+            "ventaAnterior2": "8688.5000",
+            "ventaAnterior3": "5265.4000",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-22",
+                    "pagos": "10020.00"
+                }
+            ],
+            "pagoAnterior": "458499.55",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "viernes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "1290.30",
+                    "totalVenta": "9558.34",
+                    "totalCantidad": 488,
+                    "precioPromedio": "7.03",
+                    "promedioEspecie": "2.89"
+                }
+            ],
+            "ventaAnterior": "479348.2600",
+            "ventaAnterior2": "8688.5000",
+            "ventaAnterior3": "5265.4000",
+            "totalDescuentos": [],
+            "totalPagos": [],
+            "pagoAnterior": "468519.55",
+            "totalVentaDescuentoAnterior": "0.000000"
+        }
+    },
+    {
+        "codigoCli": 27,
+        "nombreCompleto": "SRA. CASTRO",
+        "limitEndeudamiento": "100.00",
+        "lunes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "395.50",
+                    "totalVenta": "3361.75",
+                    "totalCantidad": 135,
+                    "precioPromedio": "8.50",
+                    "promedioEspecie": "2.63"
+                }
+            ],
+            "ventaAnterior": "0.0000",
+            "ventaAnterior2": "175164.6800",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [
+                {
+                    "fechaRegistroDesc": "2024-08-19",
+                    "totalPesoDescuento": "-3.000",
+                    "totalVentaDescuento": "-25.500000"
+                }
+            ],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-19",
+                    "pagos": "3332.00"
+                }
+            ],
+            "pagoAnterior": "174081.23",
+            "totalVentaDescuentoAnterior": "-701.100000"
+        },
+        "martes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "336.20",
+                    "totalVenta": "2956.70",
+                    "totalCantidad": 132,
+                    "precioPromedio": "10.00",
+                    "promedioEspecie": "2.82"
+                }
+            ],
+            "ventaAnterior": "0.0000",
+            "ventaAnterior2": "178526.4300",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [
+                {
+                    "fechaRegistroDesc": "2024-08-20",
+                    "totalPesoDescuento": "-2.600",
+                    "totalVentaDescuento": "-22.100000"
+                }
+            ],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-20",
+                    "pagos": "2931.60"
+                }
+            ],
+            "pagoAnterior": "177413.23",
+            "totalVentaDescuentoAnterior": "-726.600000"
+        },
+        "miercoles": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "468.00",
+                    "totalVenta": "4144.50",
+                    "totalCantidad": 170,
+                    "precioPromedio": "10.75",
+                    "promedioEspecie": "3.20"
+                }
+            ],
+            "ventaAnterior": "0.0000",
+            "ventaAnterior2": "181483.1300",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-21",
+                    "pagos": "4108.70"
+                }
+            ],
+            "pagoAnterior": "180344.83",
+            "totalVentaDescuentoAnterior": "-748.700000"
+        },
+        "jueves": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "439.70",
+                    "totalVenta": "3911.60",
+                    "totalCantidad": 158,
+                    "precioPromedio": "10.00",
+                    "promedioEspecie": "2.96"
+                }
+            ],
+            "ventaAnterior": "0.0000",
+            "ventaAnterior2": "185627.6300",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [
+                {
+                    "fechaRegistroDesc": "2024-08-22",
+                    "totalPesoDescuento": "-3.280",
+                    "totalVentaDescuento": "-27.880000"
+                }
+            ],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-22",
+                    "pagos": "3883.90"
+                }
+            ],
+            "pagoAnterior": "184453.53",
+            "totalVentaDescuentoAnterior": "-748.700000"
+        },
+        "viernes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "538.60",
+                    "totalVenta": "4714.11",
+                    "totalCantidad": 198,
+                    "precioPromedio": "9.60",
+                    "promedioEspecie": "2.16"
+                }
+            ],
+            "ventaAnterior": "0.0000",
+            "ventaAnterior2": "189539.2300",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-23",
+                    "pagos": "4692.30"
+                }
+            ],
+            "pagoAnterior": "188337.43",
+            "totalVentaDescuentoAnterior": "-776.580000"
+        }
+    },
+    {
+        "codigoCli": 25,
+        "nombreCompleto": "SRA. SILVIA",
+        "limitEndeudamiento": "800.00",
+        "lunes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "91.60",
+                    "totalVenta": "787.76",
+                    "totalCantidad": 30,
+                    "precioPromedio": "8.60",
+                    "promedioEspecie": "3.05"
+                }
+            ],
+            "ventaAnterior": "0.0000",
+            "ventaAnterior2": "25789.7900",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-19",
+                    "pagos": "1000.00"
+                }
+            ],
+            "pagoAnterior": "24047.86",
+            "totalVentaDescuentoAnterior": "-6.160000"
+        },
+        "martes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "66.40",
+                    "totalVenta": "571.04",
+                    "totalCantidad": 30,
+                    "precioPromedio": "8.60",
+                    "promedioEspecie": "2.21"
+                }
+            ],
+            "ventaAnterior": "0.0000",
+            "ventaAnterior2": "26577.5500",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [],
+            "pagoAnterior": "25047.86",
+            "totalVentaDescuentoAnterior": "-6.160000"
+        },
+        "miercoles": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "71.90",
+                    "totalVenta": "618.34",
+                    "totalCantidad": 30,
+                    "precioPromedio": "8.60",
+                    "promedioEspecie": "2.40"
+                }
+            ],
+            "ventaAnterior": "0.0000",
+            "ventaAnterior2": "27148.5900",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-21",
+                    "pagos": "2082.50"
+                }
+            ],
+            "pagoAnterior": "25047.86",
+            "totalVentaDescuentoAnterior": "-6.160000"
+        },
+        "jueves": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "80.30",
+                    "totalVenta": "690.58",
+                    "totalCantidad": 30,
+                    "precioPromedio": "8.60",
+                    "promedioEspecie": "2.68"
+                }
+            ],
+            "ventaAnterior": "0.0000",
+            "ventaAnterior2": "27766.9300",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [],
+            "pagoAnterior": "27130.36",
+            "totalVentaDescuentoAnterior": "-6.160000"
+        },
+        "viernes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "71.40",
+                    "totalVenta": "614.04",
+                    "totalCantidad": 30,
+                    "precioPromedio": "8.60",
+                    "promedioEspecie": "2.38"
+                }
+            ],
+            "ventaAnterior": "0.0000",
+            "ventaAnterior2": "28457.5100",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [],
+            "pagoAnterior": "27130.36",
+            "totalVentaDescuentoAnterior": "-6.160000"
+        }
+    },
+    {
+        "codigoCli": 32,
+        "nombreCompleto": "SRA. VIRNA SOFIA",
+        "limitEndeudamiento": "341.10",
+        "viernes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "70.00",
+                    "totalVenta": "574.00",
+                    "totalCantidad": 43,
+                    "precioPromedio": "8.20",
+                    "promedioEspecie": "1.63"
+                }
+            ],
+            "ventaAnterior": "380.5600",
+            "ventaAnterior2": "1690.5700",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [],
+            "pagoAnterior": "1691.41",
+            "totalVentaDescuentoAnterior": "0.000000"
+        }
+    },
+    {
+        "codigoCli": 74,
+        "nombreCompleto": "STOCK",
+        "limitEndeudamiento": "1.00",
+        "lunes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "45.80",
+                    "totalVenta": "204.70",
+                    "totalCantidad": 385,
+                    "precioPromedio": "5.75",
+                    "promedioEspecie": "0.96"
+                }
+            ],
+            "ventaAnterior": "108.6400",
+            "ventaAnterior2": "0.0000",
+            "ventaAnterior3": "9016.4450",
+            "totalDescuentos": [],
+            "totalPagos": [],
+            "pagoAnterior": "0.00",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "jueves": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "0.00",
+                    "totalVenta": "0.00",
+                    "totalCantidad": 732,
+                    "precioPromedio": "11.65",
+                    "promedioEspecie": "0.00"
+                }
+            ],
+            "ventaAnterior": "313.3400",
+            "ventaAnterior2": "0.0000",
+            "ventaAnterior3": "9016.4450",
+            "totalDescuentos": [],
+            "totalPagos": [],
+            "pagoAnterior": "0.00",
+            "totalVentaDescuentoAnterior": "0.000000"
+        }
+    },
+    {
+        "codigoCli": 33,
+        "nombreCompleto": "TIENDA PIURA",
+        "limitEndeudamiento": "730.50",
+        "lunes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "203.00",
+                    "totalVenta": "1705.20",
+                    "totalCantidad": 76,
+                    "precioPromedio": "8.40",
+                    "promedioEspecie": "2.67"
+                }
+            ],
+            "ventaAnterior": "0.0000",
+            "ventaAnterior2": "42406.5800",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-19",
+                    "pagos": "15470.00"
+                }
+            ],
+            "pagoAnterior": "27404.41",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "martes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "81.60",
+                    "totalVenta": "685.44",
+                    "totalCantidad": 35,
+                    "precioPromedio": "8.40",
+                    "promedioEspecie": "2.33"
+                }
+            ],
+            "ventaAnterior": "0.0000",
+            "ventaAnterior2": "44111.7800",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-20",
+                    "pagos": "-12.00"
+                }
+            ],
+            "pagoAnterior": "42874.41",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "miercoles": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "82.70",
+                    "totalVenta": "694.68",
+                    "totalCantidad": 35,
+                    "precioPromedio": "8.40",
+                    "promedioEspecie": "2.36"
+                }
+            ],
+            "ventaAnterior": "0.0000",
+            "ventaAnterior2": "44797.2200",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-21",
+                    "pagos": "-14.00"
+                }
+            ],
+            "pagoAnterior": "42862.41",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "jueves": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "109.80",
+                    "totalVenta": "901.20",
+                    "totalCantidad": 40,
+                    "precioPromedio": "6.80",
+                    "promedioEspecie": "1.29"
+                }
+            ],
+            "ventaAnterior": "0.0000",
+            "ventaAnterior2": "45491.9000",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-22",
+                    "pagos": "-18.00"
+                }
+            ],
+            "pagoAnterior": "42848.41",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "viernes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "81.20",
+                    "totalVenta": "664.16",
+                    "totalCantidad": 35,
+                    "precioPromedio": "6.80",
+                    "promedioEspecie": "1.08"
+                }
+            ],
+            "ventaAnterior": "0.0000",
+            "ventaAnterior2": "46393.1000",
+            "ventaAnterior3": "0.0000",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-23",
+                    "pagos": "-16.00"
+                }
+            ],
+            "pagoAnterior": "42830.41",
+            "totalVentaDescuentoAnterior": "0.000000"
+        }
+    },
+    {
+        "codigoCli": 58,
+        "nombreCompleto": "TROZADOS",
+        "limitEndeudamiento": "1.00",
+        "lunes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "3.00",
+                    "totalVenta": "27.60",
+                    "totalCantidad": 50,
+                    "precioPromedio": "9.20",
+                    "promedioEspecie": "0.06"
+                }
+            ],
+            "ventaAnterior": "1451.2000",
+            "ventaAnterior2": "125.0200",
+            "ventaAnterior3": "250.2000",
+            "totalDescuentos": [],
+            "totalPagos": [],
+            "pagoAnterior": "0.00",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "martes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "0.00",
+                    "totalVenta": "0.00",
+                    "totalCantidad": 30,
+                    "precioPromedio": "9.20",
+                    "promedioEspecie": "0.00"
+                }
+            ],
+            "ventaAnterior": "1478.8000",
+            "ventaAnterior2": "125.0200",
+            "ventaAnterior3": "250.2000",
+            "totalDescuentos": [],
+            "totalPagos": [],
+            "pagoAnterior": "0.00",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "miercoles": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "0.00",
+                    "totalVenta": "0.00",
+                    "totalCantidad": 29,
+                    "precioPromedio": "9.20",
+                    "promedioEspecie": "0.00"
+                }
+            ],
+            "ventaAnterior": "1478.8000",
+            "ventaAnterior2": "125.0200",
+            "ventaAnterior3": "250.2000",
+            "totalDescuentos": [],
+            "totalPagos": [],
+            "pagoAnterior": "0.00",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "jueves": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "0.00",
+                    "totalVenta": "0.00",
+                    "totalCantidad": 27,
+                    "precioPromedio": "9.20",
+                    "promedioEspecie": "0.00"
+                }
+            ],
+            "ventaAnterior": "1478.8000",
+            "ventaAnterior2": "125.0200",
+            "ventaAnterior3": "250.2000",
+            "totalDescuentos": [],
+            "totalPagos": [],
+            "pagoAnterior": "0.00",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "viernes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "0.00",
+                    "totalVenta": "0.00",
+                    "totalCantidad": 22,
+                    "precioPromedio": "9.20",
+                    "promedioEspecie": "0.00"
+                }
+            ],
+            "ventaAnterior": "1478.8000",
+            "ventaAnterior2": "125.0200",
+            "ventaAnterior3": "250.2000",
+            "totalDescuentos": [],
+            "totalPagos": [],
+            "pagoAnterior": "0.00",
+            "totalVentaDescuentoAnterior": "0.000000"
+        }
+    },
+    {
+        "codigoCli": 10,
+        "nombreCompleto": "VARON HUACA",
+        "limitEndeudamiento": "2159.87",
+        "lunes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "911.95",
+                    "totalVenta": "6839.63",
+                    "totalCantidad": 280,
+                    "precioPromedio": "7.50",
+                    "promedioEspecie": "3.26"
+                }
+            ],
+            "ventaAnterior": "114550.6200",
+            "ventaAnterior2": "0.0000",
+            "ventaAnterior3": "-24.0000",
+            "totalDescuentos": [
+                {
+                    "fechaRegistroDesc": "2024-08-19",
+                    "totalPesoDescuento": "-3.300",
+                    "totalVentaDescuento": "-24.750000"
+                }
+            ],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-19",
+                    "pagos": "6000.00"
+                }
+            ],
+            "pagoAnterior": "114049.37",
+            "totalVentaDescuentoAnterior": "-100.615000"
+        },
+        "miercoles": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "716.90",
+                    "totalVenta": "5469.45",
+                    "totalCantidad": 255,
+                    "precioPromedio": "9.75",
+                    "promedioEspecie": "3.46"
+                }
+            ],
+            "ventaAnterior": "121358.3700",
+            "ventaAnterior2": "0.0000",
+            "ventaAnterior3": "7.8750",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-21",
+                    "pagos": "5000.00"
+                }
+            ],
+            "pagoAnterior": "120049.37",
+            "totalVentaDescuentoAnterior": "-125.365000"
+        },
+        "viernes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "726.20",
+                    "totalVenta": "5537.85",
+                    "totalCantidad": 245,
+                    "precioPromedio": "9.75",
+                    "promedioEspecie": "3.50"
+                }
+            ],
+            "ventaAnterior": "126827.8200",
+            "ventaAnterior2": "0.0000",
+            "ventaAnterior3": "7.8750",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-23",
+                    "pagos": "8100.00"
+                }
+            ],
+            "pagoAnterior": "125049.37",
+            "totalVentaDescuentoAnterior": "-125.365000"
+        }
+    },
+    {
+        "codigoCli": 24,
+        "nombreCompleto": "VENTA",
+        "limitEndeudamiento": "0.02",
+        "lunes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "54.40",
+                    "totalVenta": "0.00",
+                    "totalCantidad": 20,
+                    "precioPromedio": "0.00",
+                    "promedioEspecie": "1.72"
+                }
+            ],
+            "ventaAnterior": "4799.8200",
+            "ventaAnterior2": "7817.7600",
+            "ventaAnterior3": "1947.9600",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-19",
+                    "pagos": "198.50"
+                }
+            ],
+            "pagoAnterior": "12619.88",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "martes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "55.00",
+                    "totalVenta": "11.28",
+                    "totalCantidad": 20,
+                    "precioPromedio": "1.57",
+                    "promedioEspecie": "1.46"
+                }
+            ],
+            "ventaAnterior": "4799.8200",
+            "ventaAnterior2": "7817.7600",
+            "ventaAnterior3": "1947.9600",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-20",
+                    "pagos": "301.60"
+                }
+            ],
+            "pagoAnterior": "12818.38",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "miercoles": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "20.50",
+                    "totalVenta": "81.20",
+                    "totalCantidad": 10,
+                    "precioPromedio": "2.50",
+                    "promedioEspecie": "2.16"
+                }
+            ],
+            "ventaAnterior": "4799.8200",
+            "ventaAnterior2": "7829.0400",
+            "ventaAnterior3": "1947.9600",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-21",
+                    "pagos": "46.00"
+                }
+            ],
+            "pagoAnterior": "13119.98",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "jueves": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "72.60",
+                    "totalVenta": "14.70",
+                    "totalCantidad": 28,
+                    "precioPromedio": "0.50",
+                    "promedioEspecie": "1.70"
+                }
+            ],
+            "ventaAnterior": "4804.4200",
+            "ventaAnterior2": "7905.6400",
+            "ventaAnterior3": "1947.9600",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-22",
+                    "pagos": "340.40"
+                }
+            ],
+            "pagoAnterior": "13165.98",
+            "totalVentaDescuentoAnterior": "0.000000"
+        },
+        "viernes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "47.90",
+                    "totalVenta": "0.00",
+                    "totalCantidad": 27,
+                    "precioPromedio": "0.00",
+                    "promedioEspecie": "1.04"
+                }
+            ],
+            "ventaAnterior": "4804.4200",
+            "ventaAnterior2": "7920.3400",
+            "ventaAnterior3": "1947.9600",
+            "totalDescuentos": [],
+            "totalPagos": [],
+            "pagoAnterior": "13506.38",
+            "totalVentaDescuentoAnterior": "0.000000"
+        }
+    },
+    {
+        "codigoCli": 46,
+        "nombreCompleto": "WILTON",
+        "limitEndeudamiento": "1065.94",
+        "lunes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "491.60",
+                    "totalVenta": "4178.60",
+                    "totalCantidad": 182,
+                    "precioPromedio": "8.50",
+                    "promedioEspecie": "2.47"
+                }
+            ],
+            "ventaAnterior": "0.0000",
+            "ventaAnterior2": "171378.6400",
+            "ventaAnterior3": "2687.9600",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-19",
+                    "pagos": "1190.00"
+                }
+            ],
+            "pagoAnterior": "175982.06",
+            "totalVentaDescuentoAnterior": "-48.380000"
+        },
+        "martes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "213.70",
+                    "totalVenta": "1816.45",
+                    "totalCantidad": 94,
+                    "precioPromedio": "8.50",
+                    "promedioEspecie": "2.27"
+                }
+            ],
+            "ventaAnterior": "0.0000",
+            "ventaAnterior2": "175557.2400",
+            "ventaAnterior3": "2687.9600",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-20",
+                    "pagos": "3500.00"
+                }
+            ],
+            "pagoAnterior": "177172.06",
+            "totalVentaDescuentoAnterior": "-48.380000"
+        },
+        "miercoles": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "357.60",
+                    "totalVenta": "3039.60",
+                    "totalCantidad": 146,
+                    "precioPromedio": "8.50",
+                    "promedioEspecie": "2.45"
+                }
+            ],
+            "ventaAnterior": "0.0000",
+            "ventaAnterior2": "177373.6900",
+            "ventaAnterior3": "2687.9600",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-21",
+                    "pagos": "3000.00"
+                }
+            ],
+            "pagoAnterior": "180672.06",
+            "totalVentaDescuentoAnterior": "-48.380000"
+        },
+        "jueves": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "370.10",
+                    "totalVenta": "3145.85",
+                    "totalCantidad": 151,
+                    "precioPromedio": "8.50",
+                    "promedioEspecie": "2.27"
+                }
+            ],
+            "ventaAnterior": "0.0000",
+            "ventaAnterior2": "180413.2900",
+            "ventaAnterior3": "2687.9600",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-22",
+                    "pagos": "3000.00"
+                }
+            ],
+            "pagoAnterior": "183672.06",
+            "totalVentaDescuentoAnterior": "-48.380000"
+        },
+        "viernes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "519.60",
+                    "totalVenta": "4416.60",
+                    "totalCantidad": 211,
+                    "precioPromedio": "8.50",
+                    "promedioEspecie": "2.29"
+                }
+            ],
+            "ventaAnterior": "0.0000",
+            "ventaAnterior2": "183559.1400",
+            "ventaAnterior3": "2687.9600",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-23",
+                    "pagos": "4000.00"
+                }
+            ],
+            "pagoAnterior": "186672.06",
+            "totalVentaDescuentoAnterior": "-48.380000"
+        }
+    },
+    {
+        "codigoCli": 50,
+        "nombreCompleto": "YAMIR",
+        "limitEndeudamiento": "729.37",
+        "lunes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "1219.80",
+                    "totalVenta": "10133.06",
+                    "totalCantidad": 450,
+                    "precioPromedio": "8.34",
+                    "promedioEspecie": "1.63"
+                }
+            ],
+            "ventaAnterior": "506.0800",
+            "ventaAnterior2": "407946.2950",
+            "ventaAnterior3": "9200.0250",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-19",
+                    "pagos": "27878.00"
+                }
+            ],
+            "pagoAnterior": "398841.36",
+            "totalVentaDescuentoAnterior": "-23.645000"
+        },
+        "martes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "1093.60",
+                    "totalVenta": "9255.77",
+                    "totalCantidad": 461,
+                    "precioPromedio": "9.42",
+                    "promedioEspecie": "1.96"
+                }
+            ],
+            "ventaAnterior": "506.0800",
+            "ventaAnterior2": "418079.3600",
+            "ventaAnterior3": "9200.0250",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-20",
+                    "pagos": "9204.00"
+                }
+            ],
+            "pagoAnterior": "426719.36",
+            "totalVentaDescuentoAnterior": "-23.645000"
+        },
+        "miercoles": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "1026.70",
+                    "totalVenta": "8748.72",
+                    "totalCantidad": 413,
+                    "precioPromedio": "10.68",
+                    "promedioEspecie": "3.12"
+                }
+            ],
+            "ventaAnterior": "506.0800",
+            "ventaAnterior2": "427335.1300",
+            "ventaAnterior3": "9200.0250",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-21",
+                    "pagos": "8700.00"
+                }
+            ],
+            "pagoAnterior": "435923.36",
+            "totalVentaDescuentoAnterior": "-23.645000"
+        },
+        "jueves": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "1214.80",
+                    "totalVenta": "10308.50",
+                    "totalCantidad": 467,
+                    "precioPromedio": "9.18",
+                    "promedioEspecie": "2.16"
+                }
+            ],
+            "ventaAnterior": "506.0800",
+            "ventaAnterior2": "436083.8450",
+            "ventaAnterior3": "9200.0250",
+            "totalDescuentos": [],
+            "totalPagos": [
+                {
+                    "fechaOperacionPag": "2024-08-22",
+                    "pagos": "10360.00"
+                }
+            ],
+            "pagoAnterior": "444623.36",
+            "totalVentaDescuentoAnterior": "-23.645000"
+        },
+        "viernes": {
+            "datosTabla_tb_pesadasGeneral": [
+                {
+                    "totalPeso": "1215.10",
+                    "totalVenta": "10282.01",
+                    "totalCantidad": 490,
+                    "precioPromedio": "9.38",
+                    "promedioEspecie": "1.86"
+                }
+            ],
+            "ventaAnterior": "506.0800",
+            "ventaAnterior2": "446392.3450",
+            "ventaAnterior3": "9200.0250",
+            "totalDescuentos": [],
+            "totalPagos": [],
+            "pagoAnterior": "454983.36",
+            "totalVentaDescuentoAnterior": "-23.645000"
+        }
+    }
+]

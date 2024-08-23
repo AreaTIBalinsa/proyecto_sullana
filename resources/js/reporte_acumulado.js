@@ -564,7 +564,7 @@ jQuery(function($) {
 
         let totalPrecioDescuento = (parseFloat(fn_buscarValorItem(item.totalDescuentos, 'totalVentaDescuento')) / parseFloat(fn_buscarValorItem(item.totalDescuentos, 'totalPesoDescuento')))
 
-        let totalVentaAnterior = (parseFloat(item.ventaAnterior) + parseFloat(item.ventaAnterior2) + parseFloat(item.ventaAnterior3)) - parseFloat(item.pagoAnterior);
+        let totalVentaAnterior = (parseFloat(item.ventaAnterior) + parseFloat(item.ventaAnterior2) + parseFloat(item.ventaAnterior3)) - (parseFloat(item.pagoAnterior)+parseFloat(item.totalVentaDescuentoAnterior));
 
         let totalSaldoDelDia = totalVentaAnterior + parseFloat(resultadosTotales.totalVenta);
 
@@ -1488,7 +1488,7 @@ jQuery(function($) {
                                 <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap hidden">${obj.idPesada}</td>
                                 <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.fechaRegistroPes}</td>
                                 <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.horaPes}</td>
-                                <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.nombreCompleto}</td>
+                                <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.nombreCompleto} ${obj.observacionPes ? `(${obj.observacionPes})` : ""}</td>
                                 <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.nombreEspecie}</td>
                                 <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.cantidadPes}</td>
                                 <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.pesoNetoPes}</td>
@@ -2149,7 +2149,7 @@ jQuery(function($) {
                                 <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap hidden">${obj.idPesada}</td>
                                 <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.fechaRegistroPes}</td>
                                 <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.horaPes}</td>
-                                <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.nombreCompleto}</td>
+                                <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.nombreCompleto} ${obj.observacionPes ? `(${obj.observacionPes})` : ""}</td>
                                 <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.nombreEspecie}</td>
                                 <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.cantidadPes}</td>
                                 <td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">${obj.pesoNetoPes}</td>

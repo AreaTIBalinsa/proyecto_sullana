@@ -65,10 +65,15 @@ class DeudaMaximaController extends Controller
                 IFNULL(CONCAT_WS(" ", MAX(nombresCli), MAX(apellidoPaternoCli), MAX(apellidoMaternoCli)), "") AS nombreCompleto, 
                 tc.codigoCli as codigoCli, 
                 COALESCE(SUM(CASE 
-                    WHEN tp.pesoNetoPes > tp.pesoNetoJabas AND fechaRegistroPes <= ? THEN (tp.pesoNetoPes - tp.pesoNetoJabas) * tp.precioPes 
+                    WHEN tp.pesoNetoPes > 0 AND fechaRegistroPes <= ? THEN (tp.pesoNetoPes - tp.pesoNetoJabas) * tp.precioPes 
                     WHEN fechaRegistroPes <= ? THEN (tp.pesoNetoPes + tp.pesoNetoJabas) * tp.precioPes 
                     ELSE 0 
                 END), 0) as deudaTotal, 
+                COALESCE(SUM(CASE 
+                    WHEN tp.pesoNetoPes > 0 AND fechaRegistroPes = ? THEN (tp.pesoNetoPes - tp.pesoNetoJabas) * tp.precioPes 
+                    WHEN fechaRegistroPes = ? THEN (tp.pesoNetoPes + tp.pesoNetoJabas) * tp.precioPes 
+                    ELSE 0 
+                END), 0) as deudaHoy, 
                 COALESCE(tpg.sumaPagos, 0) as cantidadPagos, 
                 COALESCE(td.ventaDescuentos, 0) as ventaDescuentos,
                 limitEndeudamiento 
@@ -95,10 +100,15 @@ class DeudaMaximaController extends Controller
                 IFNULL(CONCAT_WS(" ", MAX(nombresCli), MAX(apellidoPaternoCli), MAX(apellidoMaternoCli)), "") AS nombreCompleto, 
                 tc.codigoCli as codigoCli, 
                 COALESCE(SUM(CASE 
-                    WHEN tp3.pesoNetoPes > tp3.pesoNetoJabas AND fechaRegistroPes <= ? THEN (tp3.pesoNetoPes - tp3.pesoNetoJabas) * tp3.precioPes 
+                    WHEN tp3.pesoNetoPes > 0 AND fechaRegistroPes <= ? THEN (tp3.pesoNetoPes - tp3.pesoNetoJabas) * tp3.precioPes 
                     WHEN fechaRegistroPes <= ? THEN (tp3.pesoNetoPes + tp3.pesoNetoJabas) * tp3.precioPes 
                     ELSE 0 
                 END), 0) as deudaTotal, 
+                COALESCE(SUM(CASE 
+                    WHEN tp3.pesoNetoPes > 0 AND fechaRegistroPes = ? THEN (tp3.pesoNetoPes - tp3.pesoNetoJabas) * tp3.precioPes 
+                    WHEN fechaRegistroPes = ? THEN (tp3.pesoNetoPes + tp3.pesoNetoJabas) * tp3.precioPes 
+                    ELSE 0 
+                END), 0) as deudaHoy, 
                 0 as cantidadPagos, 
                 0 as ventaDescuentos,
                 0 as limitEndeudamiento 
@@ -125,10 +135,15 @@ class DeudaMaximaController extends Controller
                 IFNULL(CONCAT_WS(" ", MAX(nombresCli), MAX(apellidoPaternoCli), MAX(apellidoMaternoCli)), "") AS nombreCompleto, 
                 tc.codigoCli as codigoCli, 
                 COALESCE(SUM(CASE 
-                    WHEN tp2.pesoNetoPes > tp2.pesoNetoJabas AND fechaRegistroPes <= ? THEN (tp2.pesoNetoPes - tp2.pesoNetoJabas) * tp2.precioPes 
+                    WHEN tp2.pesoNetoPes > 0 AND fechaRegistroPes = ? THEN (tp2.pesoNetoPes - tp2.pesoNetoJabas) * tp2.precioPes 
                     WHEN fechaRegistroPes <= ? THEN (tp2.pesoNetoPes + tp2.pesoNetoJabas) * tp2.precioPes 
                     ELSE 0 
                 END), 0) as deudaTotal, 
+                COALESCE(SUM(CASE 
+                    WHEN tp2.pesoNetoPes > 0 AND fechaRegistroPes = ? THEN (tp2.pesoNetoPes - tp2.pesoNetoJabas) * tp2.precioPes 
+                    WHEN fechaRegistroPes = ? THEN (tp2.pesoNetoPes + tp2.pesoNetoJabas) * tp2.precioPes 
+                    ELSE 0 
+                END), 0) as deudaHoy,
                 0 as cantidadPagos, 
                 0 as ventaDescuentos,
                 0 as limitEndeudamiento 
@@ -149,7 +164,7 @@ class DeudaMaximaController extends Controller
             WHERE tc.idEstadoCli = 1 AND tc.estadoEliminadoCli != 0
             GROUP BY tc.codigoCli, tpg2.sumaPagos, td2.ventaDescuentos, limitEndeudamiento
             ORDER BY nombreCompleto ASC
-            ',[$fecha,$fecha,$fecha,$fecha,$fecha,$fecha,$fecha,$fecha,$fecha,$fecha,$fecha,$fecha]);
+            ',[$fecha,$fecha,$fecha,$fecha,$fecha,$fecha,$fecha,$fecha,$fecha,$fecha,$fecha,$fecha,$fecha,$fecha,$fecha,$fecha,$fecha,$fecha]);
     
             // Devuelve los datos en formato JSON
             return response()->json($datos);

@@ -127,6 +127,7 @@ jQuery(function ($) {
                 ventaAnterior += parseFloat(response.ventaAnterior3 || 0);
 
                 let pagoAnterior = parseFloat(response.pagoAnterior || 0);
+                
                 let totalVentaDescuentoAnterior = parseFloat(response.totalVentaDescuentoAnterior || 0);
                 let respuestaPagosDetallados = response.pagosDetallados
                 respuestaPagosDetallados = respuestaPagosDetallados.original
@@ -10544,8 +10545,8 @@ jQuery(function ($) {
         tbodyCuentaDelClientePagos.empty();
         let mensajeDeudaDiaCliente = $("#mensajeDeuda")
 
-        let totalSaldoAnterior = ventaAnterior + parseFloat(totalVentaDescuentoAnterior)
-        let totalPagos = pagoAnterior
+        let totalSaldoAnterior = ventaAnterior
+        let totalPagos = pagoAnterior + parseFloat(totalVentaDescuentoAnterior)
         
         Object.keys(combinedData).forEach(function(fecha) { 
             let item = combinedData[fecha]
@@ -10715,6 +10716,15 @@ jQuery(function ($) {
         let tbodyCuentaDelClientePagos = $('#bodyCuentaDelClientePagos');
         tbodyCuentaDelClientePagos.empty();
         let bodyCuentaDelClientePagos="";
+
+        let variableBandera = true;
+
+        if ($('#checkboxID').prop('checked')) {
+            variableBandera = true;
+        } else {
+            variableBandera = false;
+        }
+        
         
         if(respuestaPagosDetallados.length > 0) {
             pagosDetallados +=``;
@@ -10726,7 +10736,13 @@ jQuery(function ($) {
                 }
                 if (obj.fechaOperacionPag == fecha || obj.fechaRegistroPag == fecha){
                     if(obj.tipoAbonoPag != "Saldo"){
-                        pagosDeHoy += parseFloat(obj.cantidadAbonoPag);
+                        if (variableBandera){
+                            if (obj.fechaOperacionPag == fecha ){
+                                pagosDeHoy += parseFloat(obj.cantidadAbonoPag);
+                            }
+                        }else{
+                            pagosDeHoy += parseFloat(obj.cantidadAbonoPag);
+                        }
                         if (masDeUnPago == 0){
                             pagosDetallados += `
                                                 <tr class="bg-white border-b contarFilaPagos border-black">
@@ -10759,7 +10775,7 @@ jQuery(function ($) {
             pagosDetallados += `
                 <tr class="bg-white contarFilaPagos border-black">
                     <td class="tablaEditableCuentaCliente sumarContenidoTabla text-center py-1 px-2 whitespace-nowrap border-b border-black border-r-2 font-semibold">0.00</td>
-                    <td class="tablaEditableCuentaCliente convertirTextoMayuscula text-center py-1 px-2 whitespace-nowrap border-b border-black font-semibold"></td>
+                    <td class="tablaEditableCuentaCliente text-[#162B4E] convertirTextoMayuscula text-center py-1 px-2 whitespace-nowrap border-b border-black font-semibold"></td>
                 </tr> `
         }
         masDeUnPago = 0;
@@ -10775,9 +10791,15 @@ jQuery(function ($) {
             maximumFractionDigits: 2,
             useGrouping: true,
         });
+
+        let totalSaldoAnteriorV_doble = 0;
+
+        if (variableBandera){
+            totalSaldoAnteriorV_doble = totalSaldoAnteriorV;
+        }else{
+            totalSaldoAnteriorV_doble = parseFloat(totalSaldoAnteriorV) < 0 ? parseFloat(totalSaldoAnteriorV) - pagosARestar : parseFloat(totalSaldoAnteriorV) + pagosARestar;
+        }
         
-        
-        let totalSaldoAnteriorV_doble = parseFloat(totalSaldoAnteriorV) < 0 ? parseFloat(totalSaldoAnteriorV) - pagosARestar : parseFloat(totalSaldoAnteriorV) + pagosARestar;
         $("#totalCuentaDia").attr("value", totalVentaDelDia);
         $("#totalPagos").attr("value", pagosDeHoy);
         $("#totalSaldo").attr("value", totalSaldoAnteriorV_doble);
@@ -10834,7 +10856,7 @@ jQuery(function ($) {
                 let nuevaFila = `
                     <tr class="bg-white contarFilaPagos border-b border-black">
                         <td class="tablaEditableCuentaCliente sumarContenidoTabla text-center py-1 p-4 whitespace-nowrap font-semibold border-r-2 border-black">&nbsp;</td>
-                        <td class="tablaEditableCuentaCliente convertirTextoMayuscula text-center py-1 p-4 whitespace-nowrap">&nbsp;</td>
+                        <td class="tablaEditableCuentaCliente text-[#162B4E] convertirTextoMayuscula text-center py-1 p-4 whitespace-nowrap">&nbsp;</td>
                     </tr>
                 `;
                 nuevasFilas += nuevaFila;
@@ -10854,9 +10876,9 @@ jQuery(function ($) {
                     <tr class="bg-white border-b border-black filasContarVenta border-r-2">
                         <td class="text-center border-b-2 py-1 px-4 whitespace-nowrap border-r-2 border-black font-black w-[130px] text-xl" id="fechaTabla">&nbsp;</td>
                         <td class="text-left py-1 px-4 whitespace-nowrap border-black border-r-2">&nbsp;</td>
-                        <td class="text-center py-1 px-2 whitespace-nowrap">&nbsp;</td>
-                        <td class="text-center py-1 px-2 whitespace-nowrap">&nbsp;</td>
-                        <td class="text-center py-1 px-2 whitespace-nowrap">&nbsp;</td>
+                        <td class="text-center py-1 px-2 whitespace-nowrap border-r-2 border-black">&nbsp;</td>
+                        <td class="text-center py-1 px-2 whitespace-nowrap border-r-2 border-black">&nbsp;</td>
+                        <td class="text-center py-1 px-2 whitespace-nowrap border-r-2 border-black">&nbsp;</td>
                         <td class="text-center py-1 px-2 whitespace-nowrap">&nbsp;</td>
                     </tr>
                 `;
@@ -12272,6 +12294,10 @@ jQuery(function ($) {
         let calculoAFavor2 = 0;
         totalSaldo2 = parseFloat(totalSaldo2.toFixed(2));
         calculoAFavor2 = totalSaldo2 + deudaDiaCalculo2;
+
+        if (Math.abs(calculoAFavor2) < 1e-10) {
+            calculoAFavor2 = 0.00;
+        }
         
         let totalFormateadoSaldo = calculoAFavor2.toLocaleString('es-ES', {
             minimumFractionDigits: 2,   

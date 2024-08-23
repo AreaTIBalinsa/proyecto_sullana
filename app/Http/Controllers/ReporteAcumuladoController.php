@@ -55,7 +55,7 @@ class ReporteAcumuladoController extends Controller
 
     public function consulta_VentaAnterior($fecha, $clienteCodigo) {
         $consulta = DB::table('tb_pesadas')
-            ->selectRaw('COALESCE(SUM(CASE WHEN pesoNetoPes > pesoNetoJabas THEN (pesoNetoPes - pesoNetoJabas) ELSE (pesoNetoPes + pesoNetoJabas) END * precioPes), 0) AS ventaAnterior')
+            ->selectRaw('COALESCE(SUM(CASE WHEN pesoNetoPes > 0 THEN (pesoNetoPes - pesoNetoJabas) ELSE (pesoNetoPes + pesoNetoJabas) END * precioPes), 0) AS ventaAnterior')
             ->where('estadoPes', 1)
             ->where('codigoCli', $clienteCodigo)
             ->where('fechaRegistroPes', '<', $fecha)
@@ -66,7 +66,7 @@ class ReporteAcumuladoController extends Controller
 
     public function consulta_VentaAnterior2($fecha, $clienteCodigo) {
         $consulta = DB::table('tb_pesadas2')
-            ->selectRaw('COALESCE(SUM(CASE WHEN pesoNetoPes > pesoNetoJabas THEN (pesoNetoPes - pesoNetoJabas) ELSE (pesoNetoPes + pesoNetoJabas) END * precioPes), 0) AS ventaAnterior')
+            ->selectRaw('COALESCE(SUM(CASE WHEN pesoNetoPes > 0 THEN (pesoNetoPes - pesoNetoJabas) ELSE (pesoNetoPes + pesoNetoJabas) END * precioPes), 0) AS ventaAnterior')
             ->where('estadoPes', 1)
             ->where('codigoCli', $clienteCodigo)
             ->where('fechaRegistroPes', '<', $fecha)
@@ -77,7 +77,7 @@ class ReporteAcumuladoController extends Controller
 
     public function consulta_VentaAnterior3($fecha, $clienteCodigo) {
         $consulta = DB::table('tb_pesadas3')
-            ->selectRaw('COALESCE(SUM(CASE WHEN pesoNetoPes > pesoNetoJabas THEN (pesoNetoPes - pesoNetoJabas) ELSE (pesoNetoPes + pesoNetoJabas) END * precioPes), 0) AS ventaAnterior')
+            ->selectRaw('COALESCE(SUM(CASE WHEN pesoNetoPes > 0 THEN (pesoNetoPes - pesoNetoJabas) ELSE (pesoNetoPes + pesoNetoJabas) END * precioPes), 0) AS ventaAnterior')
             ->where('estadoPes', 1)
             ->where('codigoCli', $clienteCodigo)
             ->where('fechaRegistroPes', '<', $fecha)

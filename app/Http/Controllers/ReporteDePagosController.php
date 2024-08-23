@@ -67,7 +67,7 @@ class ReporteDePagosController extends Controller
             SELECT 
                 IFNULL(CONCAT_WS(" ", MAX(nombresCli), MAX(apellidoPaternoCli), MAX(apellidoMaternoCli)), "") AS nombreCompleto, 
                 tc.codigoCli as codigoCli, 
-                COALESCE(SUM(CASE WHEN tp.pesoNetoPes > tp.pesoNetoJabas THEN (tp.pesoNetoPes - tp.pesoNetoJabas) ELSE (tp.pesoNetoPes + tp.pesoNetoJabas) END * tp.precioPes), 0) as deudaTotal, 
+                COALESCE(SUM(CASE WHEN tp.pesoNetoPes > 0 THEN (tp.pesoNetoPes - tp.pesoNetoJabas) ELSE (tp.pesoNetoPes + tp.pesoNetoJabas) END * tp.precioPes), 0) as deudaTotal, 
                 COALESCE(tpg.sumaPagos, 0) as cantidadPagos, 
                 COALESCE(td.ventaDescuentos, 0) as ventaDescuentos,
                 limitEndeudamiento 
@@ -93,7 +93,7 @@ class ReporteDePagosController extends Controller
             SELECT 
                 IFNULL(CONCAT_WS(" ", MAX(nombresCli), MAX(apellidoPaternoCli), MAX(apellidoMaternoCli)), "") AS nombreCompleto, 
                 tc.codigoCli as codigoCli, 
-                COALESCE(SUM(CASE WHEN tp3.pesoNetoPes > tp3.pesoNetoJabas THEN (tp3.pesoNetoPes - tp3.pesoNetoJabas) ELSE (tp3.pesoNetoPes + tp3.pesoNetoJabas) END * tp3.precioPes), 0) as deudaTotal, 
+                COALESCE(SUM(CASE WHEN tp3.pesoNetoPes > 0 THEN (tp3.pesoNetoPes - tp3.pesoNetoJabas) ELSE (tp3.pesoNetoPes + tp3.pesoNetoJabas) END * tp3.precioPes), 0) as deudaTotal, 
                 0 as cantidadPagos, 
                 0 as ventaDescuentos,
                 0 as limitEndeudamiento 
@@ -119,7 +119,7 @@ class ReporteDePagosController extends Controller
             SELECT 
                 IFNULL(CONCAT_WS(" ", MAX(nombresCli), MAX(apellidoPaternoCli), MAX(apellidoMaternoCli)), "") AS nombreCompleto, 
                 tc.codigoCli as codigoCli, 
-                COALESCE(SUM(CASE WHEN tp2.pesoNetoPes > tp2.pesoNetoJabas THEN (tp2.pesoNetoPes - tp2.pesoNetoJabas) ELSE (tp2.pesoNetoPes + tp2.pesoNetoJabas) END * tp2.precioPes), 0) as deudaTotal, 
+                COALESCE(SUM(CASE WHEN tp2.pesoNetoPes > 0 THEN (tp2.pesoNetoPes - tp2.pesoNetoJabas) ELSE (tp2.pesoNetoPes + tp2.pesoNetoJabas) END * tp2.precioPes), 0) as deudaTotal, 
                 0 as cantidadPagos, 
                 0 as ventaDescuentos,
                 0 as limitEndeudamiento 
@@ -200,7 +200,7 @@ class ReporteDePagosController extends Controller
 
     public function consulta_VentaAnterior($codigoCli, $fecha) {
         $consulta = DB::table('tb_pesadas')
-        ->selectRaw('COALESCE(SUM(CASE WHEN pesoNetoPes > pesoNetoJabas THEN (pesoNetoPes - pesoNetoJabas) ELSE (pesoNetoPes + pesoNetoJabas) END * precioPes), 0) AS ventaAnterior')
+        ->selectRaw('COALESCE(SUM(CASE WHEN pesoNetoPes > 0 THEN (pesoNetoPes - pesoNetoJabas) ELSE (pesoNetoPes + pesoNetoJabas) END * precioPes), 0) AS ventaAnterior')
             ->where('estadoPes', 1)
             ->where('codigoCli', $codigoCli)    
             ->where('fechaRegistroPes', '<', $fecha)
@@ -611,7 +611,7 @@ class ReporteDePagosController extends Controller
 
     public function consulta_VentaAnterior2($codigoCli, $fecha) {
         $consulta = DB::table('tb_pesadas2')
-            ->selectRaw('COALESCE(SUM(CASE WHEN pesoNetoPes > pesoNetoJabas THEN (pesoNetoPes - pesoNetoJabas) ELSE (pesoNetoPes + pesoNetoJabas) END * precioPes), 0) AS ventaAnterior')
+            ->selectRaw('COALESCE(SUM(CASE WHEN pesoNetoPes > 0 THEN (pesoNetoPes - pesoNetoJabas) ELSE (pesoNetoPes + pesoNetoJabas) END * precioPes), 0) AS ventaAnterior')
             ->where('estadoPes', 1)
             ->where('codigoCli', $codigoCli)    
             ->where('fechaRegistroPes', '<', $fecha)
@@ -1022,7 +1022,7 @@ class ReporteDePagosController extends Controller
 
     public function consulta_VentaAnterior3($codigoCli, $fecha) {
         $consulta = DB::table('tb_pesadas3')
-            ->selectRaw('COALESCE(SUM(CASE WHEN pesoNetoPes > pesoNetoJabas THEN (pesoNetoPes - pesoNetoJabas) ELSE (pesoNetoPes + pesoNetoJabas) END * precioPes), 0) AS ventaAnterior')
+            ->selectRaw('COALESCE(SUM(CASE WHEN pesoNetoPes > 0 THEN (pesoNetoPes - pesoNetoJabas) ELSE (pesoNetoPes + pesoNetoJabas) END * precioPes), 0) AS ventaAnterior')
             ->where('estadoPes', 1)
             ->where('codigoCli', $codigoCli)    
             ->where('fechaRegistroPes', '<', $fecha)

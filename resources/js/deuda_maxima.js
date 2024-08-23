@@ -181,51 +181,55 @@ jQuery(function($) {
             // Esperar a que todas las promesas se completen
             let [arregloSaldosLunes, arregloSaldosMartes, arregloSaldosMiercoles, arregloSaldosJueves, arregloSaldosViernes, arregloSaldosSabado, arregloSaldosDomingo] = await Promise.all(promesas);
 
-            function combinarSaldosPorDia(...saldosPorDias) {
-                // Crear un objeto para acumular los datos consolidados por codigoCli
-                let datosConsolidados = {};
-            
-                // Iterar sobre cada arreglo de saldos diario
-                saldosPorDias.forEach((saldosPorDia, index) => {
-                    const dias = ['lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado', 'domingo'];
-                    const dia = dias[index];
-            
-                    // Iterar sobre cada cliente en el arreglo diario
-                    for (let codigoCli in saldosPorDia) {
-                        if (!datosConsolidados[codigoCli]) {
-                            datosConsolidados[codigoCli] = {
-                                nombreCompleto: saldosPorDia[codigoCli].nombreCompleto,
-                                codigoCli: parseInt(codigoCli),
-                                deudaTotal: 0,
-                                cantidadPagos: 0,
-                                ventaDescuentos: 0,
-                                limitEndeudamiento: 0,
-                                saldosPorDia: {}
-                            };
-                        }
-            
-                        // Acumular los datos diarios
-                        datosConsolidados[codigoCli].deudaTotal += saldosPorDia[codigoCli].deudaTotal;
-                        datosConsolidados[codigoCli].cantidadPagos += saldosPorDia[codigoCli].cantidadPagos;
-                        datosConsolidados[codigoCli].ventaDescuentos += saldosPorDia[codigoCli].ventaDescuentos;
-                        datosConsolidados[codigoCli].limitEndeudamiento = saldosPorDia[codigoCli].limitEndeudamiento;
-            
-                        // Guardar los saldos diarios
-                        datosConsolidados[codigoCli].saldosPorDia[dia] = {
-                            deudaTotal: saldosPorDia[codigoCli].deudaTotal,
-                            cantidadPagos: saldosPorDia[codigoCli].cantidadPagos,
-                            ventaDescuentos: saldosPorDia[codigoCli].ventaDescuentos,
-                            limitEndeudamiento: saldosPorDia[codigoCli].limitEndeudamiento
+            const dias = [
+                { arreglo: arregloSaldosLunes, nombreDia: "lunes" },
+                { arreglo: arregloSaldosMartes, nombreDia: "martes" },
+                { arreglo: arregloSaldosMiercoles, nombreDia: "miercoles" },
+                { arreglo: arregloSaldosJueves, nombreDia: "jueves" },
+                { arreglo: arregloSaldosViernes, nombreDia: "viernes" },
+                { arreglo: arregloSaldosSabado, nombreDia: "sabado" },
+                { arreglo: arregloSaldosDomingo, nombreDia: "domingo" },
+            ];
+
+            // Objeto auxiliar para fusionar los datos
+            const clientesAgrupados = {};
+
+            // Iterar sobre cada día y su arreglo correspondiente
+            dias.forEach((dia) => {
+                dia.arreglo.forEach((cliente) => {
+                    const codigoCli = cliente.codigoCli;
+
+                    // Si el cliente no está en el objeto auxiliar, se añade
+                    if (!clientesAgrupados[codigoCli]) {
+                        clientesAgrupados[codigoCli] = {
+                            codigoCli: cliente.codigoCli,
+                            nombreCompleto: cliente.nombreCompleto,
+                            limitEndeudamiento: cliente.limitEndeudamiento,
                         };
                     }
-                });
-            
-                // Convertir el objeto a un arreglo
-                return Object.values(datosConsolidados);
-            }
 
-            let resultadosConsolidados = combinarSaldosPorDia(arregloSaldosLunes, arregloSaldosMartes, arregloSaldosMiercoles, arregloSaldosJueves, arregloSaldosViernes, arregloSaldosSabado, arregloSaldosDomingo);
+                    // Añadir los datos del día correspondiente al cliente
+                    clientesAgrupados[codigoCli][dia.nombreDia] = {
+                        datosTabla_tb_pesadasGeneral:
+                            cliente.datosTabla_tb_pesadasGeneral,
+                            ventaAnterior: cliente.ventaAnterior,
+                            ventaAnterior2: cliente.ventaAnterior2,
+                            ventaAnterior3: cliente.ventaAnterior3,
+                            totalDescuentos: cliente.totalDescuentos,
+                            totalPagos: cliente.totalPagos,
+                            pagoAnterior: cliente.pagoAnterior,
+                            totalVentaDescuentoAnterior:
+                            cliente.totalVentaDescuentoAnterior,
+                    };
+                });
+            });
+
+            // Convertir el objeto en un arreglo
+            const clientesConTotalesPorDia = Object.values(clientesAgrupados);
+
             let tbodyDeudaMaxima = $('#bodyDeudaMaxima');
+            tbodyDeudaMaxima.empty();
+
             let totalLunesGeneral = 0;
             let totalMartesGeneral = 0;
             let totalMiercolesGeneral = 0;
@@ -234,78 +238,76 @@ jQuery(function($) {
             let totalSabadoGeneral = 0;
             let totalDomingoGeneral = 0;
             let totalEndeudamiento = 0;
-
-            resultadosConsolidados.forEach(function(obj){
-                if ((obj.nombreCompleto).trim() != "PAUL" || (obj.nombreCompleto).trim() != "PERROS" || (obj.nombreCompleto).trim() != "AHOGADOS" || (obj.nombreCompleto).trim() != "SECOS" || (obj.nombreCompleto).trim() != "JULIO CAMPO" || (obj.nombreCompleto).trim() != "FALTANTE TECNICA" || (obj.nombreCompleto).trim() != "PRUEBA"){
-
-                    let totalLunes = 0;
-                    let totalMartes = 0;
-                    let totalMiercoles = 0;
-                    let totalJueves = 0;
-                    let totalViernes = 0;
-                    let totalSabado = 0;
-                    let totalDomingo = 0;
-
-                    // Obtener la fecha actual
-                    let fechaActual = new Date();
-                    let fechaLunes = new Date(lunes);
-                    let fechaMartes = new Date(martes);
-                    let fechaMiercoles = new Date(miercoles);
-                    let fechaJueves = new Date(jueves);
-                    let fechaViernes = new Date(viernes);
-                    let fechaSabado = new Date(sabado);
-                    let fechaDomingo = new Date(domingo);                
-                    
-                    totalLunes = fechaLunes > fechaActual ? 0 : obj.saldosPorDia.lunes.deudaTotal - obj.saldosPorDia.lunes.cantidadPagos + obj.saldosPorDia.lunes.ventaDescuentos;
-                    totalMartes = fechaMartes > fechaActual ? 0 : obj.saldosPorDia.martes.deudaTotal - obj.saldosPorDia.martes.cantidadPagos + obj.saldosPorDia.martes.ventaDescuentos;
-                    totalMiercoles = fechaMiercoles > fechaActual ? 0 : obj.saldosPorDia.miercoles.deudaTotal - obj.saldosPorDia.miercoles.cantidadPagos + obj.saldosPorDia.miercoles.ventaDescuentos;
-                    totalJueves = fechaJueves > fechaActual ? 0 : obj.saldosPorDia.jueves.deudaTotal - obj.saldosPorDia.jueves.cantidadPagos + obj.saldosPorDia.jueves.ventaDescuentos;
-                    totalViernes = fechaViernes > fechaActual ? 0 : obj.saldosPorDia.viernes.deudaTotal - obj.saldosPorDia.viernes.cantidadPagos + obj.saldosPorDia.viernes.ventaDescuentos;
-                    totalSabado = fechaSabado > fechaActual ? 0 : obj.saldosPorDia.sabado.deudaTotal - obj.saldosPorDia.sabado.cantidadPagos + obj.saldosPorDia.sabado.ventaDescuentos;
-                    totalDomingo = fechaDomingo > fechaActual ? 0 : obj.saldosPorDia.domingo.deudaTotal - obj.saldosPorDia.domingo.cantidadPagos + obj.saldosPorDia.domingo.ventaDescuentos;
-                    
-                    let totalLunesStr = fechaLunes > fechaActual ? "" : fn_formatearImportes(obj.saldosPorDia.lunes.deudaTotal - obj.saldosPorDia.lunes.cantidadPagos + obj.saldosPorDia.lunes.ventaDescuentos);
-                    let totalMartesStr = fechaMartes > fechaActual ? "" : fn_formatearImportes(obj.saldosPorDia.martes.deudaTotal - obj.saldosPorDia.martes.cantidadPagos + obj.saldosPorDia.martes.ventaDescuentos);
-                    let totalMiercolesStr = fechaMiercoles > fechaActual ? "" : fn_formatearImportes(obj.saldosPorDia.miercoles.deudaTotal - obj.saldosPorDia.miercoles.cantidadPagos + obj.saldosPorDia.miercoles.ventaDescuentos);
-                    let totalJuevesStr = fechaJueves > fechaActual ? "" : fn_formatearImportes(obj.saldosPorDia.jueves.deudaTotal - obj.saldosPorDia.jueves.cantidadPagos + obj.saldosPorDia.jueves.ventaDescuentos);
-                    let totalViernesStr = fechaViernes > fechaActual ? "" : fn_formatearImportes(obj.saldosPorDia.viernes.deudaTotal - obj.saldosPorDia.viernes.cantidadPagos + obj.saldosPorDia.viernes.ventaDescuentos);
-                    let totalSabadoStr = fechaSabado > fechaActual ? "" : fn_formatearImportes(obj.saldosPorDia.sabado.deudaTotal - obj.saldosPorDia.sabado.cantidadPagos + obj.saldosPorDia.sabado.ventaDescuentos);
-                    let totalDomingoStr = fechaDomingo > fechaActual ? "" : fn_formatearImportes(obj.saldosPorDia.domingo.deudaTotal - obj.saldosPorDia.domingo.cantidadPagos + obj.saldosPorDia.domingo.ventaDescuentos);
-
-                    totalLunesGeneral+= totalLunes
-                    totalMartesGeneral+= totalMartes
-                    totalMiercolesGeneral+= totalMiercoles
-                    totalJuevesGeneral+= totalJueves
-                    totalViernesGeneral+= totalViernes
-                    totalSabadoGeneral+= totalSabado
-                    totalDomingoGeneral+= totalDomingo
-
-                    let limitEndeudamiento = parseFloat(obj.limitEndeudamiento);
-                    totalEndeudamiento += limitEndeudamiento
-
-                    let totalFormateado = limitEndeudamiento.toLocaleString('es-ES', {
-                        minimumFractionDigits: 2,
-                        maximumFractionDigits: 2,
-                        useGrouping: true,
-                    }); 
-
-                    let nuevaFila = $('<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
-                    // Agregar las celdas con la información
-                    nuevaFila.append($('<td class="hidden">').text(obj.codigoCli));
-                    nuevaFila.append($('<td class="border dark:border-gray-700 p-2 font-medium whitespace-nowrap">').text(obj.nombreCompleto));
-                    nuevaFila.append($('<td class="border dark:border-gray-700 p-2 text-center whitespace-nowrap bg-red-600 text-white">').text(totalFormateado));
-                    nuevaFila.append($('<td class="hidden">').text(obj.limitEndeudamiento));
-                    nuevaFila.append($('<td class="border dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(totalLunesStr));
-                    nuevaFila.append($('<td class="border dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(totalMartesStr));
-                    nuevaFila.append($('<td class="border dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(totalMiercolesStr));
-                    nuevaFila.append($('<td class="border dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(totalJuevesStr));
-                    nuevaFila.append($('<td class="border dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(totalViernesStr));
-                    nuevaFila.append($('<td class="border dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(totalSabadoStr));
-                    nuevaFila.append($('<td class="border dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(totalDomingoStr));
-                    // Agregar la nueva fila al tbody
-                    tbodyDeudaMaxima.append(nuevaFila);
+            
+            clientesConTotalesPorDia.sort((a, b) => {
+                if (a.nombreCompleto < b.nombreCompleto) {
+                    return -1;
                 }
+                if (a.nombreCompleto > b.nombreCompleto) {
+                    return 1;
+                }
+                return 0;
             });
+            
+            clientesConTotalesPorDia.forEach(function(obj){
+
+                function fn_devuelveValorDia(obj, valor){
+                    let totalADevolver = 0;
+                    if (obj[valor]){
+                        let deudaHoy = obj[valor]["datosTabla_tb_pesadasGeneral"][0];
+                        let descuentosHoy = 0;
+                        if (obj[valor]["totalDescuentos"][0] && obj[valor]["totalDescuentos"][0]["totalVentaDescuento"]){
+                            descuentosHoy = obj[valor]["totalDescuentos"][0];
+                            descuentosHoy = parseFloat(descuentosHoy["totalVentaDescuento"]);
+                        }
+
+                        let pagosHoy = 0;
+                        if (obj[valor]["totalPagos"][0] && obj[valor]["totalPagos"][0]["pagos"]){
+                            pagosHoy = obj[valor]["totalPagos"][0];
+                            pagosHoy = parseFloat(pagosHoy["pagos"]);
+                        }
+
+                        deudaHoy = parseFloat(deudaHoy["totalVenta"]) + descuentosHoy;
+                        let deudaAnterior = parseFloat(obj[valor]["ventaAnterior"]) + parseFloat(obj[valor]["ventaAnterior2"]) + parseFloat(obj[valor]["ventaAnterior3"]);
+                        let pagosAnteriores = parseFloat(obj[valor]["pagoAnterior"]) + parseFloat(obj[valor]["totalVentaDescuentoAnterior"]);
+                        let deudaGeneral = deudaAnterior + deudaHoy;
+                        let pagosGeneral = pagosAnteriores + pagosHoy;
+
+                        totalADevolver = deudaGeneral - pagosGeneral;
+                    }else{
+                        totalADevolver = 0;
+                    }
+
+                    return totalADevolver;
+                }
+
+                totalLunesGeneral += fn_devuelveValorDia(obj,"lunes");
+                totalMartesGeneral += fn_devuelveValorDia(obj,"martes");
+                totalMiercolesGeneral += fn_devuelveValorDia(obj,"miercoles");
+                totalJuevesGeneral += fn_devuelveValorDia(obj,"jueves");
+                totalViernesGeneral += fn_devuelveValorDia(obj,"viernes");
+                totalSabadoGeneral += fn_devuelveValorDia(obj,"sabado");
+                totalDomingoGeneral += fn_devuelveValorDia(obj,"domingo");
+
+                totalEndeudamiento += parseFloat(obj.limitEndeudamiento);
+
+                let nuevaFila = $('<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
+                // Agregar las celdas con la información
+                nuevaFila.append($('<td class="hidden">').text(obj.codigoCli));
+                nuevaFila.append($('<td class="border dark:border-gray-700 p-2 font-medium whitespace-nowrap">').text(obj.nombreCompleto));
+                nuevaFila.append($('<td class="border dark:border-gray-700 p-2 text-center whitespace-nowrap bg-red-600 text-white">').text(fn_formatearImportes(obj.limitEndeudamiento)));
+                nuevaFila.append($('<td class="hidden">').text(obj.limitEndeudamiento));
+                nuevaFila.append($('<td class="border dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(fn_formatearImportes(fn_devuelveValorDia(obj,"lunes"))));
+                nuevaFila.append($('<td class="border dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(fn_formatearImportes(fn_devuelveValorDia(obj,"martes"))));
+                nuevaFila.append($('<td class="border dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(fn_formatearImportes(fn_devuelveValorDia(obj,"miercoles"))));
+                nuevaFila.append($('<td class="border dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(fn_formatearImportes(fn_devuelveValorDia(obj,"jueves"))));
+                nuevaFila.append($('<td class="border dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(fn_formatearImportes(fn_devuelveValorDia(obj,"viernes"))));
+                nuevaFila.append($('<td class="border dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(fn_formatearImportes(fn_devuelveValorDia(obj,"sabado"))));
+                nuevaFila.append($('<td class="border dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(fn_formatearImportes(fn_devuelveValorDia(obj,"domingo"))));
+                // Agregar la nueva fila al tbody
+                tbodyDeudaMaxima.append(nuevaFila);
+
+            })
 
             let nuevaFila = $('<tr class="bg-blue-600 text-white border-b dark:border-gray-700 cursor-pointer sticky bottom-0">');
             // Agregar las celdas con la información
@@ -329,51 +331,183 @@ jQuery(function($) {
         }
     }    
 
-    function fn_crearArregloSaldo (response){
-        let resultadosAgrupados = {};
-
-        response.forEach(function (obj) {
-            let codigoCli = obj.codigoCli;
-
-            // console.log(obj);
-
-            if (!resultadosAgrupados[codigoCli]) {
-                resultadosAgrupados[codigoCli] = {
-                    nombreCompleto: obj.nombreCompleto,
-                    codigoCli: codigoCli,
-                    deudaTotal: 0,
-                    cantidadPagos: 0,
-                    ventaDescuentos: 0,
-                    limitEndeudamiento: 0
-                };
-            }
-
-            // Sumar las propiedades correspondientes
-            resultadosAgrupados[codigoCli].deudaTotal += parseFloat(obj.deudaTotal);
-            resultadosAgrupados[codigoCli].cantidadPagos += parseFloat(obj.cantidadPagos);
-            resultadosAgrupados[codigoCli].ventaDescuentos += parseFloat(obj.ventaDescuentos);
-            resultadosAgrupados[codigoCli].limitEndeudamiento += parseFloat(obj.limitEndeudamiento);
-        });
-
-        return resultadosAgrupados
-    }
-
     function fn_TraerReporteSemanalSaldos(dia) {
         return new Promise((resolve, reject) => {
             $.ajax({
-                url: '/fn_consulta_TraerReporteSemanalSaldos',
+                url: '/fn_consulta_TraerReporteAcumuladoDetalle',
                 method: 'GET',
                 data: {
                     fecha: dia,
                 },
                 success: function (response) {
-                    let resultadosAgrupados = fn_crearArregloSaldo(response);
-                    resolve(resultadosAgrupados);
+                    // Filtrar clientes que tienen datos en al menos uno de los totales
+                    const clientesFiltrados = response.filter(cliente => 
+                        cliente.datosTabla_tb_pesadas.length > 0 || 
+                        cliente.datosTabla_tb_pesadas2.length > 0 || 
+                        cliente.datosTabla_tb_pesadas3.length > 0
+                    );
+    
+                    const clientesModificados = clientesFiltrados.map(function(clienteObj) {
+                        return {
+                            codigoCli: clienteObj.cliente.codigoCli,
+                            nombreCompleto: clienteObj.cliente.nombreCompleto,
+                            limitEndeudamiento: clienteObj.cliente.limitEndeudamiento,
+                            datosTabla_tb_pesadas: clienteObj.datosTabla_tb_pesadas,
+                            ventaAnterior: clienteObj.ventaAnterior,
+                            datosTabla_tb_pesadas2: clienteObj.datosTabla_tb_pesadas2,
+                            ventaAnterior2: clienteObj.ventaAnterior2,
+                            datosTabla_tb_pesadas3: clienteObj.datosTabla_tb_pesadas3,
+                            ventaAnterior3: clienteObj.ventaAnterior3,
+                            totalDescuentos: clienteObj.totalDescuentos,
+                            totalPagos: clienteObj.totalPagos,
+                            pagoAnterior: clienteObj.pagoAnterior,
+                            totalVentaDescuentoAnterior: clienteObj.totalVentaDescuentoAnterior
+                        };
+                    });
+    
+                    const clientesConAgrupacion = clientesModificados.map(function(clienteObj) {
+                        // Crear un objeto para almacenar los datos agrupados por idEspecie
+                        var datosTabla_tb_pesadasGeneral = {};
+                    
+                        // Función para agregar datos al objeto agrupado
+                        function agregarDatos(datosArray) {
+                            datosArray.forEach(function(item) {
+                                var idEspecie = item.idEspecie;
+                                var claveEspecie = `especie${idEspecie}`;
+                                
+                                if (!datosTabla_tb_pesadasGeneral[claveEspecie]) {
+                                    datosTabla_tb_pesadasGeneral[claveEspecie] = [];
+                                }
+                                datosTabla_tb_pesadasGeneral[claveEspecie].push(item);
+                            });
+                        }                    
+                    
+                        // Agregar datos de todos los arreglos al objeto agrupado
+                        agregarDatos(clienteObj.datosTabla_tb_pesadas || []);
+                        agregarDatos(clienteObj.datosTabla_tb_pesadas2 || []);
+                        agregarDatos(clienteObj.datosTabla_tb_pesadas3 || []);
+                    
+                        return {
+                            codigoCli: clienteObj.codigoCli,
+                            nombreCompleto: clienteObj.nombreCompleto,
+                            limitEndeudamiento: clienteObj.limitEndeudamiento,
+                            datosTabla_tb_pesadasGeneral: datosTabla_tb_pesadasGeneral,
+                            ventaAnterior: clienteObj.ventaAnterior,
+                            ventaAnterior2: clienteObj.ventaAnterior2,
+                            ventaAnterior3: clienteObj.ventaAnterior3,
+                            totalDescuentos: clienteObj.totalDescuentos,
+                            totalPagos: clienteObj.totalPagos,
+                            pagoAnterior: clienteObj.pagoAnterior,
+                            totalVentaDescuentoAnterior: clienteObj.totalVentaDescuentoAnterior
+                        };
+                    });
+    
+                    function calcularTotales(clientesConAgrupacion) {
+                        return clientesConAgrupacion.map(cliente => {
+                            let datosTabla_tb_pesadasGeneral = cliente.datosTabla_tb_pesadasGeneral;
+                            
+                            // Crear un nuevo objeto para almacenar los datos resumidos
+                            let datosResumen = {};
+                            
+                            for (let especie in datosTabla_tb_pesadasGeneral) {
+                                let items = datosTabla_tb_pesadasGeneral[especie];
+                                
+                                let totalPeso = 0;
+                                let totalVenta = 0;
+                                let totalCantidad = 0;
+                                let precios = new Set(); // Para almacenar precios únicos
+                                
+                                items.forEach(item => {
+                                    let pesoNeto = parseFloat(item.pesoNetoPes);
+                                    let pesoJabas = parseFloat(item.pesoNetoJabas);
+                                    let cantidad = item.cantidadPes;
+                                    let precio = parseFloat(item.precioPes);
+                                    
+                                    // Sumar totalPeso y totalVenta
+                                    if (pesoNeto > 0) {
+                                        totalPeso += pesoNeto - pesoJabas;
+                                        totalVenta += (pesoNeto - pesoJabas) * precio;
+                                    } else {
+                                        totalPeso += pesoNeto + pesoJabas;
+                                        totalVenta += (pesoNeto + pesoJabas) * precio;
+                                    }
+                                    
+                                    // Sumar totalCantidad
+                                    totalCantidad += cantidad;
+                                    
+                                    // Agregar precio a los precios únicos
+                                    precios.add(precio);
+                                });
+                                
+                                // Calcular precio promedio
+                                let precioPromedio = precios.size ? [...precios].reduce((a, b) => a + b, 0) / precios.size : 0;
+                                
+                                // Calcular promedioEspecie
+                                let promedioEspecie = totalCantidad > 0 ? totalPeso / totalCantidad : 0;
+                                
+                                // Agregar resultados al objeto de resumen
+                                datosResumen[especie] = [{
+                                    totalPeso: totalPeso.toFixed(2),
+                                    totalVenta: totalVenta.toFixed(2),
+                                    totalCantidad: totalCantidad,
+                                    precioPromedio: precioPromedio.toFixed(2),
+                                    promedioEspecie: promedioEspecie.toFixed(2)
+                                }];
+                            }
+                            
+                            // Devolver el objeto cliente con los datos calculados
+                            return {
+                                ...cliente,
+                                datosTabla_tb_pesadasGeneral: datosResumen
+                            };
+                        });
+                    }
+    
+                    const clientesConTotales = calcularTotales(clientesConAgrupacion);
+
+                    clientesConTotales.forEach(cliente => {
+                        // Inicializar los totales acumulados
+                        let totalPeso = 0;
+                        let totalVenta = 0;
+                        let totalCantidad = 0;
+                        let precioPromedio = 0;
+                        let promedioEspecie = 0;
+                        let especiesContadas = 0;
+                      
+                        // Iterar sobre cada especie en datosTabla_tb_pesadasGeneral
+                        for (let especieKey in cliente.datosTabla_tb_pesadasGeneral) {
+                          let especie = cliente.datosTabla_tb_pesadasGeneral[especieKey][0];
+                          
+                          // Sumar los valores de las especies
+                          totalPeso += parseFloat(especie.totalPeso);
+                          totalVenta += parseFloat(especie.totalVenta);
+                          totalCantidad += especie.totalCantidad;
+                          precioPromedio += parseFloat(especie.precioPromedio); 
+                          promedioEspecie += parseFloat(especie.promedioEspecie); 
+                          especiesContadas++;
+                        }
+                      
+                        // Calcular los promedios correctos
+                        precioPromedio = precioPromedio / especiesContadas;
+                        promedioEspecie = promedioEspecie / especiesContadas;
+                      
+                        // Reemplazar datosTabla_tb_pesadasGeneral con los totales
+                        cliente.datosTabla_tb_pesadasGeneral = [{
+                          totalPeso: totalPeso.toFixed(2),
+                          totalVenta: totalVenta.toFixed(2),
+                          totalCantidad: totalCantidad,
+                          precioPromedio: precioPromedio.toFixed(2),
+                          promedioEspecie: promedioEspecie.toFixed(2)
+                        }];
+                      });
+    
+                    resolve(clientesConTotales);
+    
                 },
                 error: function (error) {
                     console.error("ERROR", error);
-                    reject(error); // Rechaza la Promesa en caso de error
-                }
+                    reject(error);
+                },
             });
         });
     }
