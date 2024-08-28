@@ -10381,7 +10381,7 @@ jQuery(function ($) {
                 });
     
                 response.totalPagos.forEach(function (item) {
-                    var fecha = item.fechaOperacionPag;
+                    var fecha = item.fechaRegistroPag;
                     if (!combinedData[fecha]) {
                         combinedData[fecha] = {
                             totalPesoPrimerEspecie: 0,
@@ -10741,7 +10741,9 @@ jQuery(function ($) {
                                 pagosDeHoy += parseFloat(obj.cantidadAbonoPag);
                             }
                         }else{
-                            pagosDeHoy += parseFloat(obj.cantidadAbonoPag);
+                            if (obj.fechaRegistroPag == fecha ){
+                                pagosDeHoy += parseFloat(obj.cantidadAbonoPag);
+                            }
                         }
                         if (masDeUnPago == 0){
                             pagosDetallados += `

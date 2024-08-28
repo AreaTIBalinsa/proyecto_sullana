@@ -335,7 +335,7 @@ jQuery(function($) {
 
                         // Agregar las celdas con la información
                         nuevaFila.append($('<td class="hidden">').text(obj.idPrecio));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">').text(obj.nombreCompleto));
+                        nuevaFila.append($('<td class="dark:border-gray-700 p-2 font-medium text-gray-900 whitespace-nowrap dark:text-white sticky left-0 dark:bg-gray-800 bg-white border-r-2">').text(obj.nombreCompleto));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer precioColumna" data-columna="1">').text(obj.primerEspecie));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer precioColumna" data-columna="2">').text(obj.segundaEspecie));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer precioColumna" data-columna="3">').text(obj.terceraEspecie));
@@ -363,6 +363,7 @@ jQuery(function($) {
                         // Agregar la nueva fila al tbody
                         tbodyPrecios.append(nuevaFila);
                     });
+                    fn_pintarPreciosMinimos()
                 } else {
                     console.log("La respuesta no es un arreglo de objetos.");
                 }
@@ -666,14 +667,37 @@ jQuery(function($) {
     function fn_pintarPreciosMinimos() {
 
         let valorPrecioPolloVivo = $('#valorPrecioPolloVivo').val();
-        let valorPrecioPolloVivoPerla = $('#valorPrecioPolloVivoPerla').val();
-        let valorPrecioPolloVivoChimu = $('#valorPrecioPolloVivoChimu').val();
-        let valorPrecioPolloVivoxx = $('#valorPrecioPolloVivoxx').val();
+        let valorPrecioPolloVivoPelado = $('#valorPrecioPolloVivoPelado').val();
+        let valorPrecioPolloVivoTecnicoVivo = $('#valorPrecioPolloVivoTecnicoVivo').val();
+        let valorPrecioPolloTecnicoPelado = $('#valorPrecioPolloTecnicoPelado').val();
+        let valorPrecioGallinaDoblePelado = $('#valorPrecioGallinaDoblePelado').val();
+        let valorPrecioGallinaChicaPelado = $('#valorPrecioGallinaChicaPelado').val();
+        let valorPrecioGalloPelado = $('#valorPrecioGalloPelado').val();
+        let valorPrecioPolloVivoMaltratado = $('#valorPrecioPolloVivoMaltratado').val();
+        let valorPrecioPolloVivoPechuga = $('#valorPrecioPolloVivoPechuga').val();
+        let valorPrecioPolloVivoPierna = $('#valorPrecioPolloVivoPierna').val();
+        let valorPrecioPolloVivoAlas = $('#valorPrecioPolloVivoAlas').val();
+        let valorPrecioPolloVivoMenudencia = $('#valorPrecioPolloVivoMenudencia').val();
+        let valorPrecioPolloVivoDorso = $('#valorPrecioPolloVivoDorso').val();
+        let valorPrecioPolloVivoOtros = $('#valorPrecioPolloVivoOtros').val();
+        let valorPrecioPolloxx = $('#valorPrecioPolloxx').val();
+        let valorPrecioBrasaYugo = $('#valorPrecioBrasaYugo').val();
+        let valorPrecioBrasaTecnico = $('#valorPrecioBrasaTecnico').val();
+        let valorPrecioPolloxxVivo = $('#valorPrecioPolloxxVivo').val();
+        let valorPrecioGallinaDobleVivo = $('#valorPrecioGallinaDobleVivo').val();
+        let valorPrecioGallinaChicaVivo = $('#valorPrecioGallinaChicaVivo').val();
+        let valorPrecioGalloVivo = $('#valorPrecioGalloVivo').val();
+        let valorPrecioMaltratadoVivo = $('#valorPrecioMaltratadoVivo').val();
 
-        let valorPrecioPolloBeneficiadoVivo = $('#valorPrecioPolloBeneficiadoVivo').val();
-        let valorPrecioPolloBeneficiadoPolloPerla = $('#valorPrecioPolloBeneficiadoPolloPerla').val();
-        let valorPrecioPolloBeneficiadoPolloChimu = $('#valorPrecioPolloBeneficiadoPolloChimu').val();
-        let valorPrecioPolloBeneficiadoPolloxx = $('#valorPrecioPolloBeneficiadoPolloxx').val();
+        function fn_pintarCeldas(valor, valorMinimo, elemento){
+            if (valor < parseFloat(valorMinimo) ){
+                $(elemento).removeClass("text-gray-900 dark:text-white");
+                $(elemento).addClass("text-white bg-red-600");
+            }else{
+                $(elemento).removeClass("text-white bg-red-600");
+                $(elemento).addClass("text-gray-900 dark:text-white");
+            }
+        }
 
         $('#bodyPreciosXPresentacion tr').each(function() {
             // Encontrar la columna con el atributo data-columna
@@ -682,53 +706,72 @@ jQuery(function($) {
                 let columna = $(this).data('columna');
                 // Obtener el valor dentro de la celda
                 let valor = parseFloat($(this).text());
-                // Obtener el valor de la columna 6
-                let idGrupo = $(this).closest('tr').find('td:eq(15)').text();
 
                 if (columna == 1){
-                    if (idGrupo == 1 && valor < parseFloat(valorPrecioPolloVivo) ){
-                        $(this).removeClass("text-gray-900 dark:text-white");
-                        $(this).addClass("text-white bg-red-600");
-                    }else if (idGrupo == 2 && valor < parseFloat(valorPrecioPolloBeneficiadoVivo) ){
-                        $(this).removeClass("text-gray-900 dark:text-white");
-                        $(this).addClass("text-white bg-red-600");
-                    }else{
-                        $(this).removeClass("text-white bg-red-600");
-                        $(this).addClass("text-gray-900 dark:text-white");
-                    }
-                }else if (columna == 2){
-                    if (idGrupo == 1 && valor < parseFloat(valorPrecioPolloVivoPerla) ){
-                        $(this).removeClass("text-gray-900 dark:text-white");
-                        $(this).addClass("text-white bg-red-600");
-                    }else if (idGrupo == 2 && valor < parseFloat(valorPrecioPolloBeneficiadoPolloPerla) ){
-                        $(this).removeClass("text-gray-900 dark:text-white");
-                        $(this).addClass("text-white bg-red-600");
-                    }else{
-                        $(this).removeClass("text-white bg-red-600");
-                        $(this).addClass("text-gray-900 dark:text-white");
-                    }
-                }else if (columna == 3){
-                    if (idGrupo == 1 && valor < parseFloat(valorPrecioPolloVivoChimu) ){
-                        $(this).removeClass("text-gray-900 dark:text-white");
-                        $(this).addClass("text-white bg-red-600");
-                    }else if (idGrupo == 2 && valor < parseFloat(valorPrecioPolloBeneficiadoPolloChimu) ){
-                        $(this).removeClass("text-gray-900 dark:text-white");
-                        $(this).addClass("text-white bg-red-600");
-                    }else{
-                        $(this).removeClass("text-white bg-red-600");
-                        $(this).addClass("text-gray-900 dark:text-white");
-                    }
-                }else if (columna == 4){
-                    if (idGrupo == 1 && valor < parseFloat(valorPrecioPolloVivoxx) ){
-                        $(this).removeClass("text-gray-900 dark:text-white");
-                        $(this).addClass("text-white bg-red-600");
-                    }else if (idGrupo == 2 && valor < parseFloat(valorPrecioPolloBeneficiadoPolloxx) ){
-                        $(this).removeClass("text-gray-900 dark:text-white");
-                        $(this).addClass("text-white bg-red-600");
-                    }else{
-                        $(this).removeClass("text-white bg-red-600");
-                        $(this).addClass("text-gray-900 dark:text-white");
-                    }
+                    fn_pintarCeldas(valor, valorPrecioPolloVivo, this);
+                }
+                else if (columna == 2){
+                    fn_pintarCeldas(valor, valorPrecioPolloVivoPelado, this);
+                }
+                else if (columna == 3){
+                    fn_pintarCeldas(valor, valorPrecioPolloVivoTecnicoVivo, this);
+                }
+                else if (columna == 4){
+                    fn_pintarCeldas(valor, valorPrecioPolloTecnicoPelado, this);
+                }
+                else if (columna == 5){
+                    fn_pintarCeldas(valor, valorPrecioGallinaDoblePelado, this);
+                }
+                else if (columna == 6){
+                    fn_pintarCeldas(valor, valorPrecioGallinaChicaPelado, this);
+                }
+                else if (columna == 7){
+                    fn_pintarCeldas(valor, valorPrecioGalloPelado, this);
+                }
+                else if (columna == 8){
+                    fn_pintarCeldas(valor, valorPrecioPolloVivoMaltratado, this);
+                }
+                else if (columna == 9){
+                    fn_pintarCeldas(valor, valorPrecioPolloVivoPechuga, this);
+                }
+                else if (columna == 10){
+                    fn_pintarCeldas(valor, valorPrecioPolloVivoPierna, this);
+                }
+                else if (columna == 11){
+                    fn_pintarCeldas(valor, valorPrecioPolloVivoAlas, this);
+                }
+                else if (columna == 12){
+                    fn_pintarCeldas(valor, valorPrecioPolloVivoMenudencia, this);
+                }
+                else if (columna == 13){
+                    fn_pintarCeldas(valor, valorPrecioPolloVivoDorso, this);
+                }
+                else if (columna == 14){
+                    fn_pintarCeldas(valor, valorPrecioPolloVivoOtros, this);
+                }
+                else if (columna == 15){
+                    fn_pintarCeldas(valor, valorPrecioPolloxx, this);
+                }
+                else if (columna == 16){
+                    fn_pintarCeldas(valor, valorPrecioBrasaYugo, this);
+                }
+                else if (columna == 17){
+                    fn_pintarCeldas(valor, valorPrecioBrasaTecnico, this);
+                }
+                else if (columna == 18){
+                    fn_pintarCeldas(valor, valorPrecioPolloxxVivo, this);
+                }
+                else if (columna == 19){
+                    fn_pintarCeldas(valor, valorPrecioGallinaDobleVivo, this);
+                }
+                else if (columna == 20){
+                    fn_pintarCeldas(valor, valorPrecioGallinaChicaVivo, this);
+                }
+                else if (columna == 21){
+                    fn_pintarCeldas(valor, valorPrecioGalloVivo, this);
+                }
+                else if (columna == 22){
+                    fn_pintarCeldas(valor, valorPrecioMaltratadoVivo, this);
                 }
             });
         });
@@ -850,6 +893,18 @@ jQuery(function($) {
                 e.preventDefault(); // Prevenir la acción por defecto de la tecla
             }
         });
-    });        
+    });   
+    
+    $(document).on("click", "#bodyPreciosXPresentacion tr", function() {
+
+        $('#bodyPreciosXPresentacion tr').each(function() {
+            $(this).addClass('bg-white dark:bg-gray-800');
+            $(this).removeClass('bg-gray-300 dark:bg-gray-600');
+        });
+
+        let fila = $(this).closest("tr")
+        fila.removeClass('bg-white dark:bg-gray-800');
+        fila.addClass('bg-gray-300 dark:bg-gray-600');
+    });
 
 });

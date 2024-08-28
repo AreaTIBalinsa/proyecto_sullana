@@ -1461,7 +1461,7 @@ class ReporteDePagosController extends Controller
             ->selectRaw('COALESCE(SUM(cantidadAbonoPag), 0) AS pagos')
             ->where('codigoCli', $codigoCli)
             ->where('estadoPago', '=', 1)
-            ->where('fechaOperacionPag', '<', $fecha)
+            ->where('fechaRegistroPag', '<', $fecha)
             ->value('pagoAnterior');
     
         return $consulta;
@@ -1469,12 +1469,12 @@ class ReporteDePagosController extends Controller
     
     public function consulta_Pagos($codigoCli, $fechaInicio, $fechaFin) {
         $consulta = DB::table('tb_pagos')
-            ->selectRaw('fechaOperacionPag')
+            ->selectRaw('fechaRegistroPag')
             ->selectRaw('COALESCE(SUM(cantidadAbonoPag), 0) AS pagos')
             ->where('codigoCli', $codigoCli)
             ->where('estadoPago', '=', 1)
-            ->whereBetween('fechaOperacionPag', [$fechaInicio, $fechaFin])
-            ->groupBy('fechaOperacionPag')
+            ->whereBetween('fechaRegistroPag', [$fechaInicio, $fechaFin])
+            ->groupBy('fechaRegistroPag')
             ->get();
     
         return $consulta;

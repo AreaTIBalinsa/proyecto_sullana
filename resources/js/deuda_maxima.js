@@ -124,7 +124,9 @@ jQuery(function($) {
                     });
                     $('#ModalDeudaMaxima').addClass('hidden');
                     $('#ModalDeudaMaxima').removeClass('flex');
-                    fn_DeudaMaximaClientes();
+                    setTimeout(function() {
+                        $('#btnBuscarSaldoSemanal').trigger('click');
+                    }, 1500);
                 }
             },
             error: function(error) {
