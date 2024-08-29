@@ -337,7 +337,7 @@
             </div>
             <div class="relative overflow-auto max-h-[500px] aside_scrollED shadow-md rounded-lg">
                 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400" id="tablaPreciosXPresentacion">
-                    <thead class="text-xs text-gray-100 uppercase bg-blue-600 sticky top-0" id="headerPreciosXPresentacion">
+                    <thead class="text-xs text-gray-100 uppercase bg-blue-600 sticky top-0 z-50" id="headerPreciosXPresentacion">
                         <tr>
                             <th class="hidden">Id</th>
                             <th class="p-4" data-column="nombres">

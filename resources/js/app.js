@@ -2,6 +2,33 @@ import jQuery from 'jquery';
 window.$ = jQuery;
 import 'flowbite';
 
+if(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    // El navegador está en modo oscuro
+    $('.base_swith').addClass('bg-green-500');
+    $('.base_swith').removeClass('bg-slate-700');
+    $('.circulo_swith').addClass('prendido');
+    $('html').addClass('dark');
+} else {
+    // El navegador no está en modo oscuro
+    $('.base_swith').removeClass('bg-green-500');
+    $('.base_swith').addClass('bg-slate-700');
+    $('.circulo_swith').removeClass('prendido');
+    $('html').removeClass('dark');
+}
+
+if(localStorage.getItem('modoOscuro') === 'true') {
+    // Aplicar el modo oscuro
+    $('html').addClass('dark');
+    $('.base_swith').addClass('bg-green-500');
+    $('.base_swith').removeClass('bg-slate-700');
+    $('.circulo_swith').addClass('prendido');
+}else{
+    $('html').removeClass('dark');
+    $('.base_swith').removeClass('bg-green-500');
+    $('.base_swith').addClass('bg-slate-700');
+    $('.circulo_swith').removeClass('prendido');
+}
+
 jQuery(function($) {
     declarar_mensaje_bienvenida();
 
@@ -27,33 +54,6 @@ jQuery(function($) {
     }
 
     $('#preloader_sistema').fadeOut('slow');
-
-    if(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        // El navegador está en modo oscuro
-        $('.base_swith').addClass('bg-green-500');
-        $('.base_swith').removeClass('bg-slate-700');
-        $('.circulo_swith').addClass('prendido');
-        $('html').addClass('dark');
-    } else {
-        // El navegador no está en modo oscuro
-        $('.base_swith').removeClass('bg-green-500');
-        $('.base_swith').addClass('bg-slate-700');
-        $('.circulo_swith').removeClass('prendido');
-        $('html').removeClass('dark');
-    }
-
-    if(localStorage.getItem('modoOscuro') === 'true') {
-        // Aplicar el modo oscuro
-        $('html').addClass('dark');
-        $('.base_swith').addClass('bg-green-500');
-        $('.base_swith').removeClass('bg-slate-700');
-        $('.circulo_swith').addClass('prendido');
-    }else{
-        $('html').removeClass('dark');
-        $('.base_swith').removeClass('bg-green-500');
-        $('.base_swith').addClass('bg-slate-700');
-        $('.circulo_swith').removeClass('prendido');
-    }
 
     $('#swith_modo_oscuro').on('click', function(){
         $('.base_swith').toggleClass('bg-green-500 bg-slate-700');

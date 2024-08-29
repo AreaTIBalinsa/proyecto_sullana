@@ -10677,9 +10677,6 @@ jQuery(function ($) {
         let masDeUnPago = 0;
 
         let pagosDeHoy = 0;
-        let pagosSumados = 0;
-        let pagosARestar = 0;
-
         let pasoUnaVez = 0;
 
         function formatFecha(fecha) {
@@ -10715,36 +10712,18 @@ jQuery(function ($) {
 
         let tbodyCuentaDelClientePagos = $('#bodyCuentaDelClientePagos');
         tbodyCuentaDelClientePagos.empty();
-        let bodyCuentaDelClientePagos="";
-
-        let variableBandera = true;
-
-        if ($('#checkboxID').prop('checked')) {
-            variableBandera = true;
-        } else {
-            variableBandera = false;
-        }
-        
+        let bodyCuentaDelClientePagos="";        
         
         if(respuestaPagosDetallados.length > 0) {
             pagosDetallados +=``;
             respuestaPagosDetallados.forEach(function(obj) {
-                if (obj.fechaOperacionPag != fecha && obj.fechaRegistroPag == fecha){
+                if (obj.fechaOperacionPag > fecha || obj.fechaRegistroPag == fecha){
                     if(obj.tipoAbonoPag != "Saldo"){
-                        pagosARestar += parseFloat(obj.cantidadAbonoPag);
-                    }
-                }
-                if (obj.fechaOperacionPag == fecha || obj.fechaRegistroPag == fecha){
-                    if(obj.tipoAbonoPag != "Saldo"){
-                        if (variableBandera){
-                            if (obj.fechaOperacionPag == fecha ){
-                                pagosDeHoy += parseFloat(obj.cantidadAbonoPag);
-                            }
-                        }else{
-                            if (obj.fechaRegistroPag == fecha ){
-                                pagosDeHoy += parseFloat(obj.cantidadAbonoPag);
-                            }
+
+                        if (obj.fechaRegistroPag == fecha ){
+                            pagosDeHoy += parseFloat(obj.cantidadAbonoPag);
                         }
+
                         if (masDeUnPago == 0){
                             pagosDetallados += `
                                                 <tr class="bg-white border-b contarFilaPagos border-black">
@@ -10793,24 +10772,16 @@ jQuery(function ($) {
             maximumFractionDigits: 2,
             useGrouping: true,
         });
-
-        let totalSaldoAnteriorV_doble = 0;
-
-        if (variableBandera){
-            totalSaldoAnteriorV_doble = totalSaldoAnteriorV;
-        }else{
-            totalSaldoAnteriorV_doble = parseFloat(totalSaldoAnteriorV) < 0 ? parseFloat(totalSaldoAnteriorV) - pagosARestar : parseFloat(totalSaldoAnteriorV) + pagosARestar;
-        }
         
         $("#totalCuentaDia").attr("value", totalVentaDelDia);
         $("#totalPagos").attr("value", pagosDeHoy);
-        $("#totalSaldo").attr("value", totalSaldoAnteriorV_doble);
+        $("#totalSaldo").attr("value", totalSaldoAnteriorV);
         saldoActualGlobal = saldoActual;
 
         bodyCuentaDelClientePagos += `
         <tr class="bg-white border-b border-black contarFilaPagos">
             <td class="text-center py-1 px-2 whitespace-nowrap font-semibold border-r-2 border-black"></td>
-            <td class="text-center py-1 px-2 whitespace-nowrap font-bold border-b-2 border-black text-red-600">S/. ${parseFloat(totalSaldoAnteriorV_doble).toFixed(2)}</td>
+            <td class="text-center py-1 px-2 whitespace-nowrap font-bold border-b-2 border-black text-red-600">S/. ${parseFloat(totalSaldoAnteriorV).toFixed(2)}</td>
         </tr>
         ${pagosDetallados}
         <tr class="border-b border-black">

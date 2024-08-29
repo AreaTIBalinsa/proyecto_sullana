@@ -141,3 +141,15 @@ body::-webkit-scrollbar-thumb:hover {
   color: #ffffff;
   /* border-radius: 8px; */
 }
+
+.inputLogin:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px white inset;
+  box-shadow: 0 0 0px 1000px white inset;
+  -webkit-text-fill-color: black;
+}
+
+.dark .inputLogin:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px #050505 inset;
+  box-shadow: 0 0 0px 1000px #050505 inset;
+  -webkit-text-fill-color: white;
+}

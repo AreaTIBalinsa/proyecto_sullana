@@ -148,8 +148,8 @@ jQuery(function($) {
                         <th class="border-r px-2 py-4 text-center">Gallina Doble Vivo</th>
                         <th class="border-r px-2 py-4 text-center">Gallina Chica Vivo</th>
                         <th class="border-r px-2 py-4 text-center">Gallo Vivo</th>
-                        <th class="border-r px-2 py-4 text-center">Comentario</th>
                         <th class="px-2 py-4 text-center whitespace-nowrap">TOTAL</th>
+                        <th class="border-r px-2 py-4 text-center">Comentario</th>
                     </tr>`);
                     tbodyPedidoDelCliente.empty();
                     let nuevaFila = ""
@@ -190,7 +190,6 @@ jQuery(function($) {
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center valorEditable" data-columna="12">').text(obj.pedidoDecimaSegundaEspecie));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center valorEditable" data-columna="13">').text(obj.pedidoDecimaTerceraEspecie));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center valorEditable" data-columna="14">').text(obj.pedidoDecimaCuartaEspecie));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center valorEditable" data-columna="15">').text(obj.comentarioPedido));
                         
                         let totalPedidos = 0;
                         totalPedidos = parseInt(obj.pedidoPrimerEspecie) + parseInt(obj.pedidoSegundaEspecie) + 
@@ -217,7 +216,8 @@ jQuery(function($) {
                         totalPedido13 += parseInt(obj.pedidoDecimaTerceraEspecie);
                         totalPedido14 += parseInt(obj.pedidoDecimaCuartaEspecie);
 
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(totalPedidos));                                              
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center whitespace-nowrap">').text(totalPedidos));   
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center valorEditable" data-columna="15">').text(obj.comentarioPedido));
                         nuevaFila.append($('<td class="hidden">').text(obj.fechaRegistroPedido));
                         nuevaFila.append($('<td class="hidden">').text(obj.codigoCliPedidos));
                         // Agregar la nueva fila al tbody
@@ -237,22 +237,22 @@ jQuery(function($) {
 
                         nuevaFila = $('<tr class="bg-white border-b text-gray-900 dark:text-white dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 font-bold text-gray-900 whitespace-nowrap dark:text-white">').text("TOTAL:"));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(totalPedido1));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(totalPedido2));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(totalPedido3));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(totalPedido4));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(totalPedido5));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(totalPedido6));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(totalPedido7));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(totalPedido8));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(totalPedido9));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(totalPedido10));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(totalPedido11));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(totalPedido12));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(totalPedido13));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(totalPedido14));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer" id="extraerTotalPedido1">').text(totalPedido1));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer" id="extraerTotalPedido2">').text(totalPedido2));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer" id="extraerTotalPedido3">').text(totalPedido3));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer" id="extraerTotalPedido4">').text(totalPedido4));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer" id="extraerTotalPedido5">').text(totalPedido5));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer" id="extraerTotalPedido6">').text(totalPedido6));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer" id="extraerTotalPedido7">').text(totalPedido7));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer" id="extraerTotalPedido8">').text(totalPedido8));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer" id="extraerTotalPedido9">').text(totalPedido9));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer" id="extraerTotalPedido10">').text(totalPedido10));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer" id="extraerTotalPedido11">').text(totalPedido11));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer" id="extraerTotalPedido12">').text(totalPedido12));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer" id="extraerTotalPedido13">').text(totalPedido13));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer" id="extraerTotalPedido14">').text(totalPedido14));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(totalPedidoFormateado));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
                         // Agregar la nueva fila al tbody
                         TtotalesPedidos.append(nuevaFila);
 
@@ -354,102 +354,27 @@ jQuery(function($) {
             total13 += isNaN(monto13) ? 0 : monto13;
             let monto14 = parseFloat($(this).find('td:eq(14)').text());
             total14 += isNaN(monto14) ? 0 : monto14;
-            let monto15 = parseFloat($(this).find('td:eq(16)').text());
+            let monto15 = parseFloat($(this).find('td:eq(15)').text());
             total15 += isNaN(monto15) ? 0 : monto15;
         });
 
-        // Actualizar el valor en la fila "TOTAL"
-        let totalFormateado1 = total1.toLocaleString('es-ES', {
-            minimumFractionDigits: 0,   
-            maximumFractionDigits: 0,
-            useGrouping: true,
-        });
-        let totalFormateado2 = total2.toLocaleString('es-ES', {
-            minimumFractionDigits: 0,   
-            maximumFractionDigits: 0,
-            useGrouping: true,
-        });
-        let totalFormateado3 = total3.toLocaleString('es-ES', {
-            minimumFractionDigits: 0,   
-            maximumFractionDigits: 0,
-            useGrouping: true,
-        });
-        let totalFormateado4 = total4.toLocaleString('es-ES', {
-            minimumFractionDigits: 0,   
-            maximumFractionDigits: 0,
-            useGrouping: true,
-        });
-        let totalFormateado5 = total5.toLocaleString('es-ES', {
-            minimumFractionDigits: 0,   
-            maximumFractionDigits: 0,
-            useGrouping: true,
-        });
-        let totalFormateado6 = total6.toLocaleString('es-ES', {
-            minimumFractionDigits: 0,   
-            maximumFractionDigits: 0,
-            useGrouping: true,
-        });
-        let totalFormateado7 = total7.toLocaleString('es-ES', {
-            minimumFractionDigits: 0,   
-            maximumFractionDigits: 0,
-            useGrouping: true,
-        });
-        let totalFormateado8 = total8.toLocaleString('es-ES', {
-            minimumFractionDigits: 0,   
-            maximumFractionDigits: 0,
-            useGrouping: true,
-        });
-        let totalFormateado9 = total9.toLocaleString('es-ES', {
-            minimumFractionDigits: 0,   
-            maximumFractionDigits: 0,
-            useGrouping: true,
-        });
-        let totalFormateado10 = total10.toLocaleString('es-ES', {
-            minimumFractionDigits: 0,   
-            maximumFractionDigits: 0,
-            useGrouping: true,
-        });
-        let totalFormateado11 = total11.toLocaleString('es-ES', {
-            minimumFractionDigits: 0,   
-            maximumFractionDigits: 0,
-            useGrouping: true,
-        });
-        let totalFormateado12 = total12.toLocaleString('es-ES', {
-            minimumFractionDigits: 0,   
-            maximumFractionDigits: 0,
-            useGrouping: true,
-        });
-        let totalFormateado13 = total13.toLocaleString('es-ES', {
-            minimumFractionDigits: 0,   
-            maximumFractionDigits: 0,
-            useGrouping: true,
-        });
-        let totalFormateado14 = total14.toLocaleString('es-ES', {
-            minimumFractionDigits: 0,   
-            maximumFractionDigits: 0,
-            useGrouping: true,
-        });
-        let totalFormateado15 = total15.toLocaleString('es-ES', {
-            minimumFractionDigits: 0,   
-            maximumFractionDigits: 0,
-            useGrouping: true,
-        });
+        $('#headerPedidos tr:last td:eq(1)').text(total1);
+        $('#headerPedidos tr:last td:eq(2)').text(total2);
+        $('#headerPedidos tr:last td:eq(3)').text(total3);
+        $('#headerPedidos tr:last td:eq(4)').text(total4);
+        $('#headerPedidos tr:last td:eq(5)').text(total5);
+        $('#headerPedidos tr:last td:eq(6)').text(total6);
+        $('#headerPedidos tr:last td:eq(7)').text(total7);
+        $('#headerPedidos tr:last td:eq(8)').text(total8);
+        $('#headerPedidos tr:last td:eq(9)').text(total9);
+        $('#headerPedidos tr:last td:eq(10)').text(total10);
+        $('#headerPedidos tr:last td:eq(11)').text(total11);
+        $('#headerPedidos tr:last td:eq(12)').text(total12);
+        $('#headerPedidos tr:last td:eq(13)').text(total13);
+        $('#headerPedidos tr:last td:eq(14)').text(total14);
+        $('#headerPedidos tr:last td:eq(15)').text(total15);
 
-        $('#headerPedidos tr:last td:eq(1)').text(totalFormateado1);
-        $('#headerPedidos tr:last td:eq(2)').text(totalFormateado2);
-        $('#headerPedidos tr:last td:eq(3)').text(totalFormateado3);
-        $('#headerPedidos tr:last td:eq(4)').text(totalFormateado4);
-        $('#headerPedidos tr:last td:eq(5)').text(totalFormateado5);
-        $('#headerPedidos tr:last td:eq(6)').text(totalFormateado6);
-        $('#headerPedidos tr:last td:eq(7)').text(totalFormateado7);
-        $('#headerPedidos tr:last td:eq(8)').text(totalFormateado8);
-        $('#headerPedidos tr:last td:eq(9)').text(totalFormateado9);
-        $('#headerPedidos tr:last td:eq(10)').text(totalFormateado10);
-        $('#headerPedidos tr:last td:eq(11)').text(totalFormateado11);
-        $('#headerPedidos tr:last td:eq(12)').text(totalFormateado12);
-        $('#headerPedidos tr:last td:eq(13)').text(totalFormateado13);
-        $('#headerPedidos tr:last td:eq(14)').text(totalFormateado14);
-        $('#headerPedidos tr:last td:eq(16)').text(totalFormateado15);
+        fn_extraerPedidos();
     };
 
     $('#btnActualizarPedido').on('click', function () {
@@ -871,6 +796,45 @@ jQuery(function($) {
                 console.error("ERROR",error);
             }
         });
+    }
+
+    function fn_extraerPedidos(){
+        let extraerTotalPedido1 = parseFloat($("#extraerTotalPedido1").text());
+        let extraerTotalPedido2 = parseFloat($("#extraerTotalPedido2").text());
+        let extraerTotalPedido3 = parseFloat($("#extraerTotalPedido3").text());
+        let extraerTotalPedido4 = parseFloat($("#extraerTotalPedido4").text());
+        let extraerTotalPedido5 = parseFloat($("#extraerTotalPedido5").text());
+        let extraerTotalPedido6 = parseFloat($("#extraerTotalPedido6").text());
+        let extraerTotalPedido7 = parseFloat($("#extraerTotalPedido7").text());
+        let extraerTotalPedido8 = parseFloat($("#extraerTotalPedido8").text());
+        let extraerTotalPedido9 = parseFloat($("#extraerTotalPedido9").text());
+        let extraerTotalPedido10 = parseFloat($("#extraerTotalPedido10").text());
+        let extraerTotalPedido11 = parseFloat($("#extraerTotalPedido11").text());
+        let extraerTotalPedido12 = parseFloat($("#extraerTotalPedido12").text());
+        let extraerTotalPedido13 = parseFloat($("#extraerTotalPedido13").text());
+        let extraerTotalPedido14 = parseFloat($("#extraerTotalPedido14").text());
+
+        let generalPedidos = extraerTotalPedido1 + extraerTotalPedido2 + extraerTotalPedido3 + extraerTotalPedido4 + extraerTotalPedido5 + extraerTotalPedido6 + extraerTotalPedido7 + extraerTotalPedido8 + extraerTotalPedido9 + extraerTotalPedido10 + extraerTotalPedido11 + extraerTotalPedido12 + extraerTotalPedido13 + extraerTotalPedido14;
+
+        let yugoPelado = extraerTotalPedido2 + extraerTotalPedido9;
+        let tecnicaPelado = extraerTotalPedido4 + extraerTotalPedido10;
+
+        let estructura = `
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900">
+                <td class="text-sm text-left border-2 w-full py-1 px-2 whitespace-nowrap">YUGO</td>
+                <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">${yugoPelado}</td>
+                <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">${extraerTotalPedido1}</td> 
+            </tr>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900">
+                <td class="text-sm text-left border-2 w-full py-1 px-2 whitespace-nowrap">TECNICA</td>
+                <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">${tecnicaPelado}</td>
+                <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">${extraerTotalPedido3}</td> 
+            </tr>
+        `;
+
+        let bodyReporteTotalPedidos = $("#bodyReporteTotalPedidos")
+        bodyReporteTotalPedidos.empty();
+        bodyReporteTotalPedidos.append(estructura);
     }
     
 });

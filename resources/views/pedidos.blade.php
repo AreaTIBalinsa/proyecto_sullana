@@ -24,7 +24,7 @@
                 <button class="flex gap-2 justify-center items-center cursor-pointer uppercase bg-blue-600 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-2.5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 hover:bg-blue-700" type="submit" autocomplete="off" id="filtrarPedidosFecha"><i class='bx bx-search-alt text-lg'></i></button>
             </div>
         </div>
-        <div class="relative overflow-auto max-h-[500px] aside_scrollED shadow-md rounded-lg md:mx-5 md:mb-5">
+        <div class="relative overflow-auto max-h-[500px] aside_scrollED shadow-md rounded-lg md:mx-5 mb-5">
             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400" id="tablaPedidos">
                 <thead class="text-xs text-gray-100 uppercase bg-blue-600 sticky top-0" id="headerPedidos">
                     <tr>
@@ -43,8 +43,8 @@
                         <th class="px-2 py-4 text-center">Gallina Doble Vivo</th>
                         <th class="px-2 py-4 text-center">Gallina Chica Vivo</th>
                         <th class="px-2 py-4 text-center">Gallo Vivo</th>
-                        <th class="px-2 py-4 text-center">Comentario</th>
                         <th class="px-2 py-4 text-center whitespace-nowrap">TOTAL</th>
+                        <th class="px-2 py-4 text-center">Comentario</th>
                         <th class="hidden">Fecha</th>
                         <th class="hidden">Codigo de Cliente</th>
                     </tr>
@@ -69,6 +69,21 @@
                 </tbody>
             </table>
         </div> --}}
+        <div class="w-full md:max-w-xs md:mx-5">
+            <table class="mb-2">
+                <caption class="bg-yellow-400 text-gray-50 p-2 font-bold text-lg rounded-t-lg border-x-2 border-t-2 z-50">POR REPARTIR</caption>
+                <thead class="bg-yellow-400 text-gray-50 uppercase z-50 text-sm">
+                    <tr>
+                        <th class="bg-blue-600 border-2 px-2 py-1 text-left">VARIEDAD</th>
+                        <th class="bg-blue-600 border-2 px-2 py-1">PELADO</th>
+                        <th class="bg-blue-600 border-2 px-2 py-1">VIVO</th>
+                    </tr>
+                </thead>
+                <tbody id="bodyReporteTotalPedidos" class="text-gray-900 dark:text-gray-50 ">
+                    <tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="3" class="text-center border-2">No hay datos</td></tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </main>
 
