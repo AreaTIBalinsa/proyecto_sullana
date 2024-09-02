@@ -10545,14 +10545,15 @@ jQuery(function ($) {
         tbodyCuentaDelClientePagos.empty();
         let mensajeDeudaDiaCliente = $("#mensajeDeuda")
 
-        let totalSaldoAnterior = ventaAnterior
-        let totalPagos = pagoAnterior + parseFloat(totalVentaDescuentoAnterior)
+        let totalSaldoAnterior = ventaAnterior + parseFloat(totalVentaDescuentoAnterior)
+        let totalPagos = pagoAnterior 
         
         Object.keys(combinedData).forEach(function(fecha) { 
             let item = combinedData[fecha]
             bodyCuentaDelCliente += construirFilaDatos(item, fecha, respuestaDescuentosDetallados);
             bodyCuentaDelCliente += construirFilaDatosTotales(item,totalSaldoAnterior,totalPagos, fecha, respuestaPagosDetallados, respuestaDescuentosDetallados);
             totalPagos += parseFloat(item.pagos);
+
             let descuentosDePresentaciones = parseFloat(item.totalVentaDescuentoPrimerEspecie)+parseFloat(item.totalVentaDescuentoSegundaEspecie)+parseFloat(item.totalVentaDescuentoTerceraEspecie)+parseFloat(item.totalVentaDescuentoCuartaEspecie)+parseFloat(item.totalVentaDescuentoQuintaEspecie)+parseFloat(item.totalVentaDescuentoSextaEspecie)+parseFloat(item.totalVentaDescuentoSeptimaEspecie)+parseFloat(item.totalVentaDescuentoOctavaEspecie)+parseFloat(item.totalVentaDescuentoDecimaEspecie)+parseFloat(item.totalVentaDescuentoDecimaPrimeraEspecie)+parseFloat(item.totalVentaDescuentoDecimaSegundaEspecie)+parseFloat(item.totalVentaDescuentoDecimaTerceraEspecie)+parseFloat(item.totalVentaDescuentoDecimaCuartaEspecie)+parseFloat(item.totalVentaDescuentoDecimaQuintaEspecie)+parseFloat(item.totalVentaDescuentoDecimaSextaEspecie)+parseFloat(item.totalVentaDescuentoDecimaSeptimaEspecie)+parseFloat(item.totalVentaDescuentoDecimaOctavaEspecie)+parseFloat(item.totalVentaDescuentoDecimaNovenaEspecie)+parseFloat(item.totalVentaDescuentoVigesimaEspecie)+parseFloat(item.totalVentaDescuentoVigesimaPrimeraEspecie)+parseFloat(item.totalVentaDescuentoVigesimaSegundaEspecie)+parseFloat(item.totalVentaDescuentoVigesimaTerceraEspecie)
             
             totalSaldoAnterior += parseFloat(item.totalVentaPrimerEspecie)+parseFloat(item.totalVentaSegundaEspecie)+parseFloat(item.totalVentaTerceraEspecie)+parseFloat(item.totalVentaCuartaEspecie)+parseFloat(item.totalVentaQuintaEspecie)+parseFloat(item.totalVentaSextaEspecie)+parseFloat(item.totalVentaSeptimaEspecie)+parseFloat(item.totalVentaOctavaEspecie)+parseFloat(item.totalVentaDecimaEspecie)+parseFloat(item.totalVentaDecimaPrimeraEspecie)+parseFloat(item.totalVentaDecimaSegundaEspecie)+parseFloat(item.totalVentaDecimaTerceraEspecie)+parseFloat(item.totalVentaDecimaCuartaEspecie)+parseFloat(item.totalVentaDecimaQuintaEspecie)+parseFloat(item.totalVentaDecimaSextaEspecie)+parseFloat(item.totalVentaDecimaSeptimaEspecie)+parseFloat(item.totalVentaDecimaOctavaEspecie)+parseFloat(item.totalVentaDecimaNovenaEspecie)+parseFloat(item.totalVentaVigesimaEspecie)+parseFloat(item.totalVentaVigesimaPrimeraEspecie)+parseFloat(item.totalVentaVigesimaSegundaEspecie)+parseFloat(item.totalVentaVigesimaTerceraEspecie)+parseFloat(item.totalVentaDescuento)+descuentosDePresentaciones;
@@ -11055,7 +11056,7 @@ jQuery(function ($) {
 
         function formatearFecha(fecha) {
             let fechaOriginal = String(fecha)
-            const meses = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Aep", "Oct", "Nov", "Dic"];
+            const meses = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"];
             const [anio, mes, dia] = fechaOriginal.split("-");
             return `${dia}-${meses[parseInt(mes, 10) - 1]}`;
         }

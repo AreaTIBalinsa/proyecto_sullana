@@ -29,6 +29,8 @@ jQuery(function($) {
             html: 'Consultando datos, espere por favor.',
             timer: 999999999, // Establece un valor grande para que parezca indefinido
             timerProgressBar: true,
+            allowOutsideClick: false,
+            allowEscapeKey: false,
             didOpen: () => {
                 Swal.showLoading();
             },
@@ -270,8 +272,8 @@ jQuery(function($) {
                         }
 
                         deudaHoy = parseFloat(deudaHoy["totalVenta"]) + descuentosHoy;
-                        let deudaAnterior = parseFloat(obj[valor]["ventaAnterior"]) + parseFloat(obj[valor]["ventaAnterior2"]) + parseFloat(obj[valor]["ventaAnterior3"]);
-                        let pagosAnteriores = parseFloat(obj[valor]["pagoAnterior"]) + parseFloat(obj[valor]["totalVentaDescuentoAnterior"]);
+                        let deudaAnterior = (parseFloat(obj[valor]["ventaAnterior"]) + parseFloat(obj[valor]["ventaAnterior2"]) + parseFloat(obj[valor]["ventaAnterior3"])) + parseFloat(obj[valor]["totalVentaDescuentoAnterior"]);
+                        let pagosAnteriores = parseFloat(obj[valor]["pagoAnterior"]);
                         let deudaGeneral = deudaAnterior + deudaHoy;
                         let pagosGeneral = pagosAnteriores + pagosHoy;
 

@@ -257,7 +257,7 @@ class PreciosController extends Controller
                 'sextaEspecie' => $resultadoEspecieSeis,
                 'septimaEspecie' => $resultadoEspecieSiete,
                 'octavaEspecie' => $resultadoEspecieOcho,
-                'novenaEspecie' => $resultadoEspecieNueve,
+                'decimaEspecie' => $resultadoEspecieNueve,
                 'decimaPrimeraEspecie' => $resultadoEspecieDiez,
                 'decimaSegundaEspecie' => $resultadoEspecieOnce,
                 'decimaTerceraEspecie' => $resultadoEspecieDoce,

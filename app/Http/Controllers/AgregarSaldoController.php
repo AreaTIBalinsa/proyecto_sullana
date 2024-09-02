@@ -40,7 +40,7 @@ class AgregarSaldoController extends Controller
             LEFT JOIN (
                 SELECT codigoCli, SUM(cantidadAbonoPag) as sumaPagos
                 FROM tb_pagos
-                WHERE estadoPago = 1 AND fechaOperacionPag <= ?
+                WHERE estadoPago = 1 AND fechaRegistroPag <= ?
                 GROUP BY codigoCli
             ) tpg ON tc.codigoCli = tpg.codigoCli
             LEFT JOIN (
@@ -70,7 +70,7 @@ class AgregarSaldoController extends Controller
             LEFT JOIN (
                 SELECT codigoCli, SUM(cantidadAbonoPag) as sumaPagos
                 FROM tb_pagos
-                WHERE estadoPago = 1 AND fechaOperacionPag <= ?
+                WHERE estadoPago = 1 AND fechaRegistroPag <= ?
                 GROUP BY codigoCli
             ) tpg3 ON tc.codigoCli = tpg3.codigoCli
             LEFT JOIN (
@@ -100,7 +100,7 @@ class AgregarSaldoController extends Controller
             LEFT JOIN (
                 SELECT codigoCli, SUM(cantidadAbonoPag) as sumaPagos
                 FROM tb_pagos
-                WHERE estadoPago = 1 AND fechaOperacionPag <= ?
+                WHERE estadoPago = 1 AND fechaRegistroPag <= ?
                 GROUP BY codigoCli
             ) tpg2 ON tc.codigoCli = tpg2.codigoCli
             LEFT JOIN (
@@ -146,7 +146,7 @@ class AgregarSaldoController extends Controller
                 LEFT JOIN (
                     SELECT codigoCli, SUM(cantidadAbonoPag) as sumaPagos
                     FROM tb_pagos
-                    WHERE estadoPago = 1 AND fechaOperacionPag <= ?
+                    WHERE estadoPago = 1 AND fechaRegistroPag <= ?
                     GROUP BY codigoCli
                 ) tpg ON tc.codigoCli = tpg.codigoCli
                 LEFT JOIN (
@@ -176,7 +176,7 @@ class AgregarSaldoController extends Controller
                 LEFT JOIN (
                     SELECT codigoCli, SUM(cantidadAbonoPag) as sumaPagos
                     FROM tb_pagos
-                    WHERE estadoPago = 1 AND fechaOperacionPag <= ?
+                    WHERE estadoPago = 1 AND fechaRegistroPag <= ?
                     GROUP BY codigoCli
                 ) tpg3 ON tc.codigoCli = tpg3.codigoCli
                 LEFT JOIN (
@@ -206,7 +206,7 @@ class AgregarSaldoController extends Controller
                 LEFT JOIN (
                     SELECT codigoCli, SUM(cantidadAbonoPag) as sumaPagos
                     FROM tb_pagos
-                    WHERE estadoPago = 1 AND fechaOperacionPag <= ?
+                    WHERE estadoPago = 1 AND fechaRegistroPag <= ?
                     GROUP BY codigoCli
                 ) tpg2 ON tc.codigoCli = tpg2.codigoCli
                 LEFT JOIN (
@@ -269,7 +269,7 @@ class AgregarSaldoController extends Controller
             $agregarSaldoCliente->fechaOperacionPag = $fechaPago;
             $agregarSaldoCliente->codigoTransferenciaPag = "";
             $agregarSaldoCliente->observacion = "";
-            $agregarSaldoCliente->fechaRegistroPag = Carbon::now()->setTimezone('America/Lima')->toDateString();
+            $agregarSaldoCliente->fechaRegistroPag = $fechaPago;
             $agregarSaldoCliente->save();
     
             return response()->json(['success' => true], 200);

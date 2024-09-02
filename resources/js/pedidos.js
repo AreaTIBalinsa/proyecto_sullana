@@ -148,8 +148,8 @@ jQuery(function($) {
                         <th class="border-r px-2 py-4 text-center">Gallina Doble Vivo</th>
                         <th class="border-r px-2 py-4 text-center">Gallina Chica Vivo</th>
                         <th class="border-r px-2 py-4 text-center">Gallo Vivo</th>
-                        <th class="px-2 py-4 text-center whitespace-nowrap">TOTAL</th>
-                        <th class="border-r px-2 py-4 text-center">Comentario</th>
+                        <th class="border-r px-2 py-4 text-center whitespace-nowrap">TOTAL</th>
+                        <th class="px-2 py-4 text-center">Comentario</th>
                     </tr>`);
                     tbodyPedidoDelCliente.empty();
                     let nuevaFila = ""
@@ -782,9 +782,10 @@ jQuery(function($) {
                     // });
                     // $('#filtrarPedidosFecha').trigger('click');
                     alertify.notify('Se actualizo el pedido correctamente', 'success', 1);
-                    let fechaBuscarPedidos = $('#fechaBuscarPedidos').val();
-                    fn_TraerPedidosClientes(fechaBuscarPedidos);
+                    // let fechaBuscarPedidos = $('#fechaBuscarPedidos').val();
+                    // fn_TraerPedidosClientes(fechaBuscarPedidos);
                     // $('#filtrarClientePedidos').val('');
+                    updateTotal();
                 }
             },
             error: function(error) {

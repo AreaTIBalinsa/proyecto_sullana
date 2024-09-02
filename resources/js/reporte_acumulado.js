@@ -564,7 +564,7 @@ jQuery(function($) {
 
         let totalPrecioDescuento = (parseFloat(fn_buscarValorItem(item.totalDescuentos, 'totalVentaDescuento')) / parseFloat(fn_buscarValorItem(item.totalDescuentos, 'totalPesoDescuento')))
 
-        let totalVentaAnterior = (parseFloat(item.ventaAnterior) + parseFloat(item.ventaAnterior2) + parseFloat(item.ventaAnterior3)) - (parseFloat(item.pagoAnterior)+parseFloat(item.totalVentaDescuentoAnterior));
+        let totalVentaAnterior = ((parseFloat(item.ventaAnterior) + parseFloat(item.ventaAnterior2) + parseFloat(item.ventaAnterior3)) + parseFloat(item.totalVentaDescuentoAnterior)) - parseFloat(item.pagoAnterior);
 
         let totalSaldoDelDia = totalVentaAnterior + parseFloat(resultadosTotales.totalVenta);
 

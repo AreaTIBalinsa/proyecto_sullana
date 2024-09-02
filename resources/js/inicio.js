@@ -737,7 +737,7 @@ jQuery(function($) {
     
                     // Iterar sobre los resultados agrupados y mostrar en la tabla
                     Object.values(resultadosAgrupados).forEach(function (obj) {
-                        let total = obj.deudaTotal - obj.cantidadPagos + obj.ventaDescuentos;
+                        let total = (obj.deudaTotal + obj.ventaDescuentos) + obj.cantidadPagos;
     
                         // Crear una nueva fila
                         if (total >= parseFloat(obj.limitEndeudamiento)) {

@@ -64,7 +64,7 @@ jQuery(function($) {
     
                     // Iterar sobre los resultados agrupados y mostrar en la tabla
                     Object.values(resultadosAgrupados).forEach(function (obj) {
-                        let total = obj.deudaTotal - (obj.cantidadPagos + obj.ventaDescuentos);
+                        let total = (obj.deudaTotal + obj.ventaDescuentos) - obj.cantidadPagos;
 
                         if (Math.abs(total) < 1e-10) {
                             total = 0.00;
@@ -311,7 +311,7 @@ jQuery(function($) {
     
                     // Iterar sobre los resultados agrupados y mostrar en la tabla
                     Object.values(resultadosAgrupados).forEach(function (obj) {
-                        let total = obj.deudaTotal - (obj.cantidadPagos + obj.ventaDescuentos);
+                        let total = (obj.deudaTotal + obj.ventaDescuentos) - obj.cantidadPagos;
                         
                         // Formatear la fecha
                         let fechaBuscaCuenta = $('#fechaRegularSaldo').val();
