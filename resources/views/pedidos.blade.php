@@ -28,21 +28,22 @@
             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400" id="tablaPedidos">
                 <thead class="text-xs text-gray-100 uppercase bg-blue-600 sticky top-0" id="headerPedidos">
                     <tr>
+                        <th class="hidden">Id</th>
                         <th class="px-2 py-4 text-center">Nombre de Cliente</th>
                         <th class="px-2 py-4 text-center">Yugo Vivo</th>
                         <th class="px-2 py-4 text-center">Yugo Pelado</th>
+                        <th class="px-2 py-4 text-center">Brasa Yugo</th>
                         <th class="px-2 py-4 text-center">Tecnica Vivo</th>
                         <th class="px-2 py-4 text-center">Tecnica Pelado</th>
-                        <th class="px-2 py-4 text-center">Gallina Doble Pelado</th>
-                        <th class="px-2 py-4 text-center">Gallina Chica Pelado</th>
-                        <th class="px-2 py-4 text-center">Gallo Pelado</th>
-                        <th class="px-2 py-4 text-center">Pollo XX Pelado</th>
-                        <th class="px-2 py-4 text-center">Brasa Yugo</th>
                         <th class="px-2 py-4 text-center">Brasa Tecnica</th>
+                        <th class="px-2 py-4 text-center">Pollo XX Pelado</th>
                         <th class="px-2 py-4 text-center">Pollo XX Vivo</th>
+                        <th class="px-2 py-4 text-center">Gallina Doble Pelado</th>
                         <th class="px-2 py-4 text-center">Gallina Doble Vivo</th>
-                        <th class="px-2 py-4 text-center">Gallina Chica Vivo</th>
+                        <th class="px-2 py-4 text-center">Gallo Pelado</th>
                         <th class="px-2 py-4 text-center">Gallo Vivo</th>
+                        <th class="px-2 py-4 text-center">Gallina Chica Pelado</th>
+                        <th class="px-2 py-4 text-center">Gallina Chica Vivo</th>
                         <th class="px-2 py-4 text-center whitespace-nowrap">TOTAL</th>
                         <th class="px-2 py-4 text-center">Comentario</th>
                         <th class="hidden">Fecha</th>
@@ -74,13 +75,14 @@
                 <caption class="bg-yellow-400 text-gray-50 p-2 font-bold text-lg rounded-t-lg border-x-2 border-t-2 z-50">POR REPARTIR</caption>
                 <thead class="bg-yellow-400 text-gray-50 uppercase z-50 text-sm">
                     <tr>
-                        <th class="bg-blue-600 border-2 px-2 py-1 text-left">VARIEDAD</th>
+                        <th class="bg-red-600 border-2 px-2 py-1 text-left">VARIEDAD</th>
                         <th class="bg-blue-600 border-2 px-2 py-1">PELADO</th>
                         <th class="bg-blue-600 border-2 px-2 py-1">VIVO</th>
+                        <th class="bg-green-600 border-2 px-2 py-1">TOTAL</th>
                     </tr>
                 </thead>
                 <tbody id="bodyReporteTotalPedidos" class="text-gray-900 dark:text-gray-50 ">
-                    <tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="3" class="text-center border-2">No hay datos</td></tr>
+                    <tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="4" class="text-center border-2">No hay datos</td></tr>
                 </tbody>
             </table>
         </div>

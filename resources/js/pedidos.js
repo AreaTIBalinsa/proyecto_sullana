@@ -133,23 +133,25 @@ jQuery(function($) {
                     TtotalesPedidos.empty();
                     TtotalesPedidos.append(`<tr>
                         <th class="hidden">Id</th>
-                        <th class="border-r px-2 py-4 text-center whitespace-nowrap">Nombre de Cliente</th>
-                        <th class="border-r px-2 py-4 text-center">Yugo Vivo</th>
-                        <th class="border-r px-2 py-4 text-center">Yugo Pelado</th>
-                        <th class="border-r px-2 py-4 text-center">Tecnica Vivo</th>
-                        <th class="border-r px-2 py-4 text-center">Tecnica Pelado</th>
-                        <th class="border-r px-2 py-4 text-center">Gallina Doble Pelado</th>
-                        <th class="border-r px-2 py-4 text-center">Gallina Chica Pelado</th>
-                        <th class="border-r px-2 py-4 text-center">Gallo Pelado</th>
-                        <th class="border-r px-2 py-4 text-center">Pollo XX Pelado</th>
-                        <th class="border-r px-2 py-4 text-center">Brasa Yugo</th>
-                        <th class="border-r px-2 py-4 text-center">Brasa Tecnica</th>
-                        <th class="border-r px-2 py-4 text-center">Pollo XX Vivo</th>
-                        <th class="border-r px-2 py-4 text-center">Gallina Doble Vivo</th>
-                        <th class="border-r px-2 py-4 text-center">Gallina Chica Vivo</th>
-                        <th class="border-r px-2 py-4 text-center">Gallo Vivo</th>
-                        <th class="border-r px-2 py-4 text-center whitespace-nowrap">TOTAL</th>
+                        <th class="px-2 py-4 text-center">Nombre de Cliente</th>
+                        <th class="px-2 py-4 text-center">Yugo Vivo</th>
+                        <th class="px-2 py-4 text-center">Yugo Pelado</th>
+                        <th class="px-2 py-4 text-center">Brasa Yugo</th>
+                        <th class="px-2 py-4 text-center">Tecnica Vivo</th>
+                        <th class="px-2 py-4 text-center">Tecnica Pelado</th>
+                        <th class="px-2 py-4 text-center">Brasa Tecnica</th>
+                        <th class="px-2 py-4 text-center">Pollo XX Pelado</th>
+                        <th class="px-2 py-4 text-center">Pollo XX Vivo</th>
+                        <th class="px-2 py-4 text-center">Gallina Doble Pelado</th>
+                        <th class="px-2 py-4 text-center">Gallina Doble Vivo</th>
+                        <th class="px-2 py-4 text-center">Gallo Pelado</th>
+                        <th class="px-2 py-4 text-center">Gallo Vivo</th>
+                        <th class="px-2 py-4 text-center">Gallina Chica Pelado</th>
+                        <th class="px-2 py-4 text-center">Gallina Chica Vivo</th>
+                        <th class="px-2 py-4 text-center whitespace-nowrap">TOTAL</th>
                         <th class="px-2 py-4 text-center">Comentario</th>
+                        <th class="hidden">Fecha</th>
+                        <th class="hidden">Codigo de Cliente</th>
                     </tr>`);
                     tbodyPedidoDelCliente.empty();
                     let nuevaFila = ""
@@ -817,19 +819,24 @@ jQuery(function($) {
 
         let generalPedidos = extraerTotalPedido1 + extraerTotalPedido2 + extraerTotalPedido3 + extraerTotalPedido4 + extraerTotalPedido5 + extraerTotalPedido6 + extraerTotalPedido7 + extraerTotalPedido8 + extraerTotalPedido9 + extraerTotalPedido10 + extraerTotalPedido11 + extraerTotalPedido12 + extraerTotalPedido13 + extraerTotalPedido14;
 
-        let yugoPelado = extraerTotalPedido2 + extraerTotalPedido9;
-        let tecnicaPelado = extraerTotalPedido4 + extraerTotalPedido10;
+        let yugoPelado = extraerTotalPedido2 + extraerTotalPedido3;
+        let tecnicaPelado = extraerTotalPedido5 + extraerTotalPedido6;
+
+        let totalYugo = yugoPelado + extraerTotalPedido1;
+        let totalTecnica = tecnicaPelado + extraerTotalPedido4;
 
         let estructura = `
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900">
-                <td class="text-sm text-left border-2 w-full py-1 px-2 whitespace-nowrap">YUGO</td>
+                <td class="text-sm text-left font-bold border-2 w-full py-1 px-2 whitespace-nowrap">YUGO</td>
                 <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">${yugoPelado}</td>
                 <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">${extraerTotalPedido1}</td> 
+                <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">${totalYugo}</td> 
             </tr>
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900">
-                <td class="text-sm text-left border-2 w-full py-1 px-2 whitespace-nowrap">TECNICA</td>
+                <td class="text-sm text-left font-bold border-2 w-full py-1 px-2 whitespace-nowrap">TECNICA</td>
                 <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">${tecnicaPelado}</td>
-                <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">${extraerTotalPedido3}</td> 
+                <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">${extraerTotalPedido4}</td> 
+                <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">${totalTecnica}</td> 
             </tr>
         `;
 
