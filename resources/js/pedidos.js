@@ -356,6 +356,10 @@ jQuery(function($) {
             total13 += isNaN(monto13) ? 0 : monto13;
             let monto14 = parseFloat($(this).find('td:eq(14)').text());
             total14 += isNaN(monto14) ? 0 : monto14;
+
+            let totalFila = monto1 + monto2 + monto3 + monto4 + monto5 + monto6 + monto7 + monto8 + monto9 + monto10 + monto11 + monto12 + monto13 + monto14;
+
+            $(this).find('td:eq(15)').text(totalFila ? totalFila : 0);
             let monto15 = parseFloat($(this).find('td:eq(15)').text());
             total15 += isNaN(monto15) ? 0 : monto15;
         });
@@ -717,6 +721,9 @@ jQuery(function($) {
                 }
     
                 let nuevoContenido = $(this).val().trim();
+                if (!nuevoContenido && columnaPedido != 15){
+                    nuevoContenido = 0
+                }
                 $(this).parent().text(nuevoContenido);
     
                 // Extraer valores de las columnas 17 y 18
@@ -824,6 +831,13 @@ jQuery(function($) {
 
         let totalYugo = yugoPelado + extraerTotalPedido1;
         let totalTecnica = tecnicaPelado + extraerTotalPedido4;
+        let totalPolloXX = extraerTotalPedido7 + extraerTotalPedido8;
+        let totalGallinaDoble = extraerTotalPedido9 + extraerTotalPedido10;
+        let totalGallo = extraerTotalPedido11 + extraerTotalPedido12;
+        let totalGallinaChica = extraerTotalPedido13 + extraerTotalPedido14;
+
+        let totalPelado = yugoPelado + tecnicaPelado + extraerTotalPedido7 + extraerTotalPedido9 + extraerTotalPedido11 + extraerTotalPedido13;
+        let totalVivo = extraerTotalPedido1 + extraerTotalPedido4 + extraerTotalPedido8 + extraerTotalPedido10 + extraerTotalPedido12 + extraerTotalPedido14;
 
         let estructura = `
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900">
@@ -837,6 +851,36 @@ jQuery(function($) {
                 <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">${tecnicaPelado}</td>
                 <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">${extraerTotalPedido4}</td> 
                 <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">${totalTecnica}</td> 
+            </tr>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900">
+                <td class="text-sm text-left font-bold border-2 w-full py-1 px-2 whitespace-nowrap">POLLO XX</td>
+                <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">${extraerTotalPedido7}</td>
+                <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">${extraerTotalPedido8}</td> 
+                <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">${totalPolloXX}</td> 
+            </tr>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900">
+                <td class="text-sm text-left font-bold border-2 w-full py-1 px-2 whitespace-nowrap">GALLINA DOBLE</td>
+                <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">${extraerTotalPedido9}</td>
+                <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">${extraerTotalPedido10}</td> 
+                <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">${totalGallinaDoble}</td> 
+            </tr>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900">
+                <td class="text-sm text-left font-bold border-2 w-full py-1 px-2 whitespace-nowrap">GALLO</td>
+                <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">${extraerTotalPedido11}</td>
+                <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">${extraerTotalPedido12}</td> 
+                <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">${totalGallo}</td> 
+            </tr>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900">
+                <td class="text-sm text-left font-bold border-2 w-full py-1 px-2 whitespace-nowrap">GALLINA CHICA</td>
+                <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">${extraerTotalPedido13}</td>
+                <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">${extraerTotalPedido14}</td> 
+                <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">${totalGallinaChica}</td> 
+            </tr>
+            <tr class="border-b bg-blue-600 dark:border-gray-700 text-gray-200 font-bold">
+                <td class="text-sm text-left border-2 w-full py-1 px-2 whitespace-nowrap">TOTAL</td>
+                <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">${totalPelado}</td>
+                <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">${totalVivo}</td> 
+                <td class="text-sm text-center border-2 py-1 px-2 whitespace-nowrap">${generalPedidos}</td> 
             </tr>
         `;
 

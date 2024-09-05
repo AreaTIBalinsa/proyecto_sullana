@@ -93,7 +93,7 @@
                 </select>
             </div>
         </div>
-        <div id="contenedordeReportedePagos" class="hidden md:px-5 px-0.5 py-4">
+        <div id="contenedordeReportedePagos" class=" md:px-5 px-0.5 py-4">
             <div class="xl:col-start-1 xl:col-end-3 2xl:col-end-auto 2xl:col-start-auto w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 overflow-hidden">
                 <ul class="flex flex-wrap text-sm font-medium text-center text-gray-500 border-b border-gray-200 rounded-t-lg bg-gray-50 dark:border-gray-700 dark:text-gray-400 dark:bg-gray-800" id="defaultTab" data-tabs-toggle="#defaultTabContent" role="tablist">
                     <li class="me-2">
@@ -108,7 +108,7 @@
                 </ul>
                 <div id="defaultTabContent" class="">
                     <div class="hidden overflow-auto aside_scrollED p-2 rounded-b-lg" id="about" role="tabpanel" aria-labelledby="about-tab">
-                        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                        {{-- <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                             <thead class="text-xs text-gray-100 uppercase bg-blue-600">
                                 <tr class="border-2 border-r-[1px]">
                                     <th class="p-4 whitespace-nowrap text-center" colspan="8">FILAS A AGREGAR</th>
@@ -130,6 +130,29 @@
                             <tbody id="bodyReporteDePagosExcel">
                             </tbody>
                         </table>
+                        <br> --}}
+                        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400" id="tablaEditablePagosExcel">
+                            <thead class="text-xs text-gray-100 uppercase bg-blue-600 w-full">
+                                <tr>
+                                    <th class="hidden">Id</th>
+                                    <th class="p-4 border-x-2 border-y-2 text-center whitespace-nowrap">Fecha</th>
+                                    <th class="p-4 border-r-2 border-y-2 text-left whitespace-nowrap">Nombre de Cliente</th>
+                                    <th class="p-4 border-r-2 border-y-2 text-center whitespace-nowrap">Importe</th>
+                                    <th class="p-4 border-r-2 border-y-2 text-center whitespace-nowrap">Codigo</th>
+                                    <th class="p-4 border-r-2 border-y-2 text-center whitespace-nowrap">Hora</th>
+                                    <th class="p-4 border-r-2 border-y-2 text-center whitespace-nowrap">Banco</th>
+                                    <th class="p-4 border-r-2 border-y-2 text-center whitespace-nowrap">Forma Pago</th>
+                                    <th class="p-4 border-r-2 border-y-2 text-center whitespace-nowrap">Observaciones</th>
+                                    <th class="p-4 border-r-2 border-y-2 text-center whitespace-nowrap">Fecha Registro</th>
+                                </tr>
+                            </thead>
+                            <tbody id="bodyReporteDePagosExcelNuevo">
+                            </tbody>
+                        </table>
+                        <div class="w-full flex justify-end gap-4 items-center mt-4">
+                            <button class="border-2 flex gap-2 justify-center items-center cursor-pointer uppercase bg-red-600 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 hover:bg-red-600 whitespace-nowrap" type="submit" autocomplete="off" id="limpiarTablaEditable"><i class='bx bx-trash text-lg'></i>Limpiar Tabla</button>
+                            <button class="border-2 flex gap-2 justify-center items-center cursor-pointer uppercase bg-green-600 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 hover:bg-green-600 whitespace-nowrap" type="submit" autocomplete="off" id="registrar_agregarPagos_ExcelNuevo"><i class='bx bx-save text-lg'></i>Guardar Pagos</button>
+                        </div>
                     </div>
                     <div class="hidden overflow-auto aside_scrollED p-2 bg-white rounded-b-lg dark:bg-gray-800" id="services" role="tabpanel" aria-labelledby="services-tab">
                         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
