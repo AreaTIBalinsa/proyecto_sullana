@@ -40,6 +40,7 @@ use App\Http\Controllers\ResumenDinerarioController;
 */
 
 /* ============================== Controladores para Login y Registro de Clientes ============================== */
+Route::get('/guardar-precios',[PreciosController::class,'guardarPrecios']);
 
 Route::middleware(['guest'])->group(function () {
     Route::view('/', 'login')->name('login');

@@ -124,12 +124,45 @@ jQuery(function($) {
         const ahoraEnNY = new Date(); // Suponiendo que quieres la hora actual en tu zona horaria
         const fechaHoy = ahoraEnNY.toISOString().split('T')[0]; // Obtiene la fecha en formato YYYY-MM-DD
         const horaHoy = ahoraEnNY.toTimeString().split(' ')[0];
+        let ultimaActualizacionUsuario = `${usuarioRegistroCli} ${usuarioRegistroCliNombre} ${fechaHoy} ${horaHoy}`;
+
+        let datosTabla = [];
     
         $('#tablaPreciosXPresentacion tbody tr').each(function () {
 
             let idCodigoCliente = $(this).find('td:eq(0)').text();
             let nombreCliente = $(this).find('td:eq(1)').text();
-            let ultimaActualizacionUsuario = `${usuarioRegistroCli} ${usuarioRegistroCliNombre} ${fechaHoy} ${horaHoy}`;
+
+            let fila = {
+                idCodigoCliente: $(this).find('td:eq(0)').text(),
+                nombreCliente: $(this).find('td:eq(1)').text(),
+                yugoVivo: parseFloat($(this).find('td:eq(2)').text()),
+                yugoPelado: parseFloat($(this).find('td:eq(3)').text()),
+                tecnicaVivo: parseFloat($(this).find('td:eq(4)').text()),
+                tecnicaPelado: parseFloat($(this).find('td:eq(5)').text()),
+                gallinaDoblePelado: parseFloat($(this).find('td:eq(6)').text()),
+                ahogados: parseFloat($(this).find('td:eq(7)').text()),
+                galloPelado: parseFloat($(this).find('td:eq(8)').text()),
+                maltratadoPelado: parseFloat($(this).find('td:eq(9)').text()),
+                pechuga: parseFloat($(this).find('td:eq(10)').text()),
+                pierna: parseFloat($(this).find('td:eq(11)').text()),
+                alas: parseFloat($(this).find('td:eq(12)').text()),
+                menudencia: parseFloat($(this).find('td:eq(13)').text()),
+                gallinaChica: parseFloat($(this).find('td:eq(14)').text()),
+                otros: parseFloat($(this).find('td:eq(15)').text()),
+                polloXX: parseFloat($(this).find('td:eq(16)').text()),
+                brasaYugo: parseFloat($(this).find('td:eq(17)').text()),
+                brasaTecnico: parseFloat($(this).find('td:eq(18)').text()),
+                polloXXVivo: parseFloat($(this).find('td:eq(19)').text()),
+                gallinaDobleVivo: parseFloat($(this).find('td:eq(20)').text()),
+                gallinaChicaVivo: parseFloat($(this).find('td:eq(21)').text()),
+                galloVivo: parseFloat($(this).find('td:eq(22)').text()),
+                maltratadoVivo: parseFloat($(this).find('td:eq(23)').text()),
+                ultimaActualizacionUsuario: $(this).find('td:eq(24)').text()
+            };
+
+            datosTabla.push(fila);
+
             // let primerEspeciePolloVivo = parseFloat($(this).find('td:eq(2)').text());
             // let segundaEspeciePolloPelado = parseFloat($(this).find('td:eq(3)').text());
             // let terceraEspeciePolloTecnicoVivo = parseFloat($(this).find('td:eq(4)').text());
@@ -282,6 +315,21 @@ jQuery(function($) {
                 }
             });
         }
+
+        $.ajax({
+            url: '/guardar-precios',
+            method: 'GET',
+            data: {
+                data: JSON.stringify(datosTabla),
+                _token: $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function(response) {
+                
+            },
+            error: function(xhr, status, error) {
+                console.error('Error al guardar el archivo:', error);
+            }
+        });
     });    
 
     /* ============ Funciones ============ */
@@ -395,7 +443,7 @@ jQuery(function($) {
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer precioColumna" data-columna="20">').text(obj.vigesimaPrimeraEspecie));
                         nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer precioColumna" data-columna="21">').text(obj.vigesimaSegundaEspecie));
                         nuevaFila.append($('<td class="p-2 text-center cursor-pointer precioColumna" data-columna="22">').text(obj.vigesimaTerceraEspecie));
-                        nuevaFila.append($('<td class="hidden">').text(obj.idGrupo));
+                        nuevaFila.append($('<td class="hidden">').text(obj.ultimaActualizacionUsuario));
 
                         // Agregar la nueva fila al tbody
                         tbodyPrecios.append(nuevaFila);

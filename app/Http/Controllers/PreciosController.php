@@ -9,6 +9,7 @@ use App\Models\Precios\ActualizarPreciosXPresentacion;
 use App\Models\Precios\TraerGruposPrecios;
 use App\Models\Precios\ActualizarPreciosMinimos;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
 
 class PreciosController extends Controller
 {
@@ -19,36 +20,51 @@ class PreciosController extends Controller
         return redirect('/login');
     }
 
+    public function guardarPrecios(Request $request)
+    {
+        // Obtener los datos enviados desde la petición
+        $data = $request->input('data');
+
+        // Crear el nombre del archivo con fecha y hora actuales
+        $filename = 'precios_' . now()->format('Ymd_His') . '.json';
+
+        // Guardar el archivo en la carpeta 'precios' dentro del almacenamiento local
+        Storage::disk('local')->put('precios/' . $filename, $data);
+
+        return response()->json(['message' => 'Archivo JSON guardado exitosamente']);
+    }
+
     public function consulta_TraerPreciosXPresentacion(Request $request){
         if (Auth::check()) {
             // Realiza la consulta a la base de datos
             $datos = DB::select('
             SELECT tb_precio_x_presentacion.idPrecio, 
-            tb_precio_x_presentacion.codigoCli, 
-            tb_precio_x_presentacion.primerEspecie,
-            tb_precio_x_presentacion.segundaEspecie,
-            tb_precio_x_presentacion.terceraEspecie,
-            tb_precio_x_presentacion.cuartaEspecie,
-            tb_precio_x_presentacion.quintaEspecie,
-            tb_precio_x_presentacion.sextaEspecie,
-            tb_precio_x_presentacion.septimaEspecie,
-            tb_precio_x_presentacion.octavaEspecie,
-            tb_precio_x_presentacion.novenaEspecie,
-            tb_precio_x_presentacion.decimaEspecie,
-            tb_precio_x_presentacion.decimaPrimeraEspecie,
-            tb_precio_x_presentacion.decimaSegundaEspecie,
-            tb_precio_x_presentacion.decimaTerceraEspecie,
-            tb_precio_x_presentacion.decimaCuartaEspecie,
-            tb_precio_x_presentacion.decimaQuintaOtrasEspecies,
-            tb_precio_x_presentacion.decimaSextaEspecie,
-            tb_precio_x_presentacion.decimaSeptimaEspecie,
-            tb_precio_x_presentacion.decimaOctavaEspecie,
-            tb_precio_x_presentacion.decimaNovenaEspecie,
-            tb_precio_x_presentacion.vigesimaEspecie,
-            tb_precio_x_presentacion.vigesimaPrimeraEspecie,
-            tb_precio_x_presentacion.vigesimaSegundaEspecie,
-            tb_precio_x_presentacion.vigesimaTerceraEspecie,
-            IFNULL(CONCAT_WS(" ", nombresCli, apellidoPaternoCli, apellidoMaternoCli), "") AS nombreCompleto
+                tb_precio_x_presentacion.codigoCli, 
+                tb_precio_x_presentacion.primerEspecie,
+                tb_precio_x_presentacion.segundaEspecie,
+                tb_precio_x_presentacion.terceraEspecie,
+                tb_precio_x_presentacion.cuartaEspecie,
+                tb_precio_x_presentacion.quintaEspecie,
+                tb_precio_x_presentacion.sextaEspecie,
+                tb_precio_x_presentacion.septimaEspecie,
+                tb_precio_x_presentacion.octavaEspecie,
+                tb_precio_x_presentacion.novenaEspecie,
+                tb_precio_x_presentacion.decimaEspecie,
+                tb_precio_x_presentacion.decimaPrimeraEspecie,
+                tb_precio_x_presentacion.decimaSegundaEspecie,
+                tb_precio_x_presentacion.decimaTerceraEspecie,
+                tb_precio_x_presentacion.decimaCuartaEspecie,
+                tb_precio_x_presentacion.decimaQuintaOtrasEspecies,
+                tb_precio_x_presentacion.decimaSextaEspecie,
+                tb_precio_x_presentacion.decimaSeptimaEspecie,
+                tb_precio_x_presentacion.decimaOctavaEspecie,
+                tb_precio_x_presentacion.decimaNovenaEspecie,
+                tb_precio_x_presentacion.vigesimaEspecie,
+                tb_precio_x_presentacion.vigesimaPrimeraEspecie,
+                tb_precio_x_presentacion.vigesimaSegundaEspecie,
+                tb_precio_x_presentacion.vigesimaTerceraEspecie,
+                tb_precio_x_presentacion.ultimaActualizacionUsuario,
+                IFNULL(CONCAT_WS(" ", nombresCli, apellidoPaternoCli, apellidoMaternoCli), "") AS nombreCompleto
             FROM tb_precio_x_presentacion
             INNER JOIN tb_clientes ON tb_clientes.codigoCli = tb_precio_x_presentacion.codigoCli 
             WHERE tb_clientes.idEstadoCli = 1 and tb_clientes.estadoEliminadoCli != 0 ORDER BY nombreCompleto ASC');
