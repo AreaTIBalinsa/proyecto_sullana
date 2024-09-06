@@ -93,7 +93,7 @@
                 </select>
             </div>
         </div>
-        <div id="contenedordeReportedePagos" class=" md:px-5 px-0.5 py-4">
+        <div id="contenedordeReportedePagos" class="hidden md:px-5 px-0.5 py-4">
             <div class="xl:col-start-1 xl:col-end-3 2xl:col-end-auto 2xl:col-start-auto w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 overflow-hidden">
                 <ul class="flex flex-wrap text-sm font-medium text-center text-gray-500 border-b border-gray-200 rounded-t-lg bg-gray-50 dark:border-gray-700 dark:text-gray-400 dark:bg-gray-800" id="defaultTab" data-tabs-toggle="#defaultTabContent" role="tablist">
                     <li class="me-2">

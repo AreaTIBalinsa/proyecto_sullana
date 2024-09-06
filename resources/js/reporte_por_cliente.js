@@ -13,6 +13,8 @@ jQuery(function ($) {
     $('#fechaHastaReportePorCliente').val(fechaHoy);
     $('#fechaCambiarPrecioPesada').val(fechaHoy);
     var tipoUsuario = $('#tipoUsuario').data('id');
+    var usuarioRegistroCli = $('#usuarioRegistroCli').data('id');
+    var usuarioRegistroCliNombre = $('#usuarioRegistroCliNombre').data('id');
 
     declarar_especies();
 
@@ -1477,8 +1479,13 @@ jQuery(function ($) {
                 alertify.notify('El campo importe no puede estar vacio', 'error', 3);
                 failedRequests++;
             }else{
+                const ahoraEnNY = new Date(); // Suponiendo que quieres la hora actual en tu zona horaria
+                const fechaHoy = ahoraEnNY.toISOString().split('T')[0]; // Obtiene la fecha en formato YYYY-MM-DD
+                const horaHoy = ahoraEnNY.toTimeString().split(' ')[0];
+                let ultimaActualizacionUsuario = `${usuarioRegistroCli} ${usuarioRegistroCliNombre} ${fechaHoy} ${horaHoy}`;
+
                 if(fechaCambioPrecio == fechaHoy){
-                    fn_ActualizarPrecioXPresentacion(codigoCliente,nuevoImporte,codigoEspecie);
+                    fn_ActualizarPrecioXPresentacion(codigoCliente,nuevoImporte,codigoEspecie, ultimaActualizacionUsuario);
                 }
                 // Llamar a la función fn_AgregarPagoCliente con los datos de la fila actual
                 fn_CambiarPrecioPesadas(codigoCliente, fechaCambioPrecio, codigoEspecie, nuevoImporte)
@@ -1496,7 +1503,7 @@ jQuery(function ($) {
         });
     }); 
 
-    function fn_ActualizarPrecioXPresentacion(idClienteActualizarPrecioXPresentacion, valorActualizarPrecioXPresentacion,numeroEspeciePrecioXPresentacion){
+    function fn_ActualizarPrecioXPresentacion(idClienteActualizarPrecioXPresentacion, valorActualizarPrecioXPresentacion,numeroEspeciePrecioXPresentacion, ultimaActualizacionUsuario){
         $.ajax({
             url: '/fn_consulta_ActualizarPrecioXPresentacion',
             method: 'GET',
@@ -1504,6 +1511,7 @@ jQuery(function ($) {
                 idClienteActualizarPrecioXPresentacion: idClienteActualizarPrecioXPresentacion,
                 valorActualizarPrecioXPresentacion: valorActualizarPrecioXPresentacion,
                 numeroEspeciePrecioXPresentacion: numeroEspeciePrecioXPresentacion,
+                ultimaActualizacionUsuario: ultimaActualizacionUsuario,
             },
             success: function(response) {
                 if (response.success) {                  

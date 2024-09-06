@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Precios\ActualizarPreciosXPresentacion;
 use App\Models\Precios\TraerGruposPrecios;
 use App\Models\Precios\ActualizarPreciosMinimos;
+use Carbon\Carbon;
 
 class PreciosController extends Controller
 {
@@ -66,101 +67,102 @@ class PreciosController extends Controller
         $valorActualizarPrecioXPresentacion1 = $request->input('valorActualizarPrecioXPresentacion');
         $valorActualizarPrecioXPresentacion = $valorActualizarPrecioXPresentacion1 === null ? 0 : $valorActualizarPrecioXPresentacion1;
         $numeroEspeciePrecioXPresentacion = $request->input('numeroEspeciePrecioXPresentacion');
+        $ultimaActualizacionUsuario = $request->input('ultimaActualizacionUsuario');
 
         if (Auth::check()) {
             // Realiza la consulta a la base de datos
             switch ($numeroEspeciePrecioXPresentacion) {
                 case 1:
                     ActualizarPreciosXPresentacion::where('idPrecio', $idClienteActualizarPrecioXPresentacion)
-                        ->update(['primerEspecie' => $valorActualizarPrecioXPresentacion]);
+                        ->update(['primerEspecie' => $valorActualizarPrecioXPresentacion, 'updated_at' => Carbon::now()->setTimezone('America/Lima')->toDateTimeString(), 'ultimaActualizacionUsuario' => $ultimaActualizacionUsuario]);
                     break;
                 case 2:
                     ActualizarPreciosXPresentacion::where('idPrecio', $idClienteActualizarPrecioXPresentacion)
                         ->update(['segundaEspecie' => $valorActualizarPrecioXPresentacion,
-                                    'decimaSeptimaEspecie' => $valorActualizarPrecioXPresentacion]);
+                                    'decimaSeptimaEspecie' => $valorActualizarPrecioXPresentacion, 'updated_at' => Carbon::now()->setTimezone('America/Lima')->toDateTimeString(), 'ultimaActualizacionUsuario' => $ultimaActualizacionUsuario]);
                     break;
                 case 3:
                     ActualizarPreciosXPresentacion::where('idPrecio', $idClienteActualizarPrecioXPresentacion)
-                        ->update(['terceraEspecie' => $valorActualizarPrecioXPresentacion]);
+                        ->update(['terceraEspecie' => $valorActualizarPrecioXPresentacion, 'updated_at' => Carbon::now()->setTimezone('America/Lima')->toDateTimeString(), 'ultimaActualizacionUsuario' => $ultimaActualizacionUsuario]);
                     break;
                 case 4:
                     ActualizarPreciosXPresentacion::where('idPrecio', $idClienteActualizarPrecioXPresentacion)
                         ->update(['cuartaEspecie' => $valorActualizarPrecioXPresentacion,
-                                    'decimaOctavaEspecie' => $valorActualizarPrecioXPresentacion]);
+                                    'decimaOctavaEspecie' => $valorActualizarPrecioXPresentacion, 'updated_at' => Carbon::now()->setTimezone('America/Lima')->toDateTimeString(), 'ultimaActualizacionUsuario' => $ultimaActualizacionUsuario]);
                     break;
                 case 5:
                     ActualizarPreciosXPresentacion::where('idPrecio', $idClienteActualizarPrecioXPresentacion)
-                        ->update(['quintaEspecie' => $valorActualizarPrecioXPresentacion]);
+                        ->update(['quintaEspecie' => $valorActualizarPrecioXPresentacion, 'updated_at' => Carbon::now()->setTimezone('America/Lima')->toDateTimeString(), 'ultimaActualizacionUsuario' => $ultimaActualizacionUsuario]);
                     break;
                 case 6:
                     ActualizarPreciosXPresentacion::where('idPrecio', $idClienteActualizarPrecioXPresentacion)
-                        ->update(['sextaEspecie' => $valorActualizarPrecioXPresentacion]);
+                        ->update(['sextaEspecie' => $valorActualizarPrecioXPresentacion, 'updated_at' => Carbon::now()->setTimezone('America/Lima')->toDateTimeString(), 'ultimaActualizacionUsuario' => $ultimaActualizacionUsuario]);
                     break;
                 case 7:
                     ActualizarPreciosXPresentacion::where('idPrecio', $idClienteActualizarPrecioXPresentacion)
-                        ->update(['septimaEspecie' => $valorActualizarPrecioXPresentacion]);
+                        ->update(['septimaEspecie' => $valorActualizarPrecioXPresentacion, 'updated_at' => Carbon::now()->setTimezone('America/Lima')->toDateTimeString(), 'ultimaActualizacionUsuario' => $ultimaActualizacionUsuario]);
                     break;
                 case 8:
                     ActualizarPreciosXPresentacion::where('idPrecio', $idClienteActualizarPrecioXPresentacion)
-                        ->update(['octavaEspecie' => $valorActualizarPrecioXPresentacion]);
+                        ->update(['octavaEspecie' => $valorActualizarPrecioXPresentacion, 'updated_at' => Carbon::now()->setTimezone('America/Lima')->toDateTimeString(), 'ultimaActualizacionUsuario' => $ultimaActualizacionUsuario]);
                     break;
                 case 9:
                     ActualizarPreciosXPresentacion::where('idPrecio', $idClienteActualizarPrecioXPresentacion)
-                        ->update(['decimaEspecie' => $valorActualizarPrecioXPresentacion]);
+                        ->update(['decimaEspecie' => $valorActualizarPrecioXPresentacion, 'updated_at' => Carbon::now()->setTimezone('America/Lima')->toDateTimeString(), 'ultimaActualizacionUsuario' => $ultimaActualizacionUsuario]);
                     break;
                 case 10:
                     ActualizarPreciosXPresentacion::where('idPrecio', $idClienteActualizarPrecioXPresentacion)
-                        ->update(['decimaPrimeraEspecie' => $valorActualizarPrecioXPresentacion]);
+                        ->update(['decimaPrimeraEspecie' => $valorActualizarPrecioXPresentacion, 'updated_at' => Carbon::now()->setTimezone('America/Lima')->toDateTimeString(), 'ultimaActualizacionUsuario' => $ultimaActualizacionUsuario]);
                     break;
                 case 11:
                     ActualizarPreciosXPresentacion::where('idPrecio', $idClienteActualizarPrecioXPresentacion)
-                        ->update(['decimaSegundaEspecie' => $valorActualizarPrecioXPresentacion]);
+                        ->update(['decimaSegundaEspecie' => $valorActualizarPrecioXPresentacion, 'updated_at' => Carbon::now()->setTimezone('America/Lima')->toDateTimeString(), 'ultimaActualizacionUsuario' => $ultimaActualizacionUsuario]);
                     break;
                 case 12:
                     ActualizarPreciosXPresentacion::where('idPrecio', $idClienteActualizarPrecioXPresentacion)
-                        ->update(['decimaTerceraEspecie' => $valorActualizarPrecioXPresentacion]);
+                        ->update(['decimaTerceraEspecie' => $valorActualizarPrecioXPresentacion, 'updated_at' => Carbon::now()->setTimezone('America/Lima')->toDateTimeString(), 'ultimaActualizacionUsuario' => $ultimaActualizacionUsuario]);
                     break;
                 case 13:
                     ActualizarPreciosXPresentacion::where('idPrecio', $idClienteActualizarPrecioXPresentacion)
-                        ->update(['decimaCuartaEspecie' => $valorActualizarPrecioXPresentacion]);
+                        ->update(['decimaCuartaEspecie' => $valorActualizarPrecioXPresentacion, 'updated_at' => Carbon::now()->setTimezone('America/Lima')->toDateTimeString(), 'ultimaActualizacionUsuario' => $ultimaActualizacionUsuario]);
                     break;
                 case 14:
                     ActualizarPreciosXPresentacion::where('idPrecio', $idClienteActualizarPrecioXPresentacion)
-                        ->update(['decimaQuintaOtrasEspecies' => $valorActualizarPrecioXPresentacion]);
+                        ->update(['decimaQuintaOtrasEspecies' => $valorActualizarPrecioXPresentacion, 'updated_at' => Carbon::now()->setTimezone('America/Lima')->toDateTimeString(), 'ultimaActualizacionUsuario' => $ultimaActualizacionUsuario]);
                     break;     
                 case 15:
                     ActualizarPreciosXPresentacion::where('idPrecio', $idClienteActualizarPrecioXPresentacion)
-                        ->update(['decimaSextaEspecie' => $valorActualizarPrecioXPresentacion]);
+                        ->update(['decimaSextaEspecie' => $valorActualizarPrecioXPresentacion, 'updated_at' => Carbon::now()->setTimezone('America/Lima')->toDateTimeString(), 'ultimaActualizacionUsuario' => $ultimaActualizacionUsuario]);
                     break;     
                 case 16:
                     ActualizarPreciosXPresentacion::where('idPrecio', $idClienteActualizarPrecioXPresentacion)
                         ->update(['decimaSeptimaEspecie' => $valorActualizarPrecioXPresentacion,
-                                    'segundaEspecie' => $valorActualizarPrecioXPresentacion]);
+                                    'segundaEspecie' => $valorActualizarPrecioXPresentacion, 'updated_at' => Carbon::now()->setTimezone('America/Lima')->toDateTimeString(), 'ultimaActualizacionUsuario' => $ultimaActualizacionUsuario]);
                     break;     
                 case 17:
                     ActualizarPreciosXPresentacion::where('idPrecio', $idClienteActualizarPrecioXPresentacion)
                         ->update(['decimaOctavaEspecie' => $valorActualizarPrecioXPresentacion,
-                                    'cuartaEspecie' => $valorActualizarPrecioXPresentacion]);
+                                    'cuartaEspecie' => $valorActualizarPrecioXPresentacion, 'updated_at' => Carbon::now()->setTimezone('America/Lima')->toDateTimeString(), 'ultimaActualizacionUsuario' => $ultimaActualizacionUsuario]);
                     break;     
                 case 18:
                     ActualizarPreciosXPresentacion::where('idPrecio', $idClienteActualizarPrecioXPresentacion)
-                        ->update(['decimaNovenaEspecie' => $valorActualizarPrecioXPresentacion]);
+                        ->update(['decimaNovenaEspecie' => $valorActualizarPrecioXPresentacion, 'updated_at' => Carbon::now()->setTimezone('America/Lima')->toDateTimeString(), 'ultimaActualizacionUsuario' => $ultimaActualizacionUsuario]);
                     break;     
                 case 19:
                     ActualizarPreciosXPresentacion::where('idPrecio', $idClienteActualizarPrecioXPresentacion)
-                        ->update(['vigesimaEspecie' => $valorActualizarPrecioXPresentacion]);
+                        ->update(['vigesimaEspecie' => $valorActualizarPrecioXPresentacion, 'updated_at' => Carbon::now()->setTimezone('America/Lima')->toDateTimeString(), 'ultimaActualizacionUsuario' => $ultimaActualizacionUsuario]);
                     break;     
                 case 20:
                     ActualizarPreciosXPresentacion::where('idPrecio', $idClienteActualizarPrecioXPresentacion)
-                        ->update(['vigesimaPrimeraEspecie' => $valorActualizarPrecioXPresentacion]);
+                        ->update(['vigesimaPrimeraEspecie' => $valorActualizarPrecioXPresentacion, 'updated_at' => Carbon::now()->setTimezone('America/Lima')->toDateTimeString(), 'ultimaActualizacionUsuario' => $ultimaActualizacionUsuario]);
                     break;     
                 case 21:
                     ActualizarPreciosXPresentacion::where('idPrecio', $idClienteActualizarPrecioXPresentacion)
-                        ->update(['vigesimaSegundaEspecie' => $valorActualizarPrecioXPresentacion]);
+                        ->update(['vigesimaSegundaEspecie' => $valorActualizarPrecioXPresentacion, 'updated_at' => Carbon::now()->setTimezone('America/Lima')->toDateTimeString(), 'ultimaActualizacionUsuario' => $ultimaActualizacionUsuario]);
                     break;     
                 case 22:
                     ActualizarPreciosXPresentacion::where('idPrecio', $idClienteActualizarPrecioXPresentacion)
-                        ->update(['vigesimaTerceraEspecie' => $valorActualizarPrecioXPresentacion]);
+                        ->update(['vigesimaTerceraEspecie' => $valorActualizarPrecioXPresentacion, 'updated_at' => Carbon::now()->setTimezone('America/Lima')->toDateTimeString(), 'ultimaActualizacionUsuario' => $ultimaActualizacionUsuario]);
                     break;     
                 default:
                     return response()->json(['error' => 'Número de especie inválido'], 400);
@@ -220,62 +222,69 @@ class PreciosController extends Controller
         return response()->json(['error' => 'Usuario no autenticado'], 401);
     }
 
-    public function consulta_AgregarNuevoPrecioPollo(Request $request){
-
+    public function consulta_AgregarNuevoPrecioPollo(Request $request)
+    {
         $idCodigoCliente = $request->input('idCodigoCliente');
-        $resultadoEspecieUno = $request->input('resultadoEspecieUno');
-        $resultadoEspecieDos = $request->input('resultadoEspecieDos');
-        $resultadoEspecieTres = $request->input('resultadoEspecieTres');
-        $resultadoEspecieCuatro = $request->input('resultadoEspecieCuatro');
-        $resultadoEspecieCinco = $request->input('resultadoEspecieCinco');
-        $resultadoEspecieSeis = $request->input('resultadoEspecieSeis');
-        $resultadoEspecieSiete = $request->input('resultadoEspecieSiete');
-        $resultadoEspecieOcho = $request->input('resultadoEspecieOcho');
-        $resultadoEspecieNueve = $request->input('resultadoEspecieNueve');
-        $resultadoEspecieDiez = $request->input('resultadoEspecieDiez');
-        $resultadoEspecieOnce = $request->input('resultadoEspecieOnce');
-        $resultadoEspecieDoce = $request->input('resultadoEspecieDoce');
-        $resultadoEspecieTrece = $request->input('resultadoEspecieTrece');
-        $resultadoEspecieCatorce = $request->input('resultadoEspecieCatorce');
-        $resultadoEspecieQuince = $request->input('resultadoEspecieQuince');
-        $resultadoEspecieDieciseis = $request->input('resultadoEspecieDieciseis');
-        $resultadoEspecieDiecisiete = $request->input('resultadoEspecieDiecisiete');
-        $resultadoEspecieDieciocho = $request->input('resultadoEspecieDieciocho');
-        $resultadoEspecieDiecinueve = $request->input('resultadoEspecieDiecinueve');
-        $resultadoEspecieVeinte = $request->input('resultadoEspecieVeinte');
-        $resultadoEspecieVeinteUno = $request->input('resultadoEspecieVeinteUno');
-        $resultadoEspecieVeinteDos = $request->input('resultadoEspecieVeinteDos');
-
+        $ultimaActualizacionUsuario = $request->input('ultimaActualizacionUsuario');
+        
+        // Los valores que recibes de la solicitud
+        $nuevosValores = [
+            'primerEspecie' => $request->input('resultadoEspecieUno'),
+            'segundaEspecie' => $request->input('resultadoEspecieDos'),
+            'terceraEspecie' => $request->input('resultadoEspecieTres'),
+            'cuartaEspecie' => $request->input('resultadoEspecieCuatro'),
+            'quintaEspecie' => $request->input('resultadoEspecieCinco'),
+            'sextaEspecie' => $request->input('resultadoEspecieSeis'),
+            'septimaEspecie' => $request->input('resultadoEspecieSiete'),
+            'octavaEspecie' => $request->input('resultadoEspecieOcho'),
+            'decimaEspecie' => $request->input('resultadoEspecieNueve'),
+            'decimaPrimeraEspecie' => $request->input('resultadoEspecieDiez'),
+            'decimaSegundaEspecie' => $request->input('resultadoEspecieOnce'),
+            'decimaTerceraEspecie' => $request->input('resultadoEspecieDoce'),
+            'decimaCuartaEspecie' => $request->input('resultadoEspecieTrece'),
+            'decimaQuintaOtrasEspecies' => $request->input('resultadoEspecieCatorce'),
+            'decimaSextaEspecie' => $request->input('resultadoEspecieQuince'),
+            'decimaSeptimaEspecie' => $request->input('resultadoEspecieDieciseis'),
+            'decimaOctavaEspecie' => $request->input('resultadoEspecieDiecisiete'),
+            'decimaNovenaEspecie' => $request->input('resultadoEspecieDieciocho'),
+            'vigesimaEspecie' => $request->input('resultadoEspecieDiecinueve'),
+            'vigesimaPrimeraEspecie' => $request->input('resultadoEspecieVeinte'),
+            'vigesimaSegundaEspecie' => $request->input('resultadoEspecieVeinteUno'),
+            'vigesimaTerceraEspecie' => $request->input('resultadoEspecieVeinteDos'),
+        ];
+        
         if (Auth::check()) {
-            // Realiza la consulta a la base de datos
+            // Obtener los valores actuales de la base de datos
+            $valoresActuales = ActualizarPreciosXPresentacion::where('idPrecio', $idCodigoCliente)->first();
+
+            if (!$valoresActuales) {
+                return response()->json(['error' => 'Registro no encontrado'], 404);
+            }
+
+            // Crear un array para los valores sumados
+            $valoresSumados = [];
+
+            foreach ($nuevosValores as $key => $nuevoValor) {
+                // Convertir valores a float antes de sumarlos
+                $valorActual = (float) $valoresActuales->$key;
+                $valorNuevo = (float) $nuevoValor;
+
+                // Sumar el valor nuevo al valor actual
+                $valoresSumados[$key] = $valorActual + $valorNuevo;
+            }
+
+            // Agregar updated_at con la hora actual
+            $valoresSumados['updated_at'] = Carbon::now()->setTimezone('America/Lima')->toDateTimeString();
+            $valoresSumados['ultimaActualizacionUsuario'] = $ultimaActualizacionUsuario;
+
+            // Actualizar la base de datos con los nuevos valores sumados
             ActualizarPreciosXPresentacion::where('idPrecio', $idCodigoCliente)
-                ->update(['primerEspecie' => $resultadoEspecieUno,
-                'segundaEspecie' => $resultadoEspecieDos,
-                'terceraEspecie' => $resultadoEspecieTres,
-                'cuartaEspecie' => $resultadoEspecieCuatro,
-                'quintaEspecie' => $resultadoEspecieCinco,
-                'sextaEspecie' => $resultadoEspecieSeis,
-                'septimaEspecie' => $resultadoEspecieSiete,
-                'octavaEspecie' => $resultadoEspecieOcho,
-                'decimaEspecie' => $resultadoEspecieNueve,
-                'decimaPrimeraEspecie' => $resultadoEspecieDiez,
-                'decimaSegundaEspecie' => $resultadoEspecieOnce,
-                'decimaTerceraEspecie' => $resultadoEspecieDoce,
-                'decimaCuartaEspecie' => $resultadoEspecieTrece,
-                'decimaQuintaOtrasEspecies' => $resultadoEspecieCatorce,
-                'decimaSextaEspecie' => $resultadoEspecieQuince,
-                'decimaSeptimaEspecie' => $resultadoEspecieDieciseis,
-                'decimaOctavaEspecie' => $resultadoEspecieDiecisiete,
-                'decimaNovenaEspecie' => $resultadoEspecieDieciocho,
-                'vigesimaEspecie' => $resultadoEspecieDiecinueve,
-                'vigesimaPrimeraEspecie' => $resultadoEspecieVeinte,
-                'vigesimaSegundaEspecie' => $resultadoEspecieVeinteUno,
-                'vigesimaTerceraEspecie' => $resultadoEspecieVeinteDos]);
-                
+                ->update($valoresSumados);
+
             return response()->json(['success' => true], 200);
         }
 
-        // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
+        // Si el usuario no está autenticado, devolver un error
         return response()->json(['error' => 'Usuario no autenticado'], 401);
     }
 

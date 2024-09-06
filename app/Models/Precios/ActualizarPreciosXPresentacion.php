@@ -10,7 +10,7 @@ class ActualizarPreciosXPresentacion extends Model
     use HasFactory;
     protected $table = 'tb_precio_x_presentacion'; // Nombre de tu tabla
     protected $primaryKey = 'idPrecio'; // Clave primaria
-    public $timestamps = true;
+    public $timestamps = false;
 
     protected $fillable = [
         'idPrecio',
@@ -37,5 +37,7 @@ class ActualizarPreciosXPresentacion extends Model
         'vigesimaPrimeraEspecie',
         'vigesimaSegundaEspecie',
         'vigesimaTerceraEspecie',
+        'ultimaActualizacionUsuario',
+        'updated_at',
     ];
 }

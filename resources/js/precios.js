@@ -9,6 +9,10 @@ jQuery(function($) {
 
     DataTableED('#tablaPreciosXPresentacion');
 
+    var tipoUsuario = $('#tipoUsuario').data('id');
+    var usuarioRegistroCli = $('#usuarioRegistroCli').data('id');
+    var usuarioRegistroCliNombre = $('#usuarioRegistroCliNombre').data('id');
+
     /* ============ Eventos ============ */
 
     // $(document).on("dblclick", "#tablaPreciosXPresentacion #bodyPreciosXPresentacion tr td.precioColumna", function() {
@@ -75,93 +79,210 @@ jQuery(function($) {
     });
     
     $('#btnGuardarNuevoPrecioPollo').on('click', function () {
-        
-        $("#btnGuardarNuevoPrecioPollo").attr('disabled','disabled');
-        const precios = [
-            'precioPolloVivo', 'precioPolloPelado', 'precioPolloTecnicoVivo', 'precioPolloTecnicoPelado',
-            'precioGallinaDoble', 'precioGallinaChica', 'precioGallo', 'precioPolloMaltratado',
-            'precioPolloPechuga', 'precioPolloPierna', 'precioPolloAlas', 'precioPolloMenudencia',
-            'precioPolloDorso', 'precioPolloOtros', 'precioPolloxx', 'precioBrasaYugo',
-            'precioBrasaTecnico', 'precioPolloxxVivo', 'precioGallinaDobleVivo', 'precioGallinaChicaVivo',
-            'precioGalloVivo', 'precioMaltratadoVivo'
-        ];
+        let valorNuevoPrecioPolloVivo = parseFloat($('#precioPolloVivo').val());
+        let valorNuevoPrecioPolloPelado = parseFloat($('#precioPolloPelado').val());
+        let valorNuevoPrecioPolloTecnicoVivo = parseFloat($('#precioPolloTecnicoVivo').val());
+        let valorNuevoPrecioPolloTecnicoPelado = parseFloat($('#precioPolloTecnicoPelado').val());
+        let valorNuevoPrecioGallinaDoble = parseFloat($('#precioGallinaDoble').val());
+        let valorNuevoPrecioGallinaChica = parseFloat($('#precioGallinaChica').val());
+        let valorNuevoPrecioGallo = parseFloat($('#precioGallo').val());
+        let valorNuevoPrecioPolloMaltratado = parseFloat($('#precioPolloMaltratado').val());
+        let valorNuevoPrecioPolloPechuga= parseFloat($('#precioPolloPechuga').val());
+        let valorNuevoPrecioPolloPierna = parseFloat($('#precioPolloPierna').val());
+        let valorNuevoPrecioPolloAlas = parseFloat($('#precioPolloAlas').val());
+        let valorNuevoPrecioPolloMenudencia = parseFloat($('#precioPolloMenudencia').val());
+        let valorNuevoPrecioPolloDorso = parseFloat($('#precioPolloDorso').val());
+        let valorNuevoPrecioPolloOtros = parseFloat($('#precioPolloOtros').val());
+        let valorNuevoPrecioPolloXx = parseFloat($('#precioPolloxx').val());
+        let valorNuevoPrecioBrasaYugo = parseFloat($('#precioBrasaYugo').val());
+        let valorNuevoPrecioBrasaTecnico = parseFloat($('#precioBrasaTecnico').val());
+        let valorNuevoPrecioPolloXxVivo = parseFloat($('#precioPolloxxVivo').val());
+        let valorNuevoPrecioGallinaDobleVivo = parseFloat($('#precioGallinaDobleVivo').val());
+        let valorNuevoPrecioGallinaChicaVivo = parseFloat($('#precioGallinaChicaVivo').val());
+        let valorNuevoPrecioGalloVivo = parseFloat($('#precioGalloVivo').val());
+        let valorNuevoPrecioMaltratadoVivo = parseFloat($('#precioMaltratadoVivo').val());
     
-        let valoresNuevosPrecios = precios.map(id => parseFloat($(`#${id}`).val()));
-    
+        let totalConsultas = $('#tablaPreciosXPresentacion tbody tr').length;
+        let consultasCompletadas = 0;
+        let timerInterval;
+
         Swal.fire({
             title: '¡Atención!',
-            html: 'Actualizando precios, no salga de la página.',
+            html: 'Actualizando precios, no salga de la pagina.',
             timer: 999999999, // Establece un valor grande para que parezca indefinido
             timerProgressBar: true,
             allowOutsideClick: false,
-            allowEscapeKey: false, 
+            allowEscapeKey: false,
             didOpen: () => {
                 Swal.showLoading();
+            },
+            willClose: () => {
+                clearInterval(timerInterval);
             }
+        })
+
+        const ahoraEnNY = new Date(); // Suponiendo que quieres la hora actual en tu zona horaria
+        const fechaHoy = ahoraEnNY.toISOString().split('T')[0]; // Obtiene la fecha en formato YYYY-MM-DD
+        const horaHoy = ahoraEnNY.toTimeString().split(' ')[0];
+    
+        $('#tablaPreciosXPresentacion tbody tr').each(function () {
+
+            let idCodigoCliente = $(this).find('td:eq(0)').text();
+            let nombreCliente = $(this).find('td:eq(1)').text();
+            let ultimaActualizacionUsuario = `${usuarioRegistroCli} ${usuarioRegistroCliNombre} ${fechaHoy} ${horaHoy}`;
+            // let primerEspeciePolloVivo = parseFloat($(this).find('td:eq(2)').text());
+            // let segundaEspeciePolloPelado = parseFloat($(this).find('td:eq(3)').text());
+            // let terceraEspeciePolloTecnicoVivo = parseFloat($(this).find('td:eq(4)').text());
+            // let cuartaEspeciePolloTecnicoPelado = parseFloat($(this).find('td:eq(5)').text());
+            // let quintaEspecieGallinaDoble = parseFloat($(this).find('td:eq(6)').text());
+            // let sextaEspecieGallinaChica = parseFloat($(this).find('td:eq(7)').text());
+            // let septimaEspecieGallo = parseFloat($(this).find('td:eq(8)').text());
+            // let octavaEspeciePolloMaltratado = parseFloat($(this).find('td:eq(9)').text());
+            // let novenaEspeciePolloPechuga = parseFloat($(this).find('td:eq(10)').text());
+            // let decimaEspeciePierna = parseFloat($(this).find('td:eq(11)').text());
+            // let decimaPrimeraEspeciePolloAlas = parseFloat($(this).find('td:eq(12)').text());
+            // let decimaSegundaEspeciePolloMenudencia = parseFloat($(this).find('td:eq(13)').text());
+            // let decimaTerceraEspeciePolloDorso = parseFloat($(this).find('td:eq(14)').text());
+            // let decimacuartaEspeciePolloMOtros = parseFloat($(this).find('td:eq(15)').text());
+            // let decimaquintaEspeciePolloXX = parseFloat($(this).find('td:eq(16)').text());
+            // let decimasextaEspecieBrasaYugo = parseFloat($(this).find('td:eq(17)').text());
+            // let decimaseptimaEspecieBrasaTecnico = parseFloat($(this).find('td:eq(18)').text());
+            // let decimaseptimaEspeciePolloXXVivo = parseFloat($(this).find('td:eq(19)').text());
+            // let decimaseptimaEspecieGallinaDobleVivo = parseFloat($(this).find('td:eq(20)').text());
+            // let decimaseptimaEspecieGallinaChicaVivo = parseFloat($(this).find('td:eq(21)').text());
+            // let decimaseptimaEspecieGalloVivo = parseFloat($(this).find('td:eq(22)').text());
+            // let decimaseptimaEspecieMaltratadoVivo = parseFloat($(this).find('td:eq(23)').text());
+
+            // let resultadoEspecieUno = primerEspeciePolloVivo + valorNuevoPrecioPolloVivo;
+            // let resultadoEspecieDos = segundaEspeciePolloPelado + valorNuevoPrecioPolloPelado;
+            // let resultadoEspecieTres = terceraEspeciePolloTecnicoVivo + valorNuevoPrecioPolloTecnicoVivo;
+            // let resultadoEspecieCuatro = cuartaEspeciePolloTecnicoPelado + valorNuevoPrecioPolloTecnicoPelado;
+            // let resultadoEspecieCinco = quintaEspecieGallinaDoble + valorNuevoPrecioGallinaDoble;
+            // let resultadoEspecieSeis = sextaEspecieGallinaChica + valorNuevoPrecioGallinaChica;
+            // let resultadoEspecieSiete = septimaEspecieGallo + valorNuevoPrecioGallo;
+            // let resultadoEspecieOcho = octavaEspeciePolloMaltratado + valorNuevoPrecioPolloMaltratado;
+            // let resultadoEspecieNueve = novenaEspeciePolloPechuga + valorNuevoPrecioPolloPechuga;
+            // let resultadoEspecieDiez = decimaEspeciePierna + valorNuevoPrecioPolloPierna;
+            // let resultadoEspecieOnce = decimaPrimeraEspeciePolloAlas + valorNuevoPrecioPolloAlas;
+            // let resultadoEspecieDoce = decimaSegundaEspeciePolloMenudencia + valorNuevoPrecioPolloMenudencia;
+            // let resultadoEspecieTrece = decimaTerceraEspeciePolloDorso + valorNuevoPrecioPolloDorso;
+            // let resultadoEspecieCatorce = decimacuartaEspeciePolloMOtros + valorNuevoPrecioPolloOtros;
+            // let resultadoEspecieQuince = decimaquintaEspeciePolloXX + valorNuevoPrecioPolloXx;
+            // let resultadoEspecieDieciseis = decimasextaEspecieBrasaYugo + valorNuevoPrecioBrasaYugo;
+            // let resultadoEspecieDiecisiete = decimaseptimaEspecieBrasaTecnico + valorNuevoPrecioBrasaTecnico;
+            // let resultadoEspecieDieciocho = decimaseptimaEspeciePolloXXVivo + valorNuevoPrecioPolloXxVivo;
+            // let resultadoEspecieDiecinueve = decimaseptimaEspecieGallinaDobleVivo + valorNuevoPrecioGallinaDobleVivo;
+            // let resultadoEspecieVeinte = decimaseptimaEspecieGallinaChicaVivo + valorNuevoPrecioGallinaChicaVivo;
+            // let resultadoEspecieVeinteUno = decimaseptimaEspecieGalloVivo + valorNuevoPrecioGalloVivo;
+            // let resultadoEspecieVeinteDos = decimaseptimaEspecieMaltratadoVivo + valorNuevoPrecioMaltratadoVivo;
+    
+            let resultadoEspecieUno = valorNuevoPrecioPolloVivo;
+            let resultadoEspecieDos = valorNuevoPrecioPolloPelado;
+            let resultadoEspecieTres = valorNuevoPrecioPolloTecnicoVivo;
+            let resultadoEspecieCuatro = valorNuevoPrecioPolloTecnicoPelado;
+            let resultadoEspecieCinco = valorNuevoPrecioGallinaDoble;
+            let resultadoEspecieSeis = valorNuevoPrecioGallinaChica;
+            let resultadoEspecieSiete = valorNuevoPrecioGallo;
+            let resultadoEspecieOcho = valorNuevoPrecioPolloMaltratado;
+            let resultadoEspecieNueve = valorNuevoPrecioPolloPechuga;
+            let resultadoEspecieDiez = valorNuevoPrecioPolloPierna;
+            let resultadoEspecieOnce = valorNuevoPrecioPolloAlas;
+            let resultadoEspecieDoce = valorNuevoPrecioPolloMenudencia;
+            let resultadoEspecieTrece = valorNuevoPrecioPolloDorso;
+            let resultadoEspecieCatorce = valorNuevoPrecioPolloOtros;
+            let resultadoEspecieQuince = valorNuevoPrecioPolloXx;
+            let resultadoEspecieDieciseis = valorNuevoPrecioBrasaYugo;
+            let resultadoEspecieDiecisiete = valorNuevoPrecioBrasaTecnico;
+            let resultadoEspecieDieciocho = valorNuevoPrecioPolloXxVivo;
+            let resultadoEspecieDiecinueve = valorNuevoPrecioGallinaDobleVivo;
+            let resultadoEspecieVeinte = valorNuevoPrecioGallinaChicaVivo;
+            let resultadoEspecieVeinteUno = valorNuevoPrecioGalloVivo;
+            let resultadoEspecieVeinteDos = valorNuevoPrecioMaltratadoVivo;
+    
+            fn_AgregarNuevoPrecioPollo(idCodigoCliente, resultadoEspecieUno, resultadoEspecieDos, resultadoEspecieTres, resultadoEspecieCuatro, resultadoEspecieCinco, resultadoEspecieSeis, resultadoEspecieSiete, resultadoEspecieOcho, resultadoEspecieNueve, resultadoEspecieDiez, resultadoEspecieOnce, resultadoEspecieDoce, resultadoEspecieTrece, resultadoEspecieCatorce, resultadoEspecieQuince, resultadoEspecieDieciseis, resultadoEspecieDiecisiete, resultadoEspecieDieciocho, resultadoEspecieDiecinueve, resultadoEspecieVeinte, resultadoEspecieVeinteUno, resultadoEspecieVeinteDos, totalConsultas, ultimaActualizacionUsuario);
+            // console.log(idCodigoCliente, nombreCliente, resultadoEspecieUno, resultadoEspecieDos, resultadoEspecieTres, resultadoEspecieCuatro, resultadoEspecieCinco, resultadoEspecieSeis, resultadoEspecieSiete, resultadoEspecieOcho, resultadoEspecieNueve, resultadoEspecieDiez, resultadoEspecieOnce, resultadoEspecieDoce, resultadoEspecieTrece, resultadoEspecieCatorce, resultadoEspecieQuince, resultadoEspecieDieciseis, resultadoEspecieDiecisiete, resultadoEspecieDieciocho, resultadoEspecieDiecinueve, resultadoEspecieVeinte, resultadoEspecieVeinteUno, resultadoEspecieVeinteDos, totalConsultas);
         });
     
-        let consultas = [];
-        $('#tablaPreciosXPresentacion tbody tr').each(function () {
-            let idCodigoCliente = $(this).find('td:eq(0)').text();
-            
-            let valoresActuales = $(this).find('td:gt(1)').map(function () {
-                return parseFloat($(this).text());
-            }).get();
-    
-            let resultados = valoresActuales.map((valor, index) => valor + valoresNuevosPrecios[index]);
-    
-            // Definir los nombres de los resultados para coincidir con los nombres en el controlador
-            let nombresResultado = [
-                'resultadoEspecieUno', 'resultadoEspecieDos', 'resultadoEspecieTres', 'resultadoEspecieCuatro',
-                'resultadoEspecieCinco', 'resultadoEspecieSeis', 'resultadoEspecieSiete', 'resultadoEspecieOcho',
-                'resultadoEspecieNueve', 'resultadoEspecieDiez', 'resultadoEspecieOnce', 'resultadoEspecieDoce',
-                'resultadoEspecieTrece', 'resultadoEspecieCatorce', 'resultadoEspecieQuince', 'resultadoEspecieDieciseis',
-                'resultadoEspecieDiecisiete', 'resultadoEspecieDieciocho', 'resultadoEspecieDiecinueve', 'resultadoEspecieVeinte',
-                'resultadoEspecieVeinteUno', 'resultadoEspecieVeinteDos'
-            ];
-    
-            // Crear la promesa de la llamada AJAX y almacenarla en el arreglo consultas
-            let consulta = $.ajax({
+        function fn_AgregarNuevoPrecioPollo(idCodigoCliente, resultadoEspecieUno, resultadoEspecieDos, resultadoEspecieTres, resultadoEspecieCuatro, resultadoEspecieCinco, resultadoEspecieSeis, resultadoEspecieSiete, resultadoEspecieOcho, resultadoEspecieNueve, resultadoEspecieDiez, resultadoEspecieOnce, resultadoEspecieDoce, resultadoEspecieTrece, resultadoEspecieCatorce, resultadoEspecieQuince, resultadoEspecieDieciseis, resultadoEspecieDiecisiete, resultadoEspecieDieciocho, resultadoEspecieDiecinueve, resultadoEspecieVeinte, resultadoEspecieVeinteUno, resultadoEspecieVeinteDos, totalConsultas, ultimaActualizacionUsuario) {
+            $.ajax({
                 url: '/fn_consulta_AgregarNuevoPrecioPollo',
                 method: 'GET',
-                data: Object.assign({
-                    idCodigoCliente: idCodigoCliente
-                }, ...resultados.map((resultado, i) => ({ [nombresResultado[i]]: resultado })))
-            });
-    
-            consultas.push(consulta);
-        });
-    
-        // Ejecutar todas las consultas en paralelo
-        Promise.all(consultas)
-            .then(responses => {
-                Swal.fire({
-                    position: 'center',
-                    icon: 'success',
-                    title: 'Se actualizaron los precios correctamente',
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-                fn_TraerPreciosXPresentacion();
-                resetInputs(precios); // Restablecer los inputs después de la operación
-            })
-            .catch(error => {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Error: Ocurrió un error inesperado durante la operación',
-                });
-                console.error("ERROR", error);
-            });
-    
-        // Función para restablecer los valores de los inputs
-        function resetInputs(ids) {
-            $("#btnGuardarNuevoPrecioPollo").removeAttr('disabled');
-            ids.forEach(id => {
-                $(`#${id}`).val("0.0");
+                data: {
+                    idCodigoCliente: idCodigoCliente,
+                    resultadoEspecieUno: resultadoEspecieUno,
+                    resultadoEspecieDos: resultadoEspecieDos,
+                    resultadoEspecieTres: resultadoEspecieTres,
+                    resultadoEspecieCuatro: resultadoEspecieCuatro,
+                    resultadoEspecieCinco: resultadoEspecieCinco,
+                    resultadoEspecieSeis: resultadoEspecieSeis,
+                    resultadoEspecieSiete: resultadoEspecieSiete,
+                    resultadoEspecieOcho: resultadoEspecieOcho,
+                    resultadoEspecieNueve: resultadoEspecieNueve,
+                    resultadoEspecieDiez: resultadoEspecieDiez,
+                    resultadoEspecieOnce: resultadoEspecieOnce,
+                    resultadoEspecieDoce: resultadoEspecieDoce,
+                    resultadoEspecieTrece: resultadoEspecieTrece,
+                    resultadoEspecieCatorce: resultadoEspecieCatorce,
+                    resultadoEspecieQuince: resultadoEspecieQuince,
+                    resultadoEspecieDieciseis: resultadoEspecieDieciseis,
+                    resultadoEspecieDiecisiete: resultadoEspecieDiecisiete,
+                    resultadoEspecieDieciocho: resultadoEspecieDieciocho,
+                    resultadoEspecieDiecinueve: resultadoEspecieDiecinueve,
+                    resultadoEspecieVeinte: resultadoEspecieVeinte,
+                    resultadoEspecieVeinteUno: resultadoEspecieVeinteUno,
+                    resultadoEspecieVeinteDos: resultadoEspecieVeinteDos,
+                    ultimaActualizacionUsuario: ultimaActualizacionUsuario,
+                },
+                success: function (response) {
+                    if (response.success) {
+                        consultasCompletadas++;
+                        if (consultasCompletadas === totalConsultas) {
+                            clearInterval(timerInterval);
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'success',
+                                title: 'Se actualizaron los precios correctamente',
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                            fn_TraerPreciosXPresentacion();
+                            $('#precioPolloVivo').val("0.0");
+                            $('#precioPolloPelado').val("0.0");
+                            $('#precioPolloTecnicoVivo').val("0.0");
+                            $('#precioPolloTecnicoPelado').val("0.0");
+                            $('#precioGallinaDoble').val("0.0");
+                            $('#precioGallinaChica').val("0.0");
+                            $('#precioGallo').val("0.0");
+                            $('#precioPolloMaltratado').val("0.0");
+                            $('#precioPolloPechuga').val("0.0");
+                            $('#precioPolloPierna').val("0.0");
+                            $('#precioPolloAlas').val("0.0");
+                            $('#precioPolloMenudencia').val("0.0");
+                            $('#precioPolloDorso').val("0.0");
+                            $('#precioPolloOtros').val("0.0");
+                            $('#precioPolloxx').val("0.0");
+                            $('#precioBrasaYugo').val("0.0");
+                            $('#precioBrasaTecnico').val("0.0");
+                            $('#precioPolloxxVivo').val("0.0");
+                            $('#precioGallinaDobleVivo').val("0.0");
+                            $('#precioGallinaChicaVivo').val("0.0");
+                            $('#precioGalloVivo').val("0.0");
+                            $('#precioMaltratadoVivo').val("0.0");
+
+                        }
+                    }
+                },
+                error: function (error) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Error: Ocurrio un error inesperado durante la operacion',
+                    })
+                    console.error("ERROR", error);
+                }
             });
         }
-    });     
+    });    
 
     /* ============ Funciones ============ */
 
@@ -482,7 +603,7 @@ jQuery(function($) {
         actualizarPrecio('#precioMaltratadoVivo', 'sumar');
     });
 
-    function fn_ActualizarPrecioXPresentacion(idClienteActualizarPrecioXPresentacion, valorActualizarPrecioXPresentacion,numeroEspeciePrecioXPresentacion){
+    function fn_ActualizarPrecioXPresentacion(idClienteActualizarPrecioXPresentacion, valorActualizarPrecioXPresentacion,numeroEspeciePrecioXPresentacion, ultimaActualizacionUsuario){
         $.ajax({
             url: '/fn_consulta_ActualizarPrecioXPresentacion',
             method: 'GET',
@@ -490,6 +611,7 @@ jQuery(function($) {
                 idClienteActualizarPrecioXPresentacion: idClienteActualizarPrecioXPresentacion,
                 valorActualizarPrecioXPresentacion: valorActualizarPrecioXPresentacion,
                 numeroEspeciePrecioXPresentacion: numeroEspeciePrecioXPresentacion,
+                ultimaActualizacionUsuario: ultimaActualizacionUsuario,
             },
             success: function(response) {
                 if (response.success) {
@@ -775,9 +897,14 @@ jQuery(function($) {
             if (nuevoContenido == "") {
                 nuevoContenido = 0;
             }
+
+            const ahoraEnNY = new Date(); // Suponiendo que quieres la hora actual en tu zona horaria
+            const fechaHoy = ahoraEnNY.toISOString().split('T')[0]; // Obtiene la fecha en formato YYYY-MM-DD
+            const horaHoy = ahoraEnNY.toTimeString().split(' ')[0];
+            let ultimaActualizacionUsuario = `${usuarioRegistroCli} ${usuarioRegistroCliNombre} ${fechaHoy} ${horaHoy}`;
     
             if (contenidoActual != nuevoContenido) {
-                fn_ActualizarPrecioXPresentacion(codigoCli, nuevoContenido, columnaPedido);
+                fn_ActualizarPrecioXPresentacion(codigoCli, nuevoContenido, columnaPedido, ultimaActualizacionUsuario);
             }
         });
     
