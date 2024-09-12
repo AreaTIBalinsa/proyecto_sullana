@@ -40,7 +40,8 @@ use App\Http\Controllers\ResumenDinerarioController;
 */
 
 /* ============================== Controladores para Login y Registro de Clientes ============================== */
-Route::get('/guardar-precios',[PreciosController::class,'guardarPrecios']);
+Route::post('/guardar-precios',[PreciosController::class,'guardarPrecios']);
+Route::get('/api/archivos-precios', [PreciosController::class, 'listarArchivos']);
 
 Route::middleware(['guest'])->group(function () {
     Route::view('/', 'login')->name('login');
@@ -57,7 +58,7 @@ Route::get('/consultarDNI',[ReniecController::class,'consultarDNI']);
 Route::get('/home',[InicioController::class,'index']);
 Route::get('/registrar_usuarios',[RegisterController::class,'show']);
 Route::get('/registrar_clientes',[RegistrarClientesController::class,'show']);
-Route::get('/precios',[PreciosController::class,'show']);
+Route::get('/precioss',[PreciosController::class,'show']);
 Route::get('/reporte_por_cliente',[ReportePorClienteController::class,'show']);
 Route::get('/reporte_de_caja',[ReporteDePagosController::class,'show']);
 Route::get('/estado_de_cuenta',[ReporteDePagosController::class,'show2']);

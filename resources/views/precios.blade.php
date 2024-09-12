@@ -327,6 +327,20 @@
                     </div>
                 </div>
             </div>
+            <div class="flex justify-end gap-x-24 gap-4 w-full flex-col md:flex-row my-5">
+                <div class="flex flex-col justify-center">
+                    <label for="fechaFiltrarPrecios" class="text-base text-gray-900 dark:text-gray-50">Fecha
+                        :</label>
+                    <input type="date"
+                        class="outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 px-2.5 py-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        id="fechaFiltrarPrecios">
+                </div>
+                <div class=" flex items-end">
+                    <button
+                        class="text-base py-2 px-5 bg-blue-600 hover:bg-blue-700 text-gray-50 rounded-lg w-full md:w-auto"
+                        id="btnFiltrarFiltro"><i class='bx bx-search-alt'></i> Buscar</button>
+                </div>
+            </div>
             <div class="flex justify-between items-center relative flex-col gap-4 lg:flex-row mb-5">
                 <div class="flex w-full lg:max-w-xs">
                     <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
@@ -334,6 +348,7 @@
                     </span>
                     <input class="lg:max-w-xs w-full uppercase outline-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-r-lg focus:ring-primary-600 focus:border-primary-600 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" type="text" name="filtrarClientePrecios" autocomplete="off" id="filtrarClientePrecios" placeholder="Ingrese Nombre de Cliente">
                 </div>
+                <button class="text-base py-2 px-5 bg-green-600 hover:bg-green-700 text-gray-50 rounded-lg w-full md:w-auto" id="btnGuardarPrecios"><i class='bx bx-save text-lg'></i> Guardar Precios</button>
             </div>
             <div class="relative overflow-auto max-h-[500px] aside_scrollED shadow-md rounded-lg">
                 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400" id="tablaPreciosXPresentacion">

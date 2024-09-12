@@ -10,6 +10,7 @@ use App\Models\Precios\TraerGruposPrecios;
 use App\Models\Precios\ActualizarPreciosMinimos;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 class PreciosController extends Controller
 {
@@ -24,14 +25,20 @@ class PreciosController extends Controller
     {
         // Obtener los datos enviados desde la petición
         $data = $request->input('data');
+        $fechaHora = $request->input('fechaHora');
 
         // Crear el nombre del archivo con fecha y hora actuales
-        $filename = 'precios_' . now()->format('Ymd_His') . '.json';
+        $filename = 'precios_' . $fechaHora . '.json';
 
-        // Guardar el archivo en la carpeta 'precios' dentro del almacenamiento local
-        Storage::disk('local')->put('precios/' . $filename, $data);
+        // Definir la ruta temporal donde se almacenará el archivo temporalmente
+        $tempPath = storage_path('app/temp_' . $filename);
 
-        return response()->json(['message' => 'Archivo JSON guardado exitosamente']);
+        // Guardar el archivo temporalmente
+        File::put($tempPath, $data);
+
+        // Mover el archivo a la carpeta 'public/precios'
+        $publicPath = public_path('precios/' . $filename);
+        File::move($tempPath, $publicPath);
     }
 
     public function consulta_TraerPreciosXPresentacion(Request $request){
@@ -302,6 +309,12 @@ class PreciosController extends Controller
 
         // Si el usuario no está autenticado, devolver un error
         return response()->json(['error' => 'Usuario no autenticado'], 401);
+    }
+
+    public function listarArchivos()
+    {
+        $files = Storage::disk('public')->files('precios');
+        return response()->json($files);
     }
 
 }

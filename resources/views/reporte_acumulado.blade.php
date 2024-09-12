@@ -264,6 +264,25 @@
                 </table>
             </div>
         </div>
+        <div class="mt-5 flex gap-4 flex-wrap items-start justify-start md:px-4 my-5 w-full">
+            <div class="overflow-auto relative aside_scrollEDINSON max-h-[600px] w-full">
+                <table class="border-collapse w-full">
+                    <caption class="bg-blue-600 text-gray-50 p-2 font-bold text-lg rounded-t-lg border-x-2 border-t-2 sticky top-0 z-50">REPORTE DE COBRANZA</caption>
+                    <thead class="bg-blue-600 text-gray-50 uppercase z-50 text-sm sticky top-[46px]">
+                        <tr>
+                            <th class="bg-blue-600 border-2 px-2 py-1 text-left">CLIENTE</th>
+                            <th class="bg-blue-600 border-2 px-2 py-1">LIMIT DE ENDEUDAMIENTO</th>
+                            <th class="bg-blue-600 border-2 px-2 py-1">SALDO ACTUAL</th>
+                            <th class="bg-blue-600 border-2 px-2 py-1">DEPOSITO</th>
+                            <th class="bg-blue-600 border-2 px-2 py-1">SALDO GUIA ACTUAL</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bodyReporteAcumuladoExcelResumen" class="text-gray-900 dark:text-gray-50 text-sm">
+                        <tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="5" class="text-center border-2">No hay datos</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </main>
 

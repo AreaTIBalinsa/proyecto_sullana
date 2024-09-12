@@ -12165,7 +12165,11 @@ jQuery(function ($) {
                 let ultimaActualizacionUsuario = `${usuarioRegistroCli} ${usuarioRegistroCliNombre} ${fechaHoy} ${horaHoy}`;
 
                 if(fechaCambioPrecio == fechaHoy){
-                    fn_ActualizarPrecioXPresentacion(codigoCliente,nuevoImporte,codigoEspecie, ultimaActualizacionUsuario);
+                    let codigoEspecie2 = codigoEspecie
+                    if (parseInt(codigoEspecie2) > 8){
+                        codigoEspecie2 = parseInt(codigoEspecie2) - 1
+                    }
+                    fn_ActualizarPrecioXPresentacion(codigoCliente,nuevoImporte,codigoEspecie2, ultimaActualizacionUsuario);
                 }
                 // Llamar a la función fn_AgregarPagoCliente con los datos de la fila actual
                 fn_CambiarPrecioPesadas(codigoCliente, fechaCambioPrecio, codigoEspecie, nuevoImporte)

@@ -4,6 +4,10 @@ window.$ = jQuery;
 
 jQuery(function($) {
 
+    const ahoraEnNY = new Date();
+    const fechaHoy = new Date(ahoraEnNY.getFullYear(), ahoraEnNY.getMonth(), ahoraEnNY.getDate()).toISOString().split('T')[0];
+    $('#fechaFiltrarPrecios').val(fechaHoy);
+
     fn_TraerPreciosXPresentacion();
     fn_TraerPreciosMinimos();
 
@@ -126,42 +130,42 @@ jQuery(function($) {
         const horaHoy = ahoraEnNY.toTimeString().split(' ')[0];
         let ultimaActualizacionUsuario = `${usuarioRegistroCli} ${usuarioRegistroCliNombre} ${fechaHoy} ${horaHoy}`;
 
-        let datosTabla = [];
+        // let datosTabla = [];
     
         $('#tablaPreciosXPresentacion tbody tr').each(function () {
 
             let idCodigoCliente = $(this).find('td:eq(0)').text();
             let nombreCliente = $(this).find('td:eq(1)').text();
 
-            let fila = {
-                idCodigoCliente: $(this).find('td:eq(0)').text(),
-                nombreCliente: $(this).find('td:eq(1)').text(),
-                yugoVivo: parseFloat($(this).find('td:eq(2)').text()),
-                yugoPelado: parseFloat($(this).find('td:eq(3)').text()),
-                tecnicaVivo: parseFloat($(this).find('td:eq(4)').text()),
-                tecnicaPelado: parseFloat($(this).find('td:eq(5)').text()),
-                gallinaDoblePelado: parseFloat($(this).find('td:eq(6)').text()),
-                ahogados: parseFloat($(this).find('td:eq(7)').text()),
-                galloPelado: parseFloat($(this).find('td:eq(8)').text()),
-                maltratadoPelado: parseFloat($(this).find('td:eq(9)').text()),
-                pechuga: parseFloat($(this).find('td:eq(10)').text()),
-                pierna: parseFloat($(this).find('td:eq(11)').text()),
-                alas: parseFloat($(this).find('td:eq(12)').text()),
-                menudencia: parseFloat($(this).find('td:eq(13)').text()),
-                gallinaChica: parseFloat($(this).find('td:eq(14)').text()),
-                otros: parseFloat($(this).find('td:eq(15)').text()),
-                polloXX: parseFloat($(this).find('td:eq(16)').text()),
-                brasaYugo: parseFloat($(this).find('td:eq(17)').text()),
-                brasaTecnico: parseFloat($(this).find('td:eq(18)').text()),
-                polloXXVivo: parseFloat($(this).find('td:eq(19)').text()),
-                gallinaDobleVivo: parseFloat($(this).find('td:eq(20)').text()),
-                gallinaChicaVivo: parseFloat($(this).find('td:eq(21)').text()),
-                galloVivo: parseFloat($(this).find('td:eq(22)').text()),
-                maltratadoVivo: parseFloat($(this).find('td:eq(23)').text()),
-                ultimaActualizacionUsuario: $(this).find('td:eq(24)').text()
-            };
+            // let fila = {
+            //     idCodigoCliente: $(this).find('td:eq(0)').text(),
+            //     nombreCliente: $(this).find('td:eq(1)').text(),
+            //     yugoVivo: parseFloat($(this).find('td:eq(2)').text()),
+            //     yugoPelado: parseFloat($(this).find('td:eq(3)').text()),
+            //     tecnicaVivo: parseFloat($(this).find('td:eq(4)').text()),
+            //     tecnicaPelado: parseFloat($(this).find('td:eq(5)').text()),
+            //     gallinaDoblePelado: parseFloat($(this).find('td:eq(6)').text()),
+            //     ahogados: parseFloat($(this).find('td:eq(7)').text()),
+            //     galloPelado: parseFloat($(this).find('td:eq(8)').text()),
+            //     maltratadoPelado: parseFloat($(this).find('td:eq(9)').text()),
+            //     pechuga: parseFloat($(this).find('td:eq(10)').text()),
+            //     pierna: parseFloat($(this).find('td:eq(11)').text()),
+            //     alas: parseFloat($(this).find('td:eq(12)').text()),
+            //     menudencia: parseFloat($(this).find('td:eq(13)').text()),
+            //     gallinaChica: parseFloat($(this).find('td:eq(14)').text()),
+            //     otros: parseFloat($(this).find('td:eq(15)').text()),
+            //     polloXX: parseFloat($(this).find('td:eq(16)').text()),
+            //     brasaYugo: parseFloat($(this).find('td:eq(17)').text()),
+            //     brasaTecnico: parseFloat($(this).find('td:eq(18)').text()),
+            //     polloXXVivo: parseFloat($(this).find('td:eq(19)').text()),
+            //     gallinaDobleVivo: parseFloat($(this).find('td:eq(20)').text()),
+            //     gallinaChicaVivo: parseFloat($(this).find('td:eq(21)').text()),
+            //     galloVivo: parseFloat($(this).find('td:eq(22)').text()),
+            //     maltratadoVivo: parseFloat($(this).find('td:eq(23)').text()),
+            //     ultimaActualizacionUsuario: $(this).find('td:eq(24)').text()
+            // };
 
-            datosTabla.push(fila);
+            // datosTabla.push(fila);
 
             // let primerEspeciePolloVivo = parseFloat($(this).find('td:eq(2)').text());
             // let segundaEspeciePolloPelado = parseFloat($(this).find('td:eq(3)').text());
@@ -316,20 +320,20 @@ jQuery(function($) {
             });
         }
 
-        $.ajax({
-            url: '/guardar-precios',
-            method: 'GET',
-            data: {
-                data: JSON.stringify(datosTabla),
-                _token: $('meta[name="csrf-token"]').attr('content')
-            },
-            success: function(response) {
+        // $.ajax({
+        //     url: '/guardar-precios',
+        //     method: 'POST',
+        //     data: {
+        //         data: JSON.stringify(datosTabla),
+        //         _token: $('meta[name="csrf-token"]').attr('content')
+        //     },
+        //     success: function(response) {
                 
-            },
-            error: function(xhr, status, error) {
-                console.error('Error al guardar el archivo:', error);
-            }
-        });
+        //     },
+        //     error: function(xhr, status, error) {
+        //         console.error('Error al guardar el archivo:', error);
+        //     }
+        // });
     });    
 
     /* ============ Funciones ============ */
@@ -998,4 +1002,171 @@ jQuery(function($) {
         fila.addClass('bg-gray-300 dark:bg-gray-600');
     });
 
+    function filtrarArchivos(fecha) {
+        // Llamada para obtener la lista de archivos
+        $.ajax({
+            url: '/api/archivos-precios', // Endpoint para obtener la lista de archivos
+            method: 'GET',
+            dataType: 'json',
+            success: function(files) {   
+                // Filtrar y encontrar el archivo más reciente
+                let latestFile = getLatestFile(files, fecha);
+
+                if (latestFile) {
+                    // Cargar y mostrar el contenido del archivo JSON más reciente
+                    $.ajax({
+                        url: '/' + latestFile, // Asumiendo que el archivo es accesible en esta ruta
+                        method: 'GET',
+                        dataType: 'json',
+                        success: function(data) {
+
+                            let tbodyPrecios = $('#bodyPreciosXPresentacion');
+                            tbodyPrecios.empty();
+
+                            // Iterar sobre los objetos y mostrar sus propiedades
+                            data.forEach(function(obj) {
+                                // Crear una nueva fila
+                                let nuevaFila = $('<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 text-black dark:text-white dark:hover:bg-gray-600 cursor-pointer">');
+
+                                // Agregar las celdas con la información
+                                nuevaFila.append($('<td class="hidden">').text(obj.idCodigoCliente));
+                                nuevaFila.append($('<td class="dark:border-gray-700 p-2 font-medium text-gray-900 whitespace-nowrap dark:text-white sticky left-0 dark:bg-gray-800 bg-white border-r-2">').text(obj.nombreCliente));
+                                nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(obj.yugoVivo.toFixed(2)));
+                                nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(obj.yugoPelado.toFixed(2)));
+                                nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(obj.tecnicaVivo.toFixed(2)));
+                                nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(obj.tecnicaPelado.toFixed(2)));
+                                nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(obj.gallinaDoblePelado.toFixed(2)));
+                                nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(obj.ahogados.toFixed(2)));
+                                nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(obj.galloPelado.toFixed(2)));
+                                nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(obj.maltratadoPelado.toFixed(2)));
+                                nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(obj.pechuga.toFixed(2)));
+                                nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(obj.pierna.toFixed(2)));
+                                nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(obj.alas.toFixed(2)));
+                                nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(obj.menudencia.toFixed(2)));
+                                nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(obj.gallinaChica.toFixed(2)));
+                                nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(obj.otros.toFixed(2)));
+                                nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(obj.polloXX.toFixed(2)));
+                                nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(obj.brasaYugo.toFixed(2)));
+                                nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(obj.brasaTecnico.toFixed(2)));
+                                nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(obj.polloXXVivo.toFixed(2)));
+                                nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(obj.gallinaDobleVivo.toFixed(2)));
+                                nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(obj.gallinaChicaVivo.toFixed(2)));
+                                nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(obj.galloVivo.toFixed(2)));
+                                nuevaFila.append($('<td class="p-2 text-center cursor-pointer">').text(obj.maltratadoVivo.toFixed(2)));
+                                nuevaFila.append($('<td class="hidden">').text(obj.ultimaActualizacionUsuario));
+
+                                // Agregar la nueva fila al tbody
+                                tbodyPrecios.append(nuevaFila);
+                            });
+                        },
+                        error: function(xhr, status, error) {
+                            console.error('Error al cargar el archivo:', error);
+                        }
+                    });
+                } else {
+                    console.log('No se encontró un archivo con la fecha proporcionada.');
+                    let tbodyPrecios = $('#bodyPreciosXPresentacion');
+                    tbodyPrecios.empty();
+                    tbodyPrecios.html(`<tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="25" class="text-center">No hay datos</td></tr>`);
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error('Error al obtener la lista de archivos:', error);
+            }
+        });
+    
+        // Función para obtener el archivo más reciente basado en la fecha proporcionada
+        function getLatestFile(files, fecha) {
+            let latestFile = '';
+            let latestTime = '';
+    
+            files.forEach(function(file) {
+                // Extraer la fecha y hora del nombre del archivo
+                let match = file.match(/precios_(\d{8})_(\d{6})\.json/);
+                if (match) {
+                    let fileDate = match[1];
+                    let fileTime = match[2];
+    
+                    // Comparar solo si la fecha coincide
+                    if (fileDate === fecha) {
+                        if (fileTime > latestTime) {
+                            latestTime = fileTime;
+                            latestFile = file;
+                        }
+                    }
+                }
+            });
+    
+            return latestFile;
+        }
+    }
+
+    $('#btnFiltrarFiltro').on('click', function () {
+        let fecha = $('#fechaFiltrarPrecios').val().replace(/-/g, '');
+        filtrarArchivos(fecha);
+    }); 
+    
+    $('#btnGuardarPrecios').on('click', function () {
+        let datosTabla = [];
+
+        const ahoraEnNY = new Date();
+        const padZero = num => num.toString().padStart(2, '0');
+
+        const fechaHoy2 = ahoraEnNY.getFullYear() + 
+            padZero(ahoraEnNY.getMonth() + 1) +
+            padZero(ahoraEnNY.getDate()) + '_' +
+            padZero(ahoraEnNY.getHours()) +
+            padZero(ahoraEnNY.getMinutes()) +
+            padZero(ahoraEnNY.getSeconds());
+    
+        $('#tablaPreciosXPresentacion tbody tr').each(function () {
+
+            let fila = {
+                idCodigoCliente: $(this).find('td:eq(0)').text(),
+                nombreCliente: $(this).find('td:eq(1)').text(),
+                yugoVivo: parseFloat($(this).find('td:eq(2)').text()),
+                yugoPelado: parseFloat($(this).find('td:eq(3)').text()),
+                tecnicaVivo: parseFloat($(this).find('td:eq(4)').text()),
+                tecnicaPelado: parseFloat($(this).find('td:eq(5)').text()),
+                gallinaDoblePelado: parseFloat($(this).find('td:eq(6)').text()),
+                ahogados: parseFloat($(this).find('td:eq(7)').text()),
+                galloPelado: parseFloat($(this).find('td:eq(8)').text()),
+                maltratadoPelado: parseFloat($(this).find('td:eq(9)').text()),
+                pechuga: parseFloat($(this).find('td:eq(10)').text()),
+                pierna: parseFloat($(this).find('td:eq(11)').text()),
+                alas: parseFloat($(this).find('td:eq(12)').text()),
+                menudencia: parseFloat($(this).find('td:eq(13)').text()),
+                gallinaChica: parseFloat($(this).find('td:eq(14)').text()),
+                otros: parseFloat($(this).find('td:eq(15)').text()),
+                polloXX: parseFloat($(this).find('td:eq(16)').text()),
+                brasaYugo: parseFloat($(this).find('td:eq(17)').text()),
+                brasaTecnico: parseFloat($(this).find('td:eq(18)').text()),
+                polloXXVivo: parseFloat($(this).find('td:eq(19)').text()),
+                gallinaDobleVivo: parseFloat($(this).find('td:eq(20)').text()),
+                gallinaChicaVivo: parseFloat($(this).find('td:eq(21)').text()),
+                galloVivo: parseFloat($(this).find('td:eq(22)').text()),
+                maltratadoVivo: parseFloat($(this).find('td:eq(23)').text()),
+                ultimaActualizacionUsuario: $(this).find('td:eq(24)').text()
+            };
+
+            datosTabla.push(fila);
+        });
+
+        $.ajax({
+            url: '/guardar-precios',
+            method: 'POST',
+            data: {
+                data: JSON.stringify(datosTabla),
+                fechaHora: fechaHoy2,
+                _token: $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function(response) {
+                
+            },
+            error: function(xhr, status, error) {
+                console.error('Error al guardar el archivo:', error);
+            }
+        });
+
+    });  
 });

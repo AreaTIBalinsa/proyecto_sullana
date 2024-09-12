@@ -14,6 +14,11 @@ jQuery(function($) {
     var usuarioRegistroCli = $('#usuarioRegistroCli').data('id');
     var usuarioRegistroCliNombre = $('#usuarioRegistroCliNombre').data('id');
 
+    var limitReporteCobranza = 0;
+    var saldoActualReporteCobranza = 0;
+    var depositosReporteCobranza = 0;
+    var saldoActualGuiaReporteCobranza = 0;
+
     // Asignar la fecha actual a los inputs
     $('#fechaDesdeReporteAcumulado').val(fechaHoy);
     $('#fechaHastaReporteAcumulado').val(fechaHoy);
@@ -374,18 +379,25 @@ jQuery(function($) {
 
     function fn_crearDatosTablaExcel(clientesConTotales, totalesPorEspecie, resultadosDescuentos, promediosEspeciesCompra){
         let bodyTablaExcel = "";
+        let bodyTablaExcelResumen = "";
         
         clientesConTotales.forEach(function (item) {
             bodyTablaExcel += fn_crearFilaTablaExcel(item)
+            bodyTablaExcelResumen += fn_crearFilaTablaExcelResumen(item)
         })
 
         bodyTablaExcel += fn_crearFilaTotalTablaExcel(totalesPorEspecie, resultadosDescuentos, promediosEspeciesCompra)
         
         $("#headerReporteAcumuladoExcel").empty();
         $("#headerReporteAcumuladoExcel").html(contenidoHeader);
+
         let tbodyReporteAcumuladoExcel = $('#bodyReporteAcumuladoExcel');
         tbodyReporteAcumuladoExcel.empty();
         tbodyReporteAcumuladoExcel.html(bodyTablaExcel);
+        
+        let tbodyReporteAcumuladoExcelResumen = $('#bodyReporteAcumuladoExcelResumen');
+        tbodyReporteAcumuladoExcelResumen.empty();
+        tbodyReporteAcumuladoExcelResumen.html(bodyTablaExcelResumen);
 
         fn_eliminarTdEspecies(totalesPorEspecie);
 
@@ -1845,8 +1857,11 @@ jQuery(function($) {
                     const fechaHoy = ahoraEnNY.toISOString().split('T')[0]; // Obtiene la fecha en formato YYYY-MM-DD
                     const horaHoy = ahoraEnNY.toTimeString().split(' ')[0];
                     let ultimaActualizacionUsuario = `${usuarioRegistroCli} ${usuarioRegistroCliNombre} ${fechaHoy} ${horaHoy}`;
-
-                    fn_ActualizarPrecioXPresentacion(codigoCliente,nuevoImporte,codigoEspecie, ultimaActualizacionUsuario);
+                    let codigoEspecie2 = codigoEspecie
+                    if (parseInt(codigoEspecie2) > 8){
+                        codigoEspecie2 = parseInt(codigoEspecie2) - 1
+                    }
+                    fn_ActualizarPrecioXPresentacion(codigoCliente,nuevoImporte,codigoEspecie2, ultimaActualizacionUsuario);
                 }
                 // Llamar a la función fn_AgregarPagoCliente con los datos de la fila actual
                 fn_CambiarPrecioPesadas(codigoCliente, fechaCambioPrecio, codigoEspecie, nuevoImporte)
@@ -2209,6 +2224,45 @@ jQuery(function($) {
                 console.error("ERROR",error);
             }
         });
+    }
+
+    function fn_crearFilaTablaExcelResumen(item) {
+
+        function fn_buscarValorItem(obj, valor) {
+            return obj && obj[0] && obj[0][valor] ? obj[0][valor] : "0.00";
+        }
+        
+        // Resultados
+
+        let resultadosTotales = agruparTotalesEspecies(item);
+
+        let totalVentaAnterior = ((parseFloat(item.ventaAnterior) + parseFloat(item.ventaAnterior2) + parseFloat(item.ventaAnterior3)) + parseFloat(item.totalVentaDescuentoAnterior)) - parseFloat(item.pagoAnterior);
+
+        let totalSaldoDelDia = totalVentaAnterior + parseFloat(resultadosTotales.totalVenta);
+
+        let totalPagosHoy = parseFloat(fn_buscarValorItem(item.totalPagos, "pagos"));
+
+        let totalNuevoSaldo = totalSaldoDelDia - totalPagosHoy;
+
+        let ventaDeHOy = resultadosTotales.totalVenta;
+
+        let resultadoPagosVentaHOy = ventaDeHOy - totalPagosHoy;
+
+        totalSaldoAnteriorSubTotales += totalVentaAnterior;
+        totalSaldoActualSubTotales += totalSaldoDelDia;
+        totalCobranzaSubTotales += totalPagosHoy;
+        totalNuevoSaldoSubTotales += totalNuevoSaldo;
+        
+        return `
+            <tr class="bg-white dark:text-gray-200 text-gray-900 border-b dark:bg-gray-800 dark:border-gray-700">
+                <td class="text-left border-y-[1px] border-r-[1px] border-l-2 py-1 px-2 whitespace-nowrap sticky left-0 dark:bg-gray-800 bg-white">${item.nombreCompleto}</td>
+                <td class="text-center border-y-[1px] border-l-[1px] border-r-2 py-1 px-2 whitespace-nowrap bg-red-600 text-white">${item.limitEndeudamiento}</td>
+
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">S/. ${ventaDeHOy}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">S/. ${totalPagosHoy.toFixed(2)}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">S/. ${resultadoPagosVentaHOy.toFixed(2)}</td>
+            </tr>
+        `
     }
 
 });
