@@ -1305,6 +1305,8 @@ jQuery(function($) {
             html: 'Espere mientras se están consultando los datos.',
             timer: 999999999,
             timerProgressBar: true,
+            allowOutsideClick: false,
+            allowEscapeKey: false,
             didOpen: () => {
                 Swal.showLoading();
             },
@@ -1951,7 +1953,7 @@ jQuery(function($) {
                     response.forEach(function(obj) {
                         let pesoNeto = parseFloat(obj.pesoBrutoGuia) - parseFloat(obj.pesoTaraGuia);
                         let promedio = pesoNeto / parseInt(obj.cantidadGuia)
-                        let precioGuia = obj.precioGuia ? precioGuia : 0;
+                        let precioGuia = obj.precioGuia ? parseFloat(obj.precioGuia) : 0;
                         let totalVenta = pesoNeto * precioGuia;
 
                         totalCantidadCompra += parseInt(obj.cantidadGuia)

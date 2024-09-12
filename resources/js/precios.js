@@ -1101,13 +1101,64 @@ jQuery(function($) {
         }
     }
 
+    function formatearFecha(fecha) {
+        // Array con los nombres de los días de la semana en español
+        let diasSemana = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
+        // Array con los nombres de los meses en español
+        let meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+        
+        // Obtener los componentes de la fecha
+        let diaSemana = diasSemana[fecha.getDay()];
+        let dia = fecha.getDate();
+        let mes = meses[fecha.getMonth()];
+        let año = fecha.getFullYear();
+        
+        // Formatear la fecha
+        return diaSemana + " " + (dia < 10 ? '0' : '') + dia + " de " + mes + " del " + año;
+    }
+
     $('#btnFiltrarFiltro').on('click', function () {
         let fecha = $('#fechaFiltrarPrecios').val().replace(/-/g, '');
+
+        let fechaEnviarTexto = $('#fechaFiltrarPrecios').val();
+        // Dividir la cadena de texto para extraer el año, mes y día
+        let [año, mes, dia] = fechaEnviarTexto.split("-");
+        // Crear un nuevo objeto Date con el formato esperado
+        let fechaEnviar = new Date(año, mes - 1, dia); // El mes se resta en 1 porque en JavaScript los meses van de 0 a 11
+    
+        // Verificar si la fecha es válida antes de continuar
+        if (isNaN(fechaEnviar.getTime())) {
+            console.error("Fecha inválida");
+            return;
+        }
+        
+        $('#filtrarClienteReporteAcumuladoExcel').val('');
+        
+        let fechaFormateadaClick = formatearFecha(fechaEnviar);
+        $("#tituloPrecios").text(fechaFormateadaClick);
+
         filtrarArchivos(fecha);
     }); 
     
     $('#btnGuardarPrecios').on('click', function () {
         let datosTabla = [];
+
+        let timerInterval;
+
+        Swal.fire({
+            title: '¡Atención!',
+            html: 'Guardando precios, no salga de la pagina.',
+            timer: 999999999,
+            timerProgressBar: true,
+            allowOutsideClick: false,
+            allowEscapeKey: false,
+            didOpen: () => {
+                Swal.showLoading();
+            },
+            willClose: () => {
+                clearInterval(timerInterval);
+            }
+        })
 
         const ahoraEnNY = new Date();
         const padZero = num => num.toString().padStart(2, '0');
@@ -1161,7 +1212,14 @@ jQuery(function($) {
                 _token: $('meta[name="csrf-token"]').attr('content')
             },
             success: function(response) {
-                
+                clearInterval(timerInterval);
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Se guardaron los precios correctamente',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
             },
             error: function(xhr, status, error) {
                 console.error('Error al guardar el archivo:', error);

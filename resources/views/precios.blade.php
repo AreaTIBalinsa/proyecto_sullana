@@ -352,7 +352,8 @@
             </div>
             <div class="relative overflow-auto max-h-[500px] aside_scrollED shadow-md rounded-lg">
                 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400" id="tablaPreciosXPresentacion">
-                    <thead class="text-xs text-gray-100 uppercase bg-blue-600 sticky top-0 z-50" id="headerPreciosXPresentacion">
+                    <caption class="bg-blue-600 text-gray-50 p-2 font-bold text-lg rounded-t-lg sticky top-0 z-50 border-b-2" id="tituloPrecios">Precios Actuales</caption>
+                    <thead class="text-xs text-gray-100 uppercase bg-blue-600 sticky top-[46px] z-50" id="headerPreciosXPresentacion">
                         <tr>
                             <th class="hidden">Id</th>
                             <th class="p-4" data-column="nombres">
