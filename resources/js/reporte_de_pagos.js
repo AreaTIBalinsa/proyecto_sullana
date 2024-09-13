@@ -1194,7 +1194,7 @@ jQuery(function ($) {
                     // Iterar sobre los objetos y mostrar sus propiedades
                     response.forEach(function (obj) {
                         // Crear una nueva fila
-                        nuevaFila = $('<tr class="bg-white border-b editarPagos dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
+                        nuevaFila = $('<tr class="bg-white border-b editarDescuentos dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
 
                         // Agregar las celdas con la información
                         nuevaFila.append($('<td class="hidden">').text(obj.idDescuento));
@@ -1312,8 +1312,8 @@ jQuery(function ($) {
     }
 
     $(document).on("dblclick", "#bodyCuentaDelClienteDescuentos tr", function() {
-            let codigoDescuento = $(this).find('td:eq(0)').text();
-            fn_ConsultarEditarDescuento(codigoDescuento)
+        let codigoDescuento = $(this).find('td:eq(0)').text();
+        fn_ConsultarEditarDescuento(codigoDescuento)
     });
 
     function fn_ConsultarEditarDescuento(codigoDescuento){
@@ -1404,24 +1404,24 @@ jQuery(function ($) {
         });
     }
 
-    // $(document).on('contextmenu', 'tr.editarPagos', function (e) {
-    //     e.preventDefault();
-    //     let codigoDescuento = $(this).closest("tr").find("td:first").text();
-    //     Swal.fire({
-    //         title: '¿Desea eliminar el Registro?',
-    //         text: "¡Estas seguro de eliminar el descuento!",
-    //         icon: 'warning',
-    //         showCancelButton: true,
-    //         confirmButtonColor: '#3085d6',
-    //         cancelButtonColor: '#d33',
-    //         cancelButtonText: '¡No, cancelar!',
-    //         confirmButtonText: '¡Si,eliminar!'
-    //     }).then((result) => {
-    //         if (result.isConfirmed) {
-    //             fn_EliminarDescuento(codigoDescuento);
-    //         }
-    //     })
-    // });
+    $(document).on('contextmenu', 'tr.editarDescuentos', function (e) {
+        e.preventDefault();
+        let codigoDescuento = $(this).closest("tr").find("td:first").text();
+        Swal.fire({
+            title: '¿Desea eliminar el Registro?',
+            text: "¡Estas seguro de eliminar el descuento!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: '¡No, cancelar!',
+            confirmButtonText: '¡Si,eliminar!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fn_EliminarDescuento(codigoDescuento);
+            }
+        })
+    });
 
     function fn_EliminarDescuento(codigoDescuento){
         $.ajax({
