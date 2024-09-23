@@ -285,15 +285,16 @@ jQuery(function($) {
                     return totalADevolver;
                 }
 
-                totalLunesGeneral += fn_devuelveValorDia(obj,"lunes");
-                totalMartesGeneral += fn_devuelveValorDia(obj,"martes");
-                totalMiercolesGeneral += fn_devuelveValorDia(obj,"miercoles");
-                totalJuevesGeneral += fn_devuelveValorDia(obj,"jueves");
-                totalViernesGeneral += fn_devuelveValorDia(obj,"viernes");
-                totalSabadoGeneral += fn_devuelveValorDia(obj,"sabado");
-                totalDomingoGeneral += fn_devuelveValorDia(obj,"domingo");
-
-                totalEndeudamiento += parseFloat(obj.limitEndeudamiento);
+                if(obj.nombreCompleto != "PERROS" && obj.nombreCompleto != "FALTANTE TECNICA" && obj.nombreCompleto != "VENTA" && obj.nombreCompleto != "JULIO DIAZ" && obj.nombreCompleto != "OTROS" && obj.nombreCompleto != "GRASAS DESPERDICIOS" && obj.nombreCompleto != "STOCK"){
+                    totalLunesGeneral += fn_devuelveValorDia(obj,"lunes");
+                    totalMartesGeneral += fn_devuelveValorDia(obj,"martes");
+                    totalMiercolesGeneral += fn_devuelveValorDia(obj,"miercoles");
+                    totalJuevesGeneral += fn_devuelveValorDia(obj,"jueves");
+                    totalViernesGeneral += fn_devuelveValorDia(obj,"viernes");
+                    totalSabadoGeneral += fn_devuelveValorDia(obj,"sabado");
+                    totalDomingoGeneral += fn_devuelveValorDia(obj,"domingo");
+                    totalEndeudamiento += parseFloat(obj.limitEndeudamiento);
+                }
 
                 let nuevaFila = $('<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
                 // Agregar las celdas con la información
@@ -338,20 +339,20 @@ jQuery(function($) {
     function fn_TraerReporteSemanalSaldos(dia) {
         return new Promise((resolve, reject) => {
             $.ajax({
-                url: '/fn_consulta_TraerReporteAcumuladoDetalle',
+                url: '/fn_consulta_TraerReporteAcumuladoDetalleDeudaMaxima',
                 method: 'GET',
                 data: {
                     fecha: dia,
                 },
                 success: function (response) {
                     // Filtrar clientes que tienen datos en al menos uno de los totales
-                    const clientesFiltrados = response.filter(cliente => 
-                        cliente.datosTabla_tb_pesadas.length > 0 || 
-                        cliente.datosTabla_tb_pesadas2.length > 0 || 
-                        cliente.datosTabla_tb_pesadas3.length > 0
-                    );
+                    // const clientesFiltrados = response.filter(cliente => 
+                    //     cliente.datosTabla_tb_pesadas.length > 0 || 
+                    //     cliente.datosTabla_tb_pesadas2.length > 0 || 
+                    //     cliente.datosTabla_tb_pesadas3.length > 0
+                    // );
     
-                    const clientesModificados = clientesFiltrados.map(function(clienteObj) {
+                    const clientesModificados = response.map(function(clienteObj) {
                         return {
                             codigoCli: clienteObj.cliente.codigoCli,
                             nombreCompleto: clienteObj.cliente.nombreCompleto,

@@ -26,6 +26,10 @@
             </div>
             <button class="text-base py-2 px-5 bg-blue-600 md:max-w-xs w-full hover:bg-blue-700 text-gray-50 rounded-lg md:w-auto font-semibold" id="btnCambiarPrecioPesadas">S/ Cambiar Precios</button>
         </div>
+
+        <div class="w-full flex justify-between items-start flex-wrap gap-4 mb-5 md:px-5 pt-5">
+            <button class="text-base py-2 px-5 bg-blue-600 md:max-w-xs w-full hover:bg-blue-700 text-gray-50 rounded-lg md:w-auto font-semibold" id="btnVerReporteDetallado">Ver Reporte Detallado</button>
+        </div>
         
         <div class="rounded-lg overflow-auto aside_scrollEDINSON max-h-[90vh] md:mx-5 my-5" id="divReporteAcumuladoDetalleExcel">
             <table class="w-full border-separate border-spacing-0 text-gray-500 dark:text-gray-400 select-none text-sm" id="tablaReporteAcumuladoExcel">
@@ -203,6 +207,110 @@
             </table>
         </div>
 
+        <div class="rounded-lg overflow-auto aside_scrollEDINSON max-h-[90vh] md:mx-5 my-5" id="divReporteAcumuladoDetalleExcelResumenDelResumen">
+            <table class="w-full border-separate border-spacing-0 text-gray-500 dark:text-gray-400 select-none text-sm" id="tablaReporteAcumuladoExcelResumenDelResumen">
+                <caption class="bg-blue-600 text-gray-50 p-2 font-bold text-lg rounded-t-lg border-x-2 sticky top-0 border-t-2 z-50" id="fechaReporteExcelTitle2"></caption>
+                <thead id="headerReporteAcumuladoExcelResumenDelResumen" class="bg-blue-600 text-gray-50 sticky top-[46px] text-xs uppercase z-50 border-separate max-h-max">
+                    <tr class="h-10">
+                        <th class="px-4 border-y-2 border-r-[1px] border-l-2 whitespace-nowrap bg-blue-600 sticky left-0"></th>
+                        <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap especie1" colspan="4">YUGO</th>
+                        <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap especie1" colspan="2"></th>
+                        <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap especie3" colspan="4">TECNICA</th>
+                        <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap especie3" colspan="2"></th>
+                        <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap especie16" colspan="4">POLLO XX</th>
+                        <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap especie16" colspan="2"></th>
+                        <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap especie5" colspan="4">GALLINA DOBLE</th>
+                        <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap especie5" colspan="2"></th>
+                        <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap especie7" colspan="4">GALLO</th>
+                        <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap especie7" colspan="2"></th>
+                        <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap especie14" colspan="4">GALLINA CHICA</th>
+                        <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap especie14" colspan="2"></th>
+                        <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap especie8" colspan="4">POLLO MALTRATADO PELADO</th>
+                        <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap especie8"></th>
+                        <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap" colspan="4">TROZADO, AHOGADOS y SECOS</th>
+                        <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap"></th>
+                        <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap bg-red-600" colspan="3">DESCUENTO</th>
+                        <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap bg-green-400" colspan="3">TOTAL</th>
+                        <th class="px-4 border-x-[1px] border-y-2 whitespace-nowrap bg-yellow-300 text-gray-900" colspan="4">SALDOS Y ABONOS</th>
+                        <th class="px-4 border-y-2 border-l-[1px] border-r-2 whitespace-nowrap bg-blue-600" colspan="2"></th>
+                    </tr>
+                    <tr class="h-10 bg-white dark:bg-gray-800 dark:text-gray-200 text-gray-900">
+                        <th class="text-left px-2 text-sm border-r-[1px] border-b-2 border-l-2 whitespace-nowrap bg-blue-600 text-white sticky left-0">CLIENTE</th>
+                        
+                        <th class="px-4 border-x-[1px] border-b-2 whitespace-nowrap especie1">UNI.</th>
+                        <th class="px-4 border-x-[1px] border-b-2 whitespace-nowrap especie1">PESO</th>
+                        <th class="px-4 border-x-[1px] border-b-2 whitespace-nowrap especie1">PRECIO</th>
+                        <th class="px-4 border-x-[1px] border-b-2 whitespace-nowrap especie1">SUB TOTAL</th>
+                        <th class="px-4 border-x-[1px] border-b-2 whitespace-nowrap especie1 bg-blue-600 text-white">PROM.</th>
+                        <th class="px-4 border-x-[1px] border-b-2 whitespace-break-spaces especie1 bg-red-600 text-white">PROM. GRANJA</th>
+
+                        <th class="px-4 border-x-[1px] border-b-2 whitespace-nowrap especie3">UNI.</th>
+                        <th class="px-4 border-x-[1px] border-b-2 whitespace-nowrap especie3">PESO</th>
+                        <th class="px-4 border-x-[1px] border-b-2 whitespace-nowrap especie3">PRECIO</th>
+                        <th class="px-4 border-x-[1px] border-b-2 whitespace-nowrap especie3">SUB TOTAL</th>
+                        <th class="px-4 border-x-[1px] border-b-2 whitespace-nowrap especie3 bg-blue-600 text-white">PROM.</th>
+                        <th class="px-4 border-x-[1px] border-b-2 whitespace-break-spaces especie3 bg-red-600 text-white">PROM. GRANJA</th>
+
+                        <th class="px-4 border-x-[1px] border-b-2 whitespace-nowrap especie16">UNI.</th>
+                        <th class="px-4 border-x-[1px] border-b-2 whitespace-nowrap especie16">PESO</th>
+                        <th class="px-4 border-x-[1px] border-b-2 whitespace-nowrap especie16">PRECIO</th>
+                        <th class="px-4 border-x-[1px] border-b-2 whitespace-nowrap especie16">SUB TOTAL</th>
+                        <th class="px-4 border-x-[1px] border-b-2 whitespace-nowrap especie16 bg-blue-600 text-white">PROM.</th>
+                        <th class="px-4 border-x-[1px] border-b-2 whitespace-break-spaces especie16 bg-red-600 text-white">PROM. GRANJA</th>
+
+                        <th class="px-4 border-x-[1px] border-b-2 whitespace-nowrap especie5">UNI.</th>
+                        <th class="px-4 border-x-[1px] border-b-2 whitespace-nowrap especie5">PESO</th>
+                        <th class="px-4 border-x-[1px] border-b-2 whitespace-nowrap especie5">PRECIO</th>
+                        <th class="px-4 border-x-[1px] border-b-2 whitespace-nowrap especie5">SUB TOTAL</th>
+                        <th class="px-4 border-x-[1px] border-b-2 whitespace-nowrap especie5 bg-blue-600 text-white">PROM.</th>
+                        <th class="px-4 border-x-[1px] border-b-2 whitespace-break-spaces especie5 bg-red-600 text-white">PROM. GRANJA</th>
+
+                        <th class="px-4 border-x-[1px] border-b-2 whitespace-nowrap especie7">UNI.</th>
+                        <th class="px-4 border-x-[1px] border-b-2 whitespace-nowrap especie7">PESO</th>
+                        <th class="px-4 border-x-[1px] border-b-2 whitespace-nowrap especie7">PRECIO</th>
+                        <th class="px-4 border-x-[1px] border-b-2 whitespace-nowrap especie7">SUB TOTAL</th>
+                        <th class="px-4 border-x-[1px] border-b-2 whitespace-nowrap especie7 bg-blue-600 text-white">PROM.</th>
+                        <th class="px-4 border-x-[1px] border-b-2 whitespace-break-spaces especie7 bg-red-600 text-white">PROM. GRANJA</th>
+
+                        <th class="px-4 border-x-[1px] border-b-2 whitespace-nowrap especie14">UNI.</th>
+                        <th class="px-4 border-x-[1px] border-b-2 whitespace-nowrap especie14">PESO</th>
+                        <th class="px-4 border-x-[1px] border-b-2 whitespace-nowrap especie14">PRECIO</th>
+                        <th class="px-4 border-x-[1px] border-b-2 whitespace-nowrap especie14">SUB TOTAL</th>
+                        <th class="px-4 border-x-[1px] border-b-2 whitespace-nowrap especie14 bg-blue-600 text-white">PROM.</th>
+                        <th class="px-4 border-x-[1px] border-b-2 whitespace-break-spaces especie14 bg-red-600 text-white">PROM. GRANJA</th>
+
+                        <th class="px-4 border-x-[1px] border-b-2 whitespace-nowrap especie8">UNI.</th>
+                        <th class="px-4 border-x-[1px] border-b-2 whitespace-nowrap especie8">PESO</th>
+                        <th class="px-4 border-x-[1px] border-b-2 whitespace-nowrap especie8">PRECIO</th>
+                        <th class="px-4 border-x-[1px] border-b-2 whitespace-nowrap especie8">SUB TOTAL</th>
+                        <th class="px-4 border-x-[1px] border-b-2 whitespace-nowrap especie8 bg-blue-600 text-white">PROM.</th>
+
+                        <th class="px-4 border-x-[1px] border-b-2 whitespace-nowrap">UNI.</th>
+                        <th class="px-4 border-x-[1px] border-b-2 whitespace-nowrap">PESO</th>
+                        <th class="px-4 border-x-[1px] border-b-2 whitespace-nowrap">PROMEDIO PRECIO</th>
+                        <th class="px-4 border-x-[1px] border-b-2 whitespace-nowrap">SUB TOTAL</th>
+                        <th class="px-4 border-x-[1px] border-b-2 whitespace-nowrap bg-blue-600 text-white">PROM.</th>
+
+                        <th class="px-4 border-x-[1px] border-b-2 whitespace-nowrap">PESO</th>
+                        <th class="px-4 border-x-[1px] border-b-2 whitespace-nowrap">PROMEDIO PRECIO</th>
+                        <th class="px-4 border-x-[1px] border-b-2 whitespace-nowrap">SUB TOTAL</th>
+                        <th class="px-4 border-x-[1px] border-b-2 whitespace-nowrap">UNI.</th>
+                        <th class="px-4 border-x-[1px] border-b-2 whitespace-nowrap">PESO</th>
+                        <th class="px-4 border-x-[1px] border-b-2 whitespace-nowrap">TOTAL</th>
+                        <th class="px-4 border-x-[1px] border-b-2 whitespace-nowrap">SALDO ANT.</th>
+                        <th class="px-4 border-x-[1px] border-b-2 whitespace-nowrap">SALDO ACT.</th>
+                        <th class="px-4 border-x-[1px] border-b-2 whitespace-nowrap">COBRANZA</th>
+                        <th class="px-4 border-x-[1px] border-b-2 whitespace-nowrap">NUEVO SALDO</th>
+                        <th class="px-4 border-l-[1px] border-b-2 border-r-2 whitespace-break-spaces text-sm bg-red-600 text-white">LIMITE ENDEUDAMIENTO</th>
+                        <th class="px-4 border-l-[1px] border-b-2 border-r-2 whitespace-nowrap text-sm bg-blue-600 text-white">CLIENTE</th>
+                    </tr>
+                </thead>
+                <tbody id="bodyReporteAcumuladoExcelResumenDelResumen">
+                    <tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="100" class="text-center border-2">No hay datos</td></tr>
+                </tbody>
+            </table>
+        </div>
+
         <div class="mt-5 flex gap-4 flex-wrap items-start justify-start md:mx-5 my-5">
             <div class="overflow-hidden flex flex-col md:flex-1 gap-4">
                 <div class="overflow-auto relative aside_scrollEDINSON">
@@ -272,13 +380,33 @@
                         <tr>
                             <th class="bg-blue-600 border-2 px-2 py-1 text-left">CLIENTE</th>
                             <th class="bg-blue-600 border-2 px-2 py-1">LIMIT DE ENDEUDAMIENTO</th>
-                            <th class="bg-blue-600 border-2 px-2 py-1">SALDO ACTUAL</th>
+                            <th class="bg-blue-600 border-2 px-2 py-1">SALDO ANTERIOR</th>
+                            <th class="bg-blue-600 border-2 px-2 py-1">SALDO HOY</th>
                             <th class="bg-blue-600 border-2 px-2 py-1">DEPOSITO</th>
                             <th class="bg-blue-600 border-2 px-2 py-1">SALDO GUIA ACTUAL</th>
+                            <th class="bg-blue-600 border-2 px-2 py-1">SALDO NUEVO</th>
                         </tr>
                     </thead>
                     <tbody id="bodyReporteAcumuladoExcelResumen" class="text-gray-900 dark:text-gray-50 text-sm">
-                        <tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="5" class="text-center border-2">No hay datos</td></tr>
+                        <tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="7" class="text-center border-2">No hay datos</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="mt-5 flex gap-4 flex-wrap items-start justify-start md:px-4 my-5 w-full">
+            <div class="overflow-auto relative aside_scrollEDINSON max-h-[600px] w-full">
+                <table class="border-collapse w-full">
+                    <caption class="bg-blue-600 text-gray-50 p-2 font-bold text-lg rounded-t-lg border-x-2 border-t-2 sticky top-0 z-50">REPORTE DE MERMA</caption>
+                    <thead class="bg-blue-600 text-gray-50 uppercase z-50 text-sm sticky top-[46px]">
+                        <tr>
+                            <th class="bg-blue-600 border-2 px-2 py-1 text-left">VARIEDAD</th>
+                            <th class="bg-blue-600 border-2 px-2 py-1">PROMEDIO CAMAL</th>
+                            <th class="bg-blue-600 border-2 px-2 py-1">PROMEDIO GRANJA</th>
+                            <th class="bg-blue-600 border-2 px-2 py-1">MERMA</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bodyReporteAcumuladoExcelResumenMerma" class="text-gray-900 dark:text-gray-50 text-sm">
+                        <tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="6" class="text-center border-2">No hay datos</td></tr>
                     </tbody>
                 </table>
             </div>

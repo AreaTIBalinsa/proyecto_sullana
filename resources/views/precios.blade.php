@@ -350,6 +350,16 @@
                 </div>
                 <button class="text-base py-2 px-5 bg-green-600 hover:bg-green-700 text-gray-50 rounded-lg w-full md:w-auto" id="btnGuardarPrecios"><i class='bx bx-save text-lg'></i> Guardar Precios</button>
             </div>
+            <div class="text-white mb-4 hidden" id="mostrarPorqueSi">
+                <ul>
+                    <li>Tecnica Vivo Subio 1 puntos</li>
+                    <li>Yugo Vivo Subio 1 puntos</li>
+                    <li>Tecnica Pelado Bajo 1 puntos</li>
+                    <li>Yugo Pelado Bajo 2 puntos</li>
+                </ul>
+                
+                
+            </div>
             <div class="relative overflow-auto max-h-[500px] aside_scrollED shadow-md rounded-lg">
                 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400" id="tablaPreciosXPresentacion">
                     <caption class="bg-blue-600 text-gray-50 p-2 font-bold text-lg rounded-t-lg sticky top-0 z-50 border-b-2" id="tituloPrecios">Precios Actuales</caption>

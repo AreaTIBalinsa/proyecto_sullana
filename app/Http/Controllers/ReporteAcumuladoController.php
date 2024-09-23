@@ -186,7 +186,7 @@ class ReporteAcumuladoController extends Controller
                     UNION ALL
                     SELECT codigoCli FROM tb_pesadas3 WHERE fechaRegistroPes = ?
                 ) AS p ON c.codigoCli = p.codigoCli
-                WHERE c.estadoEliminadoCli = 1
+                WHERE c.estadoEliminadoCli = 1 AND c.nombresCli != "STOCK"
                 ORDER BY nombreCompleto ASC
             ', [$fecha, $fecha, $fecha]);
             
