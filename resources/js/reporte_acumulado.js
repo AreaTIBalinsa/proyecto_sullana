@@ -30,14 +30,14 @@ jQuery(function($) {
 
     fn_declarar_especies();
 
-    var primerEspecieGlobal = 0
-    var segundaEspecieGlobal = 0
-    var terceraEspecieGlobal = 0
-    var cuartaEspecieGlobal = 0
-    var nombrePrimerEspecieGlobal = ""
-    var nombreSegundaEspecieGlobal = ""
-    var nombreTerceraEspecieGlobal = ""
-    var nombreCuartaEspecieGlobal = ""
+    var primerEspecieGlobal = 0;
+    var segundaEspecieGlobal = 0;
+    var terceraEspecieGlobal = 0;
+    var cuartaEspecieGlobal = 0;
+    var nombrePrimerEspecieGlobal = "";
+    var nombreSegundaEspecieGlobal = "";
+    var nombreTerceraEspecieGlobal = "";
+    var nombreCuartaEspecieGlobal = "";
 
     /* ============ Eventos ============ */
 
@@ -406,6 +406,7 @@ jQuery(function($) {
         })
 
         bodyTablaExcel += fn_crearFilaTotalTablaExcel(totalesPorEspecie, resultadosDescuentos, promediosEspeciesCompra)
+        bodyTablaExcelResumenDelResumen += fn_crearFilaTotalTablaExcelResumenDelResumen(totalesPorEspecie, resultadosDescuentos, promediosEspeciesCompra)
         fn_crearTotalesTablaExcelMerma(totalesPorEspecie, promediosEspeciesCompra)
         
         $("#headerReporteAcumuladoExcel").empty();
@@ -1402,6 +1403,18 @@ jQuery(function($) {
     $(document).on("click", "#tablaReporteAcumuladoExcel tbody tr", function() {
 
         $('#tablaReporteAcumuladoExcel tbody tr').each(function() {
+            $(this).addClass('bg-white dark:bg-gray-800');
+            $(this).removeClass('bg-gray-300 dark:bg-gray-600');
+        });
+
+        let fila = $(this).closest("tr")
+        fila.removeClass('bg-white dark:bg-gray-800');
+        fila.addClass('bg-gray-300 dark:bg-gray-600');
+    });
+
+    $(document).on("click", "#tablaReporteAcumuladoExcelResumenDelResumen tbody tr", function() {
+
+        $('#tablaReporteAcumuladoExcelResumenDelResumen tbody tr').each(function() {
             $(this).addClass('bg-white dark:bg-gray-800');
             $(this).removeClass('bg-gray-300 dark:bg-gray-600');
         });
@@ -2614,7 +2627,7 @@ jQuery(function($) {
         }
 
         function fn_soloSumaTotalesEnteros(valor1, valor2, valor3) {
-            let resultado = parseFloat(valor1) + parseFloat(valor2) + parseFloat(valor3);
+            let resultado = parseInt(valor1) + parseInt(valor2) + parseInt(valor3);
             return resultado;
         }
         
@@ -2692,6 +2705,143 @@ jQuery(function($) {
                 <td class="text-center border-y-[1px] border-l-[1px] border-r-2 py-1 px-2 whitespace-nowrap">${item.nombreCompleto}</td>
             </tr>
         `
+    }
+
+    function fn_crearFilaTotalTablaExcelResumenDelResumen(totalesPorEspecie, resultadosDescuentos, promediosEspeciesCompra) {
+
+        function fn_buscarValor(obj, especie, valor) {
+            return obj[especie] ? obj[especie][valor] : 0;
+        }
+
+        function fn_buscarValorDecimal(obj, especie, valor) {
+            return obj[especie] ? obj[especie][valor] : "0.00";
+        }
+
+        function fn_buscarValorDecimalTAS(obj, especie, valor) {
+            return obj && obj[especie] ? parseFloat(obj[especie][valor]) : 0;
+        }
+
+        function fn_calculaPromedioDecimalesTotales(valor1, valor2, valor3) {
+            let resultado = parseFloat(valor1) + parseFloat(valor2) + parseFloat(valor3);
+            let contador = 0;
+
+            if(parseFloat(valor1) != 0){
+                contador++;
+            }
+            
+            if(parseFloat(valor2) != 0){
+                contador++;
+            }
+            
+            if(parseFloat(valor3) != 0){
+                contador++;
+            }
+
+            let valorRetornar = resultado / contador;
+
+            return valorRetornar ? valorRetornar.toFixed(2) : "0.00";
+        }
+
+        function fn_soloSumaTotalesDecimales(valor1, valor2, valor3) {
+            let resultado = parseFloat(valor1) + parseFloat(valor2) + parseFloat(valor3);
+            return resultado.toFixed(2);
+        }
+
+        function fn_soloSumaTotalesEnteros(valor1, valor2, valor3) {
+            let resultado = parseInt(valor1) + parseInt(valor2) + parseInt(valor3);
+            return resultado;
+        }
+
+        // Resultados
+
+        let totalDeTotales = agruparTotalTotalesEspecies(totalesPorEspecie);
+
+        let totalCantidadTAS = fn_buscarValor(totalesPorEspecie, 'especie9', 'totalCantidad') + fn_buscarValor(totalesPorEspecie, 'especie10', 'totalCantidad') + fn_buscarValor(totalesPorEspecie, 'especie11', 'totalCantidad') + fn_buscarValor(totalesPorEspecie, 'especie12', 'totalCantidad') + fn_buscarValor(totalesPorEspecie, 'especie13', 'totalCantidad') + fn_buscarValor(totalesPorEspecie, 'especie15', 'totalCantidad') + fn_buscarValor(totalesPorEspecie, 'especie6', 'totalCantidad') + fn_buscarValor(totalesPorEspecie, 'especie21', 'totalCantidad');
+        
+        let totalPesoTAS = fn_buscarValorDecimalTAS(totalesPorEspecie, 'especie9', 'totalPeso') + fn_buscarValorDecimalTAS(totalesPorEspecie, 'especie10', 'totalPeso') + fn_buscarValorDecimalTAS(totalesPorEspecie, 'especie11', 'totalPeso') + fn_buscarValorDecimalTAS(totalesPorEspecie, 'especie12', 'totalPeso') + fn_buscarValorDecimalTAS(totalesPorEspecie, 'especie13', 'totalPeso') + fn_buscarValorDecimalTAS(totalesPorEspecie, 'especie15', 'totalPeso') + fn_buscarValorDecimalTAS(totalesPorEspecie, 'especie6', 'totalPeso') + fn_buscarValorDecimalTAS(totalesPorEspecie, 'especie21', 'totalPeso');
+        
+        let totalVentaTAS = fn_buscarValorDecimalTAS(totalesPorEspecie, 'especie9', 'totalVenta') + fn_buscarValorDecimalTAS(totalesPorEspecie, 'especie10', 'totalVenta') + fn_buscarValorDecimalTAS(totalesPorEspecie, 'especie11', 'totalVenta') + fn_buscarValorDecimalTAS(totalesPorEspecie, 'especie12', 'totalVenta') + fn_buscarValorDecimalTAS(totalesPorEspecie, 'especie13', 'totalVenta') + fn_buscarValorDecimalTAS(totalesPorEspecie, 'especie15', 'totalVenta') + fn_buscarValorDecimalTAS(totalesPorEspecie, 'especie6', 'totalVenta') + fn_buscarValorDecimalTAS(totalesPorEspecie, 'especie21', 'totalVenta');
+
+        let totalPrecioDescuento = (resultadosDescuentos.totalVentaDescuento ? resultadosDescuentos.totalVentaDescuento : 0) / (resultadosDescuentos.totalPesoDescuento ? resultadosDescuentos.totalPesoDescuento : 0);
+
+        let totalPesoFila = parseFloat(totalDeTotales.totalPeso) + parseFloat(resultadosDescuentos.totalPesoDescuento ? resultadosDescuentos.totalPesoDescuento : 0);
+
+        let totalVentaFila = parseFloat(totalDeTotales.totalVenta) + parseFloat(resultadosDescuentos.totalVentaDescuento ? resultadosDescuentos.totalVentaDescuento : 0);
+        
+        return `
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 dark:text-gray-200 text-gray-900 sticky bottom-0">
+                <td class="text-left font-bold text-sm border-t-2 border-r-[1px] border-l-2 border-b-2 py-1 px-2 text-white bg-blue-600 whitespace-nowrap sticky left-0">TOTAL</td>
+
+                <td class="especie1 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${fn_soloSumaTotalesEnteros(fn_buscarValor(totalesPorEspecie, 'especie1', 'totalCantidad'), fn_buscarValor(totalesPorEspecie, 'especie2', 'totalCantidad'), fn_buscarValor(totalesPorEspecie, 'especie17', 'totalCantidad'))}</td>
+                <td class="especie1 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${fn_soloSumaTotalesDecimales(fn_buscarValorDecimal(totalesPorEspecie, 'especie1', 'totalPeso'), fn_buscarValorDecimal(totalesPorEspecie, 'especie2', 'totalPeso'), fn_buscarValorDecimal(totalesPorEspecie, 'especie17', 'totalPeso'))} Kg.</td>
+                <td class="especie1 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${fn_calculaPromedioDecimalesTotales(fn_buscarValorDecimal(totalesPorEspecie, 'especie1', 'precioPromedio'), fn_buscarValorDecimal(totalesPorEspecie, 'especie2', 'precioPromedio'), fn_buscarValorDecimal(totalesPorEspecie, 'especie17', 'precioPromedio'))}</td>
+                <td class="especie1 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${fn_calculaPromedioDecimalesTotales(fn_buscarValorDecimal, (totalesPorEspecie, 'especie1', 'totalVenta'), fn_buscarValorDecimal, (totalesPorEspecie, 'especie2', 'totalVenta'), fn_buscarValorDecimal, (totalesPorEspecie, 'especie17', 'totalVenta'))}</td>
+                <td class="especie1 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap bg-blue-600 text-white">${fn_calculaPromedioDecimalesTotales(fn_buscarValorDecimal(totalesPorEspecie, 'especie1', 'promedioEspecie'), fn_buscarValorDecimal(totalesPorEspecie, 'especie2', 'promedioEspecie'), fn_buscarValorDecimal(totalesPorEspecie, 'especie17', 'promedioEspecie'))}</td>
+                <td class="especie1 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap bg-red-600 text-white">${promediosEspeciesCompra.yugo}</td>
+
+                <td class="especie3 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${fn_soloSumaTotalesEnteros(fn_buscarValor(totalesPorEspecie, 'especie3', 'totalCantidad'), fn_buscarValor(totalesPorEspecie, 'especie4', 'totalCantidad'), fn_buscarValor(totalesPorEspecie, 'especie18', 'totalCantidad'))}</td>
+                <td class="especie3 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${fn_soloSumaTotalesDecimales(fn_buscarValorDecimal(totalesPorEspecie, 'especie3', 'totalPeso'), fn_buscarValorDecimal(totalesPorEspecie, 'especie4', 'totalPeso'), fn_buscarValorDecimal(totalesPorEspecie, 'especie18', 'totalPeso'))} Kg.</td>
+                <td class="especie3 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${fn_calculaPromedioDecimalesTotales(fn_buscarValorDecimal(totalesPorEspecie, 'especie3', 'precioPromedio'), fn_buscarValorDecimal(totalesPorEspecie, 'especie4', 'precioPromedio'), fn_buscarValorDecimal(totalesPorEspecie, 'especie18', 'precioPromedio'))}</td>
+                <td class="especie3 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${fn_calculaPromedioDecimalesTotales(fn_buscarValorDecimal, (totalesPorEspecie, 'especie3', 'totalVenta'), fn_buscarValorDecimal, (totalesPorEspecie, 'especie4', 'totalVenta'), fn_buscarValorDecimal, (totalesPorEspecie, 'especie18', 'totalVenta'))}</td>
+                <td class="especie3 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap bg-blue-600 text-white">${fn_calculaPromedioDecimalesTotales(fn_buscarValorDecimal(totalesPorEspecie, 'especie3', 'promedioEspecie'), fn_buscarValorDecimal(totalesPorEspecie, 'especie4', 'promedioEspecie'), fn_buscarValorDecimal(totalesPorEspecie, 'especie18', 'promedioEspecie'))}</td>
+                <td class="especie3 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap bg-red-600 text-white">${promediosEspeciesCompra.tecnica}</td>
+
+                <td class="especie16 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${fn_soloSumaTotalesEnteros(fn_buscarValor(totalesPorEspecie, 'especie16', 'totalCantidad'), fn_buscarValor(totalesPorEspecie, 'especie19', 'totalCantidad'), 0)}</td>
+                <td class="especie16 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${fn_soloSumaTotalesDecimales(fn_buscarValorDecimal(totalesPorEspecie, 'especie16', 'totalPeso'), fn_buscarValorDecimal(totalesPorEspecie, 'especie19', 'totalPeso'), 0)} Kg.</td>
+                <td class="especie16 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${fn_calculaPromedioDecimalesTotales(fn_buscarValorDecimal(totalesPorEspecie, 'especie16', 'precioPromedio'), fn_buscarValorDecimal(totalesPorEspecie, 'especie19', 'precioPromedio'), 0)}</td>
+                <td class="especie16 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${fn_calculaPromedioDecimalesTotales(fn_buscarValorDecimal, (totalesPorEspecie, 'especie16', 'totalVenta'), fn_buscarValorDecimal, (totalesPorEspecie, 'especie19', 'totalVenta'), 0)}</td>
+                <td class="especie16 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap bg-blue-600 text-white">${fn_calculaPromedioDecimalesTotales(fn_buscarValorDecimal(totalesPorEspecie, 'especie16', 'promedioEspecie'), fn_buscarValorDecimal(totalesPorEspecie, 'especie19', 'promedioEspecie'), 0)}</td>
+                <td class="especie16 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap bg-red-600 text-white">${promediosEspeciesCompra.xx}</td>
+
+                <td class="especie5 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${fn_soloSumaTotalesEnteros(fn_buscarValor(totalesPorEspecie, 'especie5', 'totalCantidad'), fn_buscarValor(totalesPorEspecie, 'especie20', 'totalCantidad'), 0)}</td>
+                <td class="especie5 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${fn_soloSumaTotalesDecimales(fn_buscarValorDecimal(totalesPorEspecie, 'especie5', 'totalPeso'), fn_buscarValorDecimal(totalesPorEspecie, 'especie20', 'totalPeso'), 0)} Kg.</td>
+                <td class="especie5 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${fn_calculaPromedioDecimalesTotales(fn_buscarValorDecimal(totalesPorEspecie, 'especie5', 'precioPromedio'), fn_buscarValorDecimal(totalesPorEspecie, 'especie20', 'precioPromedio'), 0)}</td>
+                <td class="especie5 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${fn_calculaPromedioDecimalesTotales(fn_buscarValorDecimal, (totalesPorEspecie, 'especie5', 'totalVenta'), fn_buscarValorDecimal, (totalesPorEspecie, 'especie20', 'totalVenta'), 0)}</td>
+                <td class="especie5 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap bg-blue-600 text-white">${fn_calculaPromedioDecimalesTotales(fn_buscarValorDecimal(totalesPorEspecie, 'especie5', 'promedioEspecie'), fn_buscarValorDecimal(totalesPorEspecie, 'especie20', 'promedioEspecie'), 0)}</td>
+                <td class="especie5 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap bg-red-600 text-white">${promediosEspeciesCompra.gallinaDoble}</td>
+
+                <td class="especie7 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${fn_soloSumaTotalesEnteros(fn_buscarValor(totalesPorEspecie, 'especie7', 'totalCantidad'), fn_buscarValor(totalesPorEspecie, 'especie22', 'totalCantidad'), 0)}</td>
+                <td class="especie7 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${fn_soloSumaTotalesDecimales(fn_buscarValorDecimal(totalesPorEspecie, 'especie7', 'totalPeso'), fn_buscarValorDecimal(totalesPorEspecie, 'especie22', 'totalPeso'), 0)} Kg.</td>
+                <td class="especie7 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${fn_calculaPromedioDecimalesTotales(fn_buscarValorDecimal(totalesPorEspecie, 'especie7', 'precioPromedio'), fn_buscarValorDecimal(totalesPorEspecie, 'especie22', 'precioPromedio'), 0)}</td>
+                <td class="especie7 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${fn_calculaPromedioDecimalesTotales(fn_buscarValorDecimal, (totalesPorEspecie, 'especie7', 'totalVenta'), fn_buscarValorDecimal, (totalesPorEspecie, 'especie22', 'totalVenta'), 0)}</td>
+                <td class="especie7 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap bg-blue-600 text-white">${fn_calculaPromedioDecimalesTotales(fn_buscarValorDecimal(totalesPorEspecie, 'especie7', 'promedioEspecie'), fn_buscarValorDecimal(totalesPorEspecie, 'especie22', 'promedioEspecie'), 0)}</td>
+                <td class="especie7 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap bg-red-600 text-white">${promediosEspeciesCompra.gallo}</td>
+
+                <td class="especie14 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${fn_soloSumaTotalesEnteros(fn_buscarValor(totalesPorEspecie, 'especie14', 'totalCantidad'), fn_buscarValor(totalesPorEspecie, 'especie23', 'totalCantidad'), 0)}</td>
+                <td class="especie14 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${fn_soloSumaTotalesDecimales(fn_buscarValorDecimal(totalesPorEspecie, 'especie14', 'totalPeso'), fn_buscarValorDecimal(totalesPorEspecie, 'especie23', 'totalPeso'), 0)} Kg.</td>
+                <td class="especie14 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${fn_calculaPromedioDecimalesTotales(fn_buscarValorDecimal(totalesPorEspecie, 'especie14', 'precioPromedio'), fn_buscarValorDecimal(totalesPorEspecie, 'especie23', 'precioPromedio'), 0)}</td>
+                <td class="especie14 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${fn_calculaPromedioDecimalesTotales(fn_buscarValorDecimal, (totalesPorEspecie, 'especie14', 'totalVenta'), fn_buscarValorDecimal, (totalesPorEspecie, 'especie23', 'totalVenta'), 0)}</td>
+                <td class="especie14 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap bg-blue-600 text-white">${fn_calculaPromedioDecimalesTotales(fn_buscarValorDecimal(totalesPorEspecie, 'especie14', 'promedioEspecie'), fn_buscarValorDecimal(totalesPorEspecie, 'especie23', 'promedioEspecie'), 0)}</td>
+                <td class="especie14 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap bg-red-600 text-white">${promediosEspeciesCompra.gallinaChica}</td>
+
+                <td class="especie8 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${fn_buscarValor(totalesPorEspecie, 'especie8', 'totalCantidad')}</td>
+                <td class="especie8 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${fn_buscarValorDecimal(totalesPorEspecie, 'especie8', 'totalPeso')} Kg.</td>
+                <td class="especie8 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${fn_buscarValorDecimal(totalesPorEspecie, 'especie8', 'precioPromedio')}</td>
+                <td class="especie8 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${fn_buscarValorDecimal(totalesPorEspecie, 'especie8', 'totalVenta')}</td>
+                <td class="especie8 text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${fn_buscarValorDecimal(totalesPorEspecie, 'especie8', 'promedioEspecie')}</td>
+                
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${totalCantidadTAS}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${totalPesoTAS.toFixed(2)} Kg.</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${"S/N"}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${totalVentaTAS.toFixed(2)}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${"S/N"}</td>
+
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${(resultadosDescuentos.totalPesoDescuento ? resultadosDescuentos.totalPesoDescuento : 0).toFixed(2)} Kg.</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${(totalPrecioDescuento ? totalPrecioDescuento : 0).toFixed(2)}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap font-semibold">S/. ${(resultadosDescuentos.totalVentaDescuento ? resultadosDescuentos.totalVentaDescuento : 0).toFixed(2)}</td>
+
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${totalDeTotales.totalCantidad}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">${totalPesoFila.toFixed(2)} Kg.</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap font-semibold">S/. ${totalVentaFila.toFixed(2)}</td>
+
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${totalSaldoAnteriorSubTotales.toFixed(2)}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${totalSaldoActualSubTotales.toFixed(2)}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap">S/. ${totalCobranzaSubTotales.toFixed(2)}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap font-bold">S/. ${totalNuevoSaldoSubTotales.toFixed(2)}</td>
+                <td class="text-center border-t-2 border-x-[1px] border-b-2 py-1 px-2 whitespace-nowrap font-bold bg-red-600">&nbsp;</td>
+                <td class="text-center border-t-2 border-l-[1px] border-r-2 border-b-2 py-1 px-2 whitespace-nowrap font-bold bg-blue-600">&nbsp;</td>
+            </tr>
+        `;
     }
 
 });

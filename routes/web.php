@@ -140,6 +140,7 @@ Route::get('/fn_consulta_EliminarDescuento', [ReporteDePagosController::class,'c
 Route::get('/fn_consulta_pagosDetallados', [ReporteDePagosController::class,'consulta_pagosDetallados']);
 Route::get('/fn_consulta_VerificarCodigoPago', [ReporteDePagosController::class,'consulta_VerificarCodigoPago']);
 Route::get('/fn_consulta_TraerEgresosPaulFechas', [ReporteDePagosController::class,'consulta_TraerEgresosPaulFechas']);
+Route::get('/fn_consulta_TraerSaldoAnterior', [ReporteDePagosController::class,'consulta_TraerSaldoAnterior']);
 
 Route::get('/fn_consulta_ConsultarPesadasDesdeHasta', [PesadasController::class,'consulta_ConsultarPesadasDesdeHasta']);
 Route::get('/fn_consulta_TraerClientesCambiarPesadaCliente', [PesadasController::class,'consulta_TraerClientesCambiarPesadaCliente']);
@@ -155,6 +156,7 @@ Route::get('/fn_consulta_RegistrarUsuarioRolesEditar', [ConsultarUsuariosControl
 Route::get('/fn_consulta_EliminarUsuario', [ConsultarUsuariosController::class,'consulta_EliminarUsuario']);
 
 Route::get('/fn_consulta_ConsultarProveedor', [ReportePorProveedorController::class,'consulta_ConsultarProveedor']);
+Route::get('/fn_consulta_ConsultarProveedorEstadoCuenta', [ReportePorProveedorController::class,'consulta_ConsultarProveedorEstadoCuenta']);
 Route::get('/fn_consulta_ConsultarProveedorSum', [ReportePorProveedorController::class,'consulta_ConsultarProveedorSum']);
 Route::get('/fn_consulta_DatosProveedor', [ReportePorProveedorController::class,'consulta_DatosProveedor']);
 Route::get('/fn_consulta_RegistrarGuia', [ReportePorProveedorController::class,'consulta_RegistrarGuia']);

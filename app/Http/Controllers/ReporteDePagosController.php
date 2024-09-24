@@ -2126,4 +2126,45 @@ class ReporteDePagosController extends Controller
         return response()->json(['error' => 'Usuario no autenticado'], 401);
     }  
 
+    public function consulta_TraerSaldoAnterior(Request $request){
+
+        $fechaHastaTraerPagos = $request->input('fechaHastaTraerPagos');
+
+        if (Auth::check()) {
+            // Realiza la consulta a la base de datos
+            $datos = DB::select('
+                SELECT
+                    (SELECT SUM(cantidadAbonoPag) 
+                    FROM tb_pagos 
+                    WHERE clasificacionPago = 3 
+                        AND estadoPago = 1
+                        AND fechaOperacionPag = (
+                        SELECT MAX(fechaOperacionPag) 
+                        FROM tb_pagos 
+                        WHERE clasificacionPago = 3 
+                            AND estadoPago = 1 
+                            AND fechaOperacionPag < ?)
+                    ) AS totalAbonosPagos,
+                    
+                    (SELECT SUM(cantidadAbonoEgreso) 
+                    FROM tb_egresos 
+                    WHERE clasificadoEgreso = 2 
+                        AND estadoEgreso = 1
+                        AND fechaOperacionEgreso = (
+                        SELECT MAX(fechaOperacionEgreso) 
+                        FROM tb_egresos 
+                        WHERE clasificadoEgreso = 2 
+                            AND estadoEgreso = 1 
+                            AND fechaOperacionEgreso < ?)
+                    ) AS totalAbonosEgresos
+                ', [$fechaHastaTraerPagos, $fechaHastaTraerPagos]);
+    
+            // Devuelve los datos en formato JSON
+            return response()->json($datos);
+        }
+    
+        // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
+        return response()->json(['error' => 'Usuario no autenticado'], 401);
+    }  
+
 }

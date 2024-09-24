@@ -361,11 +361,11 @@ jQuery(function ($) {
         let fechaDesdeTraerPagos = $('#fechaDesdeReporteDePagos').val();
         let fechaHastaTraerPagos = $('#fechaHastaReporteDePagos').val();
         // fn_TraerPagosFechas(fechaDesdeTraerPagos, fechaHastaTraerPagos);
-        fn_TraerPagosFechas2(fechaDesdeTraerPagos, fechaHastaTraerPagos);
-        fn_TraerPagosFechas3(fechaDesdeTraerPagos, fechaHastaTraerPagos);
+        fn_TraerPagosFechas2(fechaHastaTraerPagos, fechaHastaTraerPagos);
+        fn_TraerPagosFechas3(fechaHastaTraerPagos, fechaHastaTraerPagos);
         // fn_TraerPagosDirectoGranjaFechas(fechaDesdeTraerPagos, fechaHastaTraerPagos);
-        fn_TraerEgresosFechas(fechaDesdeTraerPagos, fechaHastaTraerPagos);
-        fn_TraerEgresosPaulFechas(fechaDesdeTraerPagos, fechaHastaTraerPagos);
+        fn_TraerEgresosFechas(fechaHastaTraerPagos, fechaHastaTraerPagos);
+        fn_TraerEgresosPaulFechas(fechaHastaTraerPagos, fechaHastaTraerPagos);
     });
 
     $('#btnBuscarCuentaDelClienteDescuentos').on('click', function () {
@@ -1014,8 +1014,9 @@ jQuery(function ($) {
     }
 
     function fn_TraerPagosFechas3(fechaDesdeTraerPagos, fechaHastaTraerPagos) {
+        totalPagoIngresoPaul = 0
         $.ajax({
-            url: '/fn_consulta_TraerPagosFechasItem3',
+            url: '/fn_consulta_TraerSaldoAnterior',
             method: 'GET',
             data:{
                 fechaDesdeTraerPagos:fechaDesdeTraerPagos,
@@ -1023,58 +1024,88 @@ jQuery(function ($) {
             },
             success: function(response) {
 
-                // Verificar si la respuesta es un arreglo de objetos
-                if (Array.isArray(response)) {
+                let respuestaTotal = parseFloat(response[0]["totalAbonosPagos"]) - parseFloat(response[0]["totalAbonosEgresos"]);
 
-                    // Obtener el select
-                    let tbodyReporteDePagos = $('#bodyReporteDePagosCobranzaDePaul');
-                    tbodyReporteDePagos.empty();
+                $.ajax({
+                    url: '/fn_consulta_TraerPagosFechasItem3',
+                    method: 'GET',
+                    data:{
+                        fechaDesdeTraerPagos:fechaDesdeTraerPagos,
+                        fechaHastaTraerPagos:fechaHastaTraerPagos,
+                    },
+                    success: function(response) {
+                        console.log(response);
 
-                    let totalPago = 0;
-                    let nuevaFila = "";
-
-                    // Iterar sobre los objetos y mostrar sus propiedades
-                    response.forEach(function(obj) {
-                        // Crear una nueva fila
-                        nuevaFila = $('<tr class="bg-white editarPagos border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
-                        totalPago += parseFloat(obj.cantidadAbonoPag);
-                        // Agregar las celdas con la información
-                        nuevaFila.append($('<td class="hidden">').text(obj.idPagos));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(obj.fechaOperacionPag));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">').append($('<h5 class="min-w-max px-2">').text(obj.nombreCompleto === "" ? obj.campoExtra : obj.nombreCompleto)));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(parseFloat(obj.cantidadAbonoPag).toFixed(2)));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap hidden">').text(obj.tipoAbonoPag));
-                        // nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(obj.horaOperacionPag));
-                        nuevaFila.append($('<td class="px-4 py-2 text-center cursor-pointer hidden">').text(obj.observacion));
-                        // Agregar la nueva fila al tbody
-                        tbodyReporteDePagos.append(nuevaFila);
-                    });
-
-                    if (response.length == 0) {
-                        tbodyReporteDePagos.html(`<tr class="rounded-lg border-2 border-l-[1px] border-r-[1px] dark:border-gray-700"><td colspan="8" class="text-center">No hay datos</td></tr>`);
-                    }else{
-                        nuevaFila = $('<tr class="class="bg-white dark:bg-gray-800 h-0.5" cursor-pointer">');
-                        nuevaFila.append($('<td class="text-center h-0.5 bg-gray-400 dark:bg-gray-300" colspan="8">').text(""));
-                        tbodyReporteDePagos.append(nuevaFila);
+                        // Obtener el select
+                        let tbodyReporteDePagos = $('#bodyReporteDePagosCobranzaDePaul');
+                        tbodyReporteDePagos.empty();
+    
+                        let totalPago = 0;
+                        let nuevaFila = "";
 
                         nuevaFila = $('<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
-
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">').append($('<h5 class="min-w-max px-2">').text("SALDO TOTAL:")));
-                        // nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
-                        // nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
-                        // nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
-                        nuevaFila.append($('<td class="px-4 py-2 text-center cursor-pointer">').text(""));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text("S/. "+totalPago.toFixed(2)));
+                        totalPago += parseFloat(respuestaTotal);
+                        // Agregar las celdas con la información
+                        nuevaFila.append($('<td class="hidden">').text(""));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(fechaHastaTraerPagos));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">').append($('<h5 class="min-w-max px-2">').text("SALDO ANTERIOR")));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(parseFloat(respuestaTotal).toFixed(2)));
+                        nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap hidden">').text("Efectivo"));
+                        // nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(obj.horaOperacionPag));
+                        nuevaFila.append($('<td class="px-4 py-2 text-center cursor-pointer hidden">').text(""));
                         // Agregar la nueva fila al tbody
                         tbodyReporteDePagos.append(nuevaFila);
-                        totalPagoIngresoPaul = totalPago;
-                        diferenciaPagosPaul();
+        
+                        // Verificar si la respuesta es un arreglo de objetos
+                        if (Array.isArray(response)) {
+        
+                            // Iterar sobre los objetos y mostrar sus propiedades
+                            response.forEach(function(obj) {
+                                // Crear una nueva fila
+                                nuevaFila = $('<tr class="bg-white editarPagos border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
+                                totalPago += parseFloat(obj.cantidadAbonoPag);
+                                // Agregar las celdas con la información
+                                nuevaFila.append($('<td class="hidden">').text(obj.idPagos));
+                                nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(obj.fechaOperacionPag));
+                                nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">').append($('<h5 class="min-w-max px-2">').text(obj.nombreCompleto === "" ? obj.campoExtra : obj.nombreCompleto)));
+                                nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(parseFloat(obj.cantidadAbonoPag).toFixed(2)));
+                                nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap hidden">').text(obj.tipoAbonoPag));
+                                // nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text(obj.horaOperacionPag));
+                                nuevaFila.append($('<td class="px-4 py-2 text-center cursor-pointer hidden">').text(obj.observacion));
+                                // Agregar la nueva fila al tbody
+                                tbodyReporteDePagos.append(nuevaFila);
+                            });
+        
+                            // if (response.length == 0) {
+                            //     tbodyReporteDePagos.html(`<tr class="rounded-lg border-2 border-l-[1px] border-r-[1px] dark:border-gray-700"><td colspan="8" class="text-center">No hay datos</td></tr>`);
+                            // }else{
+                                nuevaFila = $('<tr class="class="bg-white dark:bg-gray-800 h-0.5" cursor-pointer">');
+                                nuevaFila.append($('<td class="text-center h-0.5 bg-gray-400 dark:bg-gray-300" colspan="8">').text(""));
+                                tbodyReporteDePagos.append(nuevaFila);
+        
+                                nuevaFila = $('<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
+        
+                                nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">').append($('<h5 class="min-w-max px-2">').text("SALDO TOTAL:")));
+                                // nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
+                                // nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
+                                // nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer">').text(""));
+                                nuevaFila.append($('<td class="px-4 py-2 text-center cursor-pointer">').text(""));
+                                nuevaFila.append($('<td class="border-r dark:border-gray-700 p-2 text-center cursor-pointer whitespace-nowrap">').text("S/. "+totalPago.toFixed(2)));
+                                // Agregar la nueva fila al tbody
+                                tbodyReporteDePagos.append(nuevaFila);
+                                totalPagoIngresoPaul += totalPago;
+                                diferenciaPagosPaul();
+                            // }
+        
+                        } else {
+                            console.log("La respuesta no es un arreglo de objetos.");
+                        }
+                        
+                    },
+                    error: function(error) {
+                        console.error("ERROR",error);
                     }
-
-                } else {
-                    console.log("La respuesta no es un arreglo de objetos.");
-                }
-                
+                });
             },
             error: function(error) {
                 console.error("ERROR",error);
@@ -1897,8 +1928,8 @@ jQuery(function ($) {
                     });
                     let fechaDesdeTraerPagos = $('#fechaDesdeReporteDePagos').val();
                     let fechaHastaTraerPagos = $('#fechaHastaReporteDePagos').val();
-                    fn_TraerEgresosFechas(fechaDesdeTraerPagos,fechaHastaTraerPagos);
-                    fn_TraerEgresosPaulFechas(fechaDesdeTraerPagos,fechaHastaTraerPagos);
+                    fn_TraerEgresosFechas(fechaHastaTraerPagos,fechaHastaTraerPagos);
+                    fn_TraerEgresosPaulFechas(fechaHastaTraerPagos,fechaHastaTraerPagos);
                 }
             },
             error: function(error) {
@@ -2262,7 +2293,7 @@ jQuery(function ($) {
                 // Realizar la acción después de que todas las consultas se completen
                 let fechaDesdeTraerPagos = $('#fechaDesdeReporteDePagos').val();
                 let fechaHastaTraerPagos = $('#fechaHastaReporteDePagos').val();
-                fn_TraerPagosFechas(fechaDesdeTraerPagos, fechaHastaTraerPagos);
+                fn_TraerPagosFechas(fechaHastaTraerPagos, fechaHastaTraerPagos);
                 $("#registrar_agregarPagos_Excel").removeAttr('disabled');
             }
         }
@@ -2431,7 +2462,7 @@ jQuery(function ($) {
                 // Realizar la acción después de que todas las consultas se completen
                 let fechaDesdeTraerPagos = $('#fechaDesdeReporteDePagos').val();
                 let fechaHastaTraerPagos = $('#fechaHastaReporteDePagos').val();
-                fn_TraerPagosFechas2(fechaDesdeTraerPagos, fechaHastaTraerPagos);
+                fn_TraerPagosFechas2(fechaHastaTraerPagos, fechaHastaTraerPagos);
                 $("#registrar_agregarPagos_Excel2").removeAttr('disabled');
             }
         }
@@ -2680,7 +2711,7 @@ jQuery(function ($) {
                 // Realizar la acción después de que todas las consultas se completen
                 let fechaDesdeTraerPagos = $('#fechaDesdeReporteDePagos').val();
                 let fechaHastaTraerPagos = $('#fechaHastaReporteDePagos').val();
-                fn_TraerPagosFechas3(fechaDesdeTraerPagos, fechaHastaTraerPagos);
+                fn_TraerPagosFechas3(fechaHastaTraerPagos, fechaHastaTraerPagos);
                 $("#registrar_agregarPagos_Excel3").removeAttr('disabled');
             }
         }
@@ -2931,7 +2962,7 @@ jQuery(function ($) {
                 // Realizar la acción después de que todas las consultas se completen
                 let fechaDesdeTraerPagos = $('#fechaDesdeReporteDePagos').val();
                 let fechaHastaTraerPagos = $('#fechaHastaReporteDePagos').val();
-                fn_TraerPagosDirectoGranjaFechas(fechaDesdeTraerPagos, fechaHastaTraerPagos);
+                fn_TraerPagosDirectoGranjaFechas(fechaHastaTraerPagos, fechaHastaTraerPagos);
                 $("#registrar_agregarPagos_Excel4").removeAttr('disabled');
             }
         }
@@ -3141,7 +3172,7 @@ jQuery(function ($) {
                 // Realizar la acción después de que todas las consultas se completen
                 let fechaDesdeTraerPagos = $('#fechaDesdeReporteDePagos').val();
                 let fechaHastaTraerPagos = $('#fechaHastaReporteDePagos').val();
-                fn_TraerEgresosFechas(fechaDesdeTraerPagos, fechaHastaTraerPagos);
+                fn_TraerEgresosFechas(fechaHastaTraerPagos, fechaHastaTraerPagos);
                 $("#registrar_agregarPagos_ExcelEgreso1").removeAttr('disabled');
             }
         }
@@ -3347,7 +3378,7 @@ jQuery(function ($) {
                 // Realizar la acción después de que todas las consultas se completen
                 let fechaDesdeTraerPagos = $('#fechaDesdeReporteDePagos').val();
                 let fechaHastaTraerPagos = $('#fechaHastaReporteDePagos').val();
-                fn_TraerEgresosPaulFechas(fechaDesdeTraerPagos, fechaHastaTraerPagos);
+                fn_TraerEgresosPaulFechas(fechaHastaTraerPagos, fechaHastaTraerPagos);
                 $("#registrar_agregarPagos_ExcelEgreso2").removeAttr('disabled');
             }
         }
