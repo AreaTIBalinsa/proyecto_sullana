@@ -157,6 +157,8 @@ Route::get('/fn_consulta_EliminarUsuario', [ConsultarUsuariosController::class,'
 
 Route::get('/fn_consulta_ConsultarProveedor', [ReportePorProveedorController::class,'consulta_ConsultarProveedor']);
 Route::get('/fn_consulta_ConsultarProveedorEstadoCuenta', [ReportePorProveedorController::class,'consulta_ConsultarProveedorEstadoCuenta']);
+Route::get('/fn_consulta_ConsultarPagosProveedorEstadoCuenta', [ReportePorProveedorController::class,'consulta_ConsultarPagosProveedorEstadoCuenta']);
+Route::get('/fn_consulta_ConsultarCuentaAnteriorProveedorEstadoCuenta', [ReportePorProveedorController::class,'consulta_ConsultarCuentaAnteriorProveedorEstadoCuenta']);
 Route::get('/fn_consulta_ConsultarProveedorSum', [ReportePorProveedorController::class,'consulta_ConsultarProveedorSum']);
 Route::get('/fn_consulta_DatosProveedor', [ReportePorProveedorController::class,'consulta_DatosProveedor']);
 Route::get('/fn_consulta_RegistrarGuia', [ReportePorProveedorController::class,'consulta_RegistrarGuia']);

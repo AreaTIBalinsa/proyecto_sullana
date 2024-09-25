@@ -255,8 +255,26 @@ jQuery(function($) {
         let precioAgregarGuia = $('#valorPrecioAgregarGuia').val();
         let fechaRegistrarGuia = $('#fechaRegistrarGuia').val();
         let valorNumeroGuiaAgregarGuia = $('#valorNumeroGuiaAgregarGuia').val();
+
+        let especie = "";
+
+        if(idProveedor == 1){
+            especie = "TECNICA"
+        }else if(idProveedor == 2 || idProveedor == 3 || idProveedor == 4 || idProveedor == 5 || idProveedor == 6 || idProveedor == 7 || idProveedor == 11 || idProveedor == 12){
+            especie = "YUGO"
+        }else if(idProveedor == 8){
+            especie = "MASAY"
+        }else if(idProveedor == 9){
+            especie = "CHIMU"
+        }else if(idProveedor == 10){
+            especie = "OTROS"
+        }else if(idProveedor == 19){
+            especie = "SALOMON"
+        }else if(idProveedor == 20){
+            especie = "ATOCHE"
+        }
         
-        fn_RegistrarGuia(idProveedor,cantidadAgregarGuia,precioPesoBruto,precioPesoTara,precioAgregarGuia,fechaRegistrarGuia,valorNumeroGuiaAgregarGuia);
+        fn_RegistrarGuia(idProveedor,cantidadAgregarGuia,precioPesoBruto,precioPesoTara,precioAgregarGuia,fechaRegistrarGuia,valorNumeroGuiaAgregarGuia, especie);
 
     });
 
@@ -270,12 +288,30 @@ jQuery(function($) {
         let fechaRegistrarGuiaEditar = $('#fechaRegistrarGuiaEditar').val();
         let valorNumeroGuiaAgregarGuiaEditar = $('#valorNumeroGuiaAgregarGuiaEditar').val();
         let idActualizarGuia = $('#idGuiaEditar').attr('value');
+
+        let especie = "";
+
+        if(idProveedor == 1){
+            especie = "TECNICA"
+        }else if(idProveedor == 2 || idProveedor == 3 || idProveedor == 4 || idProveedor == 5 || idProveedor == 6 || idProveedor == 7 || idProveedor == 11 || idProveedor == 12){
+            especie = "YUGO"
+        }else if(idProveedor == 8){
+            especie = "MASAY"
+        }else if(idProveedor == 9){
+            especie = "CHIMU"
+        }else if(idProveedor == 10){
+            especie = "OTROS"
+        }else if(idProveedor == 19){
+            especie = "SALOMON"
+        }else if(idProveedor == 20){
+            especie = "ATOCHE"
+        }
         
-        fn_RegistrarGuiaEditar(idActualizarGuia,idProveedorEditar,cantidadAgregarGuiaEditar,pesoAgregarGuiaEditar,precioAgregarGuiaEditar,pesoBrutoEditar,pesoTaraEditar,fechaRegistrarGuiaEditar,valorNumeroGuiaAgregarGuiaEditar);
+        fn_RegistrarGuiaEditar(idActualizarGuia,idProveedorEditar,cantidadAgregarGuiaEditar,pesoAgregarGuiaEditar,precioAgregarGuiaEditar,pesoBrutoEditar,pesoTaraEditar,fechaRegistrarGuiaEditar,valorNumeroGuiaAgregarGuiaEditar, especie);
 
     });
 
-    function fn_RegistrarGuiaEditar(idActualizarGuia,idProveedorEditar,cantidadAgregarGuiaEditar,pesoAgregarGuiaEditar,precioAgregarGuiaEditar,pesoBrutoEditar,pesoTaraEditar,fechaRegistrarGuiaEditar,valorNumeroGuiaAgregarGuiaEditar){
+    function fn_RegistrarGuiaEditar(idActualizarGuia,idProveedorEditar,cantidadAgregarGuiaEditar,pesoAgregarGuiaEditar,precioAgregarGuiaEditar,pesoBrutoEditar,pesoTaraEditar,fechaRegistrarGuiaEditar,valorNumeroGuiaAgregarGuiaEditar, especie){
         $.ajax({
             url: '/fn_consulta_RegistrarGuiaEditar',
             method: 'GET',
@@ -289,6 +325,7 @@ jQuery(function($) {
                 precioAgregarGuiaEditar:precioAgregarGuiaEditar,
                 fechaRegistrarGuiaEditar:fechaRegistrarGuiaEditar,
                 valorNumeroGuiaAgregarGuiaEditar:valorNumeroGuiaAgregarGuiaEditar,
+                especie:especie,
             },
             success: function(response) {
                 if (response.success) {
@@ -315,7 +352,7 @@ jQuery(function($) {
         });
     }
 
-    function fn_RegistrarGuia(idProveedor,cantidadAgregarGuia,precioPesoBruto,precioPesoTara,precioAgregarGuia,fechaRegistrarGuia,valorNumeroGuiaAgregarGuia){
+    function fn_RegistrarGuia(idProveedor,cantidadAgregarGuia,precioPesoBruto,precioPesoTara,precioAgregarGuia,fechaRegistrarGuia,valorNumeroGuiaAgregarGuia, especie){
         $.ajax({
             url: '/fn_consulta_RegistrarGuia',
             method: 'GET',
@@ -327,6 +364,7 @@ jQuery(function($) {
                 precioAgregarGuia:precioAgregarGuia,
                 fechaRegistrarGuia:fechaRegistrarGuia,
                 valorNumeroGuiaAgregarGuia:valorNumeroGuiaAgregarGuia,
+                especie:especie,
             },
             success: function(response) {
                 if (response.success) {
@@ -531,7 +569,7 @@ jQuery(function($) {
         nuevaFila.append($('<td class="outline-none border-r-[1px] dark:border-gray-700 p-2 text-center cursor-pointer" contenteditable="true">').text(""));
         nuevaFila.append($('<td class="outline-none p-2 text-center cursor-pointer hidden" contenteditable="true">').text("1"));
         nuevaFila.append($('<td class="outline-none p-2 text-center cursor-pointer hidden codigoDeClienteTablaExcel" contenteditable="false">').text("0"));
-        nuevaFila.append($('<td class="outline-none p-2 text-center cursor-pointer validarFormatoFechaTablas text-gray-900 dark:text-white fechaRegistroPago" contenteditable="true">').text(`${fechaHoyTabla}`));
+        nuevaFila.append($('<td class="outline-none p-2 text-center cursor-pointer validarFormatoFechaTablas text-gray-900 dark:text-white fechaRegistroPago hidden" contenteditable="true">').text(`${fechaHoyTabla}`));
         tbody.append(nuevaFila);
     
         nuevaFila.find('.nombreClienteTablaExcel').on('input', function() {
@@ -896,6 +934,24 @@ jQuery(function($) {
             let codigoCliente = filaActual.find('td:eq(9)').text().trim();
             let fechaRegistroPagoCliente = filaActual.find('td:eq(10)').text().trim();
             fechaRegistroPagoCliente = fechaRegistroPagoCliente.split('-').reverse().join('-');
+
+            let especie = "";
+
+            if(codigoCliente == 1){
+                especie = "TECNICA"
+            }else if(codigoCliente == 2 || codigoCliente == 3 || codigoCliente == 4 || codigoCliente == 5 || codigoCliente == 6 || codigoCliente == 7 || codigoCliente == 11 || codigoCliente == 12){
+                especie = "YUGO"
+            }else if(codigoCliente == 8){
+                especie = "MASAY"
+            }else if(codigoCliente == 9){
+                especie = "CHIMU"
+            }else if(codigoCliente == 10){
+                especie = "OTROS"
+            }else if(codigoCliente == 19){
+                especie = "SALOMON"
+            }else if(codigoCliente == 20){
+                especie = "ATOCHE"
+            }
     
             formaDePago = formaDePago[0].toUpperCase() + formaDePago.slice(1);
     
@@ -940,7 +996,7 @@ jQuery(function($) {
                             checkCompletion();
                         } else {
                             // Llamar a la función fn_AgregarPagoCliente con los datos de la fila actual
-                            fn_AgregarPagoClienteExcel(codigoCliente, montoAgregarPagoCliente, fechaAgregarPagoCliente, formaDePago, codAgregarPagoCliente, comentarioAgregarPagoCliente, bancoAgregarPagoCliente, horaAgregarPago, pagoDerivado, nombreCliente, fechaRegistroPagoCliente)
+                            fn_AgregarPagoClienteExcel(codigoCliente, montoAgregarPagoCliente, fechaAgregarPagoCliente, formaDePago, codAgregarPagoCliente, comentarioAgregarPagoCliente, bancoAgregarPagoCliente, horaAgregarPago, pagoDerivado, nombreCliente, fechaRegistroPagoCliente, especie)
                             .then(function() {
                                 completedRequests++;
                                 checkCompletion();
@@ -963,7 +1019,7 @@ jQuery(function($) {
         });
     }); 
 
-    function fn_AgregarPagoClienteExcel(codigoCliente,montoAgregarPagoCliente,fechaAgregarPagoCliente,formaDePago,codAgregarPagoCliente,comentarioAgregarPagoCliente,bancoAgregarPagoCliente,horaAgregarPago, pagoDerivado, nombreCliente, fechaRegistroPagoCliente){
+    function fn_AgregarPagoClienteExcel(codigoCliente,montoAgregarPagoCliente,fechaAgregarPagoCliente,formaDePago,codAgregarPagoCliente,comentarioAgregarPagoCliente,bancoAgregarPagoCliente,horaAgregarPago, pagoDerivado, nombreCliente, fechaRegistroPagoCliente, especie){
         return  $.ajax({
             url: '/fn_consulta_AgregarPagoClienteProveedores',
             method: 'GET',
@@ -979,6 +1035,7 @@ jQuery(function($) {
                 pagoDerivado:pagoDerivado,
                 nombreCliente:nombreCliente,
                 fechaRegistroPagoCliente: fechaRegistroPagoCliente,
+                especie: especie,
             },
             success: function(response) {
                 if (response.success) {

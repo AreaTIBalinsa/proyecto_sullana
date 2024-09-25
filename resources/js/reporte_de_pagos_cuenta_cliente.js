@@ -159,69 +159,169 @@ jQuery(function ($) {
                 nombreProveedor:nombreProveedor,
             },
             success: function (respuestaGuiasProveedores) {
-                // Verificar si la respuesta es un arreglo de objetos
-                if (Array.isArray(respuestaGuiasProveedores)) {
 
-                    // Obtener el select
-                    let tbodyProveedor = $('#bodyCuentaDelCliente');
-                    tbodyProveedor.empty();
+                $.ajax({
+                url: '/fn_consulta_ConsultarPagosProveedorEstadoCuenta',
+                    method: 'GET',
+                    data:{
+                        fechaDesde:fechaDesde,
+                        fechaHasta:fechaHasta,
+                        nombreProveedor:nombreProveedor,
+                    },
+                    success: function (respuestaPagosProveedores) {
 
-                    let nuevaFila = "";
-                    let pagoAProveedoresPorDia = 0.00;
-                    let cantidadAProveedoresPorDia = 0;
-                    let pesoAProveedoresPorDia = 0.0;
-                    let pesoBrutoProveedoresPorDia = 0.0;
-                    let pesoTaraProveedoresPorDia = 0.0;
+                        $.ajax({
+                            url: '/fn_consulta_ConsultarCuentaAnteriorProveedorEstadoCuenta',
+                                method: 'GET',
+                                data:{
+                                    fechaDesde:fechaDesde,
+                                    fechaHasta:fechaHasta,
+                                    nombreProveedor:nombreProveedor,
+                                },
+                                success: function (respuestaCuentaAnterior) {
 
-                    respuestaGuiasProveedores.forEach(function (obj) {
-                        nuevaFila = $('<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
-                        let precioGuia = 0.00;
-                        if (obj.precioGuia != "" && obj.precioGuia != null) {
-                            precioGuia = parseFloat(obj.precioGuia);
-                        }
-                        let pesoNeto = parseFloat(obj.pesoBrutoGuia)-parseFloat(obj.pesoTaraGuia);
-                        let promedio = parseFloat(pesoNeto)/parseFloat(obj.cantidadGuia);
-                        let totalAPagar = parseFloat(precioGuia)*parseFloat(pesoNeto);
-                        pagoAProveedoresPorDia += totalAPagar;
-                        cantidadAProveedoresPorDia += parseInt(obj.cantidadGuia);
-                        pesoAProveedoresPorDia += parseFloat(pesoNeto);
-                        pesoBrutoProveedoresPorDia += parseFloat(obj.pesoBrutoGuia);
-                        pesoTaraProveedoresPorDia += parseFloat(obj.pesoTaraGuia);
-                        // Agregar las celdas con la información
-                        nuevaFila.append($('<td class="hidden">').text(obj.idGuia));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(obj.numGuia));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(obj.nombreEspecieCompra));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(obj.cantidadGuia == 1 ? `${obj.cantidadGuia} Ud.` : `${obj.cantidadGuia} Uds.`));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text((pesoNeto).toFixed(2)+" Kg."));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text((promedio).toFixed(2)));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(precioGuia.toFixed(2)));
-                        nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(`S/. ${fn_formatearImportes(totalAPagar)}`));
-                        
-                        // Agregar la nueva fila al tbody
-                        tbodyProveedor.append(nuevaFila);
-                    });
-                    
-                    nuevaFila = $('<tr class="bg-white border-b border-t-2 border-t-gray-700 dark:border-t-white dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
-                    nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(""));
-                    nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(""));
-                    nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(""));
-                    nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(""));
-                    nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(""));
-                    nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text("TOTAL :"));
-                    nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(`S/. ${fn_formatearImportes(pagoAProveedoresPorDia)}`));
-                    tbodyProveedor.append(nuevaFila);
+                                    respuestaCuentaAnterior = respuestaCuentaAnterior[0]
 
-                    if (respuestaGuiasProveedores.length == 0) {
-                        tbodyProveedor.html(`<tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="8" class="text-center">No hay datos</td></tr>`);
+                                    let resultadoAnterior = parseFloat(respuestaCuentaAnterior["totalGuias"]) - parseFloat(respuestaCuentaAnterior["totalPagos"]);
+
+                                    // Obtener el select
+                                    let tbodyProveedor = $('#bodyCuentaDelCliente');
+                                    tbodyProveedor.empty();
+
+                                    let nuevaFila = "";
+                                    let pagoAProveedoresPorDia = 0.00;
+                                    let cantidadAProveedoresPorDia = 0;
+                                    let pesoAProveedoresPorDia = 0.0;
+                                    let pesoBrutoProveedoresPorDia = 0.0;
+                                    let pesoTaraProveedoresPorDia = 0.0;
+                                    let pagosProveedores = 0.0;
+
+                                    respuestaGuiasProveedores.forEach(function (obj) {
+                                        nuevaFila = $('<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
+                                        let precioGuia = 0.00;
+                                        if (obj.precioGuia != "" && obj.precioGuia != null) {
+                                            precioGuia = parseFloat(obj.precioGuia);
+                                        }
+                                        let pesoNeto = parseFloat(obj.pesoBrutoGuia)-parseFloat(obj.pesoTaraGuia);
+                                        let promedio = parseFloat(pesoNeto)/parseFloat(obj.cantidadGuia);
+                                        let totalAPagar = parseFloat(precioGuia)*parseFloat(pesoNeto);
+                                        pagoAProveedoresPorDia += totalAPagar;
+                                        cantidadAProveedoresPorDia += parseInt(obj.cantidadGuia);
+                                        pesoAProveedoresPorDia += parseFloat(pesoNeto);
+                                        pesoBrutoProveedoresPorDia += parseFloat(obj.pesoBrutoGuia);
+                                        pesoTaraProveedoresPorDia += parseFloat(obj.pesoTaraGuia);
+                                        // Agregar las celdas con la información
+                                        nuevaFila.append($('<td class="hidden">').text(obj.idGuia));
+                                        nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(obj.numGuia));
+                                        nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(obj.nombreEspecieCompra));
+                                        nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(obj.cantidadGuia == 1 ? `${obj.cantidadGuia} Ud.` : `${obj.cantidadGuia} Uds.`));
+                                        nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text((pesoNeto).toFixed(2)+" Kg."));
+                                        nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text((promedio).toFixed(2)));
+                                        nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(precioGuia.toFixed(2)));
+                                        nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(`S/. ${fn_formatearImportes(totalAPagar)}`));
+                                        
+                                        // Agregar la nueva fila al tbody
+                                        tbodyProveedor.append(nuevaFila);
+                                    });
+
+                                    nuevaFila = $('<tr class="bg-white border-b border-t-2 border-t-gray-700 dark:border-t-white dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
+                                    nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(""));
+                                    nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(""));
+                                    nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(""));
+                                    nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(""));
+                                    nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(""));
+                                    nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text("SALDO DEL DIA:"));
+                                    nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(`S/. ${fn_formatearImportes(pagoAProveedoresPorDia)}`));
+                                    tbodyProveedor.append(nuevaFila);
+                                    nuevaFila = $('<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
+                                    nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(""));
+                                    nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(""));
+                                    nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(""));
+                                    nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(""));
+                                    nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(""));
+                                    nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text("SALDO ANTERIOR:"));
+                                    nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(`S/. ${fn_formatearImportes(resultadoAnterior)}`));
+                                    tbodyProveedor.append(nuevaFila);
+
+                                    let pasoUnaVezPagos = false;
+
+                                    respuestaPagosProveedores.forEach(function (obj) {
+                                        pagosProveedores += parseFloat(obj.cantidadAbonoPag);
+                                        if(pasoUnaVezPagos == false){
+                                            nuevaFila = $('<tr class="bg-white rowSpanPagos border-b border-t-2 border-t-gray-700 dark:border-t-white dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
+                                            nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center" id="txtPagos">').text("PAGOS"));
+                                            nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(""));
+                                            nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(""));
+                                            nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(""));
+                                            nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(""));
+                                            nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(obj.nombreEspecieCompra));
+                                            nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(fn_formatearImportes(obj.cantidadAbonoPag)));
+                                            tbodyProveedor.append(nuevaFila);
+                                            pasoUnaVezPagos = true;
+                                        }else{
+                                            nuevaFila = $('<tr class="bg-white rowSpanPagos border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
+                                            nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(""));
+                                            nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(""));
+                                            nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(""));
+                                            nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(""));
+                                            nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(obj.nombreEspecieCompra));
+                                            nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(fn_formatearImportes(obj.cantidadAbonoPag)));
+                                            tbodyProveedor.append(nuevaFila);
+                                        }
+                                    });
+
+                                    if (respuestaPagosProveedores.length == 0) {
+                                        nuevaFila = $('<tr class="bg-white rowSpanPagos border-b border-t-2 border-t-gray-700 dark:border-t-white dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
+                                        nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center" id="txtPagos">').text("PAGOS"));
+                                        nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(""));
+                                        nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(""));
+                                        nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(""));
+                                        nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(""));
+                                        nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(""));
+                                        nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text("0,00"));
+                                        tbodyProveedor.append(nuevaFila);
+                                        pasoUnaVezPagos = true;
+                                    }
+
+                                    let resultado = (pagoAProveedoresPorDia + resultadoAnterior) - pagosProveedores;
+
+                                    nuevaFila = $('<tr class="bg-white border-b border-t-2 border-t-gray-700 dark:border-t-white dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">');
+                                    nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(""));
+                                    nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(""));
+                                    nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(""));
+                                    nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(""));
+                                    nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(""));
+                                    nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text("SALDO ACTUAL:"));
+                                    nuevaFila.append($('<td class="border-r dark:border-gray-700 px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white text-center">').text(`S/. ${fn_formatearImportes(resultado)}`));
+                                    tbodyProveedor.append(nuevaFila);
+
+                                    actualizarRowSpanPagos();
+                                },
+                                error: function(error) {
+                                    console.error("ERROR",error);
+                                }
+                            });
+                    },
+                    error: function(error) {
+                        console.error("ERROR",error);
                     }
-                } else {
-                    console.log("La respuesta no es un arreglo de objetos.");
-                }
+                });
+
+                // if (respuestaGuiasProveedores.length == 0) {
+                //     tbodyProveedor.html(`<tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="8" class="text-center">No hay datos</td></tr>`);
+                // }
             },
             error: function(error) {
                 console.error("ERROR",error);
             }
         });
     }
+
+    function actualizarRowSpanPagos() {
+        let filasPagos = $('.rowSpanPagos').length;
+
+        $('#txtPagos').attr('rowspan', filasPagos);
+    }
+    
 
 })

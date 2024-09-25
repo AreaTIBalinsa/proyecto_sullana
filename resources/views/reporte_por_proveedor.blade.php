@@ -120,7 +120,7 @@
                 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                     <thead class="text-xs text-gray-100 uppercase bg-blue-600">
                         <tr class="border-2 border-r-[1px]">
-                            <th class="p-4 whitespace-nowrap text-center" colspan="8">FILAS A AGREGAR</th>
+                            <th class="p-4 whitespace-nowrap text-center" colspan="7">FILAS A AGREGAR</th>
                             <th class="p-4 whitespace-nowrap text-center"><button class="border-2 w-full flex gap-2 justify-center items-center cursor-pointer uppercase bg-green-600 text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 hover:bg-green-600 whitespace-nowrap" type="submit" autocomplete="off" id="registrar_agregarPagos_Excel"><i class='bx bx-save text-lg'></i>Guardar Pagos</button></th>
                         </tr>
                         <tr>
@@ -133,7 +133,7 @@
                             <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Banco</th>
                             <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Forma Pago</th>
                             <th class="p-4 border-r-2 border-b-2 text-center whitespace-nowrap">Observaciones</th>
-                            <th class="p-4 border-r-[1px] border-b-2 text-center">Fecha Registro</th>
+                            <th class="p-4 border-r-[1px] border-b-2 text-center hidden">Fecha Registro</th>
                         </tr>
                     </thead>
                     <tbody id="bodyReporteDePagosExcel">

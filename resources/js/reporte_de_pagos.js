@@ -1034,7 +1034,6 @@ jQuery(function ($) {
                         fechaHastaTraerPagos:fechaHastaTraerPagos,
                     },
                     success: function(response) {
-                        console.log(response);
 
                         // Obtener el select
                         let tbodyReporteDePagos = $('#bodyReporteDePagosCobranzaDePaul');

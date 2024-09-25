@@ -13,6 +13,7 @@ class RegistrarGuia extends Model
 
     protected $fillable = [
         'idProveedor',
+        'idEspecie',
         'cantidadGuia',
         'precioGuia',
         'fechaGuia',

@@ -84,14 +84,16 @@ class ReportePorProveedorController extends Controller
         $precioPesoBruto = $request->input('precioPesoBruto');
         $precioPesoTara = $request->input('precioPesoTara');
         $valorNumeroGuiaAgregarGuia = $request->input('valorNumeroGuiaAgregarGuia');
+        $especie = $request->input('especie');
 
         if (Auth::check()) {
             $registrarGuia = new RegistrarGuia;
             $registrarGuia->idProveedor = $idProveedor;
+            $registrarGuia->idEspecie = $especie;
             $registrarGuia->cantidadGuia = $cantidadAgregarGuia;
-            $registrarGuia->precioGuia = $precioAgregarGuia;
+            $registrarGuia->precioGuia = $precioAgregarGuia ? $precioAgregarGuia : 0;
             $registrarGuia->pesoBrutoGuia = $precioPesoBruto;
-            $registrarGuia->pesoTaraGuia = $precioPesoTara;
+            $registrarGuia->pesoTaraGuia = $precioPesoTara ? $precioPesoTara : 0;
             $registrarGuia->fechaGuia = $fechaRegistrarGuia;
             $registrarGuia->numGuia = $valorNumeroGuiaAgregarGuia;
             $registrarGuia->save();
@@ -158,16 +160,18 @@ class ReportePorProveedorController extends Controller
         $precioAgregarGuiaEditar = $request->input('precioAgregarGuiaEditar');
         $fechaRegistrarGuiaEditar = $request->input('fechaRegistrarGuiaEditar');
         $valorNumeroGuiaAgregarGuiaEditar = $request->input('valorNumeroGuiaAgregarGuiaEditar');
+        $especie = $request->input('especie');
 
         if (Auth::check()) {
             $ActualizarGuia = new ActualizarGuia;
             $ActualizarGuia->where('idGuia', $idActualizarGuia)
                 ->update([
                     'idProveedor' => $idProveedorEditar,
+                    'idEspecie' => $especie,
                     'cantidadGuia' => $cantidadAgregarGuiaEditar,
                     'pesoBrutoGuia' => $pesoBrutoEditar,
-                    'pesoTaraGuia' => $pesoTaraEditar,
-                    'precioGuia' => $precioAgregarGuiaEditar,
+                    'pesoTaraGuia' => $pesoTaraEditar ? $pesoTaraEditar : 0,
+                    'precioGuia' => $precioAgregarGuiaEditar ? $precioAgregarGuiaEditar : 0,
                     'fechaGuia' => $fechaRegistrarGuiaEditar,
                     'numGuia' => $valorNumeroGuiaAgregarGuiaEditar,
                 ]);
@@ -254,6 +258,7 @@ class ReportePorProveedorController extends Controller
         $pagoDerivado = $request->input('pagoDerivado');
         $nombreCliente = $request->input('nombreCliente');
         $fechaRegistroPagoCliente = $request->input('fechaRegistroPagoCliente');
+        $especie = $request->input('especie');
 
         if (Auth::check()) {
             $agregarPagoCliente = new AgregarPagoClienteProveedores;
@@ -267,6 +272,7 @@ class ReportePorProveedorController extends Controller
             $agregarPagoCliente->horaOperacionPag = $horaAgregarPago;
             $agregarPagoCliente->fechaRegistroPag = $fechaRegistroPagoCliente === null ? now()->setTimezone('America/New_York')->toDateString() : $fechaRegistroPagoCliente;
             $agregarPagoCliente->estadoPago = 1;
+            $agregarPagoCliente->campoExtraEspecie = $especie;
             $agregarPagoCliente->save();
     
             return response()->json(['success' => true], 200);
@@ -491,6 +497,73 @@ class ReportePorProveedorController extends Controller
                     INNER JOIN tb_especies_compra ON tb_guias.idProveedor = tb_especies_compra.idEspecie
                     WHERE tb_guias.estadoGuia = 1 AND fechaGuia BETWEEN ? AND ? AND tb_guias.idEspecie = ?
                     order by idGuia asc',[$fechaDesde,$fechaHasta,$nombreProveedor]);
+
+            // Devuelve los datos en formato JSON
+            return response()->json($datos);
+        }
+
+        // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
+        return response()->json(['error' => 'Usuario no autenticado'], 401);
+    }
+    
+    public function consulta_ConsultarPagosProveedorEstadoCuenta(Request $request){
+
+        $fechaDesde = $request->input('fechaDesde');
+        $fechaHasta = $request->input('fechaHasta');
+        $nombreProveedor = $request->input('nombreProveedor');
+
+        if (Auth::check()) {
+            // Realiza la consulta a la base de datos
+            $datos = DB::select('
+                    SELECT
+                        idPagos,
+                        tb_especies_compra.nombreEspecie as nombreEspecieCompra,
+                        codigoCli,
+                        tipoAbonoPag,
+                        cantidadAbonoPag,
+                        fechaOperacionPag,
+                        codigoTransferenciaPag,
+                        observacion,
+                        fechaRegistroPag,
+                        estadoPago,
+                        bancaPago,
+                        horaOperacionPag,
+                        campoExtraEspecie
+                    FROM tb_pagos_proveedores
+                        INNER JOIN tb_especies_compra ON tb_pagos_proveedores.codigoCli = tb_especies_compra.idEspecie
+                    WHERE tb_pagos_proveedores.estadoPago = 1 AND fechaOperacionPag BETWEEN ? AND ? AND campoExtraEspecie = ?
+                    ORDER BY idPagos asc',[$fechaDesde,$fechaHasta,$nombreProveedor]);
+
+            // Devuelve los datos en formato JSON
+            return response()->json($datos);
+        }
+
+        // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
+        return response()->json(['error' => 'Usuario no autenticado'], 401);
+    }
+
+    public function consulta_ConsultarCuentaAnteriorProveedorEstadoCuenta(Request $request){
+
+        $fechaDesde = $request->input('fechaDesde');
+        $fechaHasta = $request->input('fechaHasta');
+        $nombreProveedor = $request->input('nombreProveedor');
+
+        if (Auth::check()) {
+            // Realiza la consulta a la base de datos
+            $datos = DB::select('
+                    SELECT
+                        IFNULL((SELECT SUM(cantidadAbonoPag)
+                                FROM tb_pagos_proveedores
+                                WHERE estadoPago = 1 
+                                AND fechaOperacionPag < ?
+                                AND campoExtraEspecie = ?), 0) AS totalPagos,
+                                
+                        IFNULL((SELECT SUM((pesoBrutoGuia - pesoTaraGuia) * precioGuia)
+                                FROM tb_guias
+                                WHERE estadoGuia = 1
+                                AND fechaGuia < ?
+                                AND idEspecie = ?), 0) AS totalGuias;
+                    ',[$fechaHasta,$nombreProveedor, $fechaHasta,$nombreProveedor]);
 
             // Devuelve los datos en formato JSON
             return response()->json($datos);
