@@ -71,7 +71,7 @@ class InicioController extends Controller
                     IFNULL(CONCAT_WS(" ", nombresCli, apellidoPaternoCli, apellidoMaternoCli), "") AS nombreCompleto
                 FROM tb_pesadas
                 INNER JOIN tb_clientes ON tb_clientes.codigoCli = tb_pesadas.codigoCli
-                WHERE fechaRegistroPes = ? and estadoPes = 1
+                WHERE fechaRegistroPes = ? and estadoPes = 1 and tb_pesadas.codigoCli != 74
                 UNION
                 SELECT 
                     tb_pesadas3.idPesada, 
@@ -84,7 +84,7 @@ class InicioController extends Controller
                     IFNULL(CONCAT_WS(" ", nombresCli, apellidoPaternoCli, apellidoMaternoCli), "") AS nombreCompleto
                 FROM tb_pesadas3
                 INNER JOIN tb_clientes ON tb_clientes.codigoCli = tb_pesadas3.codigoCli
-                WHERE fechaRegistroPes = ? and estadoPes = 1
+                WHERE fechaRegistroPes = ? and estadoPes = 1 and tb_pesadas3.codigoCli != 74
                 UNION
                 SELECT 
                     tb_pesadas2.idPesada, 
@@ -97,7 +97,7 @@ class InicioController extends Controller
                     IFNULL(CONCAT_WS(" ", nombresCli, apellidoPaternoCli, apellidoMaternoCli), "") AS nombreCompleto
                 FROM tb_pesadas2
                 INNER JOIN tb_clientes ON tb_clientes.codigoCli = tb_pesadas2.codigoCli
-                WHERE fechaRegistroPes = ? and estadoPes = 1
+                WHERE fechaRegistroPes = ? and estadoPes = 1 and tb_pesadas2.codigoCli != 74
                 ORDER BY fechaRegistroPes DESC, idPesada ASC' , [$fecha, $fecha, $fecha]);
 
             // Devuelve los datos en formato JSON

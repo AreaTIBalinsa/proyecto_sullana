@@ -381,10 +381,11 @@
                             <th class="bg-blue-600 border-2 px-2 py-1 text-left">CLIENTE</th>
                             <th class="bg-blue-600 border-2 px-2 py-1">LIMIT DE ENDEUDAMIENTO</th>
                             <th class="bg-blue-600 border-2 px-2 py-1">SALDO ANTERIOR</th>
-                            <th class="bg-blue-600 border-2 px-2 py-1">SALDO HOY</th>
+                            <th class="bg-blue-600 border-2 px-2 py-1">GUIA DE HOY</th>
+                            <th class="bg-blue-600 border-2 px-2 py-1">DEUDA TOTAL</th>
                             <th class="bg-blue-600 border-2 px-2 py-1">DEPOSITO</th>
                             <th class="bg-blue-600 border-2 px-2 py-1">SALDO GUIA ACTUAL</th>
-                            <th class="bg-blue-600 border-2 px-2 py-1">SALDO NUEVO</th>
+                            <th class="bg-blue-600 border-2 px-2 py-1">SALDO GENERAL</th>
                         </tr>
                     </thead>
                     <tbody id="bodyReporteAcumuladoExcelResumen" class="text-gray-900 dark:text-gray-50 text-sm">

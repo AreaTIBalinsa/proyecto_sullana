@@ -22,6 +22,7 @@ use App\Http\Controllers\PedidosController;
 use App\Http\Controllers\SeguimientoPedidosController;
 use App\Http\Controllers\CuentaClienteController;
 use App\Http\Controllers\PesadasWebController;
+use App\Http\Controllers\PesadasWebMermaController;
 use App\Http\Controllers\ReporteIngresosController;
 use App\Http\Controllers\DetallesIngresosController;
 use App\Http\Controllers\DetallesIngresos2Controller;
@@ -74,6 +75,7 @@ Route::get('/deuda_maxima',[DeudaMaximaController::class,'show']);
 Route::get('/seguimiento_pedidos',[SeguimientoPedidosController::class,'show']);
 Route::get('/cuenta_cliente',[CuentaClienteController::class,'show']);
 Route::get('/pesadas_web',[PesadasWebController::class,'show']);
+Route::get('/pesadas_web_merma',[PesadasWebMermaController::class,'show']);
 Route::get('/reporte_ingresos',[ReporteIngresosController::class,'show']);
 Route::get('/detalles_egresos',[DetallesIngresosController::class,'show']);
 Route::get('/detalles_ingresos',[DetallesIngresos2Controller::class,'show']);
@@ -158,6 +160,9 @@ Route::get('/fn_consulta_EliminarUsuario', [ConsultarUsuariosController::class,'
 Route::get('/fn_consulta_ConsultarProveedor', [ReportePorProveedorController::class,'consulta_ConsultarProveedor']);
 Route::get('/fn_consulta_ConsultarProveedorEstadoCuenta', [ReportePorProveedorController::class,'consulta_ConsultarProveedorEstadoCuenta']);
 Route::get('/fn_consulta_ConsultarPagosProveedorEstadoCuenta', [ReportePorProveedorController::class,'consulta_ConsultarPagosProveedorEstadoCuenta']);
+Route::get('/fn_consulta_ConsultarPagosProveedorDirectoEstadoCuenta', [ReportePorProveedorController::class,'consulta_ConsultarPagosProveedorDirectoEstadoCuenta']);
+Route::get('/fn_consulta_ConsultarPagosProveedorPaulEstadoCuenta', [ReportePorProveedorController::class,'consulta_ConsultarPagosProveedorPaulEstadoCuenta']);
+
 Route::get('/fn_consulta_ConsultarCuentaAnteriorProveedorEstadoCuenta', [ReportePorProveedorController::class,'consulta_ConsultarCuentaAnteriorProveedorEstadoCuenta']);
 Route::get('/fn_consulta_ConsultarProveedorSum', [ReportePorProveedorController::class,'consulta_ConsultarProveedorSum']);
 Route::get('/fn_consulta_DatosProveedor', [ReportePorProveedorController::class,'consulta_DatosProveedor']);
@@ -229,6 +234,13 @@ Route::get('/fn_consulta_EliminarPesada',[PesadasWebController::class,'consulta_
 Route::get('/fn_consulta_EditarPesadasWeb',[PesadasWebController::class,'consulta_EditarPesadasWeb']);
 Route::get('/fn_consulta_DatosPesadasWeb',[PesadasWebController::class,'consulta_DatosPesadasWeb']);
 Route::get('/fn_consulta_EditarDatosPesadas',[PesadasWebController::class,'consulta_EditarDatosPesadas']);
+
+Route::get('/fn_consulta_registrarPesadasMerma',[PesadasWebMermaController::class,'consulta_registrarPesadas']);
+Route::get('/fn_consulta_TraerDatosPesadas3Merma',[PesadasWebMermaController::class,'consulta_TraerDatosPesadas3']);
+Route::get('/fn_consulta_EliminarPesadaMerma',[PesadasWebMermaController::class,'consulta_EliminarPesada']);
+Route::get('/fn_consulta_EditarPesadasWebMerma',[PesadasWebMermaController::class,'consulta_EditarPesadasWeb']);
+Route::get('/fn_consulta_DatosPesadasWebMerma',[PesadasWebMermaController::class,'consulta_DatosPesadasWeb']);
+Route::get('/fn_consulta_EditarDatosPesadasMerma',[PesadasWebMermaController::class,'consulta_EditarDatosPesadas']);
 
 Route::get('/fn_consulta_CrearCategoria',[DetallesIngresosController::class,'consulta_CrearCategoria']);
 Route::get('/fn_consulta_TraerTablasCategoriasEgresos',[DetallesIngresosController::class,'consulta_TraerTablasCategoriasEgresos']);

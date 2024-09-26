@@ -43,7 +43,7 @@ class ReportePorProveedorController extends Controller
                     from tb_guias
                     INNER JOIN tb_especies_compra ON tb_guias.idProveedor = tb_especies_compra.idEspecie 
                     WHERE tb_guias.estadoGuia = 1 AND fechaGuia BETWEEN ? AND ?
-                    order by idGuia asc',[$fechaDesde,$fechaHasta]);
+                    ORDER BY FIELD(idProveedor,1,2,11,6,3,7,4,5,12,19,20)',[$fechaDesde,$fechaHasta]);
 
             // Devuelve los datos en formato JSON
             return response()->json($datos);
@@ -161,13 +161,13 @@ class ReportePorProveedorController extends Controller
         $fechaRegistrarGuiaEditar = $request->input('fechaRegistrarGuiaEditar');
         $valorNumeroGuiaAgregarGuiaEditar = $request->input('valorNumeroGuiaAgregarGuiaEditar');
         $especie = $request->input('especie');
-
+        
         if (Auth::check()) {
             $ActualizarGuia = new ActualizarGuia;
             $ActualizarGuia->where('idGuia', $idActualizarGuia)
                 ->update([
                     'idProveedor' => $idProveedorEditar,
-                    'idEspecie' => $especie,
+                    // 'idEspecie' => $especie,
                     'cantidadGuia' => $cantidadAgregarGuiaEditar,
                     'pesoBrutoGuia' => $pesoBrutoEditar,
                     'pesoTaraGuia' => $pesoTaraEditar ? $pesoTaraEditar : 0,
@@ -200,12 +200,10 @@ class ReportePorProveedorController extends Controller
                 tb_pagos_proveedores.fechaRegistroPag,
                 tb_pagos_proveedores.horaOperacionPag,
                 tb_pagos_proveedores.bancaPago,
-                tb_pagos_proveedores.codigoCli,
-                tb_especies_compra.nombreEspecie AS nombreCompleto
-                FROM tb_pagos_proveedores
-                LEFT JOIN tb_especies_compra ON tb_especies_compra.idEspecie = tb_pagos_proveedores.codigoCli  
+                tb_pagos_proveedores.codigoCli
+                FROM tb_pagos_proveedores 
                 WHERE tb_pagos_proveedores.estadoPago = 1 and tipoAbonoPag != ? and fechaOperacionPag BETWEEN ? AND ? 
-                ORDER BY idPagos ASC, nombreCompleto ASC', ["Saldo",$fechaDesdeTraerProveedores,$fechaHastaTraerProveedores]);
+                ORDER BY idPagos ASC', ["Saldo",$fechaDesdeTraerProveedores,$fechaHastaTraerProveedores]);
 
             // Devuelve los datos en formato JSON
             return response()->json($datos);
@@ -517,7 +515,6 @@ class ReportePorProveedorController extends Controller
             $datos = DB::select('
                     SELECT
                         idPagos,
-                        tb_especies_compra.nombreEspecie as nombreEspecieCompra,
                         codigoCli,
                         tipoAbonoPag,
                         cantidadAbonoPag,
@@ -530,7 +527,6 @@ class ReportePorProveedorController extends Controller
                         horaOperacionPag,
                         campoExtraEspecie
                     FROM tb_pagos_proveedores
-                        INNER JOIN tb_especies_compra ON tb_pagos_proveedores.codigoCli = tb_especies_compra.idEspecie
                     WHERE tb_pagos_proveedores.estadoPago = 1 AND fechaOperacionPag BETWEEN ? AND ? AND campoExtraEspecie = ?
                     ORDER BY idPagos asc',[$fechaDesde,$fechaHasta,$nombreProveedor]);
 
@@ -548,6 +544,12 @@ class ReportePorProveedorController extends Controller
         $fechaHasta = $request->input('fechaHasta');
         $nombreProveedor = $request->input('nombreProveedor');
 
+        $nombreProveedorPaul = $nombreProveedor;
+
+        if($nombreProveedor == "TECNICA"){
+            $nombreProveedorPaul = "TECAVI";
+        }
+
         if (Auth::check()) {
             // Realiza la consulta a la base de datos
             $datos = DB::select('
@@ -555,15 +557,93 @@ class ReportePorProveedorController extends Controller
                         IFNULL((SELECT SUM(cantidadAbonoPag)
                                 FROM tb_pagos_proveedores
                                 WHERE estadoPago = 1 
-                                AND fechaOperacionPag < ?
+                                AND fechaOperacionPag < ? 
                                 AND campoExtraEspecie = ?), 0) AS totalPagos,
                                 
                         IFNULL((SELECT SUM((pesoBrutoGuia - pesoTaraGuia) * precioGuia)
                                 FROM tb_guias
                                 WHERE estadoGuia = 1
-                                AND fechaGuia < ?
-                                AND idEspecie = ?), 0) AS totalGuias;
-                    ',[$fechaHasta,$nombreProveedor, $fechaHasta,$nombreProveedor]);
+                                AND fechaGuia < ? 
+                                AND idEspecie = ?), 0) AS totalGuias,
+                                
+                        IFNULL((SELECT SUM(cantidadAbonoPag)
+                                FROM tb_pagos
+                                WHERE estadoPago = 1
+                                AND fechaOperacionPag < ?
+                                AND clasificacionPago = 5 
+                                AND observacion = ?), 0) AS totalPagosDirectos,
+
+                        IFNULL((SELECT SUM(cantidadAbonoEgreso)
+                                FROM tb_egresos
+                                WHERE estadoEgreso = 1
+                                AND fechaOperacionEgreso < ?
+                                AND clasificadoEgreso = 2 
+                                AND nombreEgresoCamal = ?), 0) AS totalPagosPaul;
+                    ',[$fechaHasta,$nombreProveedor, $fechaHasta,$nombreProveedor, $fechaHasta,$nombreProveedor, $fechaHasta,$nombreProveedorPaul]);
+
+            // Devuelve los datos en formato JSON
+            return response()->json($datos);
+        }
+
+        // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
+        return response()->json(['error' => 'Usuario no autenticado'], 401);
+    }
+
+    public function consulta_ConsultarPagosProveedorDirectoEstadoCuenta(Request $request){
+
+        $fechaDesde = $request->input('fechaDesde');
+        $fechaHasta = $request->input('fechaHasta');
+        $nombreProveedor = $request->input('nombreProveedor');
+
+        if (Auth::check()) {
+            // Realiza la consulta a la base de datos
+            $datos = DB::select('
+                    SELECT
+                        idPagos,
+                        tb_pagos.codigoCli,
+                        tipoAbonoPag,
+                        cantidadAbonoPag,
+                        fechaOperacionPag,
+                        codigoTransferenciaPag,
+                        observacion,
+                        fechaRegistroPag,
+                        estadoPago,
+                        bancaPago,
+                        horaOperacionPag,
+                        IFNULL(CONCAT_WS(" ", nombresCli, apellidoPaternoCli, apellidoMaternoCli), "") AS nombreCompleto
+                    FROM tb_pagos
+                    INNER JOIN tb_clientes ON tb_clientes.codigoCli = tb_pagos.codigoCli
+                    WHERE tb_pagos.estadoPago = 1 AND clasificacionPago = 5 AND fechaOperacionPag BETWEEN ? AND ? AND observacion = ?
+                    ORDER BY idPagos asc',[$fechaDesde,$fechaHasta,$nombreProveedor]);
+
+            // Devuelve los datos en formato JSON
+            return response()->json($datos);
+        }
+
+        // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
+        return response()->json(['error' => 'Usuario no autenticado'], 401);
+    }
+
+    public function consulta_ConsultarPagosProveedorPaulEstadoCuenta(Request $request){
+
+        $fechaDesde = $request->input('fechaDesde');
+        $fechaHasta = $request->input('fechaHasta');
+        $nombreProveedor = $request->input('nombreProveedor');
+
+        $nombreProveedorPaul = $nombreProveedor;
+
+        if($nombreProveedor == "TECNICA"){
+            $nombreProveedorPaul = "TECAVI";
+        }
+
+        if (Auth::check()) {
+            // Realiza la consulta a la base de datos
+            $datos = DB::select('
+                    SELECT
+                        cantidadAbonoEgreso
+                    FROM tb_egresos
+                    WHERE estadoEgreso = 1 AND clasificadoEgreso = 2 AND fechaOperacionEgreso BETWEEN ? AND ? AND nombreEgresoCamal = ?
+                    ORDER BY idEgresos asc',[$fechaDesde,$fechaHasta,$nombreProveedorPaul]);
 
             // Devuelve los datos en formato JSON
             return response()->json($datos);

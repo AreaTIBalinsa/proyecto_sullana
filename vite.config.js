@@ -26,6 +26,7 @@ export default defineConfig({
                     'resources/js/seguimiento_pedidos.js',
                     'resources/js/cuenta_cliente.js',
                     'resources/js/pesadas_web.js',
+                    'resources/js/pesadas_web_merma.js',
                     'resources/js/reporte_ingresos.js',
                     'resources/js/detalles_egresos.js',
                     'resources/js/detalles_ingresos.js',

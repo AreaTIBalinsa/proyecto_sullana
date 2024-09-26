@@ -638,7 +638,7 @@ jQuery(function($) {
             let horaAgregarPago = filaActual.find('td:eq(4)').text().trim();
             let bancoAgregarPagoCliente = filaActual.find('td:eq(5)').text().trim();
             let formaDePago = filaActual.find('td:eq(6)').text().trim();
-            let comentarioAgregarPagoCliente = filaActual.find('td:eq(7)').find('select').val().trim();;
+            let comentarioAgregarPagoCliente = filaActual.find('td:eq(7)').find('select').val().trim();
             let pagoDerivado = filaActual.find('td:eq(8)').text().trim();
             let codigoCliente = filaActual.find('td:eq(9)').text().trim();
             let fechaRegistroPagoCliente = filaActual.find('td:eq(10)').text().trim();

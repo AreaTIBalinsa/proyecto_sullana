@@ -2334,6 +2334,7 @@ jQuery(function($) {
 
                 <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">S/. ${totalVentaAnterior.toFixed(2)}</td>
                 <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">S/. ${ventaDeHOy}</td>
+                <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">S/. ${totalSaldoDelDia.toFixed(2)}</td>
                 <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">S/. ${totalPagosHoy.toFixed(2)}</td>
                 <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">S/. ${resultadoPagosVentaHOy.toFixed(2)}</td>
                 <td class="text-center border-[1px] py-1 px-2 whitespace-nowrap">S/. ${totalNuevoSaldo.toFixed(2)}</td>
