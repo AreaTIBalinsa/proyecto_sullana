@@ -653,4 +653,54 @@ class ReportePorProveedorController extends Controller
         return response()->json(['error' => 'Usuario no autenticado'], 401);
     }
 
+    public function consulta_ConsultarCuentaActualProveedorEstadoCuenta(Request $request){
+
+        $fecha = $request->input('fecha');
+        $nombreProveedor = $request->input('nombreProveedor');
+
+        $nombreProveedorPaul = $nombreProveedor;
+
+        if($nombreProveedor == "TECNICA"){
+            $nombreProveedorPaul = "TECAVI";
+        }
+
+        if (Auth::check()) {
+            // Realiza la consulta a la base de datos
+            $datos = DB::select('
+                    SELECT
+                        IFNULL((SELECT SUM(cantidadAbonoPag)
+                                FROM tb_pagos_proveedores
+                                WHERE estadoPago = 1 
+                                AND fechaOperacionPag <= ? 
+                                AND campoExtraEspecie = ?), 0) AS totalPagos,
+                                
+                        IFNULL((SELECT SUM((pesoBrutoGuia - pesoTaraGuia) * precioGuia)
+                                FROM tb_guias
+                                WHERE estadoGuia = 1
+                                AND fechaGuia <= ? 
+                                AND idEspecie = ?), 0) AS totalGuias,
+                                
+                        IFNULL((SELECT SUM(cantidadAbonoPag)
+                                FROM tb_pagos
+                                WHERE estadoPago = 1
+                                AND fechaOperacionPag <= ?
+                                AND clasificacionPago = 5 
+                                AND observacion = ?), 0) AS totalPagosDirectos,
+
+                        IFNULL((SELECT SUM(cantidadAbonoEgreso)
+                                FROM tb_egresos
+                                WHERE estadoEgreso = 1
+                                AND fechaOperacionEgreso <= ?
+                                AND clasificadoEgreso = 2 
+                                AND nombreEgresoCamal = ?), 0) AS totalPagosPaul;
+                    ',[$fecha,$nombreProveedor, $fecha,$nombreProveedor, $fecha,$nombreProveedor, $fecha,$nombreProveedorPaul]);
+
+            // Devuelve los datos en formato JSON
+            return response()->json($datos);
+        }
+
+        // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
+        return response()->json(['error' => 'Usuario no autenticado'], 401);
+    }
+
 }

@@ -8,6 +8,7 @@ jQuery(function ($) {
     var tipoUsuario = $('#tipoUsuario').data('id');
     $('#fechaDesdeCuentaDelCliente').val(fechaHoy);
     $('#fechaHastaCuentaDelCliente').val(fechaHoy);
+    $('#fechaRegularSaldo').val(fechaHoy);
 
     $('#btnBuscarCuentaDelCliente').on('click', function () {
         let fechaDesdeCuentaDelCliente = $('#fechaDesdeCuentaDelCliente').val();
@@ -421,5 +422,180 @@ jQuery(function ($) {
         $('#txtPagos').attr('rowspan', filasPagos);
     }
     
+    function fn_traerSaldoActual(fecha, nombreProveedor) {
+        $.ajax({
+            url: '/fn_consulta_ConsultarCuentaActualProveedorEstadoCuenta',
+            method: 'GET',
+            data:{
+                fecha:fecha,
+                nombreProveedor:nombreProveedor,
+            },
+            success: function (respuestaCuentaActual) {
+
+                respuestaCuentaActual = respuestaCuentaActual[0]
+
+                let resultadoActual = parseFloat(respuestaCuentaActual["totalGuias"]) - (parseFloat(respuestaCuentaActual["totalPagos"]) + parseFloat(respuestaCuentaActual["totalPagosDirectos"]) + parseFloat(respuestaCuentaActual["totalPagosPaul"]));
+                
+                let fechaFormateada = fecha.split('-').reverse().join('-');
+                
+                $('#mensajeFechaSaldo').text(`El saldo del día ${fechaFormateada} es:`);
+                $('#saldoObtenido').text(resultadoActual.toFixed(2));
+            },
+            error: function(error) {
+                console.error("ERROR",error);
+            }
+        });
+    }
+
+    $('#idRegularSaldo').on('input', function () {
+        let inputCuentaDelCliente = $(this).val().trim();
+        let contenedorClientes = $('#contenedorClientesRegularSaldo');
+        contenedorClientes.empty();
+
+        if (inputCuentaDelCliente.length > 1 || inputCuentaDelCliente != "") {
+            fn_TraerClientesCuentaDelCliente(inputCuentaDelCliente)
+        } else {
+            contenedorClientes.empty();
+            contenedorClientes.addClass('hidden');
+        }
+    });
+
+    function fn_TraerClientesCuentaDelCliente(inputCuentaDelCliente) {
+        // Limpia las sugerencias anteriores
+        let contenedorClientes = $('#contenedorClientesRegularSaldo')
+        contenedorClientes.empty();
+
+        let arrayLimpio = arrayListaProveedores.filter(cliente => cliente.nombreProveedor.toLowerCase().includes(inputCuentaDelCliente.toLowerCase()));
+
+        // Verificar si la respuesta es un arreglo de objetos
+        if (Array.isArray(arrayLimpio) && arrayLimpio.length > 0) {
+            // Iterar sobre los objetos y mostrar sus propiedades como sugerencias
+            arrayLimpio.forEach(function (obj) {
+                var suggestion = $('<div class="cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-700 p-2 border-b border-gray-300/40">' + obj.nombreProveedor + '</div>');
+
+                // Maneja el clic en la sugerencia
+                suggestion.on("click", function () {
+                    // Rellena el campo de entrada con el nombre completo
+                    $('#idRegularSaldo').val(obj.nombreProveedor);
+
+                    // Actualiza las etiquetas ocultas con los datos seleccionados
+                    $('#selectedCodigoCliRegularSaldo').attr("value", obj.codigoProveedor);
+
+                    let fechaBuscaCuenta = $('#fechaRegularSaldo').val();
+                    fn_traerSaldoActual(fechaBuscaCuenta, obj.nombreProveedor);
+
+                    // Oculta las sugerencias
+                    contenedorClientes.addClass('hidden');
+                });
+
+                contenedorClientes.append(suggestion);
+            });
+
+            // Muestra las sugerencias
+            contenedorClientes.removeClass('hidden');
+        } else {
+            // Oculta las sugerencias si no hay resultados
+            contenedorClientes.addClass('hidden');
+        }
+    };
+
+    $(document).on("click", "#btnRegularSaldos", function() {      
+        $('#ModalCambiarPrecioPesada').addClass('flex');
+        $('#ModalCambiarPrecioPesada').removeClass('hidden');
+        $('#selectedCodigoCliRegularSaldo').attr('value',"");
+        $('#nuevoSaldoCliente').val("");
+        $('#idRegularSaldo').val("");
+        $("#nuevoSaldoCliente").removeClass('border-red-500').addClass('dark:border-gray-600 border-gray-300');
+        $("#idRegularSaldo").removeClass('border-red-500').addClass('dark:border-gray-600 border-gray-300');
+
+        $('#fechaRegularSaldo').val(fechaHoy);
+        $('#mensajeFechaSaldo').text(`El saldo del dia 00-00-0000 es :`);
+        $('#saldoObtenido').text(`0`);
+    });
+
+    $('.cerrarModalCambiarPrecioPesada, #ModalCambiarPrecioPesada .opacity-75').on('click', function (e) {
+        $('#ModalCambiarPrecioPesada').addClass('hidden');
+        $('#ModalCambiarPrecioPesada').removeClass('flex');
+    });
+
+    $(document).on('click', '#btnRegularSaldoCliente', function (event) {
+        let fechaBuscaCuenta = $('#fechaRegularSaldo').val();
+        let codigoCli = $('#idRegularSaldo').val();
+        let saldoObtenido = parseFloat($('#saldoObtenido').text());
+        let nuevoRegularSaldo = parseFloat($('#nuevoSaldoCliente').val());
+        let nuevoPrecio = $('#nuevoSaldoCliente').val();
+    
+        // Calcular la diferencia
+        let diferencia = nuevoRegularSaldo - saldoObtenido;
+        diferencia = diferencia*-1
+
+        let contadorErrores = 0;
+
+        if (codigoCli == 0 || codigoCli == ""){
+            contadorErrores++;
+            $("#idRegularSaldo").removeClass('dark:border-gray-600 border-gray-300').addClass('border-red-500');
+        }else{
+            $("#idRegularSaldo").removeClass('border-red-500').addClass('dark:border-gray-600 border-gray-300');
+        }
+
+        if(nuevoPrecio == ""){
+            contadorErrores++;
+            $("#nuevoSaldoCliente").removeClass('dark:border-gray-600 border-gray-300').addClass('border-red-500');
+        }else{
+            $("#nuevoSaldoCliente").removeClass('border-red-500').addClass('dark:border-gray-600 border-gray-300');
+        }
+
+        if(contadorErrores == 0){
+            fn_AgregarSaldoRegular(fechaBuscaCuenta,codigoCli,diferencia);
+            // console.log(fechaBuscaCuenta,codigoCli,diferencia)
+        }else{
+            alertify.notify('Debe rellenar todos los campos.', 'error', 3);
+        }
+
+    });
+
+    function fn_AgregarSaldoRegular(fechaBuscaCuenta,codigoCli,diferencia){
+        $.ajax({
+            url: '/fn_consulta_AgregarSaldoRegularProveedores',
+            method: 'GET',
+            data: {
+                fechaBuscaCuenta: fechaBuscaCuenta,
+                codigoCli:codigoCli,
+                diferencia:diferencia,
+            },
+            success: function(response) {
+                if (response.success) {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Se regulo el saldo correctamente',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    $('#ModalCambiarPrecioPesada').addClass('hidden');
+                    $('#ModalCambiarPrecioPesada').removeClass('flex');
+                    let fechaHastaCuentaDelCliente = $('#fechaHastaCuentaDelCliente').val();
+                    let codigoProveedor = $("#codigoClienteSeleccionado").val();
+                    let nombreProveedor = $("#inputNombreClientes").val();
+                    if (codigoProveedor != 0){
+                        fn_ConsultarProveedor(fechaHastaCuentaDelCliente, fechaHastaCuentaDelCliente, nombreProveedor);
+                    }else{
+                        let tbodyProveedor = $('#bodyCuentaDelCliente');
+                        tbodyProveedor.empty();
+                        alertify.notify('Debe seleccionar proveedor.', 'error', 3);
+                        tbodyProveedor.append(`<tr class="rounded-lg border-2 dark:border-gray-700"><td colspan="7" class="text-center">No hay datos</td></tr>`)
+                    }
+                }
+            },
+            error: function(error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Error: Ocurrio un error inesperado durante la operacion',
+                  })
+                console.error("ERROR",error);
+            }
+        });
+    } 
 
 })

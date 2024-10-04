@@ -2126,10 +2126,9 @@ class ReporteDePagosController extends Controller
         return response()->json(['error' => 'Usuario no autenticado'], 401);
     }  
 
-    public function consulta_TraerSaldoAnterior(Request $request){
-
+    public function consulta_TraerSaldoAnterior(Request $request) {
         $fechaHastaTraerPagos = $request->input('fechaHastaTraerPagos');
-
+    
         if (Auth::check()) {
             // Realiza la consulta a la base de datos
             $datos = DB::select('
@@ -2138,26 +2137,16 @@ class ReporteDePagosController extends Controller
                     FROM tb_pagos 
                     WHERE clasificacionPago = 3 
                         AND estadoPago = 1
-                        AND fechaOperacionPag = (
-                        SELECT MAX(fechaOperacionPag) 
-                        FROM tb_pagos 
-                        WHERE clasificacionPago = 3 
-                            AND estadoPago = 1 
-                            AND fechaOperacionPag < ?)
+                        AND fechaOperacionPag >= ? AND fechaOperacionPag < ?
                     ) AS totalAbonosPagos,
                     
-                    (SELECT SUM(cantidadAbonoEgreso) 
+                    (SELECT SUM(cantidadAbonoEgreso)
                     FROM tb_egresos 
                     WHERE clasificadoEgreso = 2 
                         AND estadoEgreso = 1
-                        AND fechaOperacionEgreso = (
-                        SELECT MAX(fechaOperacionEgreso) 
-                        FROM tb_egresos 
-                        WHERE clasificadoEgreso = 2 
-                            AND estadoEgreso = 1 
-                            AND fechaOperacionEgreso < ?)
+                        AND fechaOperacionEgreso >= ? AND fechaOperacionEgreso < ?
                     ) AS totalAbonosEgresos
-                ', [$fechaHastaTraerPagos, $fechaHastaTraerPagos]);
+            ', ['2024-09-24', $fechaHastaTraerPagos, '2024-09-24', $fechaHastaTraerPagos]);
     
             // Devuelve los datos en formato JSON
             return response()->json($datos);
@@ -2165,6 +2154,6 @@ class ReporteDePagosController extends Controller
     
         // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
         return response()->json(['error' => 'Usuario no autenticado'], 401);
-    }  
+    }    
 
 }

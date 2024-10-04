@@ -164,6 +164,7 @@ Route::get('/fn_consulta_ConsultarPagosProveedorDirectoEstadoCuenta', [ReportePo
 Route::get('/fn_consulta_ConsultarPagosProveedorPaulEstadoCuenta', [ReportePorProveedorController::class,'consulta_ConsultarPagosProveedorPaulEstadoCuenta']);
 
 Route::get('/fn_consulta_ConsultarCuentaAnteriorProveedorEstadoCuenta', [ReportePorProveedorController::class,'consulta_ConsultarCuentaAnteriorProveedorEstadoCuenta']);
+Route::get('/fn_consulta_ConsultarCuentaActualProveedorEstadoCuenta', [ReportePorProveedorController::class,'consulta_ConsultarCuentaActualProveedorEstadoCuenta']);
 Route::get('/fn_consulta_ConsultarProveedorSum', [ReportePorProveedorController::class,'consulta_ConsultarProveedorSum']);
 Route::get('/fn_consulta_DatosProveedor', [ReportePorProveedorController::class,'consulta_DatosProveedor']);
 Route::get('/fn_consulta_RegistrarGuia', [ReportePorProveedorController::class,'consulta_RegistrarGuia']);
@@ -191,6 +192,7 @@ Route::get('/fn_consulta_TraerClientesAgregarSaldo',[AgregarSaldoController::cla
 Route::get('/fn_consulta_TraerClientesAgregarSaldoCliente',[AgregarSaldoController::class,'consulta_TraerClientesAgregarSaldoCliente']);
 Route::get('/fn_consulta_AgregarSaldo',[AgregarSaldoController::class,'consulta_AgregarSaldo']);
 Route::get('/fn_consulta_AgregarSaldoRegular',[AgregarSaldoController::class,'consulta_AgregarSaldoRegular']);
+Route::get('/fn_consulta_AgregarSaldoRegularProveedores',[AgregarSaldoController::class,'consulta_AgregarSaldoRegularProveedores']);
 Route::get('/fn_consulta_TraerDeudamiento',[AgregarSaldoController::class,'consulta_TraerDeudamiento']);
 
 Route::get('/fn_consulta_DeudaMaximaClientes',[DeudaMaximaController::class,'consulta_DeudaMaximaClientes']);

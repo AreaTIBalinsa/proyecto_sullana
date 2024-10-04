@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\AgregarSaldo\AgregarSaldoCliente;
+use App\Models\AgregarSaldo\AgregarSaldoProveedorCliente;
 use Carbon\Carbon;
 
 class AgregarSaldoController extends Controller
@@ -264,6 +265,31 @@ class AgregarSaldoController extends Controller
         if (Auth::check()) {
             $agregarSaldoCliente = new AgregarSaldoCliente;
             $agregarSaldoCliente->codigoCli = $codigoCli;
+            $agregarSaldoCliente->tipoAbonoPag = "Saldo";
+            $agregarSaldoCliente->cantidadAbonoPag = $valorAgregarSaldo;
+            $agregarSaldoCliente->fechaOperacionPag = $fechaPago;
+            $agregarSaldoCliente->codigoTransferenciaPag = "";
+            $agregarSaldoCliente->observacion = "";
+            $agregarSaldoCliente->fechaRegistroPag = $fechaPago;
+            $agregarSaldoCliente->save();
+    
+            return response()->json(['success' => true], 200);
+        }
+
+        // Si el usuario no está autenticado, puedes devolver un error o redirigirlo
+        return response()->json(['error' => 'Usuario no autenticado'], 401);
+    }
+
+    public function consulta_AgregarSaldoRegularProveedores(Request $request){
+
+        $codigoCli = $request->input('codigoCli');
+        $valorAgregarSaldo = $request->input('diferencia');
+        $fechaPago = $request->input('fechaBuscaCuenta');
+
+        if (Auth::check()) {
+            $agregarSaldoCliente = new AgregarSaldoProveedorCliente;
+            $agregarSaldoCliente->codigoCli = "Regular";
+            $agregarSaldoCliente->campoExtraEspecie = $codigoCli;
             $agregarSaldoCliente->tipoAbonoPag = "Saldo";
             $agregarSaldoCliente->cantidadAbonoPag = $valorAgregarSaldo;
             $agregarSaldoCliente->fechaOperacionPag = $fechaPago;
