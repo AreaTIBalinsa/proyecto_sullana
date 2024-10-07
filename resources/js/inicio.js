@@ -424,7 +424,7 @@ jQuery(function($) {
                                         arregloProveedores.gallinaDoble.cantidad += obj.cantidadGuia;
                                         arregloProveedores.gallinaDoble.pesoTotal += obj.pesoNetoGuia;
                                     }
-                                    if (especieUpper === "TECNICA AA" || especieUpper === "MASAY") {
+                                    if (especieUpper === "TECNICA AA" || especieUpper === "MASAY" || especieUpper === "CHIMU" || especieUpper === "OTROS") {
                                         arregloProveedores.tecnica.cantidad += obj.cantidadGuia;
                                         arregloProveedores.tecnica.pesoTotal += obj.pesoNetoGuia;
                                     }
@@ -436,10 +436,10 @@ jQuery(function($) {
                                         arregloProveedores.gallinaChica.cantidad += obj.cantidadGuia;
                                         arregloProveedores.gallinaChica.pesoTotal += obj.pesoNetoGuia;
                                     }
-                                    if (especieUpper === "CHIMU" || especieUpper === "OTROS") {
-                                        arregloProveedores.otros.cantidad += obj.cantidadGuia;
-                                        arregloProveedores.otros.pesoTotal += obj.pesoNetoGuia;
-                                    }
+                                    // if (especieUpper === "CHIMU" || especieUpper === "OTROS") {
+                                    //     arregloProveedores.otros.cantidad += obj.cantidadGuia;
+                                    //     arregloProveedores.otros.pesoTotal += obj.pesoNetoGuia;
+                                    // }
                                 });
 
                                 $.ajax({

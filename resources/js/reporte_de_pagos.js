@@ -1830,6 +1830,7 @@ jQuery(function ($) {
     }
 
     function fn_TraerEgresosPaulFechas(fechaDesdeTraerPagos, fechaHastaTraerPagos) {
+        totalPagoEgresoPaul = 0
         $.ajax({
             url: '/fn_consulta_TraerEgresosPaulFechas',
             method: 'GET',

@@ -741,6 +741,40 @@ jQuery(function($) {
             }
         });
     }
+
+    function fn_ActualizarPagoClienteExcel(idPagoActualizar,codigoCliente,montoAgregarPagoCliente,fechaAgregarPagoCliente,formaDePago,codAgregarPagoCliente,comentarioAgregarPagoCliente,bancoAgregarPagoCliente,horaAgregarPago, pagoDerivado, nombreCliente, fechaRegistroPagoCliente){
+        return  $.ajax({
+            url: '/fn_consulta_ActualizarPagoClienteExcel',
+            method: 'GET',
+            data: {
+                idPagoActualizar: idPagoActualizar,
+                codigoCliente: codigoCliente,
+                montoAgregarPagoCliente: montoAgregarPagoCliente,
+                fechaAgregarPagoCliente: fechaAgregarPagoCliente,
+                formaDePago:formaDePago,
+                codAgregarPagoCliente:codAgregarPagoCliente,
+                comentarioAgregarPagoCliente:comentarioAgregarPagoCliente,
+                bancoAgregarPagoCliente:bancoAgregarPagoCliente,
+                horaAgregarPago:horaAgregarPago,
+                pagoDerivado:pagoDerivado,
+                nombreCliente:nombreCliente,
+                fechaRegistroPagoCliente: fechaRegistroPagoCliente,
+            },
+            success: function(response) {
+                if (response.success) {
+                    
+                }
+            },
+            error: function(error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Error: Ocurrio un error inesperado durante la operacion',
+                  })
+                console.error("ERROR",error);
+            }
+        });
+    }
     
     $(document).on('input', '.bancoCopiar', function () {
         copiarDatosPenultimaFila();
@@ -2916,15 +2950,45 @@ jQuery(function($) {
                             checkCompletion();
                         } else {
                             // Llamar a la función fn_AgregarPagoCliente con los datos de la fila actual
-                            fn_AgregarPagoClienteExcel(codigoCliente, montoAgregarPagoCliente, fechaAgregarPagoCliente, formaDePago, codAgregarPagoCliente, comentarioAgregarPagoCliente, bancoAgregarPagoCliente, horaAgregarPago, pagoDerivado, nombreCliente, fechaRegistroPagoCliente)
-                            .then(function() {
-                                completedRequests++;
-                                checkCompletion();
-                            })
-                            .catch(function() {
-                                failedRequests++;
-                                checkCompletion();
+                            $.ajax({
+                                url: '/fn_consulta_VerificarPagoUpdate',
+                                method: 'GET',
+                                data: {
+                                    fechaAgregarPagoCliente: fechaAgregarPagoCliente,
+                                    montoAgregarPagoCliente: montoAgregarPagoCliente,
+                                    bancoAgregarPagoCliente: bancoAgregarPagoCliente,
+                                },
+                                success: function(response) {
+                                    if (Array.isArray(response) && response.length > 0) {
+                                        let idPagoActualizar = response[0].idPagos;
+                                        fn_ActualizarPagoClienteExcel(idPagoActualizar ,codigoCliente, montoAgregarPagoCliente, fechaAgregarPagoCliente, formaDePago, codAgregarPagoCliente, comentarioAgregarPagoCliente, bancoAgregarPagoCliente, horaAgregarPago, pagoDerivado, nombreCliente, fechaRegistroPagoCliente)
+                                        .then(function() {
+                                            completedRequests++;
+                                            checkCompletion();
+                                        })
+                                        .catch(function() {
+                                            failedRequests++;
+                                            checkCompletion();
+                                        });
+                                    }else{
+                                        fn_AgregarPagoClienteExcel(codigoCliente, montoAgregarPagoCliente, fechaAgregarPagoCliente, formaDePago, codAgregarPagoCliente, comentarioAgregarPagoCliente, bancoAgregarPagoCliente, horaAgregarPago, pagoDerivado, nombreCliente, fechaRegistroPagoCliente)
+                                        .then(function() {
+                                            completedRequests++;
+                                            checkCompletion();
+                                        })
+                                        .catch(function() {
+                                            failedRequests++;
+                                            checkCompletion();
+                                        });
+                                    }
+                                },
+                                error: function(error) {
+                                    console.error("ERROR", error);
+                                    failedRequests++;
+                                    checkCompletion();
+                                }
                             });
+
                             // Eliminar la fila actual
                             filaActual.remove();
                             guardarTabla();
