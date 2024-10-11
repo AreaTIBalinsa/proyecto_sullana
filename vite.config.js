@@ -31,6 +31,7 @@ export default defineConfig({
                     'resources/js/detalles_egresos.js',
                     'resources/js/detalles_ingresos.js',
                     'resources/js/resumen_dinerario.js',
+                    'resources/js/comentarios.js',
                 ],
             refresh: true,
         }),

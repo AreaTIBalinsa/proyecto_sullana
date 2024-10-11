@@ -28,6 +28,7 @@ use App\Http\Controllers\DetallesIngresosController;
 use App\Http\Controllers\DetallesIngresos2Controller;
 use App\Http\Controllers\AutocompleteController;
 use App\Http\Controllers\ResumenDinerarioController;
+use App\Http\Controllers\ComentariosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -80,8 +81,10 @@ Route::get('/reporte_ingresos',[ReporteIngresosController::class,'show']);
 Route::get('/detalles_egresos',[DetallesIngresosController::class,'show']);
 Route::get('/detalles_ingresos',[DetallesIngresos2Controller::class,'show']);
 Route::get('/resumen_dinerario',[ResumenDinerarioController::class,'show']);
+Route::get('/comentarios',[ComentariosController::class,'show']);
 
 /* ============================== Termina Controladores para Mostrar Vistas ============================== */
+Route::get('/fn_listarComentarios',[ComentariosController::class,'listarComentarios']);
 
 Route::get('/fn_consulta_DatosEspecie', [InicioController::class,'consulta_DatosEspecie']);
 Route::get('/fn_consulta_DatosEspecie2', [InicioController::class,'consulta_DatosEspecie2']);
