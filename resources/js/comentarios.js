@@ -28,7 +28,7 @@ jQuery(function($) {
             success: function(response) {
                 $('#bodyComentarios').empty();
                 response.forEach(function (obj) {
-                    console.log(obj);
+
                     let nuevaFila = `
                         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">
                             <td class="border-r dark:border-gray-700 p-2 text-center">${obj.fecha_comentario}</td>

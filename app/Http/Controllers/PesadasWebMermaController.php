@@ -21,22 +21,19 @@ class PesadasWebMermaController extends Controller
 
     public function consulta_registrarPesadas(Request $request){
 
-        $idEspecie = $request->input('codigoEspecieAgregarPesada');
+        $idEspecie = $request->input('especieAgregarPesada');
         $pesoNetoPes = $request->input('pesoBrutoAgregarPesada');
         $cantidadAgregarPesada = $request->input('cantidadAgregarPesada');
         $pesoTaraAgregarPesada = $request->input('pesoTaraAgregarPesada');
         $precioAgregarPesada = $request->input('precioAgregarPesada');
         $observacionAgregarPesada = $request->input('observacionAgregarPesada');
         $fechaAgregarPesada = $request->input('fechaAgregarPesada');
-        $codigoCli = $request->input('codigoCli');
 
         if (Auth::check()) {
             $agregarPesadasWeb = new AgregarPesadasWebMerma;
-            $agregarPesadasWeb->idProceso = 0;
             $agregarPesadasWeb->idEspecie = $idEspecie;
             $agregarPesadasWeb->pesoNetoPes = $pesoNetoPes;
             $agregarPesadasWeb->horaPes = Carbon::now()->setTimezone('America/Lima')->format('H:i:s');
-            $agregarPesadasWeb->codigoCli = $codigoCli;
             $agregarPesadasWeb->fechaRegistroPes = $fechaAgregarPesada;
             $agregarPesadasWeb->cantidadPes = $cantidadAgregarPesada;
             $agregarPesadasWeb->precioPes = $precioAgregarPesada;
@@ -44,7 +41,6 @@ class PesadasWebMermaController extends Controller
             $agregarPesadasWeb->numeroJabasPes = 0;
             $agregarPesadasWeb->numeroCubetasPes = 0;
             $agregarPesadasWeb->estadoPes = 1;
-            $agregarPesadasWeb->estadoWebPes = 1;
             $agregarPesadasWeb->observacionPes = $observacionAgregarPesada === null ? "" : $observacionAgregarPesada;
             $agregarPesadasWeb->save();
     
@@ -72,11 +68,8 @@ class PesadasWebMermaController extends Controller
                     tb_pesadas4.pesoNetoJabas,
                     tb_pesadas4.precioPes,
                     tb_pesadas4.observacionPes,
-                    tb_pesadas4.codigoCli,
-                    tb_especies_venta.nombreEspecie,
-                    IFNULL(CONCAT_WS(" ", nombresCli, apellidoPaternoCli, apellidoMaternoCli), "") AS nombreCompleto
+                    tb_especies_venta.nombreEspecie
                 FROM tb_pesadas4
-                INNER JOIN tb_clientes ON tb_clientes.codigoCli = tb_pesadas4.codigoCli
                 INNER JOIN tb_especies_venta ON tb_especies_venta.idEspecie = tb_pesadas4.idEspecie
                 WHERE fechaRegistroPes BETWEEN ? AND ? AND estadoPes = 1', [$fechaDesdePesadas,$fechaHastaPesadas]);
 
@@ -119,11 +112,8 @@ class PesadasWebMermaController extends Controller
                     tb_pesadas4.pesoNetoJabas,
                     tb_pesadas4.precioPes,
                     tb_pesadas4.observacionPes,
-                    tb_pesadas4.codigoCli,
-                    tb_especies_venta.nombreEspecie,
-                    IFNULL(CONCAT_WS(" ", nombresCli, apellidoPaternoCli, apellidoMaternoCli), "") AS nombreCompleto
+                    tb_especies_venta.nombreEspecie
                 FROM tb_pesadas4
-                INNER JOIN tb_clientes ON tb_clientes.codigoCli = tb_pesadas4.codigoCli
                 INNER JOIN tb_especies_venta ON tb_especies_venta.idEspecie = tb_pesadas4.idEspecie
                 WHERE idPesada = ?', [$codigoPesada]);
     
@@ -151,7 +141,6 @@ class PesadasWebMermaController extends Controller
     
     public function consulta_EditarDatosPesadas(Request $request) {
         $idPesadaWebEditar = $request->input('idPesadaWebEditar');
-        $idEditarPesadasWebCliente = $request->input('idEditarPesadasWebCliente');
         $fechaEditarPesada = $request->input('fechaEditarPesada');
         $especieEditarPesada = $request->input('especieEditarPesada');
         $cantidadEditarPesada = $request->input('cantidadEditarPesada');
@@ -165,7 +154,6 @@ class PesadasWebMermaController extends Controller
             DB::update('
                 UPDATE tb_pesadas4
                 SET 
-                    codigoCli = ?,
                     fechaRegistroPes = ?,
                     idEspecie = ?,
                     cantidadPes = ?,
@@ -174,7 +162,7 @@ class PesadasWebMermaController extends Controller
                     precioPes = ?,
                     observacionPes = ?
                 WHERE idPesada = ?',
-                [$idEditarPesadasWebCliente, $fechaEditarPesada, $especieEditarPesada, $cantidadEditarPesada, $pesoBrutoEditarPesada, $pesoJabasEditarPesada, $precioEditarPesada, $comentarioEditarPesada, $idPesadaWebEditar]
+                [$fechaEditarPesada, $especieEditarPesada, $cantidadEditarPesada, $pesoBrutoEditarPesada, $pesoJabasEditarPesada, $precioEditarPesada, $comentarioEditarPesada, $idPesadaWebEditar]
             );
     
             // Devuelve los datos en formato JSON

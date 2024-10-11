@@ -14,11 +14,9 @@ class AgregarPesadasWebMerma extends Model
 
     protected $fillable = [
         'idPesada',
-        'idProceso',
         'idEspecie',
         'pesoNetoPes',
         'horaPes',
-        'codigoCli',
         'fechaRegistroPes',
         'cantidadPes',
         'precioPes',
@@ -26,7 +24,6 @@ class AgregarPesadasWebMerma extends Model
         'numeroJabasPes',
         'numeroCubetasPes',
         'estadoPes',
-        'estadoWebPes',
         'observacionPes',
     ];
 
