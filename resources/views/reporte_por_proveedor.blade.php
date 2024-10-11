@@ -84,6 +84,9 @@
                             <th scope="col" class="px-6 py-3 border-b-2 whitespace-nowrap">
                                 Precio
                             </th>
+                            <th scope="col" class="px-6 py-3 border-b-2 whitespace-nowrap">
+                                Total
+                            </th>
                         </tr>
                     </thead>
                     <tbody id="bodyReporteControlStock">

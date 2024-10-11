@@ -1309,10 +1309,13 @@ jQuery(function($) {
 
                     let totalCantidades = 0;
                     let totalPeso = 0;
+                    let totalDinero = 0;
 
                     response.forEach(function (obj) {
                         totalCantidades += parseInt(obj.cantidad_stock);
                         totalPeso += parseFloat(obj.peso_stock);
+                        let total = parseFloat(obj.precio_stock) * parseInt(obj.peso_stock)
+                        totalDinero += total;
                         let nuevaFila = `
                         <tr class="bg-white eliminarStock border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-200 text-gray-900 dark:text-white dark:hover:bg-gray-600 cursor-pointer">
                             <td class="border-r dark:border-gray-700 px-4 py-2 text-center whitespace-nowrap hidden">${obj.id_stock}</td>
@@ -1322,6 +1325,7 @@ jQuery(function($) {
                             <td class="border-r dark:border-gray-700 px-4 py-2 text-center whitespace-nowrap">${obj.peso_stock}</td>
                             <td class="border-r dark:border-gray-700 px-4 py-2 text-center whitespace-nowrap hidden">${obj.idProveedor}</td>
                             <td class="border-r dark:border-gray-700 px-4 py-2 text-center whitespace-nowrap">${obj.precio_stock}</td>
+                            <td class="border-r dark:border-gray-700 px-4 py-2 text-center whitespace-nowrap">${(total).toFixed(2)}</td>
                         </tr>
                         `;
                         tbodyReporteControlStock.append(nuevaFila);
@@ -1334,6 +1338,7 @@ jQuery(function($) {
                         <td class="border-r dark:border-gray-700 px-4 py-2 text-center whitespace-nowrap">${totalCantidades} ${totalCantidades != 1 ? "Uds." : "Ud."}</td>
                         <td class="border-r dark:border-gray-700 px-4 py-2 text-center whitespace-nowrap">${totalPeso.toFixed(2)} Kg.</td>
                         <td class="border-r dark:border-gray-700 px-4 py-2 text-center whitespace-nowrap"></td>
+                        <td class="border-r dark:border-gray-700 px-4 py-2 text-center whitespace-nowrap">S/. ${totalDinero.toFixed(2)}</td>
                     </tr>
                     `;
                     tbodyReporteControlStock.append(nuevaFila);
